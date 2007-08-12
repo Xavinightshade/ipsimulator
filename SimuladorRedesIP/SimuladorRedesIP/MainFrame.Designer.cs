@@ -79,7 +79,7 @@ namespace RedesIP
 			  this.computador1.TabIndex = 0;
 			  this.computador1.TabStop = false;
 			  // 
-			  // Form1
+			  // MainFrame
 			  // 
 			  this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			  this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,7 +89,7 @@ namespace RedesIP
 			  this.Controls.Add(this.computador2);
 			  this.Controls.Add(this.switch1);
 			  this.Controls.Add(this.computador1);
-			  this.Name = "Form1";
+			  this.Name = "MainFrame";
 			  this.Text = "Form1";
 			  ((System.ComponentModel.ISupportInitialize)(this.switch2)).EndInit();
 			  ((System.ComponentModel.ISupportInitialize)(this.computador2)).EndInit();
