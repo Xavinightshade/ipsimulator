@@ -1,6 +1,6 @@
 namespace RedesIP
 {
-    partial class Form1
+    partial class MainFrame
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@ namespace RedesIP
         /// </summary>
         private void InitializeComponent()
         {
-			  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+			  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
 			  this.switch2 = new RedesIp.Elementos_Visuales.Switch();
 			  this.computador2 = new RedesIp.Elementos_Visuales.Computador();
 			  this.switch1 = new RedesIp.Elementos_Visuales.Switch();
