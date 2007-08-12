@@ -1,0 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using RedesIp.ElementosVisuales;
+using RedesIp.Properties;
+
+namespace RedesIp.Elementos_Visuales
+{
+	class Switch:ElementoVisual
+	{
+		public Switch()
+		{
+			this.Image = Resources.Switch;
+		}
+	}
+}
