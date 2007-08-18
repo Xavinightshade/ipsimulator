@@ -8,5 +8,6 @@ namespace RedesIp.Modelos
 	{
 		int OrigenX { get;set;}
 		int OrigenY { get;set;}
+		event EventHandler CambioEnModelo;
 	}
 }

@@ -4,9 +4,17 @@ using System.Text;
 
 namespace RedesIp.Vistas
 {
+
+
+
+
 	public interface IDispositivoVista
 	{
-		int Top { get;set;}
-		int Left { get;set;}
+		int OrigenX { get;set;}
+		int OrigenY { get;set;}
+		event EventHandler CambioEnVista;
 	}
+
+	
+
 }

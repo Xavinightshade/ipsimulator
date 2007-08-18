@@ -34,8 +34,7 @@ namespace RedesIp.Vistas.ElementosVisuales
 		{
 			if (_elBotonDelMouseEstaPresionado)
 			{
-				this.Left += e.X - _clickOffSetX;
-				this.Top += e.Y - _clickOffSetY;
+				OnCambioDeVista();
 			}
 
 		}
@@ -48,6 +47,44 @@ namespace RedesIp.Vistas.ElementosVisuales
 		{
 			base.OnMouseMove(e);
 		}
+
+
+
+		#region IDispositivoVista Members
+
+		public int OrigenX
+		{
+			get
+			{
+				return this.Left;
+			}
+			set
+			{
+				this.Left = value;
+			}
+		}
+
+		public int OrigenY
+		{
+			get
+			{
+				return this.Top;
+			}
+			set
+			{
+				this.Top = value;
+			}
+		}
+
+		public event EventHandler CambioEnVista;
+
+		private void OnCambioDeVista()
+		{
+			if (CambioEnVista != null)
+				CambioEnVista(this, new EventArgs());
+		}
+		
+		#endregion
 	}
 
 }
