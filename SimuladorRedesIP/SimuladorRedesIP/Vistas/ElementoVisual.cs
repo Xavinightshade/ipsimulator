@@ -6,11 +6,11 @@ using System.Drawing;
 
 namespace RedesIp.Vistas.ElementosVisuales
 {
-	class ElementoVisual : PictureBox
+	public class DispositivoVista : PictureBox,IDispositivoVista
 	{
 		private bool _elBotonDelMouseEstaPresionado;
 		private int _clickOffSetX, _clickOffSetY;
-		public ElementoVisual()
+		public DispositivoVista()
 		{
 			Inicializar();
 			this.SizeMode = PictureBoxSizeMode.AutoSize;

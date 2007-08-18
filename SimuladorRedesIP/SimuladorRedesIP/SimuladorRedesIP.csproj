@@ -64,9 +64,12 @@
     <Compile Include="Modelos\Elementos Logicos\PuertoEthernet.cs" />
     <Compile Include="Modelos\Elementos Logicos\Router.cs" />
     <Compile Include="Modelos\Elementos Logicos\Switch.cs" />
+    <Compile Include="Presenters\Dispositivo.cs" />
+    <Compile Include="Modelos\IDispositivoModelo.cs" />
     <Compile Include="Vistas\Computador.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Vistas\IDispositivoVista.cs" />
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
     <Compile Include="Vistas\ElementoVisual.cs">
       <SubType>Component</SubType>
@@ -114,7 +117,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Presenters\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
