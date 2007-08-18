@@ -13,13 +13,13 @@ using System.Collections;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Serialization.Formatters;
 using RedesIP.Remoting;
+using RedesIP.Vistas.ElementosVisuales;
 
 namespace SimuladorCliente
 {
 	public partial class Form1 : Form
 	{
-		DispositivoModelo _modeloRemoto;
-		DispositivoPresenter _presenter;
+		RemoteServerObject _objetoRemoto;
 		public Form1()
 		{
 			InitializeComponent();
@@ -28,14 +28,8 @@ namespace SimuladorCliente
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-
-
-		}
-
-		private void button1_Click(object sender, EventArgs e)
-		{
 			BinaryClientFormatterSinkProvider clientProvider =
-	new BinaryClientFormatterSinkProvider();
+new BinaryClientFormatterSinkProvider();
 			BinaryServerFormatterSinkProvider serverProvider =
 				new BinaryServerFormatterSinkProvider();
 			serverProvider.TypeFilterLevel =
@@ -54,12 +48,42 @@ namespace SimuladorCliente
 
 
 			Type typeofRI = typeof(RemoteServerObject);
-			RemoteServerObject objetoRemoto = (RemoteServerObject)Activator.GetObject(typeofRI,
-								 "tcp://192.168.0.103:6123/ParachuteExample");
-			_modeloRemoto = objetoRemoto.Modelo;
-			_presenter = new DispositivoPresenter(_modeloRemoto, computador1);
-			
+			_objetoRemoto = (RemoteServerObject)Activator.GetObject(typeofRI,
+								 "tcp://jaus.selfip.net:6123/ParachuteExample");
+
+			PintarDispositivosIniciales();
+//			_objetoRemoto.DispositivoCreado += new EventHandler<EventDispositivoArgs>(_objetoRemoto_DispositivoCreado);
+	
 		}
+
+
+		private List<IDispositivoModelo> _dispositivos = new List<IDispositivoModelo>();
+
+		private void PintarDispositivosIniciales()
+		{
+			foreach (IDispositivoModelo dispositivo in _objetoRemoto.DispositivosActuales)
+			{
+				_dispositivos.Add(dispositivo);
+				Computador newPc = new Computador();
+				this.Controls.Add(newPc);
+				DispositivoPresenter presenter = new DispositivoPresenter(dispositivo, newPc);
+			}
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			_objetoRemoto.CrearDispositivo(60, 80);
+			_objetoRemoto.CrearDispositivo(500, 70);
+			_objetoRemoto.CrearDispositivo(100, 170);
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			PintarDispositivosIniciales();
+		}
+
+
+
 
 	
 	}

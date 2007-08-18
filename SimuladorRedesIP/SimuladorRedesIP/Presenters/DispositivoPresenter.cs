@@ -18,6 +18,16 @@ namespace RedesIP.Presenters
 			_listaDispositivosVistas.Add(dispositivoVista);
 			RegistrarModelo();
 			RegistrarVistas(_listaDispositivosVistas);
+			EstablecerValoresEnVista();
+		}
+
+		private void EstablecerValoresEnVista()
+		{
+			foreach (IDispositivoVista vista in _listaDispositivosVistas)
+			{
+				vista.OrigenX = _dispositivoModelo.OrigenX;
+				vista.OrigenY = _dispositivoModelo.OrigenY;
+			}
 		}
 		public DispositivoPresenter(IDispositivoModelo dispositivoModelo)
 		{
@@ -65,11 +75,7 @@ namespace RedesIP.Presenters
 		#region HandlerEventosVistaYModelos
 		public void HandlerCambioEnModelo(object sender, EventArgs e)
 		{
-			foreach (IDispositivoVista vista in _listaDispositivosVistas)
-			{
-				vista.OrigenX = _dispositivoModelo.OrigenX;
-				vista.OrigenY = _dispositivoModelo.OrigenY;
-			}
+			EstablecerValoresEnVista();
 		}
 		private void HandlerCambioEnPosicionVista(object sender, EventCambioEnPosicionArgs e)
 		{

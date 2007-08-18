@@ -19,9 +19,9 @@ namespace SimuladorServidor
 		{
 			InitializeComponent();
 		}
-
-		private void button1_Click(object sender, EventArgs e)
+		protected override void OnLoad(EventArgs e)
 		{
+			base.OnLoad(e);
 			BinaryClientFormatterSinkProvider clientProvider = null;
 			BinaryServerFormatterSinkProvider serverProvider =
 				new BinaryServerFormatterSinkProvider();
@@ -43,5 +43,6 @@ namespace SimuladorServidor
 
 			Console.ReadLine();
 		}
+
 	}
 }
