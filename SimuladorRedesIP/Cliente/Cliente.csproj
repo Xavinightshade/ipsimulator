@@ -63,6 +63,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimuladorRedesIP\SimuladorRedesIP.csproj">
+      <Project>{77264759-D438-41DE-99C6-8FEE326306E8}</Project>
+      <Name>SimuladorRedesIP</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

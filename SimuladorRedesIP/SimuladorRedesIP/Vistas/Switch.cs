@@ -5,7 +5,7 @@ using RedesIp.Properties;
 
 namespace RedesIp.Vistas.ElementosVisuales
 {
-	class Switch:DispositivoVista
+	public class Switch:DispositivoVista
 	{
 		public Switch()
 		{

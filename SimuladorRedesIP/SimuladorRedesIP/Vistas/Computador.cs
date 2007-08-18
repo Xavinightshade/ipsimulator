@@ -6,7 +6,7 @@ using RedesIp.Properties;
 
 namespace RedesIp.Vistas.ElementosVisuales
 {
-	class Computador:DispositivoVista
+	public class Computador:DispositivoVista
 	{
 		public Computador()
 		{
