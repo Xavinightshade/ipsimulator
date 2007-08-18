@@ -1,4 +1,4 @@
-namespace Cliente
+namespace SimuladorCliente
 {
 	partial class Form1
 	{
