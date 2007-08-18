@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using RedesIP.Modelos.ElementosLogicos;
 using RedesIP.Modelos.Datos;
 using RedesIp.Vistas.ElementosVisuales;
+using RedesIp.Vistas.Utilidades;
 
 
 namespace RedesIP
