@@ -36,7 +36,7 @@ namespace RedesIp.Presenters
 		}
 		public void EliminarVista(IDispositivoVista dispositivoVista)
 		{
-			dispositivoVista.CambioEnPosicion -= new EventHandler<EventPosicionArgs>(HandlerCambioEnPosicionVista);
+			dispositivoVista.CambioEnPosicion -= new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
 			_listaDispositivosVistas.Remove(dispositivoVista);
 			
 
@@ -51,7 +51,7 @@ namespace RedesIp.Presenters
 
 		private void RegistrarVista(IDispositivoVista dispositivoVista)
 		{
-			dispositivoVista.CambioEnPosicion += new EventHandler<EventPosicionArgs>(HandlerCambioEnPosicionVista);
+			dispositivoVista.CambioEnPosicion += new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
 		}
 
 
@@ -74,7 +74,7 @@ namespace RedesIp.Presenters
 		}
 
 
-		private void HandlerCambioEnPosicionVista(object sender, EventPosicionArgs e)
+		private void HandlerCambioEnPosicionVista(object sender, EventCambioEnPosicionArgs e)
 		{
 			IDispositivoVista vistaQueCambio = (IDispositivoVista)sender;
 			_dispositivoModelo.CambiarPosicion(e.DeltaEnX, e.DeltaEnY);

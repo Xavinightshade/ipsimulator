@@ -11,11 +11,11 @@ namespace RedesIp.Vistas
 	{
 		int OrigenX { get;set;}
 		int OrigenY { get;set;}
-		event EventHandler<EventPosicionArgs> CambioEnPosicion;
+		event EventHandler<EventCambioEnPosicionArgs> CambioEnPosicion;
 	}
 
 
-	public class EventPosicionArgs:EventArgs
+	public class EventCambioEnPosicionArgs:EventArgs
 	{
 		private int _deltaEnX;
 		public int DeltaEnX
@@ -28,7 +28,7 @@ namespace RedesIp.Vistas
 			get { return _deltaEnY; }
 		}
 
-		public EventPosicionArgs(int deltaEnX,int deltaEnY)
+		public EventCambioEnPosicionArgs(int deltaEnX,int deltaEnY)
 		{
 			_deltaEnX = deltaEnX;
 			_deltaEnY = deltaEnY;

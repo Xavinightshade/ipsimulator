@@ -77,12 +77,12 @@ namespace RedesIp.Vistas.ElementosVisuales
 			}
 		}
 
-		public event EventHandler<EventPosicionArgs> CambioEnPosicion;
+		public event EventHandler<EventCambioEnPosicionArgs> CambioEnPosicion;
 
 		private void OnCambioDePosicion(int deltaEnX,int deltaEnY)
 		{
 			if (CambioEnPosicion != null)
-				CambioEnPosicion(this,new EventPosicionArgs(deltaEnX,deltaEnY));
+				CambioEnPosicion(this,new EventCambioEnPosicionArgs(deltaEnX,deltaEnY));
 		}
 
 		#endregion
