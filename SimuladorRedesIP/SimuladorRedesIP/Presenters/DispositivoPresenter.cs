@@ -10,7 +10,9 @@ namespace RedesIp.Presenters
 	{
 		private List<IDispositivoVista> _listaDispositivosVistas=new List<IDispositivoVista>();
 		private IDispositivoModelo _dispositivoModelo;
-		public DispositivoPresenter(IDispositivoModelo dispositivoModelo,IDispositivoVista dispositivoVista)
+
+		#region Constructores
+		public DispositivoPresenter(IDispositivoModelo dispositivoModelo, IDispositivoVista dispositivoVista)
 		{
 			_dispositivoModelo = dispositivoModelo;
 			_listaDispositivosVistas.Add(dispositivoVista);
@@ -27,19 +29,19 @@ namespace RedesIp.Presenters
 		{
 			_listaDispositivosVistas.AddRange(listaDispositivosVistas);
 			RegistrarVistas(_listaDispositivosVistas);
-		}
+		} 
+		#endregion
 
 		public void AgregarVista(IDispositivoVista dispositivoVista)
 		{
 			_listaDispositivosVistas.Add(dispositivoVista);
 			RegistrarVista(dispositivoVista);
 		}
+
 		public void EliminarVista(IDispositivoVista dispositivoVista)
 		{
 			dispositivoVista.CambioEnPosicion -= new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
 			_listaDispositivosVistas.Remove(dispositivoVista);
-			
-
 		}
 
 		private void RegistrarModelo()
@@ -47,14 +49,10 @@ namespace RedesIp.Presenters
 			_dispositivoModelo.CambioEnModelo += new EventHandler(HandlerCambioEnModelo);
 		}
 
-	
-
 		private void RegistrarVista(IDispositivoVista dispositivoVista)
 		{
 			dispositivoVista.CambioEnPosicion += new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
 		}
-
-
 
 		private void RegistrarVistas(IList<IDispositivoVista> listaDispositivosVistas)
 		{
@@ -64,6 +62,7 @@ namespace RedesIp.Presenters
 			}
 		}
 
+		#region HandlerEventosVistaYModelos
 		private void HandlerCambioEnModelo(object sender, EventArgs e)
 		{
 			foreach (IDispositivoVista vista in _listaDispositivosVistas)
@@ -72,12 +71,11 @@ namespace RedesIp.Presenters
 				vista.OrigenY = _dispositivoModelo.OrigenY;
 			}
 		}
-
-
 		private void HandlerCambioEnPosicionVista(object sender, EventCambioEnPosicionArgs e)
 		{
 			IDispositivoVista vistaQueCambio = (IDispositivoVista)sender;
 			_dispositivoModelo.CambiarPosicion(e.DeltaEnX, e.DeltaEnY);
-		}
+		} 
+		#endregion
 	}
 }
