@@ -58,20 +58,20 @@
     <Compile Include="Modelos\Datos\Frame.cs" />
     <Compile Include="Modelos\Datos\MACAddress.cs" />
     <Compile Include="Modelos\Datos\PacketeIP.cs" />
-    <Compile Include="Modelos\Dispositivo.cs" />
+    <Compile Include="Modelos\DispositivoModelo.cs" />
     <Compile Include="Modelos\Elementos Logicos\CableDeRed.cs" />
     <Compile Include="Modelos\Elementos Logicos\Computador.cs" />
     <Compile Include="Modelos\Elementos Logicos\PuertoEthernet.cs" />
     <Compile Include="Modelos\Elementos Logicos\Router.cs" />
     <Compile Include="Modelos\Elementos Logicos\Switch.cs" />
-    <Compile Include="Presenters\Dispositivo.cs" />
+    <Compile Include="Presenters\DispositivoPresenter.cs" />
     <Compile Include="Modelos\IDispositivoModelo.cs" />
     <Compile Include="Vistas\Computador.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\IDispositivoVista.cs" />
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
-    <Compile Include="Vistas\ElementoVisual.cs">
+    <Compile Include="Vistas\DispositivoVistal.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\Switch.cs">
