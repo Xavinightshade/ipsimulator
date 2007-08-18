@@ -34,6 +34,13 @@ namespace RedesIp.Presenters
 			_listaDispositivosVistas.Add(dispositivoVista);
 			RegistrarVista(dispositivoVista);
 		}
+		public void EliminarVista(IDispositivoVista dispositivoVista)
+		{
+			dispositivoVista.CambioEnPosicion -= new EventHandler<EventPosicionArgs>(HandlerCambioEnPosicionVista);
+			_listaDispositivosVistas.Remove(dispositivoVista);
+			
+
+		}
 
 		private void RegistrarModelo()
 		{

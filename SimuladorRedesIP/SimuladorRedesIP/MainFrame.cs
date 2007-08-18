@@ -48,13 +48,15 @@ namespace RedesIP
 			pcNumero3.EnviarMensaje("holaPC1", MACAddress.New(1, 2, 3));
 
 
-			DispositivoModelo computadorModelo = new DispositivoModelo(computador1.OrigenX, computador1.OrigenY);
+			 _computadorModelo= new DispositivoModelo(computador1.OrigenX, computador1.OrigenY);
 
-			DispositivoPresenter presenter = new DispositivoPresenter(computadorModelo, computador1);
+			_presenter = new DispositivoPresenter(_computadorModelo, computador1);
+
 
 		}
 
-
+		DispositivoModelo _computadorModelo;
+		DispositivoPresenter _presenter;
 
 		private void OnCambioDeAlgunaLinea(object sender, EventArgs e)
 		{
@@ -65,6 +67,26 @@ namespace RedesIP
 			base.OnPaint(e);
 			_dibujadorCables.PintarLineas(e.Graphics);
 
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			_computadorModelo.OrigenX = 9;
+			_computadorModelo.OrigenY = 5;
+		}
+		bool j=true;
+		private void button2_Click(object sender, EventArgs e)
+		{
+			if (j)
+			{
+				_presenter.AgregarVista(computador2);
+			}
+			else
+			{
+				_presenter.EliminarVista(computador2);
+			}
+			j = !j;
+		
 		}
 
 

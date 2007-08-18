@@ -12,13 +12,19 @@ namespace RedesIp.Modelos
 		public int OrigenX
 		{
 			get { return _origenX; }
+			set { _origenX = value;
+			OnCambioEnModelo();
+			}
 		}
 	
 		private int _origenY;
 
 		public int OrigenY
 		{
-			get { return _origenY; }			
+			get { return _origenY; }
+			set{_origenY=value;
+			OnCambioEnModelo();
+			}			
 		}
 
 		public DispositivoModelo(int posicionX,int posicionY)
