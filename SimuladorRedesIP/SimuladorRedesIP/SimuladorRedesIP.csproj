@@ -7,7 +7,7 @@
     <ProjectGuid>{77264759-D438-41DE-99C6-8FEE326306E8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RedesIp</RootNamespace>
+    <RootNamespace>RedesIP</RootNamespace>
     <AssemblyName>SimuladorRedesIP</AssemblyName>
     <ManifestCertificateThumbprint>0AAED73D049B25B696ED76FC8CD14FE506F0F5C3</ManifestCertificateThumbprint>
     <ManifestKeyFile>tesis01_TemporaryKey.pfx</ManifestKeyFile>
@@ -68,6 +68,7 @@
     <Compile Include="Modelos\Elementos Logicos\Switch.cs" />
     <Compile Include="Presenters\DispositivoPresenter.cs" />
     <Compile Include="Modelos\IDispositivoModelo.cs" />
+    <Compile Include="Remoting\RemoteObject.cs" />
     <Compile Include="Vistas\Computador.cs">
       <SubType>Component</SubType>
     </Compile>

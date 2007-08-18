@@ -37,7 +37,7 @@ namespace SimuladorServidor
 
 			ChannelServices.RegisterChannel(chan);
 
-			RemotingConfiguration.RegisterWellKnownServiceType(typeof(RedesIP.Presenters.DispositivoPresenter),
+			RemotingConfiguration.RegisterWellKnownServiceType(typeof(RedesIP.Remoting.RemoteServerObject),
 								 "ParachuteExample",
 								 WellKnownObjectMode.Singleton);
 
