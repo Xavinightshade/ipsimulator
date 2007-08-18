@@ -44,8 +44,10 @@ namespace RedesIp.Presenters
 
 		private void RegistrarVista(IDispositivoVista dispositivoVista)
 		{
-			dispositivoVista.CambioEnVista += new EventHandler(HandlerCambioEnVista);
+			dispositivoVista.CambioEnPosicion += new EventHandler<EventPosicionArgs>(HandlerCambioEnPosicionVista);
 		}
+
+
 
 		private void RegistrarVistas(IList<IDispositivoVista> listaDispositivosVistas)
 		{
@@ -55,12 +57,6 @@ namespace RedesIp.Presenters
 			}
 		}
 
-		private void HandlerCambioEnVista(object sender, EventArgs e)
-		{
-			IDispositivoVista vistaQueCambio=(IDispositivoVista)sender;
-			_dispositivoModelo.OrigenX = vistaQueCambio.OrigenX;
-			_dispositivoModelo.OrigenY = vistaQueCambio.OrigenY;
-		}
 		private void HandlerCambioEnModelo(object sender, EventArgs e)
 		{
 			foreach (IDispositivoVista vista in _listaDispositivosVistas)
@@ -68,6 +64,13 @@ namespace RedesIp.Presenters
 				vista.OrigenX = _dispositivoModelo.OrigenX;
 				vista.OrigenY = _dispositivoModelo.OrigenY;
 			}
+		}
+
+
+		private void HandlerCambioEnPosicionVista(object sender, EventPosicionArgs e)
+		{
+			IDispositivoVista vistaQueCambio = (IDispositivoVista)sender;
+			_dispositivoModelo.CambiarPosicion(e.DeltaEnX, e.DeltaEnY);
 		}
 	}
 }

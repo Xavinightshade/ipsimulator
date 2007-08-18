@@ -8,6 +8,7 @@ namespace RedesIp.Vistas.ElementosVisuales
 {
 	public class DispositivoVista : PictureBox,IDispositivoVista
 	{
+
 		private bool _elBotonDelMouseEstaPresionado;
 		private int _clickOffSetX, _clickOffSetY;
 		public DispositivoVista()
@@ -34,7 +35,7 @@ namespace RedesIp.Vistas.ElementosVisuales
 		{
 			if (_elBotonDelMouseEstaPresionado)
 			{
-				OnCambioDeVista();
+				OnCambioDePosicion(e.X - _clickOffSetX, e.Y - _clickOffSetY);
 			}
 
 		}
@@ -76,14 +77,14 @@ namespace RedesIp.Vistas.ElementosVisuales
 			}
 		}
 
-		public event EventHandler CambioEnVista;
+		public event EventHandler<EventPosicionArgs> CambioEnPosicion;
 
-		private void OnCambioDeVista()
+		private void OnCambioDePosicion(int deltaEnX,int deltaEnY)
 		{
-			if (CambioEnVista != null)
-				CambioEnVista(this, new EventArgs());
+			if (CambioEnPosicion != null)
+				CambioEnPosicion(this,new EventPosicionArgs(deltaEnX,deltaEnY));
 		}
-		
+
 		#endregion
 	}
 

@@ -12,21 +12,20 @@ namespace RedesIp.Modelos
 		public int OrigenX
 		{
 			get { return _origenX; }
-			set { _origenX = value;
-			OnCambioEnModelo();
 		}
-		}
+	
 		private int _origenY;
 
 		public int OrigenY
 		{
-			get { return _origenY; }
-			set { _origenY = value;
-			OnCambioEnModelo();
-			}
+			get { return _origenY; }			
 		}
 
-		
+		public DispositivoModelo(int posicionX,int posicionY)
+		{
+			_origenX = posicionX;
+			_origenY = posicionY;
+		}
 
 
 		public event EventHandler CambioEnModelo;
@@ -35,7 +34,15 @@ namespace RedesIp.Modelos
 			if (CambioEnModelo != null)
 				CambioEnModelo(this, new EventArgs());
 		}
+		public void CambiarPosicion(int deltaEnX, int deltaEnY)
+		{
+			_origenX += deltaEnX;
+			_origenY += deltaEnY;
+			OnCambioEnModelo();
+		}
 
 		#endregion
+
+
 	}
 }

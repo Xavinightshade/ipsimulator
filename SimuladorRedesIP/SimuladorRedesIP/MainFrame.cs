@@ -10,6 +10,8 @@ using RedesIP.Modelos.ElementosLogicos;
 using RedesIP.Modelos.Datos;
 using RedesIp.Vistas.ElementosVisuales;
 using RedesIp.Vistas.Utilidades;
+using RedesIp.Presenters;
+using RedesIp.Modelos;
 
 
 namespace RedesIP
@@ -44,6 +46,12 @@ namespace RedesIP
 			cablePc1ConSwitch.DesconectarPuertos();
 			cablePc4ConPc5.DesconectarPuertos();
 			pcNumero3.EnviarMensaje("holaPC1", MACAddress.New(1, 2, 3));
+
+
+			DispositivoModelo computadorModelo = new DispositivoModelo(computador1.OrigenX, computador1.OrigenY);
+
+			DispositivoPresenter presenter = new DispositivoPresenter(computadorModelo, computador1);
+
 		}
 
 
