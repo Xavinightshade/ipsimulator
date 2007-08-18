@@ -58,19 +58,19 @@
     <Compile Include="Datos\Frame.cs" />
     <Compile Include="Datos\MACAddress.cs" />
     <Compile Include="Datos\PacketeIP.cs" />
-    <Compile Include="Elementos Logicos\CableDeRed.cs" />
-    <Compile Include="Elementos Logicos\Computador.cs" />
-    <Compile Include="Elementos Logicos\PuertoEthernet.cs" />
-    <Compile Include="Elementos Logicos\Router.cs" />
-    <Compile Include="Elementos Logicos\Switch.cs" />
-    <Compile Include="Elementos Visuales\Computador.cs">
+    <Compile Include="Modelos\CableDeRed.cs" />
+    <Compile Include="Modelos\Computador.cs" />
+    <Compile Include="Modelos\PuertoEthernet.cs" />
+    <Compile Include="Modelos\Router.cs" />
+    <Compile Include="Modelos\Switch.cs" />
+    <Compile Include="Vistas\Computador.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Elementos Visuales\Dibujadores.cs" />
-    <Compile Include="Elementos Visuales\ElementoVisual.cs">
+    <Compile Include="Vistas\Dibujadores.cs" />
+    <Compile Include="Vistas\ElementoVisual.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Elementos Visuales\Switch.cs">
+    <Compile Include="Vistas\Switch.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MainFrame.cs">
@@ -113,6 +113,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Presenters\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
