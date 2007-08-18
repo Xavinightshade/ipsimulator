@@ -71,7 +71,7 @@
     </Compile>
     <Compile Include="Vistas\IDispositivoVista.cs" />
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
-    <Compile Include="Vistas\DispositivoVistal.cs">
+    <Compile Include="Vistas\DispositivoVista.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\Switch.cs">
