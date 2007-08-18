@@ -6,9 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using RedesIP.ElementosLogicos;
-using RedesIP.Datos;
-using RedesIp.Elementos_Visuales;
+using RedesIP.Modelos.ElementosLogicos;
+using RedesIP.Modelos.Datos;
+using RedesIp.ElementosVisuales;
 
 
 namespace RedesIP

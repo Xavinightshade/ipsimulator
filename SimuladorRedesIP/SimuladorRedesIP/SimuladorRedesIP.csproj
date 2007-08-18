@@ -55,14 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Datos\Frame.cs" />
-    <Compile Include="Datos\MACAddress.cs" />
-    <Compile Include="Datos\PacketeIP.cs" />
-    <Compile Include="Modelos\CableDeRed.cs" />
-    <Compile Include="Modelos\Computador.cs" />
-    <Compile Include="Modelos\PuertoEthernet.cs" />
-    <Compile Include="Modelos\Router.cs" />
-    <Compile Include="Modelos\Switch.cs" />
+    <Compile Include="Modelos\Datos\Frame.cs" />
+    <Compile Include="Modelos\Datos\MACAddress.cs" />
+    <Compile Include="Modelos\Datos\PacketeIP.cs" />
+    <Compile Include="Modelos\Dispositivo.cs" />
+    <Compile Include="Modelos\Elementos Logicos\CableDeRed.cs" />
+    <Compile Include="Modelos\Elementos Logicos\Computador.cs" />
+    <Compile Include="Modelos\Elementos Logicos\PuertoEthernet.cs" />
+    <Compile Include="Modelos\Elementos Logicos\Router.cs" />
+    <Compile Include="Modelos\Elementos Logicos\Switch.cs" />
     <Compile Include="Vistas\Computador.cs">
       <SubType>Component</SubType>
     </Compile>

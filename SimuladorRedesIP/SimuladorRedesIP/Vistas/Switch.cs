@@ -4,7 +4,7 @@ using System.Text;
 using RedesIp.ElementosVisuales;
 using RedesIp.Properties;
 
-namespace RedesIp.Elementos_Visuales
+namespace RedesIp.ElementosVisuales
 {
 	class Switch:ElementoVisual
 	{

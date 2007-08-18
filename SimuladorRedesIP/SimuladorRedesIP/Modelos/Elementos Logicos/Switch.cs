@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIP.Datos;
+using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
 
 
-namespace RedesIP.ElementosLogicos
+namespace RedesIP.Modelos.ElementosLogicos
 {
 	public class SwitchLogico
 	{
