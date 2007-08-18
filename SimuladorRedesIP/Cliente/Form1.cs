@@ -22,8 +22,6 @@ namespace SimuladorCliente
 		{
 			base.OnLoad(e);
 
-			DispositivoModelo modelo = new DispositivoModelo(computador1.OrigenX, computador1.OrigenY);
-			DispositivoPresenter presenter = new DispositivoPresenter(modelo, computador1);
 
 		
 

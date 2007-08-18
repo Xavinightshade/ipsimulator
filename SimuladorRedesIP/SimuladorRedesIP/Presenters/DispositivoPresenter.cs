@@ -6,7 +6,7 @@ using RedesIP.Modelos;
 
 namespace RedesIP.Presenters
 {
-	public class DispositivoPresenter
+	public class DispositivoPresenter:MarshalByRefObject
 	{
 		private List<IDispositivoVista> _listaDispositivosVistas=new List<IDispositivoVista>();
 		private IDispositivoModelo _dispositivoModelo;

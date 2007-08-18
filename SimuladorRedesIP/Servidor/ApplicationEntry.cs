@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Servidor
+namespace SimuladorServidor
 {
-	static class Program
+	static class ApplicationEntry
 	{
 		/// <summary>
 		/// The main entry point for the application.
