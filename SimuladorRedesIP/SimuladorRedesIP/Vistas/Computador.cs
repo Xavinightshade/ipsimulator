@@ -4,7 +4,7 @@ using System.Text;
 
 using RedesIp.Properties;
 
-namespace RedesIp.Vistas.ElementosVisuales
+namespace RedesIP.Vistas.ElementosVisuales
 {
 	public class Computador:DispositivoVista
 	{

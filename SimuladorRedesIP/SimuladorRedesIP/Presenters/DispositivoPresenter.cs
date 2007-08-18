@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIp.Vistas;
-using RedesIp.Modelos;
+using RedesIP.Vistas;
+using RedesIP.Modelos;
 
-namespace RedesIp.Presenters
+namespace RedesIP.Presenters
 {
 	public class DispositivoPresenter
 	{

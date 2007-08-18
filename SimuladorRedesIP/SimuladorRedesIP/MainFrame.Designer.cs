@@ -30,10 +30,10 @@ namespace RedesIP
         {
 			  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
 			  this.button1 = new System.Windows.Forms.Button();
-			  this.switch2 = new RedesIp.Vistas.ElementosVisuales.Switch();
-			  this.computador2 = new RedesIp.Vistas.ElementosVisuales.Computador();
-			  this.switch1 = new RedesIp.Vistas.ElementosVisuales.Switch();
-			  this.computador1 = new RedesIp.Vistas.ElementosVisuales.Computador();
+			  this.switch2 = new RedesIP.Vistas.ElementosVisuales.Switch();
+			  this.computador2 = new RedesIP.Vistas.ElementosVisuales.Computador();
+			  this.switch1 = new RedesIP.Vistas.ElementosVisuales.Switch();
+			  this.computador1 = new RedesIP.Vistas.ElementosVisuales.Computador();
 			  this.button2 = new System.Windows.Forms.Button();
 			  ((System.ComponentModel.ISupportInitialize)(this.switch2)).BeginInit();
 			  ((System.ComponentModel.ISupportInitialize)(this.computador2)).BeginInit();
@@ -134,10 +134,10 @@ namespace RedesIP
 
         #endregion
 
-		 private RedesIp.Vistas.ElementosVisuales.Computador computador1;
-		 private RedesIp.Vistas.ElementosVisuales.Switch switch1;
-		 private RedesIp.Vistas.ElementosVisuales.Computador computador2;
-		 private RedesIp.Vistas.ElementosVisuales.Switch switch2;
+		 private RedesIP.Vistas.ElementosVisuales.Computador computador1;
+		 private RedesIP.Vistas.ElementosVisuales.Switch switch1;
+		 private RedesIP.Vistas.ElementosVisuales.Computador computador2;
+		 private RedesIP.Vistas.ElementosVisuales.Switch switch2;
 		 private System.Windows.Forms.Button button1;
 		 private System.Windows.Forms.Button button2;
 

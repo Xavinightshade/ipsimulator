@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RedesIp.Modelos
+namespace RedesIP.Modelos
 {
 	public class DispositivoModelo:IDispositivoModelo
 	{

@@ -8,10 +8,10 @@ using System.Text;
 using System.Windows.Forms;
 using RedesIP.Modelos.ElementosLogicos;
 using RedesIP.Modelos.Datos;
-using RedesIp.Vistas.ElementosVisuales;
-using RedesIp.Vistas.Utilidades;
-using RedesIp.Presenters;
-using RedesIp.Modelos;
+using RedesIP.Vistas.ElementosVisuales;
+using RedesIP.Vistas.Utilidades;
+using RedesIP.Presenters;
+using RedesIP.Modelos;
 
 
 namespace RedesIP

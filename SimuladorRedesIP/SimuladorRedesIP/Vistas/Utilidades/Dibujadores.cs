@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 
-namespace RedesIp.Vistas.Utilidades
+namespace RedesIP.Vistas.Utilidades
 {
 	public class Linea
 	{

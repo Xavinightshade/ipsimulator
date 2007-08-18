@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace RedesIp.Vistas.ElementosVisuales
+namespace RedesIP.Vistas.ElementosVisuales
 {
 	public class DispositivoVista : PictureBox,IDispositivoVista
 	{

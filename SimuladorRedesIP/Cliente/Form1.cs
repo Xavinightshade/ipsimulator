@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using RedesIP.Modelos;
+using RedesIP.Vistas;
 
 namespace Cliente
 {
@@ -13,6 +15,16 @@ namespace Cliente
 		public Form1()
 		{
 			InitializeComponent();
+		}
+
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+
+
+			
+
+
 		}
 	}
 }
