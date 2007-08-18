@@ -18,6 +18,7 @@ namespace SimuladorCliente
 {
 	public partial class Form1 : Form
 	{
+		DispositivoModelo _modeloRemoto;
 		DispositivoPresenter _presenter;
 		public Form1()
 		{
@@ -54,13 +55,12 @@ namespace SimuladorCliente
 
 			Type typeofRI = typeof(RemoteServerObject);
 			RemoteServerObject objetoRemoto = (RemoteServerObject)Activator.GetObject(typeofRI,
-								 "tcp://localhost:6123/ParachuteExample");
-			_presenter = objetoRemoto.Presenter;
+								 "tcp://192.168.0.103:6123/ParachuteExample");
+			_modeloRemoto = objetoRemoto.Modelo;
+			_presenter = new DispositivoPresenter(_modeloRemoto, computador1);
+			
 		}
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			_presenter.AgregarVista(computador1);
-		}
+	
 	}
 }

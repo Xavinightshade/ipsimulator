@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedesIP.Modelos
 {
-	public class DispositivoModelo:IDispositivoModelo
+	public class DispositivoModelo:MarshalByRefObject,IDispositivoModelo
 	{
 		#region IDispositivoModelo Members
 		private int _origenX;

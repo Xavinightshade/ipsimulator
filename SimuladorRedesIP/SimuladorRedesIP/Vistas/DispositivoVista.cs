@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Threading;
 
 namespace RedesIP.Vistas.ElementosVisuales
 {
 	public class DispositivoVista : PictureBox,IDispositivoVista
 	{
-
+		delegate void dele(int valor);
 		private bool _elBotonDelMouseEstaPresionado;
 		private int _clickOffSetX, _clickOffSetY;
 		public DispositivoVista()
@@ -61,9 +62,36 @@ namespace RedesIP.Vistas.ElementosVisuales
 			}
 			set
 			{
+				EstablecerX(value);
+			}
+		}
+
+		private void EstablecerX(int value)
+		{
+			if (InvokeRequired)
+			{
+				dele nuevo = new dele(EstablecerX);
+				BeginInvoke(nuevo, new object[] { value });
+			}
+			else
+			{
 				this.Left = value;
 			}
 		}
+		private void EstablecerY(int value)
+		{
+			if (InvokeRequired)
+			{
+				dele nuevo = new dele(EstablecerY);
+				BeginInvoke(nuevo, new object[] { value });
+			}
+			else
+			{
+				this.Top= value;
+			}
+		}
+
+
 
 		public int OrigenY
 		{
@@ -73,7 +101,7 @@ namespace RedesIP.Vistas.ElementosVisuales
 			}
 			set
 			{
-				this.Top = value;
+				EstablecerY(value);
 			}
 		}
 

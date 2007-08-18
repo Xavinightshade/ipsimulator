@@ -63,7 +63,7 @@ namespace RedesIP.Presenters
 		}
 
 		#region HandlerEventosVistaYModelos
-		private void HandlerCambioEnModelo(object sender, EventArgs e)
+		public void HandlerCambioEnModelo(object sender, EventArgs e)
 		{
 			foreach (IDispositivoVista vista in _listaDispositivosVistas)
 			{
