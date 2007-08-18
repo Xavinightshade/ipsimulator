@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using RedesIP.Modelos;
 using RedesIP.Vistas;
+using RedesIP.Presenters;
 
 namespace Cliente
 {
@@ -21,6 +22,7 @@ namespace Cliente
 		{
 			base.OnLoad(e);
 
+		
 
 			
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RedesIp.Properties {
+namespace RedesIP.Properties {
     using System;
     
     

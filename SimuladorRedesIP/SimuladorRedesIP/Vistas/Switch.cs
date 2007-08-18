@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIp.Properties;
+using RedesIP.Properties;
 
 namespace RedesIP.Vistas.ElementosVisuales
 {
