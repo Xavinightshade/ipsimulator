@@ -29,10 +29,10 @@ namespace RedesIP
         private void InitializeComponent()
         {
 			  System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
-			  this.switch2 = new RedesIp.ElementosVisuales.Switch();
-			  this.computador2 = new RedesIp.ElementosVisuales.Computador();
-			  this.switch1 = new RedesIp.ElementosVisuales.Switch();
-			  this.computador1 = new RedesIp.ElementosVisuales.Computador();
+			  this.switch2 = new RedesIp.Vistas.ElementosVisuales.Switch();
+			  this.computador2 = new RedesIp.Vistas.ElementosVisuales.Computador();
+			  this.switch1 = new RedesIp.Vistas.ElementosVisuales.Switch();
+			  this.computador1 = new RedesIp.Vistas.ElementosVisuales.Computador();
 			  ((System.ComponentModel.ISupportInitialize)(this.switch2)).BeginInit();
 			  ((System.ComponentModel.ISupportInitialize)(this.computador2)).BeginInit();
 			  ((System.ComponentModel.ISupportInitialize)(this.switch1)).BeginInit();
@@ -102,10 +102,10 @@ namespace RedesIP
 
         #endregion
 
-		 private RedesIp.ElementosVisuales.Computador computador1;
-		 private RedesIp.ElementosVisuales.Switch switch1;
-		 private RedesIp.ElementosVisuales.Computador computador2;
-		 private RedesIp.ElementosVisuales.Switch switch2;
+		 private RedesIp.Vistas.ElementosVisuales.Computador computador1;
+		 private RedesIp.Vistas.ElementosVisuales.Switch switch1;
+		 private RedesIp.Vistas.ElementosVisuales.Computador computador2;
+		 private RedesIp.Vistas.ElementosVisuales.Switch switch2;
 
 
 

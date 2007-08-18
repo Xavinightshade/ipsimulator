@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIp.ElementosVisuales;
+
 using RedesIp.Properties;
 
-namespace RedesIp.ElementosVisuales
+namespace RedesIp.Vistas.ElementosVisuales
 {
 	class Computador:ElementoVisual
 	{

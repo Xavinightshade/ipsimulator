@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using RedesIP.Modelos.ElementosLogicos;
 using RedesIP.Modelos.Datos;
-using RedesIp.ElementosVisuales;
+using RedesIp.Vistas.ElementosVisuales;
 
 
 namespace RedesIP
