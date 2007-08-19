@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelos\ConexionModelo.cs" />
     <Compile Include="Modelos\Datos\Frame.cs" />
     <Compile Include="Modelos\Datos\MACAddress.cs" />
     <Compile Include="Modelos\Datos\PacketeIP.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Modelos\Elementos Logicos\Switch.cs" />
     <Compile Include="Modelos\EstacionModelo.cs" />
     <Compile Include="Modelos\IEstacionModelo.cs" />
+    <Compile Include="Presenters\ConexionPresenter.cs" />
     <Compile Include="Presenters\DispositivoPresenter.cs" />
     <Compile Include="Modelos\IDispositivoModelo.cs" />
     <Compile Include="Presenters\EstacionPresenter.cs" />

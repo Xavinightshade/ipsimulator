@@ -5,7 +5,8 @@ using System.Drawing;
 
 namespace RedesIP.Vistas.Utilidades
 {
-	public class Linea
+
+	public class Linea:MarshalByRefObject
 	{
 		private int _x1;
 
@@ -110,7 +111,7 @@ namespace RedesIP.Vistas.Utilidades
 		{
 			foreach (Linea linea in _listaLineas)
 			{
-				superficieGrafica.DrawLine(_pen, linea.X1, linea.Y1, linea.X2, linea.Y2);
+				
 			}
 		}
 		private void OnCambioLinea()

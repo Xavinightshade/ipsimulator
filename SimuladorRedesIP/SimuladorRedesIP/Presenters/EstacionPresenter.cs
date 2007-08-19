@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RedesIP.Modelos;
 using RedesIP.Vistas;
+using RedesIP.Vistas.Utilidades;
 
 namespace RedesIP.Presenters
 {
@@ -16,12 +17,21 @@ namespace RedesIP.Presenters
 		{
 			_estacionModelo = estacionModelo;
 			_estacionVista = estacionVista;
-			RefrescarVista();
+			VistaInicial();
 			_estacionModelo.DispositivoCreado += new EventHandler<EventDispositivoArgs>(HandlerDispositivoModeloCreado);
+			_estacionModelo.NuevaConexion += new EventHandler<EventNuevaConexionArgs>(HandlerNuevaConexion);
 			_estacionVista.CreacionDispositivo += new EventHandler<EventNuevoDispositivoVistaArgs>(HandlerCrearDispositivoVista);
 		}
 
-		private void RefrescarVista()
+		public void HandlerNuevaConexion(object sender, EventNuevaConexionArgs e)
+		{
+			Linea lineaModelo = e.Linea;
+			Linea lineaVista = _estacionVista.CrearLinea(lineaModelo.X1,lineaModelo.Y1,lineaModelo.X2,lineaModelo.Y2);
+			ConexionPresenter conexionPresenter = new ConexionPresenter(lineaModelo, lineaVista);
+			_estacionVista.RefrescarConexiones();
+		}
+
+		private void VistaInicial()
 		{
 			foreach (IDispositivoModelo modelo in _estacionModelo.DispositivosActuales)
 			{
@@ -39,6 +49,12 @@ namespace RedesIP.Presenters
 			IDispositivoVista dispositivoVista = _estacionVista.CrearDispositivo();
 			IDispositivoModelo dispositivoModelo = e.Dispositivo;
 			DispositivoPresenter presenter = new DispositivoPresenter(dispositivoModelo, dispositivoVista);
+			dispositivoModelo.CambioEnPosicion += new EventHandler(dispositivoModelo_CambioEnPosicion);
+		}
+
+		public void dispositivoModelo_CambioEnPosicion(object sender, EventArgs e)
+		{
+			_estacionVista.RefrescarConexiones();
 		}
 
 	}

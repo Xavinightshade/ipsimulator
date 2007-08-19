@@ -34,11 +34,11 @@ namespace RedesIP.Modelos
 		}
 
 
-		public event EventHandler CambioEnModelo;
+		public event EventHandler CambioEnPosicion;
 		private void OnCambioEnModelo()
 		{
-			if (CambioEnModelo != null)
-				CambioEnModelo(this, new EventArgs());
+			if (CambioEnPosicion != null)
+				CambioEnPosicion(this, new EventArgs());
 		}
 		public void CambiarPosicion(int deltaEnX, int deltaEnY)
 		{

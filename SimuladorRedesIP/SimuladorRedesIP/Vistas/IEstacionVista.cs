@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using RedesIP.Vistas.Utilidades;
 
 namespace RedesIP.Vistas
 {
@@ -10,6 +11,8 @@ namespace RedesIP.Vistas
 		event EventHandler<EventDispositivoVistaArgs> DispositivoEliminado;
 		event EventHandler<EventDispositivoVistaArgs> DispositivoDesAsociado;
 		event EventHandler<EventNuevoDispositivoVistaArgs> CreacionDispositivo;
+		void RefrescarConexiones();
+		Linea CrearLinea(int x1, int y1, int x2, int y2);
 
 	}
 	public class EventDispositivoVistaArgs:EventArgs

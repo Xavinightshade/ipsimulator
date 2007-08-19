@@ -9,6 +9,7 @@ namespace RedesIP.Modelos
 	{
 		public event EventHandler<EventDispositivoArgs> DispositivoCreado;
 		public event EventHandler<EventDispositivoArgs> DispositivoEliminado;
+		public event EventHandler<EventNuevaConexionArgs> NuevaConexion;
 
 
 		private List<IDispositivoModelo> _listaDispositivos = new List<IDispositivoModelo>();
@@ -16,6 +17,17 @@ namespace RedesIP.Modelos
 		public EstacionModelo()
 		{
 
+		}
+
+		public void Conectar(int a, int b)
+		{
+			CrearConexion(_listaDispositivos[a], _listaDispositivos[b]);
+		}
+		public void CrearConexion(IDispositivoModelo dispositivo1, IDispositivoModelo dispositivo2)
+		{
+			ConexionModelo conexion = new ConexionModelo(dispositivo1, dispositivo2);
+			OnConexionCreada(conexion);
+		
 		}
 
 		public void CrearDispositivo()
@@ -47,6 +59,13 @@ namespace RedesIP.Modelos
 				DispositivoCreado(this, new EventDispositivoArgs(dispositivo));
 			}
 
+		}
+		private void OnConexionCreada(ConexionModelo conexion)
+		{
+			if (NuevaConexion != null)
+			{
+				NuevaConexion(this, new EventNuevaConexionArgs(conexion.Linea));
+			}
 		}
 
 

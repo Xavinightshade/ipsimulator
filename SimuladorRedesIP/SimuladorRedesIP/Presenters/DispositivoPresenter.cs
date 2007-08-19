@@ -64,7 +64,7 @@ namespace RedesIP.Presenters
 
 		private void RegistrarModelo()
 		{
-			_dispositivoModelo.CambioEnModelo += new EventHandler(HandlerCambioEnModelo);
+			_dispositivoModelo.CambioEnPosicion += new EventHandler(HandlerCambioEnModelo);
 		}
 
 		private void RegistrarVista(IDispositivoVista dispositivoVista)

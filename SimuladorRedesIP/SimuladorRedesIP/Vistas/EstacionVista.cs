@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using RedesIP.Vistas.ElementosVisuales;
 using System.Drawing;
+using RedesIP.Vistas.Utilidades;
 
 namespace RedesIP.Vistas
 {
@@ -12,15 +13,30 @@ namespace RedesIP.Vistas
 		private delegate void AgregarControl(Control control);
 		public EstacionVista()
 		{
-			this.BackColor = Color.DarkBlue;
+			this.BackColor = Color.Black;
 		}
 		#region IEstacionVista Members
 
+		bool selec;
 		public IDispositivoVista CrearDispositivo()
 		{
-			Computador pc = new Computador();
-			CrearDispo(pc);
-			return pc;
+			selec = !selec;
+			Control control = null;
+			IDispositivoVista dispositivo = null;
+			if (selec)
+			{
+				Computador pc = new Computador();
+				control = pc;
+				dispositivo = pc;
+			}
+			else
+			{
+				Switch sswitch = new Switch();
+				control = sswitch;
+				dispositivo = sswitch;
+			}
+			CrearDispo(control);
+			return dispositivo;
 
 		}
 
@@ -58,6 +74,37 @@ namespace RedesIP.Vistas
 			NewDispositivo(0, 0);
 		}
 
+
+
+		#region IEstacionVista Members
+
+
+		public void RefrescarConexiones()
+		{
+			this.Invalidate();
+		}
+		protected override void OnPaint(PaintEventArgs pe)
+		{
+			base.OnPaint(pe);
+			foreach (Linea linea in _lineas)
+			{
+				pe.Graphics.DrawLine(_pen, linea.X1, linea.Y1, linea.X2, linea.Y2);
+			}
+		}
+		Pen _pen = new Pen(Color.White, 10);
+		public Linea CrearLinea(int x1,int y1,int x2,int y2)
+		{
+			Linea linea = new Linea(x1, y1, x2, y2);
+			_lineas.Add(linea);
+			return linea;
+		}
+
+		private List<Linea> _lineas = new List<Linea>();
+
+
+
+
+		#endregion
 
 	}
 }

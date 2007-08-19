@@ -62,7 +62,10 @@ namespace SimuladorCliente
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			estacionVista1.NewDispositivo(100, 100);
+			_objetoRemoto.EstacionModelo.Conectar(1, 2);
+			_objetoRemoto.EstacionModelo.Conectar(1, 3);
+			_objetoRemoto.EstacionModelo.Conectar(1, 0);
+			_objetoRemoto.EstacionModelo.Conectar(2, 0);
 		}
 
 

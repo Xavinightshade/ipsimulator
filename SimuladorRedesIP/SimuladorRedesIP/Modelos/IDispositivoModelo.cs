@@ -9,6 +9,6 @@ namespace RedesIP.Modelos
 		int OrigenX { get;}
 		int OrigenY { get;}
 		void CambiarPosicion(int deltaEnX, int deltaEnY);
-		event EventHandler CambioEnModelo;
+		event EventHandler CambioEnPosicion;
 	}
 }
