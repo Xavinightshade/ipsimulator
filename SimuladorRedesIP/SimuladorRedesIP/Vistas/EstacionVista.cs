@@ -26,15 +26,17 @@ namespace RedesIP.Vistas
 			if (selec)
 			{
 				Computador pc = new Computador();
+				
 				control = pc;
 				dispositivo = pc;
 			}
 			else
 			{
-				Switch sswitch = new Switch();
-				control = sswitch;
-				dispositivo = sswitch;
+				RouterVista router = new RouterVista();
+				control = router;
+				dispositivo = router;
 			}
+			control.SendToBack();
 			CrearDispo(control);
 			return dispositivo;
 
@@ -91,7 +93,7 @@ namespace RedesIP.Vistas
 				pe.Graphics.DrawLine(_pen, linea.X1, linea.Y1, linea.X2, linea.Y2);
 			}
 		}
-		Pen _pen = new Pen(Color.White, 10);
+		Pen _pen = new Pen(Color.Red, 0);
 		public Linea CrearLinea(int x1,int y1,int x2,int y2)
 		{
 			Linea linea = new Linea(x1, y1, x2, y2);

@@ -50,23 +50,50 @@ namespace SimuladorCliente
 			Type typeofRI = typeof(RemoteServerObject);
 			_objetoRemoto = (RemoteServerObject)Activator.GetObject(typeofRI,
 								 "tcp://jaus.selfip.net:6123/ParachuteExample");
-			EstacionPresenter _estacionPresenter = new EstacionPresenter(_objetoRemoto.EstacionModelo, estacionVista1);
+			//_estacionModelo = _objetoRemoto.EstacionModelo;
+			_estacionModelo = new EstacionModelo();
+			EstacionPresenter _estacionPresenter = new EstacionPresenter(_estacionModelo, estacionVista1);
+
 
 
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			estacionVista1.NewDispositivo();
+			for (int i = 0; i < 8; i++)
+			{
+				estacionVista1.NewDispositivo();
+			}
+			_estacionModelo.Conectar(0, 1);
+			_estacionModelo.Conectar(0, 2);
+			_estacionModelo.Conectar(0, 3);
+			_estacionModelo.Conectar(0, 4);
+			_estacionModelo.Conectar(0, 5);
+			_estacionModelo.Conectar(0, 6);
+			_estacionModelo.Conectar(0, 7);
+			_estacionModelo.Conectar(1, 2);
+			_estacionModelo.Conectar(1, 3);
+			_estacionModelo.Conectar(1, 4);
+			_estacionModelo.Conectar(1, 5);
+			_estacionModelo.Conectar(1, 6);
+			_estacionModelo.Conectar(1, 7);
+			_estacionModelo.Conectar(2, 3);
+			_estacionModelo.Conectar(2, 4);
+			_estacionModelo.Conectar(2, 5);
+			_estacionModelo.Conectar(2, 6);
+			_estacionModelo.Conectar(2, 7);
+			_estacionModelo.Conectar(3, 4);
+			_estacionModelo.Conectar(3, 5);
+			_estacionModelo.Conectar(3, 6);
+			_estacionModelo.Conectar(3, 7);
+			_estacionModelo.Conectar(4, 5);
+			_estacionModelo.Conectar(4, 6);
+			_estacionModelo.Conectar(4, 7);
+			_estacionModelo.Conectar(5, 6);
+			_estacionModelo.Conectar(5, 7);
 		}
+		IEstacionModelo _estacionModelo;
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			_objetoRemoto.EstacionModelo.Conectar(1, 2);
-			_objetoRemoto.EstacionModelo.Conectar(1, 3);
-			_objetoRemoto.EstacionModelo.Conectar(1, 0);
-			_objetoRemoto.EstacionModelo.Conectar(2, 0);
-		}
 
 
 

@@ -82,6 +82,9 @@
     </Compile>
     <Compile Include="Vistas\IDispositivoVista.cs" />
     <Compile Include="Vistas\IEstacionVista.cs" />
+    <Compile Include="Vistas\RouterVista.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
     <Compile Include="Vistas\DispositivoVista.cs">
       <SubType>Component</SubType>
@@ -129,7 +132,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\Router.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

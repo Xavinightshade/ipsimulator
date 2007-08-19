@@ -29,14 +29,13 @@ namespace SimuladorCliente
 		private void InitializeComponent()
 		{
 			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
 			this.estacionVista1 = new RedesIP.Vistas.EstacionVista();
 			((System.ComponentModel.ISupportInitialize)(this.estacionVista1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(2, 8);
+			this.button1.Location = new System.Drawing.Point(667, 12);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(103, 25);
 			this.button1.TabIndex = 0;
@@ -44,22 +43,13 @@ namespace SimuladorCliente
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(146, 8);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(88, 24);
-			this.button2.TabIndex = 2;
-			this.button2.Text = "button2";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
 			// estacionVista1
 			// 
-			this.estacionVista1.BackColor = System.Drawing.Color.Black;
-			this.estacionVista1.Location = new System.Drawing.Point(2, 39);
+			this.estacionVista1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+			this.estacionVista1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.estacionVista1.Location = new System.Drawing.Point(0, 0);
 			this.estacionVista1.Name = "estacionVista1";
-			this.estacionVista1.Size = new System.Drawing.Size(777, 470);
+			this.estacionVista1.Size = new System.Drawing.Size(770, 739);
 			this.estacionVista1.TabIndex = 1;
 			this.estacionVista1.TabStop = false;
 			// 
@@ -68,10 +58,9 @@ namespace SimuladorCliente
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Black;
-			this.ClientSize = new System.Drawing.Size(791, 521);
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.estacionVista1);
+			this.ClientSize = new System.Drawing.Size(770, 739);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.estacionVista1);
 			this.Name = "Form1";
 			this.Text = "Form1";
 			((System.ComponentModel.ISupportInitialize)(this.estacionVista1)).EndInit();
@@ -83,7 +72,6 @@ namespace SimuladorCliente
 
 		private System.Windows.Forms.Button button1;
 		private RedesIP.Vistas.EstacionVista estacionVista1;
-		private System.Windows.Forms.Button button2;
 
 
 
