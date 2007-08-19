@@ -16,8 +16,17 @@ namespace RedesIP.Presenters
 		{
 			_estacionModelo = estacionModelo;
 			_estacionVista = estacionVista;
+			RefrescarVista();
 			_estacionModelo.DispositivoCreado += new EventHandler<EventDispositivoArgs>(HandlerDispositivoModeloCreado);
 			_estacionVista.CreacionDispositivo += new EventHandler<EventNuevoDispositivoVistaArgs>(HandlerCrearDispositivoVista);
+		}
+
+		private void RefrescarVista()
+		{
+			foreach (IDispositivoModelo modelo in _estacionModelo.DispositivosActuales)
+			{
+				DispositivoPresenter presenter = new DispositivoPresenter(modelo, _estacionVista.CrearDispositivo());
+			}
 		}
 
 		private void HandlerCrearDispositivoVista(object sender, EventNuevoDispositivoVistaArgs e)

@@ -9,7 +9,6 @@ namespace RedesIP.Modelos
 	{
 		event EventHandler<EventDispositivoArgs> DispositivoCreado;
 		event EventHandler<EventDispositivoArgs> DispositivoEliminado;
-		void CrearDispositivo();
 		void CrearDispositivo(int x, int y);
 		ReadOnlyCollection<IDispositivoModelo> DispositivosActuales { get;}
 	}
