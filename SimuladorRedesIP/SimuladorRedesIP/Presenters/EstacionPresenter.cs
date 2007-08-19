@@ -6,7 +6,7 @@ using RedesIP.Vistas;
 
 namespace RedesIP.Presenters
 {
-	public class EstacionPresenter
+	public class EstacionPresenter:MarshalByRefObject
 	{
 		private IEstacionModelo _estacionModelo;
 		private IEstacionVista _estacionVista;
@@ -25,7 +25,7 @@ namespace RedesIP.Presenters
 			_estacionModelo.CrearDispositivo();
 		}
 
-		private void HandlerDispositivoModeloCreado(object sender, EventDispositivoArgs e)
+		public void HandlerDispositivoModeloCreado(object sender, EventDispositivoArgs e)
 		{
 			IDispositivoVista dispositivoVista = _estacionVista.CrearDispositivo();
 			IDispositivoModelo dispositivoModelo = e.Dispositivo;

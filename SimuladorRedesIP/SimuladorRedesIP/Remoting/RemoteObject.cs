@@ -4,22 +4,22 @@ using System.Text;
 using RedesIP.Modelos;
 using RedesIP.Presenters;
 using System.Collections.ObjectModel;
+using RedesIP.Vistas;
 
 namespace RedesIP.Remoting
 {
 	public class RemoteServerObject:MarshalByRefObject
 	{
-		private EstacionModelo _listaDispositivos;
-		public EstacionModelo ListaDispositivos
+		private IEstacionModelo _estacionModelo;
+		public IEstacionModelo EstacionModelo
 		{
-			get { return _listaDispositivos; }
-		}
-	
+			get { return _estacionModelo; }
+		}	
 	
 		public RemoteServerObject()
 		{
 			Console.WriteLine("nuevo objeto remoto");
-			_listaDispositivos = new EstacionModelo();
+			_estacionModelo = new EstacionModelo();
 		}
 
 

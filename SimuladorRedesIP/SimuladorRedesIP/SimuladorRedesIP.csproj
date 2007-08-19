@@ -75,7 +75,9 @@
     <Compile Include="Vistas\Computador.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Vistas\EstacionVista.cs" />
+    <Compile Include="Vistas\EstacionVista.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Vistas\IDispositivoVista.cs" />
     <Compile Include="Vistas\IEstacionVista.cs" />
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />

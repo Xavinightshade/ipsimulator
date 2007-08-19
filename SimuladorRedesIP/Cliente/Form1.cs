@@ -50,46 +50,28 @@ new BinaryClientFormatterSinkProvider();
 			Type typeofRI = typeof(RemoteServerObject);
 			_objetoRemoto = (RemoteServerObject)Activator.GetObject(typeofRI,
 								 "tcp://jaus.selfip.net:6123/ParachuteExample");
+			EstacionPresenter _estacionPresenter = new EstacionPresenter(_objetoRemoto.EstacionModelo, estacionVista1);
 
-			PintarDispositivosIniciales();
-//			_objetoRemoto.ListaDispositivos.DispositivoCreado += new EventHandler<EventDispositivoArgs>(ListaDispositivos_DispositivoCreado);
 	
-		}
-
-		void ListaDispositivos_DispositivoCreado(object sender, EventDispositivoArgs e)
-		{
-			MessageBox.Show("Test");
-		}
-
-
-		private List<IDispositivoModelo> _dispositivos = new List<IDispositivoModelo>();
-
-		private void PintarDispositivosIniciales()
-		{
-			foreach (IDispositivoModelo dispositivo in _objetoRemoto.ListaDispositivos)
-			{
-				_dispositivos.Add(dispositivo);
-				Computador newPc = new Computador();
-				this.Controls.Add(newPc);
-				DispositivoPresenter presenter = new DispositivoPresenter(dispositivo, newPc);
-			}
-		}
-
-		private void button2_Click(object sender, EventArgs e)
-		{
-			_objetoRemoto.ListaDispositivos.CrearDispositivo(60, 80);
-			_objetoRemoto.ListaDispositivos.CrearDispositivo(500, 70);
-			_objetoRemoto.ListaDispositivos.CrearDispositivo(100, 170);
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			PintarDispositivosIniciales();
+			estacionVista1.NewDispositivo();
 		}
 
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
 	}
 }
