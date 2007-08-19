@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("IE")]
-[assembly: AssemblyProduct("tesis01")]
+[assembly: AssemblyProduct("Simulador")]
 [assembly: AssemblyCopyright("Copyright © IE 2006")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

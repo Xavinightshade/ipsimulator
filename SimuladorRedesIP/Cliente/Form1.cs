@@ -52,8 +52,13 @@ new BinaryClientFormatterSinkProvider();
 								 "tcp://jaus.selfip.net:6123/ParachuteExample");
 
 			PintarDispositivosIniciales();
-//			_objetoRemoto.DispositivoCreado += new EventHandler<EventDispositivoArgs>(_objetoRemoto_DispositivoCreado);
+//			_objetoRemoto.ListaDispositivos.DispositivoCreado += new EventHandler<EventDispositivoArgs>(ListaDispositivos_DispositivoCreado);
 	
+		}
+
+		void ListaDispositivos_DispositivoCreado(object sender, EventDispositivoArgs e)
+		{
+			MessageBox.Show("Test");
 		}
 
 
@@ -61,7 +66,7 @@ new BinaryClientFormatterSinkProvider();
 
 		private void PintarDispositivosIniciales()
 		{
-			foreach (IDispositivoModelo dispositivo in _objetoRemoto.DispositivosActuales)
+			foreach (IDispositivoModelo dispositivo in _objetoRemoto.ListaDispositivos)
 			{
 				_dispositivos.Add(dispositivo);
 				Computador newPc = new Computador();
@@ -72,9 +77,9 @@ new BinaryClientFormatterSinkProvider();
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			_objetoRemoto.CrearDispositivo(60, 80);
-			_objetoRemoto.CrearDispositivo(500, 70);
-			_objetoRemoto.CrearDispositivo(100, 170);
+			_objetoRemoto.ListaDispositivos.CrearDispositivo(60, 80);
+			_objetoRemoto.ListaDispositivos.CrearDispositivo(500, 70);
+			_objetoRemoto.ListaDispositivos.CrearDispositivo(100, 170);
 		}
 
 		private void button1_Click(object sender, EventArgs e)

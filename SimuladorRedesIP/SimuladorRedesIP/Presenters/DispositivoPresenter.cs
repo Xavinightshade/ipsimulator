@@ -9,7 +9,7 @@ namespace RedesIP.Presenters
 	public class DispositivoPresenter:MarshalByRefObject
 	{
 		private List<IDispositivoVista> _listaDispositivosVistas=new List<IDispositivoVista>();
-		private IDispositivoModelo _dispositivoModelo;
+		private IDispositivoModelo _dispositivoModelo;	
 
 		#region Constructores
 		public DispositivoPresenter(IDispositivoModelo dispositivoModelo, IDispositivoVista dispositivoVista)
@@ -52,6 +52,14 @@ namespace RedesIP.Presenters
 		{
 			dispositivoVista.CambioEnPosicion -= new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
 			_listaDispositivosVistas.Remove(dispositivoVista);
+		}
+		public void EliminarVistasActuales()
+		{
+			foreach (IDispositivoVista  vista in _listaDispositivosVistas)
+			{
+				vista.CambioEnPosicion -= new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
+
+			}
 		}
 
 		private void RegistrarModelo()

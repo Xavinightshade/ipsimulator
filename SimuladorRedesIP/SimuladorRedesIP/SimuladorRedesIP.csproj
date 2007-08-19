@@ -66,13 +66,18 @@
     <Compile Include="Modelos\Elementos Logicos\PuertoEthernet.cs" />
     <Compile Include="Modelos\Elementos Logicos\Router.cs" />
     <Compile Include="Modelos\Elementos Logicos\Switch.cs" />
+    <Compile Include="Modelos\EstacionModelo.cs" />
+    <Compile Include="Modelos\IEstacionModelo.cs" />
     <Compile Include="Presenters\DispositivoPresenter.cs" />
     <Compile Include="Modelos\IDispositivoModelo.cs" />
+    <Compile Include="Presenters\EstacionPresenter.cs" />
     <Compile Include="Remoting\RemoteObject.cs" />
     <Compile Include="Vistas\Computador.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Vistas\EstacionVista.cs" />
     <Compile Include="Vistas\IDispositivoVista.cs" />
+    <Compile Include="Vistas\IEstacionVista.cs" />
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
     <Compile Include="Vistas\DispositivoVista.cs">
       <SubType>Component</SubType>
