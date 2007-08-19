@@ -50,8 +50,12 @@ namespace SimuladorCliente
 			Type typeofRI = typeof(RemoteServerObject);
 			_objetoRemoto = (RemoteServerObject)Activator.GetObject(typeofRI,
 								 "tcp://jaus.selfip.net:6123/ParachuteExample");
-			//_estacionModelo = _objetoRemoto.EstacionModelo;
-			_estacionModelo = new EstacionModelo();
+		//	_estacionModelo = _objetoRemoto.EstacionModelo;
+		_estacionModelo = new EstacionModelo();
+		Form2 forma = new Form2();
+		forma.Show();
+			EstacionPresenter _estacionPresente2r = new EstacionPresenter(_estacionModelo, forma.Estacion);
+
 			EstacionPresenter _estacionPresenter = new EstacionPresenter(_estacionModelo, estacionVista1);
 
 
@@ -61,16 +65,16 @@ namespace SimuladorCliente
 		private void button1_Click(object sender, EventArgs e)
 		
 		{
-			int numeroDispo = 30;
-			int deltax=900/numeroDispo;
-			int deltay = 900 / numeroDispo;
+			int numeroDispo = 20;
+			int deltax=1000/numeroDispo;
+			int deltay = 1000 / numeroDispo;
 			int posX = 0;
 			int posY = 0;
 			for (int i = 0; i < numeroDispo; i++)
 			{
 				posX += deltax;
 				posY += deltay;
-				estacionVista1.NewDispositivo(posX,posY);
+				estacionVista1.NewDispositivo(posX,80);
 			}
 			int length = 0;
 			for (int i = 0; i < numeroDispo; i++)

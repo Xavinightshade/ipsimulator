@@ -82,7 +82,7 @@ namespace RedesIP.Vistas
 
 		public void RefrescarConexiones()
 		{
-			this.Invalidate();
+			
 		}
 		protected override void OnPaint(PaintEventArgs pe)
 		{
@@ -97,7 +97,14 @@ namespace RedesIP.Vistas
 		{
 			Linea linea = new Linea(x1, y1, x2, y2);
 			_lineas.Add(linea);
+			this.Invalidate();
+			linea.CambioDePosicion += new EventHandler(linea_CambioDePosicion);
 			return linea;
+		}
+
+		void linea_CambioDePosicion(object sender, EventArgs e)
+		{
+			this.Invalidate();
 		}
 
 		private List<Linea> _lineas = new List<Linea>();
