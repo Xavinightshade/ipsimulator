@@ -17,10 +17,9 @@ namespace RedesIP.Vistas
 		}
 		#region IEstacionVista Members
 
-		bool selec;
+		bool selec=true;
 		public IDispositivoVista CrearDispositivo()
 		{
-			selec = !selec;
 			Control control = null;
 			IDispositivoVista dispositivo = null;
 			if (selec)

@@ -24,7 +24,6 @@ namespace RedesIP.Modelos
 	
 			Inicializar();
 		}
-
 		private void Inicializar()
 		{
 			_linea = new Linea(_equipo1.OrigenX, _equipo1.OrigenY, _equipo2.OrigenX, _equipo2.OrigenY);

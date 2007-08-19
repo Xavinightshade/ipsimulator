@@ -59,38 +59,31 @@ namespace SimuladorCliente
 		}
 
 		private void button1_Click(object sender, EventArgs e)
+		
 		{
-			for (int i = 0; i < 8; i++)
+			int numeroDispo = 30;
+			int deltax=900/numeroDispo;
+			int deltay = 900 / numeroDispo;
+			int posX = 0;
+			int posY = 0;
+			for (int i = 0; i < numeroDispo; i++)
 			{
-				estacionVista1.NewDispositivo();
+				posX += deltax;
+				posY += deltay;
+				estacionVista1.NewDispositivo(posX,posY);
 			}
-			_estacionModelo.Conectar(0, 1);
-			_estacionModelo.Conectar(0, 2);
-			_estacionModelo.Conectar(0, 3);
-			_estacionModelo.Conectar(0, 4);
-			_estacionModelo.Conectar(0, 5);
-			_estacionModelo.Conectar(0, 6);
-			_estacionModelo.Conectar(0, 7);
-			_estacionModelo.Conectar(1, 2);
-			_estacionModelo.Conectar(1, 3);
-			_estacionModelo.Conectar(1, 4);
-			_estacionModelo.Conectar(1, 5);
-			_estacionModelo.Conectar(1, 6);
-			_estacionModelo.Conectar(1, 7);
-			_estacionModelo.Conectar(2, 3);
-			_estacionModelo.Conectar(2, 4);
-			_estacionModelo.Conectar(2, 5);
-			_estacionModelo.Conectar(2, 6);
-			_estacionModelo.Conectar(2, 7);
-			_estacionModelo.Conectar(3, 4);
-			_estacionModelo.Conectar(3, 5);
-			_estacionModelo.Conectar(3, 6);
-			_estacionModelo.Conectar(3, 7);
-			_estacionModelo.Conectar(4, 5);
-			_estacionModelo.Conectar(4, 6);
-			_estacionModelo.Conectar(4, 7);
-			_estacionModelo.Conectar(5, 6);
-			_estacionModelo.Conectar(5, 7);
+			int length = 0;
+			for (int i = 0; i < numeroDispo; i++)
+			{
+				length += 1;
+				for (int j = length; j < numeroDispo; j++)
+				{
+					_estacionModelo.Conectar(i, j);
+				}
+
+
+			}
+
 		}
 		IEstacionModelo _estacionModelo;
 
