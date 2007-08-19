@@ -35,20 +35,20 @@ namespace SimuladorCliente
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(677, 11);
+			this.button1.Location = new System.Drawing.Point(2, 8);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(29, 25);
+			this.button1.Size = new System.Drawing.Size(103, 25);
 			this.button1.TabIndex = 0;
-			this.button1.Text = "button1";
+			this.button1.Text = "Crear Dispo";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// estacionVista1
 			// 
-			this.estacionVista1.BackColor = System.Drawing.Color.Black;
-			this.estacionVista1.Location = new System.Drawing.Point(163, 138);
+			this.estacionVista1.BackColor = System.Drawing.Color.DarkBlue;
+			this.estacionVista1.Location = new System.Drawing.Point(2, 39);
 			this.estacionVista1.Name = "estacionVista1";
-			this.estacionVista1.Size = new System.Drawing.Size(446, 256);
+			this.estacionVista1.Size = new System.Drawing.Size(777, 470);
 			this.estacionVista1.TabIndex = 1;
 			this.estacionVista1.TabStop = false;
 			// 
@@ -56,8 +56,8 @@ namespace SimuladorCliente
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-			this.ClientSize = new System.Drawing.Size(776, 468);
+			this.BackColor = System.Drawing.Color.Black;
+			this.ClientSize = new System.Drawing.Size(791, 521);
 			this.Controls.Add(this.estacionVista1);
 			this.Controls.Add(this.button1);
 			this.Name = "Form1";

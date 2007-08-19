@@ -12,7 +12,7 @@ namespace RedesIP.Vistas
 		private delegate void AgregarControl(Control control);
 		public EstacionVista()
 		{
-			this.BackColor = Color.Black;
+			this.BackColor = Color.DarkBlue;
 		}
 		#region IEstacionVista Members
 
