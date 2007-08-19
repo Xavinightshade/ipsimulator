@@ -109,7 +109,11 @@ namespace RedesIP.Vistas
 
 		private List<Linea> _lineas = new List<Linea>();
 
-
+		public Color ColorConexion
+		{
+			set { _pen.Color = value; }
+			get { return _pen.Color; }
+		}
 
 
 		#endregion

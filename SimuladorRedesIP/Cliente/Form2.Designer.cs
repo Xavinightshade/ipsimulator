@@ -35,6 +35,7 @@ namespace SimuladorCliente
 			// estacionVista1
 			// 
 			this.estacionVista1.BackColor = System.Drawing.Color.Black;
+			this.estacionVista1.ColorConexion= System.Drawing.Color.Lime;
 			this.estacionVista1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.estacionVista1.Location = new System.Drawing.Point(0, 0);
 			this.estacionVista1.Name = "estacionVista1";

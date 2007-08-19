@@ -28,8 +28,22 @@ namespace SimuladorCliente
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
+
+		_estacionModelo = new EstacionModelo();
+		//ConectarServidor();
+		Form2 forma = new Form2();
+		forma.Show();
+			EstacionPresenter _estacionPresente2r = new EstacionPresenter(_estacionModelo, forma.Estacion);
+
+			EstacionPresenter _estacionPresenter = new EstacionPresenter(_estacionModelo, estacionVista1);
+
+
+
+		}
+		private void ConectarServidor()
+		{
 			BinaryClientFormatterSinkProvider clientProvider =
-			new BinaryClientFormatterSinkProvider();
+new BinaryClientFormatterSinkProvider();
 			BinaryServerFormatterSinkProvider serverProvider =
 				new BinaryServerFormatterSinkProvider();
 			serverProvider.TypeFilterLevel =
@@ -50,18 +64,9 @@ namespace SimuladorCliente
 			Type typeofRI = typeof(RemoteServerObject);
 			_objetoRemoto = (RemoteServerObject)Activator.GetObject(typeofRI,
 								 "tcp://jaus.selfip.net:6123/ParachuteExample");
-		//	_estacionModelo = _objetoRemoto.EstacionModelo;
-		_estacionModelo = new EstacionModelo();
-		Form2 forma = new Form2();
-		forma.Show();
-			EstacionPresenter _estacionPresente2r = new EstacionPresenter(_estacionModelo, forma.Estacion);
-
-			EstacionPresenter _estacionPresenter = new EstacionPresenter(_estacionModelo, estacionVista1);
-
-
+				_estacionModelo = _objetoRemoto.EstacionModelo;
 
 		}
-
 		private void button1_Click(object sender, EventArgs e)
 		
 		{
@@ -74,7 +79,7 @@ namespace SimuladorCliente
 			{
 				posX += deltax;
 				posY += deltay;
-				estacionVista1.NewDispositivo(posX,80);
+				_estacionModelo.CrearDispositivo(posX, 80);
 			}
 			int length = 0;
 			for (int i = 0; i < numeroDispo; i++)
