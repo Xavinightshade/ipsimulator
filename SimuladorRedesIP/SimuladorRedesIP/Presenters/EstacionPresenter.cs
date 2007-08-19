@@ -17,12 +17,12 @@ namespace RedesIP.Presenters
 			_estacionModelo = estacionModelo;
 			_estacionVista = estacionVista;
 			_estacionModelo.DispositivoCreado += new EventHandler<EventDispositivoArgs>(HandlerDispositivoModeloCreado);
-			_estacionVista.CreacionDispositivo += new EventHandler(HandlerCrearDispositivoVista);
+			_estacionVista.CreacionDispositivo += new EventHandler<EventNuevoDispositivoVistaArgs>(HandlerCrearDispositivoVista);
 		}
 
-		private void HandlerCrearDispositivoVista(object sender, EventArgs e)
+		private void HandlerCrearDispositivoVista(object sender, EventNuevoDispositivoVistaArgs e)
 		{
-			_estacionModelo.CrearDispositivo();
+			_estacionModelo.CrearDispositivo(e.X, e.Y);
 		}
 
 		public void HandlerDispositivoModeloCreado(object sender, EventDispositivoArgs e)

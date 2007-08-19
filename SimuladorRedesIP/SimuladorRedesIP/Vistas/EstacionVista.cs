@@ -36,22 +36,26 @@ namespace RedesIP.Vistas
 				this.Controls.Add(control);
 			}
 		}
-		private void OnCreacionDispositivo()
+		private void OnCreacionDispositivo(int x,int y)
 		{
 			if (CreacionDispositivo != null)
-				CreacionDispositivo(this, new EventArgs());
+				CreacionDispositivo(this, new EventNuevoDispositivoVistaArgs(x, y));
 		}
 
 		public event EventHandler<EventDispositivoVistaArgs> DispositivoEliminado;
 
 		public event EventHandler<EventDispositivoVistaArgs> DispositivoDesAsociado;
 
-		public event EventHandler CreacionDispositivo;
+		public event EventHandler<EventNuevoDispositivoVistaArgs> CreacionDispositivo;
 
 		#endregion
+		public void NewDispositivo(int x,int y)
+		{
+			OnCreacionDispositivo(x, y);
+		}
 		public void NewDispositivo()
 		{
-			OnCreacionDispositivo();
+			NewDispositivo(0, 0);
 		}
 
 

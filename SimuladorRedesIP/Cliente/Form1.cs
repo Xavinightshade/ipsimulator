@@ -29,7 +29,7 @@ namespace SimuladorCliente
 		{
 			base.OnLoad(e);
 			BinaryClientFormatterSinkProvider clientProvider =
-new BinaryClientFormatterSinkProvider();
+			new BinaryClientFormatterSinkProvider();
 			BinaryServerFormatterSinkProvider serverProvider =
 				new BinaryServerFormatterSinkProvider();
 			serverProvider.TypeFilterLevel =
@@ -52,13 +52,20 @@ new BinaryClientFormatterSinkProvider();
 								 "tcp://jaus.selfip.net:6123/ParachuteExample");
 			EstacionPresenter _estacionPresenter = new EstacionPresenter(_objetoRemoto.EstacionModelo, estacionVista1);
 
-	
+
 		}
 
 		private void button1_Click(object sender, EventArgs e)
 		{
 			estacionVista1.NewDispositivo();
 		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			estacionVista1.NewDispositivo(100, 100);
+		}
+
+
 
 
 

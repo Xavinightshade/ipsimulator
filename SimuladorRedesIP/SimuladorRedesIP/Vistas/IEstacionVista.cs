@@ -9,7 +9,7 @@ namespace RedesIP.Vistas
 		IDispositivoVista CrearDispositivo();
 		event EventHandler<EventDispositivoVistaArgs> DispositivoEliminado;
 		event EventHandler<EventDispositivoVistaArgs> DispositivoDesAsociado;
-		event EventHandler CreacionDispositivo;
+		event EventHandler<EventNuevoDispositivoVistaArgs> CreacionDispositivo;
 
 	}
 	public class EventDispositivoVistaArgs:EventArgs
@@ -24,5 +24,25 @@ namespace RedesIP.Vistas
 		{
 			_dispositivoVista = vista;
 		}
+	}
+	public class EventNuevoDispositivoVistaArgs : EventArgs
+	{
+		private int _x;
+		public int X
+		{
+			get { return _x; }
+		}
+		private int _y;
+		public int Y
+		{
+			get { return _y; }
+		}
+		public EventNuevoDispositivoVistaArgs(int x,int y)
+		{
+			_x = x;
+			_y = y;
+		}
+	
+	
 	}
 }
