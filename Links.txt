@@ -1,0 +1,7 @@
+http://sourceforge.net/projects/sourcegrid/
+https://sourcegrid.svn.sourceforge.net/svnroot/sourcegrid
+http://www.devage.com/
+
+
+http://sourceforge.net/projects/dockpanelsuite/
+https://dockpanelsuite.svn.sourceforge.net/svnroot/dockpanelsuite
