@@ -1,23 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimuladorRedesIP", "SimuladorRedesIP\SimuladorRedesIP.csproj", "{77264759-D438-41DE-99C6-8FEE326306E8}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliente", "Cliente\Cliente.csproj", "{4BEC8405-1986-48D8-9C0C-BD219CF96C1C}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Servidor", "Servidor\Servidor.csproj", "{327ADC52-9244-4054-8684-772E4F924FB7}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimuladorRedesIP", "SimuladorRedesIP\SimuladorRedesIP.csproj", "{77264759-D438-41DE-99C6-8FEE326306E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77264759-D438-41DE-99C6-8FEE326306E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77264759-D438-41DE-99C6-8FEE326306E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77264759-D438-41DE-99C6-8FEE326306E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77264759-D438-41DE-99C6-8FEE326306E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BEC8405-1986-48D8-9C0C-BD219CF96C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4BEC8405-1986-48D8-9C0C-BD219CF96C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BEC8405-1986-48D8-9C0C-BD219CF96C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +21,10 @@ Global
 		{327ADC52-9244-4054-8684-772E4F924FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{327ADC52-9244-4054-8684-772E4F924FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{327ADC52-9244-4054-8684-772E4F924FB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77264759-D438-41DE-99C6-8FEE326306E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77264759-D438-41DE-99C6-8FEE326306E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77264759-D438-41DE-99C6-8FEE326306E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77264759-D438-41DE-99C6-8FEE326306E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
