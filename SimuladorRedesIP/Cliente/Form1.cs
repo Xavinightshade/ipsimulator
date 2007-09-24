@@ -33,9 +33,8 @@ namespace SimuladorCliente
 		//ConectarServidor();
 		Form2 forma = new Form2();
 		forma.Show();
-			EstacionPresenter _estacionPresente2r = new EstacionPresenter(_estacionModelo, forma.Estacion);
-
-			EstacionPresenter _estacionPresenter = new EstacionPresenter(_estacionModelo, estacionVista1);
+		new EstacionPresenter(_estacionModelo, forma.Estacion);
+		new EstacionPresenter(_estacionModelo, estacionVista1);
 
 
 

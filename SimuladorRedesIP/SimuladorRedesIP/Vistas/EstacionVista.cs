@@ -84,12 +84,12 @@ namespace RedesIP.Vistas
 		{
 			
 		}
-		protected override void OnPaint(PaintEventArgs pe)
+		protected override void OnPaint(PaintEventArgs e)
 		{
-			base.OnPaint(pe);
+			base.OnPaint(e);
 			foreach (Linea linea in _lineas)
 			{
-				pe.Graphics.DrawLine(_pen, linea.X1, linea.Y1, linea.X2, linea.Y2);
+				e.Graphics.DrawLine(_pen, linea.X1, linea.Y1, linea.X2, linea.Y2);
 			}
 		}
 		Pen _pen = new Pen(Color.Yellow, 0);
