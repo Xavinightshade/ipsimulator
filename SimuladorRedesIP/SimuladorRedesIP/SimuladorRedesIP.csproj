@@ -57,39 +57,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelos\ConexionModelo.cs" />
+    <Compile Include="Modelos\Conexion.cs" />
     <Compile Include="Modelos\Datos\Frame.cs" />
     <Compile Include="Modelos\Datos\MACAddress.cs" />
     <Compile Include="Modelos\Datos\PacketeIP.cs" />
-    <Compile Include="Modelos\DispositivoModelo.cs" />
-    <Compile Include="Modelos\Elementos Logicos\CableDeRed.cs" />
-    <Compile Include="Modelos\Elementos Logicos\Computador.cs" />
-    <Compile Include="Modelos\Elementos Logicos\PuertoEthernet.cs" />
-    <Compile Include="Modelos\Elementos Logicos\Router.cs" />
-    <Compile Include="Modelos\Elementos Logicos\Switch.cs" />
-    <Compile Include="Modelos\EstacionModelo.cs" />
-    <Compile Include="Modelos\IEstacionModelo.cs" />
+    <Compile Include="Modelos\Equipos\Equipo.cs" />
+    <Compile Include="Modelos\CableDeRed.cs" />
+    <Compile Include="Modelos\Equipos\Computador.cs" />
+    <Compile Include="Modelos\PuertoEthernet.cs" />
+    <Compile Include="Modelos\Equipos\Router.cs" />
+    <Compile Include="Modelos\Equipos\Switch.cs" />
+    <Compile Include="Modelos\Estacion.cs" />
+    <Compile Include="Modelos\IEstacion.cs" />
     <Compile Include="Presenters\ConexionPresenter.cs" />
     <Compile Include="Presenters\DispositivoPresenter.cs" />
-    <Compile Include="Modelos\IDispositivoModelo.cs" />
+    <Compile Include="Modelos\Equipos\IEquipo.cs" />
     <Compile Include="Presenters\EstacionPresenter.cs" />
     <Compile Include="Remoting\RemoteObject.cs" />
-    <Compile Include="Vistas\Computador.cs">
+    <Compile Include="Vistas\Equipos\ComputadorView.cs">
+    </Compile>
+    <Compile Include="Vistas\EstacionView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Vistas\EstacionVista.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Vistas\IDispositivoVista.cs" />
-    <Compile Include="Vistas\IEstacionVista.cs" />
-    <Compile Include="Vistas\RouterVista.cs">
+    <Compile Include="Vistas\IEquipoView.cs" />
+    <Compile Include="Vistas\IEstacionView.cs" />
+    <Compile Include="Vistas\Equipos\RouterView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
-    <Compile Include="Vistas\DispositivoVista.cs">
+    <Compile Include="Vistas\Equipos\EquipoView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Vistas\Switch.cs">
+    <Compile Include="Vistas\Equipos\SwitchView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

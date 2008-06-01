@@ -4,16 +4,17 @@ using System.Text;
 using RedesIP.Modelos;
 using RedesIP.Vistas;
 using RedesIP.Vistas.Utilidades;
+using RedesIP.Modelos.Equipos;
 
 namespace RedesIP.Presenters
 {
-	public class EstacionPresenter:MarshalByRefObject
+	public class EstacionPresenter
 	{
-		private IEstacionModelo _estacionModelo;
-		private IEstacionVista _estacionVista;
+		private IEstacion _estacionModelo;
+		private IEstacionView _estacionVista;
 		private List<DispositivoPresenter> _listaPresenters = new List<DispositivoPresenter>();
-		private Dictionary<IDispositivoVista, DispositivoPresenter> _dicVistaPresenters = new Dictionary<IDispositivoVista, DispositivoPresenter>();
-		public EstacionPresenter(IEstacionModelo estacionModelo,IEstacionVista estacionVista)
+		private Dictionary<IEquipoView, DispositivoPresenter> _dicVistaPresenters = new Dictionary<IEquipoView, DispositivoPresenter>();
+		public EstacionPresenter(IEstacion estacionModelo,IEstacionView estacionVista)
 		{
 			_estacionModelo = estacionModelo;
 			_estacionVista = estacionVista;
@@ -33,7 +34,7 @@ namespace RedesIP.Presenters
 
 		private void VistaInicial()
 		{
-			foreach (IDispositivoModelo modelo in _estacionModelo.DispositivosActuales)
+            foreach (IEquipo modelo in _estacionModelo.DispositivosActuales)
 			{
 				DispositivoPresenter presenter = new DispositivoPresenter(modelo, _estacionVista.CrearDispositivo());
 			}
@@ -46,8 +47,8 @@ namespace RedesIP.Presenters
 
 		public void HandlerDispositivoModeloCreado(object sender, EventDispositivoArgs e)
 		{
-			IDispositivoVista dispositivoVista = _estacionVista.CrearDispositivo();
-			IDispositivoModelo dispositivoModelo = e.Dispositivo;
+			IEquipoView dispositivoVista = _estacionVista.CrearDispositivo();
+            IEquipo dispositivoModelo = e.Dispositivo;
 			DispositivoPresenter presenter = new DispositivoPresenter(dispositivoModelo, dispositivoVista);
 			dispositivoModelo.CambioEnPosicion += new EventHandler(dispositivoModelo_CambioEnPosicion);
 		}

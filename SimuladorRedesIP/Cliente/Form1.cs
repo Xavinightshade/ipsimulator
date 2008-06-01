@@ -13,13 +13,11 @@ using System.Collections;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Serialization.Formatters;
 using RedesIP.Remoting;
-using RedesIP.Vistas.ElementosVisuales;
 
 namespace SimuladorCliente
 {
 	public partial class Form1 : Form
 	{
-		RemoteServerObject _objetoRemoto;
 		public Form1()
 		{
 			InitializeComponent();
@@ -29,43 +27,20 @@ namespace SimuladorCliente
 		{
 			base.OnLoad(e);
 
-		_estacionModelo = new EstacionModelo();
-		//ConectarServidor();
-		Form2 forma = new Form2();
-		forma.Show();
-		new EstacionPresenter(_estacionModelo, forma.Estacion);
+		_estacionModelo = new Estacion();
+ 
+
+
+
 		new EstacionPresenter(_estacionModelo, estacionVista1);
 
 
+		    
+
+
 
 		}
-		private void ConectarServidor()
-		{
-			BinaryClientFormatterSinkProvider clientProvider =
-new BinaryClientFormatterSinkProvider();
-			BinaryServerFormatterSinkProvider serverProvider =
-				new BinaryServerFormatterSinkProvider();
-			serverProvider.TypeFilterLevel =
 
-			System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
-
-			IDictionary props = new Hashtable();
-			props["port"] = 0;
-			string s = System.Guid.NewGuid().ToString();
-			props["name"] = s;
-			props["typeFilterLevel"] = TypeFilterLevel.Full;
-			TcpChannel chan = new TcpChannel(
-			props, clientProvider, serverProvider);
-
-			ChannelServices.RegisterChannel(chan);
-
-
-			Type typeofRI = typeof(RemoteServerObject);
-			_objetoRemoto = (RemoteServerObject)Activator.GetObject(typeofRI,
-								 "tcp://jaus.selfip.net:6123/ParachuteExample");
-				_estacionModelo = _objetoRemoto.EstacionModelo;
-
-		}
 		private void button1_Click(object sender, EventArgs e)
 		
 		{
@@ -93,7 +68,7 @@ new BinaryClientFormatterSinkProvider();
 			}
 
 		}
-		IEstacionModelo _estacionModelo;
+		IEstacion _estacionModelo;
 
 
 

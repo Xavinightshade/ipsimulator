@@ -5,7 +5,7 @@ using RedesIP.Vistas.Utilidades;
 
 namespace RedesIP.Presenters
 {
-	public class ConexionPresenter:MarshalByRefObject
+	public class ConexionPresenter
 	{
 		Linea _lineaVista;
 		Linea _lineaModelo;

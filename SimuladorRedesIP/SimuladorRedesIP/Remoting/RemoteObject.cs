@@ -9,8 +9,8 @@ namespace RedesIP.Remoting
 {
 	public class RemoteServerObject:MarshalByRefObject
 	{
-		private IEstacionModelo _estacionModelo;
-		public IEstacionModelo EstacionModelo
+		private IEstacion _estacionModelo;
+		public IEstacion EstacionModelo
 		{
 			get { return _estacionModelo; }
 		}	
@@ -18,7 +18,7 @@ namespace RedesIP.Remoting
 		public RemoteServerObject()
 		{
 			Console.WriteLine("nuevo objeto remoto");
-			_estacionModelo = new EstacionModelo();
+			_estacionModelo = new Estacion();
 		}
 
 

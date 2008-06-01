@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using RedesIP.Vistas;
 using RedesIP.Modelos;
+using RedesIP.Modelos.Equipos;
 
 namespace RedesIP.Presenters
 {
-	public class DispositivoPresenter:MarshalByRefObject
+	public class DispositivoPresenter
 	{
-		private List<IDispositivoVista> _listaDispositivosVistas=new List<IDispositivoVista>();
-		private IDispositivoModelo _dispositivoModelo;	
+        private List<IEquipoView> _listaDispositivosVistas = new List<IEquipoView>();
+        private IEquipo _dispositivoModelo;	
 
 		#region Constructores
-		public DispositivoPresenter(IDispositivoModelo dispositivoModelo, IDispositivoVista dispositivoVista)
+        public DispositivoPresenter(IEquipo dispositivoModelo, IEquipoView dispositivoVista)
 		{
 			_dispositivoModelo = dispositivoModelo;
 			_listaDispositivosVistas.Add(dispositivoVista);
@@ -23,18 +24,18 @@ namespace RedesIP.Presenters
 
 		private void EstablecerValoresEnVista()
 		{
-			foreach (IDispositivoVista vista in _listaDispositivosVistas)
+            foreach (IEquipoView vista in _listaDispositivosVistas)
 			{
 				vista.OrigenX = _dispositivoModelo.OrigenX;
 				vista.OrigenY = _dispositivoModelo.OrigenY;
 			}
 		}
-		public DispositivoPresenter(IDispositivoModelo dispositivoModelo)
+		public DispositivoPresenter(IEquipo dispositivoModelo)
 		{
 			_dispositivoModelo = dispositivoModelo;
 			RegistrarModelo();
 		}
-		public DispositivoPresenter(IDispositivoModelo dispositivoModelo, IList<IDispositivoVista> listaDispositivosVistas)
+        public DispositivoPresenter(IEquipo dispositivoModelo, IList<IEquipoView> listaDispositivosVistas)
 			: this(dispositivoModelo)
 		{
 			_listaDispositivosVistas.AddRange(listaDispositivosVistas);
@@ -42,20 +43,20 @@ namespace RedesIP.Presenters
 		} 
 		#endregion
 
-		public void AgregarVista(IDispositivoVista dispositivoVista)
+        public void AgregarVista(IEquipoView dispositivoVista)
 		{
 			_listaDispositivosVistas.Add(dispositivoVista);
 			RegistrarVista(dispositivoVista);
 		}
 
-		public void EliminarVista(IDispositivoVista dispositivoVista)
+        public void EliminarVista(IEquipoView dispositivoVista)
 		{
 			dispositivoVista.CambioEnPosicion -= new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
 			_listaDispositivosVistas.Remove(dispositivoVista);
 		}
 		public void EliminarVistasActuales()
 		{
-			foreach (IDispositivoVista  vista in _listaDispositivosVistas)
+            foreach (IEquipoView vista in _listaDispositivosVistas)
 			{
 				vista.CambioEnPosicion -= new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
 
@@ -67,14 +68,14 @@ namespace RedesIP.Presenters
 			_dispositivoModelo.CambioEnPosicion += new EventHandler(HandlerCambioEnModelo);
 		}
 
-		private void RegistrarVista(IDispositivoVista dispositivoVista)
+        private void RegistrarVista(IEquipoView dispositivoVista)
 		{
 			dispositivoVista.CambioEnPosicion += new EventHandler<EventCambioEnPosicionArgs>(HandlerCambioEnPosicionVista);
 		}
 
-		private void RegistrarVistas(IList<IDispositivoVista> listaDispositivosVistas)
+        private void RegistrarVistas(IList<IEquipoView> listaDispositivosVistas)
 		{
-			foreach (IDispositivoVista vista in listaDispositivosVistas)
+            foreach (IEquipoView vista in listaDispositivosVistas)
 			{
 				RegistrarVista(vista);
 			}
@@ -87,7 +88,7 @@ namespace RedesIP.Presenters
 		}
 		private void HandlerCambioEnPosicionVista(object sender, EventCambioEnPosicionArgs e)
 		{
-			IDispositivoVista vistaQueCambio = (IDispositivoVista)sender;
+            IEquipoView vistaQueCambio = (IEquipoView)sender;
 			_dispositivoModelo.CambiarPosicion(e.DeltaEnX, e.DeltaEnY);
 		} 
 		#endregion

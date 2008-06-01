@@ -29,7 +29,7 @@ namespace SimuladorCliente
 		private void InitializeComponent()
 		{
 			this.button1 = new System.Windows.Forms.Button();
-			this.estacionVista1 = new RedesIP.Vistas.EstacionVista();
+			this.estacionVista1 = new RedesIP.Vistas.EstacionView();
 			((System.ComponentModel.ISupportInitialize)(this.estacionVista1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -71,7 +71,7 @@ namespace SimuladorCliente
 		#endregion
 
 		private System.Windows.Forms.Button button1;
-		private RedesIP.Vistas.EstacionVista estacionVista1;
+		private RedesIP.Vistas.EstacionView estacionVista1;
 
 
 
