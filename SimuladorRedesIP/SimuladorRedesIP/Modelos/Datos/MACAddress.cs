@@ -29,14 +29,14 @@ namespace RedesIP.Modelos.Datos
 
 		}
 
-		public static MACAddress New(byte parte1, byte parte2, byte parte3)
+		public static MACAddress Direccion(byte parte1, byte parte2, byte parte3)
 		{
 			return new MACAddress(parte1, parte2, parte3);
 		}
 		private static Random random = new Random();
 		public static MACAddress New()
 		{
-			return New((byte)random.Next(), (byte)random.Next(), (byte)random.Next());
+			return Direccion((byte)random.Next(), (byte)random.Next(), (byte)random.Next());
 		}
 
 		public bool EsIgual(MACAddress macaddress)

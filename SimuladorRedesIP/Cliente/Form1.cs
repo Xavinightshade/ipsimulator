@@ -13,6 +13,8 @@ using System.Collections;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Serialization.Formatters;
 using RedesIP.Remoting;
+using RedesIP.Modelos.Equipos;
+using RedesIP.Modelos.Datos;
 
 namespace SimuladorCliente
 {
@@ -22,6 +24,9 @@ namespace SimuladorCliente
 		{
 			InitializeComponent();
 		}
+        private delegate void ImprimirReporte(FrameRecibidoEventArgs e);
+	    private Computador pc;
+	    private Computador pc2;
 
 		protected override void OnLoad(EventArgs e)
 		{
@@ -35,11 +40,43 @@ namespace SimuladorCliente
 		new EstacionPresenter(_estacionModelo, estacionVista1);
 
 
-		    
+		     pc = new Computador("pc1", MACAddress.Direccion(1, 2, 3));
+		    pc2 = new Computador("pc2", MACAddress.Direccion(4, 5, 6));
+		    CableDeRed cab=new CableDeRed(pc,pc2);
+            pc2.PuertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(PuertoEthernet_FrameRecibido);
+		    Switch swi = new Switch(3);
+
+
 
 
 
 		}
+
+        void PuertoEthernet_FrameRecibido(object sender, FrameRecibidoEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                ImprimirReporte agregarControl = new ImprimirReporte(Imprimir);
+                this.BeginInvoke(agregarControl, e);
+            }
+            else
+            {
+                Imprimir(e);
+            }
+
+
+           
+        }
+       private void Imprimir(FrameRecibidoEventArgs e)
+	{
+	//    textBox1.Text += "yo : "  + "@@@ recibi frame: " +e.FrameRecibido.Informacion + " a lassss " +
+      //                       DateTime.Now.ToString() + Environment.NewLine;
+           textBox2.Text = pc.PuertoEthernet.Aenviar.ToString();
+           textBox3.Text = pc2.PuertoEthernet.Recibidos.ToString();
+           progressBar1.Value = pc.PuertoEthernet.Aenviar;
+           progressBar2.Value = pc2.PuertoEthernet.Recibidos;
+          
+	}
 
 		private void button1_Click(object sender, EventArgs e)
 		
@@ -69,6 +106,20 @@ namespace SimuladorCliente
 
 		}
 		IEstacion _estacionModelo;
+	    private int enviados;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 1000; i++)
+            {
+                enviados++;
+                pc.EnviarMensaje(DateTime.Now.ToString(), MACAddress.Direccion(4, 5, 6));
+                progressBar1.Maximum = enviados;
+                progressBar2.Maximum = enviados;
+   
+            }
+           // MessageBox.Show("Test");
+            
+        }
 
 
 

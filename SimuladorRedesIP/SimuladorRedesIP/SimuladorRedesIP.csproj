@@ -64,6 +64,7 @@
     <Compile Include="Modelos\Equipos\Equipo.cs" />
     <Compile Include="Modelos\CableDeRed.cs" />
     <Compile Include="Modelos\Equipos\Computador.cs" />
+    <Compile Include="Modelos\IEnvioReciboDatos.cs" />
     <Compile Include="Modelos\PuertoEthernet.cs" />
     <Compile Include="Modelos\Equipos\Router.cs" />
     <Compile Include="Modelos\Equipos\Switch.cs" />
