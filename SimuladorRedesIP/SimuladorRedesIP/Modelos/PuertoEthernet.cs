@@ -13,9 +13,9 @@ namespace RedesIP.Modelos
 
         public int Aenviar { get { return _bufferFramesAEnviar.Count; } }
         public int Recibidos { get { return _bufferFramesRecibidos.Count; } }
-	    private Queue<Frame> _bufferFramesAEnviar = new Queue<Frame>();
+	    private readonly Queue<Frame> _bufferFramesAEnviar = new Queue<Frame>();
         Thread _hiloDeProcesamientoDeFramesRecibidos;
-        private Queue<Frame> _bufferFramesRecibidos = new Queue<Frame>();
+        private readonly Queue<Frame> _bufferFramesRecibidos = new Queue<Frame>();
 	    private Thread _hiloDeProcesamientoDeFramesAEnviar;
         
 		private MACAddress _MACAddress;
@@ -30,6 +30,7 @@ namespace RedesIP.Modelos
 		{
             
 			_MACAddress = MACAddress;
+         
 
 		}
 
@@ -41,7 +42,7 @@ namespace RedesIP.Modelos
               
 
                 {
-                // Thread.Sleep(r.Next(1));
+                 Thread.Sleep(r.Next(100));
 
                     OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
                     Console.WriteLine("Buffer a enviar== " + _bufferFramesAEnviar.Count.ToString());
@@ -59,7 +60,7 @@ namespace RedesIP.Modelos
  
                while (_bufferFramesRecibidos.Count != 0)
                 {
-                //    Thread.Sleep(r.Next(100));
+                    Thread.Sleep(r.Next(120));
 
                     OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
                     Console.WriteLine("Buffer recubidos==  " + _bufferFramesRecibidos.Count.ToString());

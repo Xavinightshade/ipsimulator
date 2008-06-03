@@ -41,7 +41,7 @@ namespace SimuladorCliente
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(667, 12);
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 25);
             this.button1.TabIndex = 0;
@@ -51,7 +51,7 @@ namespace SimuladorCliente
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(226, 131);
+            this.button2.Location = new System.Drawing.Point(741, 659);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(103, 25);
             this.button2.TabIndex = 2;
@@ -61,23 +61,23 @@ namespace SimuladorCliente
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(89, 169);
+            this.textBox1.Location = new System.Drawing.Point(12, 659);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(692, 280);
+            this.textBox1.Size = new System.Drawing.Size(737, 68);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(33, 36);
+            this.textBox2.Location = new System.Drawing.Point(12, 589);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(79, 20);
             this.textBox2.TabIndex = 4;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(33, 62);
+            this.textBox3.Location = new System.Drawing.Point(12, 615);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(79, 20);
             this.textBox3.TabIndex = 5;
@@ -95,14 +95,14 @@ namespace SimuladorCliente
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(118, 36);
+            this.progressBar1.Location = new System.Drawing.Point(97, 589);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(652, 21);
             this.progressBar1.TabIndex = 6;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(118, 63);
+            this.progressBar2.Location = new System.Drawing.Point(97, 616);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(652, 21);
             this.progressBar2.TabIndex = 7;

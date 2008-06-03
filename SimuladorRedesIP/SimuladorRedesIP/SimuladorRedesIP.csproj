@@ -76,6 +76,7 @@
     <Compile Include="Presenters\EstacionPresenter.cs" />
     <Compile Include="Remoting\RemoteObject.cs" />
     <Compile Include="Vistas\Equipos\ComputadorView.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\EstacionView.cs">
       <SubType>Component</SubType>

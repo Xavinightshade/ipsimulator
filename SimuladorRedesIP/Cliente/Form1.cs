@@ -42,9 +42,14 @@ namespace SimuladorCliente
 
 		     pc = new Computador("pc1", MACAddress.Direccion(1, 2, 3));
 		    pc2 = new Computador("pc2", MACAddress.Direccion(4, 5, 6));
-		    CableDeRed cab=new CableDeRed(pc,pc2);
+		//    CableDeRed cab=new CableDeRed(pc,pc2);
             pc2.PuertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(PuertoEthernet_FrameRecibido);
-		    Switch swi = new Switch(3);
+		    Switch swi = new Switch(30);
+            Switch swi2 = new Switch(30);
+
+            CableDeRed cab2 = new CableDeRed(pc.PuertoEthernet, swi.PuertosEthernet[0]);
+            CableDeRed cab3 = new CableDeRed(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
+            CableDeRed cab4 = new CableDeRed(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
 
 
 
@@ -56,6 +61,7 @@ namespace SimuladorCliente
         {
             if (this.InvokeRequired)
             {
+
                 ImprimirReporte agregarControl = new ImprimirReporte(Imprimir);
                 this.BeginInvoke(agregarControl, e);
             }
@@ -69,8 +75,8 @@ namespace SimuladorCliente
         }
        private void Imprimir(FrameRecibidoEventArgs e)
 	{
-	//    textBox1.Text += "yo : "  + "@@@ recibi frame: " +e.FrameRecibido.Informacion + " a lassss " +
-      //                       DateTime.Now.ToString() + Environment.NewLine;
+	    textBox1.Text += "yo : "  + "@@@ recibi frame: " +e.FrameRecibido.Informacion + " a lassss " +
+                             DateTime.Now.ToString() + Environment.NewLine;
            textBox2.Text = pc.PuertoEthernet.Aenviar.ToString();
            textBox3.Text = pc2.PuertoEthernet.Recibidos.ToString();
            progressBar1.Value = pc.PuertoEthernet.Aenviar;
@@ -109,7 +115,7 @@ namespace SimuladorCliente
 	    private int enviados;
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 50; i++)
             {
                 enviados++;
                 pc.EnviarMensaje(DateTime.Now.ToString(), MACAddress.Direccion(4, 5, 6));
