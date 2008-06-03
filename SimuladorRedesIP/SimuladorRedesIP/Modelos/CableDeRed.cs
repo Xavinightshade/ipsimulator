@@ -11,6 +11,7 @@ namespace RedesIP.Modelos
 	}
 	public class CableDeRed
 	{
+        private Object _syncObject = new Object();
 		private static List<PuertoEthernet> _listaPuertos = new List<PuertoEthernet>();
 		private PuertoEthernet _puerto1;
 		private PuertoEthernet _puerto2;
