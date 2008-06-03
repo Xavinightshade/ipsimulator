@@ -8,16 +8,16 @@ using System.Collections.ObjectModel;
 namespace RedesIP.Modelos
 {
 
-	public class PuertoEthernet:IEnvioReciboDatos
+	public class PuertoEthernet : IEnvioReciboDatos
 	{
+		private object _syncObject = new object();
+		public int Aenviar { get { return _bufferFramesAEnviar.Count; } }
+		public int Recibidos { get { return _bufferFramesRecibidos.Count; } }
+		private readonly Queue<Frame> _bufferFramesAEnviar = new Queue<Frame>();
+		Thread _hiloDeProcesamientoDeFramesRecibidos;
+		private readonly Queue<Frame> _bufferFramesRecibidos = new Queue<Frame>();
+		private Thread _hiloDeProcesamientoDeFramesAEnviar;
 
-        public int Aenviar { get { return _bufferFramesAEnviar.Count; } }
-        public int Recibidos { get { return _bufferFramesRecibidos.Count; } }
-	    private readonly Queue<Frame> _bufferFramesAEnviar = new Queue<Frame>();
-        Thread _hiloDeProcesamientoDeFramesRecibidos;
-        private readonly Queue<Frame> _bufferFramesRecibidos = new Queue<Frame>();
-	    private Thread _hiloDeProcesamientoDeFramesAEnviar;
-        
 		private MACAddress _MACAddress;
 
 		public MACAddress MACAddress
@@ -28,47 +28,44 @@ namespace RedesIP.Modelos
 		public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
 		public PuertoEthernet(MACAddress MACAddress)
 		{
-            
+
 			_MACAddress = MACAddress;
-         
+
 
 		}
 
 
-        private void ProcesarFramesAEnviar()
-        {
+		private void ProcesarFramesAEnviar()
+		{
+			lock (_syncObject)
+			{
+				while (_bufferFramesAEnviar.Count != 0)
+				{
+					Thread.Sleep(r.Next(100));
 
-            while (_bufferFramesAEnviar.Count != 0)
-              
+					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
+				}
+				_hiloDeProcesamientoDeFramesAEnviar = null;
+			}
 
-                {
-                 Thread.Sleep(r.Next(100));
+		}
 
-                    OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
-                    Console.WriteLine("Buffer a enviar== " + _bufferFramesAEnviar.Count.ToString());
-                
-                    
-                }
-            _hiloDeProcesamientoDeFramesAEnviar = null;
-    
-        }
+		private Random r = new Random();
+		private void ProcesarFramesRecibidos()
+		{
+			lock (_syncObject)
+			{
+				while (_bufferFramesRecibidos.Count != 0)
+				{
+					Thread.Sleep(r.Next(120));
 
-	    private Random r=new Random();
-        private void ProcesarFramesRecibidos()
-        {
+					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
+				}
 
- 
-               while (_bufferFramesRecibidos.Count != 0)
-                {
-                    Thread.Sleep(r.Next(120));
-
-                    OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
-                    Console.WriteLine("Buffer recubidos==  " + _bufferFramesRecibidos.Count.ToString());
-                }
-
-            _hiloDeProcesamientoDeFramesRecibidos = null;
-   
-        }
+				_hiloDeProcesamientoDeFramesRecibidos = null;
+			}
+			
+		}
 
 
 		private void OnFrameTransmitido(Frame frame)
@@ -83,29 +80,37 @@ namespace RedesIP.Modelos
 		}
 
 
-        #region IEnvioReciboDatos Members
+		#region IEnvioReciboDatos Members
 
-        void IEnvioReciboDatos.TransmitirFrame(Frame frame)
-        {
-            _bufferFramesAEnviar.Enqueue(frame);
-            if (_hiloDeProcesamientoDeFramesAEnviar == null)
-            {
-                _hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
-                _hiloDeProcesamientoDeFramesAEnviar.Start();
-            }
-        }
+		void IEnvioReciboDatos.TransmitirFrame(Frame frame)
+		{
+			lock (_syncObject)
+			{
+						_bufferFramesAEnviar.Enqueue(frame);
+			if (_hiloDeProcesamientoDeFramesAEnviar == null)
+			{
+				_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
+				_hiloDeProcesamientoDeFramesAEnviar.Start();
+			}
+			}
+	
+		}
 
-        void IEnvioReciboDatos.RecibirFrame(Frame frame)
-        {
+		void IEnvioReciboDatos.RecibirFrame(Frame frame)
+		{
+			lock (_syncObject)
+			{
+							_bufferFramesRecibidos.Enqueue(frame);
+			if (_hiloDeProcesamientoDeFramesRecibidos == null)
+			{
+				_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);
+				_hiloDeProcesamientoDeFramesRecibidos.Start();
+			}
+			}
 
-            _bufferFramesRecibidos.Enqueue(frame);
-            if (_hiloDeProcesamientoDeFramesRecibidos == null)
-            {
-                _hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);
-                _hiloDeProcesamientoDeFramesRecibidos.Start();
-            }
-        }
 
-        #endregion
-    }
+		}
+
+		#endregion
+	}
 }

@@ -75,8 +75,8 @@ namespace SimuladorCliente
         }
        private void Imprimir(FrameRecibidoEventArgs e)
 	{
-	    textBox1.Text += "yo : "  + "@@@ recibi frame: " +e.FrameRecibido.Informacion + " a lassss " +
-                             DateTime.Now.ToString() + Environment.NewLine;
+//	    textBox1.Text += "yo : "  + "@@@ recibi frame: " +e.FrameRecibido.Informacion + " a lassss " +
+  //                           DateTime.Now.ToString() + Environment.NewLine;
            textBox2.Text = pc.PuertoEthernet.Aenviar.ToString();
            textBox3.Text = pc2.PuertoEthernet.Recibidos.ToString();
            progressBar1.Value = pc.PuertoEthernet.Aenviar;
