@@ -7,13 +7,13 @@ namespace RedesIP.Modelos.Visualizacion
 {
 	public class EventEquipoArgs : EventArgs
 	{
-		private IEquipo _dispositivo;
-		public IEquipo Dispositivo
+		private Equipo _dispositivo;
+		public Equipo Dispositivo
 		{
 			get { return _dispositivo; }
 		}
 
-		public EventEquipoArgs(IEquipo dispositivo)
+		public EventEquipoArgs(Equipo dispositivo)
 		{
 			_dispositivo = dispositivo;
 		}

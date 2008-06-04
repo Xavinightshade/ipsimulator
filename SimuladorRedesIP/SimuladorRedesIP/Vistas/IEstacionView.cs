@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using RedesIP.Vistas.Utilidades;
+using RedesIP.Vistas.Equipos;
 
 namespace RedesIP.Vistas
 {
 	public interface IEstacionView
 	{
-		IEquipoView CrearDispositivo();
+		EquipoView CrearDispositivo();
 		event EventHandler<EventDispositivoVistaArgs> DispositivoEliminado;
 		event EventHandler<EventDispositivoVistaArgs> DispositivoDesAsociado;
 		event EventHandler<EventNuevoDispositivoVistaArgs> CreacionDispositivo;
@@ -17,13 +18,13 @@ namespace RedesIP.Vistas
 	}
 	public class EventDispositivoVistaArgs:EventArgs
 	{
-		private IEquipoView _dispositivoVista;
-		public IEquipoView DispositivoVista
+		private EquipoView _dispositivoVista;
+		public EquipoView DispositivoVista
 		{
 			get { return _dispositivoVista; }
 		}
 	
-		public EventDispositivoVistaArgs(IEquipoView vista)
+		public EventDispositivoVistaArgs(EquipoView vista)
 		{
 			_dispositivoVista = vista;
 		}

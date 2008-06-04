@@ -8,8 +8,8 @@ namespace RedesIP.Modelos.Visualizacion
 {
 	public class CableDeRed
 	{
-		private IEquipo _equipo1;
-		private IEquipo _equipo2;
+		private Equipo _equipo1;
+		private Equipo _equipo2;
 		private Linea _linea;
 
 		public Linea Linea
@@ -18,7 +18,7 @@ namespace RedesIP.Modelos.Visualizacion
 		}
 		public event EventHandler CambioEnPosicionConexion;
 
-		public CableDeRed(IEquipo equipo1, IEquipo equipo2)
+		public CableDeRed(Equipo equipo1, Equipo equipo2)
 		{
 			_equipo1 = equipo1;
 			_equipo2 = equipo2;

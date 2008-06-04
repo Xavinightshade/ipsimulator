@@ -7,14 +7,14 @@ using RedesIP.Modelos.Visualizacion;
 
 namespace RedesIP.ModelosVisualizacion
 {
-	public class Estacion:IEnumerable<IEquipo>,IEstacion
+	public class Estacion:IEnumerable<Equipo>
 	{
 		public event EventHandler<EventEquipoArgs> DispositivoCreado;
 		public event EventHandler<EventEquipoArgs> DispositivoEliminado;
 		public event EventHandler<EventNuevaConexionArgs> NuevaConexion;
 
 
-        private List<IEquipo> _listaDispositivos = new List<IEquipo>();
+		private List<Equipo> _listaDispositivos = new List<Equipo>();
 
 		public Estacion()
 		{
@@ -25,7 +25,7 @@ namespace RedesIP.ModelosVisualizacion
 		{
 			CrearConexion(_listaDispositivos[a], _listaDispositivos[b]);
 		}
-        public void CrearConexion(IEquipo dispositivo1, IEquipo dispositivo2)
+        public void CrearConexion(Equipo dispositivo1, Equipo dispositivo2)
 		{
 			CableDeRed conexion = new CableDeRed(dispositivo1, dispositivo2);
 			OnConexionCreada(conexion);
@@ -39,22 +39,22 @@ namespace RedesIP.ModelosVisualizacion
 
 		public void CrearDispositivo(int x, int y)
 		{
-            IEquipo dispositivo = new Equipo(x, y);
+            Equipo dispositivo = new Equipo(x, y);
 			_listaDispositivos.Add(dispositivo);
 			OnDispositivoCreado(dispositivo);
 		}
-        public ReadOnlyCollection<IEquipo> DispositivosActuales
+        public ReadOnlyCollection<Equipo> DispositivosActuales
 		{
 			get { return _listaDispositivos.AsReadOnly(); }
 		}
-        private void OnDispositivoEliminado(IEquipo dispositivo)
+        private void OnDispositivoEliminado(Equipo dispositivo)
 		{
 			if (DispositivoEliminado != null)
 			{
 				DispositivoEliminado(this, new EventEquipoArgs(dispositivo));
 			}
 		}
-        private void OnDispositivoCreado(IEquipo dispositivo)
+        private void OnDispositivoCreado(Equipo dispositivo)
 		{
 			if (DispositivoCreado != null)
 			{
@@ -73,7 +73,7 @@ namespace RedesIP.ModelosVisualizacion
 
 		#region IEnumerable<IDispositivoModelo> Members
 
-        public IEnumerator<IEquipo> GetEnumerator()
+        public IEnumerator<Equipo> GetEnumerator()
 		{
 			return _listaDispositivos.GetEnumerator();
 		}

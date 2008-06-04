@@ -80,11 +80,9 @@
     <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Modelos\Visualizacion\Estacion.cs" />
-    <Compile Include="Modelos\Visualizacion\IEstacion.cs" />
     <Compile Include="Presenters\ComputadorPresenter.cs" />
     <Compile Include="Presenters\ConexionPresenter.cs" />
     <Compile Include="Presenters\EquipoPresenter.cs" />
-    <Compile Include="Modelos\Visualizacion\Equipos\IEquipo.cs" />
     <Compile Include="Presenters\EstacionPresenter.cs" />
     <Compile Include="Vistas\Equipos\ComputadorView.cs">
       <SubType>Component</SubType>

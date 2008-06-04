@@ -15,13 +15,13 @@ namespace RedesIP.Vistas
 		{
 			this.BackColor = Color.Black;
 		}
-		#region IEstacionVista Members
+		#region EstacionVista Members
 
 		bool selec=false;
-		public IEquipoView CrearDispositivo()
+		public EquipoView CrearDispositivo()
 		{
 			Control control = null;
-			IEquipoView dispositivo = null;
+			EquipoView dispositivo = null;
 			if (selec)
 			{
 				ComputadorView pc = new ComputadorView();
@@ -77,7 +77,7 @@ namespace RedesIP.Vistas
 
 
 
-		#region IEstacionVista Members
+		#region EstacionVista Members
 
 
 		public void RefrescarConexiones()

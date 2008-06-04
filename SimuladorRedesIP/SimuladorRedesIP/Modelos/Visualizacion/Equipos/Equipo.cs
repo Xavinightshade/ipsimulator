@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedesIP.Modelos.Visualizacion.Equipos
 {
-	public class Equipo:IEquipo
+	public class Equipo
 	{
 		#region IDispositivoModelo Members
 		private int _origenX;

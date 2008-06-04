@@ -111,7 +111,7 @@ namespace SimuladorCliente
 			}
 
 		}
-		IEstacion _estacionModelo;
+		Estacion _estacionModelo;
 	    private int enviados;
         private void button2_Click(object sender, EventArgs e)
         {
