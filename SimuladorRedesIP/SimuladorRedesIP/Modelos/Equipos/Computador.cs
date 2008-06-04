@@ -46,7 +46,7 @@ namespace RedesIP.Modelos.Equipos
 			Frame frameRecibido = e.FrameRecibido;
 			if (_puertoEthernet.MACAddress.EsIgual(frameRecibido.MACAddressDestino))
 			{
-			    
+				EnviarMensaje("recibi el frame con mensaje:" + frameRecibido.Informacion, frameRecibido.MACAddressOrigen);
 			}
                 //Console.WriteLine("yo : " + _nombreDelPc + "@@@ recibi frame: " + frameRecibido.Informacion+ " a lassss "+DateTime.Now.ToString());
 //				System.Windows.Forms.MessageBox.Show("yo : " + _nombreDelPc + "@@@ recibi frame: " + frameRecibido.Informacion);

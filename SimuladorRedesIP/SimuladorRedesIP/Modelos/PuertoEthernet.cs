@@ -37,33 +37,42 @@ namespace RedesIP.Modelos
 
 		private void ProcesarFramesAEnviar()
 		{
-			lock (_syncObject)
-			{
+
 				while (_bufferFramesAEnviar.Count != 0)
 				{
 					Thread.Sleep(r.Next(100));
-
+					lock (_syncObject)
+					{
 					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
+					}
 				}
-				_hiloDeProcesamientoDeFramesAEnviar = null;
-			}
+				lock (_syncObject)
+				{
+					_hiloDeProcesamientoDeFramesAEnviar = null;
+				}
+				
+			
 
 		}
 
 		private Random r = new Random();
 		private void ProcesarFramesRecibidos()
 		{
-			lock (_syncObject)
-			{
+
 				while (_bufferFramesRecibidos.Count != 0)
 				{
-					Thread.Sleep(r.Next(120));
-
+					Thread.Sleep(r.Next(110));
+					lock (_syncObject)
+					{
 					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
+					}
 				}
-
-				_hiloDeProcesamientoDeFramesRecibidos = null;
-			}
+				lock (_syncObject)
+				{
+					_hiloDeProcesamientoDeFramesRecibidos = null;
+				}
+				
+			
 			
 		}
 
@@ -87,12 +96,13 @@ namespace RedesIP.Modelos
 			lock (_syncObject)
 			{
 						_bufferFramesAEnviar.Enqueue(frame);
+			}
 			if (_hiloDeProcesamientoDeFramesAEnviar == null)
 			{
 				_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
 				_hiloDeProcesamientoDeFramesAEnviar.Start();
 			}
-			}
+			
 	
 		}
 
@@ -101,12 +111,13 @@ namespace RedesIP.Modelos
 			lock (_syncObject)
 			{
 							_bufferFramesRecibidos.Enqueue(frame);
+			}
 			if (_hiloDeProcesamientoDeFramesRecibidos == null)
 			{
 				_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);
 				_hiloDeProcesamientoDeFramesRecibidos.Start();
 			}
-			}
+			
 
 
 		}

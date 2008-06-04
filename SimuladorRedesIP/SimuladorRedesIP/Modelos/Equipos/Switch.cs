@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
+using RedesIP.Modelos.Equipos.Componentes;
 
 
 namespace RedesIP.Modelos.Equipos
@@ -10,6 +11,7 @@ namespace RedesIP.Modelos.Equipos
 	public class Switch
 	{
 		private List<PuertoEthernet> _puertosEthernet;
+		private SwitchTable _switchTable = new SwitchTable();
 		public ReadOnlyCollection<PuertoEthernet> PuertosEthernet
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
@@ -43,16 +45,43 @@ namespace RedesIP.Modelos.Equipos
 
 			PuertoEthernet puertoQueRecibioElFrame = (PuertoEthernet)sender;
 			Frame frameRecibido = e.FrameRecibido;
-			
+
+			///Le aviso a la tabla del switch del nuevo Frame, para que lo guarde
+			RegistrarFrame(puertoQueRecibioElFrame, frameRecibido);		
+	
+			/// Le pregunto a la tabla del switch si conoce el puerto destino de este frame,
+			/// si es asi solo envio el frame a ese puerto.
+			MACAddress direccionMACDestino = frameRecibido.MACAddressDestino;
+			if (_switchTable.YaEstaRegistradoDireccionMAC(direccionMACDestino))
+			{
+				PuertoEthernet puertoDestinoDelFrame = _switchTable.BuscarPuertoByMacAddress(direccionMACDestino);
+				((IEnvioReciboDatos)puertoDestinoDelFrame).TransmitirFrame(frameRecibido);
+				return;
+			}
+			/// Si la tabla del switch no contiene informacion de esta direccion MAC, envio este frame
+			/// por todos los puertos, menos por el puerto en donde se recibio el frame
+
+			TransmitirFrameATodosLosPuertos(puertoQueRecibioElFrame, frameRecibido);
+
+
+		}
+
+		private void TransmitirFrameATodosLosPuertos(PuertoEthernet puertoQueRecibioElFrame, Frame frameATransmitir)
+		{
 			foreach (PuertoEthernet puertoEthernet in _puertosEthernet)
 			{
 				if (puertoEthernet == puertoQueRecibioElFrame)
 					continue;
-			  
-				((IEnvioReciboDatos)puertoEthernet).TransmitirFrame(frameRecibido);
+
+				((IEnvioReciboDatos)puertoEthernet).TransmitirFrame(frameATransmitir);
 			}
+		}
 
-
+		private void RegistrarFrame(PuertoEthernet puertoQueRecibioElFrame, Frame frameRecibido)
+		{
+			MACAddress direccionMacOrigen = frameRecibido.MACAddressOrigen;
+			if (!_switchTable.YaEstaRegistradoDireccionMAC(direccionMacOrigen))
+				_switchTable.RegistrarDireccionMAC(direccionMacOrigen, puertoQueRecibioElFrame);
 		}
 	}
 }
