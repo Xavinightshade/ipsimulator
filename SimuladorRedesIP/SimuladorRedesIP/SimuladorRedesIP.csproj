@@ -64,7 +64,9 @@
   <ItemGroup>
     <Compile Include="Modelos\Conexion.cs" />
     <Compile Include="Modelos\Datos\Frame.cs" />
+    <Compile Include="Modelos\Datos\IMessage.cs" />
     <Compile Include="Modelos\Datos\MACAddress.cs" />
+    <Compile Include="Modelos\Datos\Message.cs" />
     <Compile Include="Modelos\Datos\PacketeIP.cs" />
     <Compile Include="Modelos\Equipos\Equipo.cs" />
     <Compile Include="Modelos\CableDeRed.cs" />

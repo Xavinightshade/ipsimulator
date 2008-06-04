@@ -115,10 +115,11 @@ namespace SimuladorCliente
 	    private int enviados;
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 100; i++)
             {
                 enviados++;
-                pc.EnviarMensaje(DateTime.Now.ToString(), MACAddress.Direccion(4, 5, 6));
+               // pc.EnviarMensajeDeTexto(DateTime.Now.ToString(), MACAddress.Direccion(4, 5, 6));
+					 pc.Ping(MACAddress.Direccion(4, 5, 6));
                 progressBar1.Maximum = enviados;
                 progressBar2.Maximum = enviados;
    

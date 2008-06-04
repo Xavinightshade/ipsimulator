@@ -34,9 +34,9 @@ namespace RedesIP.Modelos.Datos
 
 	public class Frame
 	{
-		private string _informacion;
+		private IMessage _informacion;
 
-		public string Informacion
+		public IMessage Informacion
 		{
 			get { return _informacion; }
 		}
@@ -51,7 +51,7 @@ namespace RedesIP.Modelos.Datos
 			get { return _MACAddressOrigen; }
 		}
 
-		public Frame(string informacion, MACAddress MACAddressOrigen, MACAddress MACAddressDestino)
+		public Frame(IMessage informacion, MACAddress MACAddressOrigen, MACAddress MACAddressDestino)
 		{
 			_informacion = informacion;
 			_MACAddressDestino = MACAddressDestino;
