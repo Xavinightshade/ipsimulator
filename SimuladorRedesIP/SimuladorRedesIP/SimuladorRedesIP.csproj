@@ -69,13 +69,13 @@
     <Compile Include="Modelos\Logicos\Datos\Message.cs" />
     <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
     <Compile Include="Modelos\Visualizacion\Equipo.cs" />
-    <Compile Include="Modelos\Logicos\CableDeRed.cs" />
-    <Compile Include="Modelos\Logicos\Equipos\Computador.cs" />
+    <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
+    <Compile Include="Modelos\Logicos\Equipos\ComputadorLogico.cs" />
     <Compile Include="Modelos\Logicos\Componentes\SwitchTable.cs" />
     <Compile Include="Modelos\Logicos\Componentes\IEnvioReciboDatos.cs" />
     <Compile Include="Modelos\Logicos\Componentes\PuertoEthernet.cs" />
-    <Compile Include="Modelos\Logicos\Equipos\Router.cs" />
-    <Compile Include="Modelos\Logicos\Equipos\Switch.cs" />
+    <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
+    <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Modelos\Visualizacion\Estacion.cs" />
     <Compile Include="Modelos\Visualizacion\IEstacion.cs" />
     <Compile Include="Presenters\ConexionPresenter.cs" />

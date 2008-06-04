@@ -6,7 +6,7 @@ using RedesIP.ModelosLogicos.Equipos.Componentes;
 
 namespace RedesIP.ModelosLogicos.Equipos
 {
-	public class Computador : IEthernetConnection
+	public class ComputadorLogico 
 	{
 		private PuertoEthernet _puertoEthernet;
 		private string _nombreDelPc;
@@ -28,7 +28,7 @@ namespace RedesIP.ModelosLogicos.Equipos
 		/// Crea un nuevo PC
 		/// </summary>
 		/// <param name="nombre"></param>
-		public Computador(string nombre, MACAddress MACAddress)
+		public ComputadorLogico(string nombre, MACAddress MACAddress)
 		{
 			IniciarPuertoEthernet(MACAddress);
 			_nombreDelPc = nombre;

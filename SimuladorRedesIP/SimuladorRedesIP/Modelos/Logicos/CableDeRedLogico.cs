@@ -6,29 +6,19 @@ using RedesIP.ModelosLogicos.Equipos.Componentes;
 
 namespace RedesIP.ModelosLogicos
 {
-	public interface IEthernetConnection
-	{
-		PuertoEthernet PuertoEthernet { get;}
-	}
-	public class CableDeRed
+	public class CableDeRedLogico
 	{
         private Object _syncObject = new Object();
 		private static List<PuertoEthernet> _listaPuertos = new List<PuertoEthernet>();
 		private PuertoEthernet _puerto1;
 		private PuertoEthernet _puerto2;
 
-		public CableDeRed(PuertoEthernet puerto1, PuertoEthernet puerto2)
+		public CableDeRedLogico(PuertoEthernet puerto1, PuertoEthernet puerto2)
 		{
 			_puerto1 = puerto1;
 			_puerto2 = puerto2;
 			ConectarPuertos();
 		}
-		public CableDeRed(IEthernetConnection device1, IEthernetConnection device2)
-			: this(device1.PuertoEthernet, device2.PuertoEthernet) { }
-		public CableDeRed(IEthernetConnection device, PuertoEthernet puerto)
-			: this(device.PuertoEthernet, puerto) { }
-		public CableDeRed(PuertoEthernet puerto, IEthernetConnection device)
-			: this(puerto, device.PuertoEthernet) { }
 
 	    public PuertoEthernet Puerto1
 	    {

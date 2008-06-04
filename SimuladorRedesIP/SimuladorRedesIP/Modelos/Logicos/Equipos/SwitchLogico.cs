@@ -8,7 +8,7 @@ using RedesIP.ModelosLogicos.Equipos.Componentes;
 
 namespace RedesIP.ModelosLogicos.Equipos
 {
-	public class Switch
+	public class SwitchLogico
 	{
 		private List<PuertoEthernet> _puertosEthernet;
 		private SwitchTable _switchTable = new SwitchTable();
@@ -16,7 +16,7 @@ namespace RedesIP.ModelosLogicos.Equipos
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}
-		public Switch(int numeroPuertos)
+		public SwitchLogico(int numeroPuertos)
 		{
 			_puertosEthernet = new List<PuertoEthernet>(numeroPuertos);
 			CrearPuertos(numeroPuertos);

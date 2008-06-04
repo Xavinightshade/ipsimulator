@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedesIP.ModelosLogicos.Equipos
 {
-	class Router
+	class RouterLogico
 	{
 	}
 }
