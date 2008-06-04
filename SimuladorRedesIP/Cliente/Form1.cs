@@ -12,7 +12,6 @@ using System.Runtime.Remoting.Channels;
 using System.Collections;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Serialization.Formatters;
-using RedesIP.Remoting;
 using RedesIP.ModelosLogicos.Equipos;
 using RedesIP.ModelosLogicos.Datos;
 using RedesIP.ModelosVisualizacion;

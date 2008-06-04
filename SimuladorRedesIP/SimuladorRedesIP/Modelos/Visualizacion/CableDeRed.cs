@@ -6,10 +6,10 @@ using RedesIP.ModelosVisualizacion.Equipos;
 
 namespace RedesIP.ModelosVisualizacion
 {
-	public class Conexion
+	public class CableDeRed
 	{
 		private IEquipo _equipo1;
-        private IEquipo _equipo2;
+		private IEquipo _equipo2;
 		private Linea _linea;
 
 		public Linea Linea
@@ -18,11 +18,11 @@ namespace RedesIP.ModelosVisualizacion
 		}
 		public event EventHandler CambioEnPosicionConexion;
 
-        public Conexion(IEquipo equipo1, IEquipo equipo2)
+		public CableDeRed(IEquipo equipo1, IEquipo equipo2)
 		{
 			_equipo1 = equipo1;
 			_equipo2 = equipo2;
-	
+
 			Inicializar();
 		}
 		private void Inicializar()
@@ -40,8 +40,8 @@ namespace RedesIP.ModelosVisualizacion
 
 		private void OnCambioDeConexion()
 		{
-			if (CambioEnPosicionConexion!=null)
-				CambioEnPosicionConexion(this,new EventArgs());
+			if (CambioEnPosicionConexion != null)
+				CambioEnPosicionConexion(this, new EventArgs());
 		}
 
 		private void HandlerCambioPosicionDispositivo(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace RedesIP.ModelosVisualizacion
 		}
 	}
 	[Serializable]
-	public class EventNuevaConexionArgs:EventArgs
+	public class EventNuevaConexionArgs : EventArgs
 	{
 		private Linea _linea;
 		public Linea Linea
@@ -64,7 +64,7 @@ namespace RedesIP.ModelosVisualizacion
 		{
 			_linea = linea;
 		}
-	
+
 	}
 
 }

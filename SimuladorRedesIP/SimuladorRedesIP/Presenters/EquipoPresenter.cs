@@ -6,13 +6,13 @@ using RedesIP.ModelosVisualizacion.Equipos;
 
 namespace RedesIP.Presenters
 {
-	public class DispositivoPresenter
+	public class EquipoPresenter
 	{
         private List<IEquipoView> _listaDispositivosVistas = new List<IEquipoView>();
         private IEquipo _dispositivoModelo;	
 
 		#region Constructores
-        public DispositivoPresenter(IEquipo dispositivoModelo, IEquipoView dispositivoVista)
+        public EquipoPresenter(IEquipo dispositivoModelo, IEquipoView dispositivoVista)
 		{
 			_dispositivoModelo = dispositivoModelo;
 			_listaDispositivosVistas.Add(dispositivoVista);
@@ -29,12 +29,12 @@ namespace RedesIP.Presenters
 				vista.OrigenY = _dispositivoModelo.OrigenY;
 			}
 		}
-		public DispositivoPresenter(IEquipo dispositivoModelo)
+		public EquipoPresenter(IEquipo dispositivoModelo)
 		{
 			_dispositivoModelo = dispositivoModelo;
 			RegistrarModelo();
 		}
-        public DispositivoPresenter(IEquipo dispositivoModelo, IList<IEquipoView> listaDispositivosVistas)
+        public EquipoPresenter(IEquipo dispositivoModelo, IList<IEquipoView> listaDispositivosVistas)
 			: this(dispositivoModelo)
 		{
 			_listaDispositivosVistas.AddRange(listaDispositivosVistas);

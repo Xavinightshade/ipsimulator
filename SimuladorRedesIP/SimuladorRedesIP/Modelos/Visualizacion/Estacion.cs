@@ -26,7 +26,7 @@ namespace RedesIP.ModelosVisualizacion
 		}
         public void CrearConexion(IEquipo dispositivo1, IEquipo dispositivo2)
 		{
-			Conexion conexion = new Conexion(dispositivo1, dispositivo2);
+			CableDeRed conexion = new CableDeRed(dispositivo1, dispositivo2);
 			OnConexionCreada(conexion);
 		
 		}
@@ -61,7 +61,7 @@ namespace RedesIP.ModelosVisualizacion
 			}
 
 		}
-		private void OnConexionCreada(Conexion conexion)
+		private void OnConexionCreada(CableDeRed conexion)
 		{
 			if (NuevaConexion != null)
 			{

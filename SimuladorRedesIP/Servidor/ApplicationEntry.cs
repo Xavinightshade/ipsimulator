@@ -17,26 +17,6 @@ namespace SimuladorServidor
 		[STAThread]
 		static void Main()
 		{
-			BinaryClientFormatterSinkProvider clientProvider = null;
-			BinaryServerFormatterSinkProvider serverProvider =
-				new BinaryServerFormatterSinkProvider();
-			serverProvider.TypeFilterLevel =
-
-			System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
-
-			IDictionary props = new Hashtable();
-			props["port"] = 6123;
-			props["typeFilterLevel"] = TypeFilterLevel.Full;
-			TcpChannel chan = new TcpChannel(
-			props, clientProvider, serverProvider);
-
-			ChannelServices.RegisterChannel(chan);
-
-			RemotingConfiguration.RegisterWellKnownServiceType(typeof(RedesIP.Remoting.RemoteServerObject),
-								 "ParachuteExample",
-								 WellKnownObjectMode.Singleton);
-
-			Console.ReadLine();
 		}
 	}
 }

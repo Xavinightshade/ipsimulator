@@ -13,8 +13,8 @@ namespace RedesIP.Presenters
 	{
 		private IEstacion _estacionModelo;
 		private IEstacionView _estacionVista;
-		private List<DispositivoPresenter> _listaPresenters = new List<DispositivoPresenter>();
-		private Dictionary<IEquipoView, DispositivoPresenter> _dicVistaPresenters = new Dictionary<IEquipoView, DispositivoPresenter>();
+		private List<EquipoPresenter> _listaPresenters = new List<EquipoPresenter>();
+		private Dictionary<IEquipoView, EquipoPresenter> _dicVistaPresenters = new Dictionary<IEquipoView, EquipoPresenter>();
 		public EstacionPresenter(IEstacion estacionModelo,IEstacionView estacionVista)
 		{
 			_estacionModelo = estacionModelo;
@@ -37,7 +37,7 @@ namespace RedesIP.Presenters
 		{
             foreach (IEquipo modelo in _estacionModelo.DispositivosActuales)
 			{
-				DispositivoPresenter presenter = new DispositivoPresenter(modelo, _estacionVista.CrearDispositivo());
+				EquipoPresenter presenter = new EquipoPresenter(modelo, _estacionVista.CrearDispositivo());
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace RedesIP.Presenters
 		{
 			IEquipoView dispositivoVista = _estacionVista.CrearDispositivo();
             IEquipo dispositivoModelo = e.Dispositivo;
-			DispositivoPresenter presenter = new DispositivoPresenter(dispositivoModelo, dispositivoVista);
+			EquipoPresenter presenter = new EquipoPresenter(dispositivoModelo, dispositivoVista);
 			dispositivoModelo.CambioEnPosicion += new EventHandler(dispositivoModelo_CambioEnPosicion);
 		}
 

@@ -62,13 +62,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelos\Visualizacion\Conexion.cs" />
+    <Compile Include="Modelos\Visualizacion\CableDeRed.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
     <Compile Include="Modelos\Logicos\Datos\IMessage.cs" />
     <Compile Include="Modelos\Logicos\Datos\MACAddress.cs" />
     <Compile Include="Modelos\Logicos\Datos\Message.cs" />
     <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
-    <Compile Include="Modelos\Visualizacion\Equipo.cs" />
+    <Compile Include="Modelos\Visualizacion\Equipos\Equipo.cs" />
     <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\ComputadorLogico.cs" />
     <Compile Include="Modelos\Logicos\Componentes\SwitchTable.cs" />
@@ -79,10 +79,9 @@
     <Compile Include="Modelos\Visualizacion\Estacion.cs" />
     <Compile Include="Modelos\Visualizacion\IEstacion.cs" />
     <Compile Include="Presenters\ConexionPresenter.cs" />
-    <Compile Include="Presenters\DispositivoPresenter.cs" />
-    <Compile Include="Modelos\Visualizacion\IEquipo.cs" />
+    <Compile Include="Presenters\EquipoPresenter.cs" />
+    <Compile Include="Modelos\Visualizacion\Equipos\IEquipo.cs" />
     <Compile Include="Presenters\EstacionPresenter.cs" />
-    <Compile Include="Remoting\RemoteObject.cs" />
     <Compile Include="Vistas\Equipos\ComputadorView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -121,6 +120,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Vistas\Utilidades\Linea.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
