@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using RedesIP.Vistas.Utilidades;
-using RedesIP.ModelosVisualizacion.Equipos;
+using RedesIP.Modelos.Visualizacion.Equipos;
 
-namespace RedesIP.ModelosVisualizacion
+namespace RedesIP.Modelos.Visualizacion
 {
 	public class CableDeRed
 	{
@@ -52,19 +52,7 @@ namespace RedesIP.ModelosVisualizacion
 			_linea.Y2 = _equipo2.OrigenY;
 		}
 	}
-	[Serializable]
-	public class EventNuevaConexionArgs : EventArgs
-	{
-		private Linea _linea;
-		public Linea Linea
-		{
-			get { return _linea; }
-		}
-		public EventNuevaConexionArgs(Linea linea)
-		{
-			_linea = linea;
-		}
 
-	}
+
 
 }

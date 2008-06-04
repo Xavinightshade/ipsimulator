@@ -2,14 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
-using RedesIP.ModelosVisualizacion.Equipos;
+using RedesIP.Modelos.Visualizacion.Equipos;
+using RedesIP.Modelos.Visualizacion;
 
 namespace RedesIP.ModelosVisualizacion
 {
 	public class Estacion:IEnumerable<IEquipo>,IEstacion
 	{
-		public event EventHandler<EventDispositivoArgs> DispositivoCreado;
-		public event EventHandler<EventDispositivoArgs> DispositivoEliminado;
+		public event EventHandler<EventEquipoArgs> DispositivoCreado;
+		public event EventHandler<EventEquipoArgs> DispositivoEliminado;
 		public event EventHandler<EventNuevaConexionArgs> NuevaConexion;
 
 
@@ -50,14 +51,14 @@ namespace RedesIP.ModelosVisualizacion
 		{
 			if (DispositivoEliminado != null)
 			{
-				DispositivoEliminado(this, new EventDispositivoArgs(dispositivo));
+				DispositivoEliminado(this, new EventEquipoArgs(dispositivo));
 			}
 		}
         private void OnDispositivoCreado(IEquipo dispositivo)
 		{
 			if (DispositivoCreado != null)
 			{
-				DispositivoCreado(this, new EventDispositivoArgs(dispositivo));
+				DispositivoCreado(this, new EventEquipoArgs(dispositivo));
 			}
 
 		}
@@ -91,18 +92,6 @@ namespace RedesIP.ModelosVisualizacion
 
 
 
-	[Serializable]
-	public class EventDispositivoArgs : EventArgs
-	{
-        private IEquipo _dispositivo;
-        public IEquipo Dispositivo
-		{
-			get { return _dispositivo; }
-		}
 
-        public EventDispositivoArgs(IEquipo dispositivo)
-		{
-			_dispositivo = dispositivo;
-		}
-	}
+
 }

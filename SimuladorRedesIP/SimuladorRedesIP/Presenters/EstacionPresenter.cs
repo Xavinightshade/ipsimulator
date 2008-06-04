@@ -4,8 +4,9 @@ using System.Text;
 using RedesIP.ModelosLogicos;
 using RedesIP.Vistas;
 using RedesIP.Vistas.Utilidades;
-using RedesIP.ModelosVisualizacion.Equipos;
+using RedesIP.Modelos.Visualizacion.Equipos;
 using RedesIP.ModelosVisualizacion;
+using RedesIP.Modelos.Visualizacion;
 
 namespace RedesIP.Presenters
 {
@@ -20,7 +21,7 @@ namespace RedesIP.Presenters
 			_estacionModelo = estacionModelo;
 			_estacionVista = estacionVista;
 			VistaInicial();
-			_estacionModelo.DispositivoCreado += new EventHandler<EventDispositivoArgs>(HandlerDispositivoModeloCreado);
+			_estacionModelo.DispositivoCreado += new EventHandler<EventEquipoArgs>(HandlerDispositivoModeloCreado);
 			_estacionModelo.NuevaConexion += new EventHandler<EventNuevaConexionArgs>(HandlerNuevaConexion);
 			_estacionVista.CreacionDispositivo += new EventHandler<EventNuevoDispositivoVistaArgs>(HandlerCrearDispositivoVista);
 		}
@@ -38,6 +39,7 @@ namespace RedesIP.Presenters
             foreach (IEquipo modelo in _estacionModelo.DispositivosActuales)
 			{
 				EquipoPresenter presenter = new EquipoPresenter(modelo, _estacionVista.CrearDispositivo());
+				presenter.Inicializar();
 			}
 		}
 
@@ -46,11 +48,12 @@ namespace RedesIP.Presenters
 			_estacionModelo.CrearDispositivo(e.X, e.Y);
 		}
 
-		public void HandlerDispositivoModeloCreado(object sender, EventDispositivoArgs e)
+		public void HandlerDispositivoModeloCreado(object sender, EventEquipoArgs e)
 		{
 			IEquipoView dispositivoVista = _estacionVista.CrearDispositivo();
             IEquipo dispositivoModelo = e.Dispositivo;
 			EquipoPresenter presenter = new EquipoPresenter(dispositivoModelo, dispositivoVista);
+			presenter.Inicializar();
 			dispositivoModelo.CambioEnPosicion += new EventHandler(dispositivoModelo_CambioEnPosicion);
 		}
 

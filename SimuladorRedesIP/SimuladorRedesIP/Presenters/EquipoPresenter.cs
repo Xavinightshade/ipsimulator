@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using RedesIP.Vistas;
-using RedesIP.ModelosVisualizacion.Equipos;
+using RedesIP.Modelos.Visualizacion.Equipos;
 
 namespace RedesIP.Presenters
 {
@@ -16,10 +16,14 @@ namespace RedesIP.Presenters
 		{
 			_dispositivoModelo = dispositivoModelo;
 			_listaDispositivosVistas.Add(dispositivoVista);
-			RegistrarModelo();
-			RegistrarVistas(_listaDispositivosVistas);
-			EstablecerValoresEnVista();
+
 		}
+		  public void Inicializar()
+	{
+		RegistrarModelo();
+		RegistrarVistas(_listaDispositivosVistas);
+		EstablecerValoresEnVista();
+	}
 
 		private void EstablecerValoresEnVista()
 		{

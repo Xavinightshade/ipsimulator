@@ -68,6 +68,9 @@
     <Compile Include="Modelos\Logicos\Datos\MACAddress.cs" />
     <Compile Include="Modelos\Logicos\Datos\Message.cs" />
     <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
+    <Compile Include="Modelos\Visualizacion\EventNuevaConexionArgs.cs" />
+    <Compile Include="Modelos\Visualizacion\EventEquipoArgs.cs" />
+    <Compile Include="Modelos\Visualizacion\Equipos\Computador.cs" />
     <Compile Include="Modelos\Visualizacion\Equipos\Equipo.cs" />
     <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\ComputadorLogico.cs" />
@@ -78,6 +81,7 @@
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Modelos\Visualizacion\Estacion.cs" />
     <Compile Include="Modelos\Visualizacion\IEstacion.cs" />
+    <Compile Include="Presenters\ComputadorPresenter.cs" />
     <Compile Include="Presenters\ConexionPresenter.cs" />
     <Compile Include="Presenters\EquipoPresenter.cs" />
     <Compile Include="Modelos\Visualizacion\Equipos\IEquipo.cs" />
