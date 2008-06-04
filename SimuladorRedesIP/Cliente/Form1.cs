@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using RedesIP.Modelos;
+using RedesIP.ModelosLogicos;
 using RedesIP.Vistas;
 using RedesIP.Presenters;
 using System.Runtime.Remoting.Channels;
@@ -13,8 +13,9 @@ using System.Collections;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Serialization.Formatters;
 using RedesIP.Remoting;
-using RedesIP.Modelos.Equipos;
-using RedesIP.Modelos.Datos;
+using RedesIP.ModelosLogicos.Equipos;
+using RedesIP.ModelosLogicos.Datos;
+using RedesIP.ModelosVisualizacion;
 
 namespace SimuladorCliente
 {

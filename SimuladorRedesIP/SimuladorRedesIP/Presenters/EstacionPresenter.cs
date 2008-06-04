@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIP.Modelos;
+using RedesIP.ModelosLogicos;
 using RedesIP.Vistas;
 using RedesIP.Vistas.Utilidades;
-using RedesIP.Modelos.Equipos;
+using RedesIP.ModelosVisualizacion.Equipos;
+using RedesIP.ModelosVisualizacion;
 
 namespace RedesIP.Presenters
 {

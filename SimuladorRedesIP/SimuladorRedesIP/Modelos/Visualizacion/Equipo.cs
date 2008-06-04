@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RedesIP.Modelos.Equipos
+namespace RedesIP.ModelosVisualizacion.Equipos
 {
 	public class Equipo:IEquipo
 	{

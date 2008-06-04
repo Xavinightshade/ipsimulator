@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
-using RedesIP.Modelos.Equipos;
+using RedesIP.ModelosLogicos.Equipos;
+using RedesIP.ModelosVisualizacion.Equipos;
 
-namespace RedesIP.Modelos
+namespace RedesIP.ModelosVisualizacion
 {
 	public interface IEstacion
 	{

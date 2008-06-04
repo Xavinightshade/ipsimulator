@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using RedesIP.Vistas.Utilidades;
-using RedesIP.Modelos.Equipos;
+using RedesIP.ModelosVisualizacion.Equipos;
 
-namespace RedesIP.Modelos
+namespace RedesIP.ModelosVisualizacion
 {
 	public class Conexion
 	{

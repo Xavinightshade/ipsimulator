@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using RedesIP.Vistas;
-using RedesIP.Modelos;
-using RedesIP.Modelos.Equipos;
+using RedesIP.ModelosVisualizacion.Equipos;
 
 namespace RedesIP.Presenters
 {
