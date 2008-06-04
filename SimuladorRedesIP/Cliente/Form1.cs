@@ -26,8 +26,8 @@ namespace SimuladorCliente
 			InitializeComponent();
 		}
         private delegate void ImprimirReporte(FrameRecibidoEventArgs e);
-	    private Computador pc;
-	    private Computador pc2;
+	    private ComputadorLogico pc;
+	    private ComputadorLogico pc2;
 
 		protected override void OnLoad(EventArgs e)
 		{
@@ -41,16 +41,16 @@ namespace SimuladorCliente
 		new EstacionPresenter(_estacionModelo, estacionVista1);
 
 
-		     pc = new Computador("pc1", MACAddress.Direccion(1, 2, 3));
-		    pc2 = new Computador("pc2", MACAddress.Direccion(4, 5, 6));
+		     pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
+		    pc2 = new ComputadorLogico("pc2", MACAddress.Direccion(4, 5, 6));
 		//    CableDeRed cab=new CableDeRed(pc,pc2);
             pc2.PuertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(PuertoEthernet_FrameRecibido);
-		    Switch swi = new Switch(30);
-            Switch swi2 = new Switch(30);
+		    SwitchLogico swi = new SwitchLogico(30);
+            SwitchLogico swi2 = new SwitchLogico(30);
 
-            CableDeRed cab2 = new CableDeRed(pc.PuertoEthernet, swi.PuertosEthernet[0]);
-            CableDeRed cab3 = new CableDeRed(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
-            CableDeRed cab4 = new CableDeRed(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
+            CableDeRedLogico cab2 = new CableDeRedLogico(pc.PuertoEthernet, swi.PuertosEthernet[0]);
+            CableDeRedLogico cab3 = new CableDeRedLogico(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
+            CableDeRedLogico cab4 = new CableDeRedLogico(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
 
 
 
