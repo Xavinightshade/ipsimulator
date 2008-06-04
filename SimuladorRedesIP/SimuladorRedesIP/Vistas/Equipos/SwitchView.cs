@@ -9,7 +9,13 @@ namespace RedesIP.Vistas.Equipos
 	{
 		public Switch()
 		{
-			this.Image = Resources.Switch;
+	
+		}
+
+
+		public override System.Drawing.Image GetImage()
+		{
+			return Resources.Switch;
 		}
 	}
 }

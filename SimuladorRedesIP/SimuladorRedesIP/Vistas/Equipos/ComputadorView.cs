@@ -9,7 +9,12 @@ namespace RedesIP.Vistas.Equipos
 	{
 		public ComputadorView()
 		{
-			this.Image = Resources.Computador;
+
+		}
+
+		public override System.Drawing.Image GetImage()
+		{
+			return Resources.Computador;
 		}
 	}
 }

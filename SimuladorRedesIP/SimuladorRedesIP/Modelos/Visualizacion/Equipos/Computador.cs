@@ -10,9 +10,18 @@ namespace RedesIP.Modelos.Visualizacion.Equipos
 	public class Computador:Equipo
 	{
 		private readonly ComputadorLogico _computadorLogico;
+		private readonly PuertoEthernet _puertoEthernet;
+
+		public PuertoEthernet PuertoEthernet
+		{
+			get { return _puertoEthernet; }
+		} 
+
+
 		public Computador(string nombre,MACAddress direccionMAC,int posicionX,int posicionY):base(posicionX,posicionY)
 		{
 			_computadorLogico = new ComputadorLogico(nombre, direccionMAC);
+			_puertoEthernet = new PuertoEthernet(_computadorLogico.PuertoEthernet, posicionX, posicionY);
 		}
 		public override Guid Id
 		{

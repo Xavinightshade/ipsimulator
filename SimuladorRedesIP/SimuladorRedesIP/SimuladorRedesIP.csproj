@@ -82,19 +82,28 @@
     <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Modelos\Visualizacion\Estacion.cs" />
-    <Compile Include="Modelos\Visualizacion\IMovible.cs" />
-    <Compile Include="Modelos\Visualizacion\PuertoEthernet.cs" />
+    <Compile Include="Modelos\Visualizacion\Componentes\PuertoEthernet.cs" />
     <Compile Include="Presenters\ComputadorPresenter.cs" />
     <Compile Include="Presenters\ConexionPresenter.cs" />
     <Compile Include="Presenters\EquipoPresenter.cs" />
     <Compile Include="Presenters\EstacionPresenter.cs" />
+    <Compile Include="Vistas\ComponenteMovibleView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Vistas\ComponenteArrastableView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Vistas\Componentes\PuertoEthernetView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Vistas\EventCambioEnPosicionArgs.cs" />
     <Compile Include="Vistas\Equipos\ComputadorView.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\EstacionView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Vistas\IEquipoView.cs" />
+    <Compile Include="Vistas\IMovibleView.cs" />
     <Compile Include="Vistas\IEstacionView.cs" />
     <Compile Include="Vistas\Equipos\RouterView.cs">
       <SubType>Component</SubType>
@@ -137,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Router.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PuertoEthernet.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

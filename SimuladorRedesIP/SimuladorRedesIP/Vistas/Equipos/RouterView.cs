@@ -9,7 +9,11 @@ namespace RedesIP.Vistas.Equipos
 	{
 		public RouterView()
 		{
-			this.Image = Resources.Router;
+		
+		}
+		public override System.Drawing.Image GetImage()
+		{
+			return Resources.Router;
 		}
 	}
 }

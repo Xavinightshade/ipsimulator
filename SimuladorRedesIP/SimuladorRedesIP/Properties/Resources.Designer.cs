@@ -67,6 +67,13 @@ namespace RedesIP.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap PuertoEthernet {
+            get {
+                object obj = ResourceManager.GetObject("PuertoEthernet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Router {
             get {
                 object obj = ResourceManager.GetObject("Router", resourceCulture);

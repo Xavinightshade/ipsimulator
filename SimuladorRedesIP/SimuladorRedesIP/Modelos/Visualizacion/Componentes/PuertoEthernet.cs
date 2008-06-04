@@ -9,10 +9,10 @@ namespace RedesIP.Modelos.Visualizacion
 	public class PuertoEthernet:ComponenteMovible
 	{
 		private PuertoEthernetLogico _puertoLogico;
-		public PuertoEthernet(MACAddress direccionMAC,int posicionX, int posicionY):
+		public PuertoEthernet(PuertoEthernetLogico puertoLogico, int posicionX, int posicionY) :
 			base(posicionX,posicionY)
 		{
-			_puertoLogico = new PuertoEthernetLogico(direccionMAC);
+			_puertoLogico = puertoLogico;
 			_puertoLogico.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
 			_puertoLogico.FrameTransmitido += new EventHandler<FrameTransmitidoEventArgs>(OnFrameTransmitido);
 		}
