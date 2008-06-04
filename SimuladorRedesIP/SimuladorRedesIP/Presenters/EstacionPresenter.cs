@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIP.ModelosLogicos;
+using RedesIP.Modelos;
 using RedesIP.Vistas;
 using RedesIP.Vistas.Utilidades;
 using RedesIP.Modelos.Visualizacion.Equipos;

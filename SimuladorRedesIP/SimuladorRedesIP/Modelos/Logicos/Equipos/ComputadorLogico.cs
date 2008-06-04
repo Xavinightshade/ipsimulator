@@ -1,19 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIP.ModelosLogicos.Datos;
-using RedesIP.ModelosLogicos.Equipos.Componentes;
+using RedesIP.Modelos.Datos;
+using RedesIP.Modelos.Equipos.Componentes;
+using System.Collections.ObjectModel;
 
-namespace RedesIP.ModelosLogicos.Equipos
+namespace RedesIP.Modelos.Logicos.Equipos
 {
-	public class ComputadorLogico 
+	public class ComputadorLogico : EquipoLogico
 	{
-		private PuertoEthernet _puertoEthernet;
+		private Guid _id;
+
+		public override Guid Id
+		{
+			get { return _id; }
+		}
+		private PuertoEthernetLogico _puertoEthernet;
 		private string _nombreDelPc;
 		/// <summary>
 		/// Puerto Ethernet Del PC
 		/// </summary>
-		public PuertoEthernet PuertoEthernet
+		public PuertoEthernetLogico PuertoEthernet
 		{
 			get { return _puertoEthernet; }
 		}
@@ -32,13 +39,14 @@ namespace RedesIP.ModelosLogicos.Equipos
 		{
 			IniciarPuertoEthernet(MACAddress);
 			_nombreDelPc = nombre;
+			_id = Guid.NewGuid();
 		}
 		/// <summary>
 		/// Crea el Puerto Ethernet y esta atento a los frames recibidos de este
 		/// </summary>
 		private void IniciarPuertoEthernet(MACAddress MACAddress)
 		{
-			_puertoEthernet = new PuertoEthernet(MACAddress);
+			_puertoEthernet = new PuertoEthernetLogico(MACAddress);
 			_puertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
 		}
 
@@ -79,16 +87,27 @@ namespace RedesIP.ModelosLogicos.Equipos
 			TestMessage mensajeDePrueba = new TestMessage();
 			_mensajesDePrueba.Add(mensajeDePrueba);
 			EnviarMensaje(mensajeDePrueba, MACAddressDestino);
-			
+
 		}
 
-		private void EnviarMensaje(IMessage mensaje,MACAddress MACAddressDestino)
-
+		private void EnviarMensaje(IMessage mensaje, MACAddress MACAddressDestino)
 		{
 			Frame frameATransmitir = new Frame(mensaje, _puertoEthernet.MACAddress, MACAddressDestino);
 			((IEnvioReciboDatos)_puertoEthernet).TransmitirFrame(frameATransmitir);
 
 		}
 
+
+
+
+		public override ReadOnlyCollection<PuertoEthernetLogico> PuertosEthernet
+		{
+			get {
+			Collection<PuertoEthernetLogico> puertos=	new Collection<PuertoEthernetLogico>();
+				puertos.Add(_puertoEthernet);
+
+				return new ReadOnlyCollection<PuertoEthernetLogico>(puertos);
+			}
+		}
 	}
 }

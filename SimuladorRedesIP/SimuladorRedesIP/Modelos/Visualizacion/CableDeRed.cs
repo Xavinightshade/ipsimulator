@@ -8,8 +8,9 @@ namespace RedesIP.Modelos.Visualizacion
 {
 	public class CableDeRed
 	{
-		private Equipo _equipo1;
-		private Equipo _equipo2;
+		private CableDeRedLogico _cableRedLogico;
+		private PuertoEthernet _puerto1;
+		private PuertoEthernet _puerto2;
 		private Linea _linea;
 
 		public Linea Linea
@@ -18,19 +19,25 @@ namespace RedesIP.Modelos.Visualizacion
 		}
 		public event EventHandler CambioEnPosicionConexion;
 
-		public CableDeRed(Equipo equipo1, Equipo equipo2)
+		public CableDeRed(PuertoEthernet puerto1, PuertoEthernet puerto2)
 		{
-			_equipo1 = equipo1;
-			_equipo2 = equipo2;
+			_puerto1 = puerto1;
+			_puerto2 = puerto2;
 
 			Inicializar();
+			InicializarConexionLogica();
+		}
+
+		private void InicializarConexionLogica()
+		{
+			_cableRedLogico = new CableDeRedLogico(_cableRedLogico.Puerto1, _cableRedLogico.Puerto2);
 		}
 		private void Inicializar()
 		{
-			_linea = new Linea(_equipo1.OrigenX, _equipo1.OrigenY, _equipo2.OrigenX, _equipo2.OrigenY);
+			_linea = new Linea(_puerto1.OrigenX, _puerto1.OrigenY, _puerto2.OrigenX, _puerto2.OrigenY);
 			_linea.CambioDePosicion += new EventHandler(HandlerCambioEnLinea);
-			_equipo1.CambioEnPosicion += new EventHandler(HandlerCambioPosicionDispositivo);
-			_equipo2.CambioEnPosicion += new EventHandler(HandlerCambioPosicionDispositivo);
+			_puerto1.CambioEnPosicion += new EventHandler(HandlerCambioPosicionDispositivo);
+			_puerto2.CambioEnPosicion += new EventHandler(HandlerCambioPosicionDispositivo);
 		}
 
 		private void HandlerCambioEnLinea(object sender, EventArgs e)
@@ -46,10 +53,10 @@ namespace RedesIP.Modelos.Visualizacion
 
 		private void HandlerCambioPosicionDispositivo(object sender, EventArgs e)
 		{
-			_linea.X1 = _equipo1.OrigenX;
-			_linea.Y1 = _equipo1.OrigenY;
-			_linea.X2 = _equipo2.OrigenX;
-			_linea.Y2 = _equipo2.OrigenY;
+			_linea.X1 = _puerto1.OrigenX;
+			_linea.Y1 = _puerto1.OrigenY;
+			_linea.X2 = _puerto2.OrigenX;
+			_linea.Y2 = _puerto2.OrigenY;
 		}
 	}
 

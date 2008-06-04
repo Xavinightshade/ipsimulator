@@ -62,12 +62,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelos\Logicos\Equipos\EquipoLogico.cs" />
     <Compile Include="Modelos\Visualizacion\CableDeRed.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
     <Compile Include="Modelos\Logicos\Datos\IMessage.cs" />
     <Compile Include="Modelos\Logicos\Datos\MACAddress.cs" />
     <Compile Include="Modelos\Logicos\Datos\Message.cs" />
     <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
+    <Compile Include="Modelos\Visualizacion\ComponenteMovible.cs" />
     <Compile Include="Modelos\Visualizacion\EventNuevaConexionArgs.cs" />
     <Compile Include="Modelos\Visualizacion\EventEquipoArgs.cs" />
     <Compile Include="Modelos\Visualizacion\Equipos\Computador.cs" />
@@ -76,10 +78,12 @@
     <Compile Include="Modelos\Logicos\Equipos\ComputadorLogico.cs" />
     <Compile Include="Modelos\Logicos\Componentes\SwitchTable.cs" />
     <Compile Include="Modelos\Logicos\Componentes\IEnvioReciboDatos.cs" />
-    <Compile Include="Modelos\Logicos\Componentes\PuertoEthernet.cs" />
+    <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Modelos\Visualizacion\Estacion.cs" />
+    <Compile Include="Modelos\Visualizacion\IMovible.cs" />
+    <Compile Include="Modelos\Visualizacion\PuertoEthernet.cs" />
     <Compile Include="Presenters\ComputadorPresenter.cs" />
     <Compile Include="Presenters\ConexionPresenter.cs" />
     <Compile Include="Presenters\EquipoPresenter.cs" />

@@ -1,53 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections.ObjectModel;
+using RedesIP.Modelos.Equipos.Componentes;
 
 namespace RedesIP.Modelos.Visualizacion.Equipos
 {
-	public class Equipo
+	public abstract class Equipo:ComponenteMovible
 	{
-		#region IDispositivoModelo Members
-		private int _origenX;
+		public abstract Guid Id { get;  }
+		public abstract ReadOnlyCollection<PuertoEthernetLogico> PuertosEthernet { get; }
 
-		public int OrigenX
-		{
-			get { return _origenX; }
-			set { _origenX = value;
-			OnCambioEnModelo();
-			}
-		}
-	
-		private int _origenY;
 
-		public int OrigenY
+
+		public Equipo(int posicionX, int posicionY):base(posicionX,posicionY)
 		{
-			get { return _origenY; }
-			set{_origenY=value;
-			OnCambioEnModelo();
-			}			
+
 		}
 
-		public Equipo(int posicionX,int posicionY)
-		{
-			_origenX = posicionX;
-			_origenY = posicionY;
-		}
-
-
-		public event EventHandler CambioEnPosicion;
-		private void OnCambioEnModelo()
-		{
-			if (CambioEnPosicion != null)
-				CambioEnPosicion(this, new EventArgs());
-		}
-		public void CambiarPosicion(int deltaEnX, int deltaEnY)
-		{
-			_origenX += deltaEnX;
-			_origenY += deltaEnY;
-			OnCambioEnModelo();
-		}
-
-		#endregion
 
 
 	}

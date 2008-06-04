@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
-using RedesIP.ModelosLogicos.Datos;
+using RedesIP.Modelos.Datos;
 
-namespace RedesIP.ModelosLogicos.Equipos.Componentes
+namespace RedesIP.Modelos.Equipos.Componentes
 {
 	public class SwitchTable
 	{
 
-		private readonly Dictionary<MACAddress, PuertoEthernet> _diccioMacAddressPuertoEthernet=new Dictionary<MACAddress,PuertoEthernet>();
+		private readonly Dictionary<MACAddress, PuertoEthernetLogico> _diccioMacAddressPuertoEthernet=new Dictionary<MACAddress,PuertoEthernetLogico>();
 		public SwitchTable()
 		{
 
 		}
-		public void RegistrarDireccionMAC(MACAddress direccionMAC, PuertoEthernet puertoEthenet)
+		public void RegistrarDireccionMAC(MACAddress direccionMAC, PuertoEthernetLogico puertoEthenet)
 		{
 
 			System.Diagnostics.Debug.Assert(!(YaEstaRegistradoDireccionMAC(direccionMAC)), "Esta Direccion ya esta registrada");
@@ -24,9 +24,9 @@ namespace RedesIP.ModelosLogicos.Equipos.Componentes
 		{
 			return _diccioMacAddressPuertoEthernet.ContainsKey(direccionMAC);
 		}
-		public PuertoEthernet BuscarPuertoByMacAddress(MACAddress direccionMac)
+		public PuertoEthernetLogico BuscarPuertoByMacAddress(MACAddress direccionMac)
 		{
-			PuertoEthernet puertoEnMemoria = null;
+			PuertoEthernetLogico puertoEnMemoria = null;
 			if (YaEstaRegistradoDireccionMAC(direccionMac))
 				puertoEnMemoria = _diccioMacAddressPuertoEthernet[direccionMac];
 			return puertoEnMemoria;

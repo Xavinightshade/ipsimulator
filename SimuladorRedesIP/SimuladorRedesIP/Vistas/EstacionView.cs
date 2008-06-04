@@ -17,7 +17,7 @@ namespace RedesIP.Vistas
 		}
 		#region EstacionVista Members
 
-		bool selec=false;
+		bool selec=true;
 		public EquipoView CrearDispositivo()
 		{
 			Control control = null;

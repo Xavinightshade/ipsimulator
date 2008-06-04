@@ -1,24 +1,31 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIP.ModelosLogicos.Datos;
+using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
-using RedesIP.ModelosLogicos.Equipos.Componentes;
+using RedesIP.Modelos.Equipos.Componentes;
 
 
-namespace RedesIP.ModelosLogicos.Equipos
+namespace RedesIP.Modelos.Logicos.Equipos
 {
-	public class SwitchLogico
+	public class SwitchLogico:EquipoLogico
 	{
-		private List<PuertoEthernet> _puertosEthernet;
+		private Guid _id;
+
+		public override Guid Id
+		{
+			get { return _id; }
+		}
+		private List<PuertoEthernetLogico> _puertosEthernet;
 		private SwitchTable _switchTable = new SwitchTable();
-		public ReadOnlyCollection<PuertoEthernet> PuertosEthernet
+		public override ReadOnlyCollection<PuertoEthernetLogico> PuertosEthernet
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}
 		public SwitchLogico(int numeroPuertos)
 		{
-			_puertosEthernet = new List<PuertoEthernet>(numeroPuertos);
+			_id = Guid.NewGuid();
+			_puertosEthernet = new List<PuertoEthernetLogico>(numeroPuertos);
 			CrearPuertos(numeroPuertos);
 			InicializarPuertos();
 		}
@@ -28,13 +35,13 @@ namespace RedesIP.ModelosLogicos.Equipos
 			for (int i = 0; i < numeroDePuertos; i++)
 			{
 				MACAddress macAddress = MACAddress.New();
-				_puertosEthernet.Add(new PuertoEthernet(macAddress));
+				_puertosEthernet.Add(new PuertoEthernetLogico(macAddress));
 			}
 		}
 
 		private void InicializarPuertos()
 		{
-			foreach (PuertoEthernet puertoEthernet in _puertosEthernet)
+			foreach (PuertoEthernetLogico puertoEthernet in _puertosEthernet)
 			{
 				puertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibidoEnAlgunPuerto);
 			}
@@ -43,7 +50,7 @@ namespace RedesIP.ModelosLogicos.Equipos
 		private void OnFrameRecibidoEnAlgunPuerto(object sender, FrameRecibidoEventArgs e)
 		{
 
-			PuertoEthernet puertoQueRecibioElFrame = (PuertoEthernet)sender;
+			PuertoEthernetLogico puertoQueRecibioElFrame = (PuertoEthernetLogico)sender;
 			Frame frameRecibido = e.FrameRecibido;
 
 			///Le aviso a la tabla del switch del nuevo Frame, para que lo guarde
@@ -54,7 +61,7 @@ namespace RedesIP.ModelosLogicos.Equipos
 			MACAddress direccionMACDestino = frameRecibido.MACAddressDestino;
 			if (_switchTable.YaEstaRegistradoDireccionMAC(direccionMACDestino))
 			{
-				PuertoEthernet puertoDestinoDelFrame = _switchTable.BuscarPuertoByMacAddress(direccionMACDestino);
+				PuertoEthernetLogico puertoDestinoDelFrame = _switchTable.BuscarPuertoByMacAddress(direccionMACDestino);
 				((IEnvioReciboDatos)puertoDestinoDelFrame).TransmitirFrame(frameRecibido);
 				return;
 			}
@@ -66,9 +73,9 @@ namespace RedesIP.ModelosLogicos.Equipos
 
 		}
 
-		private void TransmitirFrameATodosLosPuertos(PuertoEthernet puertoQueRecibioElFrame, Frame frameATransmitir)
+		private void TransmitirFrameATodosLosPuertos(PuertoEthernetLogico puertoQueRecibioElFrame, Frame frameATransmitir)
 		{
-			foreach (PuertoEthernet puertoEthernet in _puertosEthernet)
+			foreach (PuertoEthernetLogico puertoEthernet in _puertosEthernet)
 			{
 				if (puertoEthernet == puertoQueRecibioElFrame)
 					continue;
@@ -77,11 +84,13 @@ namespace RedesIP.ModelosLogicos.Equipos
 			}
 		}
 
-		private void RegistrarFrame(PuertoEthernet puertoQueRecibioElFrame, Frame frameRecibido)
+		private void RegistrarFrame(PuertoEthernetLogico puertoQueRecibioElFrame, Frame frameRecibido)
 		{
 			MACAddress direccionMacOrigen = frameRecibido.MACAddressOrigen;
 			if (!_switchTable.YaEstaRegistradoDireccionMAC(direccionMacOrigen))
 				_switchTable.RegistrarDireccionMAC(direccionMacOrigen, puertoQueRecibioElFrame);
 		}
+
+
 	}
 }

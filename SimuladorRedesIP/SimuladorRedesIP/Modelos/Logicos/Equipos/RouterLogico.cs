@@ -2,9 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RedesIP.ModelosLogicos.Equipos
+namespace RedesIP.Modelos.Logicos.Equipos
 {
-	class RouterLogico
+	class RouterLogico:EquipoLogico
 	{
+		private Guid _id;
+
+		public override Guid Id
+		{
+			get { return _id; }
+		}
+		public RouterLogico()
+		{
+			_id = Guid.NewGuid();
+		}
+
+		public override System.Collections.ObjectModel.ReadOnlyCollection<RedesIP.Modelos.Equipos.Componentes.PuertoEthernetLogico> PuertosEthernet
+		{
+			get { throw new NotImplementedException(); }
+		}
 	}
 }

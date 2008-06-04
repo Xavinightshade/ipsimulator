@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RedesIP.ModelosLogicos.Datos
+namespace RedesIP.Modelos.Datos
 {
 	public class TextMessage:IMessage
 	{

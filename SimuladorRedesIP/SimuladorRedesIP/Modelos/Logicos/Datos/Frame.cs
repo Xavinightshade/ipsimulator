@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RedesIP.ModelosLogicos.Datos
+namespace RedesIP.Modelos.Datos
 {
 
 	public class FrameTransmitidoEventArgs : EventArgs

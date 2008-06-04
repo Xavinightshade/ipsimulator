@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIP.ModelosLogicos.Datos;
+using RedesIP.Modelos.Datos;
 
 
-namespace RedesIP.ModelosLogicos.Equipos.Componentes
+namespace RedesIP.Modelos.Equipos.Componentes
 {
     public interface IEnvioReciboDatos
 

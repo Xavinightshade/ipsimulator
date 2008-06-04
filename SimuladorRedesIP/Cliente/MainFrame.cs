@@ -5,16 +5,17 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using RedesIP.ModelosLogicos;
+using RedesIP.Modelos;
 using RedesIP.Vistas;
 using RedesIP.Presenters;
 using System.Runtime.Remoting.Channels;
 using System.Collections;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Serialization.Formatters;
-using RedesIP.ModelosLogicos.Equipos;
-using RedesIP.ModelosLogicos.Datos;
+using RedesIP.Modelos.Equipos;
+using RedesIP.Modelos.Datos;
 using RedesIP.ModelosVisualizacion;
+using RedesIP.Modelos.Logicos.Equipos;
 
 namespace SimuladorCliente
 {
@@ -40,16 +41,16 @@ namespace SimuladorCliente
 		new EstacionPresenter(_estacionModelo, estacionVista1);
 
 
-		     pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
-		    pc2 = new ComputadorLogico("pc2", MACAddress.Direccion(4, 5, 6));
-		//    CableDeRed cab=new CableDeRed(pc,pc2);
-            pc2.PuertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(PuertoEthernet_FrameRecibido);
-		    SwitchLogico swi = new SwitchLogico(30);
-            SwitchLogico swi2 = new SwitchLogico(30);
+		//     pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
+		//    pc2 = new ComputadorLogico("pc2", MACAddress.Direccion(4, 5, 6));
+		////    CableDeRed cab=new CableDeRed(pc,pc2);
+		//      pc2.PuertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(PuertoEthernet_FrameRecibido);
+		//    SwitchLogico swi = new SwitchLogico(30);
+		//      SwitchLogico swi2 = new SwitchLogico(30);
 
-            CableDeRedLogico cab2 = new CableDeRedLogico(pc.PuertoEthernet, swi.PuertosEthernet[0]);
-            CableDeRedLogico cab3 = new CableDeRedLogico(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
-            CableDeRedLogico cab4 = new CableDeRedLogico(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
+		//      CableDeRedLogico cab2 = new CableDeRedLogico(pc.PuertoEthernet, swi.PuertosEthernet[0]);
+		//      CableDeRedLogico cab3 = new CableDeRedLogico(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
+		//      CableDeRedLogico cab4 = new CableDeRedLogico(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
 
 
 
@@ -104,7 +105,7 @@ namespace SimuladorCliente
 				length += 1;
 				for (int j = length; j < numeroDispo; j++)
 				{
-					_estacionModelo.Conectar(i, j);
+					//_estacionModelo.Conectar(i, j);
 				}
 
 

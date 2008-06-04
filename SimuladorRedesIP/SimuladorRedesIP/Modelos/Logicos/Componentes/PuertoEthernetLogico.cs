@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using RedesIP.ModelosLogicos.Datos;
+using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
 
-namespace RedesIP.ModelosLogicos.Equipos.Componentes
+namespace RedesIP.Modelos.Equipos.Componentes
 {
 
-	public class PuertoEthernet : IEnvioReciboDatos
+	public class PuertoEthernetLogico : IEnvioReciboDatos
 	{
 		private object _syncObject = new object();
 		public int Aenviar { get { return _bufferFramesAEnviar.Count; } }
@@ -26,7 +26,7 @@ namespace RedesIP.ModelosLogicos.Equipos.Componentes
 		}
 		public event EventHandler<FrameTransmitidoEventArgs> FrameTransmitido;
 		public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
-		public PuertoEthernet(MACAddress MACAddress)
+		public PuertoEthernetLogico(MACAddress MACAddress)
 		{
 
 			_MACAddress = MACAddress;
