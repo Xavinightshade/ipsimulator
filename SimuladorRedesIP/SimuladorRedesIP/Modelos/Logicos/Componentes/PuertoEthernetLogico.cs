@@ -11,9 +11,10 @@ namespace RedesIP.Modelos.Equipos.Componentes
 	public class PuertoEthernetLogico : IEnvioReciboDatos
 	{
 		private object _syncObjectRecibidos = new object();
-		private object _syncObjectEnviados= new object();
+		private object _syncObjectEnviados = new object();
 
-		EventWaitHandle wh = new AutoResetEvent(true);
+		EventWaitHandle whTrans = new AutoResetEvent(false);
+		EventWaitHandle whREc = new AutoResetEvent(false);
 
 		public int Aenviar { get { return _bufferFramesAEnviar.Count; } }
 		public int Recibidos { get { return _bufferFramesRecibidos.Count; } }
@@ -34,6 +35,11 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		{
 
 			_MACAddress = MACAddress;
+			_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
+			_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);
+			_hiloDeProcesamientoDeFramesAEnviar.Start();
+	
+			_hiloDeProcesamientoDeFramesRecibidos.Start();
 
 
 		}
@@ -42,22 +48,27 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		private void ProcesarFramesAEnviar()
 		{
 
+
 			while (true)
 			{
+				bool colaNoVacia = true;
 				lock (_syncObjectEnviados)
 				{
-					if (_bufferFramesAEnviar.Count != 0)
-					{
-						OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
-					}
-					else
-					{
-						wh.WaitOne();
-					}
+					colaNoVacia = _bufferFramesAEnviar.Count != 0;
 				}
+				if (colaNoVacia)
+				{
+					Thread.Sleep(r.Next(100));
+					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
+				}
+				else
+				{
+					whTrans.WaitOne();
+				}
+
 			}
-				
-			
+
+
 
 		}
 
@@ -67,21 +78,29 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 			while (true)
 			{
+				bool colaNoVacia = true;
 				lock (_syncObjectRecibidos)
 				{
-					if (_bufferFramesRecibidos.Count != 0)
-					{
-						OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
-					}
-					else
-					{
-						wh.WaitOne();
-					}
+					colaNoVacia = _bufferFramesRecibidos.Count != 0;
 				}
+				if (colaNoVacia)
+				{
+					if (_MACAddress.EsIgual(MACAddress.Direccion(4, 5, 6)))
+					{
+
+					}
+					Thread.Sleep(r.Next(100));
+					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
+				}
+				else
+				{
+					whREc.WaitOne();
+				}
+
 			}
-						
-			
-			
+
+
+
 		}
 
 
@@ -101,22 +120,26 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 		void IEnvioReciboDatos.TransmitirFrame(Frame frame)
 		{
+			if (_MACAddress.EsIgual(MACAddress.Direccion(1, 2, 3)))
+			{
+
+			}
 			lock (_syncObjectEnviados)
 			{
-						_bufferFramesAEnviar.Enqueue(frame);
+				_bufferFramesAEnviar.Enqueue(frame);
 			}
-			wh.Set();
-	
+			whTrans.Set();
+
 		}
 
 		void IEnvioReciboDatos.RecibirFrame(Frame frame)
 		{
 			lock (_syncObjectRecibidos)
 			{
-							_bufferFramesRecibidos.Enqueue(frame);
+				_bufferFramesRecibidos.Enqueue(frame);
 			}
-			wh.Set();
-			
+			whREc.Set();
+
 
 
 		}

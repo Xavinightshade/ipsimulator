@@ -26,6 +26,7 @@ namespace SimuladorCliente
 			InitializeComponent();
 		}
         private delegate void ImprimirReporte(FrameRecibidoEventArgs e);
+		  private delegate void ImprimirReporteTrans(FrameTransmitidoEventArgs e);
 	    private ComputadorLogico pc;
 	    private ComputadorLogico pc2;
 
@@ -41,16 +42,17 @@ namespace SimuladorCliente
 		new EstacionPresenter(_estacionModelo, estacionVista1);
 
 
-		//     pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
-		//    pc2 = new ComputadorLogico("pc2", MACAddress.Direccion(4, 5, 6));
-		////    CableDeRed cab=new CableDeRed(pc,pc2);
-		//      pc2.PuertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(PuertoEthernet_FrameRecibido);
-		//    SwitchLogico swi = new SwitchLogico(30);
-		//      SwitchLogico swi2 = new SwitchLogico(30);
+		pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
+		pc2 = new ComputadorLogico("pc2", MACAddress.Direccion(4, 5, 6));
+		//    CableDeRed cab=new CableDeRed(pc,pc2);
+		pc2.PuertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(PuertoEthernet_FrameRecibido);
+		pc.PuertoEthernet.FrameTransmitido += new EventHandler<FrameTransmitidoEventArgs>(PuertoEthernet_FrameTransmitido);
+		SwitchLogico swi = new SwitchLogico(30);
+		SwitchLogico swi2 = new SwitchLogico(30);
 
-		//      CableDeRedLogico cab2 = new CableDeRedLogico(pc.PuertoEthernet, swi.PuertosEthernet[0]);
-		//      CableDeRedLogico cab3 = new CableDeRedLogico(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
-		//      CableDeRedLogico cab4 = new CableDeRedLogico(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
+		CableDeRedLogico cab2 = new CableDeRedLogico(pc.PuertoEthernet, swi.PuertosEthernet[0]);
+		CableDeRedLogico cab3 = new CableDeRedLogico(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
+		CableDeRedLogico cab4 = new CableDeRedLogico(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
 
 
 
@@ -58,29 +60,52 @@ namespace SimuladorCliente
 
 		}
 
+		void PuertoEthernet_FrameTransmitido(object sender, FrameTransmitidoEventArgs e)
+		{
+			if (this.InvokeRequired)
+			{
+
+				ImprimirReporteTrans agregarControl = new ImprimirReporteTrans(Imprimir);
+				this.BeginInvoke(agregarControl, e);
+			}
+			else
+			{
+				Imprimir(e);
+			}
+		}
+		int trans;
+		private void Imprimir(FrameTransmitidoEventArgs e)
+		{
+			trans++;
+	//		textBox4.Text += "yo : " +pc.PuertoEthernet.MACAddress.ToString()+ "@@@ envie frame: a lassss " +
+	//							DateTime.Now.ToString() +trans.ToString()+ Environment.NewLine;
+			textBox2.Text = pc.PuertoEthernet.Aenviar.ToString();
+			progressBar1.Value = pc.PuertoEthernet.Aenviar;
+		}
+
         void PuertoEthernet_FrameRecibido(object sender, FrameRecibidoEventArgs e)
         {
             if (this.InvokeRequired)
             {
 
-                ImprimirReporte agregarControl = new ImprimirReporte(Imprimir);
+                ImprimirReporte agregarControl = new ImprimirReporte(ImprimirRecibidos);
                 this.BeginInvoke(agregarControl, e);
             }
             else
             {
-                Imprimir(e);
+					ImprimirRecibidos(e);
             }
 
 
            
         }
-       private void Imprimir(FrameRecibidoEventArgs e)
+		  int rec;
+       private void ImprimirRecibidos(FrameRecibidoEventArgs e)
 	{
-//	    textBox1.Text += "yo : "  + "@@@ recibi frame: " +e.FrameRecibido.Informacion + " a lassss " +
-  //                           DateTime.Now.ToString() + Environment.NewLine;
-           textBox2.Text = pc.PuertoEthernet.Aenviar.ToString();
+		rec++;
+	  //  textBox1.Text += "yo : "  +pc2.PuertoEthernet.MACAddress.ToString()+ "@@@ recibi frame:  a lassss " +
+       //                     DateTime.Now.ToString() +rec.ToString()+ Environment.NewLine;     
            textBox3.Text = pc2.PuertoEthernet.Recibidos.ToString();
-           progressBar1.Value = pc.PuertoEthernet.Aenviar;
            progressBar2.Value = pc2.PuertoEthernet.Recibidos;
           
 	}
