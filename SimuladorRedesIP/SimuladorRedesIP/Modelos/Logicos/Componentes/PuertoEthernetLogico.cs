@@ -10,7 +10,11 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 	public class PuertoEthernetLogico : IEnvioReciboDatos
 	{
-		private object _syncObject = new object();
+		private object _syncObjectRecibidos = new object();
+		private object _syncObjectEnviados= new object();
+
+		EventWaitHandle wh = new AutoResetEvent(true);
+
 		public int Aenviar { get { return _bufferFramesAEnviar.Count; } }
 		public int Recibidos { get { return _bufferFramesRecibidos.Count; } }
 		private readonly Queue<Frame> _bufferFramesAEnviar = new Queue<Frame>();
@@ -38,18 +42,20 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		private void ProcesarFramesAEnviar()
 		{
 
-				while (_bufferFramesAEnviar.Count != 0)
+			while (true)
+			{
+				lock (_syncObjectEnviados)
 				{
-					Thread.Sleep(r.Next(100));
-					lock (_syncObject)
+					if (_bufferFramesAEnviar.Count != 0)
 					{
-					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
+						OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
+					}
+					else
+					{
+						wh.WaitOne();
 					}
 				}
-				lock (_syncObject)
-				{
-					_hiloDeProcesamientoDeFramesAEnviar = null;
-				}
+			}
 				
 			
 
@@ -59,19 +65,21 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		private void ProcesarFramesRecibidos()
 		{
 
-				while (_bufferFramesRecibidos.Count != 0)
+			while (true)
+			{
+				lock (_syncObjectRecibidos)
 				{
-					Thread.Sleep(r.Next(110));
-					lock (_syncObject)
+					if (_bufferFramesRecibidos.Count != 0)
 					{
-					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
+						OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
+					}
+					else
+					{
+						wh.WaitOne();
 					}
 				}
-				lock (_syncObject)
-				{
-					_hiloDeProcesamientoDeFramesRecibidos = null;
-				}
-				
+			}
+						
 			
 			
 		}
@@ -93,30 +101,21 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 		void IEnvioReciboDatos.TransmitirFrame(Frame frame)
 		{
-			lock (_syncObject)
+			lock (_syncObjectEnviados)
 			{
 						_bufferFramesAEnviar.Enqueue(frame);
 			}
-			if (_hiloDeProcesamientoDeFramesAEnviar == null)
-			{
-				_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
-				_hiloDeProcesamientoDeFramesAEnviar.Start();
-			}
-			
+			wh.Set();
 	
 		}
 
 		void IEnvioReciboDatos.RecibirFrame(Frame frame)
 		{
-			lock (_syncObject)
+			lock (_syncObjectRecibidos)
 			{
 							_bufferFramesRecibidos.Enqueue(frame);
 			}
-			if (_hiloDeProcesamientoDeFramesRecibidos == null)
-			{
-				_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);
-				_hiloDeProcesamientoDeFramesRecibidos.Start();
-			}
+			wh.Set();
 			
 
 
