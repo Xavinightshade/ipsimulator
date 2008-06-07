@@ -83,37 +83,25 @@
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Modelos\Visualizacion\Estacion.cs" />
     <Compile Include="Modelos\Visualizacion\Componentes\PuertoEthernet.cs" />
-    <Compile Include="Presenters\ComputadorPresenter.cs" />
-    <Compile Include="Presenters\ConexionPresenter.cs" />
-    <Compile Include="Presenters\EquipoPresenter.cs" />
-    <Compile Include="Presenters\EstacionPresenter.cs" />
-    <Compile Include="Vistas\ComponenteMovibleView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Vistas\ComponenteArrastableView.cs">
+    <Compile Include="Vistas\ComboBoxConColores.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\Componentes\PuertoEthernetView.cs">
-      <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Vistas\ElementoGrafico.cs" />
+    <Compile Include="Vistas\ElementoGraficoCuadrado.cs" />
     <Compile Include="Vistas\EventCambioEnPosicionArgs.cs" />
     <Compile Include="Vistas\Equipos\ComputadorView.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\EstacionView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Vistas\IMovibleView.cs" />
-    <Compile Include="Vistas\IEstacionView.cs" />
     <Compile Include="Vistas\Equipos\RouterView.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
     <Compile Include="Vistas\Equipos\EquipoView.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Vistas\Equipos\SwitchView.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

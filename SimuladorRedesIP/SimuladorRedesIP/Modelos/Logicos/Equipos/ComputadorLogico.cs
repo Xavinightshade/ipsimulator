@@ -61,7 +61,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 					if (_mensajesDePrueba.Contains(replyTestMessage.MensajeOriginal))
 					{
 						_mensajesDePrueba.Remove(replyTestMessage.MensajeOriginal);
-						Console.WriteLine(_puertoEthernet.MACAddress.ToString() + " confirmé un ping de " + frameRecibido.MACAddressOrigen.ToString());
+			//			Console.WriteLine(_puertoEthernet.MACAddress.ToString() + " confirmé un ping de " + frameRecibido.MACAddressOrigen.ToString());
 					}
 					return;
 				}
@@ -69,7 +69,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 				if (testMessage != null)
 				{
 					EnviarMensaje(new ReplyTestMessage(testMessage), frameRecibido.MACAddressOrigen);
-					Console.WriteLine(_puertoEthernet.MACAddress.ToString() + " Me hicieron ping desde " + frameRecibido.MACAddressOrigen.ToString());
+			//		Console.WriteLine(_puertoEthernet.MACAddress.ToString() + " Me hicieron ping desde " + frameRecibido.MACAddressOrigen.ToString());
 					return;
 				}
 			}

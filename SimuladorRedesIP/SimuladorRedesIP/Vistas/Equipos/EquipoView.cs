@@ -1,24 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
+using RedesIP.Properties;
 using System.Drawing;
-using System.Threading;
 
 namespace RedesIP.Vistas.Equipos
 {
-	public abstract class EquipoView : ComponenteArrastableView
+	public abstract class EquipoView : ElementoGraficoCuadrado
 	{
-
-		public EquipoView()
-			: base()
+		public EquipoView(int origenX, int origenY, int ancho, int alto)
+			: base(origenX, origenY, ancho, alto)
 		{
-			this.Image = GetImage();
 
 		}
 
-		public abstract Image GetImage();
+		public abstract Image Imagen { get; }
+
+		public override void DibujarElemento(Graphics grafico)
+		{
+			grafico.DrawImage(Imagen, this.OrigenX, this.OrigenY, this.Ancho, this.Alto);
+		}
 
 	}
-
 }

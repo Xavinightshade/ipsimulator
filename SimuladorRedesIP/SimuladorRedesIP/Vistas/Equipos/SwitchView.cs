@@ -7,15 +7,16 @@ namespace RedesIP.Vistas.Equipos
 {
 	public class Switch:EquipoView
 	{
-		public Switch()
+		public Switch(int origenX, int origenY, int ancho, int alto)
+			:base(origenX,origenY,ancho,alto)
 		{
 	
 		}
 
 
-		public override System.Drawing.Image GetImage()
+		public override System.Drawing.Image Imagen
 		{
-			return Resources.Switch;
+			get { return Resources.Switch; }
 		}
 	}
 }

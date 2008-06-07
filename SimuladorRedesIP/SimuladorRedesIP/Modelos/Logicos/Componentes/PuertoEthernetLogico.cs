@@ -58,7 +58,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-					Thread.Sleep(r.Next(100));
+				//	Thread.Sleep(r.Next(1000));
 					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
 				}
 				else
@@ -89,7 +89,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 					{
 
 					}
-					Thread.Sleep(r.Next(100));
+				//	Thread.Sleep(r.Next(1000));
 					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
 				}
 				else

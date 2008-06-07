@@ -119,7 +119,7 @@ namespace JeffBarnes.WCF.Samples.CallbackDemo.Service
 		  bool _bajando = true;
 		  private void Mover()
 		  {
-			  Thread.Sleep(100);
+			  Thread.Sleep(5);
 			  if (_bajando)
 			  {
 				  _y++;

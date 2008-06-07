@@ -7,13 +7,15 @@ namespace RedesIP.Vistas.Equipos
 {
 	class RouterView:EquipoView
 	{
-		public RouterView()
+		public RouterView(int origenX, int origenY, int ancho, int alto)
+			: base(origenX, origenY, ancho, alto)
 		{
 		
 		}
-		public override System.Drawing.Image GetImage()
+		public override System.Drawing.Image Imagen
 		{
-			return Resources.Router;
+			get { return Resources.Router; }
 		}
+
 	}
 }

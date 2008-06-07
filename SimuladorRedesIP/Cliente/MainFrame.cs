@@ -7,7 +7,6 @@ using System.Text;
 using System.Windows.Forms;
 using RedesIP.Modelos;
 using RedesIP.Vistas;
-using RedesIP.Presenters;
 using System.Runtime.Remoting.Channels;
 using System.Collections;
 using System.Runtime.Remoting.Channels.Tcp;
@@ -35,11 +34,41 @@ namespace SimuladorCliente
 			base.OnLoad(e);
 
 		_estacionModelo = new Estacion();
+
+		// not needed but... no icon for index -1 else
+		comboBoxEx1.DropDownStyle = ComboBoxStyle.DropDownList;
+		// just pass these in instead of strings, class included below
+		// specify a valid imageIndex
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0)); comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
+
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3)); comboBoxEx1.Items.Add(new ComboBoxExItem("Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3)); comboBoxEx1.Items.Add(new ComboBoxExItem("Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3)); comboBoxEx1.Items.Add(new ComboBoxExItem("Text0", 0));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
+		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3));
+
  
 
 
 
-		new EstacionPresenter(_estacionModelo, estacionVista1);
+
 
 
 		pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
@@ -77,8 +106,8 @@ namespace SimuladorCliente
 		private void Imprimir(FrameTransmitidoEventArgs e)
 		{
 			trans++;
-	//		textBox4.Text += "yo : " +pc.PuertoEthernet.MACAddress.ToString()+ "@@@ envie frame: a lassss " +
-	//							DateTime.Now.ToString() +trans.ToString()+ Environment.NewLine;
+			textBox4.Text += "yo : " + pc.PuertoEthernet.MACAddress.ToString() + "@@@ envie frame: a lassss " +
+								DateTime.Now.ToString() + trans.ToString() + Environment.NewLine;
 			textBox2.Text = pc.PuertoEthernet.Aenviar.ToString();
 			progressBar1.Value = pc.PuertoEthernet.Aenviar;
 		}
@@ -103,8 +132,8 @@ namespace SimuladorCliente
        private void ImprimirRecibidos(FrameRecibidoEventArgs e)
 	{
 		rec++;
-	  //  textBox1.Text += "yo : "  +pc2.PuertoEthernet.MACAddress.ToString()+ "@@@ recibi frame:  a lassss " +
-       //                     DateTime.Now.ToString() +rec.ToString()+ Environment.NewLine;     
+		textBox1.Text += "yo : " + pc2.PuertoEthernet.MACAddress.ToString() + "@@@ recibi frame:  a lassss " +
+									DateTime.Now.ToString() + rec.ToString() + Environment.NewLine;     
            textBox3.Text = pc2.PuertoEthernet.Recibidos.ToString();
            progressBar2.Value = pc2.PuertoEthernet.Recibidos;
           
@@ -141,7 +170,7 @@ namespace SimuladorCliente
 	    private int enviados;
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 550; i++)
             {
                 enviados++;
                // pc.EnviarMensajeDeTexto(DateTime.Now.ToString(), MACAddress.Direccion(4, 5, 6));
@@ -153,6 +182,11 @@ namespace SimuladorCliente
            // MessageBox.Show("Test");
             
         }
+
+		  private void estacionVista1_Click(object sender, EventArgs e)
+		  {
+
+		  }
 
 
 
