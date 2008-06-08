@@ -46,7 +46,7 @@ namespace RedesIP.Modelos.Datos
 		public override string ToString()
 		{
 
-			return _parte1.ToString("X2") + ":" + _parte2.ToString("X2") + ":" + _parte3.ToString("X2");
+			return _parte1.ToString()+ ":" + _parte2.ToString() + ":" + _parte3.ToString();
 		}
 
 	}

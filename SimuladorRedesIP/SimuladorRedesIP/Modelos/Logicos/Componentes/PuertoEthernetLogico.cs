@@ -10,6 +10,13 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 	public class PuertoEthernetLogico : IEnvioReciboDatos
 	{
+		private Guid _id;
+
+
+		public Guid Id
+		{
+			get { return _id; }
+		}
 		private object _syncObjectRecibidos = new object();
 		private object _syncObjectEnviados = new object();
 
@@ -33,12 +40,12 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
 		public PuertoEthernetLogico(MACAddress MACAddress)
 		{
-
+			_id = Guid.NewGuid();
 			_MACAddress = MACAddress;
 			_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
 			_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);
 			_hiloDeProcesamientoDeFramesAEnviar.Start();
-	
+
 			_hiloDeProcesamientoDeFramesRecibidos.Start();
 
 
@@ -58,7 +65,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-				//	Thread.Sleep(r.Next(1000));
+					//	Thread.Sleep(r.Next(1000));
 					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
 				}
 				else
@@ -89,7 +96,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 					{
 
 					}
-				//	Thread.Sleep(r.Next(1000));
+					//	Thread.Sleep(r.Next(1000));
 					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
 				}
 				else

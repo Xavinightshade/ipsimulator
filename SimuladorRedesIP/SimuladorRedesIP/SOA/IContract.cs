@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using RedesIP.Modelos.Datos;
+using RedesIP.Modelos.Logicos.Equipos;
+using RedesIP.Modelos;
+using RedesIP.Modelos.Equipos.Componentes;
 
 namespace RedesIP.SOA
 {
@@ -26,6 +30,11 @@ namespace RedesIP.SOA
 		void PeticionActualizarEstacion();
 		[OperationContract()]
 		void PeticionEnviarInformacionConexion(Guid idConexion);
+		[OperationContract()]
+		void Ping(Guid idComputador,string mensaje,byte p1,byte p2,byte p3);
+		[OperationContract()]
+		void PeticionDeDireccionMAC(Guid idPuerto);
+
 
 	}
 	public interface ICallBackContract
@@ -37,7 +46,7 @@ namespace RedesIP.SOA
 		[OperationContract(IsOneWay = true)]
 		void ConectarPuertos(ConexionSOA conexion);
 		[OperationContract(IsOneWay = true)]
-		void ActualizarEstacion(List<EquipoSOA> equipos,List<ConexionSOA> conexiones);
+		void ActualizarEstacion(List<EquipoSOA> equipos, List<ConexionSOA> conexiones);
 
 		[OperationContract(IsOneWay = true)]
 		void EnviarInformacionConexion(Guid idConexion, string info);
@@ -47,6 +56,15 @@ namespace RedesIP.SOA
 	 InstanceContextMode = InstanceContextMode.Single)]
 	public class Contrato : IContract
 	{
+
+
+		private Dictionary<Guid, ComputadorLogico> _computadores = new Dictionary<Guid, ComputadorLogico>();
+		private List<SwitchLogico> _switches = new List<SwitchLogico>();
+		private Dictionary<Guid, CableDeRedLogico> _diccioCables = new Dictionary<Guid, CableDeRedLogico>();
+
+		private Dictionary<Guid, PuertoEthernetLogico> _puertos = new Dictionary<Guid, PuertoEthernetLogico>();
+
+
 		private List<ICallBackContract> _clientes = new List<ICallBackContract>();
 		private Dictionary<Guid, EquipoSOA> _diccioEquipos = new Dictionary<Guid, EquipoSOA>();
 		private void RegistrarCliente()
@@ -66,12 +84,19 @@ namespace RedesIP.SOA
 				case TipoDeEquipo.Ninguno:
 					break;
 				case TipoDeEquipo.Computador:
-					equipo.AgregarPuerto(new PuertoSOA(Guid.NewGuid()));
+					ComputadorLogico pc = new ComputadorLogico("nombre", MACAddress.New());
+					equipo.Id = pc.Id;
+					_computadores.Add(pc.Id,pc);
+					_puertos.Add(pc.PuertoEthernet.Id, pc.PuertoEthernet);
+					equipo.AgregarPuerto(new PuertoSOA(pc.PuertoEthernet.Id));
 					break;
 				case TipoDeEquipo.Switch:
+					SwitchLogico swi = new SwitchLogico(11);
+					equipo.Id = swi.Id;
 					for (int i = 0; i < 11; i++)
 					{
-						equipo.AgregarPuerto(new PuertoSOA(Guid.NewGuid()));
+						equipo.AgregarPuerto(new PuertoSOA(swi.PuertosEthernet[i].Id));
+						_puertos.Add(swi.PuertosEthernet[i].Id, swi.PuertosEthernet[i]);
 					}
 
 					break;
@@ -80,7 +105,7 @@ namespace RedesIP.SOA
 			}
 			_equipos.Add(equipo);
 			_diccioEquipos.Add(equipo.Id, equipo);
-			
+
 			foreach (ICallBackContract cliente in _clientes)
 			{
 				cliente.CrearEquipo(equipo);
@@ -92,7 +117,7 @@ namespace RedesIP.SOA
 		{
 			_diccioEquipos[idEquipo].X = x;
 			_diccioEquipos[idEquipo].Y = y;
-			
+
 			foreach (ICallBackContract cliente in _clientes)
 			{
 				cliente.MoverEquipo(idEquipo, x, y);
@@ -102,8 +127,9 @@ namespace RedesIP.SOA
 
 		public void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2)
 		{
-			Guid idConexion = Guid.NewGuid();
-			ConexionSOA conexion = new ConexionSOA(idConexion, idPuerto1, idPuerto2);
+			CableDeRedLogico conexionLogica = new CableDeRedLogico(_puertos[idPuerto1], _puertos[idPuerto2]);
+			_diccioCables.Add(conexionLogica.Id, conexionLogica);
+			ConexionSOA conexion = new ConexionSOA(conexionLogica.Id, idPuerto1, idPuerto2);
 			_conexiones.Add(conexion);
 			foreach (ICallBackContract cliente in _clientes)
 			{
@@ -131,7 +157,7 @@ namespace RedesIP.SOA
 			RegistrarCliente();
 			ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
 			cliente.ActualizarEstacion(_equipos, _conexiones);
-			
+
 		}
 
 		#endregion
@@ -150,10 +176,56 @@ namespace RedesIP.SOA
 
 		#region IContract Members
 
-
+		private Dictionary<Guid, List<ICallBackContract>> _diccioMensajes = new Dictionary<Guid, List<ICallBackContract>>();
 		public void PeticionEnviarInformacionConexion(Guid idConexion)
 		{
-			throw new NotImplementedException();
+			if (!_diccioMensajes.ContainsKey(idConexion))
+			{
+				_diccioMensajes.Add(idConexion, new List<ICallBackContract>());
+			}
+			_diccioMensajes[idConexion].Add(OperationContext.Current.GetCallbackChannel<ICallBackContract>());
+			_diccioCables[idConexion].FrameTransmitidoPuerto1 += new EventHandler<FrameTransmitidoEventArgs>(Contrato_FrameTransmitidoPuerto1);
+			_diccioCables[idConexion].FrameTransmitidoPuerto2 += new EventHandler<FrameTransmitidoEventArgs>(Contrato_FrameTransmitidoPuerto2);
+		}
+
+		void Contrato_FrameTransmitidoPuerto2(object sender, FrameTransmitidoEventArgs e)
+		{
+			CableDeRedLogico cable = (CableDeRedLogico)sender;
+			foreach (ICallBackContract cliente in _diccioMensajes[cable.Id])
+			{
+				cliente.EnviarInformacionConexion(cable.Id, e.FrameTransmitido.ToString());
+			}
+		}
+
+		void Contrato_FrameTransmitidoPuerto1(object sender, FrameTransmitidoEventArgs e)
+		{
+			CableDeRedLogico cable = (CableDeRedLogico)sender;
+			foreach (ICallBackContract cliente in _diccioMensajes[cable.Id])
+			{
+				cliente.EnviarInformacionConexion(cable.Id, e.FrameTransmitido.ToString());
+			}
+		}
+
+
+
+		#endregion
+
+		#region IContract Members
+
+
+		public void Ping(Guid idComputador,string mensaje, byte p1, byte p2, byte p3)
+		{
+			_computadores[idComputador].EnviarMensajeDeTexto(mensaje, MACAddress.Direccion(p1, p2, p3));
+		}
+
+		#endregion
+
+		#region IContract Members
+
+
+		public void PeticionDeDireccionMAC(Guid idPuerto)
+		{
+			Console.WriteLine("la direc es: "+ _puertos[idPuerto].MACAddress.ToString());
 		}
 
 		#endregion
@@ -183,7 +255,7 @@ namespace RedesIP.SOA
 			get { return _idPuerto2; }
 			set { _idPuerto2 = value; }
 		}
-		public ConexionSOA(Guid id,Guid idPuerto1,Guid idPuerto2)
+		public ConexionSOA(Guid id, Guid idPuerto1, Guid idPuerto2)
 		{
 			_id = id;
 			_idPuerto1 = idPuerto1;

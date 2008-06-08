@@ -17,6 +17,10 @@ namespace RedesIP.Modelos.Datos
 		{
 			_mensaje = mensaje;
 		}
+		public override string ToString()
+		{
+			return _mensaje;
+		}
 	}
 	public class TestMessage:IMessage
 	{

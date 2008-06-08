@@ -9,6 +9,7 @@ using RedesIP.Vistas.Equipos.Componentes;
 using RedesIP.SOA;
 using System.ServiceModel;
 using SimuladorCliente.Vistas;
+using SimuladorCliente;
 
 namespace RedesIP.Vistas
 {
@@ -138,6 +139,30 @@ namespace RedesIP.Vistas
 			_herramientaActual = Herramienta.CreacionEquipos;
 			_tipoDeEquipo = tipoDeEquipo;
 		}
+		protected override void OnMouseDoubleClick(MouseEventArgs e)
+		{
+			base.OnMouseDoubleClick(e);
+			for (int i = 0; i < _puertos.Count; i++)
+			{
+				if (_puertos[i].HitTest(e.X, e.Y))
+				{
+					_server.PeticionDeDireccionMAC(_puertos[i].Id);
+					return;
+				}
+			}
+						for (int i = 0; i < _computadores.Count; i++)
+			{
+				if (_computadores[i].HitTest(e.X, e.Y))
+				{
+					Ping forma = new Ping();
+					forma.ShowDialog();
+					_server.Ping(_computadores[i].Id, forma.Mensaje, forma.P1, forma.P2, forma.P3);
+					return;
+				}
+			}
+
+		}
+
 
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
@@ -192,6 +217,7 @@ namespace RedesIP.Vistas
 							if (NuevoMarcador != null)
 							{
 								NuevoMarcador(this, new NuevoMarcadorEventArgs(marcador));
+								_server.PeticionEnviarInformacionConexion(marcador.Conexion.Id);
 							}
 						}
 					}

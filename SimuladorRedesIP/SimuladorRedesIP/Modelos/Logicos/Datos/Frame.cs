@@ -57,5 +57,9 @@ namespace RedesIP.Modelos.Datos
 			_MACAddressDestino = MACAddressDestino;
 			_MACAddressOrigen = MACAddressOrigen;
 		}
+		public override string ToString()
+		{
+			return "MAC origen: " + _MACAddressOrigen.ToString() + " ,MAC Destino: " + _MACAddressDestino.ToString() + " Info: " + _informacion.ToString();
+		}
 	}
 }

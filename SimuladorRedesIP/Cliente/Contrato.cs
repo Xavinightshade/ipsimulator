@@ -258,6 +258,12 @@ public interface EstacionServer
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionEnviarInformacionConexion", ReplyAction="http://tempuri.org/EstacionServer/PeticionEnviarInformacionConexionResponse")]
     void PeticionEnviarInformacionConexion(System.Guid idConexion);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/Ping", ReplyAction="http://tempuri.org/EstacionServer/PingResponse")]
+    void Ping(System.Guid idComputador, string mensaje, byte p1, byte p2, byte p3);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionDeDireccionMAC", ReplyAction="http://tempuri.org/EstacionServer/PeticionDeDireccionMACResponse")]
+    void PeticionDeDireccionMAC(System.Guid idPuerto);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -348,5 +354,15 @@ public partial class EstacionServerClient : System.ServiceModel.DuplexClientBase
     public void PeticionEnviarInformacionConexion(System.Guid idConexion)
     {
         base.Channel.PeticionEnviarInformacionConexion(idConexion);
+    }
+    
+    public void Ping(System.Guid idComputador, string mensaje, byte p1, byte p2, byte p3)
+    {
+        base.Channel.Ping(idComputador, mensaje, p1, p2, p3);
+    }
+    
+    public void PeticionDeDireccionMAC(System.Guid idPuerto)
+    {
+        base.Channel.PeticionDeDireccionMAC(idPuerto);
     }
 }

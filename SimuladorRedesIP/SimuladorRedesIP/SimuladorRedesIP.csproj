@@ -70,15 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Modelos\Logicos\Equipos\EquipoLogico.cs" />
-    <Compile Include="Modelos\Visualizacion\CableDeRed.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
     <Compile Include="Modelos\Logicos\Datos\IMessage.cs" />
     <Compile Include="Modelos\Logicos\Datos\MACAddress.cs" />
     <Compile Include="Modelos\Logicos\Datos\Message.cs" />
     <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
-    <Compile Include="Modelos\Visualizacion\ComponenteMovible.cs" />
-    <Compile Include="Modelos\Visualizacion\Equipos\Computador.cs" />
-    <Compile Include="Modelos\Visualizacion\Equipos\Equipo.cs" />
     <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\ComputadorLogico.cs" />
     <Compile Include="Modelos\Logicos\Componentes\SwitchTable.cs" />
@@ -86,7 +82,6 @@
     <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
-    <Compile Include="Modelos\Visualizacion\Componentes\PuertoEthernet.cs" />
     <Compile Include="SOA\IContract.cs" />
     <Compile Include="TipoDeEquipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
