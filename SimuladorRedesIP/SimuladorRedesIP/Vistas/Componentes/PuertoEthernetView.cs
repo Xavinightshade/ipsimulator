@@ -8,14 +8,14 @@ namespace RedesIP.Vistas.Equipos.Componentes
 {
 	public class PuertoEthernetView:ElementoGraficoCuadrado
 	{
-		public PuertoEthernetView(int origenX, int origenY, int ancho, int alto)
-			:base(origenX,origenY,ancho,alto)
+		public PuertoEthernetView(int origenX, int origenY)
+			:base(origenX,origenY,10,10)
 		{
 
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{
-			grafico.DrawRectangle(new Pen(Color.Black, 10), OrigenX, OrigenY, Ancho, Alto);
+			grafico.DrawRectangle(new Pen(Color.White, 1), Dimension.OrigenX, Dimension.OrigenY, Dimension.Ancho, Dimension.Alto);
 		}
 
 

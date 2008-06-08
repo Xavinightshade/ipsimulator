@@ -33,49 +33,12 @@ namespace SimuladorCliente
 		{
 			base.OnLoad(e);
 
-		_estacionModelo = new Estacion();
-
-		// not needed but... no icon for index -1 else
-		comboBoxEx1.DropDownStyle = ComboBoxStyle.DropDownList;
-		// just pass these in instead of strings, class included below
-		// specify a valid imageIndex
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0)); comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
-
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0Text0Text0Text0Text0Text0Text0Text0Text0Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3)); comboBoxEx1.Items.Add(new ComboBoxExItem("Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3)); comboBoxEx1.Items.Add(new ComboBoxExItem("Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3)); comboBoxEx1.Items.Add(new ComboBoxExItem("Text0", 0));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 1));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 2));
-		comboBoxEx1.Items.Add(new ComboBoxExItem("Text1", 3));
-
- 
 
 
-
-
-
-
+	
 		pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
 		pc2 = new ComputadorLogico("pc2", MACAddress.Direccion(4, 5, 6));
 		//    CableDeRed cab=new CableDeRed(pc,pc2);
-		pc2.PuertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(PuertoEthernet_FrameRecibido);
-		pc.PuertoEthernet.FrameTransmitido += new EventHandler<FrameTransmitidoEventArgs>(PuertoEthernet_FrameTransmitido);
 		SwitchLogico swi = new SwitchLogico(30);
 		SwitchLogico swi2 = new SwitchLogico(30);
 
@@ -83,110 +46,15 @@ namespace SimuladorCliente
 		CableDeRedLogico cab3 = new CableDeRedLogico(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
 		CableDeRedLogico cab4 = new CableDeRedLogico(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
 
+		_estacionView.InsertarComputador(50, 50);
+		_estacionView.InsertarComputador(100, 100);
 
 
 
 
-		}
-
-		void PuertoEthernet_FrameTransmitido(object sender, FrameTransmitidoEventArgs e)
-		{
-			if (this.InvokeRequired)
-			{
-
-				ImprimirReporteTrans agregarControl = new ImprimirReporteTrans(Imprimir);
-				this.BeginInvoke(agregarControl, e);
-			}
-			else
-			{
-				Imprimir(e);
-			}
-		}
-		int trans;
-		private void Imprimir(FrameTransmitidoEventArgs e)
-		{
-			trans++;
-			textBox4.Text += "yo : " + pc.PuertoEthernet.MACAddress.ToString() + "@@@ envie frame: a lassss " +
-								DateTime.Now.ToString() + trans.ToString() + Environment.NewLine;
-			textBox2.Text = pc.PuertoEthernet.Aenviar.ToString();
-			progressBar1.Value = pc.PuertoEthernet.Aenviar;
-		}
-
-        void PuertoEthernet_FrameRecibido(object sender, FrameRecibidoEventArgs e)
-        {
-            if (this.InvokeRequired)
-            {
-
-                ImprimirReporte agregarControl = new ImprimirReporte(ImprimirRecibidos);
-                this.BeginInvoke(agregarControl, e);
-            }
-            else
-            {
-					ImprimirRecibidos(e);
-            }
-
-
-           
-        }
-		  int rec;
-       private void ImprimirRecibidos(FrameRecibidoEventArgs e)
-	{
-		rec++;
-		textBox1.Text += "yo : " + pc2.PuertoEthernet.MACAddress.ToString() + "@@@ recibi frame:  a lassss " +
-									DateTime.Now.ToString() + rec.ToString() + Environment.NewLine;     
-           textBox3.Text = pc2.PuertoEthernet.Recibidos.ToString();
-           progressBar2.Value = pc2.PuertoEthernet.Recibidos;
-          
-	}
-
-		private void button1_Click(object sender, EventArgs e)
-		
-		{
-			int numeroDispo = 20;
-			int deltax=1000/numeroDispo;
-			int deltay = 1000 / numeroDispo;
-			int posX = 0;
-			int posY = 0;
-			for (int i = 0; i < numeroDispo; i++)
-			{
-				posX += deltax;
-				posY += deltay;
-				_estacionModelo.CrearDispositivo(posX, 80);
-			}
-			int length = 0;
-			for (int i = 0; i < numeroDispo; i++)
-			{
-				length += 1;
-				for (int j = length; j < numeroDispo; j++)
-				{
-					//_estacionModelo.Conectar(i, j);
-				}
-
-
-			}
 
 		}
-		Estacion _estacionModelo;
-	    private int enviados;
-        private void button2_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < 550; i++)
-            {
-                enviados++;
-               // pc.EnviarMensajeDeTexto(DateTime.Now.ToString(), MACAddress.Direccion(4, 5, 6));
-					 pc.Ping(MACAddress.Direccion(4, 5, 6));
-                progressBar1.Maximum = enviados;
-                progressBar2.Maximum = enviados;
-   
-            }
-           // MessageBox.Show("Test");
-            
-        }
 
-		  private void estacionVista1_Click(object sender, EventArgs e)
-		  {
-
-		  }
 
 
 
