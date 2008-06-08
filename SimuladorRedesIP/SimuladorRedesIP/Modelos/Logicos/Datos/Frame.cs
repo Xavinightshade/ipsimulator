@@ -59,7 +59,7 @@ namespace RedesIP.Modelos.Datos
 		}
 		public override string ToString()
 		{
-			return "MAC origen: " + _MACAddressOrigen.ToString() + " ,MAC Destino: " + _MACAddressDestino.ToString() + " Info: " + _informacion.ToString();
+			return "MAC origen: " + _MACAddressOrigen.ToString() + ",       MAC Destino: " + _MACAddressDestino.ToString() + "      Info: " + _informacion.ToString();
 		}
 	}
 }

@@ -35,6 +35,9 @@ namespace RedesIP.SOA
 		[OperationContract()]
 		void PeticionDeDireccionMAC(Guid idPuerto);
 
+		[OperationContract()]
+		void CambiarVelocidad(float percent);
+
 
 	}
 	public interface ICallBackContract
@@ -56,6 +59,13 @@ namespace RedesIP.SOA
 	 InstanceContextMode = InstanceContextMode.Single)]
 	public class Contrato : IContract
 	{
+		private static float _porcentaje=50;
+
+		public static float Porcentaje
+		{
+			get { return Contrato._porcentaje; }
+			set { Contrato._porcentaje = value; }
+		}
 
 
 		private Dictionary<Guid, ComputadorLogico> _computadores = new Dictionary<Guid, ComputadorLogico>();
@@ -202,7 +212,7 @@ namespace RedesIP.SOA
 			CableDeRedLogico cable = (CableDeRedLogico)sender;
 			foreach (ICallBackContract cliente in _diccioMensajes[cable.Id])
 			{
-				cliente.EnviarInformacionConexion(cable.Id, e.FrameTransmitido.ToString());
+				cliente.EnviarInformacionConexion(cable.Id, e.FrameTransmitido.ToString()+"    a las: "+DateTime.Now.ToString());
 			}
 		}
 
@@ -215,7 +225,9 @@ namespace RedesIP.SOA
 
 		public void Ping(Guid idComputador,string mensaje, byte p1, byte p2, byte p3)
 		{
-			_computadores[idComputador].EnviarMensajeDeTexto(mensaje, MACAddress.Direccion(p1, p2, p3));
+							_computadores[idComputador].EnviarMensajeDeTexto(mensaje, MACAddress.Direccion(p1, p2, p3));
+
+			
 		}
 
 		#endregion
@@ -226,6 +238,16 @@ namespace RedesIP.SOA
 		public void PeticionDeDireccionMAC(Guid idPuerto)
 		{
 			Console.WriteLine("la direc es: "+ _puertos[idPuerto].MACAddress.ToString());
+		}
+
+		#endregion
+
+		#region IContract Members
+
+
+		public void CambiarVelocidad(float percent)
+		{
+			_porcentaje = percent;
 		}
 
 		#endregion

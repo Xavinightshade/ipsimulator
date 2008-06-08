@@ -264,6 +264,9 @@ public interface EstacionServer
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionDeDireccionMAC", ReplyAction="http://tempuri.org/EstacionServer/PeticionDeDireccionMACResponse")]
     void PeticionDeDireccionMAC(System.Guid idPuerto);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/CambiarVelocidad", ReplyAction="http://tempuri.org/EstacionServer/CambiarVelocidadResponse")]
+    void CambiarVelocidad(float percent);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -364,5 +367,10 @@ public partial class EstacionServerClient : System.ServiceModel.DuplexClientBase
     public void PeticionDeDireccionMAC(System.Guid idPuerto)
     {
         base.Channel.PeticionDeDireccionMAC(idPuerto);
+    }
+    
+    public void CambiarVelocidad(float percent)
+    {
+        base.Channel.CambiarVelocidad(percent);
     }
 }

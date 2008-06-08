@@ -18,7 +18,6 @@ namespace SimuladorCliente.Vistas
 			get { return _conexion; }
 		}
 		Color _color;
-		private static Collection<Color> _colores = null;
 
 
 		public Color Color
@@ -29,17 +28,9 @@ namespace SimuladorCliente.Vistas
 		public Marcador(Guid id,Conexion conexion)
 			:base(id)
 		{
-			if (_colores == null)
-			{
-				_colores = new Collection<Color>();
-				_colores.Add(Color.Red);
-				_colores.Add(Color.Yellow);
-				_colores.Add(Color.Aqua);
-				_colores.Add(Color.Green);
-				_colores.Add(Color.Salmon);
-			}
+
 			_conexion = conexion;
-			_color = _colores[r.Next(_colores.Count)];
+			_color = Color.FromKnownColor((KnownColor)r.Next(100));
 		}
 
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
@@ -49,7 +40,7 @@ namespace SimuladorCliente.Vistas
 			int mitadX = (_conexion.PosicionMundoPuerto1.X + _conexion.PosicionMundoPuerto2.X) / 2;
 			int mitadY = (_conexion.PosicionMundoPuerto1.Y + _conexion.PosicionMundoPuerto2.Y) / 2;
 			grafico.DrawLine(p, mitadX, mitadY, mitadX + 30, mitadY - 30);
-			grafico.DrawEllipse(p, mitadX + 20, mitadY - 30, 10, 10);
+			grafico.FillEllipse(new SolidBrush(_color), mitadX + 20, mitadY - 30, 10, 10);
 		}
 
 		public override bool HitTest(int x, int y)

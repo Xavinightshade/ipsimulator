@@ -4,12 +4,18 @@ using System.Text;
 using System.Threading;
 using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
+using RedesIP.SOA;
 
 namespace RedesIP.Modelos.Equipos.Componentes
 {
 
 	public class PuertoEthernetLogico : IEnvioReciboDatos
 	{
+		private static int CalcularVelocidad(float porcentaje)
+		{
+			float m = (7000 - 10) / 100;
+			return (int)(m * (100 - porcentaje) + 10);
+		}
 		private Guid _id;
 
 
@@ -65,7 +71,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-					//	Thread.Sleep(r.Next(1000));
+						Thread.Sleep(r.Next(CalcularVelocidad(Contrato.Porcentaje)));
 					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
 				}
 				else
@@ -92,11 +98,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-					if (_MACAddress.EsIgual(MACAddress.Direccion(4, 5, 6)))
-					{
-
-					}
-					//	Thread.Sleep(r.Next(1000));
+					Thread.Sleep(r.Next(CalcularVelocidad(Contrato.Porcentaje)));
 					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
 				}
 				else

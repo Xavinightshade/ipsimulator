@@ -23,11 +23,10 @@ namespace RedesIP.Vistas
 			try
 			{
 				item = (ComboBoxExItem)Items[ea.Index];
-				Pen p=new Pen(item.Color,10);
-				ea.Graphics.DrawRectangle(p, bounds.X, bounds.Y, 20, bounds.Height);
-					
+				Pen p=new Pen(item.Color,5);
+					ea.Graphics.FillEllipse(new SolidBrush(item.Color),bounds.X, bounds.Y, 20, bounds.Height);
 					ea.Graphics.DrawString(item.Marcador.Id.ToString(), ea.Font, new
-	  SolidBrush(ea.ForeColor), bounds.Left + 30, bounds.Top);
+	  SolidBrush(item.Color), bounds.Left + 30, bounds.Top);
 				
 
 			}

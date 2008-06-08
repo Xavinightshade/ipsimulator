@@ -38,6 +38,7 @@ namespace SimuladorCliente
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.trackBar1 = new System.Windows.Forms.TrackBar();
 			this._estacionView = new RedesIP.Vistas.EstacionView();
 			this.sniffer1 = new SimuladorCliente.Sniffer();
 			this.sniffer2 = new SimuladorCliente.Sniffer();
@@ -48,6 +49,7 @@ namespace SimuladorCliente
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -169,6 +171,14 @@ namespace SimuladorCliente
 			this.splitContainer2.SplitterDistance = 280;
 			this.splitContainer2.TabIndex = 0;
 			// 
+			// trackBar1
+			// 
+			this.trackBar1.Location = new System.Drawing.Point(259, 0);
+			this.trackBar1.Name = "trackBar1";
+			this.trackBar1.Size = new System.Drawing.Size(132, 45);
+			this.trackBar1.TabIndex = 5;
+			this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+			// 
 			// _estacionView
 			// 
 			this._estacionView.BackColor = System.Drawing.Color.Black;
@@ -201,6 +211,7 @@ namespace SimuladorCliente
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(659, 444);
+			this.Controls.Add(this.trackBar1);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.toolStrip1);
@@ -216,6 +227,7 @@ namespace SimuladorCliente
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			this.splitContainer2.Panel2.ResumeLayout(false);
 			this.splitContainer2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -236,6 +248,7 @@ namespace SimuladorCliente
 		private System.Windows.Forms.SplitContainer splitContainer2;
 		private Sniffer sniffer1;
 		private Sniffer sniffer2;
+		private System.Windows.Forms.TrackBar trackBar1;
 
 
 

@@ -57,7 +57,7 @@ namespace RedesIP.Vistas
 
 		}
 		private PuertoEthernetView _puerto1;
-		
+
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
@@ -150,13 +150,19 @@ namespace RedesIP.Vistas
 					return;
 				}
 			}
-						for (int i = 0; i < _computadores.Count; i++)
+			for (int i = 0; i < _computadores.Count; i++)
 			{
 				if (_computadores[i].HitTest(e.X, e.Y))
 				{
 					Ping forma = new Ping();
 					forma.ShowDialog();
-					_server.Ping(_computadores[i].Id, forma.Mensaje, forma.P1, forma.P2, forma.P3);
+					if (forma.DialogResult == DialogResult.Cancel)
+						return;
+					for (int j = 0; j < forma.Numero; j++)
+					{
+						_server.Ping(_computadores[i].Id, forma.Mensaje, forma.P1, forma.P2, forma.P3);
+					}
+
 					return;
 				}
 			}
@@ -198,9 +204,9 @@ namespace RedesIP.Vistas
 			{
 				for (int i = 0; i < _conexiones.Count; i++)
 				{
-					if (_conexiones[i].HitTest(e.X,e.Y))
+					if (_conexiones[i].HitTest(e.X, e.Y))
 					{
-						bool yaEstaSeleccionado=false;
+						bool yaEstaSeleccionado = false;
 						for (int j = 0; j < _marcadores.Count; j++)
 						{
 							if (_marcadores[j].Conexion == _conexiones[i])
@@ -268,6 +274,7 @@ namespace RedesIP.Vistas
 		public void MoverEquipo(Guid idEquipo, int x, int y)
 		{
 			_equipos[idEquipo].MoverEquipo(x, y);
+			Invalidate();
 		}
 
 		#endregion
