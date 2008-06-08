@@ -28,30 +28,23 @@ namespace SimuladorCliente
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-			this._estacionView = new RedesIP.Vistas.EstacionView();
 			this.button1 = new System.Windows.Forms.Button();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this._estacionView = new RedesIP.Vistas.EstacionView();
 			this.toolStrip1.SuspendLayout();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// imageList1
-			// 
-			this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName(0, "n522141547_792059_3954.jpg");
-			this.imageList1.Images.SetKeyName(1, "n522141547_792062_4931.jpg");
-			this.imageList1.Images.SetKeyName(2, "n562445883_376642_1243.jpg");
-			this.imageList1.Images.SetKeyName(3, "n562445883_376652_4537.jpg");
-			this.imageList1.Images.SetKeyName(4, "n562445883_376653_4864.jpg");
-			this.imageList1.Images.SetKeyName(5, "n562445883_376668_9795.jpg");
 			// 
 			// toolStrip1
 			// 
@@ -106,15 +99,6 @@ namespace SimuladorCliente
 			this.toolStripButton4.Text = "toolStripButton4";
 			this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
 			// 
-			// _estacionView
-			// 
-			this._estacionView.BackColor = System.Drawing.Color.Black;
-			this._estacionView.Location = new System.Drawing.Point(12, 12);
-			this._estacionView.Name = "_estacionView";
-			this._estacionView.Size = new System.Drawing.Size(1165, 778);
-			this._estacionView.TabIndex = 0;
-			this._estacionView.TabStop = false;
-			// 
 			// button1
 			// 
 			this.button1.Location = new System.Drawing.Point(257, 3);
@@ -125,20 +109,68 @@ namespace SimuladorCliente
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.AutoScroll = true;
+			this.splitContainer1.Panel1.Controls.Add(this._estacionView);
+			this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.AutoScroll = true;
+			this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+			this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.splitContainer1.Panel2Collapsed = true;
+			this.splitContainer1.Size = new System.Drawing.Size(1189, 777);
+			this.splitContainer1.SplitterDistance = 628;
+			this.splitContainer1.TabIndex = 3;
+			// 
+			// dataGridView1
+			// 
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.Size = new System.Drawing.Size(1185, 141);
+			this.dataGridView1.TabIndex = 0;
+			// 
+			// _estacionView
+			// 
+			this._estacionView.BackColor = System.Drawing.Color.Black;
+			this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._estacionView.Location = new System.Drawing.Point(0, 0);
+			this._estacionView.Name = "_estacionView";
+			this._estacionView.Size = new System.Drawing.Size(1185, 773);
+			this._estacionView.TabIndex = 0;
+			this._estacionView.TabStop = false;
+			// 
 			// MainFrame
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(1189, 802);
+			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.toolStrip1);
-			this.Controls.Add(this._estacionView);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainFrame";
 			this.Text = "Simulador";
+			this.Load += new System.EventHandler(this.MainFrame_Load);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -147,7 +179,6 @@ namespace SimuladorCliente
 
 		#endregion
 
-		private System.Windows.Forms.ImageList imageList1;
 		private RedesIP.Vistas.EstacionView _estacionView;
 		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
@@ -155,6 +186,8 @@ namespace SimuladorCliente
 		private System.Windows.Forms.ToolStripButton toolStripButton3;
 		private System.Windows.Forms.ToolStripButton toolStripButton4;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.DataGridView dataGridView1;
 
 
 

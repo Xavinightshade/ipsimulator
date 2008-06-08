@@ -86,6 +86,12 @@ namespace SimuladorCliente
 			
 			_estacionView.EstablecerServer(clien);
 			clien.Open();
+			splitContainer1.Panel2Collapsed = false;
+		}
+
+		private void MainFrame_Load(object sender, EventArgs e)
+		{
+
 		}
 
 

@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace RedesIP.SOA
 {
 	[ServiceContract(
-	 Name = "EstacionServer",	 
+	 Name = "EstacionServer",
 	 SessionMode = SessionMode.Required,
 	 CallbackContract = typeof(ICallBackContract))]
 	public interface IContract
@@ -18,6 +18,8 @@ namespace RedesIP.SOA
 		void PeticionMoverEquipo(Guid idEquipo, int x, int y);
 		[OperationContract()]
 		void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2);
+		[OperationContract()]
+		void PeticionActualizarEstacion();
 
 	}
 	public interface ICallBackContract
@@ -27,14 +29,16 @@ namespace RedesIP.SOA
 		[OperationContract(IsOneWay = true)]
 		void MoverEquipo(Guid idEquipo, int x, int y);
 		[OperationContract(IsOneWay = true)]
-		void ConectarPuertos(Guid idConexion,Guid idPuerto1, Guid idPuerto2);
+		void ConectarPuertos(ConexionSOA conexion);
+		[OperationContract(IsOneWay = true)]
+		void ActualizarEstacion(List<EquipoSOA> equipos,List<ConexionSOA> conexiones);
 	}
 	[ServiceBehavior(
 	 ConcurrencyMode = ConcurrencyMode.Single,
-	 InstanceContextMode = InstanceContextMode.PerCall)]
+	 InstanceContextMode = InstanceContextMode.Single)]
 	public class Contrato : IContract
 	{
-		private static List<ICallBackContract> _clientes = new List<ICallBackContract>();
+		private List<ICallBackContract> _clientes = new List<ICallBackContract>();
 		private void RegistrarCliente()
 		{
 			ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
@@ -45,7 +49,7 @@ namespace RedesIP.SOA
 		public void PeticionCrearEquipo(TipoDeEquipo tipoEquipo, int x, int y)
 		{
 			RegistrarCliente();
-			EquipoSOA equipo = new EquipoSOA(tipoEquipo,Guid.NewGuid(), x, y);
+			EquipoSOA equipo = new EquipoSOA(tipoEquipo, Guid.NewGuid(), x, y);
 			switch (tipoEquipo)
 			{
 				case TipoDeEquipo.Ninguno:
@@ -58,7 +62,7 @@ namespace RedesIP.SOA
 					{
 						equipo.AgregarPuerto(new PuertoSOA(Guid.NewGuid()));
 					}
-					
+
 					break;
 				default:
 					break;
@@ -67,7 +71,7 @@ namespace RedesIP.SOA
 			{
 				cliente.CrearEquipo(equipo);
 			}
-			
+
 		}
 
 		public void PeticionMoverEquipo(Guid idEquipo, int x, int y)
@@ -75,7 +79,7 @@ namespace RedesIP.SOA
 			RegistrarCliente();
 			foreach (ICallBackContract cliente in _clientes)
 			{
-				cliente.MoverEquipo(idEquipo, x, y);	
+				cliente.MoverEquipo(idEquipo, x, y);
 			}
 
 		}
@@ -86,12 +90,56 @@ namespace RedesIP.SOA
 			Guid idConexion = Guid.NewGuid();
 			foreach (ICallBackContract cliente in _clientes)
 			{
-				cliente.ConectarPuertos(idConexion, idPuerto1, idPuerto2);
+				ConexionSOA conexion = new ConexionSOA(idConexion, idPuerto1, idPuerto2);
+				cliente.ConectarPuertos(conexion);
 			}
 		}
 
 
+
+		#region IContract Members
+
+
+		public void PeticionActualizarEstacion()
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
 	}
+
+	[DataContract]
+	public class ConexionSOA
+	{
+		private Guid _id;
+		[DataMember]
+		public Guid Id
+		{
+			get { return _id; }
+			set { _id = value; }
+		}
+		private Guid _idPuerto1;
+		[DataMember]
+		public Guid IdPuerto1
+		{
+			get { return _idPuerto1; }
+			set { _idPuerto1 = value; }
+		}
+		private Guid _idPuerto2;
+		[DataMember]
+		public Guid IdPuerto2
+		{
+			get { return _idPuerto2; }
+			set { _idPuerto2 = value; }
+		}
+		public ConexionSOA(Guid id,Guid idPuerto1,Guid idPuerto2)
+		{
+			_id = id;
+			_idPuerto1 = idPuerto1;
+			_idPuerto2 = idPuerto2;
+		}
+	}
+
 	[DataContract]
 	public class EquipoSOA
 	{
@@ -139,7 +187,7 @@ namespace RedesIP.SOA
 		{
 			_puertos.Add(puerto);
 		}
-		public EquipoSOA(TipoDeEquipo tipoEquipo,Guid id,int x,int y)
+		public EquipoSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y)
 		{
 			_tipoEquipo = tipoEquipo;
 			_x = x;
@@ -149,7 +197,7 @@ namespace RedesIP.SOA
 		}
 
 
-			}
+	}
 
 	[DataContract]
 	public class PuertoSOA
@@ -166,7 +214,7 @@ namespace RedesIP.SOA
 			_id = id;
 		}
 	}
-	
+
 
 
 }
