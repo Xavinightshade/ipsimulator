@@ -16,6 +16,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,14 +40,18 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Contrato.cs" />
+    <Compile Include="Herramienta.cs" />
     <Compile Include="MainFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,10 +69,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SegundoCliente.resx">
-      <DependentUpon>SegundoCliente.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -82,18 +83,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SegundoCliente.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Vistas\ComboBoxConColores.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SegundoCliente.Designer.cs">
-      <DependentUpon>SegundoCliente.cs</DependentUpon>
+    <Compile Include="Vistas\Componentes\PuertoEthernetView.cs" />
+    <Compile Include="Vistas\Conexion.cs" />
+    <Compile Include="Vistas\ElementoGrafico.cs" />
+    <Compile Include="Vistas\ElementoGraficoCuadrado.cs" />
+    <Compile Include="Vistas\Equipos\ComputadorView.cs" />
+    <Compile Include="Vistas\Equipos\EquipoView.cs" />
+    <Compile Include="Vistas\Equipos\RouterView.cs" />
+    <Compile Include="Vistas\Equipos\SwitchView.cs" />
+    <Compile Include="Vistas\EstacionView.cs">
+      <SubType>Component</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimuladorRedesIP\SimuladorRedesIP.csproj">
-      <Project>{77264759-D438-41DE-99C6-8FEE326306E8}</Project>
-      <Name>SimuladorRedesIP</Name>
-    </ProjectReference>
+    <Compile Include="Vistas\IRegistroMovimientosMouse.cs" />
+    <Compile Include="Vistas\Punto.cs" />
+    <Compile Include="Vistas\Rectangulo.cs" />
+    <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
+    <Compile Include="Vistas\Utilidades\Linea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Image1.bmp" />
@@ -111,6 +119,7 @@
     <None Include="Resources\pointer.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Resources\line.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

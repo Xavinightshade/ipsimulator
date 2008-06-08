@@ -35,6 +35,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,11 +59,16 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Herramienta.cs" />
     <Compile Include="Modelos\Logicos\Equipos\EquipoLogico.cs" />
     <Compile Include="Modelos\Visualizacion\CableDeRed.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
@@ -71,8 +77,6 @@
     <Compile Include="Modelos\Logicos\Datos\Message.cs" />
     <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
     <Compile Include="Modelos\Visualizacion\ComponenteMovible.cs" />
-    <Compile Include="Modelos\Visualizacion\EventNuevaConexionArgs.cs" />
-    <Compile Include="Modelos\Visualizacion\EventEquipoArgs.cs" />
     <Compile Include="Modelos\Visualizacion\Equipos\Computador.cs" />
     <Compile Include="Modelos\Visualizacion\Equipos\Equipo.cs" />
     <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
@@ -82,45 +86,10 @@
     <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
-    <Compile Include="Modelos\Visualizacion\Estacion.cs" />
     <Compile Include="Modelos\Visualizacion\Componentes\PuertoEthernet.cs" />
     <Compile Include="SOA\IContract.cs" />
     <Compile Include="TipoDeEquipo.cs" />
-    <Compile Include="Vistas\ComboBoxConColores.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Vistas\Componentes\PuertoEthernetView.cs">
-    </Compile>
-    <Compile Include="Vistas\Conexion.cs" />
-    <Compile Include="Vistas\ElementoGrafico.cs" />
-    <Compile Include="Vistas\ElementoGraficoCuadrado.cs" />
-    <Compile Include="Vistas\EventCambioEnPosicionArgs.cs" />
-    <Compile Include="Vistas\Equipos\ComputadorView.cs">
-    </Compile>
-    <Compile Include="Vistas\EstacionView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Vistas\Equipos\RouterView.cs">
-    </Compile>
-    <Compile Include="Vistas\IRegistroMovimientosMouse.cs" />
-    <Compile Include="Vistas\Punto.cs" />
-    <Compile Include="Vistas\Rectangulo.cs" />
-    <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
-    <Compile Include="Vistas\Equipos\EquipoView.cs">
-    </Compile>
-    <Compile Include="Vistas\Equipos\SwitchView.cs">
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -130,7 +99,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Vistas\Utilidades\Linea.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

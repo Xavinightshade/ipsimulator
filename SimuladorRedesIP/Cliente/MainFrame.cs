@@ -5,16 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using RedesIP.Modelos;
 using RedesIP.Vistas;
-using System.Runtime.Remoting.Channels;
 using System.Collections;
-using System.Runtime.Remoting.Channels.Tcp;
-using System.Runtime.Serialization.Formatters;
-using RedesIP.Modelos.Equipos;
-using RedesIP.Modelos.Datos;
-using RedesIP.ModelosVisualizacion;
-using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP;
 using RedesIP.SOA;
 
@@ -26,10 +18,7 @@ namespace SimuladorCliente
 		{
 			InitializeComponent();
 		}
-        private delegate void ImprimirReporte(FrameRecibidoEventArgs e);
-		  private delegate void ImprimirReporteTrans(FrameTransmitidoEventArgs e);
-	    private ComputadorLogico pc;
-	    private ComputadorLogico pc2;
+
 
 		protected override void OnLoad(EventArgs e)
 		{
@@ -50,14 +39,20 @@ namespace SimuladorCliente
 
 
 
-			Contrato server = new Contrato();
-			server.RegistrarCliente(_estacionView);
-			_estacionView.EstablecerServer(server);
+			//Contrato server = new Contrato();
+			//server.RegistrarCliente(_estacionView);
+			//_estacionView.EstablecerServer(server);
 
-			SegundoCliente form = new SegundoCliente();
-			server.RegistrarCliente(form.Cliente);
-			form.EstablecerServer(server);
-			form.Show();
+			//SegundoCliente form = new SegundoCliente();
+			//server.RegistrarCliente(form.Cliente);
+			//form.EstablecerServer(server);
+
+			//SegundoCliente form2 = new SegundoCliente();
+			//server.RegistrarCliente(form2.Cliente);
+			//form2.EstablecerServer(server);
+
+			//form.Show();
+			//form2.Show();
 
 
 
