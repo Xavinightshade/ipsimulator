@@ -48,6 +48,7 @@ namespace SimuladorCliente
 
 		_estacionView.InsertarComputador(50, 50);
 		_estacionView.InsertarComputador(100, 100);
+		_estacionView.InsertarSwitch(200, 200);
 
 
 

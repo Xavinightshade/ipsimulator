@@ -12,7 +12,7 @@ namespace RedesIP.Vistas.Equipos
 		public ComputadorView(int origenX, int origenY)
 			:base(origenX,origenY,40,40)
 		{
-			_puerto = new PuertoEthernetView(origenX + 10, origenY + 10);
+			_puerto = new PuertoEthernetView(15,30,this);
 		}
 		PuertoEthernetView _puerto;
 
