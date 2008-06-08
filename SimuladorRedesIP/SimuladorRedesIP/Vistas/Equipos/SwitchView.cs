@@ -11,10 +11,7 @@ namespace RedesIP.Vistas.Equipos
 	{
 		private List<PuertoEthernetView> _puertosEthernet = new List<PuertoEthernetView>();
 
-		public ReadOnlyCollection<PuertoEthernetView> PuertosEthernet
-		{
-			get { return _puertosEthernet.AsReadOnly(); }
-		}
+
 		public SwitchView(int origenX, int origenY)
 			:base(origenX,origenY,300,50)
 		{
@@ -34,6 +31,14 @@ namespace RedesIP.Vistas.Equipos
 		public override System.Drawing.Image Imagen
 		{
 			get { return Resources.Switch; }
+		}
+		public override void DibujarElemento(System.Drawing.Graphics grafico)
+		{
+			base.DibujarElemento(grafico);
+			for (int i = 0; i < _puertosEthernet.Count; i++)
+			{
+				_puertosEthernet[i].DibujarElemento(grafico);
+			}
 		}
 	}
 }

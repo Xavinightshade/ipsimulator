@@ -11,28 +11,37 @@ namespace RedesIP.Vistas
 {
 	public class EstacionView : PictureBox,IRegistroMovimientosMouse
 	{
+		private Herramienta _herramientaActual;
 
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
-		List<PuertoEthernetView> _puertos = new List<PuertoEthernetView>();
 		public void InsertarComputador(int origenX, int origenY)
 		{
 
 			ComputadorView computador = new ComputadorView(origenX, origenY);
 			computador.EstablecerContenedor(this);
 			_computadores.Add(computador);
-			_puertos.Add(computador.Puerto);
 		}
 		public void InsertarSwitch(int origenX, int origenY)
 		{
 			SwitchView swi = new SwitchView(origenX, origenY);
 			swi.EstablecerContenedor(this);
 			_switches.Add(swi);
-			foreach (PuertoEthernetView puerto in swi.PuertosEthernet)
-			{
-				_puertos.Add(puerto);
-			}
 
+
+		}
+		protected override void OnMouseMove(MouseEventArgs e)
+		{
+			base.OnMouseMove(e);
+			if (_herramientaActual==Herramienta.CreacionEquipos)
+			{
+				Cursor = Cursors.Cross;
+			}
+			else
+			{
+				Cursor = Cursors.Default;
+			}
+			
 		}
 		protected override void OnPaint(PaintEventArgs pe)
 		{
@@ -45,13 +54,35 @@ namespace RedesIP.Vistas
 			{
 				_switches[i].DibujarElemento(g);
 			}
-			for (int i = 0; i < _puertos.Count; i++)
-			{
-				_puertos[i].DibujarElemento(g);
-			}
 			base.OnPaint(pe);
 		}
 
 
+
+
+		private TipoDeEquipo _tipoDeEquipo;
+		public void CrearEquipo(TipoDeEquipo tipoDeEquipo)
+		{
+			_herramientaActual = Herramienta.CreacionEquipos;
+			_tipoDeEquipo = tipoDeEquipo;
+		}
+
+		protected override void OnMouseUp(MouseEventArgs e)
+		{
+			base.OnMouseUp(e);
+			if (_herramientaActual == Herramienta.CreacionEquipos && _tipoDeEquipo == TipoDeEquipo.Computador)
+			{
+				InsertarComputador(e.X, e.Y);
+				Invalidate();
+			}
+			
+
+		}
+
+
+		public void CambiarHerramientaNada()
+		{
+			_herramientaActual = Herramienta.Seleccion;
+		}
 	}
 }

@@ -15,6 +15,7 @@ using RedesIP.Modelos.Equipos;
 using RedesIP.Modelos.Datos;
 using RedesIP.ModelosVisualizacion;
 using RedesIP.Modelos.Logicos.Equipos;
+using RedesIP;
 
 namespace SimuladorCliente
 {
@@ -50,11 +51,23 @@ namespace SimuladorCliente
 		_estacionView.InsertarComputador(100, 100);
 		_estacionView.InsertarSwitch(200, 200);
 
-
+			
 
 
 
 		}
+
+		private void toolStripButton2_Click(object sender, EventArgs e)
+		{
+			_estacionView.CrearEquipo(TipoDeEquipo.Computador);
+		}
+
+		private void toolStripButton1_Click(object sender, EventArgs e)
+		{
+			_estacionView.CambiarHerramientaNada();
+		}
+
+
 
 
 

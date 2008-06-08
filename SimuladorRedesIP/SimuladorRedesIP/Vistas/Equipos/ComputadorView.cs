@@ -24,6 +24,11 @@ namespace RedesIP.Vistas.Equipos
 		{
 			get { return Resources.Computador; }
 		}
+		public override void DibujarElemento(Graphics grafico)
+		{
+			base.DibujarElemento(grafico);
+			_puerto.DibujarElemento(grafico);
+		}
 
 
 	}
