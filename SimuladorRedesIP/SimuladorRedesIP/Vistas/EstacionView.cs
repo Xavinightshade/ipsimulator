@@ -6,32 +6,44 @@ using System.Drawing;
 using RedesIP.Vistas.Utilidades;
 using RedesIP.Vistas.Equipos;
 using RedesIP.Vistas.Equipos.Componentes;
+using RedesIP.SOA;
 
 namespace RedesIP.Vistas
 {
-	public class EstacionView : PictureBox,IRegistroMovimientosMouse
+	public class EstacionView : PictureBox,IRegistroMovimientosMouse,ICallBackContract
 	{
+		IContract _server;
 		private Herramienta _herramientaActual;
+		Dictionary<Guid, EquipoView> _equipos = new Dictionary<Guid, EquipoView>();
 		List<PuertoEthernetView> _puertos = new List<PuertoEthernetView>();
+		Dictionary<Guid, PuertoEthernetView> _diccioPuertos = new Dictionary<Guid, PuertoEthernetView>();
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
 		List<Conexion> _conexiones = new List<Conexion>();
-		public void InsertarComputador(int origenX, int origenY)
+		public void EstablecerServer(IContract server)
+		{
+			_server = server;
+		}
+		private void InsertarComputador(EquipoSOA equipo)
 		{
 
-			ComputadorView computador = new ComputadorView(origenX, origenY);
+			ComputadorView computador = new ComputadorView(equipo);
 			computador.EstablecerContenedor(this);
 			_computadores.Add(computador);
+			_equipos.Add(computador.Id, computador);
 			_puertos.Add(computador.Puerto);
+			_diccioPuertos.Add(computador.Puerto.Id, computador.Puerto);
 		}
-		public void InsertarSwitch(int origenX, int origenY)
+		private void InsertarSwitch(EquipoSOA equipo)
 		{
-			SwitchView swi = new SwitchView(origenX, origenY);
+			SwitchView swi = new SwitchView(equipo);
 			swi.EstablecerContenedor(this);
 			_switches.Add(swi);
+			_equipos.Add(swi.Id, swi);
 			foreach (PuertoEthernetView puerto in swi.PuertosEthernet)
 			{
 				_puertos.Add(puerto);
+				_diccioPuertos.Add(puerto.Id, puerto);
 			}
 
 
@@ -108,14 +120,7 @@ namespace RedesIP.Vistas
 			base.OnMouseUp(e);
 			if (_herramientaActual == Herramienta.CreacionEquipos)
 			{
-				if (_tipoDeEquipo == TipoDeEquipo.Computador)
-				{
-					InsertarComputador(e.X, e.Y);
-				}
-				if (_tipoDeEquipo == TipoDeEquipo.Switch)
-				{
-					InsertarSwitch(e.X, e.Y);
-				}
+					_server.PeticionCrearEquipo(_tipoDeEquipo, e.X, e.Y);					
 				Invalidate();
 				_herramientaActual =Herramienta.Seleccion;
 			}
@@ -133,7 +138,7 @@ namespace RedesIP.Vistas
 						}
 						else
 						{
-							_conexiones.Add(new Conexion(_puerto1, _puertos[i]));
+							_server.PeticionConectarPuertos(_puerto1.Id, _puertos[i].Id);
 							_puerto1=null;							
 						}
 						break;
@@ -150,5 +155,63 @@ namespace RedesIP.Vistas
 		{
 			_herramientaActual = herramienta;
 		}
+
+		#region IRegistroMovimientosMouse Members
+
+
+		public RedesIP.SOA.IContract Contrato
+		{
+			get { return _server; }
+		}
+
+		#endregion
+
+		#region ICallBackContract Members
+
+		public void CrearEquipo(EquipoSOA equipo)
+		{
+			switch (equipo.TipoEquipo)
+			{
+				case TipoDeEquipo.Ninguno:
+					break;
+				case TipoDeEquipo.Computador:
+					InsertarComputador(equipo);
+					break;
+				case TipoDeEquipo.Switch:
+					InsertarSwitch(equipo);
+					break;
+				default:
+					break;
+			}
+			Invalidate();
+		}
+
+		public void MoverEquipo(Guid idEquipo, int x, int y)
+		{
+			_equipos[idEquipo].MoverEquipo(x, y);
+		}
+
+		#endregion
+
+		#region ICallBackContract Members
+
+
+		public void ConectarPuertos(Guid idPuerto1, Guid idPuerto2)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region ICallBackContract Members
+
+
+		public void ConectarPuertos(Guid idConexion, Guid idPuerto1, Guid idPuerto2)
+		{
+			
+			_conexiones.Add(new Conexion(idConexion, _diccioPuertos[idPuerto1], _diccioPuertos[idPuerto2]));
+		}
+
+		#endregion
 	}
 }

@@ -4,15 +4,16 @@ using System.Text;
 using RedesIP.Properties;
 using System.Drawing;
 using RedesIP.Vistas.Equipos.Componentes;
+using RedesIP.SOA;
 
 namespace RedesIP.Vistas.Equipos
 {
 	public class ComputadorView:EquipoView
 	{
-		public ComputadorView(int origenX, int origenY)
-			:base(origenX,origenY,40,40)
+		public ComputadorView(EquipoSOA equipo)
+			:base(equipo.Id,equipo.X,equipo.Y,40,40)
 		{
-			_puerto = new PuertoEthernetView(15,30,this);
+			_puerto = new PuertoEthernetView(equipo.Puertos[0].Id,15,30,this);
 		}
 		PuertoEthernetView _puerto;
 

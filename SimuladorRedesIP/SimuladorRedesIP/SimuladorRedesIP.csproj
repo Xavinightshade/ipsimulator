@@ -84,6 +84,7 @@
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Modelos\Visualizacion\Estacion.cs" />
     <Compile Include="Modelos\Visualizacion\Componentes\PuertoEthernet.cs" />
+    <Compile Include="SOA\IContract.cs" />
     <Compile Include="TipoDeEquipo.cs" />
     <Compile Include="Vistas\ComboBoxConColores.cs">
       <SubType>Component</SubType>

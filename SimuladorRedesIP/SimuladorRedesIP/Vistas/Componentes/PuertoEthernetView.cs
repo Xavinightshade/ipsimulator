@@ -22,8 +22,8 @@ namespace RedesIP.Vistas.Equipos.Componentes
 			get { return _seleccionado; }
 			set { _seleccionado = value; }
 		}
-		public PuertoEthernetView(int origenX,int origenY,EquipoView equipoPadre)
-			: base(origenX,origenY, 10, 10)
+		public PuertoEthernetView(Guid id,int origenX,int origenY,EquipoView equipoPadre)
+			: base(id,origenX,origenY, 10, 10)
 		{
 			ElementoPadre = equipoPadre;
 		}

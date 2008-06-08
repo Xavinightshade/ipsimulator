@@ -8,8 +8,8 @@ namespace RedesIP.Vistas.Equipos
 {
 	public abstract class EquipoView : ElementoGraficoCuadrado
 	{
-		public EquipoView(int origenX, int origenY, int ancho, int alto)
-			: base(origenX, origenY, ancho, alto)
+		public EquipoView(Guid id,int origenX, int origenY, int ancho, int alto)
+			: base(id,origenX, origenY, ancho, alto)
 		{
 
 		}
@@ -24,11 +24,22 @@ namespace RedesIP.Vistas.Equipos
 			inst.MouseMove += new System.Windows.Forms.MouseEventHandler(OnMouseMove);
 			inst.MouseUp += new System.Windows.Forms.MouseEventHandler(OnMouseUp);
 		}
-
+		public void MoverEquipo(int x, int y)
+		{
+			Dimension.OrigenX = x;
+			Dimension.OrigenY = y;
+			_reg.Invalidate();
+		}
 		private void OnMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 
-			_elBotonDelMouseEstaPresionado = false;
+			if (HitTest(e.X, e.Y))
+			{
+				_elBotonDelMouseEstaPresionado = false;
+				_reg.Contrato.PeticionMoverEquipo(Id, DimensionMundo.OrigenX, DimensionMundo.OrigenY);
+
+
+			}
 	
 
 		}

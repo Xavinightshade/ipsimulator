@@ -16,6 +16,7 @@ using RedesIP.Modelos.Datos;
 using RedesIP.ModelosVisualizacion;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP;
+using RedesIP.SOA;
 
 namespace SimuladorCliente
 {
@@ -49,7 +50,14 @@ namespace SimuladorCliente
 
 
 
-			
+			Contrato server = new Contrato();
+			server.RegistrarCliente(_estacionView);
+			_estacionView.EstablecerServer(server);
+
+			SegundoCliente form = new SegundoCliente();
+			server.RegistrarCliente(form.Cliente);
+			form.EstablecerServer(server);
+			form.Show();
 
 
 

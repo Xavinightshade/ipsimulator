@@ -7,8 +7,8 @@ namespace RedesIP.Vistas.Equipos
 {
 	class RouterView:EquipoView
 	{
-		public RouterView(int origenX, int origenY, int ancho, int alto)
-			: base(origenX, origenY, ancho, alto)
+		public RouterView(Guid id,int origenX, int origenY, int ancho, int alto)
+			: base(id,origenX, origenY, ancho, alto)
 		{
 		
 		}

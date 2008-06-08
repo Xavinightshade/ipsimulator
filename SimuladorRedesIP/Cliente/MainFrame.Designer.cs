@@ -107,7 +107,7 @@ namespace SimuladorCliente
 			// 
 			// _estacionView
 			// 
-			this._estacionView.BackColor = System.Drawing.Color.MidnightBlue;
+			this._estacionView.BackColor = System.Drawing.Color.Black;
 			this._estacionView.Location = new System.Drawing.Point(12, 12);
 			this._estacionView.Name = "_estacionView";
 			this._estacionView.Size = new System.Drawing.Size(1165, 778);
@@ -122,8 +122,9 @@ namespace SimuladorCliente
 			this.ClientSize = new System.Drawing.Size(1189, 802);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this._estacionView);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainFrame";
-			this.Text = "Form1";
+			this.Text = "Simulador";
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();

@@ -4,6 +4,7 @@ using System.Text;
 using RedesIP.Properties;
 using RedesIP.Vistas.Equipos.Componentes;
 using System.Collections.ObjectModel;
+using RedesIP.SOA;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -17,19 +18,22 @@ namespace RedesIP.Vistas.Equipos
 		}
 
 
-		public SwitchView(int origenX, int origenY)
-			:base(origenX,origenY,300,50)
+		public SwitchView(EquipoSOA equipo)
+			:base(equipo.Id,equipo.X,equipo.Y, 300,50)
 		{
-			CrearPuertos();
+			CrearPuertos(equipo.Puertos);
 		}
 
-		private void CrearPuertos()
+		private void CrearPuertos(IEnumerable<PuertoSOA> puertos)
 		{
-			for (int i = 0; i < 11; i++)
-			{
-				PuertoEthernetView puerto = new PuertoEthernetView((i * 20) + 25, 30, this);
-				_puertosEthernet.Add(puerto);
-			}
+			int i = 0;
+			foreach (PuertoSOA puerto in puertos)
+	{
+		 
+				_puertosEthernet.Add(new PuertoEthernetView(puerto.Id, (i * 20) + 25, 30, this));
+				i++;
+	}
+
 		}
 
 
