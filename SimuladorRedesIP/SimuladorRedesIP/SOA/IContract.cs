@@ -17,6 +17,8 @@ namespace RedesIP.SOA
 		[OperationContract()]
 		void Conectar();
 		[OperationContract()]
+		void Desconectar();
+		[OperationContract()]
 		void PeticionMoverEquipo(Guid idEquipo, int x, int y);
 		[OperationContract()]
 		void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2);
@@ -121,6 +123,18 @@ namespace RedesIP.SOA
 			ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
 			cliente.ActualizarEstacion(_equipos, _conexiones);
 			
+		}
+
+		#endregion
+
+		#region IContract Members
+
+
+		public void Desconectar()
+		{
+			ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
+			_clientes.Remove(cliente);
+
 		}
 
 		#endregion

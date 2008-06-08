@@ -91,17 +91,17 @@ namespace SimuladorCliente
 			toolStripButton1.Enabled = true;
 		}
 
-	
 
 
+		EstacionServerClient _clien = null;
 		private void button1_Click(object sender, EventArgs e)
 		{
-			EstacionServerClient clien = new EstacionServerClient(new InstanceContext(_estacionView), "TcpBinding");
+			_clien= new EstacionServerClient(new InstanceContext(_estacionView), "TcpBinding");
 
 
-			_estacionView.EstablecerServer(clien);
-			clien.Open();
-			clien.Conectar();
+			_estacionView.EstablecerServer(_clien);
+			_clien.Open();
+			_clien.Conectar();
 			splitContainer1.Panel2Collapsed = false;
 			button1.Visible = false;
 			toolStripButton1.Enabled = true;
@@ -109,6 +109,15 @@ namespace SimuladorCliente
 			toolStripButton3.Enabled = true;
 			toolStripButton4.Enabled = true;
 
+		}
+
+		private void MainFrame_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			if (_clien != null)
+			{
+				_clien.Desconectar();
+				_clien.Close();
+			}
 		}
 
 

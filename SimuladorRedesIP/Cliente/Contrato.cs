@@ -244,6 +244,9 @@ public interface EstacionServer
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/Conectar", ReplyAction="http://tempuri.org/EstacionServer/ConectarResponse")]
     void Conectar();
     
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/Desconectar", ReplyAction="http://tempuri.org/EstacionServer/DesconectarResponse")]
+    void Desconectar();
+    
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionMoverEquipo", ReplyAction="http://tempuri.org/EstacionServer/PeticionMoverEquipoResponse")]
     void PeticionMoverEquipo(System.Guid idEquipo, int x, int y);
     
@@ -314,6 +317,11 @@ public partial class EstacionServerClient : System.ServiceModel.DuplexClientBase
     public void Conectar()
     {
         base.Channel.Conectar();
+    }
+    
+    public void Desconectar()
+    {
+        base.Channel.Desconectar();
     }
     
     public void PeticionMoverEquipo(System.Guid idEquipo, int x, int y)

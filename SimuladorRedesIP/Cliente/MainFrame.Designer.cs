@@ -167,6 +167,7 @@ namespace SimuladorCliente
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainFrame";
 			this.Text = "Simulador";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrame_FormClosing);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
