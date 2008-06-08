@@ -24,6 +24,8 @@ namespace RedesIP.SOA
 		void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2);
 		[OperationContract()]
 		void PeticionActualizarEstacion();
+		[OperationContract()]
+		void PeticionEnviarInformacionConexion(Guid idConexion);
 
 	}
 	public interface ICallBackContract
@@ -36,6 +38,9 @@ namespace RedesIP.SOA
 		void ConectarPuertos(ConexionSOA conexion);
 		[OperationContract(IsOneWay = true)]
 		void ActualizarEstacion(List<EquipoSOA> equipos,List<ConexionSOA> conexiones);
+
+		[OperationContract(IsOneWay = true)]
+		void EnviarInformacionConexion(Guid idConexion, string info);
 	}
 	[ServiceBehavior(
 	 ConcurrencyMode = ConcurrencyMode.Single,
@@ -139,6 +144,16 @@ namespace RedesIP.SOA
 			ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
 			_clientes.Remove(cliente);
 
+		}
+
+		#endregion
+
+		#region IContract Members
+
+
+		public void PeticionEnviarInformacionConexion(Guid idConexion)
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion

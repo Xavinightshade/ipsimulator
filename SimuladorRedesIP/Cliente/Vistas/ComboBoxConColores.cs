@@ -1,15 +1,11 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
+using SimuladorCliente.Vistas;
 namespace RedesIP.Vistas
 {
 	class ComboBoxEx : ComboBox
 	{
-		private ImageList imageList;
-		public ImageList ImageList
-		{
-			get { return imageList; }
-			set { imageList = value; }
-		}
+
 
 		public ComboBoxEx()
 		{
@@ -22,25 +18,18 @@ namespace RedesIP.Vistas
 			ea.DrawFocusRectangle();
 
 			ComboBoxExItem item;
-			Size imageSize = imageList.ImageSize;
 			Rectangle bounds = ea.Bounds;
 
 			try
 			{
 				item = (ComboBoxExItem)Items[ea.Index];
+				Pen p=new Pen(item.Color,10);
+				ea.Graphics.DrawRectangle(p, bounds.X, bounds.Y, 20, bounds.Height);
+					
+					ea.Graphics.DrawString(item.Marcador.Id.ToString(), ea.Font, new
+	  SolidBrush(ea.ForeColor), bounds.Left + 30, bounds.Top);
+				
 
-				if (item.ImageIndex != -1)
-				{
-					imageList.Draw(ea.Graphics, bounds.Left, bounds.Top,
-	  item.ImageIndex);
-					ea.Graphics.DrawString(item.Text, ea.Font, new
-	  SolidBrush(ea.ForeColor), bounds.Left + imageSize.Width, bounds.Top);
-				}
-				else
-				{
-					ea.Graphics.DrawString(item.Text, ea.Font, new
-	  SolidBrush(ea.ForeColor), bounds.Left, bounds.Top);
-				}
 			}
 			catch
 			{
@@ -62,39 +51,30 @@ namespace RedesIP.Vistas
 
 	class ComboBoxExItem
 	{
-		private string _text;
-		public string Text
+		private Marcador _marcador;
+		public Marcador Marcador
 		{
-			get { return _text; }
-			set { _text = value; }
+			get { return _marcador; }
+			set { _marcador = value; }
+		}
+		private Color _color;
+
+		public Color Color
+		{
+			get { return _color; }
+			set { _color = value; }
 		}
 
-		private int _imageIndex;
-		public int ImageIndex
+
+
+
+
+		public ComboBoxExItem(Marcador marcador, Color color)
 		{
-			get { return _imageIndex; }
-			set { _imageIndex = value; }
+			_marcador=marcador;
+			_color = color;
 		}
 
-		public ComboBoxExItem()
-			: this("")
-		{
-		}
 
-		public ComboBoxExItem(string text)
-			: this(text, -1)
-		{
-		}
-
-		public ComboBoxExItem(string text, int imageIndex)
-		{
-			_text = text;
-			_imageIndex = imageIndex;
-		}
-
-		public override string ToString()
-		{
-			return _text;
-		}
 	}
 }

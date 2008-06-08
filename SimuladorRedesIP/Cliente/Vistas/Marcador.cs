@@ -5,25 +5,43 @@ using RedesIP.Vistas.Equipos;
 using RedesIP.Vistas;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Collections.ObjectModel;
 
 namespace SimuladorCliente.Vistas
 {
 	public class Marcador:ElementoGrafico
 	{
 		Conexion _conexion;
+
+		public Conexion Conexion
+		{
+			get { return _conexion; }
+		}
 		Color _color;
+		private static Collection<Color> _colores = null;
+
+
+		public Color Color
+		{
+			get { return _color; }
+		}
 		Random r = new Random();
 		public Marcador(Guid id,Conexion conexion)
 			:base(id)
 		{
+			if (_colores == null)
+			{
+				_colores = new Collection<Color>();
+				_colores.Add(Color.Red);
+				_colores.Add(Color.Yellow);
+				_colores.Add(Color.Aqua);
+				_colores.Add(Color.Green);
+				_colores.Add(Color.Salmon);
+			}
 			_conexion = conexion;
-			_color = Color.FromKnownColor(KnownColor(r.Next(100)));
+			_color = _colores[r.Next(_colores.Count)];
 		}
 
-		private KnownColor KnownColor(int p)
-		{
-			return (KnownColor)p;
-		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{
 			Pen p=new Pen(_color,2);

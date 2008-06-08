@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="Vistas\IRegistroMovimientosMouse.cs" />
     <Compile Include="Vistas\Marcador.cs" />
+    <Compile Include="Vistas\NuevoMarcadorEventArgs.cs" />
     <Compile Include="Vistas\Punto.cs" />
     <Compile Include="Vistas\Rectangulo.cs" />
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />

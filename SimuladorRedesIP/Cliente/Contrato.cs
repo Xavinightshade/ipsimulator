@@ -255,6 +255,9 @@ public interface EstacionServer
     
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionActualizarEstacion", ReplyAction="http://tempuri.org/EstacionServer/PeticionActualizarEstacionResponse")]
     void PeticionActualizarEstacion();
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionEnviarInformacionConexion", ReplyAction="http://tempuri.org/EstacionServer/PeticionEnviarInformacionConexionResponse")]
+    void PeticionEnviarInformacionConexion(System.Guid idConexion);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -272,6 +275,9 @@ public interface EstacionServerCallback
     
     [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/ActualizarEstacion")]
     void ActualizarEstacion(RedesIP.SOA.EquipoSOA[] equipos, RedesIP.SOA.ConexionSOA[] conexiones);
+    
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/EnviarInformacionConexion")]
+    void EnviarInformacionConexion(System.Guid idConexion, string info);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -337,5 +343,10 @@ public partial class EstacionServerClient : System.ServiceModel.DuplexClientBase
     public void PeticionActualizarEstacion()
     {
         base.Channel.PeticionActualizarEstacion();
+    }
+    
+    public void PeticionEnviarInformacionConexion(System.Guid idConexion)
+    {
+        base.Channel.PeticionEnviarInformacionConexion(idConexion);
     }
 }

@@ -108,6 +108,21 @@ namespace SimuladorCliente
 			toolStripButton2.Enabled = true;
 			toolStripButton3.Enabled = true;
 			toolStripButton4.Enabled = true;
+			_estacionView.NuevoMarcador += new EventHandler<SimuladorCliente.Vistas.NuevoMarcadorEventArgs>(_estacionView_NuevoMarcador);
+			_estacionView.NuevoMensaje += new EventHandler<SimuladorCliente.Vistas.NuevoMensajeEventArgs>(_estacionView_NuevoMensaje);
+
+		}
+
+		void _estacionView_NuevoMensaje(object sender, SimuladorCliente.Vistas.NuevoMensajeEventArgs e)
+		{
+			sniffer1.ReportarMensaje(e.IdConexion, e.Mensaje);
+			sniffer2.ReportarMensaje(e.IdConexion, e.Mensaje);
+		}
+
+		void _estacionView_NuevoMarcador(object sender, SimuladorCliente.Vistas.NuevoMarcadorEventArgs e)
+		{
+			sniffer1.AgregarMarcador(e.Marcador);
+			sniffer2.AgregarMarcador(e.Marcador);
 
 		}
 

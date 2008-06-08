@@ -37,18 +37,18 @@ namespace SimuladorCliente
 			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-			this._estacionView = new RedesIP.Vistas.EstacionView();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this._estacionView = new RedesIP.Vistas.EstacionView();
 			this.sniffer1 = new SimuladorCliente.Sniffer();
 			this.sniffer2 = new SimuladorCliente.Sniffer();
 			this.toolStrip1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// toolStrip1
@@ -61,7 +61,7 @@ namespace SimuladorCliente
             this.toolStripButton5});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(1189, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(659, 25);
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -84,8 +84,8 @@ namespace SimuladorCliente
 			this.splitContainer1.Panel2.AutoScroll = true;
 			this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
 			this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.splitContainer1.Size = new System.Drawing.Size(1189, 777);
-			this.splitContainer1.SplitterDistance = 628;
+			this.splitContainer1.Size = new System.Drawing.Size(659, 419);
+			this.splitContainer1.SplitterDistance = 338;
 			this.splitContainer1.TabIndex = 3;
 			// 
 			// button1
@@ -151,16 +151,6 @@ namespace SimuladorCliente
 			this.toolStripButton5.Text = "toolStripButton5";
 			this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
 			// 
-			// _estacionView
-			// 
-			this._estacionView.BackColor = System.Drawing.Color.Black;
-			this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._estacionView.Location = new System.Drawing.Point(0, 0);
-			this._estacionView.Name = "_estacionView";
-			this._estacionView.Size = new System.Drawing.Size(1185, 624);
-			this._estacionView.TabIndex = 0;
-			this._estacionView.TabStop = false;
-			// 
 			// splitContainer2
 			// 
 			this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -175,16 +165,26 @@ namespace SimuladorCliente
 			// splitContainer2.Panel2
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.sniffer2);
-			this.splitContainer2.Size = new System.Drawing.Size(1189, 145);
-			this.splitContainer2.SplitterDistance = 396;
+			this.splitContainer2.Size = new System.Drawing.Size(659, 77);
+			this.splitContainer2.SplitterDistance = 280;
 			this.splitContainer2.TabIndex = 0;
+			// 
+			// _estacionView
+			// 
+			this._estacionView.BackColor = System.Drawing.Color.Black;
+			this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._estacionView.Location = new System.Drawing.Point(0, 0);
+			this._estacionView.Name = "_estacionView";
+			this._estacionView.Size = new System.Drawing.Size(655, 334);
+			this._estacionView.TabIndex = 0;
+			this._estacionView.TabStop = false;
 			// 
 			// sniffer1
 			// 
 			this.sniffer1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.sniffer1.Location = new System.Drawing.Point(0, 0);
 			this.sniffer1.Name = "sniffer1";
-			this.sniffer1.Size = new System.Drawing.Size(392, 421);
+			this.sniffer1.Size = new System.Drawing.Size(276, 421);
 			this.sniffer1.TabIndex = 0;
 			// 
 			// sniffer2
@@ -192,7 +192,7 @@ namespace SimuladorCliente
 			this.sniffer2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.sniffer2.Location = new System.Drawing.Point(0, 0);
 			this.sniffer2.Name = "sniffer2";
-			this.sniffer2.Size = new System.Drawing.Size(785, 421);
+			this.sniffer2.Size = new System.Drawing.Size(371, 421);
 			this.sniffer2.TabIndex = 1;
 			// 
 			// MainFrame
@@ -200,7 +200,7 @@ namespace SimuladorCliente
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Black;
-			this.ClientSize = new System.Drawing.Size(1189, 802);
+			this.ClientSize = new System.Drawing.Size(659, 444);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.toolStrip1);
@@ -213,10 +213,10 @@ namespace SimuladorCliente
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			this.splitContainer2.Panel2.ResumeLayout(false);
 			this.splitContainer2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

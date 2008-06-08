@@ -36,11 +36,11 @@
 			// comboBoxEx1
 			// 
 			this.comboBoxEx1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+			this.comboBoxEx1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxEx1.FormattingEnabled = true;
-			this.comboBoxEx1.ImageList = null;
 			this.comboBoxEx1.Location = new System.Drawing.Point(3, 3);
 			this.comboBoxEx1.Name = "comboBoxEx1";
-			this.comboBoxEx1.Size = new System.Drawing.Size(228, 21);
+			this.comboBoxEx1.Size = new System.Drawing.Size(388, 21);
 			this.comboBoxEx1.TabIndex = 0;
 			// 
 			// dataGridView1

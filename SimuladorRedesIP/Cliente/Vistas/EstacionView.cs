@@ -26,6 +26,7 @@ namespace RedesIP.Vistas
 		List<SwitchView> _switches = new List<SwitchView>();
 		List<Conexion> _conexiones = new List<Conexion>();
 		List<Marcador> _marcadores = new List<Marcador>();
+		Dictionary<Guid, Marcador> _diccioMarcadores = new Dictionary<Guid, Marcador>();
 		public void EstablecerServer(EstacionServer server)
 		{
 			_server = server;
@@ -174,13 +175,33 @@ namespace RedesIP.Vistas
 				{
 					if (_conexiones[i].HitTest(e.X,e.Y))
 					{
-						_marcadores.Add(new Marcador(Guid.NewGuid(), _conexiones[i]));
+						bool yaEstaSeleccionado=false;
+						for (int j = 0; j < _marcadores.Count; j++)
+						{
+							if (_marcadores[j].Conexion == _conexiones[i])
+							{
+								yaEstaSeleccionado = true;
+								break;
+							}
+						}
+						if (!yaEstaSeleccionado)
+						{
+							Marcador marcador = new Marcador(Guid.NewGuid(), _conexiones[i]);
+							_marcadores.Add(marcador);
+							_diccioMarcadores.Add(marcador.Id, marcador);
+							if (NuevoMarcador != null)
+							{
+								NuevoMarcador(this, new NuevoMarcadorEventArgs(marcador));
+							}
+						}
 					}
 				}
 			}
 
 
 		}
+
+		public event EventHandler<NuevoMarcadorEventArgs> NuevoMarcador;
 
 
 		public void CambiarHerramienta(Herramienta herramienta)
@@ -267,7 +288,20 @@ namespace RedesIP.Vistas
 			_switches.Clear();
 			_computadores.Clear();
 			_marcadores.Clear();
+			_diccioMarcadores.Clear();
+		}
 
+		#endregion
+
+		#region EstacionServerCallback Members
+
+		public event EventHandler<NuevoMensajeEventArgs> NuevoMensaje;
+		public void EnviarInformacionConexion(Guid idConexion, string info)
+		{
+			if (NuevoMensaje != null)
+			{
+				NuevoMensaje(this, new NuevoMensajeEventArgs(idConexion, info));
+			}
 		}
 
 		#endregion
