@@ -70,10 +70,18 @@ namespace RedesIP.Vistas
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
 			base.OnMouseUp(e);
-			if (_herramientaActual == Herramienta.CreacionEquipos && _tipoDeEquipo == TipoDeEquipo.Computador)
+			if (_herramientaActual == Herramienta.CreacionEquipos)
 			{
-				InsertarComputador(e.X, e.Y);
+				if (_tipoDeEquipo == TipoDeEquipo.Computador)
+				{
+					InsertarComputador(e.X, e.Y);
+				}
+				if (_tipoDeEquipo == TipoDeEquipo.Switch)
+				{
+					InsertarSwitch(e.X, e.Y);
+				}
 				Invalidate();
+				_herramientaActual =Herramienta.Seleccion;
 			}
 			
 

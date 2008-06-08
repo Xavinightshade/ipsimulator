@@ -67,6 +67,13 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap pointer {
+            get {
+                object obj = ResourceManager.GetObject("pointer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap PuertoEthernet {
             get {
                 object obj = ResourceManager.GetObject("PuertoEthernet", resourceCulture);

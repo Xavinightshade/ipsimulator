@@ -66,6 +66,7 @@ namespace SimuladorCliente
 			// toolStripButton1
 			// 
 			this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton1.Image = global::SimuladorCliente.Properties.Resources.pointer;
 			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
@@ -90,6 +91,7 @@ namespace SimuladorCliente
 			this.toolStripButton3.Name = "toolStripButton3";
 			this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton3.Text = "toolStripButton3";
+			this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
 			// 
 			// _estacionView
 			// 

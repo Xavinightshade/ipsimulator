@@ -37,19 +37,17 @@ namespace SimuladorCliente
 
 
 	
-		pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
-		pc2 = new ComputadorLogico("pc2", MACAddress.Direccion(4, 5, 6));
-		//    CableDeRed cab=new CableDeRed(pc,pc2);
-		SwitchLogico swi = new SwitchLogico(30);
-		SwitchLogico swi2 = new SwitchLogico(30);
+		//pc = new ComputadorLogico("pc1", MACAddress.Direccion(1, 2, 3));
+		//pc2 = new ComputadorLogico("pc2", MACAddress.Direccion(4, 5, 6));
+		////    CableDeRed cab=new CableDeRed(pc,pc2);
+		//SwitchLogico swi = new SwitchLogico(30);
+		//SwitchLogico swi2 = new SwitchLogico(30);
 
-		CableDeRedLogico cab2 = new CableDeRedLogico(pc.PuertoEthernet, swi.PuertosEthernet[0]);
-		CableDeRedLogico cab3 = new CableDeRedLogico(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
-		CableDeRedLogico cab4 = new CableDeRedLogico(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
+		//CableDeRedLogico cab2 = new CableDeRedLogico(pc.PuertoEthernet, swi.PuertosEthernet[0]);
+		//CableDeRedLogico cab3 = new CableDeRedLogico(swi.PuertosEthernet[1], swi2.PuertosEthernet[0]);
+		//CableDeRedLogico cab4 = new CableDeRedLogico(pc2.PuertoEthernet, swi2.PuertosEthernet[1]);
 
-		_estacionView.InsertarComputador(50, 50);
-		_estacionView.InsertarComputador(100, 100);
-		_estacionView.InsertarSwitch(200, 200);
+
 
 			
 
@@ -65,6 +63,11 @@ namespace SimuladorCliente
 		private void toolStripButton1_Click(object sender, EventArgs e)
 		{
 			_estacionView.CambiarHerramientaNada();
+		}
+
+		private void toolStripButton3_Click(object sender, EventArgs e)
+		{
+			_estacionView.CrearEquipo(TipoDeEquipo.Switch);
 		}
 
 
