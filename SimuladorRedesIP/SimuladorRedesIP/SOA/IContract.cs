@@ -43,6 +43,7 @@ namespace RedesIP.SOA
 	public class Contrato : IContract
 	{
 		private List<ICallBackContract> _clientes = new List<ICallBackContract>();
+		private Dictionary<Guid, EquipoSOA> _diccioEquipos = new Dictionary<Guid, EquipoSOA>();
 		private void RegistrarCliente()
 		{
 			ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
@@ -73,6 +74,7 @@ namespace RedesIP.SOA
 					break;
 			}
 			_equipos.Add(equipo);
+			_diccioEquipos.Add(equipo.Id, equipo);
 			
 			foreach (ICallBackContract cliente in _clientes)
 			{
@@ -83,6 +85,8 @@ namespace RedesIP.SOA
 
 		public void PeticionMoverEquipo(Guid idEquipo, int x, int y)
 		{
+			_diccioEquipos[idEquipo].X = x;
+			_diccioEquipos[idEquipo].Y = y;
 			
 			foreach (ICallBackContract cliente in _clientes)
 			{
@@ -94,10 +98,10 @@ namespace RedesIP.SOA
 		public void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2)
 		{
 			Guid idConexion = Guid.NewGuid();
+			ConexionSOA conexion = new ConexionSOA(idConexion, idPuerto1, idPuerto2);
+			_conexiones.Add(conexion);
 			foreach (ICallBackContract cliente in _clientes)
 			{
-				ConexionSOA conexion = new ConexionSOA(idConexion, idPuerto1, idPuerto2);
-				_conexiones.Add(conexion);
 				cliente.ConectarPuertos(conexion);
 			}
 		}
