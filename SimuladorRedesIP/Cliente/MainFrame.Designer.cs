@@ -34,9 +34,9 @@ namespace SimuladorCliente
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-			this.button1 = new System.Windows.Forms.Button();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.button1 = new System.Windows.Forms.Button();
 			this._estacionView = new RedesIP.Vistas.EstacionView();
 			this.toolStrip1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -66,48 +66,41 @@ namespace SimuladorCliente
 			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton1.Text = "toolStripButton1";
+			this.toolStripButton1.Text = "Puntero";
 			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
 			// 
 			// toolStripButton2
 			// 
 			this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton2.Enabled = false;
 			this.toolStripButton2.Image = global::SimuladorCliente.Properties.Resources.Computador;
 			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton2.Name = "toolStripButton2";
 			this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton2.Text = "toolStripButton2";
+			this.toolStripButton2.Text = "Crear Computador";
 			this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
 			// 
 			// toolStripButton3
 			// 
 			this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton3.Enabled = false;
 			this.toolStripButton3.Image = global::SimuladorCliente.Properties.Resources.Switch;
 			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton3.Name = "toolStripButton3";
 			this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton3.Text = "toolStripButton3";
+			this.toolStripButton3.Text = "Crear Switch";
 			this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
 			// 
 			// toolStripButton4
 			// 
 			this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton4.Enabled = false;
 			this.toolStripButton4.Image = global::SimuladorCliente.Properties.Resources.PuertoEthernet;
 			this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton4.Name = "toolStripButton4";
 			this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton4.Text = "toolStripButton4";
+			this.toolStripButton4.Text = "Conectar Equipos";
 			this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(257, 3);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(155, 21);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// splitContainer1
 			// 
@@ -139,8 +132,18 @@ namespace SimuladorCliente
 			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(1185, 141);
+			this.dataGridView1.Size = new System.Drawing.Size(146, 42);
 			this.dataGridView1.TabIndex = 0;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(115, 0);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(113, 23);
+			this.button1.TabIndex = 4;
+			this.button1.Text = "Conectar al Servidor";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// _estacionView
 			// 
@@ -158,13 +161,12 @@ namespace SimuladorCliente
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(1189, 802);
-			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.toolStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainFrame";
 			this.Text = "Simulador";
-			this.Load += new System.EventHandler(this.MainFrame_Load);
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
@@ -185,9 +187,9 @@ namespace SimuladorCliente
 		private System.Windows.Forms.ToolStripButton toolStripButton2;
 		private System.Windows.Forms.ToolStripButton toolStripButton3;
 		private System.Windows.Forms.ToolStripButton toolStripButton4;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.Button button1;
 
 
 

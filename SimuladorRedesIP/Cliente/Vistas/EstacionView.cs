@@ -76,8 +76,8 @@ namespace RedesIP.Vistas
 						}
 						else
 						{
-							if (_puertos[i]!=_puerto1)
-							_puertos[i].Seleccionado = false;
+							if (_puertos[i] != _puerto1)
+								_puertos[i].Seleccionado = false;
 						}
 						Invalidate();
 
@@ -124,9 +124,9 @@ namespace RedesIP.Vistas
 			base.OnMouseUp(e);
 			if (_herramientaActual == Herramienta.CreacionEquipos)
 			{
-					_server.PeticionCrearEquipo(_tipoDeEquipo, e.X, e.Y);					
+				_server.PeticionCrearEquipo(_tipoDeEquipo, e.X, e.Y);
 				Invalidate();
-				_herramientaActual =Herramienta.Seleccion;
+				_herramientaActual = Herramienta.Seleccion;
 			}
 			if (_herramientaActual == Herramienta.Conectar)
 			{
@@ -138,19 +138,18 @@ namespace RedesIP.Vistas
 						{
 							_puertos[i].Seleccionado = true;
 							_puerto1 = _puertos[i];
-							Invalidate();
 						}
 						else
 						{
 							_server.PeticionConectarPuertos(_puerto1.Id, _puertos[i].Id);
-							_puerto1=null;							
+							_puerto1 = null;
 						}
 						break;
 					}
 				}
 
 			}
-			
+
 
 		}
 
@@ -197,23 +196,16 @@ namespace RedesIP.Vistas
 
 		#endregion
 
-		#region ICallBackContract Members
 
-
-		public void ConectarPuertos(Guid idPuerto1, Guid idPuerto2)
-		{
-			throw new NotImplementedException();
-		}
-
-		#endregion
 
 		#region ICallBackContract Members
 
 
 		public void ConectarPuertos(ConexionSOA conexion)
 		{
-			
+
 			_conexiones.Add(new Conexion(conexion.Id, _diccioPuertos[conexion.IdPuerto1], _diccioPuertos[conexion.IdPuerto2]));
+			Invalidate();
 		}
 
 		#endregion
@@ -224,7 +216,28 @@ namespace RedesIP.Vistas
 
 		public void ActualizarEstacion(EquipoSOA[] equipos, ConexionSOA[] conexiones)
 		{
-			
+			LimpiarEstacion();
+			for (int i = 0; i < equipos.Length; i++)
+			{
+				CrearEquipo(equipos[i]);
+			}
+			for (int i = 0; i < conexiones.Length; i++)
+			{
+				ConectarPuertos(conexiones[i]);
+			}
+			Invalidate();
+		}
+
+		private void LimpiarEstacion()
+		{
+			_conexiones.Clear();
+			_diccioPuertos.Clear();
+			_puertos.Clear();
+			_puerto1 = null;
+			_equipos.Clear();
+			_switches.Clear();
+			_computadores.Clear();
+
 		}
 
 		#endregion

@@ -15,6 +15,8 @@ namespace RedesIP.SOA
 		[OperationContract()]
 		void PeticionCrearEquipo(TipoDeEquipo tipoEquipo, int x, int y);
 		[OperationContract()]
+		void Conectar();
+		[OperationContract()]
 		void PeticionMoverEquipo(Guid idEquipo, int x, int y);
 		[OperationContract()]
 		void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2);
@@ -46,9 +48,10 @@ namespace RedesIP.SOA
 				return;
 			_clientes.Add(cliente);
 		}
+		private List<EquipoSOA> _equipos = new List<EquipoSOA>();
+		private List<ConexionSOA> _conexiones = new List<ConexionSOA>();
 		public void PeticionCrearEquipo(TipoDeEquipo tipoEquipo, int x, int y)
 		{
-			RegistrarCliente();
 			EquipoSOA equipo = new EquipoSOA(tipoEquipo, Guid.NewGuid(), x, y);
 			switch (tipoEquipo)
 			{
@@ -67,6 +70,8 @@ namespace RedesIP.SOA
 				default:
 					break;
 			}
+			_equipos.Add(equipo);
+			
 			foreach (ICallBackContract cliente in _clientes)
 			{
 				cliente.CrearEquipo(equipo);
@@ -76,7 +81,7 @@ namespace RedesIP.SOA
 
 		public void PeticionMoverEquipo(Guid idEquipo, int x, int y)
 		{
-			RegistrarCliente();
+			
 			foreach (ICallBackContract cliente in _clientes)
 			{
 				cliente.MoverEquipo(idEquipo, x, y);
@@ -86,11 +91,11 @@ namespace RedesIP.SOA
 
 		public void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2)
 		{
-			RegistrarCliente();
 			Guid idConexion = Guid.NewGuid();
 			foreach (ICallBackContract cliente in _clientes)
 			{
 				ConexionSOA conexion = new ConexionSOA(idConexion, idPuerto1, idPuerto2);
+				_conexiones.Add(conexion);
 				cliente.ConectarPuertos(conexion);
 			}
 		}
@@ -103,6 +108,19 @@ namespace RedesIP.SOA
 		public void PeticionActualizarEstacion()
 		{
 			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region IContract Members
+
+
+		public void Conectar()
+		{
+			RegistrarCliente();
+			ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
+			cliente.ActualizarEstacion(_equipos, _conexiones);
+			
 		}
 
 		#endregion

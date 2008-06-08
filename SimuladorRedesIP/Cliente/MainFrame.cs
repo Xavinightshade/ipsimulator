@@ -62,35 +62,52 @@ namespace SimuladorCliente
 		private void toolStripButton2_Click(object sender, EventArgs e)
 		{
 			_estacionView.CrearEquipo(TipoDeEquipo.Computador);
+			toolStripButton1.Enabled = true;
+			toolStripButton3.Enabled = true;
+			toolStripButton4.Enabled = true;
 		}
 
 		private void toolStripButton1_Click(object sender, EventArgs e)
 		{
 			_estacionView.CambiarHerramienta(Herramienta.Seleccion);
+			toolStripButton2.Enabled = true;
+			toolStripButton3.Enabled = true;
+			toolStripButton4.Enabled = true;
 		}
 
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
 			_estacionView.CrearEquipo(TipoDeEquipo.Switch);
+			toolStripButton2.Enabled = true;
+			toolStripButton1.Enabled = true;
+			toolStripButton4.Enabled = true;
 		}
 
 		private void toolStripButton4_Click(object sender, EventArgs e)
 		{
 			_estacionView.CambiarHerramienta(Herramienta.Conectar);
+			toolStripButton2.Enabled = true;
+			toolStripButton3.Enabled = true;
+			toolStripButton1.Enabled = true;
 		}
+
+	
+
 
 		private void button1_Click(object sender, EventArgs e)
 		{
 			EstacionServerClient clien = new EstacionServerClient(new InstanceContext(_estacionView), "TcpBinding");
-			
-			
+
+
 			_estacionView.EstablecerServer(clien);
 			clien.Open();
+			clien.Conectar();
 			splitContainer1.Panel2Collapsed = false;
-		}
-
-		private void MainFrame_Load(object sender, EventArgs e)
-		{
+			button1.Visible = false;
+			toolStripButton1.Enabled = true;
+			toolStripButton2.Enabled = true;
+			toolStripButton3.Enabled = true;
+			toolStripButton4.Enabled = true;
 
 		}
 
