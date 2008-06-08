@@ -10,190 +10,262 @@
 
 namespace RedesIP
 {
-	using System.Runtime.Serialization;
-
-
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-	[System.Runtime.Serialization.DataContractAttribute(Name = "TipoDeEquipo", Namespace = "http://schemas.datacontract.org/2004/07/RedesIP")]
-	public enum TipoDeEquipo : int
-	{
-
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Ninguno = 0,
-
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Computador = 1,
-
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Switch = 2,
-	}
+    using System.Runtime.Serialization;
+    
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TipoDeEquipo", Namespace="http://schemas.datacontract.org/2004/07/RedesIP")]
+    public enum TipoDeEquipo : int
+    {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ninguno = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Computador = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Switch = 2,
+    }
 }
 namespace RedesIP.SOA
 {
-	using System.Runtime.Serialization;
-
-
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-	[System.Runtime.Serialization.DataContractAttribute(Name = "EquipoSOA", Namespace = "http://schemas.datacontract.org/2004/07/RedesIP.SOA")]
-	public partial class EquipoSOA : object, System.Runtime.Serialization.IExtensibleDataObject
-	{
-
-		private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-
-		private System.Guid IdField;
-
-		private RedesIP.SOA.PuertoSOA[] PuertosField;
-
-		private RedesIP.TipoDeEquipo TipoEquipoField;
-
-		private int XField;
-
-		private int YField;
-
-		public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-		{
-			get
-			{
-				return this.extensionDataField;
-			}
-			set
-			{
-				this.extensionDataField = value;
-			}
-		}
-
-		[System.Runtime.Serialization.DataMemberAttribute()]
-		public System.Guid Id
-		{
-			get
-			{
-				return this.IdField;
-			}
-			set
-			{
-				this.IdField = value;
-			}
-		}
-
-		[System.Runtime.Serialization.DataMemberAttribute()]
-		public RedesIP.SOA.PuertoSOA[] Puertos
-		{
-			get
-			{
-				return this.PuertosField;
-			}
-			set
-			{
-				this.PuertosField = value;
-			}
-		}
-
-		[System.Runtime.Serialization.DataMemberAttribute()]
-		public RedesIP.TipoDeEquipo TipoEquipo
-		{
-			get
-			{
-				return this.TipoEquipoField;
-			}
-			set
-			{
-				this.TipoEquipoField = value;
-			}
-		}
-
-		[System.Runtime.Serialization.DataMemberAttribute()]
-		public int X
-		{
-			get
-			{
-				return this.XField;
-			}
-			set
-			{
-				this.XField = value;
-			}
-		}
-
-		[System.Runtime.Serialization.DataMemberAttribute()]
-		public int Y
-		{
-			get
-			{
-				return this.YField;
-			}
-			set
-			{
-				this.YField = value;
-			}
-		}
-	}
-
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-	[System.Runtime.Serialization.DataContractAttribute(Name = "PuertoSOA", Namespace = "http://schemas.datacontract.org/2004/07/RedesIP.SOA")]
-	public partial class PuertoSOA : object, System.Runtime.Serialization.IExtensibleDataObject
-	{
-
-		private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-
-		private System.Guid IdField;
-
-		public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-		{
-			get
-			{
-				return this.extensionDataField;
-			}
-			set
-			{
-				this.extensionDataField = value;
-			}
-		}
-
-		[System.Runtime.Serialization.DataMemberAttribute()]
-		public System.Guid Id
-		{
-			get
-			{
-				return this.IdField;
-			}
-			set
-			{
-				this.IdField = value;
-			}
-		}
-	}
+    using System.Runtime.Serialization;
+    
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EquipoSOA", Namespace="http://schemas.datacontract.org/2004/07/RedesIP.SOA")]
+    public partial class EquipoSOA : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private System.Guid IdField;
+        
+        private RedesIP.SOA.PuertoSOA[] PuertosField;
+        
+        private RedesIP.TipoDeEquipo TipoEquipoField;
+        
+        private int XField;
+        
+        private int YField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RedesIP.SOA.PuertoSOA[] Puertos
+        {
+            get
+            {
+                return this.PuertosField;
+            }
+            set
+            {
+                this.PuertosField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RedesIP.TipoDeEquipo TipoEquipo
+        {
+            get
+            {
+                return this.TipoEquipoField;
+            }
+            set
+            {
+                this.TipoEquipoField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int X
+        {
+            get
+            {
+                return this.XField;
+            }
+            set
+            {
+                this.XField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Y
+        {
+            get
+            {
+                return this.YField;
+            }
+            set
+            {
+                this.YField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PuertoSOA", Namespace="http://schemas.datacontract.org/2004/07/RedesIP.SOA")]
+    public partial class PuertoSOA : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private System.Guid IdField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConexionSOA", Namespace="http://schemas.datacontract.org/2004/07/RedesIP.SOA")]
+    public partial class ConexionSOA : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private System.Guid IdField;
+        
+        private System.Guid IdPuerto1Field;
+        
+        private System.Guid IdPuerto2Field;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdPuerto1
+        {
+            get
+            {
+                return this.IdPuerto1Field;
+            }
+            set
+            {
+                this.IdPuerto1Field = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdPuerto2
+        {
+            get
+            {
+                return this.IdPuerto2Field;
+            }
+            set
+            {
+                this.IdPuerto2Field = value;
+            }
+        }
+    }
 }
 
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
-[System.ServiceModel.ServiceContractAttribute(ConfigurationName = "EstacionServer", CallbackContract = typeof(EstacionServerCallback), SessionMode = System.ServiceModel.SessionMode.Required)]
+[System.ServiceModel.ServiceContractAttribute(ConfigurationName="EstacionServer", CallbackContract=typeof(EstacionServerCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
 public interface EstacionServer
 {
-
-	[System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/EstacionServer/PeticionCrearEquipo", ReplyAction = "http://tempuri.org/EstacionServer/PeticionCrearEquipoResponse")]
-	void PeticionCrearEquipo(RedesIP.TipoDeEquipo tipoEquipo, int x, int y);
-
-	[System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/EstacionServer/PeticionMoverEquipo", ReplyAction = "http://tempuri.org/EstacionServer/PeticionMoverEquipoResponse")]
-	void PeticionMoverEquipo(System.Guid idEquipo, int x, int y);
-
-	[System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/EstacionServer/PeticionConectarPuertos", ReplyAction = "http://tempuri.org/EstacionServer/PeticionConectarPuertosResponse")]
-	void PeticionConectarPuertos(System.Guid idPuerto1, System.Guid idPuerto2);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionCrearEquipo", ReplyAction="http://tempuri.org/EstacionServer/PeticionCrearEquipoResponse")]
+    void PeticionCrearEquipo(RedesIP.TipoDeEquipo tipoEquipo, int x, int y);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionMoverEquipo", ReplyAction="http://tempuri.org/EstacionServer/PeticionMoverEquipoResponse")]
+    void PeticionMoverEquipo(System.Guid idEquipo, int x, int y);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionConectarPuertos", ReplyAction="http://tempuri.org/EstacionServer/PeticionConectarPuertosResponse")]
+    void PeticionConectarPuertos(System.Guid idPuerto1, System.Guid idPuerto2);
+    
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionActualizarEstacion", ReplyAction="http://tempuri.org/EstacionServer/PeticionActualizarEstacionResponse")]
+    void PeticionActualizarEstacion();
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
 public interface EstacionServerCallback
 {
-
-	[System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/EstacionServer/CrearEquipo")]
-	void CrearEquipo(RedesIP.SOA.EquipoSOA equipo);
-
-	[System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/EstacionServer/MoverEquipo")]
-	void MoverEquipo(System.Guid idEquipo, int x, int y);
-
-	[System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/EstacionServer/ConectarPuertos")]
-	void ConectarPuertos(System.Guid idConexion, System.Guid idPuerto1, System.Guid idPuerto2);
+    
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/CrearEquipo")]
+    void CrearEquipo(RedesIP.SOA.EquipoSOA equipo);
+    
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/MoverEquipo")]
+    void MoverEquipo(System.Guid idEquipo, int x, int y);
+    
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/ConectarPuertos")]
+    void ConectarPuertos(RedesIP.SOA.ConexionSOA conexion);
+    
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/ActualizarEstacion")]
+    void ActualizarEstacion(RedesIP.SOA.EquipoSOA[] equipos, RedesIP.SOA.ConexionSOA[] conexiones);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -205,44 +277,49 @@ public interface EstacionServerChannel : EstacionServer, System.ServiceModel.ICl
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
 public partial class EstacionServerClient : System.ServiceModel.DuplexClientBase<EstacionServer>, EstacionServer
 {
-
-	public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance) :
-		base(callbackInstance)
-	{
-	}
-
-	public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) :
-		base(callbackInstance, endpointConfigurationName)
-	{
-	}
-
-	public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) :
-		base(callbackInstance, endpointConfigurationName, remoteAddress)
-	{
-	}
-
-	public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-		base(callbackInstance, endpointConfigurationName, remoteAddress)
-	{
-	}
-
-	public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-		base(callbackInstance, binding, remoteAddress)
-	{
-	}
-
-	public void PeticionCrearEquipo(RedesIP.TipoDeEquipo tipoEquipo, int x, int y)
-	{
-		base.Channel.PeticionCrearEquipo(tipoEquipo, x, y);
-	}
-
-	public void PeticionMoverEquipo(System.Guid idEquipo, int x, int y)
-	{
-		base.Channel.PeticionMoverEquipo(idEquipo, x, y);
-	}
-
-	public void PeticionConectarPuertos(System.Guid idPuerto1, System.Guid idPuerto2)
-	{
-		base.Channel.PeticionConectarPuertos(idPuerto1, idPuerto2);
-	}
+    
+    public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance) : 
+            base(callbackInstance)
+    {
+    }
+    
+    public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+            base(callbackInstance, endpointConfigurationName)
+    {
+    }
+    
+    public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+            base(callbackInstance, endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(callbackInstance, endpointConfigurationName, remoteAddress)
+    {
+    }
+    
+    public EstacionServerClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+            base(callbackInstance, binding, remoteAddress)
+    {
+    }
+    
+    public void PeticionCrearEquipo(RedesIP.TipoDeEquipo tipoEquipo, int x, int y)
+    {
+        base.Channel.PeticionCrearEquipo(tipoEquipo, x, y);
+    }
+    
+    public void PeticionMoverEquipo(System.Guid idEquipo, int x, int y)
+    {
+        base.Channel.PeticionMoverEquipo(idEquipo, x, y);
+    }
+    
+    public void PeticionConectarPuertos(System.Guid idPuerto1, System.Guid idPuerto2)
+    {
+        base.Channel.PeticionConectarPuertos(idPuerto1, idPuerto2);
+    }
+    
+    public void PeticionActualizarEstacion()
+    {
+        base.Channel.PeticionActualizarEstacion();
+    }
 }

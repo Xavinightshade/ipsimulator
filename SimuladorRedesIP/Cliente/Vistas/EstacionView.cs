@@ -210,10 +210,21 @@ namespace RedesIP.Vistas
 		#region ICallBackContract Members
 
 
-		public void ConectarPuertos(Guid idConexion, Guid idPuerto1, Guid idPuerto2)
+		public void ConectarPuertos(ConexionSOA conexion)
 		{
 			
-			_conexiones.Add(new Conexion(idConexion, _diccioPuertos[idPuerto1], _diccioPuertos[idPuerto2]));
+			_conexiones.Add(new Conexion(conexion.Id, _diccioPuertos[conexion.IdPuerto1], _diccioPuertos[conexion.IdPuerto2]));
+		}
+
+		#endregion
+
+
+		#region EstacionServerCallback Members
+
+
+		public void ActualizarEstacion(EquipoSOA[] equipos, ConexionSOA[] conexiones)
+		{
+			
 		}
 
 		#endregion
