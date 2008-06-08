@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="Vistas\Componentes\PuertoEthernetView.cs">
     </Compile>
+    <Compile Include="Vistas\Conexion.cs" />
     <Compile Include="Vistas\ElementoGrafico.cs" />
     <Compile Include="Vistas\ElementoGraficoCuadrado.cs" />
     <Compile Include="Vistas\EventCambioEnPosicionArgs.cs" />

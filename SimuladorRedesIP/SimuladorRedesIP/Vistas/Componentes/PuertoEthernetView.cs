@@ -15,10 +15,9 @@ namespace RedesIP.Vistas.Equipos.Componentes
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{
-			int origenX = ElementoPadre.Dimension.OrigenX + Dimension.OrigenX;
-			int origenY = ElementoPadre.Dimension.OrigenY + Dimension.OrigenY;
-			grafico.FillRectangle(Brushes.Black, origenX, origenY, Dimension.Ancho, Dimension.Alto);
-			grafico.DrawRectangle(new Pen(Color.White), origenX, origenY, Dimension.Ancho, Dimension.Alto);
+
+			grafico.FillRectangle(Brushes.Black, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
+			grafico.DrawRectangle(new Pen(Color.White), DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
 
 		}
 
