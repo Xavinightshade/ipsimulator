@@ -30,20 +30,25 @@ namespace SimuladorCliente
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.button1 = new System.Windows.Forms.Button();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.button1 = new System.Windows.Forms.Button();
+			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
 			this._estacionView = new RedesIP.Vistas.EstacionView();
+			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.sniffer1 = new SimuladorCliente.Sniffer();
+			this.sniffer2 = new SimuladorCliente.Sniffer();
 			this.toolStrip1.SuspendLayout();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
+			this.splitContainer2.Panel1.SuspendLayout();
+			this.splitContainer2.Panel2.SuspendLayout();
+			this.splitContainer2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// toolStrip1
@@ -52,12 +57,46 @@ namespace SimuladorCliente
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
-            this.toolStripButton4});
+            this.toolStripButton4,
+            this.toolStripButton5});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(1189, 25);
 			this.toolStrip1.TabIndex = 1;
 			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.AutoScroll = true;
+			this.splitContainer1.Panel1.Controls.Add(this._estacionView);
+			this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.AutoScroll = true;
+			this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+			this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.splitContainer1.Size = new System.Drawing.Size(1189, 777);
+			this.splitContainer1.SplitterDistance = 628;
+			this.splitContainer1.TabIndex = 3;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(140, 0);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(113, 23);
+			this.button1.TabIndex = 4;
+			this.button1.Text = "Conectar al Servidor";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// toolStripButton1
 			// 
@@ -102,48 +141,15 @@ namespace SimuladorCliente
 			this.toolStripButton4.Text = "Conectar Equipos";
 			this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
 			// 
-			// splitContainer1
+			// toolStripButton5
 			// 
-			this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-			this.splitContainer1.Name = "splitContainer1";
-			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
-			// splitContainer1.Panel1
-			// 
-			this.splitContainer1.Panel1.AutoScroll = true;
-			this.splitContainer1.Panel1.Controls.Add(this._estacionView);
-			this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			// 
-			// splitContainer1.Panel2
-			// 
-			this.splitContainer1.Panel2.AutoScroll = true;
-			this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-			this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.splitContainer1.Panel2Collapsed = true;
-			this.splitContainer1.Size = new System.Drawing.Size(1189, 777);
-			this.splitContainer1.SplitterDistance = 628;
-			this.splitContainer1.TabIndex = 3;
-			// 
-			// dataGridView1
-			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(146, 42);
-			this.dataGridView1.TabIndex = 0;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(115, 0);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(113, 23);
-			this.button1.TabIndex = 4;
-			this.button1.Text = "Conectar al Servidor";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+			this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton5.Name = "toolStripButton5";
+			this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton5.Text = "toolStripButton5";
+			this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
 			// 
 			// _estacionView
 			// 
@@ -151,9 +157,43 @@ namespace SimuladorCliente
 			this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._estacionView.Location = new System.Drawing.Point(0, 0);
 			this._estacionView.Name = "_estacionView";
-			this._estacionView.Size = new System.Drawing.Size(1185, 773);
+			this._estacionView.Size = new System.Drawing.Size(1185, 624);
 			this._estacionView.TabIndex = 0;
 			this._estacionView.TabStop = false;
+			// 
+			// splitContainer2
+			// 
+			this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+			this.splitContainer2.Name = "splitContainer2";
+			// 
+			// splitContainer2.Panel1
+			// 
+			this.splitContainer2.Panel1.Controls.Add(this.sniffer1);
+			// 
+			// splitContainer2.Panel2
+			// 
+			this.splitContainer2.Panel2.Controls.Add(this.sniffer2);
+			this.splitContainer2.Size = new System.Drawing.Size(1189, 145);
+			this.splitContainer2.SplitterDistance = 396;
+			this.splitContainer2.TabIndex = 0;
+			// 
+			// sniffer1
+			// 
+			this.sniffer1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.sniffer1.Location = new System.Drawing.Point(0, 0);
+			this.sniffer1.Name = "sniffer1";
+			this.sniffer1.Size = new System.Drawing.Size(392, 421);
+			this.sniffer1.TabIndex = 0;
+			// 
+			// sniffer2
+			// 
+			this.sniffer2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.sniffer2.Location = new System.Drawing.Point(0, 0);
+			this.sniffer2.Name = "sniffer2";
+			this.sniffer2.Size = new System.Drawing.Size(785, 421);
+			this.sniffer2.TabIndex = 1;
 			// 
 			// MainFrame
 			// 
@@ -173,8 +213,10 @@ namespace SimuladorCliente
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();
+			this.splitContainer2.Panel1.ResumeLayout(false);
+			this.splitContainer2.Panel2.ResumeLayout(false);
+			this.splitContainer2.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -189,8 +231,11 @@ namespace SimuladorCliente
 		private System.Windows.Forms.ToolStripButton toolStripButton3;
 		private System.Windows.Forms.ToolStripButton toolStripButton4;
 		private System.Windows.Forms.SplitContainer splitContainer1;
-		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.ToolStripButton toolStripButton5;
+		private System.Windows.Forms.SplitContainer splitContainer2;
+		private Sniffer sniffer1;
+		private Sniffer sniffer2;
 
 
 

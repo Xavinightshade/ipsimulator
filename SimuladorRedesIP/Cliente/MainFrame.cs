@@ -120,6 +120,11 @@ namespace SimuladorCliente
 			}
 		}
 
+		private void toolStripButton5_Click(object sender, EventArgs e)
+		{
+			_estacionView.CambiarHerramienta(Herramienta.Marcadores);
+		}
+
 
 
 

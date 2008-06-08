@@ -8,6 +8,7 @@ using RedesIP.Vistas.Equipos;
 using RedesIP.Vistas.Equipos.Componentes;
 using RedesIP.SOA;
 using System.ServiceModel;
+using SimuladorCliente.Vistas;
 
 namespace RedesIP.Vistas
 {
@@ -24,6 +25,7 @@ namespace RedesIP.Vistas
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
 		List<Conexion> _conexiones = new List<Conexion>();
+		List<Marcador> _marcadores = new List<Marcador>();
 		public void EstablecerServer(EstacionServer server)
 		{
 			_server = server;
@@ -53,12 +55,25 @@ namespace RedesIP.Vistas
 
 		}
 		private PuertoEthernetView _puerto1;
+		
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
 
 			switch (_herramientaActual)
 			{
+				case Herramienta.Marcadores:
+					for (int i = 0; i < _conexiones.Count; i++)
+					{
+						if (_conexiones[i].HitTest(e.X, e.Y))
+						{
+							_conexiones[i].Seleccionado = true;
+							continue;
+						}
+						_conexiones[i].Seleccionado = false;
+					}
+					Invalidate();
+					break;
 
 				case Herramienta.CreacionEquipos:
 					Cursor = Cursors.Cross;
@@ -106,6 +121,10 @@ namespace RedesIP.Vistas
 			{
 				_conexiones[i].DibujarElemento(g);
 			}
+			for (int i = 0; i < _marcadores.Count; i++)
+			{
+				_marcadores[i].DibujarElemento(g);
+			}
 			base.OnPaint(pe);
 		}
 
@@ -148,6 +167,16 @@ namespace RedesIP.Vistas
 					}
 				}
 
+			}
+			if (_herramientaActual == Herramienta.Marcadores)
+			{
+				for (int i = 0; i < _conexiones.Count; i++)
+				{
+					if (_conexiones[i].HitTest(e.X,e.Y))
+					{
+						_marcadores.Add(new Marcador(Guid.NewGuid(), _conexiones[i]));
+					}
+				}
 			}
 
 
@@ -237,6 +266,7 @@ namespace RedesIP.Vistas
 			_equipos.Clear();
 			_switches.Clear();
 			_computadores.Clear();
+			_marcadores.Clear();
 
 		}
 

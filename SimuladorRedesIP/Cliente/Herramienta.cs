@@ -8,6 +8,7 @@ namespace RedesIP
 	{
 		Seleccion,
 		CreacionEquipos,
-		Conectar
+		Conectar,
+		Marcadores
 	}
 }

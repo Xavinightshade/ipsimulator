@@ -27,7 +27,6 @@ namespace RedesIP.Vistas.Equipos
 		{
 			Dimension.OrigenX = x;
 			Dimension.OrigenY = y;
-			_reg.Invalidate();
 		}
 		private void OnMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
