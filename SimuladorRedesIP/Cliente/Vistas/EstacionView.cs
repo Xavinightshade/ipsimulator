@@ -7,9 +7,13 @@ using RedesIP.Vistas.Utilidades;
 using RedesIP.Vistas.Equipos;
 using RedesIP.Vistas.Equipos.Componentes;
 using RedesIP.SOA;
+using System.ServiceModel;
 
 namespace RedesIP.Vistas
 {
+	[CallbackBehavior(
+	 ConcurrencyMode = ConcurrencyMode.Multiple,
+	 UseSynchronizationContext = false)]
 	public class EstacionView : PictureBox, IRegistroMovimientosMouse, EstacionServerCallback
 	{
 		EstacionServer _server;

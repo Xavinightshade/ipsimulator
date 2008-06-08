@@ -37,6 +37,7 @@ namespace SimuladorCliente
 			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
 			this._estacionView = new RedesIP.Vistas.EstacionView();
+			this.button1 = new System.Windows.Forms.Button();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
 			this.SuspendLayout();
@@ -114,12 +115,23 @@ namespace SimuladorCliente
 			this._estacionView.TabIndex = 0;
 			this._estacionView.TabStop = false;
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(257, 3);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(155, 21);
+			this.button1.TabIndex = 2;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// MainFrame
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(1189, 802);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this._estacionView);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -142,6 +154,7 @@ namespace SimuladorCliente
 		private System.Windows.Forms.ToolStripButton toolStripButton2;
 		private System.Windows.Forms.ToolStripButton toolStripButton3;
 		private System.Windows.Forms.ToolStripButton toolStripButton4;
+		private System.Windows.Forms.Button button1;
 
 
 

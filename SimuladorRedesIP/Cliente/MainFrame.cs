@@ -9,6 +9,7 @@ using RedesIP.Vistas;
 using System.Collections;
 using RedesIP;
 using RedesIP.SOA;
+using System.ServiceModel;
 
 namespace SimuladorCliente
 {
@@ -76,6 +77,15 @@ namespace SimuladorCliente
 		private void toolStripButton4_Click(object sender, EventArgs e)
 		{
 			_estacionView.CambiarHerramienta(Herramienta.Conectar);
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			EstacionServerClient clien = new EstacionServerClient(new InstanceContext(_estacionView), "TcpBinding");
+			
+			
+			_estacionView.EstablecerServer(clien);
+			clien.Open();
 		}
 
 

@@ -34,14 +34,17 @@ namespace RedesIP.SOA
 	 InstanceContextMode = InstanceContextMode.PerCall)]
 	public class Contrato : IContract
 	{
-		List<ICallBackContract> _clientes = new List<ICallBackContract>();
-		public void RegistrarCliente(ICallBackContract cliente)
+		private static List<ICallBackContract> _clientes = new List<ICallBackContract>();
+		private void RegistrarCliente()
 		{
-
+			ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
+			if (_clientes.Contains(cliente))
+				return;
 			_clientes.Add(cliente);
 		}
 		public void PeticionCrearEquipo(TipoDeEquipo tipoEquipo, int x, int y)
 		{
+			RegistrarCliente();
 			EquipoSOA equipo = new EquipoSOA(tipoEquipo,Guid.NewGuid(), x, y);
 			switch (tipoEquipo)
 			{
@@ -69,6 +72,7 @@ namespace RedesIP.SOA
 
 		public void PeticionMoverEquipo(Guid idEquipo, int x, int y)
 		{
+			RegistrarCliente();
 			foreach (ICallBackContract cliente in _clientes)
 			{
 				cliente.MoverEquipo(idEquipo, x, y);	
@@ -78,6 +82,7 @@ namespace RedesIP.SOA
 
 		public void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2)
 		{
+			RegistrarCliente();
 			Guid idConexion = Guid.NewGuid();
 			foreach (ICallBackContract cliente in _clientes)
 			{
