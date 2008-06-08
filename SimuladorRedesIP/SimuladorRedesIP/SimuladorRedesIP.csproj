@@ -102,6 +102,7 @@
     <Compile Include="Vistas\Equipos\RouterView.cs">
     </Compile>
     <Compile Include="Vistas\IRegistroMovimientosMouse.cs" />
+    <Compile Include="Vistas\Punto.cs" />
     <Compile Include="Vistas\Rectangulo.cs" />
     <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
     <Compile Include="Vistas\Equipos\EquipoView.cs">

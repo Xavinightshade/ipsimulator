@@ -11,6 +11,11 @@ namespace RedesIP.Vistas.Equipos
 	{
 		private List<PuertoEthernetView> _puertosEthernet = new List<PuertoEthernetView>();
 
+		public ReadOnlyCollection<PuertoEthernetView> PuertosEthernet
+		{
+			get { return _puertosEthernet.AsReadOnly(); }
+		}
+
 
 		public SwitchView(int origenX, int origenY)
 			:base(origenX,origenY,300,50)

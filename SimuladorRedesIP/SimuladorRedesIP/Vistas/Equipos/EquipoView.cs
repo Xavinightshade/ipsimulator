@@ -40,7 +40,6 @@ namespace RedesIP.Vistas.Equipos
 				
 				if (_elBotonDelMouseEstaPresionado)
 				{
-					Console.WriteLine("hit trur" + i++.ToString());
 					Dimension.OrigenX = this.Dimension.OrigenX+(e.X - _clickOffSetX);
 					Dimension.OrigenY = this.Dimension.OrigenY+(e.Y - _clickOffSetY);
 					_clickOffSetX = e.X;

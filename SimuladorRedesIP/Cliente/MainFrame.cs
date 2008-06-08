@@ -62,12 +62,17 @@ namespace SimuladorCliente
 
 		private void toolStripButton1_Click(object sender, EventArgs e)
 		{
-			_estacionView.CambiarHerramientaNada();
+			_estacionView.CambiarHerramienta(Herramienta.Seleccion);
 		}
 
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
 			_estacionView.CrearEquipo(TipoDeEquipo.Switch);
+		}
+
+		private void toolStripButton4_Click(object sender, EventArgs e)
+		{
+			_estacionView.CambiarHerramienta(Herramienta.Conectar);
 		}
 
 
