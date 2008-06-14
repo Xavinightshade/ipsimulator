@@ -6,14 +6,12 @@ using RedesIP.Modelos.Datos;
 
 namespace RedesIP.Modelos.Equipos.Componentes
 {
-    public interface IEnvioReciboDatos
+	public interface IEnvioReciboDatos
+	{
+		void TransmitirFrame(Frame frame);
+
+		void RecibirFrame(Frame frame);
 
 
-    {
-         void TransmitirFrame(Frame frame);
-
-        void RecibirFrame(Frame frame);
-
-
-    }
+	}
 }

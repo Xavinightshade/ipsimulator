@@ -5,7 +5,7 @@ using System.Runtime.Remoting;
 using System.Collections;
 using System.Runtime.Serialization.Formatters;
 using System.ServiceModel;
-using RedesIP.SOA;
+using RedesIP;
 
 namespace SimuladorServidor
 {
@@ -17,7 +17,7 @@ namespace SimuladorServidor
             Console.WriteLine("Initializing Service...");
 
             // The service configuration is loaded from app.config
-            using (ServiceHost host = new ServiceHost(typeof(Contrato)))
+            using (ServiceHost host = new ServiceHost(typeof(Estacion)))
             {
                 host.Open();
                 

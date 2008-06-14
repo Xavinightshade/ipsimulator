@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Estacion.cs" />
     <Compile Include="Modelos\Logicos\Equipos\EquipoLogico.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
     <Compile Include="Modelos\Logicos\Datos\IMessage.cs" />
@@ -82,7 +83,11 @@
     <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
+    <Compile Include="SOA\ConexionSOA.cs" />
+    <Compile Include="SOA\EquipoSOA.cs" />
+    <Compile Include="SOA\ICallBackContract.cs" />
     <Compile Include="SOA\IContract.cs" />
+    <Compile Include="SOA\PuertoSOA.cs" />
     <Compile Include="TipoDeEquipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Properties\Settings.settings">

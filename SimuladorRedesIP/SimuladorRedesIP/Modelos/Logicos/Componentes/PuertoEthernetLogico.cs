@@ -71,7 +71,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-						Thread.Sleep(r.Next(CalcularVelocidad(Contrato.Porcentaje)));
+						Thread.Sleep(r.Next(CalcularVelocidad(Estacion.Porcentaje)));
 					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
 				}
 				else
@@ -98,7 +98,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-					Thread.Sleep(r.Next(CalcularVelocidad(Contrato.Porcentaje)));
+					Thread.Sleep(r.Next(CalcularVelocidad(Estacion.Porcentaje)));
 					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
 				}
 				else
