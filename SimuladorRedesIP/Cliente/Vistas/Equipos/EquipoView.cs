@@ -74,6 +74,7 @@ namespace RedesIP.Vistas.Equipos
 		public override void DibujarElemento(Graphics grafico)
 		{
 			grafico.DrawImage(Imagen, this.Dimension.OrigenX, this.Dimension.OrigenY, this.Dimension.Ancho, this.Dimension.Alto);
+			Imagen.Dispose();
 		}
 
 	}

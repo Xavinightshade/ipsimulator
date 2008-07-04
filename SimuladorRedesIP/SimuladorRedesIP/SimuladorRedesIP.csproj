@@ -83,11 +83,11 @@
     <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
-    <Compile Include="SOA\ConexionSOA.cs" />
-    <Compile Include="SOA\EquipoSOA.cs" />
+    <Compile Include="SOA\Elementos\ConexionSOA.cs" />
+    <Compile Include="SOA\Elementos\EquipoSOA.cs" />
     <Compile Include="SOA\ICallBackContract.cs" />
     <Compile Include="SOA\IContract.cs" />
-    <Compile Include="SOA\PuertoSOA.cs" />
+    <Compile Include="SOA\Elementos\PuertoSOA.cs" />
     <Compile Include="TipoDeEquipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Properties\Settings.settings">

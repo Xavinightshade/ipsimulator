@@ -73,8 +73,12 @@ namespace RedesIP.Vistas
 			pth.AddLine(_puerto1.DimensionMundo.Centro.X, _puerto1.DimensionMundo.Centro.Y, _puerto2.DimensionMundo.Centro.X, _puerto2.DimensionMundo.Centro.Y);
 			pth.Widen(p);
 			p.Dispose();
-			if (pth.IsVisible(x,y))
+			if (pth.IsVisible(x, y))
+			{
+				pth.Dispose();
 				return true;
+			}
+			pth.Dispose();
 			return false;
 		}
 	}

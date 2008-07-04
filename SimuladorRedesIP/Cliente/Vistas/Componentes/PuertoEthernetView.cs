@@ -38,9 +38,10 @@ namespace RedesIP.Vistas.Equipos.Componentes
 				brush = Brushes.Orange;
 			}
 			grafico.FillRectangle(brush, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
-
-			grafico.DrawRectangle(new Pen(Color.White), DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
-
+			Pen p = new Pen(Color.White);
+			grafico.DrawRectangle(p, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
+		//	brush.Dispose();
+			p.Dispose();
 		}
 
 

@@ -110,6 +110,7 @@ namespace RedesIP.Vistas
 		}
 		protected override void OnPaint(PaintEventArgs pe)
 		{
+			base.OnPaint(pe);
 			Graphics g = pe.Graphics;
 			for (int i = 0; i < _computadores.Count; i++)
 			{
@@ -127,7 +128,7 @@ namespace RedesIP.Vistas
 			{
 				_marcadores[i].DibujarElemento(g);
 			}
-			base.OnPaint(pe);
+		//	g.Dispose();
 		}
 
 
