@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using SourceGrid.Cells.Views;
+using System.Threading;
 
 namespace dockSample
 {
@@ -19,10 +20,21 @@ namespace dockSample
         
            
         }
-        private IView _vista = new CellBackColorAlternate(Color.WhiteSmoke, Color.LightBlue);
+        private IView _vista = new CellBackColorAlternate(Color.White, Color.WhiteSmoke);
+        private delegate void SetLabelTextDelegate(string type, string description);
         public void AddLog(string type, string description)
         {
-            int row = grid.RowsCount;
+            if (this.InvokeRequired)
+            {
+                // Pass the same function to BeginInvoke,
+                // but the call would come on the correct
+                // thread and InvokeRequired will be false.
+                this.BeginInvoke(new SetLabelTextDelegate(AddLog),
+                                                            new object[] { type, description });
+
+                return;
+            }
+            int row = 1;
             grid.Rows.Insert(row);
             
             grid[row, 0] = new SourceGrid.Cells.Cell(DateTime.Now);
@@ -32,8 +44,9 @@ namespace dockSample
             grid[row, 1].View = _vista;
             grid[row, 2].View = _vista;
        
-            grid.Selection.ResetSelection(false);
-            grid.Selection.SelectRow(row, true);
+          //  grid.Selection.ResetSelection(false);
+           // grid.Selection.SelectRow(row, true);
+          //  grid.Selection.FocusRow(1);
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -54,13 +67,34 @@ namespace dockSample
             grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
 
             AddLog("Log", "Application Started");
-            
-            
-            for (int i = 0; i < 200; i++)
+
+
+            for (int i = 0; i < 3; i++)
+            {
+               
                 AddLog("Log", "Application test " + i.ToString());
+            }
 
             grid.Columns.AutoSize(true);
             grid.Columns.StretchToFit();
+        }
+        Thread t;
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (t == null)
+            {
+                t = new Thread(Hola);
+                t.Start();
+            }
+
+        }
+        private void Hola()
+        {
+            for (int i = 0; i < 200; i++)
+            {
+                Thread.Sleep(4);
+                AddLog("Log", "Application test " + i.ToString());
+            }
         }
     }
     public class CellBackColorAlternate : SourceGrid.Cells.Views.Cell
