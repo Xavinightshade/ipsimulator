@@ -60,16 +60,9 @@ namespace dockSample.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap n522141547_487801_4749 {
+        internal static System.Drawing.Bitmap visual {
             get {
-                object obj = ResourceManager.GetObject("n522141547_487801_4749", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap n522141547_699898_135 {
-            get {
-                object obj = ResourceManager.GetObject("n522141547_699898_135", resourceCulture);
+                object obj = ResourceManager.GetObject("visual", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
