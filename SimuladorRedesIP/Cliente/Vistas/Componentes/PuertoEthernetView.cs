@@ -32,16 +32,21 @@ namespace RedesIP.Vistas.Equipos.Componentes
 			if (_seleccionado)
 			{
 				brush = Brushes.GreenYellow;
+                Pen p = new Pen(Color.White);
+                grafico.FillRectangle(brush, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
+                grafico.DrawRectangle(p, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
+            //    brush.Dispose();
+                p.Dispose();
 			}
 			if (_conectado)
 			{
 				brush = Brushes.Orange;
 			}
-			grafico.FillRectangle(brush, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
-			Pen p = new Pen(Color.White);
-			grafico.DrawRectangle(p, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
+		//	
+			
+		//	grafico.DrawRectangle(p, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
 		//	brush.Dispose();
-			p.Dispose();
+			
 		}
 
 

@@ -14,18 +14,18 @@ namespace SimuladorServidor
 
 			        public static void Main(string[] args)
         {
-            Console.WriteLine("Initializing Service...");
+            Console.WriteLine("Inicializando el servidor...");
 
             // The service configuration is loaded from app.config
             using (ServiceHost host = new ServiceHost(typeof(Estacion)))
             {
                 host.Open();
                 
-                Console.WriteLine("Service is ready for requests.  Press any key to close service.");
+                Console.WriteLine("Servidor Inicializado");
                 Console.WriteLine();
                 Console.Read();
 
-                Console.WriteLine("Closing service...");
+                Console.WriteLine("Cerrando el Servicio...");
             }
         }
 		

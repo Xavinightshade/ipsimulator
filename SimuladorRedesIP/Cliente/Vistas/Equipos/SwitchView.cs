@@ -19,7 +19,7 @@ namespace RedesIP.Vistas.Equipos
 
 
 		public SwitchView(EquipoSOA equipo)
-			:base(equipo.Id,equipo.X,equipo.Y, 300,50)
+            : base(equipo.Id, equipo.X, equipo.Y, Resources.Switch.Size.Width, Resources.Switch.Size.Height)
 		{
 			CrearPuertos(equipo.Puertos);
 		}

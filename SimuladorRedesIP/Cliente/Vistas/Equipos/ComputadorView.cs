@@ -11,7 +11,7 @@ namespace RedesIP.Vistas.Equipos
 	public class ComputadorView:EquipoView
 	{
 		public ComputadorView(EquipoSOA equipo)
-			:base(equipo.Id,equipo.X,equipo.Y,40,40)
+            : base(equipo.Id, equipo.X, equipo.Y, Resources.Computador.Width, Resources.Computador.Height)
 		{
 			_puerto = new PuertoEthernetView(equipo.Puertos[0].Id,15,30,this);
 		}
