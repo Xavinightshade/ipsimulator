@@ -16,7 +16,7 @@ namespace RedesIP.Vistas
 	[CallbackBehavior(
 	 ConcurrencyMode = ConcurrencyMode.Multiple,
 	 UseSynchronizationContext = false)]
-	public class EstacionView : PictureBox, IRegistroMovimientosMouse, EstacionServerCallback
+	public class EstacionView : PictureBox, IRegistroMovimientosMouse, EstacionServerCallback,IMarker
 	{
 		EstacionServer _server;
 		private Herramienta _herramientaActual;

@@ -35,22 +35,12 @@ namespace SimuladorCliente
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._estacionView = new RedesIP.Vistas.EstacionView();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.sniffer1 = new SimuladorCliente.Sniffer();
-            this.sniffer2 = new SimuladorCliente.Sniffer();
             this.button1 = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this._estacionView = new RedesIP.Vistas.EstacionView();
             this.toolStrip1.SuspendLayout();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -120,73 +110,6 @@ namespace SimuladorCliente
             this.toolStripButton5.Text = "toolStripButton5";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.Controls.Add(this._estacionView);
-            this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.AutoScroll = true;
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(813, 559);
-            this.splitContainer1.SplitterDistance = 450;
-            this.splitContainer1.TabIndex = 3;
-            // 
-            // _estacionView
-            // 
-            this._estacionView.BackColor = System.Drawing.Color.Black;
-            this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._estacionView.Location = new System.Drawing.Point(0, 0);
-            this._estacionView.Name = "_estacionView";
-            this._estacionView.Size = new System.Drawing.Size(809, 446);
-            this._estacionView.TabIndex = 0;
-            this._estacionView.TabStop = false;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.sniffer1);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.sniffer2);
-            this.splitContainer2.Size = new System.Drawing.Size(813, 105);
-            this.splitContainer2.SplitterDistance = 345;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // sniffer1
-            // 
-            this.sniffer1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sniffer1.Location = new System.Drawing.Point(0, 0);
-            this.sniffer1.Name = "sniffer1";
-            this.sniffer1.Size = new System.Drawing.Size(341, 421);
-            this.sniffer1.TabIndex = 0;
-            // 
-            // sniffer2
-            // 
-            this.sniffer2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sniffer2.Location = new System.Drawing.Point(0, 0);
-            this.sniffer2.Name = "sniffer2";
-            this.sniffer2.Size = new System.Drawing.Size(460, 421);
-            this.sniffer2.TabIndex = 1;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(140, 0);
@@ -205,30 +128,35 @@ namespace SimuladorCliente
             this.trackBar1.TabIndex = 5;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
+            // _estacionView
+            // 
+            this._estacionView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._estacionView.Location = new System.Drawing.Point(0, 25);
+            this._estacionView.Name = "_estacionView";
+            this._estacionView.Size = new System.Drawing.Size(813, 559);
+            this._estacionView.TabIndex = 6;
+            this._estacionView.TabStop = false;
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(813, 584);
+            this.Controls.Add(this._estacionView);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainFrame";
+            this.TabText = "Simulador";
             this.Text = "Simulador";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrame_FormClosing);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,19 +164,19 @@ namespace SimuladorCliente
 
 		#endregion
 
-		private RedesIP.Vistas.EstacionView _estacionView;
+
 		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
 		private System.Windows.Forms.ToolStripButton toolStripButton2;
 		private System.Windows.Forms.ToolStripButton toolStripButton3;
 		private System.Windows.Forms.ToolStripButton toolStripButton4;
-		private System.Windows.Forms.SplitContainer splitContainer1;
+
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.ToolStripButton toolStripButton5;
-		private System.Windows.Forms.SplitContainer splitContainer2;
-		private Sniffer sniffer1;
-		private Sniffer sniffer2;
+
+
 		private System.Windows.Forms.TrackBar trackBar1;
+        private RedesIP.Vistas.EstacionView _estacionView;
 
 
 
