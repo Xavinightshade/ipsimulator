@@ -37,11 +37,13 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grid = new SourceGrid.Grid();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.grid.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -113,6 +115,15 @@
             this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 22);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(71, 22);
+            this.toolStripButton4.Text = "CrearLog";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.grid);
@@ -124,6 +135,7 @@
             // 
             // grid
             // 
+            this.grid.Controls.Add(this.elementHost1);
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
@@ -134,14 +146,14 @@
             this.grid.TabStop = true;
             this.grid.ToolTipText = "";
             // 
-            // toolStripButton4
+            // elementHost1
             // 
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(71, 22);
-            this.toolStripButton4.Text = "CrearLog";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            this.elementHost1.Location = new System.Drawing.Point(300, 176);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(135, 124);
+            this.elementHost1.TabIndex = 4;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = null;
             // 
             // Prueba
             // 
@@ -156,6 +168,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.grid.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -174,6 +187,7 @@
         private System.Windows.Forms.Panel panel1;
         private SourceGrid.Grid grid;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
 
 
     }
