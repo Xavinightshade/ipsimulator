@@ -21,14 +21,26 @@ namespace RedesIP
 			set { Estacion._porcentajeDeVelocidad = value; }
 		}
 
-
+        /// <summary>
+        /// Computadores de la red
+        /// </summary>
 		private Dictionary<Guid, ComputadorLogico> _computadores = new Dictionary<Guid, ComputadorLogico>();
+        /// <summary>
+        /// Switches de la red
+        /// </summary>
 		private List<SwitchLogico> _switches = new List<SwitchLogico>();
+        /// <summary>
+        /// Cables de la red
+        /// </summary>
 		private Dictionary<Guid, CableDeRedLogico> _diccioCables = new Dictionary<Guid, CableDeRedLogico>();
-
+        /// <summary>
+        /// Puertos Logicos de la red
+        /// </summary>
 		private Dictionary<Guid, PuertoEthernetLogico> _puertos = new Dictionary<Guid, PuertoEthernetLogico>();
 
-
+        /// <summary>
+        /// Lista de clientes de la red
+        /// </summary>
 		private List<ICallBackContract> _clientes = new List<ICallBackContract>();
 		private Dictionary<Guid, EquipoSOA> _diccioEquipos = new Dictionary<Guid, EquipoSOA>();
 		private void RegistrarCliente()
@@ -103,7 +115,7 @@ namespace RedesIP
 
 
 
-		#region IContract Members
+
 
 
 		public void PeticionActualizarEstacion()
@@ -111,9 +123,7 @@ namespace RedesIP
 			throw new NotImplementedException();
 		}
 
-		#endregion
 
-		#region IContract Members
 
 
 		public void Conectar()
@@ -124,9 +134,8 @@ namespace RedesIP
 
 		}
 
-		#endregion
 
-		#region IContract Members
+
 
 
 		public void Desconectar()
@@ -136,9 +145,9 @@ namespace RedesIP
 
 		}
 
-		#endregion
 
-		#region IContract Members
+
+	
 
 		private Dictionary<Guid, List<ICallBackContract>> _diccioMensajes = new Dictionary<Guid, List<ICallBackContract>>();
 		public void PeticionEnviarInformacionConexion(Guid idConexion)
@@ -172,9 +181,9 @@ namespace RedesIP
 
 
 
-		#endregion
 
-		#region IContract Members
+
+
 
 
 		public void Ping(Guid idComputador, string mensaje, byte p1, byte p2, byte p3)
@@ -184,9 +193,7 @@ namespace RedesIP
 
 		}
 
-		#endregion
 
-		#region IContract Members
 
 
 		public void PeticionDeDireccionMAC(Guid idPuerto)
@@ -194,9 +201,9 @@ namespace RedesIP
 			Console.WriteLine("la direc es: " + _puertos[idPuerto].MACAddress.ToString());
 		}
 
-		#endregion
 
-		#region IContract Members
+
+
 
 
 		public void CambiarVelocidad(float percent)
@@ -204,6 +211,6 @@ namespace RedesIP
 			_porcentajeDeVelocidad = percent;
 		}
 
-		#endregion
+
 	}
 }

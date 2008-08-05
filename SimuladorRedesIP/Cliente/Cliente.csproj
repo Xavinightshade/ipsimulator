@@ -153,6 +153,7 @@
     <Compile Include="SnifferBeta.Designer.cs">
       <DependentUpon>SnifferBeta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\CellBackColorAlternate.cs" />
     <Compile Include="Vistas\ComboBoxConColores.cs">
       <SubType>Component</SubType>
     </Compile>

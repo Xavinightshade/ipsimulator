@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SnifferBeta));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.grid = new SourceGrid.Grid();
             this._markerCmbBox = new System.Windows.Forms.ToolStripComboBox();
+            this.grid = new SourceGrid.Grid();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
+            this.toolStripLabel1,
             this._markerCmbBox});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -47,14 +46,10 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // _markerCmbBox
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(43, 22);
-            this.toolStripButton1.Text = "Sniffer";
+            this._markerCmbBox.Name = "_markerCmbBox";
+            this._markerCmbBox.Size = new System.Drawing.Size(200, 25);
             // 
             // grid
             // 
@@ -68,10 +63,11 @@
             this.grid.TabStop = true;
             this.grid.ToolTipText = "";
             // 
-            // _markerCmbBox
+            // toolStripLabel1
             // 
-            this._markerCmbBox.Name = "_markerCmbBox";
-            this._markerCmbBox.Size = new System.Drawing.Size(121, 25);
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(56, 22);
+            this.toolStripLabel1.Text = "Marcador:";
             // 
             // SnifferBeta
             // 
@@ -81,6 +77,7 @@
             this.Controls.Add(this.grid);
             this.Controls.Add(this.toolStrip1);
             this.Name = "SnifferBeta";
+            this.TabText = "SnifferBeta";
             this.Text = "SnifferBeta";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -92,8 +89,8 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private SourceGrid.Grid grid;
         private System.Windows.Forms.ToolStripComboBox _markerCmbBox;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }

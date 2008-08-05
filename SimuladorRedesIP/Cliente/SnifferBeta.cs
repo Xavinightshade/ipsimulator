@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using SimuladorCliente.Vistas;
 using WeifenLuo.WinFormsUI.Docking;
+using SourceGrid.Cells.Views;
 
 namespace SimuladorCliente
 {
@@ -52,7 +53,7 @@ private void ConfigurarGrilla()
             grid.AutoStretchColumnsToFitWidth = true;
             grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
             grid.Columns.AutoSize(true);
-            grid.Columns.StretchToFit();
+            grid.Columns.AutoSizeView();
 }
 
 		void comboBoxEx1_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,7 +65,7 @@ private void ConfigurarGrilla()
 			// todo llenar grilla
 			
 		}
-
+        private IView _vista = new CellBackColorAlternate(Color.White, Color.WhiteSmoke);
 private void LlenarGrilla(List<string> mensajes)
 {
 
@@ -76,6 +77,11 @@ private void LlenarGrilla(List<string> mensajes)
             grid[1, 1] = new SourceGrid.Cells.Cell("Mac origen");
          grid[1, 2] = new SourceGrid.Cells.Cell("Mac destino");
             grid[1, 3] = new SourceGrid.Cells.Cell(mensaje);
+            grid[1, 0].View = _vista;
+            grid[1, 1].View = _vista;
+            grid[1, 2].View = _vista;
+            grid[1, 3].View = _vista;
+
 	}
 }
 		private Dictionary<Guid, List<string>> _mensajes = new Dictionary<Guid, List<string>>();
