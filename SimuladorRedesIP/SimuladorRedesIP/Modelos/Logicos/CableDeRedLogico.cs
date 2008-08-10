@@ -27,8 +27,8 @@ namespace RedesIP.Modelos
 			_puerto2 = puerto2;
 			ConectarPuertos();
 		}
-		public event EventHandler<FrameTransmitidoEventArgs> FrameTransmitidoPuerto1;
-		public event EventHandler<FrameTransmitidoEventArgs> FrameTransmitidoPuerto2;
+		public event EventHandler<FrameRecibidoEventArgs> FrameRecibidoPuerto1;
+        public event EventHandler<FrameRecibidoEventArgs> FrameRecibidoPuerto2;
 
 	    public PuertoEthernetLogico Puerto1
 	    {
@@ -62,20 +62,20 @@ namespace RedesIP.Modelos
 
 		private void OnFrameTransmitidoDelPuerto2(object sender, FrameTransmitidoEventArgs e)
 		{
-			if (FrameTransmitidoPuerto2 != null)
-			{
-				FrameTransmitidoPuerto2(this, e);
-			}
 			((IEnvioReciboDatos)Puerto1).RecibirFrame(e.FrameTransmitido);
+            if (FrameRecibidoPuerto1 != null)
+            {
+                FrameRecibidoPuerto1(this,new FrameRecibidoEventArgs(e.FrameTransmitido));
+            }
 		}
 
 		private void OnFrameTransmitidoDelPuerto1(object sender, FrameTransmitidoEventArgs e)
 		{
-			if (FrameTransmitidoPuerto1 != null)
-			{
-				FrameTransmitidoPuerto1(this, e);
-			}
 			((IEnvioReciboDatos)_puerto2).RecibirFrame(e.FrameTransmitido);
+            if (FrameRecibidoPuerto2 != null)
+            {
+                FrameRecibidoPuerto2(this, new FrameRecibidoEventArgs(e.FrameTransmitido));
+            }
 		}
 
 

@@ -118,8 +118,8 @@ namespace RedesIP
             }
             else
             {
-                cable.Puerto1.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
-                cable.Puerto2.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
+                cable.FrameRecibidoPuerto1 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
+                cable.FrameRecibidoPuerto2 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
                 _PuertosEscuchando.Add(cable.Puerto1.Id);
                 _PuertosEscuchando.Add(cable.Puerto2.Id);
             }
@@ -136,6 +136,10 @@ namespace RedesIP
         public void SetEstacionLogica(Estacion estacion)
         {
             _estacion = estacion;
+        }
+        public EstacionSOA()
+        {
+            _estacion = new Estacion();
         }
 		private List<ICallBackContract> _clientes = new List<ICallBackContract>();
 		private void RegistrarCliente()
@@ -162,12 +166,21 @@ namespace RedesIP
 					break;
 			}
             EquipoSOA equipo = new EquipoSOA(tipoEquipo, equipoLogico.Id, equipoLogico.X, equipoLogico.Y);
+            LLenarPuertos(equipoLogico, equipo);
 			foreach (ICallBackContract cliente in _clientes)
 			{
 				cliente.CrearEquipo(equipo);
 			}
 
 		}
+
+        private void LLenarPuertos(EquipoLogico equipoLogico, EquipoSOA equipo)
+        {
+            foreach (PuertoEthernetLogico puertoLogico in equipoLogico.PuertosEthernet)
+            {
+                equipo.Puertos.Add(new PuertoSOA(puertoLogico.Id));
+            }
+        }
 
 		public void PeticionMoverEquipo(Guid idEquipo, int x, int y)
 		{
