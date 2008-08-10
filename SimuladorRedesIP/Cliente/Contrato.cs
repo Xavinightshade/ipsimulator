@@ -26,6 +26,9 @@ namespace RedesIP
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Switch = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Router = 3,
     }
 }
 namespace RedesIP.SOA
@@ -167,8 +170,8 @@ namespace RedesIP.SOA
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConexionSOA", Namespace="http://schemas.datacontract.org/2004/07/RedesIP.SOA")]
-    public partial class ConexionSOA : object, System.Runtime.Serialization.IExtensibleDataObject
+    [System.Runtime.Serialization.DataContractAttribute(Name="CableSOA", Namespace="http://schemas.datacontract.org/2004/07/RedesIP.SOA")]
+    public partial class CableSOA : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -231,6 +234,77 @@ namespace RedesIP.SOA
         }
     }
 }
+namespace RedesIP.SOA.Elementos
+{
+    using System.Runtime.Serialization;
+    
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MACAddressSOA", Namespace="http://schemas.datacontract.org/2004/07/RedesIP.SOA.Elementos")]
+    public partial class MACAddressSOA : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private byte Parte1Field;
+        
+        private byte Parte2Field;
+        
+        private byte Parte3Field;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte Parte1
+        {
+            get
+            {
+                return this.Parte1Field;
+            }
+            set
+            {
+                this.Parte1Field = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte Parte2
+        {
+            get
+            {
+                return this.Parte2Field;
+            }
+            set
+            {
+                this.Parte2Field = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte Parte3
+        {
+            get
+            {
+                return this.Parte3Field;
+            }
+            set
+            {
+                this.Parte3Field = value;
+            }
+        }
+    }
+}
 
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -262,11 +336,11 @@ public interface EstacionServer
     [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/Ping", ReplyAction="http://tempuri.org/EstacionServer/PingResponse")]
     void Ping(System.Guid idComputador, string mensaje, byte p1, byte p2, byte p3);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/PeticionDeDireccionMAC", ReplyAction="http://tempuri.org/EstacionServer/PeticionDeDireccionMACResponse")]
-    void PeticionDeDireccionMAC(System.Guid idPuerto);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/GetVelocidadSimulacion", ReplyAction="http://tempuri.org/EstacionServer/GetVelocidadSimulacionResponse")]
+    float GetVelocidadSimulacion();
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/CambiarVelocidad", ReplyAction="http://tempuri.org/EstacionServer/CambiarVelocidadResponse")]
-    void CambiarVelocidad(float percent);
+    [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/EstacionServer/SetVelocidadSimulacion", ReplyAction="http://tempuri.org/EstacionServer/SetVelocidadSimulacionResponse")]
+    void SetVelocidadSimulacion(float valor);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -280,13 +354,13 @@ public interface EstacionServerCallback
     void MoverEquipo(System.Guid idEquipo, int x, int y);
     
     [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/ConectarPuertos")]
-    void ConectarPuertos(RedesIP.SOA.ConexionSOA conexion);
+    void ConectarPuertos(RedesIP.SOA.CableSOA cable);
     
     [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/ActualizarEstacion")]
-    void ActualizarEstacion(RedesIP.SOA.EquipoSOA[] equipos, RedesIP.SOA.ConexionSOA[] conexiones);
+    void ActualizarEstacion(RedesIP.SOA.EquipoSOA[] equipos, RedesIP.SOA.CableSOA[] cables);
     
     [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/EnviarInformacionConexion")]
-    void EnviarInformacionConexion(System.Guid idConexion, string info);
+    void EnviarInformacionConexion(System.Guid idConexion, string info, RedesIP.SOA.Elementos.MACAddressSOA macOrigen, RedesIP.SOA.Elementos.MACAddressSOA macDestino);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]
@@ -364,13 +438,13 @@ public partial class EstacionServerClient : System.ServiceModel.DuplexClientBase
         base.Channel.Ping(idComputador, mensaje, p1, p2, p3);
     }
     
-    public void PeticionDeDireccionMAC(System.Guid idPuerto)
+    public float GetVelocidadSimulacion()
     {
-        base.Channel.PeticionDeDireccionMAC(idPuerto);
+        return base.Channel.GetVelocidadSimulacion();
     }
     
-    public void CambiarVelocidad(float percent)
+    public void SetVelocidadSimulacion(float valor)
     {
-        base.Channel.CambiarVelocidad(percent);
+        base.Channel.SetVelocidadSimulacion(valor);
     }
 }

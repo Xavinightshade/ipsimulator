@@ -95,7 +95,8 @@ namespace SimuladorCliente
 
 		private void trackBar1_Scroll(object sender, EventArgs e)
 		{
-			_clien.CambiarVelocidad((trackBar1.Value * 100 / trackBar1.Maximum));
+
+            _clien.SetVelocidadSimulacion((trackBar1.Value * 100 / trackBar1.Maximum));
 		}
 
 

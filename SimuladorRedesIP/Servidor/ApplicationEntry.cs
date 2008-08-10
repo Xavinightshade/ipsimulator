@@ -17,7 +17,7 @@ namespace SimuladorServidor
             Console.WriteLine("Inicializando el servidor...");
 
             // The service configuration is loaded from app.config
-            using (ServiceHost host = new ServiceHost(typeof(Estacion)))
+            using (ServiceHost host = new ServiceHost(typeof(EstacionSOA)))
             {
                 host.Open();
                 

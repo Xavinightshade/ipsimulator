@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ServiceModel;
+using RedesIP.SOA.Elementos;
 
 namespace RedesIP.SOA
 {
@@ -12,10 +13,10 @@ namespace RedesIP.SOA
 		[OperationContract(IsOneWay = true)]
 		void MoverEquipo(Guid idEquipo, int x, int y);
 		[OperationContract(IsOneWay = true)]
-		void ConectarPuertos(ConexionSOA conexion);
+		void ConectarPuertos(CableSOA cable);
 		[OperationContract(IsOneWay = true)]
-		void ActualizarEstacion(List<EquipoSOA> equipos, List<ConexionSOA> conexiones);
+		void ActualizarEstacion(List<EquipoSOA> equipos, List<CableSOA> cables);
 		[OperationContract(IsOneWay = true)]
-		void EnviarInformacionConexion(Guid idConexion, string info);
+		void EnviarInformacionConexion(Guid idConexion, string info,MACAddressSOA macOrigen,MACAddressSOA macDestino);
 	}
 }

@@ -22,7 +22,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}
-		public SwitchLogico(int numeroPuertos)
+		public SwitchLogico(int numeroPuertos,int X,int Y):base(TipoDeEquipo.Switch,X,Y)
 		{
 			_id = Guid.NewGuid();
 			_puertosEthernet = new List<PuertoEthernetLogico>(numeroPuertos);

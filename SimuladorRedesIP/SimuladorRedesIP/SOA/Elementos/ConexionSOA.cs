@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace RedesIP.SOA
 {
 	[DataContract]
-	public class ConexionSOA
+	public class CableSOA
 	{
 		private Guid _id;
 		[DataMember]
@@ -29,7 +29,7 @@ namespace RedesIP.SOA
 			get { return _idPuerto2; }
 			set { _idPuerto2 = value; }
 		}
-		public ConexionSOA(Guid id, Guid idPuerto1, Guid idPuerto2)
+		public CableSOA(Guid id, Guid idPuerto1, Guid idPuerto2)
 		{
 			_id = id;
 			_idPuerto1 = idPuerto1;

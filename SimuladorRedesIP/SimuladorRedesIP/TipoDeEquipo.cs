@@ -8,6 +8,7 @@ namespace RedesIP
 	{
 		Ninguno,
 		Computador,
-		Switch
+		Switch,
+        Router
 	}
 }

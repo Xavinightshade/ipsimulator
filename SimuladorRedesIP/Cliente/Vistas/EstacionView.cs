@@ -143,14 +143,6 @@ namespace RedesIP.Vistas
 		protected override void OnMouseDoubleClick(MouseEventArgs e)
 		{
 			base.OnMouseDoubleClick(e);
-			for (int i = 0; i < _puertos.Count; i++)
-			{
-				if (_puertos[i].HitTest(e.X, e.Y))
-				{
-					_server.PeticionDeDireccionMAC(_puertos[i].Id);
-					return;
-				}
-			}
 			for (int i = 0; i < _computadores.Count; i++)
 			{
 				if (_computadores[i].HitTest(e.X, e.Y))
@@ -285,10 +277,10 @@ namespace RedesIP.Vistas
 		#region ICallBackContract Members
 
 
-		public void ConectarPuertos(ConexionSOA conexion)
+		public void ConectarPuertos(CableSOA cable)
 		{
 
-			_conexiones.Add(new Conexion(conexion.Id, _diccioPuertos[conexion.IdPuerto1], _diccioPuertos[conexion.IdPuerto2]));
+            _conexiones.Add(new Conexion(cable.Id, _diccioPuertos[cable.IdPuerto1], _diccioPuertos[cable.IdPuerto2]));
 			Invalidate();
 		}
 
@@ -298,7 +290,7 @@ namespace RedesIP.Vistas
 		#region EstacionServerCallback Members
 
 
-		public void ActualizarEstacion(EquipoSOA[] equipos, ConexionSOA[] conexiones)
+		public void ActualizarEstacion(EquipoSOA[] equipos, CableSOA[] conexiones)
 		{
 			LimpiarEstacion();
 			for (int i = 0; i < equipos.Length; i++)
@@ -332,12 +324,22 @@ namespace RedesIP.Vistas
 		public event EventHandler<NuevoMensajeEventArgs> NuevoMensaje;
 		public void EnviarInformacionConexion(Guid idConexion, string info)
 		{
-			if (NuevoMensaje != null)
-			{
-				NuevoMensaje(this, new NuevoMensajeEventArgs(idConexion, info));
-			}
+
 		}
 
 		#endregion
-	}
+
+        #region EstacionServerCallback Members
+
+
+        public void EnviarInformacionConexion(Guid idConexion, string info, RedesIP.SOA.Elementos.MACAddressSOA macOrigen, RedesIP.SOA.Elementos.MACAddressSOA macDestino)
+        {
+            if (NuevoMensaje != null)
+            {
+                NuevoMensaje(this, new NuevoMensajeEventArgs(idConexion, info));
+            }
+        }
+
+        #endregion
+    }
 }

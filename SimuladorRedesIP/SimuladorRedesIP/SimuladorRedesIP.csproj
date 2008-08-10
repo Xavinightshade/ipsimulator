@@ -85,6 +85,7 @@
     <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="SOA\Elementos\ConexionSOA.cs" />
     <Compile Include="SOA\Elementos\EquipoSOA.cs" />
+    <Compile Include="SOA\Elementos\MACAddressSOA.cs" />
     <Compile Include="SOA\ICallBackContract.cs" />
     <Compile Include="SOA\IContract.cs" />
     <Compile Include="SOA\Elementos\PuertoSOA.cs" />

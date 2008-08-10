@@ -35,10 +35,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		/// Crea un nuevo PC
 		/// </summary>
 		/// <param name="nombre"></param>
-		public ComputadorLogico(string nombre, MACAddress MACAddress)
+		public ComputadorLogico(int X,int Y):base(TipoDeEquipo.Computador,X,Y)
 		{
-			IniciarPuertoEthernet(MACAddress);
-			_nombreDelPc = nombre;
+			IniciarPuertoEthernet(MACAddress.New());
+			_nombreDelPc = "PC_"+GetHashCode().ToString();
 			_id = Guid.NewGuid();
 		}
 		/// <summary>

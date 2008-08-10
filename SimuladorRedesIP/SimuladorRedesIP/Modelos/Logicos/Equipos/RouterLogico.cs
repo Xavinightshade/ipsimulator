@@ -12,7 +12,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		{
 			get { return _id; }
 		}
-		public RouterLogico()
+		public RouterLogico(int X,int Y):base(TipoDeEquipo.Router,X,Y)
 		{
 			_id = Guid.NewGuid();
 		}
