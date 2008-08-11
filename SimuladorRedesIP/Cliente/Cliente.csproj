@@ -95,6 +95,24 @@
   <ItemGroup>
     <Compile Include="Contrato.cs" />
     <Compile Include="Herramienta.cs" />
+    <Compile Include="Herramientas\FabricaHerramienta.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Herramientas\HerramientaBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Herramientas\HerramientaConexion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Herramientas\HerramientaCreacionEquipos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Herramientas\HerramientaMarcador.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Herramientas\HerramientaSeleccion.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MainFrame.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -18,96 +18,31 @@ namespace RedesIP.Vistas
 	[CallbackBehavior(
 	 ConcurrencyMode = ConcurrencyMode.Multiple,
 	 UseSynchronizationContext = false)]
-	public class EstacionView : PictureBox, IRegistroMovimientosMouse, EstacionServerCallback,IMarker
+	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, EstacionServerCallback,IMarker
 	{
-		EstacionServer _server;
-		private Herramienta _herramientaActual;
+        HerramientaBase _herramienta;
+        EstacionServer _server;
+
 		Dictionary<Guid, EquipoView> _equipos = new Dictionary<Guid, EquipoView>();
 		List<PuertoEthernetView> _puertos = new List<PuertoEthernetView>();
 		Dictionary<Guid, PuertoEthernetView> _diccioPuertos = new Dictionary<Guid, PuertoEthernetView>();
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
-		List<Conexion> _conexiones = new List<Conexion>();
-		List<Marcador> _marcadores = new List<Marcador>();
-		Dictionary<Guid, Marcador> _diccioMarcadores = new Dictionary<Guid, Marcador>();
 		public void EstablecerServer(EstacionServer server)
 		{
 			_server = server;
 		}
-		private void InsertarComputador(EquipoSOA equipo)
-		{
+        public EstacionView()
+        {
+            _herramienta = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this);
+        }
 
-			ComputadorView computador = new ComputadorView(equipo);
-			computador.EstablecerContenedor(this);
-			_computadores.Add(computador);
-			_equipos.Add(computador.Id, computador);
-			_puertos.Add(computador.Puerto);
-			_diccioPuertos.Add(computador.Puerto.Id, computador.Puerto);
-		}
-		private void InsertarSwitch(EquipoSOA equipo)
-		{
-			SwitchView swi = new SwitchView(equipo);
-			swi.EstablecerContenedor(this);
-			_switches.Add(swi);
-			_equipos.Add(swi.Id, swi);
-			foreach (PuertoEthernetView puerto in swi.PuertosEthernet)
-			{
-				_puertos.Add(puerto);
-				_diccioPuertos.Add(puerto.Id, puerto);
-			}
-
-
-		}
-		private PuertoEthernetView _puerto1;
 
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
+            _herramienta.OnMouseMove(e);
 
-			switch (_herramientaActual)
-			{
-				case Herramienta.Marcadores:
-					for (int i = 0; i < _conexiones.Count; i++)
-					{
-						if (_conexiones[i].HitTest(e.X, e.Y))
-						{
-							_conexiones[i].Seleccionado = true;
-							continue;
-						}
-						_conexiones[i].Seleccionado = false;
-					}
-					Invalidate();
-					break;
-
-				case Herramienta.CreacionEquipos:
-					Cursor = Cursors.Cross;
-					break;
-				case Herramienta.Conectar:
-					Cursor = Cursors.Cross;
-					for (int i = 0; i < _puertos.Count; i++)
-					{
-						if (_puertos[i].HitTest(e.X, e.Y))
-						{
-
-							_puertos[i].Seleccionado = true;
-
-
-						}
-						else
-						{
-							if (_puertos[i] != _puerto1)
-								_puertos[i].Seleccionado = false;
-						}
-						Invalidate();
-
-					}
-					break;
-
-
-				default:
-					Cursor = Cursors.Default;
-					break;
-			}
 
 		}
 		protected override void OnPaint(PaintEventArgs pe)
@@ -130,113 +65,27 @@ namespace RedesIP.Vistas
 			{
 				_marcadores[i].DibujarElemento(g);
 			}
-		//	g.Dispose();
 		}
+        
 
 
-
-
-		private TipoDeEquipo _tipoDeEquipo;
-		public void CrearEquipo(TipoDeEquipo tipoDeEquipo)
-		{
-			_herramientaActual = Herramienta.CreacionEquipos;
-			_tipoDeEquipo = tipoDeEquipo;
-		}
 		protected override void OnMouseDoubleClick(MouseEventArgs e)
 		{
 			base.OnMouseDoubleClick(e);
-			for (int i = 0; i < _computadores.Count; i++)
-			{
-				if (_computadores[i].HitTest(e.X, e.Y))
-				{
-					Ping forma = new Ping();
-					forma.ShowDialog();
-					if (forma.DialogResult == DialogResult.Cancel)
-						return;
-					for (int j = 0; j < forma.Numero; j++)
-					{
-						_server.Ping(_computadores[i].Id, forma.Mensaje, forma.P1, forma.P2, forma.P3);
-					}
-
-					return;
-				}
-			}
-
+            _herramienta.OnMouseDoubleClick(e);
 		}
-
 
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
-			base.OnMouseUp(e);
-			if (_herramientaActual == Herramienta.CreacionEquipos)
-			{
-				_server.PeticionCrearEquipo(_tipoDeEquipo, e.X, e.Y);
-				Invalidate();
-				_herramientaActual = Herramienta.Seleccion;
-			}
-			if (_herramientaActual == Herramienta.Conectar)
-			{
-				for (int i = 0; i < _puertos.Count; i++)
-				{
-					if (_puertos[i].HitTest(e.X, e.Y))
-					{
-						if (_puerto1 == null)
-						{
-							_puertos[i].Seleccionado = true;
-							_puerto1 = _puertos[i];
-						}
-						else
-						{
-							_server.PeticionConectarPuertos(_puerto1.Id, _puertos[i].Id);
-							_puerto1 = null;
-						}
-						break;
-					}
-				}
-
-			}
-			if (_herramientaActual == Herramienta.Marcadores)
-			{
-				for (int i = 0; i < _conexiones.Count; i++)
-				{
-					if (_conexiones[i].HitTest(e.X, e.Y))
-					{
-						bool yaEstaSeleccionado = false;
-						for (int j = 0; j < _marcadores.Count; j++)
-						{
-							if (_marcadores[j].Conexion == _conexiones[i])
-							{
-								yaEstaSeleccionado = true;
-								break;
-							}
-						}
-						if (!yaEstaSeleccionado)
-						{
-							Marcador marcador = new Marcador(Guid.NewGuid(), _conexiones[i]);
-							_marcadores.Add(marcador);
-							_diccioMarcadores.Add(marcador.Id, marcador);
-							if (NuevoMarcador != null)
-							{
-								NuevoMarcador(this, new NuevoMarcadorEventArgs(marcador));
-								_server.PeticionEnviarInformacionConexion(marcador.Conexion.Id);
-							}
-						}
-					}
-				}
-			}
-
-
+            base.OnMouseUp(e);
+            _herramienta.OnMouseUp(e);
 		}
-
-		public event EventHandler<NuevoMarcadorEventArgs> NuevoMarcador;
 
 
 		public void CambiarHerramienta(Herramienta herramienta)
 		{
-			_herramientaActual = herramienta;
+            _herramienta = FabricaHerramienta.CrearHerramienta(herramienta, this);
 		}
-
-		#region IRegistroMovimientosMouse Members
 
 
 		public EstacionServer Contrato
@@ -244,52 +93,11 @@ namespace RedesIP.Vistas
 			get { return _server; }
 		}
 
-		#endregion
-
-		#region ICallBackContract Members
-
-		public void CrearEquipo(EquipoSOA equipo)
-		{
-			switch (equipo.TipoEquipo)
-			{
-				case TipoDeEquipo.Ninguno:
-					break;
-				case TipoDeEquipo.Computador:
-					InsertarComputador(equipo);
-					break;
-				case TipoDeEquipo.Switch:
-					InsertarSwitch(equipo);
-					break;
-				default:
-					break;
-			}
-			Invalidate();
-		}
-
 		public void MoverEquipo(Guid idEquipo, int x, int y)
 		{
 			_equipos[idEquipo].MoverEquipo(x, y);
 			Invalidate();
 		}
-
-		#endregion
-
-
-
-		#region ICallBackContract Members
-
-
-		public void ConectarPuertos(CableSOA cable)
-		{
-
-            _conexiones.Add(new Conexion(cable.Id, _diccioPuertos[cable.IdPuerto1], _diccioPuertos[cable.IdPuerto2]));
-			Invalidate();
-		}
-
-		#endregion
-
-
-		#region EstacionServerCallback Members
 
 
 		public void ActualizarEstacion(EquipoSOA[] equipos, CableSOA[] conexiones)
@@ -316,33 +124,6 @@ namespace RedesIP.Vistas
 			_switches.Clear();
 			_computadores.Clear();
 			_marcadores.Clear();
-			_diccioMarcadores.Clear();
 		}
-
-		#endregion
-
-
-
-        #region EstacionServerCallback Members
-
-
-        public void EnviarInformacionConexion(MensajeSOA mensajeSOA)
-        {
-            if (NuevoMensaje != null)
-            {
-
-                Mensaje mensaje=new Mensaje(mensajeSOA);
-                NuevoMensaje(this, new NuevoMensajeEventArgs(mensaje));
-            }
-        }
-
-        #endregion
-
-        #region IMarker Members
-
-
-        public event EventHandler<NuevoMensajeEventArgs> NuevoMensaje;
-
-        #endregion
     }
 }

@@ -28,7 +28,7 @@ namespace SimuladorCliente
 
 		private void toolStripButton2_Click(object sender, EventArgs e)
 		{
-			_estacionView.CrearEquipo(TipoDeEquipo.Computador);
+			_estacionView.PeticionCrearEquipo(TipoDeEquipo.Computador);
 			toolStripButton1.Enabled = true;
 			toolStripButton3.Enabled = true;
 			toolStripButton4.Enabled = true;
@@ -44,7 +44,7 @@ namespace SimuladorCliente
 
 		private void toolStripButton3_Click(object sender, EventArgs e)
 		{
-			_estacionView.CrearEquipo(TipoDeEquipo.Switch);
+			_estacionView.PeticionCrearEquipo(TipoDeEquipo.Switch);
 			toolStripButton2.Enabled = true;
 			toolStripButton1.Enabled = true;
 			toolStripButton4.Enabled = true;
