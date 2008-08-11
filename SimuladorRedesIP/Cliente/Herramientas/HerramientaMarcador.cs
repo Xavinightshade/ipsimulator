@@ -45,10 +45,12 @@ namespace RedesIP.Vistas
                     if (Estacion._conexiones[i].HitTest(e.X, e.Y))
                     {
                         Estacion._conexiones[i].Seleccionado = true;
-                        continue;
+                        
+                        break;
                     }
                     Estacion._conexiones[i].Seleccionado = false;
                 }
+                Estacion.Invalidate();
             }
             public override void OnMouseUp(System.Windows.Forms.MouseEventArgs e)
             {

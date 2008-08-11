@@ -18,12 +18,10 @@ namespace RedesIP.Vistas
 
             public override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
             {
-                //throw new NotImplementedException();
             }
 
             public override void OnMouseUp(System.Windows.Forms.MouseEventArgs e)
             {
-                //throw new NotImplementedException();
             }
         }
 

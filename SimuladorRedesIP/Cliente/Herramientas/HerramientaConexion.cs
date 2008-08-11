@@ -24,12 +24,12 @@ namespace RedesIP.Vistas
             public HerramientaConexion(EstacionView estacion)
                 : base(estacion)
             {
-
+                Estacion.Cursor = Cursors.Cross;
             }
 
             public override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
             {
-               Estacion.Cursor = Cursors.Cross;
+              
                for (int i = 0; i < Estacion._puertos.Count; i++)
                 {
                     if (Estacion._puertos[i].HitTest(e.X, e.Y))
@@ -45,6 +45,7 @@ namespace RedesIP.Vistas
                             Estacion._puertos[i].Seleccionado = false;
                     }
                 }
+               Estacion.Invalidate();
             }
             public override void OnMouseUp(MouseEventArgs e)
             {

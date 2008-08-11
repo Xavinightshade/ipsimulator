@@ -7,6 +7,10 @@ namespace RedesIP.Vistas
 {
     public partial class EstacionView
     {
+        public void CambiarHerramienta(Herramienta herramienta)
+        {
+            _herramienta = FabricaHerramienta.CrearHerramienta(herramienta, this);
+        }
         private static class FabricaHerramienta
         {
             public static HerramientaBase CrearHerramienta(Herramienta herramienta,EstacionView estacion)

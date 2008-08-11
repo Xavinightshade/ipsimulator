@@ -66,7 +66,7 @@ namespace SimuladorCliente
 			_clien= new EstacionServerClient(new InstanceContext(_estacionView), "TcpBinding");
 
 
-			_estacionView.EstablecerServer(_clien);
+            _estacionView.EstablecerServer(_clien);
 			_clien.Open();
 			_clien.Conectar();
 

@@ -65,16 +65,13 @@ namespace RedesIP.Vistas
 			{
 				_marcadores[i].DibujarElemento(g);
 			}
-		}
-        
-
-
+          
+		}    
 		protected override void OnMouseDoubleClick(MouseEventArgs e)
 		{
 			base.OnMouseDoubleClick(e);
             _herramienta.OnMouseDoubleClick(e);
 		}
-
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
             base.OnMouseUp(e);
@@ -82,10 +79,7 @@ namespace RedesIP.Vistas
 		}
 
 
-		public void CambiarHerramienta(Herramienta herramienta)
-		{
-            _herramienta = FabricaHerramienta.CrearHerramienta(herramienta, this);
-		}
+
 
 
 		public EstacionServer Contrato
@@ -98,8 +92,6 @@ namespace RedesIP.Vistas
 			_equipos[idEquipo].MoverEquipo(x, y);
 			Invalidate();
 		}
-
-
 		public void ActualizarEstacion(EquipoSOA[] equipos, CableSOA[] conexiones)
 		{
 			LimpiarEstacion();
@@ -113,7 +105,6 @@ namespace RedesIP.Vistas
 			}
 			Invalidate();
 		}
-
 		private void LimpiarEstacion()
 		{
 			_conexiones.Clear();
