@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RedesIP.Modelos.Datos
+namespace RedesIP.Common
 {
 	public struct MACAddress
 	{

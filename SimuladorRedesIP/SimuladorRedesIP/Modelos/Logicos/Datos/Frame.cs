@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using RedesIP.Common;
 
 namespace RedesIP.Modelos.Datos
 {
@@ -13,6 +14,7 @@ namespace RedesIP.Modelos.Datos
 			get { return _frameTransmitido; }
 		}
 
+
 		public FrameTransmitidoEventArgs(Frame frame)
 		{
 			_frameTransmitido = frame;
@@ -20,20 +22,44 @@ namespace RedesIP.Modelos.Datos
 	}
 	public class FrameRecibidoEventArgs : EventArgs
 	{
+        private MACAddress _direccionPuerto;
+
+        public MACAddress DireccionPuerto
+        {
+            get { return _direccionPuerto; }
+        }
 		private Frame _frameRecibido;
 		public Frame FrameRecibido
 		{
 			get { return _frameRecibido; }
 		}
+        private DateTime _horaRecepcion;
 
-		public FrameRecibidoEventArgs(Frame frame)
+
+		public FrameRecibidoEventArgs(Frame frame,MACAddress direccionPuerto)
 		{
 			_frameRecibido = frame;
+            _direccionPuerto = direccionPuerto;
+
 		}
 	}
 
 	public class Frame
 	{
+        private DateTime _horaTransmision;
+
+        public DateTime HoraTransmision
+        {
+            get { return _horaTransmision; }
+            set { _horaTransmision = value; }
+        }
+        private DateTime _horaRecepcion;
+
+        public DateTime HoraRecepcion
+        {
+            get { return _horaRecepcion; }
+            set { _horaRecepcion = value; }
+        }
 		private IMessage _informacion;
 
 		public IMessage Informacion

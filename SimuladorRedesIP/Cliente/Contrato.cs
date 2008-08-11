@@ -241,6 +241,132 @@ namespace RedesIP.SOA.Elementos
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MensajeSOA", Namespace="http://schemas.datacontract.org/2004/07/RedesIP.SOA.Elementos")]
+    public partial class MensajeSOA : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
+        
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private string DatosField;
+        
+        private System.DateTime HoraRecepcionField;
+        
+        private System.DateTime HoraTransmisionField;
+        
+        private System.Guid IdConexionField;
+        
+        private RedesIP.SOA.Elementos.MACAddressSOA MacDestinoField;
+        
+        private RedesIP.SOA.Elementos.MACAddressSOA MacOrigenField;
+        
+        private RedesIP.SOA.Elementos.MACAddressSOA MacPuertoField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
+                return this.extensionDataField;
+            }
+            set
+            {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Datos
+        {
+            get
+            {
+                return this.DatosField;
+            }
+            set
+            {
+                this.DatosField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime HoraRecepcion
+        {
+            get
+            {
+                return this.HoraRecepcionField;
+            }
+            set
+            {
+                this.HoraRecepcionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime HoraTransmision
+        {
+            get
+            {
+                return this.HoraTransmisionField;
+            }
+            set
+            {
+                this.HoraTransmisionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdConexion
+        {
+            get
+            {
+                return this.IdConexionField;
+            }
+            set
+            {
+                this.IdConexionField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RedesIP.SOA.Elementos.MACAddressSOA MacDestino
+        {
+            get
+            {
+                return this.MacDestinoField;
+            }
+            set
+            {
+                this.MacDestinoField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RedesIP.SOA.Elementos.MACAddressSOA MacOrigen
+        {
+            get
+            {
+                return this.MacOrigenField;
+            }
+            set
+            {
+                this.MacOrigenField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RedesIP.SOA.Elementos.MACAddressSOA MacPuerto
+        {
+            get
+            {
+                return this.MacPuertoField;
+            }
+            set
+            {
+                this.MacPuertoField = value;
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "3.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MACAddressSOA", Namespace="http://schemas.datacontract.org/2004/07/RedesIP.SOA.Elementos")]
     public partial class MACAddressSOA : object, System.Runtime.Serialization.IExtensibleDataObject
     {
@@ -360,7 +486,7 @@ public interface EstacionServerCallback
     void ActualizarEstacion(RedesIP.SOA.EquipoSOA[] equipos, RedesIP.SOA.CableSOA[] cables);
     
     [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/EstacionServer/EnviarInformacionConexion")]
-    void EnviarInformacionConexion(System.Guid idConexion, string info, RedesIP.SOA.Elementos.MACAddressSOA macOrigen, RedesIP.SOA.Elementos.MACAddressSOA macDestino);
+    void EnviarInformacionConexion(RedesIP.SOA.Elementos.MensajeSOA mensaje);
 }
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "3.0.0.0")]

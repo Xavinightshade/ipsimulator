@@ -35,7 +35,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +56,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -73,7 +76,6 @@
     <Compile Include="Modelos\Logicos\Equipos\EquipoLogico.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
     <Compile Include="Modelos\Logicos\Datos\IMessage.cs" />
-    <Compile Include="Modelos\Logicos\Datos\MACAddress.cs" />
     <Compile Include="Modelos\Logicos\Datos\Message.cs" />
     <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
     <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="SOA\Elementos\ConexionSOA.cs" />
     <Compile Include="SOA\Elementos\EquipoSOA.cs" />
     <Compile Include="SOA\Elementos\MACAddressSOA.cs" />
+    <Compile Include="SOA\Elementos\MensajeSOA.cs" />
     <Compile Include="SOA\ICallBackContract.cs" />
     <Compile Include="SOA\IContract.cs" />
     <Compile Include="SOA\Elementos\PuertoSOA.cs" />
@@ -109,10 +112,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Router.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PuertoEthernet.bmp" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{1B592BB8-48CD-4958-A364-6A3275BEE18D}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

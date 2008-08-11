@@ -4,6 +4,7 @@ using System.Text;
 using RedesIP.Modelos.Datos;
 using RedesIP.Modelos.Equipos.Componentes;
 using System.Collections.ObjectModel;
+using RedesIP.Common;
 
 namespace RedesIP.Modelos.Logicos.Equipos
 {

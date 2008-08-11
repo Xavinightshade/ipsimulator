@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using RedesIP.SOA.Elementos;
+using RedesIP.Common;
 
 namespace SimuladorCliente.Vistas
 {
@@ -20,22 +22,15 @@ namespace SimuladorCliente.Vistas
 
 	public class NuevoMensajeEventArgs : EventArgs
 	{
-		private Guid _idConexion;
-		public Guid IdConexion
-		{
-			get { return _idConexion; }
-		}
-		private string _mensaje;
+        private Mensaje _mensaje;
 
-		public string Mensaje
-		{
-			get { return _mensaje; }
-		}
-
-		public NuevoMensajeEventArgs(Guid idConexion, string mensaje)
-		{
-			_idConexion = idConexion;
-			_mensaje = mensaje;
-		}
+        public Mensaje Mensaje
+        {
+            get { return _mensaje; }
+        }
+        public NuevoMensajeEventArgs(Mensaje mensaje)
+        {
+            _mensaje = mensaje;
+        }
 	}
 }

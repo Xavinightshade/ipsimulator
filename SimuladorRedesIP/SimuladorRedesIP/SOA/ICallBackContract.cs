@@ -17,6 +17,6 @@ namespace RedesIP.SOA
 		[OperationContract(IsOneWay = true)]
 		void ActualizarEstacion(List<EquipoSOA> equipos, List<CableSOA> cables);
 		[OperationContract(IsOneWay = true)]
-		void EnviarInformacionConexion(Guid idConexion, string info,MACAddressSOA macOrigen,MACAddressSOA macDestino);
+		void EnviarInformacionConexion(MensajeSOA mensaje);
 	}
 }

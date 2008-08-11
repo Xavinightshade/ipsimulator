@@ -10,6 +10,8 @@ using RedesIP.SOA;
 using System.ServiceModel;
 using SimuladorCliente.Vistas;
 using SimuladorCliente;
+using RedesIP.Common;
+using RedesIP.SOA.Elementos;
 
 namespace RedesIP.Vistas
 {
@@ -319,26 +321,27 @@ namespace RedesIP.Vistas
 
 		#endregion
 
-		#region EstacionServerCallback Members
 
-		public event EventHandler<NuevoMensajeEventArgs> NuevoMensaje;
-		public void EnviarInformacionConexion(Guid idConexion, string info)
-		{
-
-		}
-
-		#endregion
 
         #region EstacionServerCallback Members
 
 
-        public void EnviarInformacionConexion(Guid idConexion, string info, RedesIP.SOA.Elementos.MACAddressSOA macOrigen, RedesIP.SOA.Elementos.MACAddressSOA macDestino)
+        public void EnviarInformacionConexion(MensajeSOA mensajeSOA)
         {
             if (NuevoMensaje != null)
             {
-                NuevoMensaje(this, new NuevoMensajeEventArgs(idConexion, info));
+
+                Mensaje mensaje=new Mensaje(mensajeSOA);
+                NuevoMensaje(this, new NuevoMensajeEventArgs(mensaje));
             }
         }
+
+        #endregion
+
+        #region IMarker Members
+
+
+        public event EventHandler<NuevoMensajeEventArgs> NuevoMensaje;
 
         #endregion
     }

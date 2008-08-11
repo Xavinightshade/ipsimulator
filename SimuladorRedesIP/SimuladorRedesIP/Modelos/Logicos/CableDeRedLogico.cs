@@ -47,9 +47,27 @@ namespace RedesIP.Modelos
 				System.Diagnostics.Debug.Assert(false, "este puerto ya fue conectado");
 			Puerto1.FrameTransmitido += new EventHandler<FrameTransmitidoEventArgs>(OnFrameTransmitidoDelPuerto1);
 			_puerto2.FrameTransmitido += new EventHandler<FrameTransmitidoEventArgs>(OnFrameTransmitidoDelPuerto2);
+            Puerto1.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(Puerto1_FrameRecibido);
+            _puerto2.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(_puerto2_FrameRecibido);
 			_listaPuertos.Add(Puerto1);
 			_listaPuertos.Add(_puerto2);
 		}
+
+        void _puerto2_FrameRecibido(object sender, FrameRecibidoEventArgs e)
+        {
+            if (FrameRecibidoPuerto2 != null)
+            {
+                FrameRecibidoPuerto2(this, new FrameRecibidoEventArgs(e.FrameRecibido, Puerto2.MACAddress));
+            }
+        }
+
+        void Puerto1_FrameRecibido(object sender, FrameRecibidoEventArgs e)
+        {
+            if (FrameRecibidoPuerto1 != null)
+            {
+                FrameRecibidoPuerto1(this, new FrameRecibidoEventArgs(e.FrameRecibido, Puerto1.MACAddress));
+            }
+        }
 		public void DesconectarPuertos()
 		{
 			Puerto1.FrameTransmitido -= new EventHandler<FrameTransmitidoEventArgs>(OnFrameTransmitidoDelPuerto1);
@@ -63,19 +81,13 @@ namespace RedesIP.Modelos
 		private void OnFrameTransmitidoDelPuerto2(object sender, FrameTransmitidoEventArgs e)
 		{
 			((IEnvioReciboDatos)Puerto1).RecibirFrame(e.FrameTransmitido);
-            if (FrameRecibidoPuerto1 != null)
-            {
-                FrameRecibidoPuerto1(this,new FrameRecibidoEventArgs(e.FrameTransmitido));
-            }
+
 		}
 
 		private void OnFrameTransmitidoDelPuerto1(object sender, FrameTransmitidoEventArgs e)
 		{
 			((IEnvioReciboDatos)_puerto2).RecibirFrame(e.FrameTransmitido);
-            if (FrameRecibidoPuerto2 != null)
-            {
-                FrameRecibidoPuerto2(this, new FrameRecibidoEventArgs(e.FrameTransmitido));
-            }
+
 		}
 
 

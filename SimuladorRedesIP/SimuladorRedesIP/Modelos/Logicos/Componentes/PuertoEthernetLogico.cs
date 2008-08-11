@@ -6,6 +6,7 @@ using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
 using RedesIP.SOA;
 using RedesIP.Modelos.Logicos.Equipos;
+using RedesIP.Common;
 
 namespace RedesIP.Modelos.Equipos.Componentes
 {
@@ -116,13 +117,15 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 		private void OnFrameTransmitido(Frame frame)
 		{
+            frame.HoraTransmision = DateTime.Now;
 			if (FrameTransmitido != null)
 				FrameTransmitido(this, new FrameTransmitidoEventArgs(frame));
 		}
 		private void OnFrameRecibido(Frame frame)
 		{
+            frame.HoraRecepcion = DateTime.Now;
 			if (FrameRecibido != null)
-				FrameRecibido(this, new FrameRecibidoEventArgs(frame));
+				FrameRecibido(this, new FrameRecibidoEventArgs(frame,MACAddress));
 		}
 
 

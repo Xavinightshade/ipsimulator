@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.Serialization;
 using RedesIP.Modelos.Datos;
+using RedesIP.Common;
 
 namespace RedesIP.SOA.Elementos
 {
