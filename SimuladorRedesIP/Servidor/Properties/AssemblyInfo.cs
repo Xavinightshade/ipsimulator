@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Servidor")]
+[assembly: AssemblyTitle("tesis01")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Servidor")]
-[assembly: AssemblyCopyright("Copyright ©  2007")]
+[assembly: AssemblyCompany("IE")]
+[assembly: AssemblyProduct("Simulador")]
+[assembly: AssemblyCopyright("Copyright © IE 2006")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ff968566-9d41-4ce5-904d-12f13ddb9835")]
+[assembly: Guid("ff4fb03c-7b7e-4969-9a4e-ed3b94e3c4dc")]
 
 // Version information for an assembly consists of the following four values:
 //
