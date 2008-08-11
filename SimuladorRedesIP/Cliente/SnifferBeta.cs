@@ -76,8 +76,8 @@ private void LlenarGrilla(List<Mensaje> mensajes)
         grid.Rows.Insert(1);
         grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
         grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.MacPuerto.ToString());
-            grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.HoraTransmision.ToLongTimeString());
-            grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToLongTimeString());
+            grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.HoraTransmision.ToString()+mensaje.HoraTransmision.Millisecond.ToString());
+            grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToString() + mensaje.HoraRecepcion.Millisecond.ToString());
          grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.MacOrigen.ToString());
          grid[1, 5] = new SourceGrid.Cells.Cell(mensaje.MacDestino.ToString());
             grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.Datos);
