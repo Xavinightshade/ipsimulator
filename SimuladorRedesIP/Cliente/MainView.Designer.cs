@@ -30,35 +30,27 @@
         {
             this.DockMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DockMain
             // 
             this.DockMain.ActiveAutoHideContent = null;
-            this.DockMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DockMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.DockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.DockMain.Location = new System.Drawing.Point(0, 0);
             this.DockMain.Name = "DockMain";
-            this.DockMain.Size = new System.Drawing.Size(868, 548);
+            this.DockMain.Size = new System.Drawing.Size(868, 523);
             this.DockMain.TabIndex = 9;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 526);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(868, 22);
-            this.statusStrip1.TabIndex = 11;
+            this.statusStrip1.TabIndex = 14;
             this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(38, 17);
-            this.toolStripStatusLabel1.Text = "Ready";
             // 
             // MainView
             // 
@@ -71,8 +63,6 @@
             this.Name = "MainView";
             this.Text = "MainView";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,6 +72,5 @@
 
         private WeifenLuo.WinFormsUI.Docking.DockPanel DockMain;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
