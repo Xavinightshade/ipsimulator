@@ -98,7 +98,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contrato.cs" />
     <Compile Include="Herramienta.cs" />
     <Compile Include="Herramientas\FabricaHerramienta.cs">
       <SubType>Component</SubType>
@@ -270,6 +269,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{1B592BB8-48CD-4958-A364-6A3275BEE18D}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servidor\Servidor.csproj">
+      <Project>{327ADC52-9244-4054-8684-772E4F924FB7}</Project>
+      <Name>Servidor</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

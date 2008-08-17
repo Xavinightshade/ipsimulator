@@ -18,17 +18,17 @@ namespace RedesIP.Vistas
 	[CallbackBehavior(
 	 ConcurrencyMode = ConcurrencyMode.Multiple,
 	 UseSynchronizationContext = false)]
-	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, EstacionServerCallback,IMarker
+	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, ICallBackContract,IMarker
 	{
         HerramientaBase _herramienta;
-        EstacionServer _server;
+        IContract _server;
 
 		Dictionary<Guid, EquipoView> _equipos = new Dictionary<Guid, EquipoView>();
 		List<PuertoEthernetView> _puertos = new List<PuertoEthernetView>();
 		Dictionary<Guid, PuertoEthernetView> _diccioPuertos = new Dictionary<Guid, PuertoEthernetView>();
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
-		public void EstablecerServer(EstacionServer server)
+		public void EstablecerServer(IContract server)
 		{
 			_server = server;
 		}
@@ -82,7 +82,7 @@ namespace RedesIP.Vistas
 
 
 
-		public EstacionServer Contrato
+		public IContract Contrato
 		{
 			get { return _server; }
 		}
@@ -92,14 +92,14 @@ namespace RedesIP.Vistas
 			_equipos[idEquipo].MoverEquipo(x, y);
 			Invalidate();
 		}
-		public void ActualizarEstacion(EquipoSOA[] equipos, CableSOA[] conexiones)
+        public void ActualizarEstacion(List<EquipoSOA> equipos, List<CableSOA> conexiones)
 		{
 			LimpiarEstacion();
-			for (int i = 0; i < equipos.Length; i++)
+			for (int i = 0; i < equipos.Count; i++)
 			{
 				CrearEquipo(equipos[i]);
 			}
-			for (int i = 0; i < conexiones.Length; i++)
+			for (int i = 0; i < conexiones.Count; i++)
 			{
 				ConectarPuertos(conexiones[i]);
 			}
@@ -116,5 +116,11 @@ namespace RedesIP.Vistas
 			_computadores.Clear();
 			_marcadores.Clear();
 		}
+
+        #region ICallBackContract Members
+
+
+
+        #endregion
     }
 }

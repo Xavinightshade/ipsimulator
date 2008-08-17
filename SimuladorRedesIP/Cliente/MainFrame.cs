@@ -60,21 +60,32 @@ namespace SimuladorCliente
 
 
 
-		EstacionServerClient _clien = null;
+		IContract _clien = null;
 		private void button1_Click(object sender, EventArgs e)
 		{
-			_clien= new EstacionServerClient(new InstanceContext(_estacionView), "TcpBinding");
+            System.ServiceModel.Channels.Binding binding =
+                new NetTcpBinding(SecurityMode.None,true);
+            EndpointAddress address =
+                new EndpointAddress(@"net.tcp://192.168.0.101:8000/Simulador/");
 
 
-            _estacionView.EstablecerServer(_clien);
-			_clien.Open();
-			_clien.Conectar();
+            InstanceContext context = new InstanceContext(_estacionView);
+            DuplexChannelFactory<IContract> factory =
+                new DuplexChannelFactory<IContract>
+                (context, binding, address);
+           _clien = factory.CreateChannel();
 
-			button1.Visible = false;
-			toolStripButton1.Enabled = true;
-			toolStripButton2.Enabled = true;
-			toolStripButton3.Enabled = true;
-			toolStripButton4.Enabled = true;
+
+
+
+           _estacionView.EstablecerServer(_clien);
+           _clien.Conectar();
+
+           button1.Visible = false;
+           toolStripButton1.Enabled = true;
+           toolStripButton2.Enabled = true;
+           toolStripButton3.Enabled = true;
+           toolStripButton4.Enabled = true;
 		}
 
 
@@ -84,7 +95,7 @@ namespace SimuladorCliente
 			if (_clien != null)
 			{
 				_clien.Desconectar();
-				_clien.Close();
+				//_clien.Close();
 			}
 		}
 
