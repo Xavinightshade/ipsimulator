@@ -15,19 +15,7 @@ namespace SimuladorServidor
 
 			        public static void Main(string[] args)
         {
-            //Console.WriteLine("Inicializando el servidor...");
 
-            //// The service configuration is loaded from app.config
-            //using (ServiceHost host = new ServiceHost(typeof(EstacionSOA)))
-            //{
-            //    host.Open();
-                
-            //    Console.WriteLine("Servidor Inicializado");
-            //    Console.WriteLine();
-            //    Console.Read();
-
-            //    Console.WriteLine("Cerrando el Servicio...");
-            //}
 
             IContract singletonCalculator =
 new EstacionSOA();
