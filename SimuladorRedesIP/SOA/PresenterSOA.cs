@@ -120,6 +120,7 @@ namespace RedesIP
             RegistrarCliente();
             IVisualizacion cliente = GetCurrentClient();
 
+            
             List<EquipoSOA> equipos = new List<EquipoSOA>();
             foreach (KeyValuePair<Guid, EquipoLogico> par in _estacion.Equipos)
             {
@@ -129,6 +130,7 @@ namespace RedesIP
                 {
                     eq.Puertos.Add(new PuertoSOA(puerto.Id));
                 }
+                equipos.Add(eq);
             }
             List<CableSOA> cables = new List<CableSOA>();
             foreach (KeyValuePair<Guid, CableDeRedLogico> par in _estacion.Cables)
