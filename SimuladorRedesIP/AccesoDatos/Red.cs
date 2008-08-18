@@ -28,9 +28,18 @@ public partial class Red : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
+  partial void InsertCables(Cables instance);
+  partial void UpdateCables(Cables instance);
+  partial void DeleteCables(Cables instance);
   partial void InsertEquipos(Equipos instance);
   partial void UpdateEquipos(Equipos instance);
   partial void DeleteEquipos(Equipos instance);
+  partial void InsertPuertos(Puertos instance);
+  partial void UpdatePuertos(Puertos instance);
+  partial void DeletePuertos(Puertos instance);
+  partial void InsertTopologias(Topologias instance);
+  partial void UpdateTopologias(Topologias instance);
+  partial void DeleteTopologias(Topologias instance);
   #endregion
 	
 	public Red(string connection) : 
@@ -57,11 +66,145 @@ public partial class Red : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
+	public System.Data.Linq.Table<Cables> Cables
+	{
+		get
+		{
+			return this.GetTable<Cables>();
+		}
+	}
+	
 	public System.Data.Linq.Table<Equipos> Equipos
 	{
 		get
 		{
 			return this.GetTable<Equipos>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Puertos> Puertos
+	{
+		get
+		{
+			return this.GetTable<Puertos>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Topologias> Topologias
+	{
+		get
+		{
+			return this.GetTable<Topologias>();
+		}
+	}
+}
+
+[Table()]
+public partial class Cables : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private System.Guid _Id;
+	
+	private System.Guid _IdPuerto1;
+	
+	private System.Guid _IdPuerto2;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnIdPuerto1Changing(System.Guid value);
+    partial void OnIdPuerto1Changed();
+    partial void OnIdPuerto2Changing(System.Guid value);
+    partial void OnIdPuerto2Changed();
+    #endregion
+	
+	public Cables()
+	{
+		OnCreated();
+	}
+	
+	[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+	public System.Guid Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_IdPuerto1", DbType="UniqueIdentifier NOT NULL")]
+	public System.Guid IdPuerto1
+	{
+		get
+		{
+			return this._IdPuerto1;
+		}
+		set
+		{
+			if ((this._IdPuerto1 != value))
+			{
+				this.OnIdPuerto1Changing(value);
+				this.SendPropertyChanging();
+				this._IdPuerto1 = value;
+				this.SendPropertyChanged("IdPuerto1");
+				this.OnIdPuerto1Changed();
+			}
+		}
+	}
+	
+	[Column(Storage="_IdPuerto2", DbType="UniqueIdentifier NOT NULL")]
+	public System.Guid IdPuerto2
+	{
+		get
+		{
+			return this._IdPuerto2;
+		}
+		set
+		{
+			if ((this._IdPuerto2 != value))
+			{
+				this.OnIdPuerto2Changing(value);
+				this.SendPropertyChanging();
+				this._IdPuerto2 = value;
+				this.SendPropertyChanged("IdPuerto2");
+				this.OnIdPuerto2Changed();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -80,6 +223,8 @@ public partial class Equipos : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _TipoDeEquipo;
 	
+	private System.Guid _IdTopologia;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -92,6 +237,8 @@ public partial class Equipos : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnYChanged();
     partial void OnTipoDeEquipoChanging(int value);
     partial void OnTipoDeEquipoChanged();
+    partial void OnIdTopologiaChanging(System.Guid value);
+    partial void OnIdTopologiaChanged();
     #endregion
 	
 	public Equipos()
@@ -175,6 +322,198 @@ public partial class Equipos : INotifyPropertyChanging, INotifyPropertyChanged
 				this._TipoDeEquipo = value;
 				this.SendPropertyChanged("TipoDeEquipo");
 				this.OnTipoDeEquipoChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_IdTopologia", DbType="UniqueIdentifier NOT NULL")]
+	public System.Guid IdTopologia
+	{
+		get
+		{
+			return this._IdTopologia;
+		}
+		set
+		{
+			if ((this._IdTopologia != value))
+			{
+				this.OnIdTopologiaChanging(value);
+				this.SendPropertyChanging();
+				this._IdTopologia = value;
+				this.SendPropertyChanged("IdTopologia");
+				this.OnIdTopologiaChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[Table()]
+public partial class Puertos : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private System.Guid _Id;
+	
+	private System.Guid _IdEquipo;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnIdEquipoChanging(System.Guid value);
+    partial void OnIdEquipoChanged();
+    #endregion
+	
+	public Puertos()
+	{
+		OnCreated();
+	}
+	
+	[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+	public System.Guid Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_IdEquipo", DbType="UniqueIdentifier NOT NULL")]
+	public System.Guid IdEquipo
+	{
+		get
+		{
+			return this._IdEquipo;
+		}
+		set
+		{
+			if ((this._IdEquipo != value))
+			{
+				this.OnIdEquipoChanging(value);
+				this.SendPropertyChanging();
+				this._IdEquipo = value;
+				this.SendPropertyChanged("IdEquipo");
+				this.OnIdEquipoChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[Table()]
+public partial class Topologias : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private System.Guid _Id;
+	
+	private string _Nombre;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    #endregion
+	
+	public Topologias()
+	{
+		OnCreated();
+	}
+	
+	[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+	public System.Guid Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Nombre", DbType="NVarChar(100)")]
+	public string Nombre
+	{
+		get
+		{
+			return this._Nombre;
+		}
+		set
+		{
+			if ((this._Nombre != value))
+			{
+				this.OnNombreChanging(value);
+				this.SendPropertyChanging();
+				this._Nombre = value;
+				this.SendPropertyChanged("Nombre");
+				this.OnNombreChanged();
 			}
 		}
 	}
