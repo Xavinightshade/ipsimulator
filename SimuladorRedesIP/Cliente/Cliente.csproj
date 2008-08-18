@@ -98,6 +98,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEntry.cs" />
+    <Compile Include="Estacion.cs" />
     <Compile Include="Herramienta.cs" />
     <Compile Include="Herramientas\FabricaHerramienta.cs">
       <SubType>Component</SubType>
@@ -117,6 +119,7 @@
     <Compile Include="Herramientas\HerramientaSeleccion.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MACAddress.cs" />
     <Compile Include="MainFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +134,18 @@
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
     <Compile Include="Mensaje.cs" />
+    <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
+    <Compile Include="Modelos\Logicos\Componentes\IEnvioReciboDatos.cs" />
+    <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogico.cs" />
+    <Compile Include="Modelos\Logicos\Componentes\SwitchTable.cs" />
+    <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
+    <Compile Include="Modelos\Logicos\Datos\IMessage.cs" />
+    <Compile Include="Modelos\Logicos\Datos\Message.cs" />
+    <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
+    <Compile Include="Modelos\Logicos\Equipos\ComputadorLogico.cs" />
+    <Compile Include="Modelos\Logicos\Equipos\EquipoLogico.cs" />
+    <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
+    <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Ping.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +199,14 @@
     <Compile Include="SnifferBeta.Designer.cs">
       <DependentUpon>SnifferBeta.cs</DependentUpon>
     </Compile>
+    <Compile Include="SOA\Elementos\ConexionSOA.cs" />
+    <Compile Include="SOA\Elementos\EquipoSOA.cs" />
+    <Compile Include="SOA\Elementos\MACAddressSOA.cs" />
+    <Compile Include="SOA\Elementos\MensajeSOA.cs" />
+    <Compile Include="SOA\Elementos\PuertoSOA.cs" />
+    <Compile Include="SOA\ICallBackContract.cs" />
+    <Compile Include="SOA\IContract.cs" />
+    <Compile Include="TipoDeEquipo.cs" />
     <Compile Include="Vistas\CellBackColorAlternate.cs" />
     <Compile Include="Vistas\ComboBoxConColores.cs">
       <SubType>Component</SubType>
@@ -264,16 +287,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{1B592BB8-48CD-4958-A364-6A3275BEE18D}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Servidor\Servidor.csproj">
-      <Project>{327ADC52-9244-4054-8684-772E4F924FB7}</Project>
-      <Name>Servidor</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="SSCE">
