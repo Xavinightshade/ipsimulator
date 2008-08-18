@@ -25,7 +25,13 @@ namespace SimuladorCliente
             FormaEstacion f = new FormaEstacion();
             PaletaHerramienta pal = new PaletaHerramienta();
             f.Show(DockMain, DockState.Document);
-            pal.Show(DockMain, DockState.DockLeft);
+            pal.Show(DockMain, DockState.DockLeftAutoHide);
+
+            pal.DockPanel.DockLeftPortion = 140;
+            pal.DockHandler.AllowEndUserDocking = false;
+            pal.AutoHidePortion = 140;
+
+            
             _estacionView = f.EstacionView;
             _controladorMarcador = new ControladorMarcador(DockMain);
            

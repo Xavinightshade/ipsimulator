@@ -19,7 +19,7 @@ namespace SimuladorCliente
             InitializeComponent();
             ConfigurarGrilla();
             marcadorImagen1.Color = marcador.Color;
-            this.TabText = marcador.Id.ToString();
+            this.TabText = marcador.Id.ToString().Substring(0, 5);
             marcador.NuevoMensaje += new EventHandler<NuevoMensajeEventArgs>(OnMensaje);
         }
 
