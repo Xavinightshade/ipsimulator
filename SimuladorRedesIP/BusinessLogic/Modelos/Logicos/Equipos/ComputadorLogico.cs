@@ -6,6 +6,7 @@ using RedesIP.Modelos.Equipos.Componentes;
 using System.Collections.ObjectModel;
 using RedesIP.Common;
 
+
 namespace RedesIP.Modelos.Logicos.Equipos
 {
 	public class ComputadorLogico : EquipoLogico

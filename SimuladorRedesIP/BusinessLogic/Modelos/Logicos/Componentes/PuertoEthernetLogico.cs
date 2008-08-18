@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading;
 using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
-using RedesIP.SOA;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.Common;
 
@@ -73,7 +72,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-						Thread.Sleep(r.Next(CalcularVelocidad(Estacion.PorcentajeDeVelocidadSimulacion)));
+					//	Thread.Sleep(r.Next(CalcularVelocidad(Estacion.PorcentajeDeVelocidadSimulacion)));
 					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
 				}
 				else
@@ -100,7 +99,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-                    Thread.Sleep(r.Next(CalcularVelocidad(Estacion.PorcentajeDeVelocidadSimulacion)));
+                //    Thread.Sleep(r.Next(CalcularVelocidad(Estacion.PorcentajeDeVelocidadSimulacion)));
 					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
 				}
 				else

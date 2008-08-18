@@ -6,12 +6,11 @@ using System.Drawing;
 using RedesIP.Vistas.Utilidades;
 using RedesIP.Vistas.Equipos;
 using RedesIP.Vistas.Equipos.Componentes;
-using RedesIP.SOA;
 using System.ServiceModel;
 using SimuladorCliente.Vistas;
 using SimuladorCliente;
 using RedesIP.Common;
-using RedesIP.SOA.Elementos;
+using RedesIP.SOA;
 
 namespace RedesIP.Vistas
 {

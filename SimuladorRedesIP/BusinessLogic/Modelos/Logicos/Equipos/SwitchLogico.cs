@@ -7,6 +7,7 @@ using RedesIP.Modelos.Equipos.Componentes;
 using RedesIP.Common;
 
 
+
 namespace RedesIP.Modelos.Logicos.Equipos
 {
 	public class SwitchLogico:EquipoLogico

@@ -8,10 +8,10 @@ using System.Windows.Forms;
 using RedesIP.Vistas;
 using System.Collections;
 using RedesIP;
-using RedesIP.SOA;
 using System.ServiceModel;
 using WeifenLuo.WinFormsUI.Docking;
 using SimuladorCliente.Vistas;
+using RedesIP.SOA;
 
 namespace SimuladorCliente
 {

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using RedesIP.SOA;
 using RedesIP.Vistas.Equipos.Componentes;
+using RedesIP.SOA;
 
 namespace RedesIP.Vistas
 {

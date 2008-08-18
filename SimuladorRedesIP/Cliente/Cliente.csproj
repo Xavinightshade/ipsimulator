@@ -119,7 +119,6 @@
     <Compile Include="Herramientas\HerramientaSeleccion.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MACAddress.cs" />
     <Compile Include="MainFrame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,18 +133,6 @@
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
     <Compile Include="Mensaje.cs" />
-    <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
-    <Compile Include="Modelos\Logicos\Componentes\IEnvioReciboDatos.cs" />
-    <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogico.cs" />
-    <Compile Include="Modelos\Logicos\Componentes\SwitchTable.cs" />
-    <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
-    <Compile Include="Modelos\Logicos\Datos\IMessage.cs" />
-    <Compile Include="Modelos\Logicos\Datos\Message.cs" />
-    <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
-    <Compile Include="Modelos\Logicos\Equipos\ComputadorLogico.cs" />
-    <Compile Include="Modelos\Logicos\Equipos\EquipoLogico.cs" />
-    <Compile Include="Modelos\Logicos\Equipos\RouterLogico.cs" />
-    <Compile Include="Modelos\Logicos\Equipos\SwitchLogico.cs" />
     <Compile Include="Ping.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,25 +175,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RedDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RedDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="SnifferBeta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SnifferBeta.Designer.cs">
       <DependentUpon>SnifferBeta.cs</DependentUpon>
     </Compile>
-    <Compile Include="SOA\Elementos\ConexionSOA.cs" />
-    <Compile Include="SOA\Elementos\EquipoSOA.cs" />
-    <Compile Include="SOA\Elementos\MACAddressSOA.cs" />
-    <Compile Include="SOA\Elementos\MensajeSOA.cs" />
-    <Compile Include="SOA\Elementos\PuertoSOA.cs" />
-    <Compile Include="SOA\ICallBackContract.cs" />
-    <Compile Include="SOA\IContract.cs" />
-    <Compile Include="TipoDeEquipo.cs" />
     <Compile Include="Vistas\CellBackColorAlternate.cs" />
     <Compile Include="Vistas\ComboBoxConColores.cs">
       <SubType>Component</SubType>
@@ -248,17 +222,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="RedDataSet.xsc">
-      <DependentUpon>RedDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="RedDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RedDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="RedDataSet.xss">
-      <DependentUpon>RedDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Resources\line.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -299,9 +262,14 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Red.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{8622A2C8-9967-4C44-9702-6854D7E4AEDB}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SOA\SOA.csproj">
+      <Project>{7806FC84-2690-4A74-B11A-AF05792C8FFA}</Project>
+      <Name>SOA</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

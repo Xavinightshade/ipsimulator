@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using RedesIP.Modelos.Datos;
 using RedesIP.Common;
 
+
 namespace RedesIP.Modelos.Equipos.Componentes
 {
 	public class SwitchTable

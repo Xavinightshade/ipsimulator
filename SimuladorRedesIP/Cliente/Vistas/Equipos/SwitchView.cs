@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using RedesIP.Vistas.Equipos.Componentes;
 using System.Collections.ObjectModel;
-using RedesIP.SOA;
 using SimuladorCliente.Properties;
+using RedesIP.SOA;
 
 namespace RedesIP.Vistas.Equipos
 {
