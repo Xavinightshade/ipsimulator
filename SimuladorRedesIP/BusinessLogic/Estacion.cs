@@ -56,13 +56,11 @@ namespace RedesIP
         /// Lista de clientes de la red
         /// </summary>
         /// 
-        private Dictionary<Guid, IPosisionable> _elementosPosisionables = new Dictionary<Guid, IPosisionable>();
         public ComputadorLogico CrearComputador(int X, int Y)
         {
             ComputadorLogico pc = new ComputadorLogico(X, Y);
             _computadores.Add(pc.Id, pc);
             _equipos.Add(pc.Id, pc);
-            _elementosPosisionables.Add(pc.Id, pc);
             _puertos.Add(pc.PuertoEthernet.Id, pc.PuertoEthernet);
             return pc;
         }
@@ -71,13 +69,12 @@ namespace RedesIP
             SwitchLogico swi = new SwitchLogico(11, X, Y);
             _switches.Add(swi.Id, swi);
             _equipos.Add(swi.Id, swi);
-            _elementosPosisionables.Add(swi.Id, swi);
             LLenarPuertos(_puertos, swi.PuertosEthernet);
             return swi;
         }
         public void MoverPosicionElemento(Guid id, int x, int y)
         {
-            IPosisionable elemento = _elementosPosisionables[id];
+            IPosisionable elemento = _equipos[id];
             elemento.X = x;
             elemento.Y = y;
         }
