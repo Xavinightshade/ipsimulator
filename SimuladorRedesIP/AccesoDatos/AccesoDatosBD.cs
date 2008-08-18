@@ -31,6 +31,10 @@ namespace AccesoDatos
             {
                 equiposBD[puertoBD.IdEquipo].AgregarPuerto(puertoBD);
             }
+            foreach (KeyValuePair<Guid,Equipos> equipo in equiposBD)
+            {
+                estacionBD.AgregarEquipo(equipo.Value);
+            }
             estacionBD.AgregarCables(GetCablesByIdEstacion(id));
             return estacionBD;
         }
@@ -76,7 +80,21 @@ namespace AccesoDatos
 
         public static void GuardarEstacion(Estaciones estacion)
         {
-
+            Red db = GetNewBD();
+            db.Estaciones.InsertOnSubmit(estacion);
+            foreach (Equipos equipo in estacion.Equipos)
+            {
+                db.Equipos.InsertOnSubmit(equipo);
+                foreach (Puertos puerto in equipo.Puertos)
+                {
+                    db.Puertos.InsertOnSubmit(puerto);
+                }
+            }
+            foreach (Cables cable in estacion.Cables)
+            {
+                db.Cables.InsertOnSubmit(cable);
+            }
+            db.SubmitChanges();
         }
 
 

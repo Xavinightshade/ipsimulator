@@ -32,7 +32,7 @@ namespace AccesoDatos
                     puertoBD.IdEquipo = equipoLogico.Id;
                     equipoBD.AgregarPuerto(puertoBD);
                 }
-               
+                estacionBD.AgregarEquipo(equipoBD);
             }
             foreach (KeyValuePair<Guid, CableDeRedLogico> par in estacion.Cables)
             {
