@@ -45,9 +45,9 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		}
 		public event EventHandler<FrameTransmitidoEventArgs> FrameTransmitido;
 		public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
-		public PuertoEthernetLogico(MACAddress MACAddress)
+		public PuertoEthernetLogico(MACAddress MACAddress,Guid id)
 		{
-			_id = Guid.NewGuid();
+            _id = id;
 			_MACAddress = MACAddress;
 			_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
 			_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);

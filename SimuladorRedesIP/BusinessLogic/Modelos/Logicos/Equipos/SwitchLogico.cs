@@ -12,34 +12,20 @@ namespace RedesIP.Modelos.Logicos.Equipos
 {
 	public class SwitchLogico:EquipoLogico
 	{
-		private Guid _id;
 
-		public override Guid Id
-		{
-			get { return _id; }
-		}
-		private List<PuertoEthernetLogico> _puertosEthernet;
+		private List<PuertoEthernetLogico> _puertosEthernet=new List<PuertoEthernetLogico>();
 		private SwitchTable _switchTable = new SwitchTable();
 		public override ReadOnlyCollection<PuertoEthernetLogico> PuertosEthernet
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}
-		public SwitchLogico(int numeroPuertos,int X,int Y):base(TipoDeEquipo.Switch,X,Y)
+		public SwitchLogico(Guid id,int X,int Y):base(id,TipoDeEquipo.Switch,X,Y)
 		{
-			_id = Guid.NewGuid();
-			_puertosEthernet = new List<PuertoEthernetLogico>(numeroPuertos);
-			CrearPuertos(numeroPuertos);
-			InicializarPuertos();
+
+
 		}
 
-		private void CrearPuertos(int numeroDePuertos)
-		{
-			for (int i = 0; i < numeroDePuertos; i++)
-			{
-				MACAddress macAddress = MACAddress.New();
-				_puertosEthernet.Add(new PuertoEthernetLogico(macAddress));
-			}
-		}
+
 
 		private void InicializarPuertos()
 		{
@@ -92,7 +78,15 @@ namespace RedesIP.Modelos.Logicos.Equipos
 			if (!_switchTable.YaEstaRegistradoDireccionMAC(direccionMacOrigen))
 				_switchTable.RegistrarDireccionMAC(direccionMacOrigen, puertoQueRecibioElFrame);
 		}
+        public override void AgregarPuerto(Guid idPuerto)
+        {
+            _puertosEthernet.Add(new PuertoEthernetLogico(MACAddress.New(), idPuerto));
+        }
 
 
-	}
+        public override void InicializarEquipo()
+        {
+            InicializarPuertos();
+        }
+    }
 }

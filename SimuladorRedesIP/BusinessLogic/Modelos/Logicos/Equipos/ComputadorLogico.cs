@@ -11,12 +11,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 {
 	public class ComputadorLogico : EquipoLogico
 	{
-		private Guid _id;
 
-		public override Guid Id
-		{
-			get { return _id; }
-		}
 		private PuertoEthernetLogico _puertoEthernet;
 		private string _nombreDelPc;
 		/// <summary>
@@ -37,20 +32,13 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		/// Crea un nuevo PC
 		/// </summary>
 		/// <param name="nombre"></param>
-		public ComputadorLogico(int X,int Y):base(TipoDeEquipo.Computador,X,Y)
+		public ComputadorLogico(Guid id, int X,int Y):base(id, TipoDeEquipo.Computador,X,Y)
 		{
-			IniciarPuertoEthernet(MACAddress.New());
+
 			_nombreDelPc = "PC_"+GetHashCode().ToString();
-			_id = Guid.NewGuid();
+
 		}
-		/// <summary>
-		/// Crea el Puerto Ethernet y esta atento a los frames recibidos de este
-		/// </summary>
-		private void IniciarPuertoEthernet(MACAddress MACAddress)
-		{
-			_puertoEthernet = new PuertoEthernetLogico(MACAddress);
-			_puertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
-		}
+
 
 		private void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
 		{
@@ -109,5 +97,15 @@ namespace RedesIP.Modelos.Logicos.Equipos
 				return new ReadOnlyCollection<PuertoEthernetLogico>(puertos);
 			}
 		}
-	}
+        public override void AgregarPuerto(Guid idPuerto)
+        {
+            _puertoEthernet = new PuertoEthernetLogico(MACAddress.New(), idPuerto);
+        }
+
+        public override void InicializarEquipo()
+        {
+            _puertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
+
+        }
+    }
 }

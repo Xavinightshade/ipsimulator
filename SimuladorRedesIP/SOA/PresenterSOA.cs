@@ -56,10 +56,19 @@ namespace RedesIP
                 case TipoDeEquipo.Ninguno:
                     break;
                 case TipoDeEquipo.Computador:
-                    equipoLogico = _estacion.CrearComputador(x, y);
+                    ComputadorLogico pc = new ComputadorLogico(Guid.NewGuid(), x, y);
+                    pc.AgregarPuerto(Guid.NewGuid());
+                    _estacion.CrearComputador(pc);
+                    equipoLogico = pc;
                     break;
                 case TipoDeEquipo.Switch:
-                    equipoLogico = _estacion.CrearSwitch(x, y);
+                    SwitchLogico swi = new SwitchLogico(Guid.NewGuid(), x, y);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        swi.AgregarPuerto(Guid.NewGuid());
+                    }
+                    _estacion.CrearSwitch(swi);
+                    equipoLogico = swi;
                     break;
                 default:
                     break;

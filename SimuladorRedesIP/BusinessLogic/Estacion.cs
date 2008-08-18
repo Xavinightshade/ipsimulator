@@ -68,21 +68,18 @@ namespace RedesIP
         /// Lista de clientes de la red
         /// </summary>
         /// 
-        public ComputadorLogico CrearComputador(int X, int Y)
+        public void CrearComputador(ComputadorLogico pc)
         {
-            ComputadorLogico pc = new ComputadorLogico(X, Y);
             _computadores.Add(pc.Id, pc);
             _equipos.Add(pc.Id, pc);
             _puertos.Add(pc.PuertoEthernet.Id, pc.PuertoEthernet);
-            return pc;
         }
-        public SwitchLogico CrearSwitch(int X, int Y)
+        public void CrearSwitch(SwitchLogico swi)
         {
-            SwitchLogico swi = new SwitchLogico(11, X, Y);
+
             _switches.Add(swi.Id, swi);
             _equipos.Add(swi.Id, swi);
             LLenarPuertos(_puertos, swi.PuertosEthernet);
-            return swi;
         }
         public void MoverPosicionElemento(Guid id, int x, int y)
         {
