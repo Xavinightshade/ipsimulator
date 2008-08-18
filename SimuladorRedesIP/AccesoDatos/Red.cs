@@ -9,108 +9,109 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-
-
-
-public partial class Red : System.Data.Linq.DataContext
+namespace AccesoDatos
 {
+	using System.Data.Linq;
+	using System.Data.Linq.Mapping;
+	using System.Data;
+	using System.Collections.Generic;
+	using System.Reflection;
+	using System.Linq;
+	using System.Linq.Expressions;
+	using System.ComponentModel;
+	using System;
 	
-	private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 	
-  #region Extensibility Method Definitions
-  partial void OnCreated();
-  partial void InsertCables(Cables instance);
-  partial void UpdateCables(Cables instance);
-  partial void DeleteCables(Cables instance);
-  partial void InsertEquipos(Equipos instance);
-  partial void UpdateEquipos(Equipos instance);
-  partial void DeleteEquipos(Equipos instance);
-  partial void InsertEstaciones(Estaciones instance);
-  partial void UpdateEstaciones(Estaciones instance);
-  partial void DeleteEstaciones(Estaciones instance);
-  partial void InsertPuertos(Puertos instance);
-  partial void UpdatePuertos(Puertos instance);
-  partial void DeletePuertos(Puertos instance);
-  #endregion
-	
-	public Red(string connection) : 
-			base(connection, mappingSource)
+	public partial class Red : System.Data.Linq.DataContext
 	{
-		OnCreated();
-	}
-	
-	public Red(System.Data.IDbConnection connection) : 
-			base(connection, mappingSource)
-	{
-		OnCreated();
-	}
-	
-	public Red(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
-			base(connection, mappingSource)
-	{
-		OnCreated();
-	}
-	
-	public Red(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
-			base(connection, mappingSource)
-	{
-		OnCreated();
-	}
-	
-	public System.Data.Linq.Table<Cables> Cables
-	{
-		get
+		
+		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
+		
+    #region Extensibility Method Definitions
+    partial void OnCreated();
+    partial void InsertCables(Cables instance);
+    partial void UpdateCables(Cables instance);
+    partial void DeleteCables(Cables instance);
+    partial void InsertEquipos(Equipos instance);
+    partial void UpdateEquipos(Equipos instance);
+    partial void DeleteEquipos(Equipos instance);
+    partial void InsertEstaciones(Estaciones instance);
+    partial void UpdateEstaciones(Estaciones instance);
+    partial void DeleteEstaciones(Estaciones instance);
+    partial void InsertPuertos(Puertos instance);
+    partial void UpdatePuertos(Puertos instance);
+    partial void DeletePuertos(Puertos instance);
+    #endregion
+		
+		public Red(string connection) : 
+				base(connection, mappingSource)
 		{
-			return this.GetTable<Cables>();
+			OnCreated();
+		}
+		
+		public Red(System.Data.IDbConnection connection) : 
+				base(connection, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public Red(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+				base(connection, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public Red(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+				base(connection, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<Cables> Cables
+		{
+			get
+			{
+				return this.GetTable<Cables>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Equipos> Equipos
+		{
+			get
+			{
+				return this.GetTable<Equipos>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Estaciones> Estaciones
+		{
+			get
+			{
+				return this.GetTable<Estaciones>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Puertos> Puertos
+		{
+			get
+			{
+				return this.GetTable<Puertos>();
+			}
 		}
 	}
 	
-	public System.Data.Linq.Table<Equipos> Equipos
+	[Table()]
+	public partial class Cables : INotifyPropertyChanging, INotifyPropertyChanged
 	{
-		get
-		{
-			return this.GetTable<Equipos>();
-		}
-	}
-	
-	public System.Data.Linq.Table<Estaciones> Estaciones
-	{
-		get
-		{
-			return this.GetTable<Estaciones>();
-		}
-	}
-	
-	public System.Data.Linq.Table<Puertos> Puertos
-	{
-		get
-		{
-			return this.GetTable<Puertos>();
-		}
-	}
-}
-
-[Table()]
-public partial class Cables : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private System.Guid _Id;
-	
-	private System.Guid _IdPuerto1;
-	
-	private System.Guid _IdPuerto2;
-	
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Guid _IdPuerto1;
+		
+		private System.Guid _IdPuerto2;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -122,109 +123,109 @@ public partial class Cables : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnIdPuerto2Changing(System.Guid value);
     partial void OnIdPuerto2Changed();
     #endregion
-	
-	public Cables()
-	{
-		OnCreated();
-	}
-	
-	[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-	public System.Guid Id
-	{
-		get
+		
+		public Cables()
 		{
-			return this._Id;
+			OnCreated();
 		}
-		set
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
 		{
-			if ((this._Id != value))
+			get
 			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdPuerto1", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdPuerto1
+		{
+			get
+			{
+				return this._IdPuerto1;
+			}
+			set
+			{
+				if ((this._IdPuerto1 != value))
+				{
+					this.OnIdPuerto1Changing(value);
+					this.SendPropertyChanging();
+					this._IdPuerto1 = value;
+					this.SendPropertyChanged("IdPuerto1");
+					this.OnIdPuerto1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdPuerto2", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdPuerto2
+		{
+			get
+			{
+				return this._IdPuerto2;
+			}
+			set
+			{
+				if ((this._IdPuerto2 != value))
+				{
+					this.OnIdPuerto2Changing(value);
+					this.SendPropertyChanging();
+					this._IdPuerto2 = value;
+					this.SendPropertyChanged("IdPuerto2");
+					this.OnIdPuerto2Changed();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
 	
-	[Column(Storage="_IdPuerto1", DbType="UniqueIdentifier NOT NULL")]
-	public System.Guid IdPuerto1
+	[Table()]
+	public partial class Equipos : INotifyPropertyChanging, INotifyPropertyChanged
 	{
-		get
-		{
-			return this._IdPuerto1;
-		}
-		set
-		{
-			if ((this._IdPuerto1 != value))
-			{
-				this.OnIdPuerto1Changing(value);
-				this.SendPropertyChanging();
-				this._IdPuerto1 = value;
-				this.SendPropertyChanged("IdPuerto1");
-				this.OnIdPuerto1Changed();
-			}
-		}
-	}
-	
-	[Column(Storage="_IdPuerto2", DbType="UniqueIdentifier NOT NULL")]
-	public System.Guid IdPuerto2
-	{
-		get
-		{
-			return this._IdPuerto2;
-		}
-		set
-		{
-			if ((this._IdPuerto2 != value))
-			{
-				this.OnIdPuerto2Changing(value);
-				this.SendPropertyChanging();
-				this._IdPuerto2 = value;
-				this.SendPropertyChanged("IdPuerto2");
-				this.OnIdPuerto2Changed();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[Table()]
-public partial class Equipos : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private System.Guid _Id;
-	
-	private double _X;
-	
-	private double _Y;
-	
-	private int _TipoDeEquipo;
-	
-	private System.Guid _IdEstacion;
-	
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private double _X;
+		
+		private double _Y;
+		
+		private int _TipoDeEquipo;
+		
+		private System.Guid _IdEstacion;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -240,143 +241,143 @@ public partial class Equipos : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnIdEstacionChanging(System.Guid value);
     partial void OnIdEstacionChanged();
     #endregion
-	
-	public Equipos()
-	{
-		OnCreated();
-	}
-	
-	[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-	public System.Guid Id
-	{
-		get
+		
+		public Equipos()
 		{
-			return this._Id;
+			OnCreated();
 		}
-		set
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
 		{
-			if ((this._Id != value))
+			get
 			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_X", DbType="Float NOT NULL")]
+		public double X
+		{
+			get
+			{
+				return this._X;
+			}
+			set
+			{
+				if ((this._X != value))
+				{
+					this.OnXChanging(value);
+					this.SendPropertyChanging();
+					this._X = value;
+					this.SendPropertyChanged("X");
+					this.OnXChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Y", DbType="Float NOT NULL")]
+		public double Y
+		{
+			get
+			{
+				return this._Y;
+			}
+			set
+			{
+				if ((this._Y != value))
+				{
+					this.OnYChanging(value);
+					this.SendPropertyChanging();
+					this._Y = value;
+					this.SendPropertyChanged("Y");
+					this.OnYChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TipoDeEquipo", DbType="Int NOT NULL")]
+		public int TipoDeEquipo
+		{
+			get
+			{
+				return this._TipoDeEquipo;
+			}
+			set
+			{
+				if ((this._TipoDeEquipo != value))
+				{
+					this.OnTipoDeEquipoChanging(value);
+					this.SendPropertyChanging();
+					this._TipoDeEquipo = value;
+					this.SendPropertyChanged("TipoDeEquipo");
+					this.OnTipoDeEquipoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdEstacion", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdEstacion
+		{
+			get
+			{
+				return this._IdEstacion;
+			}
+			set
+			{
+				if ((this._IdEstacion != value))
+				{
+					this.OnIdEstacionChanging(value);
+					this.SendPropertyChanging();
+					this._IdEstacion = value;
+					this.SendPropertyChanged("IdEstacion");
+					this.OnIdEstacionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
 	
-	[Column(Storage="_X", DbType="Float NOT NULL")]
-	public double X
+	[Table()]
+	public partial class Estaciones : INotifyPropertyChanging, INotifyPropertyChanged
 	{
-		get
-		{
-			return this._X;
-		}
-		set
-		{
-			if ((this._X != value))
-			{
-				this.OnXChanging(value);
-				this.SendPropertyChanging();
-				this._X = value;
-				this.SendPropertyChanged("X");
-				this.OnXChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_Y", DbType="Float NOT NULL")]
-	public double Y
-	{
-		get
-		{
-			return this._Y;
-		}
-		set
-		{
-			if ((this._Y != value))
-			{
-				this.OnYChanging(value);
-				this.SendPropertyChanging();
-				this._Y = value;
-				this.SendPropertyChanged("Y");
-				this.OnYChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_TipoDeEquipo", DbType="Int NOT NULL")]
-	public int TipoDeEquipo
-	{
-		get
-		{
-			return this._TipoDeEquipo;
-		}
-		set
-		{
-			if ((this._TipoDeEquipo != value))
-			{
-				this.OnTipoDeEquipoChanging(value);
-				this.SendPropertyChanging();
-				this._TipoDeEquipo = value;
-				this.SendPropertyChanged("TipoDeEquipo");
-				this.OnTipoDeEquipoChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_IdEstacion", DbType="UniqueIdentifier NOT NULL")]
-	public System.Guid IdEstacion
-	{
-		get
-		{
-			return this._IdEstacion;
-		}
-		set
-		{
-			if ((this._IdEstacion != value))
-			{
-				this.OnIdEstacionChanging(value);
-				this.SendPropertyChanging();
-				this._IdEstacion = value;
-				this.SendPropertyChanged("IdEstacion");
-				this.OnIdEstacionChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[Table()]
-public partial class Estaciones : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private System.Guid _Id;
-	
-	private string _Nombre;
-	
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _Nombre;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -386,83 +387,83 @@ public partial class Estaciones : INotifyPropertyChanging, INotifyPropertyChange
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
     #endregion
-	
-	public Estaciones()
-	{
-		OnCreated();
-	}
-	
-	[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-	public System.Guid Id
-	{
-		get
+		
+		public Estaciones()
 		{
-			return this._Id;
+			OnCreated();
 		}
-		set
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
 		{
-			if ((this._Id != value))
+			get
 			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
 	
-	[Column(Storage="_Nombre", DbType="NVarChar(100)")]
-	public string Nombre
+	[Table()]
+	public partial class Puertos : INotifyPropertyChanging, INotifyPropertyChanged
 	{
-		get
-		{
-			return this._Nombre;
-		}
-		set
-		{
-			if ((this._Nombre != value))
-			{
-				this.OnNombreChanging(value);
-				this.SendPropertyChanging();
-				this._Nombre = value;
-				this.SendPropertyChanged("Nombre");
-				this.OnNombreChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[Table()]
-public partial class Puertos : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private System.Guid _Id;
-	
-	private System.Guid _IdEquipo;
-	
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Guid _IdEquipo;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -472,69 +473,70 @@ public partial class Puertos : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnIdEquipoChanging(System.Guid value);
     partial void OnIdEquipoChanged();
     #endregion
-	
-	public Puertos()
-	{
-		OnCreated();
-	}
-	
-	[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-	public System.Guid Id
-	{
-		get
+		
+		public Puertos()
 		{
-			return this._Id;
+			OnCreated();
 		}
-		set
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
 		{
-			if ((this._Id != value))
+			get
 			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
 			}
 		}
-	}
-	
-	[Column(Storage="_IdEquipo", DbType="UniqueIdentifier NOT NULL")]
-	public System.Guid IdEquipo
-	{
-		get
+		
+		[Column(Storage="_IdEquipo", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdEquipo
 		{
-			return this._IdEquipo;
-		}
-		set
-		{
-			if ((this._IdEquipo != value))
+			get
 			{
-				this.OnIdEquipoChanging(value);
-				this.SendPropertyChanging();
-				this._IdEquipo = value;
-				this.SendPropertyChanged("IdEquipo");
-				this.OnIdEquipoChanged();
+				return this._IdEquipo;
+			}
+			set
+			{
+				if ((this._IdEquipo != value))
+				{
+					this.OnIdEquipoChanging(value);
+					this.SendPropertyChanging();
+					this._IdEquipo = value;
+					this.SendPropertyChanged("IdEquipo");
+					this.OnIdEquipoChanged();
+				}
 			}
 		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
 		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
 		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
+		
+		protected virtual void SendPropertyChanged(String propertyName)
 		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

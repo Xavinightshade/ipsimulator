@@ -11,6 +11,16 @@ namespace RedesIP
 {
     public class Estacion
     {
+        private Guid _id;
+
+        public Guid Id
+        {
+            get { return _id; }
+        }
+        public Estacion()
+        {
+            _id = Guid.NewGuid();
+        }
         private static float _porcentajeDeVelocidad = 50;
 
         public static float PorcentajeDeVelocidadSimulacion
@@ -49,6 +59,8 @@ namespace RedesIP
         /// Puertos Logicos de la red
         /// </summary>
         private Dictionary<Guid, PuertoEthernetLogico> _puertos = new Dictionary<Guid, PuertoEthernetLogico>();
+
+
 
 
 

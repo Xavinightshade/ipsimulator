@@ -8,18 +8,44 @@ namespace AccesoDatos
 {
     public static class AccesoDatosBD
     {
-        public static ReadOnlyCollection<Estaciones> GetAllTopologias()
+        public static ReadOnlyCollection<Estaciones> GetAllEstaciones()
         {
             return new List<Estaciones>().AsReadOnly();
         }
-        public static Estaciones GetTopologiaById(Guid id)
+        public static Estaciones GetEstacionById(Guid id)
         {
-            return new Estaciones();
+            // traigo la estacion by id
+            Estaciones estacionBD = new Estaciones();
+            Dictionary<Guid, Equipos> equiposBD = GetEquiposByIdEstacion(id);
+            foreach (Puertos puertoBD in GetPuertosByIdEstacion(id))
+            {
+                equiposBD[puertoBD.IdEquipo].AgregarPuerto(puertoBD);
+            }
+            estacionBD.AgregarCables(GetCablesByIdEstacion(id));
+            return estacionBD;
         }
-        public static void GuardarTopologia(Estaciones topologia)
+        private static Dictionary<Guid,Equipos> GetEquiposByIdEstacion(Guid id)
+        {
+            return new Dictionary<Guid, Equipos>();
+        }
+        private static ReadOnlyCollection<Puertos> GetPuertosByIdEstacion(Guid id)
+        {
+            return new List<Puertos>().AsReadOnly();
+        }
+        private static ReadOnlyCollection<Cables> GetCablesByIdEstacion(Guid id)
+        {
+            return new List<Cables>().AsReadOnly();
+        }
+
+
+
+        public static void GuardarEstacion(Estaciones estacion)
         {
 
         }
+
+       
+        
         
     }
 }

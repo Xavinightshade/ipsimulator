@@ -66,7 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatosBD.cs" />
+    <Compile Include="CablesBD.cs" />
+    <Compile Include="EquiposBD.cs" />
+    <Compile Include="EstacionBD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuertosBD.cs" />
     <Compile Include="Red.cs" />
     <Compile Include="RedDataSet.Designer.cs">
       <DependentUpon>RedDataSet.xsd</DependentUpon>
