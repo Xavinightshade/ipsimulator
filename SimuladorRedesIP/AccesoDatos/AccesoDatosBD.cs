@@ -8,14 +8,24 @@ namespace AccesoDatos
 {
     public static class AccesoDatosBD
     {
+        private static Red GetNewBD()
+        {
+            return new Red(@"D:\Tesis\SimuladorRedesIP\AccesoDatos\Red.sdf");
+        }
         public static ReadOnlyCollection<Estaciones> GetAllEstaciones()
         {
-            return new List<Estaciones>().AsReadOnly();
+            Red db = GetNewBD();
+            var query = from b in db.Estaciones select b;
+            return query.ToList().AsReadOnly();
+
         }
         public static Estaciones GetEstacionById(Guid id)
         {
-            // traigo la estacion by id
-            Estaciones estacionBD = new Estaciones();
+            Red db = GetNewBD();
+            var query = from b in db.Estaciones where b.Id==id select b;
+            Estaciones estacionBD = query.First();           
+
+
             Dictionary<Guid, Equipos> equiposBD = GetEquiposByIdEstacion(id);
             foreach (Puertos puertoBD in GetPuertosByIdEstacion(id))
             {
@@ -24,17 +34,42 @@ namespace AccesoDatos
             estacionBD.AgregarCables(GetCablesByIdEstacion(id));
             return estacionBD;
         }
-        private static Dictionary<Guid,Equipos> GetEquiposByIdEstacion(Guid id)
+        private static Dictionary<Guid, Equipos> GetEquiposByIdEstacion(Guid id)
         {
-            return new Dictionary<Guid, Equipos>();
+            Red db = GetNewBD();
+            var equiposLINQ = from equipo in db.Equipos
+                    join estacion in db.Estaciones on equipo.IdEstacion equals estacion.Id
+                    where estacion.Id==id
+                    select equipo;
+
+            Dictionary<Guid, Equipos> equipos = new Dictionary<Guid, Equipos>();
+            foreach (Equipos equipo in equiposLINQ)
+            {
+                equipos.Add(equipo.Id, equipo);
+            }
+            return equipos;
         }
         private static ReadOnlyCollection<Puertos> GetPuertosByIdEstacion(Guid id)
         {
-            return new List<Puertos>().AsReadOnly();
-        }
+            Red db = GetNewBD();
+            var PuertosLINQ = from puerto in db.Puertos
+                              join equipo in db.Equipos on puerto.IdEquipo equals equipo.Id
+                              join estacion in db.Estaciones on equipo.IdEstacion equals estacion.Id
+                              where estacion.Id == id
+                              select puerto;
+            return PuertosLINQ.ToList().AsReadOnly();
+
+                              }
         private static ReadOnlyCollection<Cables> GetCablesByIdEstacion(Guid id)
         {
-            return new List<Cables>().AsReadOnly();
+            Red db = GetNewBD();
+            var cablesLINQ = from cable in db.Cables
+                             join puerto in db.Puertos on cable.IdPuerto1 equals puerto.Id
+                             join equipo in db.Equipos on puerto.IdEquipo equals equipo.Id
+                             join estacion in db.Estaciones on equipo.IdEstacion equals estacion.Id
+                             where estacion.Id == id
+                             select cable;
+            return cablesLINQ.ToList().AsReadOnly();
         }
 
 
@@ -44,8 +79,8 @@ namespace AccesoDatos
 
         }
 
-       
-        
-        
+
+
+
     }
 }
