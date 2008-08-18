@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using RedesIP.Vistas.Equipos.Componentes;
 using RedesIP.SOA;
+using RedesIP.Vistas.Equipos;
 
 namespace RedesIP.Vistas
 {
@@ -29,30 +30,53 @@ namespace RedesIP.Vistas
 
             public override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
             {
+                EquipoView eq = null;
+                foreach (KeyValuePair<Guid,EquipoView> item in Estacion._equipos)
+	{
+		                    if (item.Value.HitTest(e.X, e.Y))
+                    {
+                        eq = item.Value;
+                        break;
+                    } 
+	}
+
+                if (eq == null)
+                {
+                    for (int i = 0; i < Estacion._puertos.Count; i++)
+                    {
+                            Estacion._puertos[i].Reseltado = false;
+                    }
+                    Estacion.Invalidate();
+                    return;
+
+                }
               
                for (int i = 0; i < Estacion._puertos.Count; i++)
                 {
-                    if (Estacion._puertos[i].HitTest(e.X, e.Y))
-                    {
-
-                        Estacion._puertos[i].Seleccionado = true;
-
-
-                    }
-                    else
-                    {
-                        if (Estacion._puertos[i] != Estacion._puerto1)
-                            Estacion._puertos[i].Seleccionado = false;
-                    }
+                    if (Estacion._puertos[i].ElementoPadre == eq)
+                        Estacion._puertos[i].Reseltado = true;
+                   else
+                        Estacion._puertos[i].Reseltado = false;
                 }
                Estacion.Invalidate();
             }
             public override void OnMouseUp(MouseEventArgs e)
             {
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (!(Estacion._puerto1 == null))
+                    {
+                        Estacion._puerto1.Seleccionado = false;
+                        Estacion._puerto1 = null;                        
+                    }
+                    return;   
+                }
                 for (int i = 0; i < Estacion._puertos.Count; i++)
                 {
                     if (Estacion._puertos[i].HitTest(e.X, e.Y))
                     {
+                        if (Estacion._puertos[i].Conectado || Estacion._puertos[i].Seleccionado)
+                            break;
                         if (Estacion._puerto1 == null)
                         {
                             Estacion._puertos[i].Seleccionado = true;

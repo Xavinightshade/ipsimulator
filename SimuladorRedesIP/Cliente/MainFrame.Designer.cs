@@ -35,12 +35,12 @@ namespace SimuladorCliente
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.guardarEnBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarDesdeBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this._estacionView = new RedesIP.Vistas.EstacionView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
@@ -114,6 +114,32 @@ namespace SimuladorCliente
             this.toolStripButton5.Text = "toolStripButton5";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.guardarEnBDToolStripMenuItem,
+            this.cargarDesdeBDToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            // 
+            // guardarEnBDToolStripMenuItem
+            // 
+            this.guardarEnBDToolStripMenuItem.Name = "guardarEnBDToolStripMenuItem";
+            this.guardarEnBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.guardarEnBDToolStripMenuItem.Text = "Guardar en BD";
+            this.guardarEnBDToolStripMenuItem.Click += new System.EventHandler(this.guardarEnBDToolStripMenuItem_Click);
+            // 
+            // cargarDesdeBDToolStripMenuItem
+            // 
+            this.cargarDesdeBDToolStripMenuItem.Name = "cargarDesdeBDToolStripMenuItem";
+            this.cargarDesdeBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.cargarDesdeBDToolStripMenuItem.Text = "Cargar desde BD";
+            this.cargarDesdeBDToolStripMenuItem.Click += new System.EventHandler(this.cargarDesdeBDToolStripMenuItem_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(226, 2);
@@ -144,35 +170,9 @@ namespace SimuladorCliente
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.guardarEnBDToolStripMenuItem,
-            this.cargarDesdeBDToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
-            // 
-            // guardarEnBDToolStripMenuItem
-            // 
-            this.guardarEnBDToolStripMenuItem.Name = "guardarEnBDToolStripMenuItem";
-            this.guardarEnBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.guardarEnBDToolStripMenuItem.Text = "Guardar en BD";
-            this.guardarEnBDToolStripMenuItem.Click += new System.EventHandler(this.guardarEnBDToolStripMenuItem_Click);
-            // 
-            // cargarDesdeBDToolStripMenuItem
-            // 
-            this.cargarDesdeBDToolStripMenuItem.Name = "cargarDesdeBDToolStripMenuItem";
-            this.cargarDesdeBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.cargarDesdeBDToolStripMenuItem.Text = "Cargar desde BD";
-            this.cargarDesdeBDToolStripMenuItem.Click += new System.EventHandler(this.cargarDesdeBDToolStripMenuItem_Click);
-            // 
             // _estacionView
             // 
-            this._estacionView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this._estacionView.BackColor = System.Drawing.Color.Black;
             this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._estacionView.Location = new System.Drawing.Point(0, 25);
             this._estacionView.Name = "_estacionView";

@@ -378,6 +378,8 @@ namespace AccesoDatos
 		
 		private string _Nombre;
 		
+		private System.Data.Linq.Binary _Foto;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -386,6 +388,8 @@ namespace AccesoDatos
     partial void OnIdChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
+    partial void OnFotoChanging(System.Data.Linq.Binary value);
+    partial void OnFotoChanged();
     #endregion
 		
 		public Estaciones()
@@ -429,6 +433,26 @@ namespace AccesoDatos
 					this._Nombre = value;
 					this.SendPropertyChanged("Nombre");
 					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Foto", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Foto
+		{
+			get
+			{
+				return this._Foto;
+			}
+			set
+			{
+				if ((this._Foto != value))
+				{
+					this.OnFotoChanging(value);
+					this.SendPropertyChanging();
+					this._Foto = value;
+					this.SendPropertyChanged("Foto");
+					this.OnFotoChanged();
 				}
 			}
 		}

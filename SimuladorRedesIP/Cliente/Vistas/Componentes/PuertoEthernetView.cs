@@ -9,6 +9,7 @@ namespace RedesIP.Vistas.Equipos.Componentes
 	{
 		private bool _seleccionado;
 		private bool _conectado;
+        private bool _reseltado;
 
 		public bool Conectado
 		{
@@ -21,6 +22,11 @@ namespace RedesIP.Vistas.Equipos.Componentes
 			get { return _seleccionado; }
 			set { _seleccionado = value; }
 		}
+        public bool Reseltado
+        {
+            get { return _reseltado; }
+            set { _reseltado = value; }
+        }
 		public PuertoEthernetView(Guid id,int origenX,int origenY,EquipoView equipoPadre)
 			: base(id,origenX,origenY, 10, 10)
 		{
@@ -28,24 +34,29 @@ namespace RedesIP.Vistas.Equipos.Componentes
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{
+            if (!_reseltado && !_seleccionado && !_conectado)
+                return;
 			Brush brush = Brushes.Black;
+            if (_reseltado)
+            {
+                brush = Brushes.LightCyan;
+            }
 			if (_seleccionado)
 			{
-				brush = Brushes.GreenYellow;
-                Pen p = new Pen(Color.White);
-                grafico.FillRectangle(brush, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
-                grafico.DrawRectangle(p, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
-            //    brush.Dispose();
-                p.Dispose();
+				brush = Brushes.LightGreen;
+
 			}
 			if (_conectado)
 			{
-				brush = Brushes.Orange;
+				brush = Brushes.Salmon;
 			}
-		//	
+
+            	                Pen p = new Pen(Color.White);
+            grafico.FillRectangle(brush, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
+            grafico.DrawRectangle(p, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
+            //    brush.Dispose();
+            p.Dispose();
 			
-		//	grafico.DrawRectangle(p, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
-		//	brush.Dispose();
 			
 		}
 

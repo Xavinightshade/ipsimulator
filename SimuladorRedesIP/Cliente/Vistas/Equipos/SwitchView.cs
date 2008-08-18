@@ -5,6 +5,7 @@ using RedesIP.Vistas.Equipos.Componentes;
 using System.Collections.ObjectModel;
 using SimuladorCliente.Properties;
 using RedesIP.SOA;
+using System.Drawing;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -30,7 +31,7 @@ namespace RedesIP.Vistas.Equipos
 			foreach (PuertoSOA puerto in puertos)
 	{
 		 
-				_puertosEthernet.Add(new PuertoEthernetView(puerto.Id, (i * 20) + 25, 30, this));
+				_puertosEthernet.Add(new PuertoEthernetView(puerto.Id, (i * 20) + 25, 10, this));
 				i++;
 	}
 

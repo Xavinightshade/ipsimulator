@@ -16,9 +16,13 @@ namespace SimuladorCliente
         {
             InitializeComponent();
             MainFrame mainFrame = new MainFrame();
-            SnifferBeta sniffer = new SnifferBeta(mainFrame.Marcador);
+
+         //   SnifferBeta sniffer = new SnifferBeta(mainFrame.Marcador);
+           // sniffer.AllowEndUserDocking = false;
             mainFrame.Show(DockMain, DockState.Document);
-            sniffer.Show(DockMain, DockState.DockBottom);
+          //  sniffer.Show(DockMain, DockState.DockBottomAutoHide);
+          
+           // 
 
         }
     }
