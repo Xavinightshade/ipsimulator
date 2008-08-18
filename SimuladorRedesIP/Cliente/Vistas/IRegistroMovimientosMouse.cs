@@ -12,6 +12,6 @@ namespace RedesIP.Vistas
 		event MouseEventHandler MouseUp;
 		event MouseEventHandler MouseMove;
 		void Invalidate();
-		IContract Contrato { get; }
+		IModeloSOA Contrato { get; }
 	}
 }

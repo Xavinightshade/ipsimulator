@@ -38,6 +38,7 @@ namespace SimuladorCliente
             this.button1 = new System.Windows.Forms.Button();
             this._estacionView = new RedesIP.Vistas.EstacionView();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
             this.SuspendLayout();
@@ -115,7 +116,7 @@ namespace SimuladorCliente
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(113, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Conectar al Servidor";
+            this.button1.Text = "Conectar Local";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -139,12 +140,23 @@ namespace SimuladorCliente
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(517, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 23);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Conectar remoto";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(813, 584);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this._estacionView);
             this.Controls.Add(this.button1);
@@ -175,6 +187,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private RedesIP.Vistas.EstacionView _estacionView;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
 
 
 

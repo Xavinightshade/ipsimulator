@@ -98,7 +98,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Estacion.cs" />
     <Compile Include="Herramienta.cs" />
     <Compile Include="Herramientas\FabricaHerramienta.cs">
       <SubType>Component</SubType>
@@ -138,6 +137,7 @@
     <Compile Include="Ping.Designer.cs">
       <DependentUpon>Ping.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainFrame.resx">
       <SubType>Designer</SubType>

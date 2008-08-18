@@ -60,33 +60,49 @@ namespace SimuladorCliente
 
 
 
-		IContract _clien = null;
+		IModeloSOA _clien = null;
+        Estacion _estacion;
 		private void button1_Click(object sender, EventArgs e)
 		{
+           // ConectarSOA();
+            Estacion es = new Estacion();
+            Presenter p = new Presenter(es, _estacionView);
+            _estacionView.EstablecerServer(p);
+            p.Conectar();
+            _estacion = es;
+            button1.Visible = false;
+            toolStripButton1.Enabled = true;
+            toolStripButton2.Enabled = true;
+            toolStripButton3.Enabled = true;
+            toolStripButton4.Enabled = true;
+		}
+
+        private void ConectarSOA()
+        {
             System.ServiceModel.Channels.Binding binding =
-                new NetTcpBinding(SecurityMode.None,true);
+                new NetTcpBinding(SecurityMode.None, true);
             EndpointAddress address =
                 new EndpointAddress(@"net.tcp://localhost:8000/Simulador/");
 
 
             InstanceContext context = new InstanceContext(_estacionView);
-            DuplexChannelFactory<IContract> factory =
-                new DuplexChannelFactory<IContract>
+            DuplexChannelFactory<IModeloSOA> factory =
+                new DuplexChannelFactory<IModeloSOA>
                 (context, binding, address);
-           _clien = factory.CreateChannel();
+           IModeloSOA clien = factory.CreateChannel();
 
 
 
 
-           _estacionView.EstablecerServer(_clien);
-           _clien.Conectar();
+            _estacionView.EstablecerServer(clien);
+            clien.Conectar();
 
-           button1.Visible = false;
-           toolStripButton1.Enabled = true;
-           toolStripButton2.Enabled = true;
-           toolStripButton3.Enabled = true;
-           toolStripButton4.Enabled = true;
-		}
+            button1.Visible = false;
+            toolStripButton1.Enabled = true;
+            toolStripButton2.Enabled = true;
+            toolStripButton3.Enabled = true;
+            toolStripButton4.Enabled = true;
+        }
 
 
 
@@ -105,11 +121,10 @@ namespace SimuladorCliente
 		}
 
 
-        EstacionSOA _estShared;
         private void button2_Click(object sender, EventArgs e)
         {
 
-            IContract singletonCalculator = _estShared;
+            IModeloSOA singletonCalculator = new PresenterSOA(_estacion);
 
 
             ServiceHost calculatorHost =
@@ -121,10 +136,15 @@ namespace SimuladorCliente
                 new Uri(@"net.tcp://localhost:8000/Simulador");
 
             calculatorHost.AddServiceEndpoint(
-                typeof(IContract), binding, address);
+                typeof(IModeloSOA), binding, address);
 
             calculatorHost.Open();
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ConectarSOA();
         }
 
 

@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using RedesIP.Modelos.Equipos.Componentes;
+using RedesIP.Modelos;
+using RedesIP.Modelos.Logicos.Equipos;
+using RedesIP.Modelos.Datos;
+using RedesIP.Common;
+
+namespace RedesIP
+{
+    public class Estacion
+    {
+        private static float _porcentajeDeVelocidad = 50;
+
+        public static float PorcentajeDeVelocidadSimulacion
+        {
+            get { return Estacion._porcentajeDeVelocidad; }
+            set { Estacion._porcentajeDeVelocidad = value; }
+        }
+
+        /// <summary>
+        /// Computadores de la red
+        /// </summary>
+        private Dictionary<Guid, ComputadorLogico> _computadores = new Dictionary<Guid, ComputadorLogico>();
+
+        public Dictionary<Guid, ComputadorLogico> Computadores
+        {
+            get { return _computadores; }
+        }
+        /// <summary>
+        /// Switches de la red
+        /// </summary>
+        private Dictionary<Guid, SwitchLogico> _switches = new Dictionary<Guid, SwitchLogico>();
+        /// <summary>
+        /// Cables de la red
+        /// </summary>
+        private Dictionary<Guid, CableDeRedLogico> _diccioCables = new Dictionary<Guid, CableDeRedLogico>();
+
+        public Dictionary<Guid, CableDeRedLogico> Cables
+        {
+            get { return _diccioCables; }
+        }
+        /// <summary>
+        /// Puertos Logicos de la red
+        /// </summary>
+        private Dictionary<Guid, PuertoEthernetLogico> _puertos = new Dictionary<Guid, PuertoEthernetLogico>();
+
+        /// <summary>
+        /// Lista de clientes de la red
+        /// </summary>
+        /// 
+        private Dictionary<Guid, IPosisionable> _elementosPosisionables = new Dictionary<Guid, IPosisionable>();
+        public ComputadorLogico CrearComputador(int X, int Y)
+        {
+            ComputadorLogico pc = new ComputadorLogico(X, Y);
+            _computadores.Add(pc.Id, pc);
+            _elementosPosisionables.Add(pc.Id, pc);
+            _puertos.Add(pc.PuertoEthernet.Id, pc.PuertoEthernet);
+            return pc;
+        }
+        public SwitchLogico CrearSwitch(int X, int Y)
+        {
+            SwitchLogico swi = new SwitchLogico(11, X, Y);
+            _switches.Add(swi.Id, swi);
+            _elementosPosisionables.Add(swi.Id, swi);
+            LLenarPuertos(_puertos, swi.PuertosEthernet);
+            return swi;
+        }
+        public void MoverPosicionElemento(Guid id, int x, int y)
+        {
+            IPosisionable elemento = _elementosPosisionables[id];
+            elemento.X = x;
+            elemento.Y = y;
+        }
+
+        public CableDeRedLogico ConectarPuertos(Guid idPuertoA, Guid idPuertoB)
+        {
+            CableDeRedLogico cable = new CableDeRedLogico(_puertos[idPuertoA], _puertos[idPuertoB]);
+            _diccioCables.Add(cable.Id, cable);
+            return cable;
+        }
+        public void Ping(Guid idComputador, string mensaje, MACAddress macDestino)
+        {
+            _computadores[idComputador].EnviarMensajeDeTexto(mensaje, macDestino);
+
+
+        }
+
+        private void LLenarPuertos(Dictionary<Guid, PuertoEthernetLogico> diccionarioPuertos, IEnumerable<PuertoEthernetLogico> puertos)
+        {
+            foreach (PuertoEthernetLogico puerto in puertos)
+            {
+                diccionarioPuertos.Add(puerto.Id, puerto);
+            }
+        }
+
+        private void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
+        {
+            if (FrameRecibido != null)
+                FrameRecibido(sender, e);
+        }
+        public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
+
+
+
+
+
+        private List<Guid> _PuertosEscuchando = new List<Guid>();
+        public void EscucharPuerto(Guid idConexion)
+        {
+            CableDeRedLogico cable = _diccioCables[idConexion];
+            if (_PuertosEscuchando.Contains(cable.Puerto1.Id) || _PuertosEscuchando.Contains(cable.Puerto2.Id))
+            {
+
+            }
+            else
+            {
+                cable.FrameRecibidoPuerto1 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
+                cable.FrameRecibidoPuerto2 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
+                _PuertosEscuchando.Add(cable.Puerto1.Id);
+                _PuertosEscuchando.Add(cable.Puerto2.Id);
+            }
+
+
+
+        }
+    }
+
+
+}

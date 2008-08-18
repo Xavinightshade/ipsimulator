@@ -20,14 +20,14 @@ namespace RedesIP.Vistas
 	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion,IMarker
 	{
         HerramientaBase _herramienta;
-        IContract _server;
+        IModeloSOA _server;
 
 		Dictionary<Guid, EquipoView> _equipos = new Dictionary<Guid, EquipoView>();
 		List<PuertoEthernetView> _puertos = new List<PuertoEthernetView>();
 		Dictionary<Guid, PuertoEthernetView> _diccioPuertos = new Dictionary<Guid, PuertoEthernetView>();
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
-		public void EstablecerServer(IContract server)
+		public void EstablecerServer(IModeloSOA server)
 		{
 			_server = server;
 		}
@@ -81,7 +81,7 @@ namespace RedesIP.Vistas
 
 
 
-		public IContract Contrato
+		public IModeloSOA Contrato
 		{
 			get { return _server; }
 		}

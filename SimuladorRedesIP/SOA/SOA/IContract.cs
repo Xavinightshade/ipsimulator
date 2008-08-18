@@ -12,7 +12,7 @@ namespace RedesIP.SOA
 {
 	[ServiceContract(	 Name = "EstacionServer", SessionMode = SessionMode.Required, CallbackContract = typeof(IVisualizacion))]
 
-	public interface IContract
+	public interface IModeloSOA
 	{
 		[OperationContract()]
 		void PeticionCrearEquipo(TipoDeEquipo tipoEquipo, int x, int y);

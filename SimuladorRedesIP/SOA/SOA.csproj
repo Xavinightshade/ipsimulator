@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PresenterSOA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SOA\Elementos\ConexionSOA.cs" />
     <Compile Include="SOA\Elementos\EquipoSOA.cs" />
