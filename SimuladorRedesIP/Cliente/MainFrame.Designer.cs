@@ -61,7 +61,7 @@ namespace SimuladorCliente
             this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(813, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(895, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -75,14 +75,14 @@ namespace SimuladorCliente
             this.DockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.DockMain.Location = new System.Drawing.Point(0, 52);
             this.DockMain.Name = "DockMain";
-            this.DockMain.Size = new System.Drawing.Size(813, 496);
+            this.DockMain.Size = new System.Drawing.Size(895, 605);
             this.DockMain.TabIndex = 10;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 551);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 660);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(813, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(895, 22);
             this.statusStrip1.TabIndex = 15;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -180,7 +180,7 @@ namespace SimuladorCliente
             this.herramientasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(813, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(895, 24);
             this.menuStrip1.TabIndex = 16;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -216,7 +216,7 @@ namespace SimuladorCliente
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(813, 573);
+            this.ClientSize = new System.Drawing.Size(895, 682);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.DockMain);
             this.Controls.Add(this.toolStrip1);
@@ -225,6 +225,7 @@ namespace SimuladorCliente
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainFrame";
             this.Text = "Simulador";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrame_FormClosing);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
