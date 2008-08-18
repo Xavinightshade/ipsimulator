@@ -60,6 +60,13 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Cable {
+            get {
+                object obj = ResourceManager.GetObject("Cable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Computador {
             get {
                 object obj = ResourceManager.GetObject("Computador", resourceCulture);
@@ -91,6 +98,13 @@ namespace SimuladorCliente.Properties {
         internal static System.Drawing.Bitmap Router {
             get {
                 object obj = ResourceManager.GetObject("Router", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap sniffer {
+            get {
+                object obj = ResourceManager.GetObject("sniffer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

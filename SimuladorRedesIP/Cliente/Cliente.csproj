@@ -115,6 +115,12 @@
     <Compile Include="Herramientas\HerramientaMarcador.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Herramientas\PaletaHerramienta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\PaletaHerramienta.Designer.cs">
+      <DependentUpon>PaletaHerramienta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Herramientas\HerramientaSeleccion.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -140,6 +146,10 @@
     </Compile>
     <Compile Include="Presenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Herramientas\PaletaHerramienta.resx">
+      <DependentUpon>PaletaHerramienta.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFrame.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainFrame.cs</DependentUpon>
@@ -272,6 +282,15 @@
       <Project>{7806FC84-2690-4A74-B11A-AF05792C8FFA}</Project>
       <Name>SOA</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\H0CAPV6PH5CA3FK7D3CARPCRDFCA32CXW1CAO6VRSGCALSHBE1CA0MFBOGCAK4UGCKCASOBG7DCA55O5SJCA5MSXX7CA4XFR4XCA1W1MSMCA9M553ZCAKWBYC1CAFJTVY3CAYQLXN7CA1ACMYICAJV4ISD.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TEMP.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sniffer.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
