@@ -154,7 +154,7 @@ namespace SimuladorCliente
         Estacion _es;
         private void cargarDesdeBDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _es = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("3adc72b7-2274-47ed-9d6a-b8e661d1a987"));
+            _es = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("70a29cae-ec21-49b8-bd88-80213225ef42"));
             Presenter p = new Presenter(_estacionView);
             p.SetEstacion(_es);
             _estacionView.EstablecerServer(p);

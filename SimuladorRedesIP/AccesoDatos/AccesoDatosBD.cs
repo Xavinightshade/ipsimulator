@@ -12,16 +12,17 @@ namespace AccesoDatos
         {
             return new Red(@"D:\Tesis\SimuladorRedesIP\AccesoDatos\Red.sdf");
         }
+        static Red db = GetNewBD();
         public static ReadOnlyCollection<Estaciones> GetAllEstaciones()
         {
-            Red db = GetNewBD();
+
             var query = from b in db.Estaciones select b;
             return query.ToList().AsReadOnly();
 
         }
         public static Estaciones GetEstacionById(Guid id)
         {
-            Red db = GetNewBD();
+
             var query = from b in db.Estaciones where b.Id==id select b;
             Estaciones estacionBD = query.First();           
 
@@ -40,7 +41,7 @@ namespace AccesoDatos
         }
         private static Dictionary<Guid, Equipos> GetEquiposByIdEstacion(Guid id)
         {
-            Red db = GetNewBD();
+
             var equiposLINQ = from equipo in db.Equipos
                     join estacion in db.Estaciones on equipo.IdEstacion equals estacion.Id
                     where estacion.Id==id
@@ -55,7 +56,7 @@ namespace AccesoDatos
         }
         private static ReadOnlyCollection<Puertos> GetPuertosByIdEstacion(Guid id)
         {
-            Red db = GetNewBD();
+
             var PuertosLINQ = from puerto in db.Puertos
                               join equipo in db.Equipos on puerto.IdEquipo equals equipo.Id
                               join estacion in db.Estaciones on equipo.IdEstacion equals estacion.Id
@@ -66,7 +67,7 @@ namespace AccesoDatos
                               }
         private static ReadOnlyCollection<Cables> GetCablesByIdEstacion(Guid id)
         {
-            Red db = GetNewBD();
+
             var cablesLINQ = from cable in db.Cables
                              join puerto in db.Puertos on cable.IdPuerto1 equals puerto.Id
                              join equipo in db.Equipos on puerto.IdEquipo equals equipo.Id
@@ -80,7 +81,7 @@ namespace AccesoDatos
 
         public static void GuardarEstacion(Estaciones estacion)
         {
-            Red db = GetNewBD();
+
             db.Estaciones.InsertOnSubmit(estacion);
             foreach (Equipos equipo in estacion.Equipos)
             {
