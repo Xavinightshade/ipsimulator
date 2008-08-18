@@ -6,7 +6,7 @@ using RedesIP.SOA.Elementos;
 
 namespace RedesIP.SOA
 {
-	public interface ICallBackContract
+	public interface IVisualizacion
 	{
 		[OperationContract(IsOneWay = true)]
 		void CrearEquipo(EquipoSOA equipo);

@@ -66,7 +66,7 @@ namespace SimuladorCliente
             System.ServiceModel.Channels.Binding binding =
                 new NetTcpBinding(SecurityMode.None,true);
             EndpointAddress address =
-                new EndpointAddress(@"net.tcp://192.168.0.101:8000/Simulador/");
+                new EndpointAddress(@"net.tcp://localhost:8000/Simulador/");
 
 
             InstanceContext context = new InstanceContext(_estacionView);
@@ -104,11 +104,28 @@ namespace SimuladorCliente
 			_estacionView.CambiarHerramienta(Herramienta.Marcadores);
 		}
 
-		private void trackBar1_Scroll(object sender, EventArgs e)
-		{
 
-            _clien.SetVelocidadSimulacion((trackBar1.Value * 100 / trackBar1.Maximum));
-		}
+        EstacionSOA _estShared;
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            IContract singletonCalculator = _estShared;
+
+
+            ServiceHost calculatorHost =
+                new ServiceHost(singletonCalculator);
+
+            NetTcpBinding binding =
+                new NetTcpBinding(SecurityMode.None, true);
+            Uri address =
+                new Uri(@"net.tcp://localhost:8000/Simulador");
+
+            calculatorHost.AddServiceEndpoint(
+                typeof(IContract), binding, address);
+
+            calculatorHost.Open();
+
+        }
 
 
 

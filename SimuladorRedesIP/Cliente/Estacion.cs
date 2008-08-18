@@ -143,10 +143,10 @@ namespace RedesIP
             _estacion = new Estacion();
             _estacion.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
         }
-        private List<ICallBackContract> _clientes = new List<ICallBackContract>();
+        private List<IVisualizacion> _clientes = new List<IVisualizacion>();
         private void RegistrarCliente()
         {
-            ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
+            IVisualizacion cliente = OperationContext.Current.GetCallbackChannel<IVisualizacion>();
             if (_clientes.Contains(cliente))
                 return;
             _clientes.Add(cliente);
@@ -169,7 +169,7 @@ namespace RedesIP
             }
             EquipoSOA equipo = new EquipoSOA(tipoEquipo, equipoLogico.Id, equipoLogico.X, equipoLogico.Y);
             LLenarPuertos(equipoLogico, equipo);
-            foreach (ICallBackContract cliente in _clientes)
+            foreach (IVisualizacion cliente in _clientes)
             {
                 cliente.CrearEquipo(equipo);
             }
@@ -188,7 +188,7 @@ namespace RedesIP
         {
             _estacion.MoverPosicionElemento(idEquipo, x, y);
 
-            foreach (ICallBackContract cliente in _clientes)
+            foreach (IVisualizacion cliente in _clientes)
             {
                 cliente.MoverEquipo(idEquipo, x, y);
             }
@@ -199,7 +199,7 @@ namespace RedesIP
         {
             CableDeRedLogico cableLogico = _estacion.ConectarPuertos(idPuerto1, idPuerto2);
             CableSOA cableSOA = new CableSOA(cableLogico.Id, cableLogico.Puerto1.Id, cableLogico.Puerto2.Id);
-            foreach (ICallBackContract cliente in _clientes)
+            foreach (IVisualizacion cliente in _clientes)
             {
                 cliente.ConectarPuertos(cableSOA);
             }
@@ -216,7 +216,7 @@ namespace RedesIP
         public void Conectar()
         {
             RegistrarCliente();
-            ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
+            IVisualizacion cliente = OperationContext.Current.GetCallbackChannel<IVisualizacion>();
 
             List<EquipoSOA> equipos = new List<EquipoSOA>();
             foreach (KeyValuePair<Guid, ComputadorLogico> par in _estacion.Computadores)
@@ -240,7 +240,7 @@ namespace RedesIP
 
         public void Desconectar()
         {
-            ICallBackContract cliente = OperationContext.Current.GetCallbackChannel<ICallBackContract>();
+            IVisualizacion cliente = OperationContext.Current.GetCallbackChannel<IVisualizacion>();
             _clientes.Remove(cliente);
 
         }
@@ -249,15 +249,15 @@ namespace RedesIP
 
 
 
-        private Dictionary<Guid, List<ICallBackContract>> _diccioMensajes = new Dictionary<Guid, List<ICallBackContract>>();
+        private Dictionary<Guid, List<IVisualizacion>> _diccioMensajes = new Dictionary<Guid, List<IVisualizacion>>();
 
         public void PeticionEnviarInformacionConexion(Guid idConexion)
         {
             if (!_diccioMensajes.ContainsKey(idConexion))
             {
-                _diccioMensajes.Add(idConexion, new List<ICallBackContract>());
+                _diccioMensajes.Add(idConexion, new List<IVisualizacion>());
             }
-            _diccioMensajes[idConexion].Add(OperationContext.Current.GetCallbackChannel<ICallBackContract>());
+            _diccioMensajes[idConexion].Add(OperationContext.Current.GetCallbackChannel<IVisualizacion>());
 
             _estacion.EscucharPuerto(idConexion);
         }
@@ -270,7 +270,7 @@ namespace RedesIP
             MACAddressSOA macOrigen = new MACAddressSOA(e.FrameRecibido.MACAddressOrigen);
             MACAddressSOA macDestino = new MACAddressSOA(e.FrameRecibido.MACAddressDestino);
             MensajeSOA mensajeSOA = new MensajeSOA(cable.Id, mensaje, macPuerto, macOrigen, macDestino, e.FrameRecibido.HoraTransmision, e.FrameRecibido.HoraRecepcion);
-            foreach (ICallBackContract cliente in _diccioMensajes[cable.Id])
+            foreach (IVisualizacion cliente in _diccioMensajes[cable.Id])
             {
                 cliente.EnviarInformacionConexion(mensajeSOA);
             }

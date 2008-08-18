@@ -98,7 +98,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationEntry.cs" />
     <Compile Include="Estacion.cs" />
     <Compile Include="Herramienta.cs" />
     <Compile Include="Herramientas\FabricaHerramienta.cs">
