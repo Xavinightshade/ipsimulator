@@ -29,14 +29,14 @@ namespace RedesIP
                     ICommunicationObject v = vista as ICommunicationObject;
                     
 
-                    if (((ICommunicationObject)vista).State == CommunicationState.Opened)
-                    {
+                    //if (((ICommunicationObject)vista).State == CommunicationState.Opened)
+                    //{
              
-                    }
-                    else
-                    {
-                        _vistas.Remove(vista);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    _vistas.Remove(vista);
+                    //}
 
                 }
         public void SetEstacion(Estacion estacion)
