@@ -12,22 +12,28 @@ using System.ServiceModel;
 using WeifenLuo.WinFormsUI.Docking;
 using SimuladorCliente.Vistas;
 using RedesIP.SOA;
+using SimuladorCliente.Herramientas;
 
 namespace SimuladorCliente
 {
-    public partial class MainFrame : DockContent
+    public partial class MainFrame : Form
 	{
+        EstacionView _estacionView;
 		public MainFrame()
 		{
 			InitializeComponent();
+            FormaEstacion f = new FormaEstacion();
+            PaletaHerramienta pal = new PaletaHerramienta();
+            f.Show(DockMain, DockState.Document);
+            pal.Show(DockMain, DockState.DockLeft);
+            _estacionView = f.EstacionView;
+            _controladorMarcador = new ControladorMarcador(DockMain);
+           
+
 
 		}
         ControladorMarcador _controladorMarcador; 
-        public MainFrame(DockPanel dockMain)
-            :this()
-        {
-            _controladorMarcador = new ControladorMarcador(dockMain);
-        }
+
 
 
 
@@ -76,7 +82,7 @@ namespace SimuladorCliente
             _estacionView.EstablecerServer(p);
             p.Conectar();
             _controladorMarcador.EstablecerEstacion(_estacionView);
-            button1.Visible = false;
+          //  button1.Visible = false;
             toolStripButton1.Enabled = true;
             toolStripButton2.Enabled = true;
             toolStripButton3.Enabled = true;
@@ -103,7 +109,7 @@ namespace SimuladorCliente
             _estacionView.EstablecerServer(clien);
             clien.Conectar();
 
-            button1.Visible = false;
+      //      button1.Visible = false;
             toolStripButton1.Enabled = true;
             toolStripButton2.Enabled = true;
             toolStripButton3.Enabled = true;
@@ -167,7 +173,7 @@ namespace SimuladorCliente
             _estacionView.EstablecerServer(p);
             p.Conectar();
             _controladorMarcador.EstablecerEstacion(_estacionView);
-            button1.Visible = false;
+        //    button1.Visible = false;
             toolStripButton1.Enabled = true;
             toolStripButton2.Enabled = true;
             toolStripButton3.Enabled = true;
