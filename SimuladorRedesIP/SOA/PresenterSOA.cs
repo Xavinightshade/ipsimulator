@@ -15,7 +15,7 @@ namespace RedesIP
 {
     public abstract class PresenterBase : IModeloSOA
     {
-                private Estacion _estacion;
+                private static Estacion _estacion;
                 private void RegistrarCliente()
         {
             IVisualizacion vista = GetCurrentClient();
@@ -24,8 +24,25 @@ namespace RedesIP
             _vistas.Add(vista);
         }
 
-        public PresenterBase(Estacion estacion)
+                private static void RealizarOperacionEnVista(IVisualizacion vista)
+                {
+                    ICommunicationObject v = vista as ICommunicationObject;
+                    
+
+                    if (((ICommunicationObject)vista).State == CommunicationState.Opened)
+                    {
+             
+                    }
+                    else
+                    {
+                        _vistas.Remove(vista);
+                    }
+
+                }
+        public void SetEstacion(Estacion estacion)
         {
+            if (_estacion != null)
+                throw new Exception();
             _estacion = estacion;
             _estacion.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
         }
@@ -70,7 +87,9 @@ namespace RedesIP
 
             foreach (IVisualizacion cliente in _vistas)
             {
+                RealizarOperacionEnVista(cliente);
                 cliente.MoverEquipo(idEquipo, x, y);
+
             }
 
         }
@@ -102,10 +121,14 @@ namespace RedesIP
             IVisualizacion cliente = GetCurrentClient();
 
             List<EquipoSOA> equipos = new List<EquipoSOA>();
-            foreach (KeyValuePair<Guid, ComputadorLogico> par in _estacion.Computadores)
+            foreach (KeyValuePair<Guid, EquipoLogico> par in _estacion.Equipos)
             {
-                ComputadorLogico pc = par.Value;
-                equipos.Add(new EquipoSOA(pc.TipoDeEquipo, pc.Id, pc.X, pc.Y));
+                EquipoLogico eqLogico = par.Value;
+                EquipoSOA eq = new EquipoSOA(eqLogico.TipoDeEquipo, eqLogico.Id, eqLogico.X, eqLogico.Y);
+                foreach (PuertoEthernetLogico puerto in eqLogico.PuertosEthernet)
+                {
+                    eq.Puertos.Add(new PuertoSOA(puerto.Id));
+                }
             }
             List<CableSOA> cables = new List<CableSOA>();
             foreach (KeyValuePair<Guid, CableDeRedLogico> par in _estacion.Cables)
@@ -191,8 +214,7 @@ namespace RedesIP
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
     public class PresenterSOA : PresenterBase
     {
-        public PresenterSOA(Estacion estacion)
-            :base(estacion)
+        public PresenterSOA()
         {
 
         }

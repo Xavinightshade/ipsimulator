@@ -24,10 +24,14 @@ namespace RedesIP
         /// </summary>
         private Dictionary<Guid, ComputadorLogico> _computadores = new Dictionary<Guid, ComputadorLogico>();
 
-        public Dictionary<Guid, ComputadorLogico> Computadores
+        private Dictionary<Guid, EquipoLogico> _equipos = new Dictionary<Guid, EquipoLogico>();
+
+        public Dictionary<Guid, EquipoLogico> Equipos
         {
-            get { return _computadores; }
+            get { return _equipos; }
         }
+
+
         /// <summary>
         /// Switches de la red
         /// </summary>
@@ -46,6 +50,8 @@ namespace RedesIP
         /// </summary>
         private Dictionary<Guid, PuertoEthernetLogico> _puertos = new Dictionary<Guid, PuertoEthernetLogico>();
 
+
+
         /// <summary>
         /// Lista de clientes de la red
         /// </summary>
@@ -55,6 +61,7 @@ namespace RedesIP
         {
             ComputadorLogico pc = new ComputadorLogico(X, Y);
             _computadores.Add(pc.Id, pc);
+            _equipos.Add(pc.Id, pc);
             _elementosPosisionables.Add(pc.Id, pc);
             _puertos.Add(pc.PuertoEthernet.Id, pc.PuertoEthernet);
             return pc;
@@ -63,6 +70,7 @@ namespace RedesIP
         {
             SwitchLogico swi = new SwitchLogico(11, X, Y);
             _switches.Add(swi.Id, swi);
+            _equipos.Add(swi.Id, swi);
             _elementosPosisionables.Add(swi.Id, swi);
             LLenarPuertos(_puertos, swi.PuertosEthernet);
             return swi;

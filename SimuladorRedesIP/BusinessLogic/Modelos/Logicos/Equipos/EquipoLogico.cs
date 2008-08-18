@@ -15,10 +15,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
         public TipoDeEquipo TipoDeEquipo
         {
             get { return _tipoDeEquipo; }
-            set { _tipoDeEquipo = value; }
         }
         public EquipoLogico(TipoDeEquipo tipoEquipo,int X, int Y)
         {
+            _tipoDeEquipo = tipoEquipo;
             _X = X;
             _Y = Y;
         }

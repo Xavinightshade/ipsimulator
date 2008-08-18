@@ -17,8 +17,7 @@ namespace SimuladorCliente
     {
         private IVisualizacion _vista;
 
-        public Presenter(Estacion estacion,IVisualizacion vista)
-            :base(estacion)
+        public Presenter(IVisualizacion vista)
         {
             _vista = vista;
         }

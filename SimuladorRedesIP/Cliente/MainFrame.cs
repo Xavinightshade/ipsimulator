@@ -61,15 +61,14 @@ namespace SimuladorCliente
 
 
 		IModeloSOA _clien = null;
-        Estacion _estacion;
 		private void button1_Click(object sender, EventArgs e)
 		{
-           // ConectarSOA();
+       
             Estacion es = new Estacion();
-            Presenter p = new Presenter(es, _estacionView);
+            Presenter p = new Presenter(_estacionView);
+            p.SetEstacion(es);
             _estacionView.EstablecerServer(p);
             p.Conectar();
-            _estacion = es;
             button1.Visible = false;
             toolStripButton1.Enabled = true;
             toolStripButton2.Enabled = true;
@@ -124,8 +123,8 @@ namespace SimuladorCliente
         private void button2_Click(object sender, EventArgs e)
         {
 
-            IModeloSOA singletonCalculator = new PresenterSOA(_estacion);
-
+            IModeloSOA singletonCalculator = new PresenterSOA();
+            _clien = singletonCalculator;
 
             ServiceHost calculatorHost =
                 new ServiceHost(singletonCalculator);
