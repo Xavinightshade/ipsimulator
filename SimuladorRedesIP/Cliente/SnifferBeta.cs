@@ -20,6 +20,7 @@ namespace SimuladorCliente
             ConfigurarGrilla();
             marcadorImagen1.Color = marcador.Color;
             this.TabText = marcador.Id.ToString().Substring(0, 5);
+            this.label1.Text = marcador.Id.ToString();
             marcador.NuevoMensaje += new EventHandler<NuevoMensajeEventArgs>(OnMensaje);
         }
 
@@ -91,9 +92,6 @@ namespace SimuladorCliente
 
             if (this.InvokeRequired)
             {
-                // Pass the same function to BeginInvoke,
-                // but the call would come on the correct
-                // thread and InvokeRequired will be false.
                 this.BeginInvoke(new SetLabelTextDelegate(ReportarMensaje),
                                                             new object[] { idConexion, mensaje });
 

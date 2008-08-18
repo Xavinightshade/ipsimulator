@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SimuladorCliente;
+using SimuladorCliente.Formularios;
 
 namespace RedesIP.Vistas
 {
@@ -25,6 +26,9 @@ namespace RedesIP.Vistas
             public abstract void OnMouseUp(MouseEventArgs e);
             public virtual void OnMouseDoubleClick(MouseEventArgs e)
             {
+                FormularioComputador formaPC = new FormularioComputador();
+                formaPC.ShowDialog();
+                return;
                 for (int i = 0; i < _estacion._computadores.Count; i++)
                 {
                     if (_estacion._computadores[i].HitTest(e.X, e.Y))
