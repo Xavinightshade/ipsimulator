@@ -12,22 +12,24 @@ namespace RedesIP.Vistas
     {
         List<Marcador> _marcadores = new List<Marcador>();
         public event EventHandler<NuevoMarcadorEventArgs> NuevoMarcador;
+
         public void EnviarInformacionConexion(MensajeSOA mensajeSOA)
         {
-            if (NuevoMensaje != null)
+            foreach (Marcador marker in _marcadores)
             {
-
-                Mensaje mensaje = new Mensaje(mensajeSOA);
-                NuevoMensaje(this, new NuevoMensajeEventArgs(mensaje));
+                if (marker.Conexion.Id == mensajeSOA.IdConexion)
+                {
+                    marker.EnviarNuevoMensaje(mensajeSOA);
+                    return;
+                }
             }
+            throw new Exception();
         }
 
 
 
 
 
-
-        public event EventHandler<NuevoMensajeEventArgs> NuevoMensaje;
         private class HerramientaMarcador : HerramientaBase
         {
             Dictionary<Guid, Marcador> _diccioMarcadores = new Dictionary<Guid, Marcador>();

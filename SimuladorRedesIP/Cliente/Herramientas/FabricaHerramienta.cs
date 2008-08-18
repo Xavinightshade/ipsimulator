@@ -43,6 +43,7 @@ namespace RedesIP.Vistas
             this._puerto1 = null;
             this._puertos.Clear();
             this._switches.Clear();
+            this.NuevoMarcador = null;
         }
     }
 }

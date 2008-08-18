@@ -22,8 +22,13 @@ namespace SimuladorCliente
 			InitializeComponent();
 
 		}
+        ControladorMarcador _controladorMarcador; 
+        public MainFrame(DockPanel dockMain)
+            :this()
+        {
+            _controladorMarcador = new ControladorMarcador(dockMain);
+        }
 
-        public IMarker Marcador { get { return _estacionView as IMarker; } }
 
 
 		private void toolStripButton2_Click(object sender, EventArgs e)
@@ -64,12 +69,13 @@ namespace SimuladorCliente
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-       
+            
             _es = new Estacion(Guid.NewGuid());
             Presenter p = new Presenter(_estacionView);
             p.SetEstacion(_es);
             _estacionView.EstablecerServer(p);
             p.Conectar();
+            _controladorMarcador.EstablecerEstacion(_estacionView);
             button1.Visible = false;
             toolStripButton1.Enabled = true;
             toolStripButton2.Enabled = true;
@@ -160,6 +166,7 @@ namespace SimuladorCliente
             p.SetEstacion(_es);
             _estacionView.EstablecerServer(p);
             p.Conectar();
+            _controladorMarcador.EstablecerEstacion(_estacionView);
             button1.Visible = false;
             toolStripButton1.Enabled = true;
             toolStripButton2.Enabled = true;

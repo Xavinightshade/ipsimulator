@@ -28,69 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this._markerCmbBox = new System.Windows.Forms.ToolStripComboBox();
             this.grid = new SourceGrid.Grid();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStrip1.SuspendLayout();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.marcadorImagen1 = new SimuladorCliente.Vistas.MarcadorImagen();
+            this.button1 = new System.Windows.Forms.Button();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.marcadorImagen1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this._markerCmbBox});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(686, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // _markerCmbBox
-            // 
-            this._markerCmbBox.Name = "_markerCmbBox";
-            this._markerCmbBox.Size = new System.Drawing.Size(200, 25);
             // 
             // grid
             // 
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 25);
+            this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.OptimizeMode = SourceGrid.CellOptimizeMode.ForRows;
             this.grid.SelectionMode = SourceGrid.GridSelectionMode.Cell;
-            this.grid.Size = new System.Drawing.Size(686, 313);
+            this.grid.Size = new System.Drawing.Size(684, 302);
             this.grid.TabIndex = 1;
             this.grid.TabStop = true;
             this.grid.ToolTipText = "";
             // 
-            // toolStripLabel1
+            // splitContainer1
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(56, 22);
-            this.toolStripLabel1.Text = "Marcador:";
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.grid);
+            this.splitContainer1.Size = new System.Drawing.Size(686, 338);
+            this.splitContainer1.SplitterDistance = 30;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.Controls.Add(this.marcadorImagen1);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(684, 28);
+            this.panel1.TabIndex = 0;
+            // 
+            // marcadorImagen1
+            // 
+            this.marcadorImagen1.BackColor = System.Drawing.Color.Black;
+            this.marcadorImagen1.Color = System.Drawing.Color.Empty;
+            this.marcadorImagen1.Location = new System.Drawing.Point(3, 3);
+            this.marcadorImagen1.Name = "marcadorImagen1";
+            this.marcadorImagen1.Size = new System.Drawing.Size(40, 21);
+            this.marcadorImagen1.TabIndex = 6;
+            this.marcadorImagen1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button1.Location = new System.Drawing.Point(556, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(125, 22);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // SnifferBeta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 338);
-            this.Controls.Add(this.grid);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "SnifferBeta";
             this.TabText = "SnifferBeta";
             this.Text = "SnifferBeta";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.marcadorImagen1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
         private SourceGrid.Grid grid;
-        private System.Windows.Forms.ToolStripComboBox _markerCmbBox;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
+        private SimuladorCliente.Vistas.MarcadorImagen marcadorImagen1;
     }
 }

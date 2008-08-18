@@ -6,11 +6,26 @@ using RedesIP.Vistas;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
+using RedesIP.SOA.Elementos;
 
 namespace SimuladorCliente.Vistas
 {
 	public class Marcador:ElementoGrafico
-	{
+    {
+        public event EventHandler<NuevoMensajeEventArgs> NuevoMensaje;
+        public void EnviarNuevoMensaje(MensajeSOA mensajeSOA)
+        {
+            if (NuevoMensaje != null)
+            {
+
+                Mensaje mensaje = new Mensaje(mensajeSOA);
+                NuevoMensaje(this, new NuevoMensajeEventArgs(mensaje));
+            }
+        }
+
+
+
         private static List<Color> _colores = LlenarColores();
 
         private static List<Color> LlenarColores()
@@ -62,4 +77,34 @@ namespace SimuladorCliente.Vistas
 			throw new NotImplementedException();
 		}
 	}
+    public class MarcadorImagen : PictureBox
+    {
+        private Color _color;
+
+        public Color Color
+        {
+            get { return _color; }
+            
+            set { _color = value;
+            Invalidate();
+            }
+        }
+        public MarcadorImagen()
+        {
+
+        }
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+
+			Pen p=new Pen(_color,2);
+			p.StartCap = LineCap.Triangle;
+            int mitadX = Width / 2;
+            int mitadY = Height / 2;
+			pe.Graphics.DrawLine(p, 4, Height-4, mitadX+4, mitadY-4);
+			pe.Graphics.FillEllipse(new SolidBrush(_color), mitadX + 1, mitadY - 9, 9, 9);
+        //    grafico.DrawString(this.Id.ToString().Substring(0, 8), new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX+15,mitadY-15));
+
+		}
+        
+    }
 }

@@ -17,8 +17,13 @@ namespace RedesIP.Vistas
 	[CallbackBehavior(
 	 ConcurrencyMode = ConcurrencyMode.Multiple,
 	 UseSynchronizationContext = false)]
-	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion,IMarker
+	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion
 	{
+
+
+
+
+
         HerramientaBase _herramienta;
         IModeloSOA _server;
 
@@ -116,10 +121,6 @@ namespace RedesIP.Vistas
 			_marcadores.Clear();
 		}
 
-        #region ICallBackContract Members
 
-
-
-        #endregion
     }
 }

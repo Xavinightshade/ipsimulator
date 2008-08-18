@@ -74,6 +74,7 @@ namespace AccesoDatos
                     case TipoDeEquipo.Computador:
                         ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
                         pc.AgregarPuerto(equipoBD.Puertos[0].Id);
+                        pc.InicializarEquipo();
                         estacionLogica.CrearComputador(pc);
                         break;
                     case TipoDeEquipo.Switch:
@@ -82,6 +83,7 @@ namespace AccesoDatos
                         {
                             swi.AgregarPuerto(puertoBD.Id);
                         }
+                        swi.InicializarEquipo();
                         estacionLogica.CrearSwitch(swi);
 
                         break;

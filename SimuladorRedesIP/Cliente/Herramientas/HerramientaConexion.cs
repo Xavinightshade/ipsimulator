@@ -11,6 +11,14 @@ namespace RedesIP.Vistas
 {
     public partial class EstacionView
     {
+
+
+ 
+
+
+
+
+
         List<Conexion> _conexiones = new List<Conexion>();
 
         public void ConectarPuertos(CableSOA cable)
@@ -19,6 +27,8 @@ namespace RedesIP.Vistas
             Invalidate();
         }
         private PuertoEthernetView _puerto1;
+
+
 
         private class HerramientaConexion : HerramientaBase
         {

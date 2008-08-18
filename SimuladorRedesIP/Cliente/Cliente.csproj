@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControladorMarcador.cs" />
     <Compile Include="Herramienta.cs" />
     <Compile Include="Herramientas\FabricaHerramienta.cs">
       <SubType>Component</SubType>
@@ -197,7 +198,9 @@
     </Compile>
     <Compile Include="Vistas\IMarker.cs" />
     <Compile Include="Vistas\IRegistroMovimientosMouse.cs" />
-    <Compile Include="Vistas\Marcador.cs" />
+    <Compile Include="Vistas\Marcador.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Vistas\NuevoMarcadorEventArgs.cs" />
     <Compile Include="Vistas\Punto.cs" />
     <Compile Include="Vistas\Rectangulo.cs" />

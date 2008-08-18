@@ -26,17 +26,6 @@ namespace RedesIP
 
                 private static void RealizarOperacionEnVista(IVisualizacion vista)
                 {
-                    ICommunicationObject v = vista as ICommunicationObject;
-                    
-
-                    //if (((ICommunicationObject)vista).State == CommunicationState.Opened)
-                    //{
-             
-                    //}
-                    //else
-                    //{
-                    //    _vistas.Remove(vista);
-                    //}
 
                 }
         public void SetEstacion(Estacion estacion)
@@ -74,6 +63,7 @@ namespace RedesIP
                 default:
                     break;
             }
+            equipoLogico.InicializarEquipo();
             EquipoSOA equipo = new EquipoSOA(tipoEquipo, equipoLogico.Id, equipoLogico.X, equipoLogico.Y);
             LLenarPuertos(equipoLogico, equipo);
             foreach (IVisualizacion cliente in _vistas)

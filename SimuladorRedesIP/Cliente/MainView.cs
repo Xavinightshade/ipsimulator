@@ -15,14 +15,11 @@ namespace SimuladorCliente
         public MainView()
         {
             InitializeComponent();
-            MainFrame mainFrame = new MainFrame();
+            MainFrame mainFrame = new MainFrame(DockMain);
 
-         //   SnifferBeta sniffer = new SnifferBeta(mainFrame.Marcador);
-           // sniffer.AllowEndUserDocking = false;
             mainFrame.Show(DockMain, DockState.Document);
-          //  sniffer.Show(DockMain, DockState.DockBottomAutoHide);
           
-           // 
+      
 
         }
     }

@@ -20,6 +20,7 @@ namespace SimuladorCliente
         public Presenter(IVisualizacion vista)
         {
             _vista = vista;
+
         }
         protected override IVisualizacion GetCurrentClient()
         {
