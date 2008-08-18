@@ -46,5 +46,44 @@ namespace BusinessLogic
             }
             AccesoDatosBD.GuardarEstacion(estacionBD);
         }
+        public static Estacion CargarEstacion(Guid id)
+        {
+            Estacion estacionLogica = new Estacion();
+            Estaciones estacionBD = AccesoDatosBD.GetEstacionById(id);
+            CrearEquipos(estacionLogica,estacionBD);
+            foreach (Cables cableBD in estacionBD.Cables)
+            {
+                estacionLogica.ConectarPuertos(cableBD.IdPuerto1, cableBD.IdPuerto2);
+            }
+            return estacionLogica;
+        }
+
+        private static void CrearEquipos(Estacion estacionLogica,Estaciones estacionBD)
+        {
+            foreach (Equipos equipoBD in estacionBD.Equipos)
+            {
+                switch ((TipoDeEquipo)equipoBD.TipoDeEquipo)
+                {
+                    case TipoDeEquipo.Ninguno:
+                        break;
+                    case TipoDeEquipo.Computador:
+                        ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
+                        pc.AgregarPuerto(equipoBD.Puertos[0].Id);
+                        estacionLogica.CrearComputador(pc);
+                        break;
+                    case TipoDeEquipo.Switch:
+                        SwitchLogico swi = new SwitchLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
+                        foreach (Puertos puertoBD in equipoBD.Puertos)
+                        {
+                            swi.AgregarPuerto(puertoBD.Id);
+                        }
+                        estacionLogica.CrearSwitch(swi);
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

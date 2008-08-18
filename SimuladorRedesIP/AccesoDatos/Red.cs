@@ -218,9 +218,9 @@ namespace AccesoDatos
 		
 		private System.Guid _Id;
 		
-		private double _X;
+		private int _X;
 		
-		private double _Y;
+		private int _Y;
 		
 		private int _TipoDeEquipo;
 		
@@ -232,9 +232,9 @@ namespace AccesoDatos
     partial void OnCreated();
     partial void OnIdChanging(System.Guid value);
     partial void OnIdChanged();
-    partial void OnXChanging(double value);
+    partial void OnXChanging(int value);
     partial void OnXChanged();
-    partial void OnYChanging(double value);
+    partial void OnYChanging(int value);
     partial void OnYChanged();
     partial void OnTipoDeEquipoChanging(int value);
     partial void OnTipoDeEquipoChanged();
@@ -267,8 +267,8 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Column(Storage="_X", DbType="Float NOT NULL")]
-		public double X
+		[Column(Storage="_X", DbType="Int NOT NULL")]
+		public int X
 		{
 			get
 			{
@@ -287,8 +287,8 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Column(Storage="_Y", DbType="Float NOT NULL")]
-		public double Y
+		[Column(Storage="_Y", DbType="Int NOT NULL")]
+		public int Y
 		{
 			get
 			{
