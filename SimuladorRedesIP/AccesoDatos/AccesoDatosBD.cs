@@ -22,6 +22,7 @@ namespace AccesoDatos
         }
         public static Estaciones GetEstacionById(Guid id)
         {
+            db = GetNewBD();
 
             var query = from b in db.Estaciones where b.Id==id select b;
             Estaciones estacionBD = query.First();           

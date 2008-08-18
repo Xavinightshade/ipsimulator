@@ -15,7 +15,7 @@ namespace RedesIP
 {
     public abstract class PresenterBase : IModeloSOA
     {
-                private static Estacion _estacion;
+                private  Estacion _estacion;
                 private void RegistrarCliente()
         {
             IVisualizacion vista = GetCurrentClient();
@@ -41,6 +41,7 @@ namespace RedesIP
                 }
         public void SetEstacion(Estacion estacion)
         {
+            _vistas.Clear();
             if (_estacion != null)
                 throw new Exception();
             _estacion = estacion;

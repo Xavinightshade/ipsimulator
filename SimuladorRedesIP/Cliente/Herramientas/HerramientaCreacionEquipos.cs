@@ -13,7 +13,7 @@ namespace RedesIP.Vistas
     {
         public void CrearEquipo(EquipoSOA equipo)
         {
-            HerramientaCreacionEquipos herramientaCreacion = _herramienta as HerramientaCreacionEquipos;
+            HerramientaCreacionEquipos herramientaCreacion = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this) as HerramientaCreacionEquipos;
             herramientaCreacion.CrearEQuipo(equipo);
             Invalidate();
         }
