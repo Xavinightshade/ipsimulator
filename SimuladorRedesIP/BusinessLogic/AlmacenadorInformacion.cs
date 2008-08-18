@@ -46,10 +46,15 @@ namespace AccesoDatos
             }
             AccesoDatosBD.GuardarEstacion(estacionBD);
         }
+        public static void Eliminar(Guid id)
+        {
+            AccesoDatosBD.Delete(id);
+        }
         public static Estacion CargarEstacion(Guid id)
         {
-            Estacion estacionLogica = new Estacion();
             Estaciones estacionBD = AccesoDatosBD.GetEstacionById(id);
+            Estacion estacionLogica = new Estacion(estacionBD.Id);
+
             CrearEquipos(estacionLogica,estacionBD);
             foreach (Cables cableBD in estacionBD.Cables)
             {

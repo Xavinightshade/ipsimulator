@@ -42,6 +42,7 @@ namespace SimuladorCliente
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this._estacionView = new RedesIP.Vistas.EstacionView();
+            this.eliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
             this.SuspendLayout();
@@ -119,7 +120,8 @@ namespace SimuladorCliente
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.guardarEnBDToolStripMenuItem,
-            this.cargarDesdeBDToolStripMenuItem});
+            this.cargarDesdeBDToolStripMenuItem,
+            this.eliToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -180,6 +182,13 @@ namespace SimuladorCliente
             this._estacionView.TabIndex = 6;
             this._estacionView.TabStop = false;
             // 
+            // eliToolStripMenuItem
+            // 
+            this.eliToolStripMenuItem.Name = "eliToolStripMenuItem";
+            this.eliToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.eliToolStripMenuItem.Text = "eli";
+            this.eliToolStripMenuItem.Click += new System.EventHandler(this.eliToolStripMenuItem_Click);
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,6 +230,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem guardarEnBDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cargarDesdeBDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eliToolStripMenuItem;
 
 
 

@@ -68,7 +68,7 @@ namespace RedesIP.Vistas
 		}
 		public override bool HitTest(int x, int y)
 		{
-			Pen p = new Pen(Color.Black, _anchoPen+2);
+			Pen p = new Pen(Color.Black, _anchoPen+3);
 			GraphicsPath pth = new GraphicsPath();
 			pth.AddLine(_puerto1.DimensionMundo.Centro.X, _puerto1.DimensionMundo.Centro.Y, _puerto2.DimensionMundo.Centro.X, _puerto2.DimensionMundo.Centro.Y);
 			pth.Widen(p);

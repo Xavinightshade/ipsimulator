@@ -11,6 +11,18 @@ namespace SimuladorCliente.Vistas
 {
 	public class Marcador:ElementoGrafico
 	{
+        private static List<Color> _colores = LlenarColores();
+
+        private static List<Color> LlenarColores()
+        {
+            List<Color> colores = new List<Color>();
+            colores.Add(Color.Aquamarine);
+            colores.Add(Color.Green);
+            colores.Add(Color.Salmon);
+            colores.Add(Color.Yellow);
+            colores.Add(Color.White);
+            return colores;
+        }
 		Conexion _conexion;
 
 		public Conexion Conexion
@@ -30,7 +42,7 @@ namespace SimuladorCliente.Vistas
 		{
 
 			_conexion = conexion;
-			_color = Color.FromKnownColor((KnownColor)r.Next(100));
+            _color = _colores[r.Next(_colores.Count)];
 		}
 
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
@@ -41,6 +53,8 @@ namespace SimuladorCliente.Vistas
 			int mitadY = (_conexion.PosicionMundoPuerto1.Y + _conexion.PosicionMundoPuerto2.Y) / 2;
 			grafico.DrawLine(p, mitadX, mitadY, mitadX + 30, mitadY - 30);
 			grafico.FillEllipse(new SolidBrush(_color), mitadX + 20, mitadY - 30, 10, 10);
+            grafico.DrawString(this.Id.ToString().Substring(0, 8), new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX+15,mitadY-15));
+
 		}
 
 		public override bool HitTest(int x, int y)

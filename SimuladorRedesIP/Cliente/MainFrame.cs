@@ -65,7 +65,7 @@ namespace SimuladorCliente
 		private void button1_Click(object sender, EventArgs e)
 		{
        
-            _es = new Estacion();
+            _es = new Estacion(Guid.NewGuid());
             Presenter p = new Presenter(_estacionView);
             p.SetEstacion(_es);
             _estacionView.EstablecerServer(p);
@@ -154,7 +154,7 @@ namespace SimuladorCliente
         Estacion _es;
         private void cargarDesdeBDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _es = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("70a29cae-ec21-49b8-bd88-80213225ef42"));
+            _es = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("47400cea-24e5-45f1-9bcd-5fb7c3c068e6"));
             Presenter p = new Presenter(_estacionView);
             p.SetEstacion(_es);
             _estacionView.EstablecerServer(p);
@@ -164,6 +164,11 @@ namespace SimuladorCliente
             toolStripButton2.Enabled = true;
             toolStripButton3.Enabled = true;
             toolStripButton4.Enabled = true;
+        }
+
+        private void eliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccesoDatos.AlmacenadorInformacion.Eliminar(new Guid("0f65682b-0d70-4b29-a72a-e7784a21a3c9"));
         }
 
 

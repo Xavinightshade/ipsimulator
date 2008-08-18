@@ -81,7 +81,8 @@ namespace AccesoDatos
 
         public static void GuardarEstacion(Estaciones estacion)
         {
-
+            Delete(estacion.Id);
+            db = GetNewBD();
             db.Estaciones.InsertOnSubmit(estacion);
             foreach (Equipos equipo in estacion.Equipos)
             {
@@ -96,6 +97,13 @@ namespace AccesoDatos
                 db.Cables.InsertOnSubmit(cable);
             }
             db.SubmitChanges();
+        }
+        public static void Delete(Guid id)
+        {
+             var query = from b in db.Estaciones where b.Id == id select b;
+              Estaciones estacionBD = query.First();
+                db.Estaciones.DeleteOnSubmit(estacionBD);
+                  db.SubmitChanges();
         }
 
 

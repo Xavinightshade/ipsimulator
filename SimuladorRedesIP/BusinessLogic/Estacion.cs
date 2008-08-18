@@ -17,9 +17,9 @@ namespace RedesIP
         {
             get { return _id; }
         }
-        public Estacion()
+        public Estacion(Guid id)
         {
-            _id = Guid.NewGuid();
+            _id = id;
         }
         private static float _porcentajeDeVelocidad = 50;
 
