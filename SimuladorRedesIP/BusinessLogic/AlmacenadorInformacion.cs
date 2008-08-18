@@ -8,7 +8,7 @@ using RedesIP.Modelos.Equipos.Componentes;
 using AccesoDatos;
 using RedesIP.Modelos;
 
-namespace BusinessLogic
+namespace AccesoDatos
 {
     public static class AlmacenadorInformacion
     {

@@ -36,9 +36,12 @@ namespace SimuladorCliente
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.button1 = new System.Windows.Forms.Button();
-            this._estacionView = new RedesIP.Vistas.EstacionView();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.guardarEnBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarDesdeBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._estacionView = new RedesIP.Vistas.EstacionView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +53,8 @@ namespace SimuladorCliente
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4,
-            this.toolStripButton5});
+            this.toolStripButton5,
+            this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(813, 25);
@@ -120,16 +124,6 @@ namespace SimuladorCliente
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // _estacionView
-            // 
-            this._estacionView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._estacionView.Location = new System.Drawing.Point(0, 25);
-            this._estacionView.Name = "_estacionView";
-            this._estacionView.Size = new System.Drawing.Size(813, 559);
-            this._estacionView.TabIndex = 6;
-            this._estacionView.TabStop = false;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(381, 2);
@@ -149,6 +143,42 @@ namespace SimuladorCliente
             this.button3.Text = "Conectar remoto";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.guardarEnBDToolStripMenuItem,
+            this.cargarDesdeBDToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            // 
+            // guardarEnBDToolStripMenuItem
+            // 
+            this.guardarEnBDToolStripMenuItem.Name = "guardarEnBDToolStripMenuItem";
+            this.guardarEnBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.guardarEnBDToolStripMenuItem.Text = "Guardar en BD";
+            this.guardarEnBDToolStripMenuItem.Click += new System.EventHandler(this.guardarEnBDToolStripMenuItem_Click);
+            // 
+            // cargarDesdeBDToolStripMenuItem
+            // 
+            this.cargarDesdeBDToolStripMenuItem.Name = "cargarDesdeBDToolStripMenuItem";
+            this.cargarDesdeBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.cargarDesdeBDToolStripMenuItem.Text = "Cargar desde BD";
+            this.cargarDesdeBDToolStripMenuItem.Click += new System.EventHandler(this.cargarDesdeBDToolStripMenuItem_Click);
+            // 
+            // _estacionView
+            // 
+            this._estacionView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._estacionView.Location = new System.Drawing.Point(0, 25);
+            this._estacionView.Name = "_estacionView";
+            this._estacionView.Size = new System.Drawing.Size(813, 559);
+            this._estacionView.TabIndex = 6;
+            this._estacionView.TabStop = false;
             // 
             // MainFrame
             // 
@@ -188,6 +218,9 @@ namespace SimuladorCliente
         private RedesIP.Vistas.EstacionView _estacionView;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem guardarEnBDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cargarDesdeBDToolStripMenuItem;
 
 
 
