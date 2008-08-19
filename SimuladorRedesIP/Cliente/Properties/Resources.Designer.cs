@@ -74,6 +74,13 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap DB {
+            get {
+                object obj = ResourceManager.GetObject("DB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap line {
             get {
                 object obj = ResourceManager.GetObject("line", resourceCulture);
@@ -112,6 +119,13 @@ namespace SimuladorCliente.Properties {
         internal static System.Drawing.Bitmap sniffer {
             get {
                 object obj = ResourceManager.GetObject("sniffer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap SOA {
+            get {
+                object obj = ResourceManager.GetObject("SOA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

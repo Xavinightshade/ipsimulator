@@ -56,7 +56,7 @@ namespace SimuladorCliente
         }
 
 
-        private IView _vista = new CellBackColorAlternate(Color.White, Color.WhiteSmoke);
+        private IView _vista = new CellBackColorAlternate(Color.LightSkyBlue, Color.WhiteSmoke);
         private void LlenarGrilla(List<Mensaje> mensajes)
         {
             int c = 0;

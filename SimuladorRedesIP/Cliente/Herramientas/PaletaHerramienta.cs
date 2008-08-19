@@ -16,5 +16,7 @@ namespace SimuladorCliente.Herramientas
         {
             InitializeComponent();
         }
+
+
     }
 }
