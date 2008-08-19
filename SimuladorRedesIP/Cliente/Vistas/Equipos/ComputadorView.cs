@@ -13,7 +13,7 @@ namespace RedesIP.Vistas.Equipos
 		public ComputadorView(EquipoSOA equipo)
             : base(equipo.Id, equipo.X, equipo.Y, Resources.Computador.Width, Resources.Computador.Height)
 		{
-			_puerto = new PuertoEthernetView(equipo.Puertos[0].Id,15,30,this);
+            _puerto = new PuertoEthernetView(equipo.Puertos[0].Id, equipo.Puertos[0].DireccionMAC,15, 30, this);
 		}
 		PuertoEthernetView _puerto;
 
@@ -30,6 +30,10 @@ namespace RedesIP.Vistas.Equipos
 			base.DibujarElemento(grafico);
 			_puerto.DibujarElemento(grafico);
 		}
+        protected override string GetInfoMapa()
+        {
+            return _puerto.DireccionMAC;
+        }
 
 
 	}

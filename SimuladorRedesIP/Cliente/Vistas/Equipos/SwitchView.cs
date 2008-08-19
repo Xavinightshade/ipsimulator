@@ -31,7 +31,7 @@ namespace RedesIP.Vistas.Equipos
 			foreach (PuertoSOA puerto in puertos)
 	{
 		 
-				_puertosEthernet.Add(new PuertoEthernetView(puerto.Id, (i * 20) + 25, 10, this));
+				_puertosEthernet.Add(new PuertoEthernetView(puerto.Id,puerto.DireccionMAC, (i * 20) + 25, 10, this));
 				i++;
 	}
 
@@ -50,5 +50,9 @@ namespace RedesIP.Vistas.Equipos
 				_puertosEthernet[i].DibujarElemento(grafico);
 			}
 		}
+        protected override string GetInfoMapa()
+        {
+            return "Switch";
+        }
 	}
 }

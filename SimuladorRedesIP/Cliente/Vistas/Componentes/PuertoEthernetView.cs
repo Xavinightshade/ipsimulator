@@ -27,10 +27,18 @@ namespace RedesIP.Vistas.Equipos.Componentes
             get { return _reseltado; }
             set { _reseltado = value; }
         }
-		public PuertoEthernetView(Guid id,int origenX,int origenY,EquipoView equipoPadre)
+
+        private string _direccionMAC;
+
+        public string DireccionMAC
+        {
+            get { return _direccionMAC; }
+        }
+		public PuertoEthernetView(Guid id,string direccionMAC,int origenX,int origenY,EquipoView equipoPadre)
 			: base(id,origenX,origenY, 10, 10)
 		{
 			ElementoPadre = equipoPadre;
+            _direccionMAC = direccionMAC;
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{

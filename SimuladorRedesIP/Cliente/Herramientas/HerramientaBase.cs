@@ -28,7 +28,7 @@ namespace RedesIP.Vistas
             {
                 FormularioComputador formaPC = new FormularioComputador();
                 formaPC.ShowDialog();
-                return;
+             //   return;
                 for (int i = 0; i < _estacion._computadores.Count; i++)
                 {
                     if (_estacion._computadores[i].HitTest(e.X, e.Y))

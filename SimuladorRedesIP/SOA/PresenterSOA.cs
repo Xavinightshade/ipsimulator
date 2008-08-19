@@ -77,7 +77,7 @@ namespace RedesIP
         {
             foreach (PuertoEthernetLogico puertoLogico in equipoLogico.PuertosEthernet)
             {
-                equipo.Puertos.Add(new PuertoSOA(puertoLogico.Id));
+                equipo.Puertos.Add(new PuertoSOA(puertoLogico.Id,puertoLogico.MACAddress));
             }
         }
 
@@ -128,7 +128,7 @@ namespace RedesIP
                 EquipoSOA eq = new EquipoSOA(eqLogico.TipoDeEquipo, eqLogico.Id, eqLogico.X, eqLogico.Y);
                 foreach (PuertoEthernetLogico puerto in eqLogico.PuertosEthernet)
                 {
-                    eq.Puertos.Add(new PuertoSOA(puerto.Id));
+                    eq.Puertos.Add(new PuertoSOA(puerto.Id,puerto.MACAddress));
                 }
                 equipos.Add(eq);
             }
