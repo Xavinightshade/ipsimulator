@@ -4,50 +4,27 @@ using System.Text;
 
 namespace RedesIP.Common
 {
-	public struct MACAddress
+    public static class MACAddressFactory
 	{
-		private byte _parte1;
-		public byte Parte1
-		{
-			get { return _parte1; }
-		}
-		private byte _parte2;
-		public byte Parte2
-		{
-			get { return _parte2; }
-		}
-		private byte _parte3;
-		public byte Parte3
-		{
-			get { return _parte3; }
-		}
-		private MACAddress(byte parte1, byte parte2, byte parte3)
-		{
-			_parte1 = parte1;
-			_parte2 = parte2;
-			_parte3 = parte3;
+        private static char[] _caracteres = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'a','b','c','d','e','f' };
 
-		}
 
-		public static MACAddress Direccion(byte parte1, byte parte2, byte parte3)
-		{
-			return new MACAddress(parte1, parte2, parte3);
-		}
+
 		private static Random random = new Random();
-		public static MACAddress New()
+		public static string NewMAC()
 		{
-			return Direccion((byte)random.Next(), (byte)random.Next(), (byte)random.Next());
+            string result = string.Empty;
+            for (int i = 0; i < 5; i++)
+            {
+                result += _caracteres[random.Next(16)].ToString() +_caracteres[random.Next(16)].ToString() +":";
+            }
+            result += _caracteres[random.Next(16)] + _caracteres[random.Next(16)].ToString(); ;
+            string f = _caracteres[13].ToString();
+            return result;
 		}
 
-		public bool EsIgual(MACAddress macaddress)
-		{
-			return (_parte1 == macaddress._parte1) && (_parte2 == macaddress._parte2) && (_parte3 == macaddress._parte3);
-		}
-		public override string ToString()
-		{
 
-			return _parte1.ToString()+ ":" + _parte2.ToString() + ":" + _parte3.ToString();
-		}
 
 	}
 }

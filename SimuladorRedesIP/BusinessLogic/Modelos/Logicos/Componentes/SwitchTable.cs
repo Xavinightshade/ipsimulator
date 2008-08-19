@@ -11,31 +11,31 @@ namespace RedesIP.Modelos.Equipos.Componentes
 	public class SwitchTable
 	{
 
-		private readonly Dictionary<MACAddress, PuertoEthernetLogico> _diccioMacAddressPuertoEthernet=new Dictionary<MACAddress,PuertoEthernetLogico>();
+		private readonly Dictionary<string, PuertoEthernetLogico> _dicciostringPuertoEthernet=new Dictionary<string,PuertoEthernetLogico>();
 		public SwitchTable()
 		{
 
 		}
-		public void RegistrarDireccionMAC(MACAddress direccionMAC, PuertoEthernetLogico puertoEthenet)
+		public void RegistrarDireccionMAC(string direccionMAC, PuertoEthernetLogico puertoEthenet)
 		{
 
 			System.Diagnostics.Debug.Assert(!(YaEstaRegistradoDireccionMAC(direccionMAC)), "Esta Direccion ya esta registrada");
-			_diccioMacAddressPuertoEthernet.Add(direccionMAC, puertoEthenet);
+			_dicciostringPuertoEthernet.Add(direccionMAC, puertoEthenet);
 		}
-		public bool YaEstaRegistradoDireccionMAC(MACAddress direccionMAC)
+		public bool YaEstaRegistradoDireccionMAC(string direccionMAC)
 		{
-			return _diccioMacAddressPuertoEthernet.ContainsKey(direccionMAC);
+			return _dicciostringPuertoEthernet.ContainsKey(direccionMAC);
 		}
-		public PuertoEthernetLogico BuscarPuertoByMacAddress(MACAddress direccionMac)
+		public PuertoEthernetLogico BuscarPuertoBystring(string direccionMac)
 		{
 			PuertoEthernetLogico puertoEnMemoria = null;
 			if (YaEstaRegistradoDireccionMAC(direccionMac))
-				puertoEnMemoria = _diccioMacAddressPuertoEthernet[direccionMac];
+				puertoEnMemoria = _dicciostringPuertoEthernet[direccionMac];
 			return puertoEnMemoria;
 		}
 		public void BorrarTabla()
 		{
-			_diccioMacAddressPuertoEthernet.Clear();
+			_dicciostringPuertoEthernet.Clear();
 		}
 	}
 }

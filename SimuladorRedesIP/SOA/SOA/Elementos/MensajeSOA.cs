@@ -23,23 +23,23 @@ namespace RedesIP.SOA.Elementos
             get { return _datos; }
             set { _datos = value; }
         }
-        MACAddressSOA _macPuerto;
+        string _macPuerto;
         [DataMember]
-        public MACAddressSOA MacPuerto
+        public string MacPuerto
         {
             get { return _macPuerto; }
             set { _macPuerto = value; }
         }
-        MACAddressSOA _macOrigen;
+        string _macOrigen;
         [DataMember]
-        public MACAddressSOA MacOrigen
+        public string MacOrigen
         {
             get { return _macOrigen; }
             set { _macOrigen = value; }
         }
-        MACAddressSOA _macDestino;
+        string _macDestino;
         [DataMember]
-        public MACAddressSOA MacDestino
+        public string MacDestino
         {
             get { return _macDestino; }
             set { _macDestino = value; }
@@ -59,8 +59,8 @@ namespace RedesIP.SOA.Elementos
             set { _horaRecepcion = value; }
         }
 
-        public MensajeSOA (Guid idConexion, string info,MACAddressSOA macPuerto,
-            MACAddressSOA macOrigen,MACAddressSOA macDestino,
+        public MensajeSOA (Guid idConexion, string info,string macPuerto,
+            string  macOrigen,string macDestino,
             DateTime horaTransmision,DateTime horaRecepcion)
 	{
         _idConexion = idConexion;

@@ -39,7 +39,7 @@ namespace RedesIP.Vistas
                             return;
                         for (int j = 0; j < forma.Numero; j++)
                         {
-                            _estacion._server.Ping(_estacion._computadores[i].Id, forma.Mensaje, forma.P1, forma.P2, forma.P3);
+                            _estacion._server.Ping(_estacion._computadores[i].Id,forma.Mensaje, forma.DirMAC);
                         }
 
                         return;

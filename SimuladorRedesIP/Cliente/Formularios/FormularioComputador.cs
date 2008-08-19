@@ -19,7 +19,7 @@ namespace SimuladorCliente.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(macTextBox1.Text+Environment.NewLine+ipTextBox1.Text);
+
         }
     }
 }

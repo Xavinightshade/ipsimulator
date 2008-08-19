@@ -174,9 +174,9 @@ namespace RedesIP
         {
             CableDeRedLogico cable = (CableDeRedLogico)sender;
             string mensaje = e.FrameRecibido.Informacion.ToString();
-            MACAddressSOA macPuerto = new MACAddressSOA(e.DireccionPuerto);
-            MACAddressSOA macOrigen = new MACAddressSOA(e.FrameRecibido.MACAddressOrigen);
-            MACAddressSOA macDestino = new MACAddressSOA(e.FrameRecibido.MACAddressDestino);
+            string macPuerto = e.DireccionPuerto;
+            string macOrigen = e.FrameRecibido.MACAddressOrigen;
+            string macDestino = e.FrameRecibido.MACAddressDestino;
             MensajeSOA mensajeSOA = new MensajeSOA(cable.Id, mensaje, macPuerto, macOrigen, macDestino, e.FrameRecibido.HoraTransmision, e.FrameRecibido.HoraRecepcion);
             foreach (IVisualizacion cliente in _diccioMensajes[cable.Id])
             {
@@ -204,9 +204,9 @@ namespace RedesIP
         }
 
 
-        public void Ping(Guid idComputador, string mensaje, byte p1, byte p2, byte p3)
+        public void Ping(Guid idComputador, string mensaje, string macAddress)
         {
-            _estacion.Ping(idComputador, mensaje, MACAddress.Direccion(p1, p2, p3));
+            _estacion.Ping(idComputador, mensaje, macAddress);
         }
 
 

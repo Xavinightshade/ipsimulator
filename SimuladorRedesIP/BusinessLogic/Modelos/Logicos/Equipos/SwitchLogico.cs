@@ -46,10 +46,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
 	
 			/// Le pregunto a la tabla del switch si conoce el puerto destino de este frame,
 			/// si es asi solo envio el frame a ese puerto.
-			MACAddress direccionMACDestino = frameRecibido.MACAddressDestino;
+            string direccionMACDestino = frameRecibido.MACAddressDestino;
 			if (_switchTable.YaEstaRegistradoDireccionMAC(direccionMACDestino))
 			{
-				PuertoEthernetLogico puertoDestinoDelFrame = _switchTable.BuscarPuertoByMacAddress(direccionMACDestino);
+				PuertoEthernetLogico puertoDestinoDelFrame = _switchTable.BuscarPuertoBystring(direccionMACDestino);
 				((IEnvioReciboDatos)puertoDestinoDelFrame).TransmitirFrame(frameRecibido);
 				return;
 			}
@@ -74,13 +74,13 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 		private void RegistrarFrame(PuertoEthernetLogico puertoQueRecibioElFrame, Frame frameRecibido)
 		{
-			MACAddress direccionMacOrigen = frameRecibido.MACAddressOrigen;
+            string direccionMacOrigen = frameRecibido.MACAddressOrigen;
 			if (!_switchTable.YaEstaRegistradoDireccionMAC(direccionMacOrigen))
 				_switchTable.RegistrarDireccionMAC(direccionMacOrigen, puertoQueRecibioElFrame);
 		}
         public override void AgregarPuerto(Guid idPuerto)
         {
-            _puertosEthernet.Add(new PuertoEthernetLogico(MACAddress.New(), idPuerto));
+            _puertosEthernet.Add(new PuertoEthernetLogico(MACAddressFactory.NewMAC(), idPuerto));
         }
 
 

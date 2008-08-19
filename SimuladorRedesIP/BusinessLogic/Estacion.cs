@@ -94,7 +94,7 @@ namespace RedesIP
             _diccioCables.Add(cable.Id, cable);
             return cable;
         }
-        public void Ping(Guid idComputador, string mensaje, MACAddress macDestino)
+        public void Ping(Guid idComputador, string mensaje, string macDestino)
         {
             _computadores[idComputador].EnviarMensajeDeTexto(mensaje, macDestino);
 

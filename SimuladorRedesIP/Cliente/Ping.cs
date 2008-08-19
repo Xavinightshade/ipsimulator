@@ -15,11 +15,8 @@ namespace SimuladorCliente
 			InitializeComponent();
 		}
 		public string Mensaje { get { return textBox1.Text; } }
-		public byte Numero { get { return byte.Parse(textBox2.Text); } }
-		public byte P1 { get { return byte.Parse(textBox3.Text); } }
-		public byte P2 { get { return byte.Parse(textBox4.Text); } }
-		public byte P3 { get { return byte.Parse(textBox5.Text); } }
-
+        public string DirMAC { get { return macTextBox1.Text; } }
+        public int Numero { get { return int.Parse(textBox2.Text); } }
 		private void button1_Click(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.OK;

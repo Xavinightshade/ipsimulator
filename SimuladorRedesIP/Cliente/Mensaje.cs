@@ -20,20 +20,20 @@ namespace SimuladorCliente
 		{
 			get { return _mensaje; }
 		}
-        private MACAddress _macOrigen;
+        private string _macOrigen;
 
-        public MACAddress MacOrigen
+        public string MacOrigen
         {
             get { return _macOrigen; }
         }
-        private MACAddress _macPuerto;
-        public MACAddress MacPuerto
+        private string _macPuerto;
+        public string MacPuerto
         {
             get { return _macPuerto; }
         }
-        private MACAddress _macDestino;
+        private string _macDestino;
 
-        public MACAddress MacDestino
+        public string MacDestino
         {
             get { return _macDestino; }
         }
@@ -53,14 +53,11 @@ namespace SimuladorCliente
 
 		public Mensaje(MensajeSOA mensajeSOA)
 		{
-            MACAddressSOA macPuerto=mensajeSOA.MacPuerto;
-            MACAddressSOA macOrigen=mensajeSOA.MacOrigen;
-            MACAddressSOA macDestion=mensajeSOA.MacDestino;
-            _macPuerto = MACAddress.Direccion(macPuerto.Parte1,macPuerto.Parte2,macPuerto.Parte3);
+             _macPuerto = mensajeSOA.MacPuerto;
+              _macOrigen = mensajeSOA.MacOrigen;
+               _macDestino = mensajeSOA.MacDestino;
             _idConexion = mensajeSOA.IdConexion;
             _mensaje = mensajeSOA.Datos;
-            _macOrigen = MACAddress.Direccion(macOrigen.Parte1, macOrigen.Parte2, macOrigen.Parte3);
-            _macDestino = MACAddress.Direccion(macDestion.Parte1, macDestion.Parte2, macDestion.Parte3);
             _horaRecepcion = mensajeSOA.HoraRecepcion;
             _horaTransmision = mensajeSOA.HoraTransmision;
 		}

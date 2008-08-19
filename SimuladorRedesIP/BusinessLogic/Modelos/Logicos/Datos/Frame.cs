@@ -23,9 +23,9 @@ namespace RedesIP.Modelos.Datos
 	}
 	public class FrameRecibidoEventArgs : EventArgs
 	{
-        private MACAddress _direccionPuerto;
+        private string _direccionPuerto;
 
-        public MACAddress DireccionPuerto
+        public string DireccionPuerto
         {
             get { return _direccionPuerto; }
         }
@@ -37,7 +37,7 @@ namespace RedesIP.Modelos.Datos
         private DateTime _horaRecepcion;
 
 
-		public FrameRecibidoEventArgs(Frame frame,MACAddress direccionPuerto)
+		public FrameRecibidoEventArgs(Frame frame,string direccionPuerto)
 		{
 			_frameRecibido = frame;
             _direccionPuerto = direccionPuerto;
@@ -67,26 +67,26 @@ namespace RedesIP.Modelos.Datos
 		{
 			get { return _informacion; }
 		}
-		private MACAddress _MACAddressDestino;
-		public MACAddress MACAddressDestino
+        private string _MACAddressDestino;
+        public string MACAddressDestino
 		{
-			get { return _MACAddressDestino; }
+            get { return _MACAddressDestino; }
 		}
-		private MACAddress _MACAddressOrigen;
-		public MACAddress MACAddressOrigen
+        private string _MACAddressOrigen;
+        public string MACAddressOrigen
 		{
-			get { return _MACAddressOrigen; }
+            get { return _MACAddressOrigen; }
 		}
 
-		public Frame(IMessage informacion, MACAddress MACAddressOrigen, MACAddress MACAddressDestino)
+        public Frame(IMessage informacion, string MACAddressOrigen, string MACAddressDestino)
 		{
 			_informacion = informacion;
-			_MACAddressDestino = MACAddressDestino;
-			_MACAddressOrigen = MACAddressOrigen;
+            _MACAddressDestino = MACAddressDestino;
+            _MACAddressOrigen = MACAddressOrigen;
 		}
 		public override string ToString()
 		{
-			return "MAC origen: " + _MACAddressOrigen.ToString() + ",       MAC Destino: " + _MACAddressDestino.ToString() + "      Info: " + _informacion.ToString();
+            return "MAC origen: " + _MACAddressOrigen.ToString() + ",       MAC Destino: " + _MACAddressDestino.ToString() + "      Info: " + _informacion.ToString();
 		}
 	}
 }
