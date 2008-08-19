@@ -60,6 +60,15 @@ namespace RedesIP
                     _estacion.CrearSwitch(swi);
                     equipoLogico = swi;
                     break;
+                case TipoDeEquipo.Router:
+                    RouterLogico router = new RouterLogico(Guid.NewGuid(), x, y);
+                    for (int i = 0; i < 5; i++)
+                    {
+                        router.AgregarPuerto(Guid.NewGuid());
+                    }
+                    _estacion.CrearRouter(router);
+                    equipoLogico = router;
+                        break;
                 default:
                     break;
             }

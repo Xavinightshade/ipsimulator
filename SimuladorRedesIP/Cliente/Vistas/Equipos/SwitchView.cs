@@ -30,8 +30,8 @@ namespace RedesIP.Vistas.Equipos
 			int i = 0;
 			foreach (PuertoSOA puerto in puertos)
 	{
-		 
-				_puertosEthernet.Add(new PuertoEthernetView(puerto.Id,puerto.DireccionMAC, (i * 20) + 25, 10, this));
+
+        _puertosEthernet.Add(new PuertoEthernetView(puerto.Id, puerto.DireccionMAC, (i * 30)+3, 7, this));
 				i++;
 	}
 

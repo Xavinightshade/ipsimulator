@@ -32,6 +32,7 @@ namespace RedesIP.Vistas
 		Dictionary<Guid, PuertoEthernetView> _diccioPuertos = new Dictionary<Guid, PuertoEthernetView>();
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
+        List<RouterView> _routers = new List<RouterView>();
 		public void EstablecerServer(IModeloSOA server)
 		{
 			_server = server;
@@ -61,6 +62,10 @@ namespace RedesIP.Vistas
 			{
 				_switches[i].DibujarElemento(g);
 			}
+            for (int i = 0; i < _routers.Count; i++)
+            {
+                _routers[i].DibujarElemento(g);
+            }
 			for (int i = 0; i < _conexiones.Count; i++)
 			{
 				_conexiones[i].DibujarElemento(g);

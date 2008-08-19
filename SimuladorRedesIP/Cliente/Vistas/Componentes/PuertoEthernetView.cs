@@ -47,7 +47,7 @@ namespace RedesIP.Vistas.Equipos.Componentes
 			Brush brush = Brushes.Black;
             if (_reseltado)
             {
-                brush = Brushes.LightCyan;
+                brush = Brushes.Yellow;
             }
 			if (_seleccionado)
 			{

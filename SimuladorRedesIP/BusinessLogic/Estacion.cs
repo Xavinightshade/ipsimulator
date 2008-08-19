@@ -40,6 +40,7 @@ namespace RedesIP
         {
             get { return _equipos; }
         }
+        private Dictionary<Guid, RouterLogico> _routers = new Dictionary<Guid, RouterLogico>();
 
 
         /// <summary>
@@ -138,6 +139,13 @@ namespace RedesIP
 
 
 
+        }
+
+        public void CrearRouter(RouterLogico router)
+        {
+            _routers.Add(router.Id, router);
+            _equipos.Add(router.Id, router);
+            LLenarPuertos(_puertos, router.PuertosEthernet);
         }
     }
 

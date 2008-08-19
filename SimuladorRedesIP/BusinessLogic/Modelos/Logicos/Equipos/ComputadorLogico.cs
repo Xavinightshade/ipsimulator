@@ -11,6 +11,13 @@ namespace RedesIP.Modelos.Logicos.Equipos
 {
 	public class ComputadorLogico : EquipoLogico
 	{
+        private string _direccionIP;
+
+        public string DireccionIP
+        {
+            get { return _direccionIP; }
+            set { _direccionIP = value; }
+        }
 
 		private PuertoEthernetLogico _puertoEthernet;
 		private string _nombreDelPc;

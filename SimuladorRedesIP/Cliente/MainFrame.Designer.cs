@@ -30,8 +30,6 @@ namespace SimuladorCliente
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.DockMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -41,11 +39,14 @@ namespace SimuladorCliente
             this.guardarEnBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarDesdeBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DockMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.fToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,33 +59,13 @@ namespace SimuladorCliente
             this.toolStripButton3,
             this.toolStripButton4,
             this.toolStripButton5,
-            this.toolStripDropDownButton1});
+            this.toolStripDropDownButton1,
+            this.toolStripButton6});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(895, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // DockMain
-            // 
-            this.DockMain.ActiveAutoHideContent = null;
-            this.DockMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.DockMain.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingSdi;
-            this.DockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.DockMain.Location = new System.Drawing.Point(0, 52);
-            this.DockMain.Name = "DockMain";
-            this.DockMain.Size = new System.Drawing.Size(895, 605);
-            this.DockMain.TabIndex = 10;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 660);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(895, 22);
-            this.statusStrip1.TabIndex = 15;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripButton1
             // 
@@ -141,7 +122,7 @@ namespace SimuladorCliente
             // 
             // toolStripDropDownButton1
             // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.guardarEnBDToolStripMenuItem,
             this.cargarDesdeBDToolStripMenuItem,
@@ -149,8 +130,8 @@ namespace SimuladorCliente
             this.toolStripDropDownButton1.Image = global::SimuladorCliente.Properties.Resources.Router;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(33, 22);
+            this.toolStripDropDownButton1.Text = "BD";
             // 
             // guardarEnBDToolStripMenuItem
             // 
@@ -172,6 +153,27 @@ namespace SimuladorCliente
             this.eliToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.eliToolStripMenuItem.Text = "eli";
             this.eliToolStripMenuItem.Click += new System.EventHandler(this.eliToolStripMenuItem_Click);
+            // 
+            // DockMain
+            // 
+            this.DockMain.ActiveAutoHideContent = null;
+            this.DockMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.DockMain.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingSdi;
+            this.DockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this.DockMain.Location = new System.Drawing.Point(0, 52);
+            this.DockMain.Name = "DockMain";
+            this.DockMain.Size = new System.Drawing.Size(895, 605);
+            this.DockMain.TabIndex = 10;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 660);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(895, 22);
+            this.statusStrip1.TabIndex = 15;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // menuStrip1
             // 
@@ -196,13 +198,13 @@ namespace SimuladorCliente
             // fToolStripMenuItem
             // 
             this.fToolStripMenuItem.Name = "fToolStripMenuItem";
-            this.fToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
             this.fToolStripMenuItem.Text = "f";
             // 
             // fToolStripMenuItem1
             // 
             this.fToolStripMenuItem1.Name = "fToolStripMenuItem1";
-            this.fToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.fToolStripMenuItem1.Size = new System.Drawing.Size(89, 22);
             this.fToolStripMenuItem1.Text = "f";
             // 
             // herramientasToolStripMenuItem
@@ -210,6 +212,16 @@ namespace SimuladorCliente
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.herramientasToolStripMenuItem.Text = "Herramientas";
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = global::SimuladorCliente.Properties.Resources.Router;
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton6.Text = "toolStripButton6";
+            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // MainFrame
             // 
@@ -256,6 +268,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripMenuItem fToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem herramientasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
 
 
 

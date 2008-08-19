@@ -31,9 +31,19 @@ namespace SimuladorCliente
             pal.DockHandler.AllowEndUserDocking = false;
             pal.AutoHidePortion = 140;
 
-            
             _estacionView = f.EstacionView;
             _controladorMarcador = new ControladorMarcador(DockMain);
+            _es = new Estacion(Guid.NewGuid());
+            Presenter p = new Presenter(_estacionView);
+            p.SetEstacion(_es);
+            _estacionView.EstablecerServer(p);
+            p.Conectar();
+            _controladorMarcador.EstablecerEstacion(_estacionView);
+            //  button1.Visible = false;
+            toolStripButton1.Enabled = true;
+            toolStripButton2.Enabled = true;
+            toolStripButton3.Enabled = true;
+            toolStripButton4.Enabled = true;
            
 
 
@@ -189,6 +199,14 @@ namespace SimuladorCliente
         private void eliToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AccesoDatos.AlmacenadorInformacion.Eliminar(new Guid("0f65682b-0d70-4b29-a72a-e7784a21a3c9"));
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            _estacionView.PeticionCrearEquipo(TipoDeEquipo.Router);
+            toolStripButton2.Enabled = true;
+            toolStripButton1.Enabled = true;
+            toolStripButton4.Enabled = true;
         }
 
 

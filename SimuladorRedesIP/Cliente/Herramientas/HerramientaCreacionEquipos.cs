@@ -55,8 +55,24 @@ namespace RedesIP.Vistas
                     case TipoDeEquipo.Switch:
                         InsertarSwitch(equipo);
                         break;
+                    case TipoDeEquipo.Router:
+                        InsertarRouter(equipo);
+                        break;
                     default:
                         break;
+                }
+            }
+
+            private void InsertarRouter(EquipoSOA equipo)
+            {
+                RouterView rou = new RouterView(equipo);
+                rou.EstablecerContenedor(Estacion);
+                Estacion._routers.Add(rou);
+                Estacion._equipos.Add(rou.Id, rou);
+                foreach (PuertoEthernetView puerto in rou.PuertosEthernet)
+                {
+                    Estacion._puertos.Add(puerto);
+                    Estacion._diccioPuertos.Add(puerto.Id, puerto);
                 }
             }
             private void InsertarComputador(EquipoSOA equipo)
