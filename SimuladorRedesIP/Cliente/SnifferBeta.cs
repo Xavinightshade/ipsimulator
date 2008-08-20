@@ -44,12 +44,11 @@ namespace SimuladorCliente
             grid.FixedRows = 1;
 
             grid[0, 0] = new SourceGrid.Cells.ColumnHeader("Consecutivo");
-            grid[0, 1] = new SourceGrid.Cells.ColumnHeader("Puerto MAC");
-            grid[0, 2] = new SourceGrid.Cells.ColumnHeader("Hora Transmision");
-            grid[0, 3] = new SourceGrid.Cells.ColumnHeader("Hora Recepcion");
-            grid[0, 4] = new SourceGrid.Cells.ColumnHeader("MAC Origen");
-            grid[0, 5] = new SourceGrid.Cells.ColumnHeader("MAC Destino");
-            grid[0, 6] = new SourceGrid.Cells.ColumnHeader("Datos");
+            grid[0, 1] = new SourceGrid.Cells.ColumnHeader("Hora Transmision");
+            grid[0, 2] = new SourceGrid.Cells.ColumnHeader("Hora Recepcion");
+            grid[0, 3] = new SourceGrid.Cells.ColumnHeader("MAC Origen");
+            grid[0, 4] = new SourceGrid.Cells.ColumnHeader("MAC Destino");
+            grid[0, 5] = new SourceGrid.Cells.ColumnHeader("Datos");
 
             grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
             grid.Columns.AutoSize(true);
@@ -65,12 +64,11 @@ namespace SimuladorCliente
             {
                 grid.Rows.Insert(1);
                 grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
-                grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.MacPuerto.ToString());
-                grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.HoraTransmision.ToString() + mensaje.HoraTransmision.Millisecond.ToString());
-                grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToString() + mensaje.HoraRecepcion.Millisecond.ToString());
-                grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.MacOrigen.ToString());
-                grid[1, 5] = new SourceGrid.Cells.Cell(mensaje.MacDestino.ToString());
-                grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.Datos);
+                grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.HoraTransmision.ToString() + mensaje.HoraTransmision.Millisecond.ToString());
+                grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToString() + mensaje.HoraRecepcion.Millisecond.ToString());
+                grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.MacOrigen.ToString());
+                grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.MacDestino.ToString());
+                grid[1, 5] = new SourceGrid.Cells.Cell(mensaje.Datos);
 
                 grid[1, 0].View = _vista;
                 grid[1, 1].View = _vista;
@@ -78,7 +76,6 @@ namespace SimuladorCliente
                 grid[1, 3].View = _vista;
                 grid[1, 4].View = _vista;
                 grid[1, 5].View = _vista;
-                grid[1, 6].View = _vista;
 
             }
             grid.Columns.AutoSizeView();

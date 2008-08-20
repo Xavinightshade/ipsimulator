@@ -11,27 +11,27 @@ namespace RedesIP.Vistas.Equipos
 {
 	public class SwitchView:EquipoView
 	{
-		private List<PuertoEthernetView> _puertosEthernet = new List<PuertoEthernetView>();
+		private List<PuertoEthernetViewBase> _puertosEthernet = new List<PuertoEthernetViewBase>();
 
-		public ReadOnlyCollection<PuertoEthernetView> PuertosEthernet
+		public ReadOnlyCollection<PuertoEthernetViewBase> PuertosEthernet
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}
 
 
-		public SwitchView(EquipoSOA equipo)
+		public SwitchView(SwitchSOA equipo)
             : base(equipo.Id, equipo.X, equipo.Y, Resources.Switch.Size.Width, Resources.Switch.Size.Height)
 		{
 			CrearPuertos(equipo.Puertos);
 		}
 
-		private void CrearPuertos(IEnumerable<PuertoSOA> puertos)
+		private void CrearPuertos(IEnumerable<PuertoBaseSOA> puertos)
 		{
 			int i = 0;
-			foreach (PuertoSOA puerto in puertos)
+			foreach (PuertoBaseSOA puerto in puertos)
 	{
 
-        _puertosEthernet.Add(new PuertoEthernetView(puerto.Id, puerto.DireccionMAC, (i * 30)+3, 7, this));
+        _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 30)+3, 7, this));
 				i++;
 	}
 

@@ -11,10 +11,22 @@ namespace RedesIP.Vistas
 {
     public partial class EstacionView
     {
-        public void CrearEquipo(EquipoSOA equipo)
+        public void CrearComputador(ComputadorSOA pc)
         {
             HerramientaCreacionEquipos herramientaCreacion = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this) as HerramientaCreacionEquipos;
-            herramientaCreacion.CrearEQuipo(equipo);
+            herramientaCreacion.InsertarComputador(pc);
+            Invalidate();
+        }
+        public void CrearSwitch(SwitchSOA swi)
+        {
+            HerramientaCreacionEquipos herramientaCreacion = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this) as HerramientaCreacionEquipos;
+            herramientaCreacion.InsertarSwitch(swi);
+            Invalidate();
+        }
+        public void CrearRouter(RouterSOA rou)
+        {
+            HerramientaCreacionEquipos herramientaCreacion = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this) as HerramientaCreacionEquipos;
+            herramientaCreacion.InsertarRouter(rou);
             Invalidate();
         }
         public void PeticionCrearEquipo(TipoDeEquipo tipoDeEquipo)
@@ -41,57 +53,58 @@ namespace RedesIP.Vistas
             }
             public override void OnMouseUp(MouseEventArgs e)
             {
-                Estacion._server.PeticionCrearEquipo(_tipoEquipo, e.X, e.Y);
-            }
-            public void CrearEQuipo(EquipoSOA equipo)
-            {
-                switch (equipo.TipoEquipo)
+                switch (_tipoEquipo)
                 {
                     case TipoDeEquipo.Ninguno:
+                        throw new NotImplementedException();
                         break;
                     case TipoDeEquipo.Computador:
-                        InsertarComputador(equipo);
+                        Estacion._server.PeticionCrearComputador(new ComputadorSOA(_tipoEquipo,e.X,e.Y));
                         break;
                     case TipoDeEquipo.Switch:
-                        InsertarSwitch(equipo);
+                        Estacion._server.PeticionCrearSwitch(new SwitchSOA(_tipoEquipo, e.X, e.Y));
                         break;
                     case TipoDeEquipo.Router:
-                        InsertarRouter(equipo);
+                        Estacion._server.PeticionCrearRouter(new RouterSOA(_tipoEquipo, e.X, e.Y));
                         break;
                     default:
+                        throw new NotImplementedException();
                         break;
                 }
+                
             }
 
-            private void InsertarRouter(EquipoSOA equipo)
+
+
+            public void InsertarRouter(RouterSOA router)
             {
-                RouterView rou = new RouterView(equipo);
+                RouterView rou = new RouterView(router);
                 rou.EstablecerContenedor(Estacion);
                 Estacion._routers.Add(rou);
                 Estacion._equipos.Add(rou.Id, rou);
-                foreach (PuertoEthernetView puerto in rou.PuertosEthernet)
+                foreach (PuertoEthernetViewBase puerto in rou.PuertosEthernet)
                 {
                     Estacion._puertos.Add(puerto);
                     Estacion._diccioPuertos.Add(puerto.Id, puerto);
                 }
             }
-            private void InsertarComputador(EquipoSOA equipo)
+            public void InsertarComputador(ComputadorSOA pc)
             {
 
-                ComputadorView computador = new ComputadorView(equipo);
+                ComputadorView computador = new ComputadorView(pc);
                 computador.EstablecerContenedor(Estacion);
                 Estacion._computadores.Add(computador);
                 Estacion._equipos.Add(computador.Id, computador);
                 Estacion._puertos.Add(computador.Puerto);
                 Estacion._diccioPuertos.Add(computador.Puerto.Id, computador.Puerto);
             }
-            private void InsertarSwitch(EquipoSOA equipo)
+            public void InsertarSwitch(SwitchSOA swiSOA)
             {
-                SwitchView swi = new SwitchView(equipo);
+                SwitchView swi = new SwitchView(swiSOA);
                 swi.EstablecerContenedor(Estacion);
                 Estacion._switches.Add(swi);
                 Estacion._equipos.Add(swi.Id, swi);
-                foreach (PuertoEthernetView puerto in swi.PuertosEthernet)
+                foreach (PuertoEthernetViewBase puerto in swi.PuertosEthernet)
                 {
                     Estacion._puertos.Add(puerto);
                     Estacion._diccioPuertos.Add(puerto.Id, puerto);

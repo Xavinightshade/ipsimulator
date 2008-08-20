@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace RedesIP.Vistas.Equipos.Componentes
 {
-	public class PuertoEthernetView:ElementoGraficoCuadrado
+	public class PuertoEthernetViewBase:ElementoGraficoCuadrado
 	{
 		private bool _seleccionado;
 		private bool _conectado;
@@ -28,17 +28,11 @@ namespace RedesIP.Vistas.Equipos.Componentes
             set { _reseltado = value; }
         }
 
-        private string _direccionMAC;
 
-        public string DireccionMAC
-        {
-            get { return _direccionMAC; }
-        }
-		public PuertoEthernetView(Guid id,string direccionMAC,int origenX,int origenY,EquipoView equipoPadre)
+		public PuertoEthernetViewBase(Guid id,int origenX,int origenY,EquipoView equipoPadre)
 			: base(id,origenX,origenY, 10, 10)
 		{
 			ElementoPadre = equipoPadre;
-            _direccionMAC = direccionMAC;
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{

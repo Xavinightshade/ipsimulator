@@ -28,8 +28,8 @@ namespace RedesIP.Vistas
         IModeloSOA _server;
 
 		Dictionary<Guid, EquipoView> _equipos = new Dictionary<Guid, EquipoView>();
-		List<PuertoEthernetView> _puertos = new List<PuertoEthernetView>();
-		Dictionary<Guid, PuertoEthernetView> _diccioPuertos = new Dictionary<Guid, PuertoEthernetView>();
+		List<PuertoEthernetViewBase> _puertos = new List<PuertoEthernetViewBase>();
+		Dictionary<Guid, PuertoEthernetViewBase> _diccioPuertos = new Dictionary<Guid, PuertoEthernetViewBase>();
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
         List<RouterView> _routers = new List<RouterView>();
@@ -101,17 +101,25 @@ namespace RedesIP.Vistas
 			_equipos[idEquipo].MoverEquipo(x, y);
 			Invalidate();
 		}
-        public void ActualizarEstacion(List<EquipoSOA> equipos, List<CableSOA> conexiones)
+        public void ActualizarEstacion(EstacionSOA estacionSOA)
 		{
 			LimpiarEstacion();
-			for (int i = 0; i < equipos.Count; i++)
-			{
-				CrearEquipo(equipos[i]);
-			}
-			for (int i = 0; i < conexiones.Count; i++)
-			{
-				ConectarPuertos(conexiones[i]);
-			}
+            foreach (ComputadorSOA pc in estacionSOA.Computadores)
+            {
+                CrearComputador(pc);
+            }
+            foreach (SwitchSOA swi in estacionSOA.Switches)
+            {
+                CrearSwitch(swi);
+            }
+            foreach (RouterSOA rou in estacionSOA.Routers)
+            {
+                CrearRouter(rou);
+            }
+            foreach (CableSOA cable in estacionSOA.Cables)
+            {
+                ConectarPuertos(cable);
+            }
 			Invalidate();
 		}
 		private void LimpiarEstacion()

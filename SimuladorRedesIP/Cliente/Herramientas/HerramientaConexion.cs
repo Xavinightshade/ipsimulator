@@ -26,7 +26,7 @@ namespace RedesIP.Vistas
             _conexiones.Add(new Conexion(cable.Id, _diccioPuertos[cable.IdPuerto1], _diccioPuertos[cable.IdPuerto2]));
             Invalidate();
         }
-        private PuertoEthernetView _puerto1;
+        private PuertoEthernetViewBase _puerto1;
 
 
 

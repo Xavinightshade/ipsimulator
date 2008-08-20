@@ -34,19 +34,30 @@ namespace RedesIP
         /// </summary>
         private Dictionary<Guid, ComputadorLogico> _computadores = new Dictionary<Guid, ComputadorLogico>();
 
-        private Dictionary<Guid, EquipoLogico> _equipos = new Dictionary<Guid, EquipoLogico>();
-
-        public Dictionary<Guid, EquipoLogico> Equipos
+        public Dictionary<Guid, ComputadorLogico> Computadores
         {
-            get { return _equipos; }
+            get { return _computadores; }
         }
+
+
+
         private Dictionary<Guid, RouterLogico> _routers = new Dictionary<Guid, RouterLogico>();
+
+        public Dictionary<Guid, RouterLogico> Routers
+        {
+            get { return _routers; }
+        }
 
 
         /// <summary>
         /// Switches de la red
         /// </summary>
         private Dictionary<Guid, SwitchLogico> _switches = new Dictionary<Guid, SwitchLogico>();
+
+        public Dictionary<Guid, SwitchLogico> Switches
+        {
+            get { return _switches; }
+        }
         /// <summary>
         /// Cables de la red
         /// </summary>
@@ -72,19 +83,31 @@ namespace RedesIP
         public void CrearComputador(ComputadorLogico pc)
         {
             _computadores.Add(pc.Id, pc);
-            _equipos.Add(pc.Id, pc);
             _puertos.Add(pc.PuertoEthernet.Id, pc.PuertoEthernet);
         }
         public void CrearSwitch(SwitchLogico swi)
         {
 
             _switches.Add(swi.Id, swi);
-            _equipos.Add(swi.Id, swi);
             LLenarPuertos(_puertos, swi.PuertosEthernet);
         }
         public void MoverPosicionElemento(Guid id, int x, int y)
         {
-            IPosisionable elemento = _equipos[id];
+            IPosisionable elemento=null;
+            if (_computadores.ContainsKey(id))
+            {
+                elemento = _computadores[id];
+            }
+            else if (_switches.ContainsKey(id))
+            {
+                elemento = _switches[id];
+            }
+            else if (_routers.ContainsKey(id))
+            {
+                elemento = _routers[id];
+            }
+            if (elemento == null)
+                throw new NotSupportedException();
             elemento.X = x;
             elemento.Y = y;
         }
@@ -144,7 +167,6 @@ namespace RedesIP
         public void CrearRouter(RouterLogico router)
         {
             _routers.Add(router.Id, router);
-            _equipos.Add(router.Id, router);
             LLenarPuertos(_puertos, router.PuertosEthernet);
         }
     }

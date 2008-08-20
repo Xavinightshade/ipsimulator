@@ -10,15 +10,15 @@ namespace RedesIP.Vistas
 {
 	public class Conexion:ElementoGrafico
 	{
-		private PuertoEthernetView _puerto1;
+		private PuertoEthernetViewBase _puerto1;
 
-		public PuertoEthernetView Puerto1
+		public PuertoEthernetViewBase Puerto1
 		{
 			get { return _puerto1; }
 		}
-		private PuertoEthernetView _puerto2;
+		private PuertoEthernetViewBase _puerto2;
 
-		public PuertoEthernetView Puerto2
+		public PuertoEthernetViewBase Puerto2
 		{
 			get { return _puerto2; }
 		}
@@ -46,7 +46,7 @@ namespace RedesIP.Vistas
 			}
 			}
 		}
-		public Conexion(Guid id,PuertoEthernetView puerto1,PuertoEthernetView puerto2)
+		public Conexion(Guid id,PuertoEthernetViewBase puerto1,PuertoEthernetViewBase puerto2)
 			:base(id)
 		{
 			_puerto1 = puerto1;

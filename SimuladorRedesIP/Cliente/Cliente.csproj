@@ -223,7 +223,8 @@
     <Compile Include="Vistas\ComboBoxConColores.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Vistas\Componentes\PuertoEthernetView.cs" />
+    <Compile Include="Vistas\Componentes\PuertoEthernetViewBase.cs" />
+    <Compile Include="Vistas\Componentes\PuertoEthernetViewCompleto.cs" />
     <Compile Include="Vistas\Conexion.cs" />
     <Compile Include="Vistas\ElementoGrafico.cs" />
     <Compile Include="Vistas\ElementoGraficoCuadrado.cs" />

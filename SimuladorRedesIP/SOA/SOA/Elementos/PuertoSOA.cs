@@ -7,7 +7,7 @@ namespace RedesIP.SOA
 {
 
 	[DataContract]
-	public class PuertoSOA
+	public class PuertoBaseSOA
 	{
 		private Guid _id;
 		[DataMember]
@@ -16,18 +16,12 @@ namespace RedesIP.SOA
 			get { return _id; }
 			set { _id = value; }
 		}
-        private string _direccionMAC;
-        [DataMember]
-        public string DireccionMAC
-        {
-            get { return _direccionMAC; }
-            set { _direccionMAC = value; }
-        }
 
-        public PuertoSOA(Guid id, string direccionMAC)
+
+        public PuertoBaseSOA(Guid id)
 		{
 			_id = id;
-            _direccionMAC = direccionMAC;
 		}
 	}
+
 }

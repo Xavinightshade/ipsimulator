@@ -15,8 +15,8 @@ namespace RedesIP
 {
     public abstract class PresenterBase : IModeloSOA
     {
-                private  Estacion _estacion;
-                private void RegistrarCliente()
+        private Estacion _estacion;
+        private void RegistrarCliente()
         {
             IVisualizacion vista = GetCurrentClient();
             if (_vistas.Contains(vista))
@@ -24,10 +24,10 @@ namespace RedesIP
             _vistas.Add(vista);
         }
 
-                private static void RealizarOperacionEnVista(IVisualizacion vista)
-                {
+        private static void RealizarOperacionEnVista(IVisualizacion vista)
+        {
 
-                }
+        }
         public void SetEstacion(Estacion estacion)
         {
             _vistas.Clear();
@@ -38,57 +38,9 @@ namespace RedesIP
         }
         private static List<IVisualizacion> _vistas = new List<IVisualizacion>();
 
-        public void PeticionCrearEquipo(TipoDeEquipo tipoEquipo, int x, int y)
-        {
-            EquipoLogico equipoLogico = null;
-            switch (tipoEquipo)
-            {
-                case TipoDeEquipo.Ninguno:
-                    break;
-                case TipoDeEquipo.Computador:
-                    ComputadorLogico pc = new ComputadorLogico(Guid.NewGuid(), x, y);
-                    pc.AgregarPuerto(Guid.NewGuid());
-                    _estacion.CrearComputador(pc);
-                    equipoLogico = pc;
-                    break;
-                case TipoDeEquipo.Switch:
-                    SwitchLogico swi = new SwitchLogico(Guid.NewGuid(), x, y);
-                    for (int i = 0; i < 5; i++)
-                    {
-                        swi.AgregarPuerto(Guid.NewGuid());
-                    }
-                    _estacion.CrearSwitch(swi);
-                    equipoLogico = swi;
-                    break;
-                case TipoDeEquipo.Router:
-                    RouterLogico router = new RouterLogico(Guid.NewGuid(), x, y);
-                    for (int i = 0; i < 5; i++)
-                    {
-                        router.AgregarPuerto(Guid.NewGuid());
-                    }
-                    _estacion.CrearRouter(router);
-                    equipoLogico = router;
-                        break;
-                default:
-                    break;
-            }
-            equipoLogico.InicializarEquipo();
-            EquipoSOA equipo = new EquipoSOA(tipoEquipo, equipoLogico.Id, equipoLogico.X, equipoLogico.Y);
-            LLenarPuertos(equipoLogico, equipo);
-            foreach (IVisualizacion cliente in _vistas)
-            {
-                cliente.CrearEquipo(equipo);
-            }
 
-        }
 
-        private static void LLenarPuertos(EquipoLogico equipoLogico, EquipoSOA equipo)
-        {
-            foreach (PuertoEthernetLogicoBase puertoLogico in equipoLogico.PuertosEthernet)
-            {
-                equipo.Puertos.Add(new PuertoSOA(puertoLogico.Id,puertoLogico.MACAddress));
-            }
-        }
+
 
         public void PeticionMoverEquipo(Guid idEquipo, int x, int y)
         {
@@ -115,7 +67,7 @@ namespace RedesIP
 
         public void PeticionActualizarEstacion()
         {
-            
+
         }
 
 
@@ -124,30 +76,31 @@ namespace RedesIP
             throw new NotImplementedException();
         }
 
-        public  void Conectar()
+        public void Conectar()
         {
             RegistrarCliente();
             IVisualizacion cliente = GetCurrentClient();
 
-            
-            List<EquipoSOA> equipos = new List<EquipoSOA>();
-            foreach (KeyValuePair<Guid, EquipoLogico> par in _estacion.Equipos)
+            EstacionSOA estacionSOA = new EstacionSOA();
+            foreach (KeyValuePair<Guid,ComputadorLogico> par in _estacion.Computadores)
             {
-                EquipoLogico eqLogico = par.Value;
-                EquipoSOA eq = new EquipoSOA(eqLogico.TipoDeEquipo, eqLogico.Id, eqLogico.X, eqLogico.Y);
-                foreach (PuertoEthernetLogicoBase puerto in eqLogico.PuertosEthernet)
-                {
-                    eq.Puertos.Add(new PuertoSOA(puerto.Id,puerto.MACAddress));
-                }
-                equipos.Add(eq);
+               estacionSOA.Computadores.Add(CrearComputadorSOA(par.Value));
             }
-            List<CableSOA> cables = new List<CableSOA>();
+            foreach (KeyValuePair<Guid,SwitchLogico> par in _estacion.Switches)
+            {
+               estacionSOA.Switches.Add(CrearSwitchSOA(par.Value));
+            }
+            foreach (KeyValuePair<Guid,RouterLogico> par in _estacion.Routers)
+            {
+               estacionSOA.Routers.Add(CrearRouterSOA(par.Value));
+            }
+
             foreach (KeyValuePair<Guid, CableDeRedLogico> par in _estacion.Cables)
             {
                 CableDeRedLogico cable = par.Value;
-                cables.Add(new CableSOA(cable.Id, cable.Puerto1.Id, cable.Puerto2.Id));
+                estacionSOA.Cables.Add(new CableSOA(cable.Id, cable.Puerto1.Id, cable.Puerto2.Id));
             }
-            cliente.ActualizarEstacion(equipos, cables);
+            cliente.ActualizarEstacion(estacionSOA);
 
         }
 
@@ -183,10 +136,9 @@ namespace RedesIP
         {
             CableDeRedLogico cable = (CableDeRedLogico)sender;
             string mensaje = e.FrameRecibido.Informacion.ToString();
-            string macPuerto = e.DireccionPuerto;
             string macOrigen = e.FrameRecibido.MACAddressOrigen;
             string macDestino = e.FrameRecibido.MACAddressDestino;
-            MensajeSOA mensajeSOA = new MensajeSOA(cable.Id, mensaje, macPuerto, macOrigen, macDestino, e.FrameRecibido.HoraTransmision, e.FrameRecibido.HoraRecepcion);
+            MensajeSOA mensajeSOA = new MensajeSOA(cable.Id, mensaje, macOrigen, macDestino, e.FrameRecibido.HoraTransmision, e.FrameRecibido.HoraRecepcion);
             foreach (IVisualizacion cliente in _diccioMensajes[cable.Id])
             {
                 cliente.EnviarInformacionConexion(mensajeSOA);
@@ -220,6 +172,90 @@ namespace RedesIP
 
 
 
+
+        #region IModeloSOA Members
+
+        public void PeticionCrearComputador(ComputadorSOA computadorVisulizacion)
+        {
+
+            ComputadorLogico pcLogico = new ComputadorLogico(Guid.NewGuid(), computadorVisulizacion.X, computadorVisulizacion.Y);
+            pcLogico.AgregarPuerto(Guid.NewGuid());
+            _estacion.CrearComputador(pcLogico);
+            pcLogico.InicializarEquipo();
+
+            ComputadorSOA equipoRespuesta = CrearComputadorSOA(pcLogico);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.CrearComputador(equipoRespuesta);
+            }
+
+        }
+
+        private static ComputadorSOA CrearComputadorSOA(ComputadorLogico pcLogico)
+        {
+            ComputadorSOA equipoRespuesta = new ComputadorSOA(pcLogico.TipoDeEquipo, pcLogico.Id, pcLogico.X, pcLogico.Y);
+            equipoRespuesta.AgregarPuerto(new PuertoCompletoSOA(pcLogico.PuertoEthernet.Id, pcLogico.PuertoEthernet.MACAddress));
+            return equipoRespuesta;
+        }
+
+        public void PeticionCrearSwitch(SwitchSOA swiPeticion)
+        {
+            SwitchLogico swiLogico = new SwitchLogico(Guid.NewGuid(), swiPeticion.X, swiPeticion.Y);
+            for (int i = 0; i < 5; i++)
+            {
+                swiLogico.AgregarPuerto(Guid.NewGuid());
+            }
+            swiLogico.InicializarEquipo();
+            _estacion.CrearSwitch(swiLogico);
+
+
+            SwitchSOA swiRespuesta = CrearSwitchSOA(swiLogico);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.CrearSwitch(swiRespuesta);
+            }
+
+
+
+        }
+
+        private static SwitchSOA CrearSwitchSOA(SwitchLogico swiLogico)
+        {
+            SwitchSOA swiRespuesta = new SwitchSOA(swiLogico.TipoDeEquipo, swiLogico.Id, swiLogico.X, swiLogico.Y);
+            foreach (PuertoEthernetLogicoBase puerto in swiLogico.PuertosEthernet)
+            {
+                swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id));
+            }
+            return swiRespuesta;
+        }
+
+        public void PeticionCrearRouter(RouterSOA router)
+        {
+            RouterLogico routerLogico = new RouterLogico(Guid.NewGuid(), router.X, router.Y);
+            for (int i = 0; i < 5; i++)
+            {
+                routerLogico.AgregarPuerto(Guid.NewGuid());
+            }
+            routerLogico.InicializarEquipo();
+            _estacion.CrearRouter(routerLogico);
+            RouterSOA rouRespuesta = CrearRouterSOA(routerLogico);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.CrearRouter(rouRespuesta);
+            }
+        }
+
+        private static RouterSOA CrearRouterSOA(RouterLogico routerLogico)
+        {
+            RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y);
+            foreach (PuertoEthernetCompleto puerto in routerLogico.PuertosEthernet)
+            {
+                rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress));
+            }
+            return rouRespuesta;
+        }
+
+        #endregion
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]

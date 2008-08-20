@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace RedesIP.SOA
 {
 	[DataContract]
-	public class EquipoSOA
+	public abstract class EquipoBaseSOA
 	{
 		private Guid _id;
 		private int _x;
@@ -40,27 +40,27 @@ namespace RedesIP.SOA
 			set { _id = value; }
 		}
 
-		private List<PuertoSOA> _puertos = new List<PuertoSOA>();
-		[DataMember]
-		public List<PuertoSOA> Puertos
-		{
-			get { return _puertos; }
-			set { _puertos = value; }
-		}
 
-		public void AgregarPuerto(PuertoSOA puerto)
+		public EquipoBaseSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y)
+            :this(tipoEquipo,x,y)
 		{
-			_puertos.Add(puerto);
-		}
-		public EquipoSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y)
-		{
-			_tipoEquipo = tipoEquipo;
-			_x = x;
-			_y = y;
+
 			_id = id;
 
 		}
+        public EquipoBaseSOA(TipoDeEquipo tipoEquipo, int x, int y)
+        {
+            _tipoEquipo = tipoEquipo;
+            _x = x;
+            _y = y;
+
+        }
 
 
 	}
+
+
+
+
+
 }

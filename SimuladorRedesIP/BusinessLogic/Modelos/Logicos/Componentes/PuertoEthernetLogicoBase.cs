@@ -37,18 +37,12 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		private readonly Queue<Frame> _bufferFramesRecibidos = new Queue<Frame>();
 		private Thread _hiloDeProcesamientoDeFramesAEnviar;
 
-		private string _MACAddress;
 
-		public string MACAddress
-		{
-			get { return _MACAddress; }
-		}
 		public event EventHandler<FrameTransmitidoEventArgs> FrameTransmitido;
 		public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
-		public PuertoEthernetLogicoBase(string MACAddress,Guid id)
+		public PuertoEthernetLogicoBase(Guid id)
 		{
             _id = id;
-            _MACAddress = MACAddress;
 			_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
 			_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);
 			_hiloDeProcesamientoDeFramesAEnviar.Start();
@@ -124,7 +118,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		{
             frame.HoraRecepcion = DateTime.Now;
 			if (FrameRecibido != null)
-                FrameRecibido(this, new FrameRecibidoEventArgs(frame, MACAddress));
+                FrameRecibido(this, new FrameRecibidoEventArgs(frame));
 		}
 
 

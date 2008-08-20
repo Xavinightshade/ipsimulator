@@ -16,9 +16,22 @@ namespace AccesoDatos
         {
             Estaciones estacionBD = new Estaciones();
             estacionBD.Id = estacion.Id;
-            foreach (KeyValuePair<Guid,EquipoLogico> par in estacion.Equipos)
+            List<EquipoLogico> equipos = new List<EquipoLogico>();
+            foreach (KeyValuePair<Guid,ComputadorLogico> pc in estacion.Computadores)
             {
-                EquipoLogico equipoLogico = par.Value;
+                equipos.Add(pc.Value);
+            }
+            foreach (KeyValuePair<Guid, SwitchLogico> swi in estacion.Switches)
+            {
+                equipos.Add(swi.Value);
+            }
+            foreach (KeyValuePair<Guid, RouterLogico> rou in estacion.Routers)
+            {
+                equipos.Add(rou.Value);
+            }
+            foreach (EquipoLogico equipoLogico in equipos)
+            {
+
                 Equipos equipoBD = new Equipos();
                 equipoBD.Id = equipoLogico.Id;
                 equipoBD.TipoDeEquipo = (int)equipoLogico.TipoDeEquipo;

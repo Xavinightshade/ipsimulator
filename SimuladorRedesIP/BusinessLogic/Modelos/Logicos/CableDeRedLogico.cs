@@ -57,7 +57,7 @@ namespace RedesIP.Modelos
         {
             if (FrameRecibidoPuerto2 != null)
             {
-                FrameRecibidoPuerto2(this, new FrameRecibidoEventArgs(e.FrameRecibido, Puerto2.MACAddress));
+                FrameRecibidoPuerto2(this, new FrameRecibidoEventArgs(e.FrameRecibido));
             }
         }
 
@@ -65,7 +65,7 @@ namespace RedesIP.Modelos
         {
             if (FrameRecibidoPuerto1 != null)
             {
-                FrameRecibidoPuerto1(this, new FrameRecibidoEventArgs(e.FrameRecibido, Puerto1.MACAddress));
+                FrameRecibidoPuerto1(this, new FrameRecibidoEventArgs(e.FrameRecibido));
             }
         }
 		public void DesconectarPuertos()

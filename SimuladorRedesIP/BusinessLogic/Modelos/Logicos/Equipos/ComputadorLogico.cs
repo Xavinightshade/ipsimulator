@@ -19,12 +19,12 @@ namespace RedesIP.Modelos.Logicos.Equipos
             set { _direccionIP = value; }
         }
 
-		private PuertoEthernetLogicoBase _puertoEthernet;
+		private PuertoEthernetCompleto _puertoEthernet;
 		private string _nombreDelPc;
 		/// <summary>
 		/// Puerto Ethernet Del PC
 		/// </summary>
-		public PuertoEthernetLogicoBase PuertoEthernet
+        public PuertoEthernetCompleto PuertoEthernet
 		{
 			get { return _puertoEthernet; }
 		}
@@ -106,7 +106,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		}
         public override void AgregarPuerto(Guid idPuerto)
         {
-            _puertoEthernet = new PuertoEthernetLogicoBase(MACAddressFactory.NewMAC(), idPuerto);
+            _puertoEthernet = new PuertoEthernetCompleto(MACAddressFactory.NewMAC(), idPuerto);
         }
 
         public override void InicializarEquipo()

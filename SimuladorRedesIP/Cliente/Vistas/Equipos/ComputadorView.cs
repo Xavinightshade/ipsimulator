@@ -10,14 +10,14 @@ namespace RedesIP.Vistas.Equipos
 {
 	public class ComputadorView:EquipoView
 	{
-		public ComputadorView(EquipoSOA equipo)
+		public ComputadorView(ComputadorSOA equipo)
             : base(equipo.Id, equipo.X, equipo.Y, Resources.Computador.Width, Resources.Computador.Height)
 		{
-            _puerto = new PuertoEthernetView(equipo.Puertos[0].Id, equipo.Puertos[0].DireccionMAC,15, 30, this);
+            _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id, equipo.Puerto.DireccionMAC,15, 30, this);
 		}
-		PuertoEthernetView _puerto;
+        PuertoEthernetViewCompleto _puerto;
 
-		public PuertoEthernetView Puerto
+		public PuertoEthernetViewCompleto Puerto
 		{
 			get { return _puerto; }
 		}

@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RedesIP.SOA;
-using RedesIP;
 using System.Runtime.Serialization;
 
 namespace RedesIP.SOA
 {
     [DataContract]
-    public class ComputadorSOA : EquipoBaseSOA
+    public class RouterSOA : EquipoBaseSOA
     {
-        public ComputadorSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y)
+        public RouterSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y)
             : base(tipoEquipo, id, x, y)
         {
 
         }
-        public ComputadorSOA(TipoDeEquipo tipoEquipo, int x, int y)
+        public RouterSOA(TipoDeEquipo tipoEquipo, int x, int y)
             : base(tipoEquipo, x, y)
         {
 
         }
+        List<PuertoCompletoSOA> _puertos = new List<PuertoCompletoSOA>();
+        [DataMember]
+        public List<PuertoCompletoSOA> Puertos
+        {
+            get { return _puertos; }
+            set { _puertos = value; }
+        }
+
         private string _direccionIP;
         [DataMember]
         public string DireccionIP
@@ -28,20 +34,10 @@ namespace RedesIP.SOA
             get { return _direccionIP; }
             set { _direccionIP = value; }
         }
-        PuertoCompletoSOA _puerto;
 
-
-
-
-        [DataMember]
-        public PuertoCompletoSOA Puerto
-        {
-            get { return _puerto; }
-            set { _puerto = value; }
-        }
         public void AgregarPuerto(PuertoCompletoSOA puerto)
         {
-            _puerto = puerto;
+            _puertos.Add(puerto);
         }
     }
 }

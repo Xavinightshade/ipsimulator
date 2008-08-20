@@ -23,12 +23,7 @@ namespace RedesIP.Modelos.Datos
 	}
 	public class FrameRecibidoEventArgs : EventArgs
 	{
-        private string _direccionPuerto;
 
-        public string DireccionPuerto
-        {
-            get { return _direccionPuerto; }
-        }
 		private Frame _frameRecibido;
 		public Frame FrameRecibido
 		{
@@ -37,10 +32,9 @@ namespace RedesIP.Modelos.Datos
         private DateTime _horaRecepcion;
 
 
-		public FrameRecibidoEventArgs(Frame frame,string direccionPuerto)
+		public FrameRecibidoEventArgs(Frame frame)
 		{
 			_frameRecibido = frame;
-            _direccionPuerto = direccionPuerto;
 
 		}
 	}

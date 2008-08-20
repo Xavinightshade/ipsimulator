@@ -54,10 +54,14 @@
     <Compile Include="PresenterSOA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SOA\Elementos\ComputadorSOA.cs" />
-    <Compile Include="SOA\Elementos\ConexionSOA.cs" />
+    <Compile Include="SOA\Elementos\CableSOA.cs" />
     <Compile Include="SOA\Elementos\EquipoSOA.cs" />
+    <Compile Include="SOA\Elementos\EstacionSOA.cs" />
     <Compile Include="SOA\Elementos\MensajeSOA.cs" />
+    <Compile Include="SOA\Elementos\PuertoCompletoSOA.cs" />
     <Compile Include="SOA\Elementos\PuertoSOA.cs" />
+    <Compile Include="SOA\Elementos\RouterSOA.cs" />
+    <Compile Include="SOA\Elementos\SwitchSOA.cs" />
     <Compile Include="SOA\ICallBackContract.cs" />
     <Compile Include="SOA\IContract.cs" />
   </ItemGroup>

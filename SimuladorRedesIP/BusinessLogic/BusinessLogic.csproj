@@ -51,6 +51,7 @@
     <Compile Include="MACAddress.cs" />
     <Compile Include="Modelos\Logicos\CableDeRedLogico.cs" />
     <Compile Include="Modelos\Logicos\Componentes\IEnvioReciboDatos.cs" />
+    <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetCompleto.cs" />
     <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogicoBase.cs" />
     <Compile Include="Modelos\Logicos\Componentes\SwitchTable.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />

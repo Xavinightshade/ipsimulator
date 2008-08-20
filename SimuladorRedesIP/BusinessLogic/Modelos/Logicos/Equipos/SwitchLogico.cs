@@ -80,7 +80,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		}
         public override void AgregarPuerto(Guid idPuerto)
         {
-            _puertosEthernet.Add(new PuertoEthernetLogicoBase(MACAddressFactory.NewMAC(), idPuerto));
+            _puertosEthernet.Add(new PuertoEthernetLogicoBase(idPuerto));
         }
 
 

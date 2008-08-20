@@ -26,11 +26,6 @@ namespace SimuladorCliente
         {
             get { return _macOrigen; }
         }
-        private string _macPuerto;
-        public string MacPuerto
-        {
-            get { return _macPuerto; }
-        }
         private string _macDestino;
 
         public string MacDestino
@@ -53,7 +48,6 @@ namespace SimuladorCliente
 
 		public Mensaje(MensajeSOA mensajeSOA)
 		{
-             _macPuerto = mensajeSOA.MacPuerto;
               _macOrigen = mensajeSOA.MacOrigen;
                _macDestino = mensajeSOA.MacDestino;
             _idConexion = mensajeSOA.IdConexion;

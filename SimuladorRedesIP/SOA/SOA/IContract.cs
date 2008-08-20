@@ -15,7 +15,11 @@ namespace RedesIP.SOA
 	public interface IModeloSOA
 	{
 		[OperationContract()]
-		void PeticionCrearEquipo(TipoDeEquipo tipoEquipo, int x, int y);
+		void PeticionCrearComputador(ComputadorSOA computador);
+        [OperationContract()]
+        void PeticionCrearSwitch(SwitchSOA swi);
+        [OperationContract()]
+        void PeticionCrearRouter(RouterSOA router);
 		[OperationContract()]
 		void Conectar();
 		[OperationContract()]
