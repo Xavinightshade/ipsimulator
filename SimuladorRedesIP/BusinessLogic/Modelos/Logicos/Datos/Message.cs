@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedesIP.Modelos.Datos
 {
-	public class TextMessage:IMessage
+	public class TestFrameMessage:IFrameMessage
 	{
 		private string _mensaje;
 
@@ -13,7 +13,7 @@ namespace RedesIP.Modelos.Datos
 			get { return _mensaje; }
 			set { _mensaje = value; }
 		}
-		public TextMessage(string mensaje)
+        public TestFrameMessage(string mensaje)
 		{
 			_mensaje = mensaje;
 		}
@@ -22,22 +22,7 @@ namespace RedesIP.Modelos.Datos
 			return _mensaje;
 		}
 	}
-	public class TestMessage:IMessage
-	{
 
-	}
-	public class ReplyTestMessage : IMessage
-	{
-		private TestMessage _mensajeOriginal;
 
-		public TestMessage MensajeOriginal
-		{
-			get { return _mensajeOriginal; }
-		}
-		public ReplyTestMessage(TestMessage mensajeOriginal)
-		{
-			_mensajeOriginal = mensajeOriginal;
-		}
-	}
 
 }

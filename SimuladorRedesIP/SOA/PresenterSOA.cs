@@ -165,10 +165,7 @@ namespace RedesIP
         }
 
 
-        public void Ping(Guid idComputador, string mensaje, string macAddress)
-        {
-            _estacion.Ping(idComputador, mensaje, macAddress);
-        }
+
 
 
 

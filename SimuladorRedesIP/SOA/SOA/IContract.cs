@@ -35,8 +35,6 @@ namespace RedesIP.SOA
 		[OperationContract()]
 		void PeticionEnviarInformacionConexion(Guid idConexion);
 		[OperationContract()]
-		void Ping(Guid idComputador,string mensaje,string macAdress);
-        [OperationContract()]
         float GetVelocidadSimulacion();
         [OperationContract()]
         void  SetVelocidadSimulacion(float valor);

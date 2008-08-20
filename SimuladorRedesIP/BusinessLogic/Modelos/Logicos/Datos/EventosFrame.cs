@@ -27,7 +27,6 @@ namespace RedesIP.Modelos.Datos
         {
             get { return _frameRecibido; }
         }
-        private DateTime _horaRecepcion;
 
 
         public FrameRecibidoEventArgs(Frame frame)

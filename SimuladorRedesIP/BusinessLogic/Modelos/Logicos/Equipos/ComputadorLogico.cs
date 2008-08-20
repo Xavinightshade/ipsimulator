@@ -49,43 +49,14 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 		private void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
 		{
-			Frame frameRecibido = e.FrameRecibido;
-            if (_puertoEthernet.MACAddress == frameRecibido.MACAddressDestino)
-			{
-				ReplyTestMessage replyTestMessage = frameRecibido.Informacion as ReplyTestMessage;
-				if (replyTestMessage != null)
-				{
-					if (_mensajesDePrueba.Contains(replyTestMessage.MensajeOriginal))
-					{
-						_mensajesDePrueba.Remove(replyTestMessage.MensajeOriginal);
-					}
-					return;
-				}
-				TestMessage testMessage = frameRecibido.Informacion as TestMessage;
-				if (testMessage != null)
-				{
-                    EnviarMensaje(new ReplyTestMessage(testMessage), frameRecibido.MACAddressOrigen);
-					return;
-				}
-			}
 
-		}
-		public void EnviarMensajeDeTexto(string datos, string stringDestino)
-		{
-			EnviarMensaje(new TextMessage(datos), stringDestino);
-		}
-
-		List<TestMessage> _mensajesDePrueba = new List<TestMessage>();
-
-		public void Ping(string stringDestino)
-		{
-			TestMessage mensajeDePrueba = new TestMessage();
-			_mensajesDePrueba.Add(mensajeDePrueba);
-			EnviarMensaje(mensajeDePrueba, stringDestino);
 
 		}
 
-		private void EnviarMensaje(IMessage mensaje, string stringDestino)
+
+
+
+		private void EnviarMensaje(IFrameMessage mensaje, string stringDestino)
 		{
             Frame frameATransmitir = new Frame(mensaje, _puertoEthernet.MACAddress, stringDestino);
 			((IEnvioReciboDatos)_puertoEthernet).TransmitirFrame(frameATransmitir);

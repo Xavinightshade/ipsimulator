@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RedesIP.Modelos.Datos
 {
-	public interface IMessage
+	public interface IFrameMessage
 	{
 	}
 }

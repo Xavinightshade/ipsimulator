@@ -25,9 +25,9 @@ namespace RedesIP.Modelos.Datos
             get { return _horaRecepcion; }
             set { _horaRecepcion = value; }
         }
-		private IMessage _informacion;
+		private IFrameMessage _informacion;
 
-		public IMessage Informacion
+		public IFrameMessage Informacion
 		{
 			get { return _informacion; }
 		}
@@ -42,7 +42,7 @@ namespace RedesIP.Modelos.Datos
             get { return _MACAddressOrigen; }
 		}
 
-        public Frame(IMessage informacion, string MACAddressOrigen, string MACAddressDestino)
+        public Frame(IFrameMessage informacion, string MACAddressOrigen, string MACAddressDestino)
 		{
 			_informacion = informacion;
             _MACAddressDestino = MACAddressDestino;
@@ -50,7 +50,7 @@ namespace RedesIP.Modelos.Datos
 		}
 		public override string ToString()
 		{
-            return "MAC origen: " + _MACAddressOrigen.ToString() + ",       MAC Destino: " + _MACAddressDestino.ToString() + "      Info: " + _informacion.ToString();
+            return "MAC origen: " + _MACAddressOrigen+ ",       MAC Destino: " + _MACAddressDestino + "      Info: " + _informacion.ToString();
 		}
 	}
 }

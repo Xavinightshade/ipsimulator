@@ -44,25 +44,7 @@ namespace RedesIP.Vistas
                 }
             }
 
-            private void Ping(MouseEventArgs e)
-            {
-                for (int i = 0; i < _estacion._computadores.Count; i++)
-                {
-                    if (_estacion._computadores[i].HitTest(e.X, e.Y))
-                    {
-                        Ping forma = new Ping();
-                        forma.ShowDialog();
-                        if (forma.DialogResult == DialogResult.Cancel)
-                            return;
-                        for (int j = 0; j < forma.Numero; j++)
-                        {
-                            _estacion._server.Ping(_estacion._computadores[i].Id, forma.Mensaje, forma.DirMAC);
-                        }
 
-                        return;
-                    }
-                }
-            }
         }
         
     }
