@@ -9,7 +9,7 @@ namespace AccesoDatos
     {
         private List<Equipos> _equipos = new List<Equipos>();
 
-        public List<Equipos> Equipos
+        public List<Equipos> EquiposBD
         {
             get { return _equipos; }
         }

@@ -112,6 +112,8 @@ namespace AccesoDatos
 		
 		private System.Guid _IdPuerto2;
 		
+		private EntityRef<Puertos> _Puertos;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -126,6 +128,7 @@ namespace AccesoDatos
 		
 		public Cables()
 		{
+			this._Puertos = default(EntityRef<Puertos>);
 			OnCreated();
 		}
 		
@@ -160,6 +163,10 @@ namespace AccesoDatos
 			{
 				if ((this._IdPuerto1 != value))
 				{
+					if (this._Puertos.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdPuerto1Changing(value);
 					this.SendPropertyChanging();
 					this._IdPuerto1 = value;
@@ -185,6 +192,40 @@ namespace AccesoDatos
 					this._IdPuerto2 = value;
 					this.SendPropertyChanged("IdPuerto2");
 					this.OnIdPuerto2Changed();
+				}
+			}
+		}
+		
+		[Association(Name="p1", Storage="_Puertos", ThisKey="IdPuerto1", IsForeignKey=true, DeleteOnNull=true)]
+		public Puertos Puertos
+		{
+			get
+			{
+				return this._Puertos.Entity;
+			}
+			set
+			{
+				Puertos previousValue = this._Puertos.Entity;
+				if (((previousValue != value) 
+							|| (this._Puertos.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Puertos.Entity = null;
+						previousValue.Cables.Remove(this);
+					}
+					this._Puertos.Entity = value;
+					if ((value != null))
+					{
+						value.Cables.Add(this);
+						this._IdPuerto1 = value.Id;
+					}
+					else
+					{
+						this._IdPuerto1 = default(System.Guid);
+					}
+					this.SendPropertyChanged("Puertos");
 				}
 			}
 		}
@@ -226,6 +267,10 @@ namespace AccesoDatos
 		
 		private System.Guid _IdEstacion;
 		
+		private EntityRef<Estaciones> _Estaciones;
+		
+		private EntitySet<Puertos> _Puertos;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -244,6 +289,8 @@ namespace AccesoDatos
 		
 		public Equipos()
 		{
+			this._Estaciones = default(EntityRef<Estaciones>);
+			this._Puertos = new EntitySet<Puertos>(new Action<Puertos>(this.attach_Puertos), new Action<Puertos>(this.detach_Puertos));
 			OnCreated();
 		}
 		
@@ -338,12 +385,63 @@ namespace AccesoDatos
 			{
 				if ((this._IdEstacion != value))
 				{
+					if (this._Estaciones.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdEstacionChanging(value);
 					this.SendPropertyChanging();
 					this._IdEstacion = value;
 					this.SendPropertyChanged("IdEstacion");
 					this.OnIdEstacionChanged();
 				}
+			}
+		}
+		
+		[Association(Name="EquiposEstaciones", Storage="_Estaciones", ThisKey="IdEstacion", IsForeignKey=true, DeleteOnNull=true)]
+		public Estaciones Estaciones
+		{
+			get
+			{
+				return this._Estaciones.Entity;
+			}
+			set
+			{
+				Estaciones previousValue = this._Estaciones.Entity;
+				if (((previousValue != value) 
+							|| (this._Estaciones.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Estaciones.Entity = null;
+						previousValue.Equipos.Remove(this);
+					}
+					this._Estaciones.Entity = value;
+					if ((value != null))
+					{
+						value.Equipos.Add(this);
+						this._IdEstacion = value.Id;
+					}
+					else
+					{
+						this._IdEstacion = default(System.Guid);
+					}
+					this.SendPropertyChanged("Estaciones");
+				}
+			}
+		}
+		
+		[Association(Name="PuertoEquipo", Storage="_Puertos", OtherKey="IdEquipo", DeleteRule="CASCADE")]
+		public EntitySet<Puertos> Puertos
+		{
+			get
+			{
+				return this._Puertos;
+			}
+			set
+			{
+				this._Puertos.Assign(value);
 			}
 		}
 		
@@ -366,6 +464,18 @@ namespace AccesoDatos
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Puertos(Puertos entity)
+		{
+			this.SendPropertyChanging();
+			entity.Equipos = this;
+		}
+		
+		private void detach_Puertos(Puertos entity)
+		{
+			this.SendPropertyChanging();
+			entity.Equipos = null;
+		}
 	}
 	
 	[Table()]
@@ -379,6 +489,8 @@ namespace AccesoDatos
 		private string _Nombre;
 		
 		private System.Data.Linq.Binary _Foto;
+		
+		private EntitySet<Equipos> _Equipos;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -394,6 +506,7 @@ namespace AccesoDatos
 		
 		public Estaciones()
 		{
+			this._Equipos = new EntitySet<Equipos>(new Action<Equipos>(this.attach_Equipos), new Action<Equipos>(this.detach_Equipos));
 			OnCreated();
 		}
 		
@@ -457,6 +570,19 @@ namespace AccesoDatos
 			}
 		}
 		
+		[Association(Name="EquiposEstaciones", Storage="_Equipos", OtherKey="IdEstacion", DeleteRule="CASCADE")]
+		public EntitySet<Equipos> Equipos
+		{
+			get
+			{
+				return this._Equipos;
+			}
+			set
+			{
+				this._Equipos.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -476,6 +602,18 @@ namespace AccesoDatos
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Equipos(Equipos entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estaciones = this;
+		}
+		
+		private void detach_Equipos(Equipos entity)
+		{
+			this.SendPropertyChanging();
+			entity.Estaciones = null;
+		}
 	}
 	
 	[Table()]
@@ -487,6 +625,10 @@ namespace AccesoDatos
 		private System.Guid _Id;
 		
 		private System.Guid _IdEquipo;
+		
+		private EntitySet<Cables> _Cables;
+		
+		private EntityRef<Equipos> _Equipos;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -500,6 +642,8 @@ namespace AccesoDatos
 		
 		public Puertos()
 		{
+			this._Cables = new EntitySet<Cables>(new Action<Cables>(this.attach_Cables), new Action<Cables>(this.detach_Cables));
+			this._Equipos = default(EntityRef<Equipos>);
 			OnCreated();
 		}
 		
@@ -534,11 +678,62 @@ namespace AccesoDatos
 			{
 				if ((this._IdEquipo != value))
 				{
+					if (this._Equipos.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdEquipoChanging(value);
 					this.SendPropertyChanging();
 					this._IdEquipo = value;
 					this.SendPropertyChanged("IdEquipo");
 					this.OnIdEquipoChanged();
+				}
+			}
+		}
+		
+		[Association(Name="p1", Storage="_Cables", OtherKey="IdPuerto1", DeleteRule="CASCADE")]
+		public EntitySet<Cables> Cables
+		{
+			get
+			{
+				return this._Cables;
+			}
+			set
+			{
+				this._Cables.Assign(value);
+			}
+		}
+		
+		[Association(Name="PuertoEquipo", Storage="_Equipos", ThisKey="IdEquipo", IsForeignKey=true, DeleteOnNull=true)]
+		public Equipos Equipos
+		{
+			get
+			{
+				return this._Equipos.Entity;
+			}
+			set
+			{
+				Equipos previousValue = this._Equipos.Entity;
+				if (((previousValue != value) 
+							|| (this._Equipos.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Equipos.Entity = null;
+						previousValue.Puertos.Remove(this);
+					}
+					this._Equipos.Entity = value;
+					if ((value != null))
+					{
+						value.Puertos.Add(this);
+						this._IdEquipo = value.Id;
+					}
+					else
+					{
+						this._IdEquipo = default(System.Guid);
+					}
+					this.SendPropertyChanged("Equipos");
 				}
 			}
 		}
@@ -561,6 +756,18 @@ namespace AccesoDatos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Cables(Cables entity)
+		{
+			this.SendPropertyChanging();
+			entity.Puertos = this;
+		}
+		
+		private void detach_Cables(Cables entity)
+		{
+			this.SendPropertyChanging();
+			entity.Puertos = null;
 		}
 	}
 }

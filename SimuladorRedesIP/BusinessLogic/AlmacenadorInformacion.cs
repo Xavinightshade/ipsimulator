@@ -78,7 +78,7 @@ namespace AccesoDatos
 
         private static void CrearEquipos(Estacion estacionLogica,Estaciones estacionBD)
         {
-            foreach (Equipos equipoBD in estacionBD.Equipos)
+            foreach (Equipos equipoBD in estacionBD.EquiposBD)
             {
                 switch ((TipoDeEquipo)equipoBD.TipoDeEquipo)
                 {
@@ -86,13 +86,13 @@ namespace AccesoDatos
                         break;
                     case TipoDeEquipo.Computador:
                         ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
-                        pc.AgregarPuerto(equipoBD.Puertos[0].Id);
+                        pc.AgregarPuerto(equipoBD.PuertosBD[0].Id);
                         pc.InicializarEquipo();
                         estacionLogica.CrearComputador(pc);
                         break;
                     case TipoDeEquipo.Switch:
                         SwitchLogico swi = new SwitchLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
-                        foreach (Puertos puertoBD in equipoBD.Puertos)
+                        foreach (Puertos puertoBD in equipoBD.PuertosBD)
                         {
                             swi.AgregarPuerto(puertoBD.Id);
                         }

@@ -341,7 +341,8 @@
     <None Include="Resources\DB.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Red.sdf">
+    <Content Include="..\Red.sdf">
+      <Link>Red.sdf</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

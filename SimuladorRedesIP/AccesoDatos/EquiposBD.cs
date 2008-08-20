@@ -9,7 +9,7 @@ namespace AccesoDatos
     {
         private List<Puertos> _puertos = new List<Puertos>();
 
-        public List<Puertos> Puertos
+        public List<Puertos> PuertosBD
         {
             get { return _puertos; }
         }
