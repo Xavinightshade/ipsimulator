@@ -11,6 +11,7 @@ using SimuladorCliente.Vistas;
 using SimuladorCliente;
 using RedesIP.Common;
 using RedesIP.SOA;
+using DevAge.Drawing.VisualElements;
 
 namespace RedesIP.Vistas
 {
@@ -26,7 +27,7 @@ namespace RedesIP.Vistas
         }
 
 
-        public IWin32Window MainWindow { get { return this; } }
+        public IWin32Window Window { get { return this; } }
 
         HerramientaBase _herramienta;
         IModeloSOA _server;
