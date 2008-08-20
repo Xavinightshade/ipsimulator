@@ -39,6 +39,7 @@ namespace BusinessLogic.Sniffer
                 tablaSOA.Asociaciones.Add(aso);
             }
             MensajeSwitchTableSOA mensajeTablaSwitch = new MensajeSwitchTableSOA(_switch.Id, e.HoraDeRecepcion);
+            mensajeTablaSwitch.SwiTable = tablaSOA;
             foreach (IVisualizacion vist in _vistas)
             {
                 vist.EnviarCambioDeTablaDeSwitch(mensajeTablaSwitch);

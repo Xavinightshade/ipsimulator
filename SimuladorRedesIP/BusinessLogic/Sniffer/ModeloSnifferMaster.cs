@@ -5,6 +5,7 @@ using System.Text;
 using RedesIP.SOA;
 using RedesIP;
 using RedesIP.Modelos;
+using RedesIP.Modelos.Logicos.Equipos;
 
 namespace BusinessLogic.Sniffer
 {
@@ -12,7 +13,6 @@ namespace BusinessLogic.Sniffer
     {
         private List<IVisualizacion> _vistas;
         private EstacionModelo _estacion;
-        private List<ModeloCableSniffer> _snifferCables = new List<ModeloCableSniffer>();
         public ModeloSnifferMaster(List<IVisualizacion> vistas,EstacionModelo estacion) 
         {
             _vistas = vistas;
@@ -23,9 +23,17 @@ namespace BusinessLogic.Sniffer
         {
             CableDeRedLogico cable = _estacion.Cables[idConexion];
             ModeloCableSniffer snifferCable = new ModeloCableSniffer(cable, _vistas);
-            _snifferCables.Add(snifferCable);
 
         }
+
+
+
+        public void PeticionEnviarInformacionSwitch(Guid idSwitch)
+        {
+            SwitchLogico swi = _estacion.Switches[idSwitch];
+            ModeloSnifferSwitch snifferSwitch = new ModeloSnifferSwitch(swi, _vistas);
+        }
+
 
     }
 }

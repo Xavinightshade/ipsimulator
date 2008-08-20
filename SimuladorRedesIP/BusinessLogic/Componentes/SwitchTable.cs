@@ -32,9 +32,10 @@ namespace RedesIP.Modelos.Equipos.Componentes
         {
 
             System.Diagnostics.Debug.Assert(!(YaEstaRegistradoDireccionMAC(direccionMAC)), "Esta Direccion ya esta registrada");
-            {
+            
                 _tablaDeFiltro.Add(direccionMAC, puertoEthenet);
-            }
+                OnCambioDeTablaDeFiltro();
+            
         }
 		public bool YaEstaRegistradoDireccionMAC(string direccionMAC)
 		{

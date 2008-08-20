@@ -11,5 +11,7 @@ namespace RedesIP.SOA
 
         [OperationContract()]
         void PeticionEnviarInformacionConexion(Guid idConexion);
+        [OperationContract()]
+        void PeticionEnviarInformacionSwitch(Guid idSwitch);
     }
 }

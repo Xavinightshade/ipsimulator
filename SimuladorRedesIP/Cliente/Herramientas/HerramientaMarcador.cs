@@ -58,7 +58,9 @@ namespace RedesIP.Vistas
                         for (int j = 0; j < Estacion._marcadores.Count; j++)
                         {
                             MarcadorEquipo marcadorEquipo = Estacion._marcadores[j] as MarcadorEquipo;
-                            if (marcadorEquipo!=null && marcadorEquipo.Equipo==par.Value)
+                            if (marcadorEquipo == null)
+                                return;
+                            if (marcadorEquipo!=null && marcadorEquipo.Equipo == par.Value)
                             {
                                 yaEstaSeleccionado = true;
                                 break;
@@ -67,9 +69,12 @@ namespace RedesIP.Vistas
                         if (!yaEstaSeleccionado)
                         {
                             MarcadorEquipo marcador = new MarcadorEquipo(par.Value);
-                            Estacion._marcadores.Add(marcador);
+                            if (par.Value is SwitchView)
+                            {
+                                Estacion._marcadores.Add(marcador);
+                                Estacion._snifferMaster.IniciarSnifferSwitch(marcador, Estacion._dockMain);
+                            }
                             return;
-                          //  Estacion._snifferMaster.IniciarSnifferCable(marcador, Estacion._dockMain);
 
                         }
                     }
@@ -83,6 +88,7 @@ namespace RedesIP.Vistas
                         for (int j = 0; j < Estacion._marcadores.Count; j++)
                         {
                             MarcadorCable marcador=Estacion._marcadores[j] as MarcadorCable;
+                       
                             if (marcador!=null && marcador.Conexion == cable)
                             {
                                 yaEstaSeleccionado = true;

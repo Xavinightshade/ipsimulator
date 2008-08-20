@@ -197,8 +197,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sniffers\SnifferBeta.resx">
-      <DependentUpon>SnifferBeta.cs</DependentUpon>
+    <EmbeddedResource Include="Sniffers\FormaSnifferCable.resx">
+      <DependentUpon>FormaSnifferCable.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -215,11 +215,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Sniffers\SnifferBeta.cs">
+    <Compile Include="Sniffers\FormaSnifferSwitch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sniffers\SnifferBeta.Designer.cs">
-      <DependentUpon>SnifferBeta.cs</DependentUpon>
+    <Compile Include="Sniffers\FormaSnifferSwitch.Designer.cs">
+      <DependentUpon>FormaSnifferSwitch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sniffers\FormaSnifferCable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sniffers\FormaSnifferCable.Designer.cs">
+      <DependentUpon>FormaSnifferCable.cs</DependentUpon>
     </Compile>
     <Compile Include="Sniffers\VistaSnifferMaster.cs" />
     <Compile Include="Utilidades\CellBackColorAlternate.cs" />

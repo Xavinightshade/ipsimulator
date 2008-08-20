@@ -227,6 +227,16 @@ namespace RedesIP
         }
 
         #endregion
+
+        #region IModeloSniffer Members
+
+
+        public void PeticionEnviarInformacionSwitch(Guid idSwitch)
+        {
+            _snifferMaster.PeticionEnviarInformacionSwitch(idSwitch);
+        }
+
+        #endregion
     }
 
 

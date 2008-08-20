@@ -10,20 +10,21 @@ using WeifenLuo.WinFormsUI.Docking;
 using SourceGrid.Cells.Views;
 using RedesIP.Vistas;
 using RedesIP.SOA.Elementos;
+using RedesIP.Vistas.Equipos;
 
 namespace SimuladorCliente
 {
-    public partial class FormaSnifferCable : DockContent
+    public partial class FormaSnifferSwitch : DockContent
     {
-        CableView _cable;
-        public FormaSnifferCable(CableView cable,Color color)
+        SwitchView _switch;
+        public FormaSnifferSwitch(SwitchView swi, Color color)
         {
-            _cable = cable;
+            _switch = swi;
             InitializeComponent();
             ConfigurarGrilla();
             marcadorImagen1.Color = color;
-            this.TabText =_cable.Id.ToString().Substring(0, 5);
-            this.label1.Text = _cable.Id.ToString();
+            this.TabText = swi.Id.ToString().Substring(0, 5);
+            this.label1.Text = swi.Id.ToString();
         }
 
 
@@ -32,22 +33,18 @@ namespace SimuladorCliente
         private void ConfigurarGrilla()
         {
             grid.Rows.Clear();
-            grid.Redim(1, 7);
+            grid.Redim(1, 3);
 
             grid.Columns[0].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
             grid.Columns[1].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
             grid.Columns[2].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
-            grid.Columns[3].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
 
             grid.FixedRows = 1;
 
-            grid[0, 0] = new SourceGrid.Cells.ColumnHeader("Consecutivo");
-            grid[0, 1] = new SourceGrid.Cells.ColumnHeader("Hora Recepcion");
-            grid[0, 2] = new SourceGrid.Cells.ColumnHeader("MAC Origen");
-            grid[0, 3] = new SourceGrid.Cells.ColumnHeader("MAC Destino");
-            grid[0, 4] = new SourceGrid.Cells.ColumnHeader("IP Origen");
-            grid[0, 5] = new SourceGrid.Cells.ColumnHeader("IP Destino");
-            grid[0, 6] = new SourceGrid.Cells.ColumnHeader("Datos");
+            grid[0, 0] = new SourceGrid.Cells.ColumnHeader("CONSECUTIVO");
+            grid[0, 1] = new SourceGrid.Cells.ColumnHeader("HORA RECEPCION");
+            grid[0, 2] = new SourceGrid.Cells.ColumnHeader("DESCRIPCION");
+
 
             grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
             grid.Columns.AutoSize(true);
@@ -55,37 +52,37 @@ namespace SimuladorCliente
 
 
         private IView _vista = new CellBackColorAlternate(Color.LightSkyBlue, Color.WhiteSmoke);
-        private void LlenarGrilla(List<MensajeCableSOA> mensajes)
+        private void LlenarGrilla(List<MensajeSwitchTableSOA> mensajes)
         {
             int c = 0;
             ConfigurarGrilla();
-            foreach (MensajeCableSOA mensaje in mensajes)
+            foreach (MensajeSwitchTableSOA mensaje in mensajes)
             {
                 grid.Rows.Insert(1);
                 grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
                 grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToString());
-                grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressOrigen);
-                grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressDestino);
-                grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.IpOrigen);
-                grid[1, 5] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.IpDestino);
-                grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.Datos);
+                string mostrar = String.Empty;
+                for (int i = 0; i < mensaje.SwiTable.Asociaciones.Count; i++)
+                {
+                    mostrar+=  "Dir: " + mensaje.SwiTable.Asociaciones[i].MacAddress + " Puerto: " + mensaje.SwiTable.Asociaciones[i].Puerto.Nombre+"@@ ";
+
+                }
+                  grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
+
 
                 grid[1, 0].View = _vista;
                 grid[1, 1].View = _vista;
                 grid[1, 2].View = _vista;
-                grid[1, 3].View = _vista;
-                grid[1, 4].View = _vista;
-                grid[1, 5].View = _vista;
-                grid[1, 6].View = _vista;
+
 
             }
             grid.Columns.AutoSizeView();
 
         }
 
-        private delegate void SetLabelTextDelegate(MensajeCableSOA mensaje);
-        List<MensajeCableSOA> _mensajes = new List<MensajeCableSOA>();
-        public void ReportarMensaje(MensajeCableSOA mensaje)
+        private delegate void SetLabelTextDelegate(MensajeSwitchTableSOA mensaje);
+        List<MensajeSwitchTableSOA> _mensajes = new List<MensajeSwitchTableSOA>();
+        public void ReportarMensaje(MensajeSwitchTableSOA mensaje)
         {
 
             if (this.InvokeRequired)
