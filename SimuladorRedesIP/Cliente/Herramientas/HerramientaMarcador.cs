@@ -6,12 +6,14 @@ using SimuladorCliente.Vistas;
 using SimuladorCliente;
 using RedesIP.SOA.Elementos;
 using SimuladorCliente.Sniffers;
+using SimuladorCliente.Marcadores;
+using RedesIP.Vistas.Equipos;
 
 namespace RedesIP.Vistas
 {
     public partial class EstacionView
     {
-        List<MarcadorCable> _marcadores = new List<MarcadorCable>();
+        List<MarcadorBase> _marcadores = new List<MarcadorBase>();
         private VistaSnifferMaster _snifferMaster;
 
         public void EnviarInformacionConexion(MensajeCableSOA mensajeSOA)
@@ -25,7 +27,6 @@ namespace RedesIP.Vistas
 
         private class HerramientaMarcador : HerramientaBase
         {
-            Dictionary<Guid, MarcadorCable> _diccioMarcadores = new Dictionary<Guid, MarcadorCable>();
 
             public HerramientaMarcador(EstacionView estacion)
                 : base(estacion)
@@ -49,6 +50,30 @@ namespace RedesIP.Vistas
             }
             public override void OnMouseUp(System.Windows.Forms.MouseEventArgs e)
             {
+                foreach (KeyValuePair<Guid,EquipoView> par in Estacion._equipos)
+                {
+                    if (par.Value.HitTest(e.X,e.Y))
+                    {
+                        bool yaEstaSeleccionado = false;
+                        for (int j = 0; j < Estacion._marcadores.Count; j++)
+                        {
+                            MarcadorEquipo marcadorEquipo = Estacion._marcadores[j] as MarcadorEquipo;
+                            if (marcadorEquipo!=null && marcadorEquipo.Equipo==par.Value)
+                            {
+                                yaEstaSeleccionado = true;
+                                break;
+                            }
+                        }
+                        if (!yaEstaSeleccionado)
+                        {
+                            MarcadorEquipo marcador = new MarcadorEquipo(par.Value);
+                            Estacion._marcadores.Add(marcador);
+                            return;
+                          //  Estacion._snifferMaster.IniciarSnifferCable(marcador, Estacion._dockMain);
+
+                        }
+                    }
+                }
                 for (int i = 0; i < Estacion._conexiones.Count; i++)
                 {
                     CableView cable = Estacion._conexiones[i];
@@ -57,7 +82,8 @@ namespace RedesIP.Vistas
                         bool yaEstaSeleccionado = false;
                         for (int j = 0; j < Estacion._marcadores.Count; j++)
                         {
-                            if (Estacion._marcadores[j].Conexion == cable)
+                            MarcadorCable marcador=Estacion._marcadores[j] as MarcadorCable;
+                            if (marcador!=null && marcador.Conexion == cable)
                             {
                                 yaEstaSeleccionado = true;
                                 break;
@@ -67,7 +93,6 @@ namespace RedesIP.Vistas
                         {
                             MarcadorCable marcador = new MarcadorCable(cable);
                             Estacion._marcadores.Add(marcador);
-                            _diccioMarcadores.Add(marcador.Id, marcador);
                             Estacion._snifferMaster.IniciarSnifferCable(marcador,Estacion._dockMain);
                             
                         }

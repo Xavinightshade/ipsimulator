@@ -7,15 +7,9 @@ using System.Runtime.Serialization;
 namespace RedesIP.SOA.Elementos
 {
     [DataContract]
-    public class MensajeCableSOA
+    public class MensajeCableSOA:MensajeBaseSOA
     {
-        private Guid _idConexion;
-        [DataMember]
-        public Guid IdConexion
-        {
-            get { return _idConexion; }
-            set { _idConexion = value; }
-        }
+
         private FrameSOA _frame;
         [DataMember]
         public FrameSOA Frame
@@ -24,19 +18,13 @@ namespace RedesIP.SOA.Elementos
             set { _frame = value; }
         }
 
-        DateTime _horaRecepcion;
-        [DataMember]
-        public DateTime HoraRecepcion
-        {
-            get { return _horaRecepcion; }
-            set { _horaRecepcion = value; }
-        }
+
 
         public MensajeCableSOA (Guid idConexion, FrameSOA frame,DateTime horaRecepcion)
+            :base(idConexion,horaRecepcion)
 	{
-        _idConexion = idConexion;
+
         _frame = frame;
-        _horaRecepcion = horaRecepcion;
             
 	}
 

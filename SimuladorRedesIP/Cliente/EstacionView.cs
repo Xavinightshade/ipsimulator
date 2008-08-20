@@ -144,7 +144,6 @@ namespace RedesIP.Vistas
             _snifferMaster = new SimuladorCliente.Sniffers.VistaSnifferMaster(presenterLocal);
         }
 
-        #region ICallBackEstacion Members
 
 
         public void EstablecerDatosPuertoBase(PuertoBaseSOA puerto)
@@ -159,6 +158,14 @@ namespace RedesIP.Vistas
             puertoLogico.Nombre = puerto.Nombre;
         }
 
-        #endregion
+
+
+
+        public void EnviarCambioDeTablaDeSwitch(RedesIP.SOA.Elementos.MensajeSwitchTableSOA mensajeTablaSwitch)
+        {
+            _snifferMaster.EnviarCambioDeTablaDeSwitch(mensajeTablaSwitch);
+        }
+
+
     }
 }

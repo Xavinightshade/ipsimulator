@@ -19,7 +19,7 @@ namespace BusinessLogic.Sniffer
             _vistas = vistas;
             EscucharPuerto();
         }
-        public void EscucharPuerto()
+        private void EscucharPuerto()
         {
             _cable.FrameRecibidoPuerto1 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
             _cable.FrameRecibidoPuerto2 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);          

@@ -58,12 +58,14 @@
     <Compile Include="Equipos\TipoDeEquipo.cs" />
     <Compile Include="EstacionSOA.cs" />
     <Compile Include="Datos\FrameSOA.cs" />
-    <Compile Include="Mensajes\MensajeSOA.cs" />
+    <Compile Include="Mensajes\MensajeBaseSOA.cs" />
+    <Compile Include="Mensajes\MensajeCableSOA.cs" />
     <Compile Include="Datos\PacketSOA.cs" />
     <Compile Include="Equipos\ComputadorSOA.cs" />
     <Compile Include="Equipos\EquipoSOA.cs" />
     <Compile Include="Equipos\RouterSOA.cs" />
     <Compile Include="Equipos\SwitchSOA.cs" />
+    <Compile Include="Mensajes\MensajeSwitchTableSOA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -47,3 +47,19 @@ namespace RedesIP.Modelos.Datos
         }
     }
 }
+public class TiempoEventArgs : EventArgs
+{
+
+
+    private DateTime _horaDeRecepcion;
+    public DateTime HoraDeRecepcion
+    {
+        get { return _horaDeRecepcion; }
+    }
+
+    public TiempoEventArgs(DateTime horaDeRecepcion)
+    {
+        _horaDeRecepcion = horaDeRecepcion;
+
+    }
+}

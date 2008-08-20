@@ -24,16 +24,23 @@ namespace RedesIP.Modelos.Logicos.Equipos
         }
 
 		private List<PuertoEthernetLogicoBase> _puertosEthernet=new List<PuertoEthernetLogicoBase>();
-		private SwitchTable _switchTable = new SwitchTable();
+        private SwitchTable _switchTable = new SwitchTable();
+
+        public SwitchTable SwitchTable
+        {
+            get { return _switchTable; }
+        }
 		public override ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}
-		public SwitchLogico(Guid id,int X,int Y):base(id,TipoDeEquipo.Switch,X,Y)
-		{
+        public SwitchLogico(Guid id, int X, int Y)
+            : base(id, TipoDeEquipo.Switch, X, Y)
+        {
 
 
-		}
+        }
+
 
 
 

@@ -22,11 +22,11 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		{
 
 		}
-        public event EventHandler<EventArgs> CambioDeTablaDeFiltro;
+        public event EventHandler<TiempoEventArgs> CambioDeTablaDeFiltro;
         private void OnCambioDeTablaDeFiltro()
         {
             if (CambioDeTablaDeFiltro != null)
-                CambioDeTablaDeFiltro(this, new EventArgs());
+                CambioDeTablaDeFiltro(this, new TiempoEventArgs(DateTime.Now));
         }
 		public void RegistrarDireccionMAC(string direccionMAC, PuertoEthernetLogicoBase puertoEthenet)
         {

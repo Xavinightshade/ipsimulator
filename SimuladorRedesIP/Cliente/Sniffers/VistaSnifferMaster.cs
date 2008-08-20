@@ -8,6 +8,7 @@ using RedesIP.Vistas;
 using System.Drawing;
 using SimuladorCliente.Vistas;
 using WeifenLuo.WinFormsUI.Docking;
+using SimuladorCliente.Marcadores;
 
 namespace SimuladorCliente.Sniffers
 {
@@ -40,5 +41,10 @@ namespace SimuladorCliente.Sniffers
        }
 
        #endregion
+
+       internal void EnviarCambioDeTablaDeSwitch(MensajeSwitchTableSOA mensajeTablaSwitch)
+       {
+           throw new NotImplementedException();
+       }
     }
 }

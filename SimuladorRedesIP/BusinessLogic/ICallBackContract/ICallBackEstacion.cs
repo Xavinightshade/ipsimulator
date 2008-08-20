@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceModel;
+using RedesIP.SOA.Elementos;
 
 namespace RedesIP.SOA
 {
@@ -23,6 +24,9 @@ namespace RedesIP.SOA
         void EstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto);
         [OperationContract(IsOneWay = true)]
 		void ActualizarEstacion(EstacionSOA estacion);
+        [OperationContract(IsOneWay = true)]
+        void EnviarCambioDeTablaDeSwitch(MensajeSwitchTableSOA mensajeTablaSwitch);
+
 
     }
 }

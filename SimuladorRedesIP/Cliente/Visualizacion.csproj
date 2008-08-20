@@ -148,6 +148,7 @@
       <DependentUpon>MainFrame.cs</DependentUpon>
     </Compile>
     <Compile Include="AplicationEntry.cs" />
+    <Compile Include="Marcadores\MarcadorCable.cs" />
     <Compile Include="Marcadores\MarcadorCablePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -169,6 +170,7 @@
     <Compile Include="Formularios\MACTextBox.designer.cs">
       <DependentUpon>MACTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Marcadores\MarcadorEquipo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormaEstacion.resx">
       <DependentUpon>FormaEstacion.cs</DependentUpon>
@@ -234,7 +236,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utilidades\IRegistroMovimientosMouse.cs" />
-    <Compile Include="Marcadores\Marcador.cs">
+    <Compile Include="Marcadores\MarcadorBase.cs">
     </Compile>
     <Compile Include="Utilidades\Punto.cs" />
     <Compile Include="Utilidades\Rectangulo.cs" />

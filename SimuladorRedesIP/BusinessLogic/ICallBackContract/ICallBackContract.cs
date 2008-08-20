@@ -8,7 +8,5 @@ namespace RedesIP.SOA
 {
 	public interface IVisualizacion:ICallBackEstacion,ICallBackSniffer
 	{
-
-		
-	}
+    }
 }
