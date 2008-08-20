@@ -18,6 +18,13 @@ namespace  RedesIP.SOA
             get { return _direccionMAC; }
             set { _direccionMAC = value; }
         }
+        private string _IPAddress;
+        [DataMember]
+        public string IPAddress
+        {
+            get { return _IPAddress; }
+            set { _IPAddress = value; }
+        }
 
         public PuertoCompletoSOA(Guid id, string direccionMAC)
             : base(id)

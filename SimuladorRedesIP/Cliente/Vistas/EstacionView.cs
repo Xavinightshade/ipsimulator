@@ -19,7 +19,11 @@ namespace RedesIP.Vistas
 	 UseSynchronizationContext = false)]
 	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion
 	{
-
+        public void EstablecerDireccionIP(Guid idPuerto, string ipAddress)
+        {
+            PuertoEthernetViewCompleto puerto = _diccioPuertos[idPuerto] as PuertoEthernetViewCompleto;
+            puerto.IPAddress = ipAddress;
+        }
 
 
 

@@ -169,6 +169,12 @@ namespace RedesIP
             _routers.Add(router.Id, router);
             LLenarPuertos(_puertos, router.PuertosEthernet);
         }
+
+        public void EstablecerDireccionIP(string ipAddress, Guid idPuerto)
+        {
+            PuertoEthernetCompleto puerto = _puertos[idPuerto] as PuertoEthernetCompleto;
+            puerto.IPAddress = ipAddress;
+        }
     }
 
 

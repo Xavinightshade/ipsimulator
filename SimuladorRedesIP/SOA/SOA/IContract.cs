@@ -30,6 +30,8 @@ namespace RedesIP.SOA
 		void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2);
 		[OperationContract()]
 		void PeticionActualizarEstacion();
+        [OperationContract()]
+        void PeticionEstablecerDireccionIP(string ipAddress, Guid idPuerto);
 		[OperationContract()]
 		void PeticionEnviarInformacionConexion(Guid idConexion);
 		[OperationContract()]

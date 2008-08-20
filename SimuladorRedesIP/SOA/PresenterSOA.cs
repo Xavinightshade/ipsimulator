@@ -256,6 +256,20 @@ namespace RedesIP
         }
 
         #endregion
+
+        #region IModeloSOA Members
+
+
+        public void PeticionEstablecerDireccionIP(string ipAddress, Guid idPuerto)
+        {
+            _estacion.EstablecerDireccionIP(ipAddress,idPuerto);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.EstablecerDireccionIP(idPuerto, ipAddress);
+            }
+        }
+
+        #endregion
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]

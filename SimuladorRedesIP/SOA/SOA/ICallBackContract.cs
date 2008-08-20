@@ -18,7 +18,9 @@ namespace RedesIP.SOA
 		void MoverEquipo(Guid idEquipo, int x, int y);
 		[OperationContract(IsOneWay = true)]
 		void ConectarPuertos(CableSOA cable);
-		[OperationContract(IsOneWay = true)]
+        [OperationContract(IsOneWay = true)]
+        void EstablecerDireccionIP(Guid idPuerto, string ipAddress);
+        [OperationContract(IsOneWay = true)]
 		void ActualizarEstacion(EstacionSOA estacion);
 		[OperationContract(IsOneWay = true)]
 		void EnviarInformacionConexion(MensajeSOA mensaje);
