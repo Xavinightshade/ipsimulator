@@ -110,7 +110,7 @@ namespace RedesIP.Vistas.Equipos
         public override void DibujarElemento(Graphics grafico)
         {
             grafico.DrawImage(Imagen, this.Dimension.OrigenX, this.Dimension.OrigenY, this.Dimension.Ancho, this.Dimension.Alto);
-            grafico.DrawString(GetInfoMapa(), new Font("Arial", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX, DimensionMundo.OrigenY + DimensionMundo.Alto));
+            grafico.DrawString(Environment.NewLine+ GetInfoMapa(), new Font("Arial", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX, DimensionMundo.OrigenY + DimensionMundo.Alto));
             Imagen.Dispose();
         }
         protected virtual string GetInfoMapa()
