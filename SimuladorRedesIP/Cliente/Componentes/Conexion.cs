@@ -8,7 +8,7 @@ using System.Drawing.Drawing2D;
 
 namespace RedesIP.Vistas
 {
-	public class Conexion:ElementoGrafico
+	public class CableView:ElementoGrafico
 	{
 		private PuertoEthernetViewBase _puerto1;
 
@@ -46,7 +46,7 @@ namespace RedesIP.Vistas
 			}
 			}
 		}
-		public Conexion(Guid id,PuertoEthernetViewBase puerto1,PuertoEthernetViewBase puerto2)
+		public CableView(Guid id,PuertoEthernetViewBase puerto1,PuertoEthernetViewBase puerto2)
 			:base(id)
 		{
 			_puerto1 = puerto1;

@@ -19,11 +19,11 @@ namespace RedesIP.Vistas
 
 
 
-        List<Conexion> _conexiones = new List<Conexion>();
+        List<CableView> _conexiones = new List<CableView>();
 
         public void ConectarPuertos(CableSOA cable)
         {
-            _conexiones.Add(new Conexion(cable.Id, _diccioPuertos[cable.IdPuerto1], _diccioPuertos[cable.IdPuerto2]));
+            _conexiones.Add(new CableView(cable.Id, _diccioPuertos[cable.IdPuerto1], _diccioPuertos[cable.IdPuerto2]));
             Invalidate();
         }
         private PuertoEthernetViewBase _puerto1;

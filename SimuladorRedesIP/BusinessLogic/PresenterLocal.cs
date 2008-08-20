@@ -12,11 +12,11 @@ using RedesIP.Common;
 
 namespace SimuladorCliente
 {
-    public class Presenter:PresenterBase
+    public class PresenterLocal:PresenterBase
     {
         private IVisualizacion _vista;
 
-        public Presenter(IVisualizacion vista)
+        public PresenterLocal(IVisualizacion vista)
         {
             _vista = vista;
 

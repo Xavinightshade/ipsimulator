@@ -1,6 +1,6 @@
 ﻿namespace SimuladorCliente
 {
-    partial class SnifferBeta
+    partial class FormaSnifferCable
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.grid = new SourceGrid.Grid();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.marcadorImagen1 = new SimuladorCliente.Vistas.MarcadorImagen();
+            this.marcadorImagen1 = new SimuladorCliente.Vistas.MarcadorCablePictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -150,7 +150,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
-        private SimuladorCliente.Vistas.MarcadorImagen marcadorImagen1;
+        private SimuladorCliente.Vistas.MarcadorCablePictureBox marcadorImagen1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
     }

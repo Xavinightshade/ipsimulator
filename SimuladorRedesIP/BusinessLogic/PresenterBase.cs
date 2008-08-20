@@ -18,9 +18,9 @@ namespace RedesIP
     public abstract class PresenterBase : IModeloSOA
     {     
 
-        private Estacion _estacion;
+        private EstacionModelo _estacion;
 
-        private SnifferMaster _snifferMaster;
+        private ModeloSnifferMaster _snifferMaster;
 
         private void RegistrarCliente()
         {
@@ -34,11 +34,11 @@ namespace RedesIP
         {
 
         }
-        public void SetEstacion(Estacion estacion)
+        public void SetEstacion(EstacionModelo estacion)
         {
             _vistas.Clear();
             _estacion = estacion;
-            _snifferMaster = new SnifferMaster(_vistas, estacion);
+            _snifferMaster = new ModeloSnifferMaster(_vistas, estacion);
         }
 
         private static List<IVisualizacion> _vistas = new List<IVisualizacion>();
@@ -78,7 +78,7 @@ namespace RedesIP
             throw new NotImplementedException();
         }
 
-        public void Conectar()
+        public void ConectarCliente()
         {
             RegistrarCliente();
             IVisualizacion cliente = GetCurrentClient();
@@ -110,7 +110,7 @@ namespace RedesIP
 
 
 
-        public void Desconectar()
+        public void DesconectarCliente()
         {
             IVisualizacion cliente = GetCurrentClient();
             _vistas.Remove(cliente);
@@ -125,12 +125,12 @@ namespace RedesIP
 
         public float GetVelocidadSimulacion()
         {
-            return Estacion.PorcentajeDeVelocidadSimulacion;
+            return EstacionModelo.PorcentajeDeVelocidadSimulacion;
         }
 
         public void SetVelocidadSimulacion(float valor)
         {
-            Estacion.PorcentajeDeVelocidadSimulacion = valor;
+            EstacionModelo.PorcentajeDeVelocidadSimulacion = valor;
         }
 
 

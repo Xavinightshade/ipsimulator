@@ -12,7 +12,7 @@ namespace AccesoDatos
 {
     public static class AlmacenadorInformacion
     {
-        public static void AlmacenarEstacion(Estacion estacion)
+        public static void AlmacenarEstacion(EstacionModelo estacion)
         {
             Estaciones estacionBD = new Estaciones();
             estacionBD.Id = estacion.Id;
@@ -63,10 +63,10 @@ namespace AccesoDatos
         {
             AccesoDatosBD.Delete(id);
         }
-        public static Estacion CargarEstacion(Guid id)
+        public static EstacionModelo CargarEstacion(Guid id)
         {
             Estaciones estacionBD = AccesoDatosBD.GetEstacionById(id);
-            Estacion estacionLogica = new Estacion(estacionBD.Id);
+            EstacionModelo estacionLogica = new EstacionModelo(estacionBD.Id);
 
             CrearEquipos(estacionLogica,estacionBD);
             foreach (Cables cableBD in estacionBD.Cables)
@@ -76,7 +76,7 @@ namespace AccesoDatos
             return estacionLogica;
         }
 
-        private static void CrearEquipos(Estacion estacionLogica,Estaciones estacionBD)
+        private static void CrearEquipos(EstacionModelo estacionLogica,Estaciones estacionBD)
         {
             foreach (Equipos equipoBD in estacionBD.EquiposBD)
             {

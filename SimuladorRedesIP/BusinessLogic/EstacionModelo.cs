@@ -11,7 +11,7 @@ using BusinessLogic.Modelos.Logicos.Datos;
 
 namespace RedesIP
 {
-    public class Estacion
+    public class EstacionModelo
     {
         private Guid _id;
 
@@ -19,7 +19,7 @@ namespace RedesIP
         {
             get { return _id; }
         }
-        public Estacion(Guid id)
+        public EstacionModelo(Guid id)
         {
             _id = id;
         }
@@ -27,8 +27,8 @@ namespace RedesIP
 
         public static float PorcentajeDeVelocidadSimulacion
         {
-            get { return Estacion._porcentajeDeVelocidad; }
-            set { Estacion._porcentajeDeVelocidad = value; }
+            get { return EstacionModelo._porcentajeDeVelocidad; }
+            set { EstacionModelo._porcentajeDeVelocidad = value; }
         }
 
         /// <summary>

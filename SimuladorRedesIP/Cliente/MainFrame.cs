@@ -19,36 +19,34 @@ namespace SimuladorCliente
     public partial class MainFrame : Form
 	{
         EstacionView _estacionView;
+        EstacionModelo _estacionModelo;
 		public MainFrame()
 		{
 			InitializeComponent();
-            FormaEstacion f = new FormaEstacion();
-            PaletaHerramienta pal = new PaletaHerramienta();
-            f.Show(DockMain, DockState.Document);
-            pal.Show(DockMain, DockState.DockLeftAutoHide);
 
-            pal.DockPanel.DockLeftPortion = 140;
-            pal.DockHandler.AllowEndUserDocking = false;
-            pal.AutoHidePortion = 140;
+            FormaEstacion formaEstacion = new FormaEstacion();
+            formaEstacion.Show(_dockMain, DockState.Document);
 
-            _estacionView = f.EstacionView;
-            _controladorMarcador = new ControladorMarcador(DockMain);
-            _es = new Estacion(Guid.NewGuid());
-            Presenter p = new Presenter(_estacionView);
-            p.SetEstacion(_es);
-            _estacionView.EstablecerServer(p);
-            p.Conectar();
-            _controladorMarcador.EstablecerEstacion(_estacionView);
-            //  button1.Visible = false;
-            toolStripButton1.Enabled = true;
-            toolStripButton2.Enabled = true;
-            toolStripButton3.Enabled = true;
-            toolStripButton4.Enabled = true;
+            PaletaHerramienta formaPaletaHerramientas = new PaletaHerramienta();
+            formaPaletaHerramientas.Show(_dockMain, DockState.DockLeftAutoHide);
+            formaPaletaHerramientas.DockPanel.DockLeftPortion = 140;
+            formaPaletaHerramientas.DockHandler.AllowEndUserDocking = false;
+            formaPaletaHerramientas.AutoHidePortion = 140;
+
+            _estacionView = formaEstacion.EstacionView;
+            _estacionModelo = new EstacionModelo(Guid.NewGuid());
+
+            PresenterLocal presenterLocal = new PresenterLocal(_estacionView);
+            presenterLocal.SetEstacion(_estacionModelo);
+            _estacionView.Inicializar(presenterLocal,_dockMain);
+
+            presenterLocal.ConectarCliente();
+
+
            
 
 
 		}
-        ControladorMarcador _controladorMarcador; 
 
 
 
@@ -107,8 +105,7 @@ namespace SimuladorCliente
 
 
 
-            _estacionView.EstablecerServer(clien);
-            clien.Conectar();
+            clien.ConectarCliente();
 
       //      button1.Visible = false;
             toolStripButton1.Enabled = true;
@@ -123,7 +120,7 @@ namespace SimuladorCliente
 		{
 			if (_clien != null)
 			{
-				_clien.Desconectar();
+				_clien.DesconectarCliente();
 				//_clien.Close();
 			}
 		}
@@ -162,18 +159,17 @@ namespace SimuladorCliente
 
         private void guardarEnBDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccesoDatos.AlmacenadorInformacion.AlmacenarEstacion(_es);
+            AccesoDatos.AlmacenadorInformacion.AlmacenarEstacion(_estacionModelo);
         }
-        Estacion _es;
+        
         private void CargarDesdeBD(object sender, EventArgs e)
         {
             _estacionView.Limpiar();
-            _es = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("47400cea-24e5-45f1-9bcd-5fb7c3c068e6"));
-            Presenter presenter = new Presenter(_estacionView);
-            presenter.SetEstacion(_es);
-            _estacionView.EstablecerServer(presenter);
-            presenter.Conectar();
-            _controladorMarcador.EstablecerEstacion(_estacionView);
+            _estacionModelo = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("47400cea-24e5-45f1-9bcd-5fb7c3c068e6"));
+            PresenterLocal presenter = new PresenterLocal(_estacionView);
+            presenter.SetEstacion(_estacionModelo);
+            _estacionView.Inicializar(presenter, _dockMain);
+            presenter.ConectarCliente();
         //    button1.Visible = false;
             toolStripButton1.Enabled = true;
             toolStripButton2.Enabled = true;

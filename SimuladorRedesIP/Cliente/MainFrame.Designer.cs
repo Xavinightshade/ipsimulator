@@ -30,7 +30,7 @@ namespace SimuladorCliente
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.DockMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this._dockMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,16 +89,16 @@ namespace SimuladorCliente
             // 
             // DockMain
             // 
-            this.DockMain.ActiveAutoHideContent = null;
-            this.DockMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this._dockMain.ActiveAutoHideContent = null;
+            this._dockMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.DockMain.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingSdi;
-            this.DockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.DockMain.Location = new System.Drawing.Point(0, 52);
-            this.DockMain.Name = "DockMain";
-            this.DockMain.Size = new System.Drawing.Size(895, 605);
-            this.DockMain.TabIndex = 10;
+            this._dockMain.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingSdi;
+            this._dockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this._dockMain.Location = new System.Drawing.Point(0, 52);
+            this._dockMain.Name = "DockMain";
+            this._dockMain.Size = new System.Drawing.Size(895, 605);
+            this._dockMain.TabIndex = 10;
             // 
             // statusStrip1
             // 
@@ -296,7 +296,7 @@ namespace SimuladorCliente
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(895, 682);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.DockMain);
+            this.Controls.Add(this._dockMain);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -327,7 +327,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripMenuItem guardarEnBDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cargarDesdeBDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliToolStripMenuItem;
-        private WeifenLuo.WinFormsUI.Docking.DockPanel DockMain;
+        private WeifenLuo.WinFormsUI.Docking.DockPanel _dockMain;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;

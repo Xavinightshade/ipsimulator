@@ -9,11 +9,11 @@ using RedesIP.SOA.Elementos;
 
 namespace BusinessLogic.Sniffer
 {
-    public class CableSniffer
+    public class ModeloCableSniffer
     {
         private CableDeRedLogico _cable;
         private List<IVisualizacion> _vistas;
-        public CableSniffer(CableDeRedLogico cable, List<IVisualizacion> vistas)
+        public ModeloCableSniffer(CableDeRedLogico cable, List<IVisualizacion> vistas)
         {
             _cable=cable;
             _vistas = vistas;

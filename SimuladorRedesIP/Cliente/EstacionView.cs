@@ -12,6 +12,7 @@ using SimuladorCliente;
 using RedesIP.Common;
 using RedesIP.SOA;
 using DevAge.Drawing.VisualElements;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace RedesIP.Vistas
 {
@@ -38,10 +39,7 @@ namespace RedesIP.Vistas
 		List<ComputadorView> _computadores = new List<ComputadorView>();
 		List<SwitchView> _switches = new List<SwitchView>();
         List<RouterView> _routers = new List<RouterView>();
-		public void EstablecerServer(IModeloSOA server)
-		{
-			_server = server;
-		}
+
         public EstacionView()
         {
             _herramienta = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this);
@@ -140,5 +138,14 @@ namespace RedesIP.Vistas
 		}
 
 
+        private DockPanel _dockMain;
+
+
+        internal void Inicializar(PresenterLocal presenterLocal, DockPanel dockMain)
+        {
+            _server = presenterLocal;
+            _dockMain = dockMain;
+            _snifferMaster = new SimuladorCliente.Sniffers.VistaSnifferMaster(presenterLocal);
+        }
     }
 }

@@ -9,25 +9,23 @@ using SimuladorCliente.Vistas;
 using WeifenLuo.WinFormsUI.Docking;
 using SourceGrid.Cells.Views;
 using RedesIP.Vistas;
+using RedesIP.SOA.Elementos;
 
 namespace SimuladorCliente
 {
-    public partial class SnifferBeta : DockContent
+    public partial class FormaSnifferCable : DockContent
     {
-        public SnifferBeta(Marcador marcador)
+        CableView _cable;
+        public FormaSnifferCable(CableView cable,Color color)
         {
+            _cable = cable;
             InitializeComponent();
             ConfigurarGrilla();
-            marcadorImagen1.Color = marcador.Color;
-            this.TabText = marcador.Id.ToString().Substring(0, 5);
-            this.label1.Text = marcador.Id.ToString();
-            marcador.NuevoMensaje += new EventHandler<NuevoMensajeEventArgs>(OnMensaje);
+            marcadorImagen1.Color = color;
+            this.TabText =_cable.Id.ToString().Substring(0, 5);
+            this.label1.Text = _cable.Id.ToString();
         }
 
-        void OnMensaje(object sender, NuevoMensajeEventArgs e)
-        {
-            ReportarMensaje(e.Mensaje.IdConexion, e.Mensaje);
-        }
 
 
 
@@ -57,11 +55,11 @@ namespace SimuladorCliente
 
 
         private IView _vista = new CellBackColorAlternate(Color.LightSkyBlue, Color.WhiteSmoke);
-        private void LlenarGrilla(List<Mensaje> mensajes)
+        private void LlenarGrilla(List<MensajeCableSOA> mensajes)
         {
             int c = 0;
             ConfigurarGrilla();
-            foreach (Mensaje mensaje in mensajes)
+            foreach (MensajeCableSOA mensaje in mensajes)
             {
                 grid.Rows.Insert(1);
                 grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
@@ -85,15 +83,15 @@ namespace SimuladorCliente
 
         }
 
-        private delegate void SetLabelTextDelegate(Guid idConexion, Mensaje mensaje);
-        List<Mensaje> _mensajes = new List<Mensaje>();
-        internal void ReportarMensaje(Guid idConexion, Mensaje mensaje)
+        private delegate void SetLabelTextDelegate(MensajeCableSOA mensaje);
+        List<MensajeCableSOA> _mensajes = new List<MensajeCableSOA>();
+        public void ReportarMensaje(MensajeCableSOA mensaje)
         {
 
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new SetLabelTextDelegate(ReportarMensaje),
-                                                            new object[] { idConexion, mensaje });
+                                                            new object[] { mensaje });
 
                 return;
             }

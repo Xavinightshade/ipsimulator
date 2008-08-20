@@ -16,9 +16,9 @@ namespace RedesIP.SOA
 	{
 
 		[OperationContract()]
-		void Conectar();
+		void ConectarCliente();
 		[OperationContract()]
-		void Desconectar();
+		void DesconectarCliente();
 		[OperationContract()]
         float GetVelocidadSimulacion();
         [OperationContract()]

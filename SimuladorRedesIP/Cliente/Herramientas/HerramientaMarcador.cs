@@ -5,25 +5,18 @@ using System.Text;
 using SimuladorCliente.Vistas;
 using SimuladorCliente;
 using RedesIP.SOA.Elementos;
+using SimuladorCliente.Sniffers;
 
 namespace RedesIP.Vistas
 {
     public partial class EstacionView
     {
-        List<Marcador> _marcadores = new List<Marcador>();
-        public event EventHandler<NuevoMarcadorEventArgs> NuevoMarcador;
+        List<MarcadorCable> _marcadores = new List<MarcadorCable>();
+        private VistaSnifferMaster _snifferMaster;
 
         public void EnviarInformacionConexion(MensajeCableSOA mensajeSOA)
         {
-            foreach (Marcador marker in _marcadores)
-            {
-                if (marker.Conexion.Id == mensajeSOA.IdConexion)
-                {
-                    marker.EnviarNuevoMensaje(mensajeSOA);
-                    return;
-                }
-            }
-            throw new Exception();
+            _snifferMaster.EnviarInformacionConexion(mensajeSOA);
         }
 
 
@@ -32,7 +25,7 @@ namespace RedesIP.Vistas
 
         private class HerramientaMarcador : HerramientaBase
         {
-            Dictionary<Guid, Marcador> _diccioMarcadores = new Dictionary<Guid, Marcador>();
+            Dictionary<Guid, MarcadorCable> _diccioMarcadores = new Dictionary<Guid, MarcadorCable>();
 
             public HerramientaMarcador(EstacionView estacion)
                 : base(estacion)
@@ -58,12 +51,13 @@ namespace RedesIP.Vistas
             {
                 for (int i = 0; i < Estacion._conexiones.Count; i++)
                 {
-                    if (Estacion._conexiones[i].HitTest(e.X, e.Y))
+                    CableView cable = Estacion._conexiones[i];
+                    if (cable.HitTest(e.X, e.Y))
                     {
                         bool yaEstaSeleccionado = false;
                         for (int j = 0; j < Estacion._marcadores.Count; j++)
                         {
-                            if (Estacion._marcadores[j].Conexion == Estacion._conexiones[i])
+                            if (Estacion._marcadores[j].Conexion == cable)
                             {
                                 yaEstaSeleccionado = true;
                                 break;
@@ -71,14 +65,11 @@ namespace RedesIP.Vistas
                         }
                         if (!yaEstaSeleccionado)
                         {
-                            Marcador marcador = new Marcador(Guid.NewGuid(), Estacion._conexiones[i]);
+                            MarcadorCable marcador = new MarcadorCable(cable);
                             Estacion._marcadores.Add(marcador);
                             _diccioMarcadores.Add(marcador.Id, marcador);
-                            if (Estacion.NuevoMarcador != null)
-                            {
-                                Estacion.NuevoMarcador(this, new NuevoMarcadorEventArgs(marcador));
-                                Estacion._server.PeticionEnviarInformacionConexion(marcador.Conexion.Id);
-                            }
+                            Estacion._snifferMaster.IniciarSnifferCable(marcador,Estacion._dockMain);
+                            
                         }
                     }
                 }

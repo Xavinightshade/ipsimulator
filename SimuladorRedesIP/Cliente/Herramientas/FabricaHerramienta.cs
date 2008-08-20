@@ -44,7 +44,6 @@ namespace RedesIP.Vistas
             this._puertos.Clear();
             this._switches.Clear();
             this._routers.Clear();
-            this.NuevoMarcador = null;
         }
     }
 }
