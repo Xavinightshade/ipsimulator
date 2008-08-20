@@ -20,8 +20,8 @@ namespace RedesIP.Vistas.Equipos.Componentes
             set { _IPAddress = value; }
         }
 
-        public PuertoEthernetViewCompleto(Guid id, string direccionMAC, int origenX, int origenY, EquipoView equipoPadre)
-            :base(id,origenX,origenY,equipoPadre)
+        public PuertoEthernetViewCompleto(Guid id, string direccionMAC, int origenX, int origenY, EquipoView equipoPadre,string nombre)
+            :base(id,origenX,origenY,equipoPadre,nombre)
         {
             _direccionMAC = direccionMAC;
         }

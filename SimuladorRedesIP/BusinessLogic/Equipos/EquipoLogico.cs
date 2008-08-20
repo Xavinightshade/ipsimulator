@@ -8,7 +8,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 {
     public abstract class EquipoLogico : IUnique, IPosisionable
 	{
-        public abstract void AgregarPuerto(Guid idPuerto);
+        public abstract void AgregarPuerto(Guid idPuerto,string nombre);
         private int _X;
         private int _Y;
         private TipoDeEquipo _tipoDeEquipo;

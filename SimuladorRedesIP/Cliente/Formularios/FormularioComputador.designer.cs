@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._nombrePuerto = new System.Windows.Forms.TextBox();
             this._Aceptar = new System.Windows.Forms.Button();
             this._cancel = new System.Windows.Forms.Button();
             this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
@@ -65,12 +65,12 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Nombre";
             // 
-            // textBox1
+            // _nombrePuerto
             // 
-            this.textBox1.Location = new System.Drawing.Point(95, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(173, 20);
-            this.textBox1.TabIndex = 5;
+            this._nombrePuerto.Location = new System.Drawing.Point(95, 13);
+            this._nombrePuerto.Name = "_nombrePuerto";
+            this._nombrePuerto.Size = new System.Drawing.Size(34, 20);
+            this._nombrePuerto.TabIndex = 5;
             // 
             // _Aceptar
             // 
@@ -122,10 +122,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._cancel;
-            this.ClientSize = new System.Drawing.Size(285, 144);
+            this.ClientSize = new System.Drawing.Size(285, 249);
             this.Controls.Add(this._cancel);
             this.Controls.Add(this._Aceptar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this._nombrePuerto);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -147,7 +147,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox _nombrePuerto;
         private System.Windows.Forms.Button _Aceptar;
         private System.Windows.Forms.Button _cancel;
     }

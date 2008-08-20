@@ -21,6 +21,11 @@ namespace SimuladorCliente.Formularios
             get { return macTextBox1.Text; }
             set { macTextBox1.Text=value; }
         }
+        public string NombrePuerto
+        {
+            get { return _nombrePuerto.Text; }
+            set { _nombrePuerto.Text = value; }
+        }
         public string IPAddress
         {
             get { return ipTextBox1.Text; }

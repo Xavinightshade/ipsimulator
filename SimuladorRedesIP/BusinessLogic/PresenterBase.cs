@@ -140,7 +140,7 @@ namespace RedesIP
         {
 
             ComputadorLogico pcLogico = new ComputadorLogico(Guid.NewGuid(), computadorVisulizacion.X, computadorVisulizacion.Y);
-            pcLogico.AgregarPuerto(Guid.NewGuid());
+            pcLogico.AgregarPuerto(Guid.NewGuid(),"E.0");
             _estacion.CrearComputador(pcLogico);
 
             ComputadorSOA equipoRespuesta = CrearComputadorSOA(pcLogico);
@@ -154,7 +154,7 @@ namespace RedesIP
         private static ComputadorSOA CrearComputadorSOA(ComputadorLogico pcLogico)
         {
             ComputadorSOA equipoRespuesta = new ComputadorSOA(pcLogico.TipoDeEquipo, pcLogico.Id, pcLogico.X, pcLogico.Y);
-            equipoRespuesta.AgregarPuerto(new PuertoCompletoSOA(pcLogico.PuertoEthernet.Id, pcLogico.PuertoEthernet.MACAddress));
+            equipoRespuesta.AgregarPuerto(new PuertoCompletoSOA(pcLogico.PuertoEthernet.Id, pcLogico.PuertoEthernet.MACAddress,pcLogico.PuertoEthernet.Nombre));
             return equipoRespuesta;
         }
 
@@ -163,7 +163,7 @@ namespace RedesIP
             SwitchLogico swiLogico = new SwitchLogico(Guid.NewGuid(), swiPeticion.X, swiPeticion.Y);
             for (int i = 0; i < 5; i++)
             {
-                swiLogico.AgregarPuerto(Guid.NewGuid());
+                swiLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString());
             }
             _estacion.CrearSwitch(swiLogico);
 
@@ -185,7 +185,7 @@ namespace RedesIP
             RouterLogico routerLogico = new RouterLogico(Guid.NewGuid(), router.X, router.Y);
             for (int i = 0; i < 5; i++)
             {
-                routerLogico.AgregarPuerto(Guid.NewGuid());
+                routerLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString());
             }
             _estacion.CrearRouter(routerLogico);
             RouterSOA rouRespuesta = RouterLogico.CrearRouterSOA(routerLogico);
@@ -197,20 +197,36 @@ namespace RedesIP
 
 
 
-        public void PeticionEstablecerDireccionIP(string ipAddress, Guid idPuerto)
-        {
-            _estacion.EstablecerDireccionIP(ipAddress,idPuerto);
-            foreach (IVisualizacion cliente in _vistas)
-            {
-                cliente.EstablecerDireccionIP(idPuerto, ipAddress);
-            }
-        }
+
 
         public void Ping(Guid idEquipo, string ipDestino, string datos)
         {
             _estacion.Ping(idEquipo, ipDestino, datos);
         }
 
+
+        #region IModeloEstacion Members
+
+
+        public void PeticionEstablecerDatosPuertoBase(PuertoBaseSOA puerto)
+        {
+            _estacion.EstablecerDatosPueroBase(puerto);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.EstablecerDatosPuertoBase(puerto);
+            }
+        }
+
+        public void PeticionEstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto)
+        {
+            _estacion.EstablecerDatosPuertoCompleto(puerto);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.EstablecerDatosPuertoCompleto(puerto);
+            }
+        }
+
+        #endregion
     }
 
 

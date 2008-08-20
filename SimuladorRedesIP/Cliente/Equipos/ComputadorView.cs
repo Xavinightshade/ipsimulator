@@ -20,7 +20,7 @@ namespace RedesIP.Vistas.Equipos
             ToolStripMenuItem item = new ToolStripMenuItem("Hacer Ping", Resources.sniffer);
             item.Click += new EventHandler(OnPingClick);
             Menu.Items.Add(item);
-            _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id, equipo.Puerto.DireccionMAC,15, 30, this);
+            _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id, equipo.Puerto.DireccionMAC,15, 30, this,equipo.Puerto.Nombre);
 		}
 
         private void OnPingClick(object sender, EventArgs e)

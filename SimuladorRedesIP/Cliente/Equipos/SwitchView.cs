@@ -31,7 +31,7 @@ namespace RedesIP.Vistas.Equipos
 			foreach (PuertoBaseSOA puerto in puertos)
 	{
 
-        _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 30)+3, 7, this));
+        _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 30)+3, 7, this,puerto.Nombre));
 				i++;
 	}
 

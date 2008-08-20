@@ -6,12 +6,18 @@ using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.Common;
+using RedesIP.SOA;
 
 namespace RedesIP.Modelos.Equipos.Componentes
 {
 
 	public class PuertoEthernetLogicoBase : IEnvioReciboDatos
 	{
+        public static PuertoBaseSOA ConvertirPuerto(PuertoEthernetLogicoBase puertoLogico)
+        {
+            PuertoBaseSOA puertoSOA = new PuertoBaseSOA(puertoLogico.Id, puertoLogico.Nombre);
+            return puertoSOA;
+        }
 		private static int CalcularVelocidad(float porcentaje)
 		{
 			float m = (7000 - 10) / 100;
@@ -40,8 +46,16 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 		public event EventHandler<FrameTransmitidoEventArgs> FrameTransmitido;
 		public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
-		public PuertoEthernetLogicoBase(Guid id)
+        private string _nombre;
+
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
+		public PuertoEthernetLogicoBase(Guid id,string nombre)
 		{
+            _nombre = nombre;
             _id = id;
 			_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
 			_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);

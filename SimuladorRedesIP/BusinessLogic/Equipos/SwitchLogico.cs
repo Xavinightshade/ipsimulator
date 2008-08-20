@@ -18,7 +18,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             SwitchSOA swiRespuesta = new SwitchSOA(swiLogico.TipoDeEquipo, swiLogico.Id, swiLogico.X, swiLogico.Y);
             foreach (PuertoEthernetLogicoBase puerto in swiLogico.PuertosEthernet)
             {
-                swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id));
+                swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id,puerto.Nombre));
             }
             return swiRespuesta;
         }
@@ -59,7 +59,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             string direccionMACDestino = frameRecibido.MACAddressDestino;
 			if (_switchTable.YaEstaRegistradoDireccionMAC(direccionMACDestino))
 			{
-				PuertoEthernetLogicoBase puertoDestinoDelFrame = _switchTable.BuscarPuertoBystring(direccionMACDestino);
+				PuertoEthernetLogicoBase puertoDestinoDelFrame = _switchTable.BuscarPuertoByDireccionMac(direccionMACDestino);
 				((IEnvioReciboDatos)puertoDestinoDelFrame).TransmitirFrame(frameRecibido);
 				return;
 			}
@@ -88,9 +88,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
 			if (!_switchTable.YaEstaRegistradoDireccionMAC(direccionMacOrigen))
 				_switchTable.RegistrarDireccionMAC(direccionMacOrigen, puertoQueRecibioElFrame);
 		}
-        public override void AgregarPuerto(Guid idPuerto)
+        public override void AgregarPuerto(Guid idPuerto,string nombre)
         {
-            _puertosEthernet.Add(new PuertoEthernetLogicoBase(idPuerto));
+            _puertosEthernet.Add(new PuertoEthernetLogicoBase(idPuerto,nombre));
         }
 
 

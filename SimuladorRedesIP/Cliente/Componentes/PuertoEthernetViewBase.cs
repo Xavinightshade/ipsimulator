@@ -27,12 +27,19 @@ namespace RedesIP.Vistas.Equipos.Componentes
             get { return _reseltado; }
             set { _reseltado = value; }
         }
+        private string _nombre;
 
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
 
-		public PuertoEthernetViewBase(Guid id,int origenX,int origenY,EquipoView equipoPadre)
+		public PuertoEthernetViewBase(Guid id,int origenX,int origenY,EquipoView equipoPadre,string nombre)
 			: base(id,origenX,origenY, 10, 10)
 		{
 			ElementoPadre = equipoPadre;
+            _nombre = nombre;
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{

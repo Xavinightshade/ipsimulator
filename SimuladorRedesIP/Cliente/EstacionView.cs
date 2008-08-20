@@ -21,11 +21,7 @@ namespace RedesIP.Vistas
 	 UseSynchronizationContext = false)]
 	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion
 	{
-        public void EstablecerDireccionIP(Guid idPuerto, string ipAddress)
-        {
-            PuertoEthernetViewCompleto puerto = _diccioPuertos[idPuerto] as PuertoEthernetViewCompleto;
-            puerto.IPAddress = ipAddress;
-        }
+
 
 
         public IWin32Window Window { get { return this; } }
@@ -147,5 +143,22 @@ namespace RedesIP.Vistas
             _dockMain = dockMain;
             _snifferMaster = new SimuladorCliente.Sniffers.VistaSnifferMaster(presenterLocal);
         }
+
+        #region ICallBackEstacion Members
+
+
+        public void EstablecerDatosPuertoBase(PuertoBaseSOA puerto)
+        {
+            PuertoEthernetViewBase puertoLogico = _diccioPuertos[puerto.Id];
+            puertoLogico.Nombre = puerto.Nombre;
+        }
+
+        public void EstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto)
+        {
+            PuertoEthernetViewCompleto puertoLogico = _diccioPuertos[puerto.Id] as PuertoEthernetViewCompleto;
+            puertoLogico.Nombre = puerto.Nombre;
+        }
+
+        #endregion
     }
 }

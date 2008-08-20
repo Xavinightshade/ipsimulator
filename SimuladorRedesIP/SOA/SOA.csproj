@@ -53,7 +53,8 @@
   <ItemGroup>
     <Compile Include="Componentes\CableSOA.cs" />
     <Compile Include="Componentes\PuertoCompletoSOA.cs" />
-    <Compile Include="Componentes\PuertoSOA.cs" />
+    <Compile Include="Componentes\PuertoBaseSOA.cs" />
+    <Compile Include="Datos\SwitchTableSOA.cs" />
     <Compile Include="Equipos\TipoDeEquipo.cs" />
     <Compile Include="EstacionSOA.cs" />
     <Compile Include="Datos\FrameSOA.cs" />

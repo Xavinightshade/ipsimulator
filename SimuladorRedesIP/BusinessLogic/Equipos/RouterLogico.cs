@@ -14,7 +14,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y);
             foreach (PuertoEthernetCompleto puerto in routerLogico.PuertosEthernet)
             {
-                rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress));
+                rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress,puerto.Nombre));
             }
             return rouRespuesta;
         }
@@ -29,9 +29,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		{
             get { return _puertosEthernet.AsReadOnly(); }
 		}
-        public override void AgregarPuerto(Guid idPuerto)
+        public override void AgregarPuerto(Guid idPuerto,string nombre)
         {
-            _puertosEthernet.Add(new PuertoEthernetCompleto(MACAddressFactory.NewMAC(), idPuerto));
+            _puertosEthernet.Add(new PuertoEthernetCompleto(MACAddressFactory.NewMAC(), idPuerto,nombre));
 
         }
 

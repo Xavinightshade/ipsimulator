@@ -138,7 +138,6 @@ namespace RedesIP
 
 
 
-        private List<Guid> _PuertosEscuchando = new List<Guid>();
 
 
         public void CrearRouter(RouterLogico router)
@@ -149,17 +148,24 @@ namespace RedesIP
             
         }
 
-        public void EstablecerDireccionIP(string ipAddress, Guid idPuerto)
-        {
-            PuertoEthernetCompleto puerto = _puertos[idPuerto] as PuertoEthernetCompleto;
-            puerto.IPAddress = ipAddress;
-        }
 
 
 
         public void Ping(Guid idEquipo, string ipDestino,string datos)
         {
             _computadores[idEquipo].Ping(idEquipo, ipDestino, datos);
+        }
+
+        public void EstablecerDatosPueroBase(PuertoBaseSOA puerto)
+        {
+            PuertoEthernetLogicoBase puertoLogico = _puertos[puerto.Id];
+            puertoLogico.Nombre = puerto.Nombre;
+        }
+        public void EstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto)
+        {
+            PuertoEthernetCompleto puertoLogico = _puertos[puerto.Id] as PuertoEthernetCompleto;
+            puertoLogico.Nombre = puerto.Nombre;
+            puertoLogico.IPAddress = puerto.IPAddress;
         }
     }
 

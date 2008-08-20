@@ -36,9 +36,13 @@ namespace RedesIP.Vistas
                         formaPC.Text = pc.Puerto.DireccionMAC;
                         if (pc.Puerto.IPAddress != null)
                             formaPC.IPAddress = pc.Puerto.IPAddress;
+                        if (pc.Puerto.Nombre != null)
+                            formaPC.NombrePuerto = pc.Puerto.Nombre;
                         formaPC.MACAddress = pc.Puerto.DireccionMAC;
-                        if (formaPC.ShowDialog() == DialogResult.OK)                            
-                        _estacion.Contrato.PeticionEstablecerDireccionIP(formaPC.IPAddress, pc.Puerto.Id);
+                        if (formaPC.ShowDialog() == DialogResult.OK)
+                            _estacion.Contrato.PeticionEstablecerDatosPuertoCompleto(
+                                new RedesIP.SOA.PuertoCompletoSOA(pc.Puerto.Id,
+                                    formaPC.MACAddress, formaPC.NombrePuerto));
                         return;
                     }
                 }

@@ -81,6 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sniffer\ModeloCableSniffer.cs" />
     <Compile Include="Sniffer\ModeloSnifferMaster.cs" />
+    <Compile Include="Sniffer\ModeloSnifferSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">

@@ -26,8 +26,8 @@ namespace  RedesIP.SOA
             set { _IPAddress = value; }
         }
 
-        public PuertoCompletoSOA(Guid id, string direccionMAC)
-            : base(id)
+        public PuertoCompletoSOA(Guid id, string direccionMAC,string nombre)
+            : base(id,nombre)
         {
             _direccionMAC = direccionMAC;
         }

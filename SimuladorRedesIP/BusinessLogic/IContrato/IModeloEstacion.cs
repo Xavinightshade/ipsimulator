@@ -22,7 +22,9 @@ namespace RedesIP.SOA
         [OperationContract()]
         void PeticionActualizarEstacion();
         [OperationContract()]
-        void PeticionEstablecerDireccionIP(string ipAddress, Guid idPuerto);
+        void PeticionEstablecerDatosPuertoBase(PuertoBaseSOA puerto);
+        [OperationContract()]
+        void PeticionEstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto);
         [OperationContract()]
         void Ping(Guid idEquipo, string ipDestino, string datos);
     }

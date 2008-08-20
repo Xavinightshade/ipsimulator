@@ -16,11 +16,18 @@ namespace RedesIP.SOA
 			get { return _id; }
 			set { _id = value; }
 		}
+        private string _nombre;
+        [DataMember]
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
 
-
-        public PuertoBaseSOA(Guid id)
+        public PuertoBaseSOA(Guid id,string nombre)
 		{
 			_id = id;
+            _nombre = nombre;
 		}
 	}
 

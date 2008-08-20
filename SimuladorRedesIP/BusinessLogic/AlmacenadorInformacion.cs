@@ -86,14 +86,14 @@ namespace AccesoDatos
                         break;
                     case TipoDeEquipo.Computador:
                         ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
-                        pc.AgregarPuerto(equipoBD.PuertosBD[0].Id);
+                        pc.AgregarPuerto(equipoBD.PuertosBD[0].Id,"E.1");
                         estacionLogica.CrearComputador(pc);
                         break;
                     case TipoDeEquipo.Switch:
                         SwitchLogico swi = new SwitchLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
                         foreach (Puertos puertoBD in equipoBD.PuertosBD)
                         {
-                            swi.AgregarPuerto(puertoBD.Id);
+                            swi.AgregarPuerto(puertoBD.Id,"E."+equipoBD.PuertosBD.IndexOf(puertoBD).ToString());
                         }
                         estacionLogica.CrearSwitch(swi);
 
