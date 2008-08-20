@@ -16,10 +16,29 @@ namespace SimuladorCliente.Formularios
             InitializeComponent();
             macTextBox1.SetAsReadOnly();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        public string MACAddress
         {
+            get { return macTextBox1.Text; }
+            set { macTextBox1.Text=value; }
+        }
+        public string IPAddress
+        {
+            get { return ipTextBox1.Text; }
+            set { ipTextBox1.Text=value; }
+        }
+
+        private void _Aceptar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
 
         }
+
+        private void _cancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
     }
 }

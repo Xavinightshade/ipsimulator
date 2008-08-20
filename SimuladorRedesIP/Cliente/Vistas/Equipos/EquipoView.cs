@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -41,11 +42,17 @@ namespace RedesIP.Vistas.Equipos
 	
 
 		}
-		private int i;
 
 		private void OnMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-
+            if (HitTest(e.X, e.Y))
+            {
+                _tooltip.Show(GetInfoMapa(), _reg.MainWindow, DimensionMundo.OrigenX+DimensionMundo.Ancho, DimensionMundo.OrigenY, 4000);
+            }
+            else
+            {
+                _tooltip.Hide(_reg.MainWindow);
+            }
 				
 				if (_elBotonDelMouseEstaPresionado)
 				{
@@ -81,6 +88,7 @@ namespace RedesIP.Vistas.Equipos
         {
             return this.Id.ToString();
         }
+        private ToolTip _tooltip = new ToolTip();
 
 	}
 }

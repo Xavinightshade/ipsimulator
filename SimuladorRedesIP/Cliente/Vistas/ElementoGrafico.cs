@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -9,6 +10,7 @@ namespace RedesIP.Vistas.Equipos
 	{
 
 		private Guid _id;
+
 
 		public Guid Id
 		{
@@ -20,6 +22,7 @@ namespace RedesIP.Vistas.Equipos
 			_id = id;
 		}
 		public abstract bool HitTest(int x, int y);
+
 	}
 	
 }

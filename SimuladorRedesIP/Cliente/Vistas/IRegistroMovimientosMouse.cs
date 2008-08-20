@@ -8,6 +8,7 @@ namespace RedesIP.Vistas
 {
 	public interface IRegistroMovimientosMouse
 	{
+        IWin32Window MainWindow { get; }
 		event MouseEventHandler MouseDown;
 		event MouseEventHandler MouseUp;
 		event MouseEventHandler MouseMove;

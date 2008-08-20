@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using SimuladorCliente;
 using SimuladorCliente.Formularios;
+using RedesIP.Vistas.Equipos;
 
 namespace RedesIP.Vistas
 {
@@ -26,9 +27,25 @@ namespace RedesIP.Vistas
             public abstract void OnMouseUp(MouseEventArgs e);
             public virtual void OnMouseDoubleClick(MouseEventArgs e)
             {
-                FormularioComputador formaPC = new FormularioComputador();
-                formaPC.ShowDialog();
-             //   return;
+                for (int i = 0; i < _estacion._computadores.Count; i++)
+                {
+                    if (_estacion._computadores[i].HitTest(e.X, e.Y))
+                    {
+                        ComputadorView pc = _estacion._computadores[i];
+                        FormularioComputador formaPC = new FormularioComputador();
+                        formaPC.Text = pc.Puerto.DireccionMAC;
+                        if (pc.Puerto.IPAddress != null)
+                            formaPC.IPAddress = pc.Puerto.IPAddress;
+                        formaPC.MACAddress = pc.Puerto.DireccionMAC;
+                        if (formaPC.ShowDialog() == DialogResult.OK)
+                            _estacion.EstablecerDireccionIP(pc.Puerto.Id, formaPC.IPAddress);
+                        return;
+                    }
+                }
+            }
+
+            private void Ping(MouseEventArgs e)
+            {
                 for (int i = 0; i < _estacion._computadores.Count; i++)
                 {
                     if (_estacion._computadores[i].HitTest(e.X, e.Y))
@@ -39,7 +56,7 @@ namespace RedesIP.Vistas
                             return;
                         for (int j = 0; j < forma.Numero; j++)
                         {
-                            _estacion._server.Ping(_estacion._computadores[i].Id,forma.Mensaje, forma.DirMAC);
+                            _estacion._server.Ping(_estacion._computadores[i].Id, forma.Mensaje, forma.DirMAC);
                         }
 
                         return;

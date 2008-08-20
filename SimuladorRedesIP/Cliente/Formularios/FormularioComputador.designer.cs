@@ -32,7 +32,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this._Aceptar = new System.Windows.Forms.Button();
+            this._cancel = new System.Windows.Forms.Button();
             this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.macTextBox1 = new SimuladorCliente.Formularios.MACTextBox();
             this.SuspendLayout();
@@ -40,7 +41,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 91);
+            this.label1.Location = new System.Drawing.Point(12, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 2;
@@ -49,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 131);
+            this.label2.Location = new System.Drawing.Point(11, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 3;
@@ -58,7 +59,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 54);
+            this.label3.Location = new System.Drawing.Point(12, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 4;
@@ -66,20 +67,31 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(156, 47);
+            this.textBox1.Location = new System.Drawing.Point(95, 13);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(173, 20);
             this.textBox1.TabIndex = 5;
             // 
-            // button1
+            // _Aceptar
             // 
-            this.button1.Location = new System.Drawing.Point(243, 176);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this._Aceptar.Location = new System.Drawing.Point(12, 109);
+            this._Aceptar.Name = "_Aceptar";
+            this._Aceptar.Size = new System.Drawing.Size(85, 23);
+            this._Aceptar.TabIndex = 6;
+            this._Aceptar.Text = "Aceptar";
+            this._Aceptar.UseVisualStyleBackColor = true;
+            this._Aceptar.Click += new System.EventHandler(this._Aceptar_Click);
+            // 
+            // _cancel
+            // 
+            this._cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._cancel.Location = new System.Drawing.Point(183, 109);
+            this._cancel.Name = "_cancel";
+            this._cancel.Size = new System.Drawing.Size(85, 23);
+            this._cancel.TabIndex = 7;
+            this._cancel.Text = "Cancelar";
+            this._cancel.UseVisualStyleBackColor = true;
+            this._cancel.Click += new System.EventHandler(this._cancel_Click);
             // 
             // ipTextBox1
             // 
@@ -88,7 +100,7 @@
             this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipTextBox1.Location = new System.Drawing.Point(156, 84);
+            this.ipTextBox1.Location = new System.Drawing.Point(95, 39);
             this.ipTextBox1.Name = "ipTextBox1";
             this.ipTextBox1.ReadOnly = false;
             this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
@@ -99,24 +111,29 @@
             // 
             this.macTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.macTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.macTextBox1.Location = new System.Drawing.Point(156, 124);
+            this.macTextBox1.Location = new System.Drawing.Point(95, 65);
             this.macTextBox1.Name = "macTextBox1";
             this.macTextBox1.Size = new System.Drawing.Size(173, 20);
             this.macTextBox1.TabIndex = 0;
             // 
             // FormularioComputador
             // 
+            this.AcceptButton = this._Aceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 218);
-            this.Controls.Add(this.button1);
+            this.CancelButton = this._cancel;
+            this.ClientSize = new System.Drawing.Size(285, 144);
+            this.Controls.Add(this._cancel);
+            this.Controls.Add(this._Aceptar);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ipTextBox1);
             this.Controls.Add(this.macTextBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormularioComputador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Computador";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -131,6 +148,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _Aceptar;
+        private System.Windows.Forms.Button _cancel;
     }
 }

@@ -26,7 +26,7 @@ namespace RedesIP.Vistas
         }
 
 
-
+        public IWin32Window MainWindow { get { return this; } }
 
         HerramientaBase _herramienta;
         IModeloSOA _server;
