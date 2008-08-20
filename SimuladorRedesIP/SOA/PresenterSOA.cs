@@ -135,10 +135,7 @@ namespace RedesIP
         void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
         {
             CableDeRedLogico cable = (CableDeRedLogico)sender;
-            string mensaje = e.FrameRecibido.Informacion.ToString();
-            string macOrigen = e.FrameRecibido.MACAddressOrigen;
-            string macDestino = e.FrameRecibido.MACAddressDestino;
-            MensajeSOA mensajeSOA = new MensajeSOA(cable.Id, mensaje, macOrigen, macDestino, e.HoraDeRecepcion);
+            MensajeSOA mensajeSOA = new MensajeSOA(cable.Id,new FrameSOA(e.FrameRecibido),e.HoraDeRecepcion);
             foreach (IVisualizacion cliente in _diccioMensajes[cable.Id])
             {
                 cliente.EnviarInformacionConexion(mensajeSOA);

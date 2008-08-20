@@ -59,6 +59,7 @@
     <Compile Include="SOA\Elementos\EstacionSOA.cs" />
     <Compile Include="SOA\Elementos\FrameSOA.cs" />
     <Compile Include="SOA\Elementos\MensajeSOA.cs" />
+    <Compile Include="SOA\Elementos\PacketSOA.cs" />
     <Compile Include="SOA\Elementos\PuertoCompletoSOA.cs" />
     <Compile Include="SOA\Elementos\PuertoSOA.cs" />
     <Compile Include="SOA\Elementos\RouterSOA.cs" />
