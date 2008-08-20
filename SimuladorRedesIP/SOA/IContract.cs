@@ -40,7 +40,9 @@ namespace RedesIP.SOA
         void  SetVelocidadSimulacion(float valor);
 
 
-	}
+        [OperationContract()]
+        void Ping(Guid idEquipo, string ipDestino, string datos);
+    }
 
 
 

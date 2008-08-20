@@ -37,8 +37,8 @@ namespace RedesIP.Vistas
                         if (pc.Puerto.IPAddress != null)
                             formaPC.IPAddress = pc.Puerto.IPAddress;
                         formaPC.MACAddress = pc.Puerto.DireccionMAC;
-                        if (formaPC.ShowDialog() == DialogResult.OK)
-                            _estacion.EstablecerDireccionIP(pc.Puerto.Id, formaPC.IPAddress);
+                        if (formaPC.ShowDialog() == DialogResult.OK)                            
+                        _estacion.Contrato.PeticionEstablecerDireccionIP(formaPC.IPAddress, pc.Puerto.Id);
                         return;
                     }
                 }

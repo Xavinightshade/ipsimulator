@@ -264,6 +264,15 @@ namespace RedesIP
         }
 
         #endregion
+
+        #region IModeloSOA Members
+
+
+        public void Ping(Guid idEquipo, string ipDestino, string datos)
+        {
+            _estacion.Ping(idEquipo, ipDestino, datos);
+        }
+        #endregion
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]

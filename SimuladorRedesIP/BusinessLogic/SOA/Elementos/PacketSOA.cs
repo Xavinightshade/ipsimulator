@@ -15,18 +15,21 @@ namespace RedesIP.SOA
         public string IpOrigen
         {
             get { return _ipOrigen; }
+            set { _ipOrigen = value; }
         }
         private string _ipDestino;
         [DataMember]
         public string IpDestino
         {
             get { return _ipDestino; }
+            set { _ipDestino = value; }
         }
         private string _datos;
         [DataMember]
         public string Datos
         {
             get { return _datos; }
+            set { _datos = value; }
         }
 
         public PacketSOA(Packet paquete)
@@ -34,6 +37,10 @@ namespace RedesIP.SOA
             _datos = paquete.Datos;
             _ipOrigen = paquete.IpOrigen;
             _ipDestino = paquete.IpDestino;
+        }
+        public PacketSOA()
+        {
+
         }
     }
 }

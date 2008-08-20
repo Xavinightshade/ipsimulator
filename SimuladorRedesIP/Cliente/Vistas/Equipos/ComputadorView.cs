@@ -8,6 +8,7 @@ using SimuladorCliente.Properties;
 using System.Windows.Forms;
 using System.ComponentModel;
 using SimuladorCliente.Formularios;
+using RedesIP.Common;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -26,7 +27,14 @@ namespace RedesIP.Vistas.Equipos
         {
             PingForm pingForm = new PingForm();
             pingForm.Text = "Host: IP:" + _puerto.IPAddress + ", MAC:" + _puerto.DireccionMAC;
-            pingForm.ShowDialog();
+            if (pingForm.ShowDialog() == DialogResult.OK)
+            {
+                for (int i = 0; i < pingForm.Numero; i++)
+                {
+                    Contenedor.Contrato.Ping(Id, pingForm.IPAddress, pingForm.Dato);
+
+                }
+            }
         }
         PuertoEthernetViewCompleto _puerto;
 		public PuertoEthernetViewCompleto Puerto
@@ -55,6 +63,8 @@ namespace RedesIP.Vistas.Equipos
             }
 
         }    
+
+
 
 
 	}

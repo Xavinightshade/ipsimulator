@@ -6,6 +6,8 @@ using RedesIP.Modelos;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.Modelos.Datos;
 using RedesIP.Common;
+using RedesIP.SOA;
+using BusinessLogic.Modelos.Logicos.Datos;
 
 namespace RedesIP
 {
@@ -169,6 +171,13 @@ namespace RedesIP
         {
             PuertoEthernetCompleto puerto = _puertos[idPuerto] as PuertoEthernetCompleto;
             puerto.IPAddress = ipAddress;
+        }
+
+
+
+        public void Ping(Guid idEquipo, string ipDestino,string datos)
+        {
+            _computadores[idEquipo].Ping(idEquipo, ipDestino, datos);
         }
     }
 

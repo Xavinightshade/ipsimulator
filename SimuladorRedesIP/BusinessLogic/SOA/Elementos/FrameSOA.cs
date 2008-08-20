@@ -41,6 +41,10 @@ namespace RedesIP.SOA
             _MACAddressOrigen = frameLogico.MACAddressOrigen;
             _paquete = new PacketSOA(frameLogico.Informacion as Packet);
         }
+        public FrameSOA()
+        {
+
+        }
  
     }
 }
