@@ -104,7 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControladorMarcador.cs" />
+    <Compile Include="Componentes\ControladorMarcador.cs" />
     <Compile Include="FormaEstacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,7 +117,7 @@
     <Compile Include="Formularios\PingForm.designer.cs">
       <DependentUpon>PingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Herramienta.cs" />
+    <Compile Include="Herramientas\Herramienta.cs" />
     <Compile Include="Herramientas\FabricaHerramienta.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -168,12 +168,6 @@
     <Compile Include="Formularios\MACTextBox.designer.cs">
       <DependentUpon>MACTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Ping.Designer.cs">
-      <DependentUpon>Ping.cs</DependentUpon>
-    </Compile>
     <Compile Include="Presenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormaEstacion.resx">
@@ -194,10 +188,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormularioComputador.resx">
       <DependentUpon>FormularioComputador.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ping.resx">
-      <DependentUpon>Ping.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -229,32 +219,29 @@
     <Compile Include="SnifferBeta.Designer.cs">
       <DependentUpon>SnifferBeta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\CellBackColorAlternate.cs" />
-    <Compile Include="Vistas\ComboBoxConColores.cs">
+    <Compile Include="Utilidades\CellBackColorAlternate.cs" />
+    <Compile Include="Componentes\PuertoEthernetViewBase.cs" />
+    <Compile Include="Componentes\PuertoEthernetViewCompleto.cs" />
+    <Compile Include="Componentes\Conexion.cs" />
+    <Compile Include="Equipos\ElementoGrafico.cs" />
+    <Compile Include="Equipos\ElementoGraficoCuadrado.cs" />
+    <Compile Include="Equipos\ComputadorView.cs" />
+    <Compile Include="Equipos\EquipoView.cs" />
+    <Compile Include="Equipos\RouterView.cs" />
+    <Compile Include="Equipos\SwitchView.cs" />
+    <Compile Include="EstacionView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Vistas\Componentes\PuertoEthernetViewBase.cs" />
-    <Compile Include="Vistas\Componentes\PuertoEthernetViewCompleto.cs" />
-    <Compile Include="Vistas\Conexion.cs" />
-    <Compile Include="Vistas\ElementoGrafico.cs" />
-    <Compile Include="Vistas\ElementoGraficoCuadrado.cs" />
-    <Compile Include="Vistas\Equipos\ComputadorView.cs" />
-    <Compile Include="Vistas\Equipos\EquipoView.cs" />
-    <Compile Include="Vistas\Equipos\RouterView.cs" />
-    <Compile Include="Vistas\Equipos\SwitchView.cs" />
-    <Compile Include="Vistas\EstacionView.cs">
+    <Compile Include="Componentes\IMarker.cs" />
+    <Compile Include="Utilidades\IRegistroMovimientosMouse.cs" />
+    <Compile Include="Componentes\Marcador.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Vistas\IMarker.cs" />
-    <Compile Include="Vistas\IRegistroMovimientosMouse.cs" />
-    <Compile Include="Vistas\Marcador.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Vistas\NuevoMarcadorEventArgs.cs" />
-    <Compile Include="Vistas\Punto.cs" />
-    <Compile Include="Vistas\Rectangulo.cs" />
-    <Compile Include="Vistas\Utilidades\Dibujadores.cs" />
-    <Compile Include="Vistas\Utilidades\Linea.cs" />
+    <Compile Include="Componentes\NuevoMarcadorEventArgs.cs" />
+    <Compile Include="Utilidades\Punto.cs" />
+    <Compile Include="Utilidades\Rectangulo.cs" />
+    <Compile Include="Utilidades\Dibujadores.cs" />
+    <Compile Include="Utilidades\Linea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Image1.bmp" />
@@ -316,10 +303,6 @@
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{8622A2C8-9967-4C44-9702-6854D7E4AEDB}</Project>
       <Name>BusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SOA\SOA.csproj">
-      <Project>{7806FC84-2690-4A74-B11A-AF05792C8FFA}</Project>
-      <Name>SOA</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

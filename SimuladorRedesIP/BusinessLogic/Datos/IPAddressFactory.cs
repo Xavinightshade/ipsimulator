@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BusinessLogic
 {
-    class IPAddress
+    class IPAddressFactory
     {
     }
 }
