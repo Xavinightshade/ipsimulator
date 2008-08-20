@@ -68,23 +68,28 @@ namespace RedesIP.Vistas.Equipos
 
         private void OnMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
-            IWin32Window window = _reg.Window;
-            if (HitTest(e.X, e.Y))
-            {
-                _tooltip.Show(GetInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY, 4000);
-            }
-            else
-            {
-                _tooltip.Hide(window);
-            }
 
+            IWin32Window window = _reg.Window;
             if (_elBotonDelMouseEstaPresionado)
             {
+                _tooltip.Hide(window);
                 Dimension.OrigenX = this.Dimension.OrigenX + (e.X - _clickOffSetX);
                 Dimension.OrigenY = this.Dimension.OrigenY + (e.Y - _clickOffSetY);
                 _clickOffSetX = e.X;
                 _clickOffSetY = e.Y;
                 _reg.Invalidate();
+            }
+            else
+            {
+                
+                if (HitTest(e.X, e.Y))
+                {
+                    _tooltip.Show(GetInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY, 4000);
+                }
+                else
+                {
+                    _tooltip.Hide(window);
+                }
             }
 
 
