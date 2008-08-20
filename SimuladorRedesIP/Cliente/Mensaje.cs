@@ -32,12 +32,7 @@ namespace SimuladorCliente
         {
             get { return _macDestino; }
         }
-        private DateTime _horaTransmision;
-        public DateTime HoraTransmision
-        {
-            get { return _horaTransmision; }
 
-        }
         DateTime _horaRecepcion;
 
         public DateTime HoraRecepcion
@@ -53,7 +48,6 @@ namespace SimuladorCliente
             _idConexion = mensajeSOA.IdConexion;
             _mensaje = mensajeSOA.Datos;
             _horaRecepcion = mensajeSOA.HoraRecepcion;
-            _horaTransmision = mensajeSOA.HoraTransmision;
 		}
     }
 }

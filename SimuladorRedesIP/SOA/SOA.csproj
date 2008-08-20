@@ -57,6 +57,7 @@
     <Compile Include="SOA\Elementos\CableSOA.cs" />
     <Compile Include="SOA\Elementos\EquipoSOA.cs" />
     <Compile Include="SOA\Elementos\EstacionSOA.cs" />
+    <Compile Include="SOA\Elementos\FrameSOA.cs" />
     <Compile Include="SOA\Elementos\MensajeSOA.cs" />
     <Compile Include="SOA\Elementos\PuertoCompletoSOA.cs" />
     <Compile Include="SOA\Elementos\PuertoSOA.cs" />

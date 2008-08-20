@@ -110,15 +110,13 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 		private void OnFrameTransmitido(Frame frame)
 		{
-            frame.HoraTransmision = DateTime.Now;
 			if (FrameTransmitido != null)
-				FrameTransmitido(this, new FrameTransmitidoEventArgs(frame));
+				FrameTransmitido(this, new FrameTransmitidoEventArgs(frame,DateTime.Now));
 		}
 		private void OnFrameRecibido(Frame frame)
 		{
-            frame.HoraRecepcion = DateTime.Now;
 			if (FrameRecibido != null)
-                FrameRecibido(this, new FrameRecibidoEventArgs(frame));
+                FrameRecibido(this, new FrameRecibidoEventArgs(frame,DateTime.Now));
 		}
 
 

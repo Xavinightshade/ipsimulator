@@ -11,20 +11,7 @@ namespace RedesIP.Modelos.Datos
 
 	public class Frame
 	{
-        private DateTime _horaTransmision;
 
-        public DateTime HoraTransmision
-        {
-            get { return _horaTransmision; }
-            set { _horaTransmision = value; }
-        }
-        private DateTime _horaRecepcion;
-
-        public DateTime HoraRecepcion
-        {
-            get { return _horaRecepcion; }
-            set { _horaRecepcion = value; }
-        }
 		private IFrameMessage _informacion;
 
 		public IFrameMessage Informacion

@@ -57,7 +57,7 @@
     <Compile Include="Modelos\Logicos\Datos\EventosFrame.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
     <Compile Include="Modelos\Logicos\Datos\IFrameMessage.cs" />
-    <Compile Include="Modelos\Logicos\Datos\Message.cs" />
+    <Compile Include="Modelos\Logicos\Datos\TestFrameMessage.cs" />
     <Compile Include="Modelos\Logicos\Datos\Packet.cs" />
     <Compile Include="Modelos\Logicos\Datos\PacketeIP.cs" />
     <Compile Include="Modelos\Logicos\Equipos\ComputadorLogico.cs" />

@@ -38,13 +38,7 @@ namespace RedesIP.SOA.Elementos
             get { return _macDestino; }
             set { _macDestino = value; }
         }
-        DateTime _horaTransmision;
-        [DataMember]
-        public DateTime HoraTransmision
-        {
-            get { return _horaTransmision; }
-            set { _horaTransmision = value; }
-        }
+
         DateTime _horaRecepcion;
         [DataMember]
         public DateTime HoraRecepcion
@@ -54,15 +48,13 @@ namespace RedesIP.SOA.Elementos
         }
 
         public MensajeSOA (Guid idConexion, string info,
-            string  macOrigen,string macDestino,
-            DateTime horaTransmision,DateTime horaRecepcion)
+            string  macOrigen,string macDestino,DateTime horaRecepcion)
 	{
         _idConexion = idConexion;
         _datos = info;
         _macOrigen = macOrigen;
         _macDestino = macDestino;
         _horaRecepcion = horaRecepcion;
-        _horaTransmision = horaTransmision;
             
 	}
 

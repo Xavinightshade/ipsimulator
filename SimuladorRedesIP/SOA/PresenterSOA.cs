@@ -138,7 +138,7 @@ namespace RedesIP
             string mensaje = e.FrameRecibido.Informacion.ToString();
             string macOrigen = e.FrameRecibido.MACAddressOrigen;
             string macDestino = e.FrameRecibido.MACAddressDestino;
-            MensajeSOA mensajeSOA = new MensajeSOA(cable.Id, mensaje, macOrigen, macDestino, e.FrameRecibido.HoraTransmision, e.FrameRecibido.HoraRecepcion);
+            MensajeSOA mensajeSOA = new MensajeSOA(cable.Id, mensaje, macOrigen, macDestino, e.HoraDeRecepcion);
             foreach (IVisualizacion cliente in _diccioMensajes[cable.Id])
             {
                 cliente.EnviarInformacionConexion(mensajeSOA);
