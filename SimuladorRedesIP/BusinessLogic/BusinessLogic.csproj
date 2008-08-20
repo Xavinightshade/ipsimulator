@@ -54,6 +54,7 @@
     <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetCompleto.cs" />
     <Compile Include="Modelos\Logicos\Componentes\PuertoEthernetLogicoBase.cs" />
     <Compile Include="Modelos\Logicos\Componentes\SwitchTable.cs" />
+    <Compile Include="Modelos\Logicos\Datos\EventosFrame.cs" />
     <Compile Include="Modelos\Logicos\Datos\Frame.cs" />
     <Compile Include="Modelos\Logicos\Datos\IMessage.cs" />
     <Compile Include="Modelos\Logicos\Datos\Message.cs" />
