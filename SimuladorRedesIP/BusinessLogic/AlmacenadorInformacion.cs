@@ -25,7 +25,7 @@ namespace AccesoDatos
                 equipoBD.IdEstacion = estacion.Id;
                 equipoBD.X = equipoLogico.X;
                 equipoBD.Y = equipoLogico.Y;
-                foreach (PuertoEthernetLogico puertoLogico in equipoLogico.PuertosEthernet)
+                foreach (PuertoEthernetLogicoBase puertoLogico in equipoLogico.PuertosEthernet)
                 {
                     Puertos puertoBD = new Puertos();
                     puertoBD.Id = puertoLogico.Id;

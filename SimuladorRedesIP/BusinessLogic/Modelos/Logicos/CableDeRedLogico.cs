@@ -16,11 +16,11 @@ namespace RedesIP.Modelos
 			set { _id = value; }
 		}
         private Object _syncObject = new Object();
-		private static List<PuertoEthernetLogico> _listaPuertos = new List<PuertoEthernetLogico>();
-		private PuertoEthernetLogico _puerto1;
-		private PuertoEthernetLogico _puerto2;
+		private static List<PuertoEthernetLogicoBase> _listaPuertos = new List<PuertoEthernetLogicoBase>();
+		private PuertoEthernetLogicoBase _puerto1;
+		private PuertoEthernetLogicoBase _puerto2;
 
-		public CableDeRedLogico(PuertoEthernetLogico puerto1, PuertoEthernetLogico puerto2)
+		public CableDeRedLogico(PuertoEthernetLogicoBase puerto1, PuertoEthernetLogicoBase puerto2)
 		{
 			_id = Guid.NewGuid();
 			_puerto1 = puerto1;
@@ -30,11 +30,11 @@ namespace RedesIP.Modelos
 		public event EventHandler<FrameRecibidoEventArgs> FrameRecibidoPuerto1;
         public event EventHandler<FrameRecibidoEventArgs> FrameRecibidoPuerto2;
 
-	    public PuertoEthernetLogico Puerto1
+	    public PuertoEthernetLogicoBase Puerto1
 	    {
 	        get { return _puerto1; }
 	    }
-        public PuertoEthernetLogico Puerto2
+        public PuertoEthernetLogicoBase Puerto2
         {
             get { return _puerto2; }
         }

@@ -8,20 +8,20 @@ namespace RedesIP.Modelos.Logicos.Equipos
 {
 	public class RouterLogico:EquipoLogico
 	{
-        private List<PuertoEthernetLogico> _puertosEthernet = new List<PuertoEthernetLogico>();
+        private List<PuertoEthernetLogicoBase> _puertosEthernet = new List<PuertoEthernetLogicoBase>();
 
 		public RouterLogico(Guid id,int X,int Y):base(id,TipoDeEquipo.Router,X,Y)
 		{
 			
 		}
 
-		public override System.Collections.ObjectModel.ReadOnlyCollection<RedesIP.Modelos.Equipos.Componentes.PuertoEthernetLogico> PuertosEthernet
+		public override System.Collections.ObjectModel.ReadOnlyCollection<RedesIP.Modelos.Equipos.Componentes.PuertoEthernetLogicoBase> PuertosEthernet
 		{
             get { return _puertosEthernet.AsReadOnly(); }
 		}
         public override void AgregarPuerto(Guid idPuerto)
         {
-            _puertosEthernet.Add(new PuertoEthernetLogico(MACAddressFactory.NewMAC(), idPuerto));
+            _puertosEthernet.Add(new PuertoEthernetLogicoBase(MACAddressFactory.NewMAC(), idPuerto));
 
         }
 

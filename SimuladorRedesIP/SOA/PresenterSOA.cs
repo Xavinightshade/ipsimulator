@@ -84,7 +84,7 @@ namespace RedesIP
 
         private static void LLenarPuertos(EquipoLogico equipoLogico, EquipoSOA equipo)
         {
-            foreach (PuertoEthernetLogico puertoLogico in equipoLogico.PuertosEthernet)
+            foreach (PuertoEthernetLogicoBase puertoLogico in equipoLogico.PuertosEthernet)
             {
                 equipo.Puertos.Add(new PuertoSOA(puertoLogico.Id,puertoLogico.MACAddress));
             }
@@ -135,7 +135,7 @@ namespace RedesIP
             {
                 EquipoLogico eqLogico = par.Value;
                 EquipoSOA eq = new EquipoSOA(eqLogico.TipoDeEquipo, eqLogico.Id, eqLogico.X, eqLogico.Y);
-                foreach (PuertoEthernetLogico puerto in eqLogico.PuertosEthernet)
+                foreach (PuertoEthernetLogicoBase puerto in eqLogico.PuertosEthernet)
                 {
                     eq.Puertos.Add(new PuertoSOA(puerto.Id,puerto.MACAddress));
                 }

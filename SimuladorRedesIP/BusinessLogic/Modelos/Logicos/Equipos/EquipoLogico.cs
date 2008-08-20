@@ -28,7 +28,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		 public  Guid Id { get{return _id;} }
          public int X { get { return _X; } set { _X = value; } }
          public int Y { get { return _Y; } set { _Y = value; } }
-		 public abstract ReadOnlyCollection<PuertoEthernetLogico> PuertosEthernet { get; }
+		 public abstract ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet { get; }
          public abstract void InicializarEquipo();
 	}
     public interface IUnique

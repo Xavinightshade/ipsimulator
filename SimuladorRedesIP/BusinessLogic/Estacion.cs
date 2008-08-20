@@ -59,7 +59,7 @@ namespace RedesIP
         /// <summary>
         /// Puertos Logicos de la red
         /// </summary>
-        private Dictionary<Guid, PuertoEthernetLogico> _puertos = new Dictionary<Guid, PuertoEthernetLogico>();
+        private Dictionary<Guid, PuertoEthernetLogicoBase> _puertos = new Dictionary<Guid, PuertoEthernetLogicoBase>();
 
 
 
@@ -102,9 +102,9 @@ namespace RedesIP
 
         }
 
-        private void LLenarPuertos(Dictionary<Guid, PuertoEthernetLogico> diccionarioPuertos, IEnumerable<PuertoEthernetLogico> puertos)
+        private void LLenarPuertos(Dictionary<Guid, PuertoEthernetLogicoBase> diccionarioPuertos, IEnumerable<PuertoEthernetLogicoBase> puertos)
         {
-            foreach (PuertoEthernetLogico puerto in puertos)
+            foreach (PuertoEthernetLogicoBase puerto in puertos)
             {
                 diccionarioPuertos.Add(puerto.Id, puerto);
             }

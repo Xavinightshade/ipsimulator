@@ -10,7 +10,7 @@ using RedesIP.Common;
 namespace RedesIP.Modelos.Equipos.Componentes
 {
 
-	public class PuertoEthernetLogico : IEnvioReciboDatos
+	public class PuertoEthernetLogicoBase : IEnvioReciboDatos
 	{
 		private static int CalcularVelocidad(float porcentaje)
 		{
@@ -45,7 +45,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		}
 		public event EventHandler<FrameTransmitidoEventArgs> FrameTransmitido;
 		public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
-		public PuertoEthernetLogico(string MACAddress,Guid id)
+		public PuertoEthernetLogicoBase(string MACAddress,Guid id)
 		{
             _id = id;
             _MACAddress = MACAddress;
