@@ -168,7 +168,6 @@
     <Compile Include="Formularios\MACTextBox.designer.cs">
       <DependentUpon>MACTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormaEstacion.resx">
       <DependentUpon>FormaEstacion.cs</DependentUpon>

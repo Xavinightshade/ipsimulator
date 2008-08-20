@@ -75,6 +75,7 @@
     <Compile Include="Equipos\SwitchLogico.cs" />
     <Compile Include="ICallBackContract\ICallBackContract.cs" />
     <Compile Include="IContrato\IContract.cs" />
+    <Compile Include="Presenter.cs" />
     <Compile Include="PresenterBase.cs" />
     <Compile Include="PresenterSOA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

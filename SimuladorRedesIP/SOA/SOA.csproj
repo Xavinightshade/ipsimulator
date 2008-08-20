@@ -57,7 +57,7 @@
     <Compile Include="Equipos\TipoDeEquipo.cs" />
     <Compile Include="EstacionSOA.cs" />
     <Compile Include="Datos\FrameSOA.cs" />
-    <Compile Include="Datos\MensajeSOA.cs" />
+    <Compile Include="Mensajes\MensajeSOA.cs" />
     <Compile Include="Datos\PacketSOA.cs" />
     <Compile Include="Equipos\ComputadorSOA.cs" />
     <Compile Include="Equipos\EquipoSOA.cs" />

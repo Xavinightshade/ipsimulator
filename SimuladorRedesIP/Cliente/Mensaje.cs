@@ -30,7 +30,7 @@ namespace SimuladorCliente
 
         }
 
-		public Mensaje(MensajeSOA mensajeSOA)
+		public Mensaje(MensajeCableSOA mensajeSOA)
 		{
             _frame = mensajeSOA.Frame;
             _idConexion = mensajeSOA.IdConexion;

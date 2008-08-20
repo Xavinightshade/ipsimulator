@@ -38,11 +38,9 @@ namespace RedesIP
         {
             _vistas.Clear();
             _estacion = estacion;
+            _snifferMaster = new SnifferMaster(_vistas, estacion);
         }
-        public void SetSnifferMaster(SnifferMaster sniffer)
-        {
-            _snifferMaster = sniffer;
-        }
+
         private static List<IVisualizacion> _vistas = new List<IVisualizacion>();
 
 

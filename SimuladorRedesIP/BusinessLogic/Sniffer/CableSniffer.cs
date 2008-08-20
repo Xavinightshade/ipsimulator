@@ -5,6 +5,7 @@ using System.Text;
 using RedesIP.Modelos;
 using RedesIP.Modelos.Datos;
 using RedesIP.SOA;
+using RedesIP.SOA.Elementos;
 
 namespace BusinessLogic.Sniffer
 {
@@ -29,7 +30,7 @@ namespace BusinessLogic.Sniffer
         {
             foreach (IVisualizacion  vist in _vistas)
             {
-                vist.EnviarInformacionConexion(new RedesIP.SOA.Elementos.MensajeSOA(_cable.Id, Frame.ConvertirFrame(e.FrameRecibido), e.HoraDeRecepcion));
+                vist.EnviarInformacionConexion(new MensajeCableSOA(_cable.Id, Frame.ConvertirFrame(e.FrameRecibido), e.HoraDeRecepcion));
 
             }
         }

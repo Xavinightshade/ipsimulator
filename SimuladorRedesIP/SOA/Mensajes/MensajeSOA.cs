@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 namespace RedesIP.SOA.Elementos
 {
     [DataContract]
-    public class MensajeSOA
+    public class MensajeCableSOA
     {
         private Guid _idConexion;
         [DataMember]
@@ -32,7 +32,7 @@ namespace RedesIP.SOA.Elementos
             set { _horaRecepcion = value; }
         }
 
-        public MensajeSOA (Guid idConexion, FrameSOA frame,DateTime horaRecepcion)
+        public MensajeCableSOA (Guid idConexion, FrameSOA frame,DateTime horaRecepcion)
 	{
         _idConexion = idConexion;
         _frame = frame;

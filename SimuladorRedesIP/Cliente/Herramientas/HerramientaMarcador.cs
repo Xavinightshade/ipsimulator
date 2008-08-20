@@ -13,7 +13,7 @@ namespace RedesIP.Vistas
         List<Marcador> _marcadores = new List<Marcador>();
         public event EventHandler<NuevoMarcadorEventArgs> NuevoMarcador;
 
-        public void EnviarInformacionConexion(MensajeSOA mensajeSOA)
+        public void EnviarInformacionConexion(MensajeCableSOA mensajeSOA)
         {
             foreach (Marcador marker in _marcadores)
             {

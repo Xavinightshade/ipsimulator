@@ -14,7 +14,7 @@ namespace SimuladorCliente.Vistas
 	public class Marcador:ElementoGrafico
     {
         public event EventHandler<NuevoMensajeEventArgs> NuevoMensaje;
-        public void EnviarNuevoMensaje(MensajeSOA mensajeSOA)
+        public void EnviarNuevoMensaje(MensajeCableSOA mensajeSOA)
         {
             if (NuevoMensaje != null)
             {

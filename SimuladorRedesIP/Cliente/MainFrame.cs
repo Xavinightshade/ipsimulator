@@ -89,21 +89,6 @@ namespace SimuladorCliente
 
 		IModeloSOA _clien = null;
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-            
-            _es = new Estacion(Guid.NewGuid());
-            Presenter p = new Presenter(_estacionView);
-            p.SetEstacion(_es);
-            _estacionView.EstablecerServer(p);
-            p.Conectar();
-            _controladorMarcador.EstablecerEstacion(_estacionView);
-          //  button1.Visible = false;
-            toolStripButton1.Enabled = true;
-            toolStripButton2.Enabled = true;
-            toolStripButton3.Enabled = true;
-            toolStripButton4.Enabled = true;
-		}
 
         private void ConectarSOA()
         {
@@ -180,14 +165,14 @@ namespace SimuladorCliente
             AccesoDatos.AlmacenadorInformacion.AlmacenarEstacion(_es);
         }
         Estacion _es;
-        private void cargarDesdeBDToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CargarDesdeBD(object sender, EventArgs e)
         {
             _estacionView.Limpiar();
             _es = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("47400cea-24e5-45f1-9bcd-5fb7c3c068e6"));
-            Presenter p = new Presenter(_estacionView);
-            p.SetEstacion(_es);
-            _estacionView.EstablecerServer(p);
-            p.Conectar();
+            Presenter presenter = new Presenter(_estacionView);
+            presenter.SetEstacion(_es);
+            _estacionView.EstablecerServer(presenter);
+            presenter.Conectar();
             _controladorMarcador.EstablecerEstacion(_estacionView);
         //    button1.Visible = false;
             toolStripButton1.Enabled = true;

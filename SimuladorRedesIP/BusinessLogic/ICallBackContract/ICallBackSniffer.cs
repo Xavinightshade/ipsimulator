@@ -10,6 +10,6 @@ namespace RedesIP.SOA
     public interface ICallBackSniffer
     {
         [OperationContract(IsOneWay = true)]
-        void EnviarInformacionConexion(MensajeSOA mensaje);
+        void EnviarInformacionConexion(MensajeCableSOA mensaje);
     }
 }

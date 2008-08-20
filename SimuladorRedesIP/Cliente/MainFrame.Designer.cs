@@ -218,7 +218,7 @@ namespace SimuladorCliente
             this.cargarDesdeBDToolStripMenuItem.Name = "cargarDesdeBDToolStripMenuItem";
             this.cargarDesdeBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.cargarDesdeBDToolStripMenuItem.Text = "Cargar desde BD";
-            this.cargarDesdeBDToolStripMenuItem.Click += new System.EventHandler(this.cargarDesdeBDToolStripMenuItem_Click);
+            this.cargarDesdeBDToolStripMenuItem.Click += new System.EventHandler(this.CargarDesdeBD);
             // 
             // eliToolStripMenuItem
             // 
