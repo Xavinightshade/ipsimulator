@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
-using RedesIP.Modelos.Datos;
-using BusinessLogic.Modelos.Logicos.Datos;
 
 namespace RedesIP.SOA
 {
@@ -35,12 +33,7 @@ namespace RedesIP.SOA
         }
 
 
-        public FrameSOA(Frame frameLogico)
-        {
-            _MACAddressDestino=frameLogico.MACAddressDestino;
-            _MACAddressOrigen = frameLogico.MACAddressOrigen;
-            _paquete = new PacketSOA(frameLogico.Informacion as Packet);
-        }
+
         public FrameSOA()
         {
 

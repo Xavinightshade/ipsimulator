@@ -7,7 +7,6 @@ using RedesIP.SOA;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.Modelos.Equipos.Componentes;
 using RedesIP.Modelos;
-using RedesIP.SOA.Elementos;
 using RedesIP.Modelos.Datos;
 using RedesIP.Common;
 

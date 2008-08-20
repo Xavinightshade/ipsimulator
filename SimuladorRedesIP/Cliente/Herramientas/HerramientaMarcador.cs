@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SimuladorCliente.Vistas;
-using RedesIP.SOA.Elementos;
 using SimuladorCliente;
+using RedesIP.SOA.Elementos;
 
 namespace RedesIP.Vistas
 {

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8622A2C8-9967-4C44-9702-6854D7E4AEDB}</ProjectGuid>
+    <ProjectGuid>{D43F73EB-0F0B-4740-907E-09E4386E04E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLogic</RootNamespace>
-    <AssemblyName>BusinessLogic</AssemblyName>
+    <RootNamespace>SOA</RootNamespace>
+    <AssemblyName>SOA</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,38 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlmacenadorInformacion.cs" />
-    <Compile Include="Estacion.cs" />
-    <Compile Include="Datos\IPAddressFactory.cs" />
-    <Compile Include="Datos\MACAddressFactory.cs" />
-    <Compile Include="Componentes\CableDeRedLogico.cs" />
-    <Compile Include="Componentes\IEnvioReciboDatos.cs" />
-    <Compile Include="Componentes\PuertoEthernetCompleto.cs" />
-    <Compile Include="Componentes\PuertoEthernetLogicoBase.cs" />
-    <Compile Include="Componentes\SwitchTable.cs" />
-    <Compile Include="Datos\EventosFrame.cs" />
-    <Compile Include="Datos\Frame.cs" />
-    <Compile Include="Datos\IFrameMessage.cs" />
-    <Compile Include="Datos\TestFrameMessage.cs" />
-    <Compile Include="Datos\Packet.cs" />
-    <Compile Include="Equipos\ComputadorLogico.cs" />
-    <Compile Include="Equipos\EquipoLogico.cs" />
-    <Compile Include="Equipos\RouterLogico.cs" />
-    <Compile Include="Equipos\SwitchLogico.cs" />
-    <Compile Include="ICallBackContract.cs" />
-    <Compile Include="IContract.cs" />
-    <Compile Include="PresenterSOA.cs" />
+    <Compile Include="Componentes\CableSOA.cs" />
+    <Compile Include="Componentes\PuertoCompletoSOA.cs" />
+    <Compile Include="Componentes\PuertoSOA.cs" />
+    <Compile Include="Equipos\TipoDeEquipo.cs" />
+    <Compile Include="EstacionSOA.cs" />
+    <Compile Include="Datos\FrameSOA.cs" />
+    <Compile Include="Datos\MensajeSOA.cs" />
+    <Compile Include="Datos\PacketSOA.cs" />
+    <Compile Include="Equipos\ComputadorSOA.cs" />
+    <Compile Include="Equipos\EquipoSOA.cs" />
+    <Compile Include="Equipos\RouterSOA.cs" />
+    <Compile Include="Equipos\SwitchSOA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
-      <Project>{83924905-8C17-48A4-AB51-579D0991343F}</Project>
-      <Name>AccesoDatos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SOA\SOA.csproj">
-      <Project>{D43F73EB-0F0B-4740-907E-09E4386E04E2}</Project>
-      <Name>SOA</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

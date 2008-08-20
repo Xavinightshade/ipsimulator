@@ -10,6 +10,7 @@ using RedesIP.Modelos.Equipos.Componentes;
 using RedesIP.Modelos;
 using RedesIP.SOA.Elementos;
 using RedesIP.Common;
+using BusinessLogic.Modelos.Logicos.Datos;
 
 namespace RedesIP
 {
@@ -135,7 +136,16 @@ namespace RedesIP
         void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
         {
             CableDeRedLogico cable = (CableDeRedLogico)sender;
-            MensajeSOA mensajeSOA = new MensajeSOA(cable.Id,new FrameSOA(e.FrameRecibido),e.HoraDeRecepcion);
+            FrameSOA frameSOA = new FrameSOA();
+            frameSOA.MACAddressOrigen = e.FrameRecibido.MACAddressOrigen;
+            frameSOA.MACAddressDestino = e.FrameRecibido.MACAddressDestino;
+            PacketSOA paqueteSOA = new PacketSOA();
+            Packet paqueteLogico=e.FrameRecibido.Informacion as Packet;
+            paqueteSOA.IpOrigen = paqueteLogico.IpOrigen;
+            paqueteSOA.IpDestino = paqueteLogico.IpDestino;
+            paqueteSOA.Datos = paqueteLogico.Datos;
+            frameSOA.Paquete = paqueteSOA;
+            MensajeSOA mensajeSOA = new MensajeSOA(cable.Id,frameSOA,e.HoraDeRecepcion);
             foreach (IVisualizacion cliente in _diccioMensajes[cable.Id])
             {
                 cliente.EnviarInformacionConexion(mensajeSOA);

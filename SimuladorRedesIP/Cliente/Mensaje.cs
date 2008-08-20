@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RedesIP.Common;
-using RedesIP.SOA.Elementos;
 using RedesIP.SOA;
+using RedesIP.SOA.Elementos;
 
 namespace SimuladorCliente
 {

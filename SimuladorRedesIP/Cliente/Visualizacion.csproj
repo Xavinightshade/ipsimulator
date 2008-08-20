@@ -304,6 +304,10 @@
       <Project>{8622A2C8-9967-4C44-9702-6854D7E4AEDB}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SOA\SOA.csproj">
+      <Project>{D43F73EB-0F0B-4740-907E-09E4386E04E2}</Project>
+      <Name>SOA</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\H0CAPV6PH5CA3FK7D3CARPCRDFCA32CXW1CAO6VRSGCALSHBE1CA0MFBOGCAK4UGCKCASOBG7DCA55O5SJCA5MSXX7CA4XFR4XCA1W1MSMCA9M553ZCAKWBYC1CAFJTVY3CAYQLXN7CA1ACMYICAJV4ISD.jpg" />

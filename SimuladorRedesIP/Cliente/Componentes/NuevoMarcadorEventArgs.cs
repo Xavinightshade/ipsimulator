@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using RedesIP.SOA.Elementos;
 using RedesIP.Common;
 
 namespace SimuladorCliente.Vistas

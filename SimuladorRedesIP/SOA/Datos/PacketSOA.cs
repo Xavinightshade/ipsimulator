@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
-using BusinessLogic.Modelos.Logicos.Datos;
 
 namespace RedesIP.SOA
 {
@@ -32,12 +31,7 @@ namespace RedesIP.SOA
             set { _datos = value; }
         }
 
-        public PacketSOA(Packet paquete)
-        {
-            _datos = paquete.Datos;
-            _ipOrigen = paquete.IpOrigen;
-            _ipDestino = paquete.IpDestino;
-        }
+
         public PacketSOA()
         {
 
