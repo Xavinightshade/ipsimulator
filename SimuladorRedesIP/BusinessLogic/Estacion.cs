@@ -86,12 +86,14 @@ namespace RedesIP
         {
             _computadores.Add(pc.Id, pc);
             _puertos.Add(pc.PuertoEthernet.Id, pc.PuertoEthernet);
+            pc.InicializarEquipo();
         }
         public void CrearSwitch(SwitchLogico swi)
         {
 
             _switches.Add(swi.Id, swi);
             LLenarPuertos(_puertos, swi.PuertosEthernet);
+            swi.InicializarEquipo();
         }
         public void MoverPosicionElemento(Guid id, int x, int y)
         {
@@ -130,41 +132,21 @@ namespace RedesIP
             }
         }
 
-        private void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
-        {
-            if (FrameRecibido != null)
-                FrameRecibido(sender, e);
-        }
-        public event EventHandler<FrameRecibidoEventArgs> FrameRecibido;
+
 
 
 
 
 
         private List<Guid> _PuertosEscuchando = new List<Guid>();
-        public void EscucharPuerto(Guid idConexion)
-        {
-            CableDeRedLogico cable = _diccioCables[idConexion];
-            if (_PuertosEscuchando.Contains(cable.Puerto1.Id) || _PuertosEscuchando.Contains(cable.Puerto2.Id))
-            {
 
-            }
-            else
-            {
-                cable.FrameRecibidoPuerto1 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
-                cable.FrameRecibidoPuerto2 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
-                _PuertosEscuchando.Add(cable.Puerto1.Id);
-                _PuertosEscuchando.Add(cable.Puerto2.Id);
-            }
-
-
-
-        }
 
         public void CrearRouter(RouterLogico router)
         {
             _routers.Add(router.Id, router);
             LLenarPuertos(_puertos, router.PuertosEthernet);
+            router.InicializarEquipo();
+            
         }
 
         public void EstablecerDireccionIP(string ipAddress, Guid idPuerto)

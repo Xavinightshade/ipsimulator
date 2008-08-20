@@ -5,6 +5,7 @@ using RedesIP.Modelos.Datos;
 using System.Collections.ObjectModel;
 using RedesIP.Modelos.Equipos.Componentes;
 using RedesIP.Common;
+using RedesIP.SOA;
 
 
 
@@ -12,6 +13,15 @@ namespace RedesIP.Modelos.Logicos.Equipos
 {
 	public class SwitchLogico:EquipoLogico
 	{
+        public static SwitchSOA CrearSwitchSOA(SwitchLogico swiLogico)
+        {
+            SwitchSOA swiRespuesta = new SwitchSOA(swiLogico.TipoDeEquipo, swiLogico.Id, swiLogico.X, swiLogico.Y);
+            foreach (PuertoEthernetLogicoBase puerto in swiLogico.PuertosEthernet)
+            {
+                swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id));
+            }
+            return swiRespuesta;
+        }
 
 		private List<PuertoEthernetLogicoBase> _puertosEthernet=new List<PuertoEthernetLogicoBase>();
 		private SwitchTable _switchTable = new SwitchTable();

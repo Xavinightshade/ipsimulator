@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.ServiceModel;
-using RedesIP.SOA.Elementos;
 
 namespace RedesIP.SOA
 {
-	public interface IVisualizacion
-	{
-		[OperationContract(IsOneWay = true)]
+    public interface ICallBackEstacion
+    {
+        [OperationContract(IsOneWay = true)]
 		void CrearComputador(ComputadorSOA pc);
         [OperationContract(IsOneWay = true)]
         void CrearSwitch(SwitchSOA swi);
@@ -22,7 +22,6 @@ namespace RedesIP.SOA
         void EstablecerDireccionIP(Guid idPuerto, string ipAddress);
         [OperationContract(IsOneWay = true)]
 		void ActualizarEstacion(EstacionSOA estacion);
-		[OperationContract(IsOneWay = true)]
-		void EnviarInformacionConexion(MensajeSOA mensaje);
-	}
+
+    }
 }

@@ -30,6 +30,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
          public int Y { get { return _Y; } set { _Y = value; } }
 		 public abstract ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet { get; }
          public abstract void InicializarEquipo();
+
 	}
     public interface IUnique
     {

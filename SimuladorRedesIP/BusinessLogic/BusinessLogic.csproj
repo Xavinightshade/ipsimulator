@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenadorInformacion.cs" />
+    <Compile Include="ICallBackContract\ICallBackEstacion.cs" />
+    <Compile Include="ICallBackContract\ICallBackSniffer.cs" />
+    <Compile Include="IContrato\IModeloEstacion.cs" />
+    <Compile Include="IContrato\IModeloSniffer.cs" />
     <Compile Include="Estacion.cs" />
     <Compile Include="Datos\IPAddressFactory.cs" />
     <Compile Include="Datos\MACAddressFactory.cs" />
@@ -69,10 +73,13 @@
     <Compile Include="Equipos\EquipoLogico.cs" />
     <Compile Include="Equipos\RouterLogico.cs" />
     <Compile Include="Equipos\SwitchLogico.cs" />
-    <Compile Include="ICallBackContract.cs" />
-    <Compile Include="IContract.cs" />
+    <Compile Include="ICallBackContract\ICallBackContract.cs" />
+    <Compile Include="IContrato\IContract.cs" />
+    <Compile Include="PresenterBase.cs" />
     <Compile Include="PresenterSOA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sniffer\CableSniffer.cs" />
+    <Compile Include="Sniffer\SnifferMaster.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">

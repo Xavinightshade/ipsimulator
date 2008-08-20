@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using RedesIP.Common;
+using RedesIP.SOA;
+using BusinessLogic.Modelos.Logicos.Datos;
 
 
 namespace RedesIP.Modelos.Datos
@@ -11,7 +13,19 @@ namespace RedesIP.Modelos.Datos
 
 	public class Frame
 	{
-
+        public static FrameSOA ConvertirFrame(Frame frameLogico)
+        {
+            FrameSOA frameSOA = new FrameSOA();
+            frameSOA.MACAddressOrigen = frameLogico.MACAddressOrigen;
+            frameSOA.MACAddressDestino = frameLogico.MACAddressDestino;
+            PacketSOA paqueteSOA = new PacketSOA();
+            Packet paqueteLogico = frameLogico.Informacion as Packet;
+            paqueteSOA.IpOrigen = paqueteLogico.IpOrigen;
+            paqueteSOA.IpDestino = paqueteLogico.IpDestino;
+            paqueteSOA.Datos = paqueteLogico.Datos;
+            frameSOA.Paquete = paqueteSOA;
+            return frameSOA;
+        }
 		private IFrameMessage _informacion;
 
 		public IFrameMessage Informacion
