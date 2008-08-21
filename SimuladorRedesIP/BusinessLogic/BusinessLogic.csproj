@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenadorInformacion.cs" />
+    <Compile Include="Datos\DatosFrameArpBuscando.cs" />
+    <Compile Include="Datos\DatosFrameArpIPpEncontrada.cs" />
     <Compile Include="ICallBackContract\ICallBackEstacion.cs" />
     <Compile Include="ICallBackContract\ICallBackSniffer.cs" />
     <Compile Include="IContrato\IModeloEstacion.cs" />
@@ -75,10 +77,12 @@
     <Compile Include="Equipos\SwitchLogico.cs" />
     <Compile Include="ICallBackContract\ICallBackContract.cs" />
     <Compile Include="IContrato\IContract.cs" />
+    <Compile Include="OSI\CapaDatos.cs" />
     <Compile Include="PresenterLocal.cs" />
     <Compile Include="PresenterBase.cs" />
     <Compile Include="PresenterSOA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocolos\ARP.cs" />
     <Compile Include="Sniffer\ModeloCableSniffer.cs" />
     <Compile Include="Sniffer\ModeloSnifferMaster.cs" />
     <Compile Include="Sniffer\ModeloSnifferSwitch.cs" />
