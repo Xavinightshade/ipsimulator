@@ -86,19 +86,24 @@ namespace BusinessLogic.OSI
             }
             else
             {
+                PreguntarPorDireccion(paquete.IpDestino);
                 List<Packet> paquetesNoEnviadosEnDir = null;
                 if (!_paquetesNoEnviadosConDestino.ContainsKey(paquete.IpDestino))
                     _paquetesNoEnviadosConDestino.Add(paquete.IpDestino, new List<Packet>());
                 paquetesNoEnviadosEnDir = _paquetesNoEnviadosConDestino[paquete.IpDestino];
                 paquetesNoEnviadosEnDir.Add(paquete);
-                PreguntarPorDireccion(paquete.IpDestino);
+
             }
         }
 
         private void PreguntarPorDireccion(string ipAddress)
         {
-            IFrameMessage datoFrame = _protocoloArp.CrearFramePidiendoLaDireccion(_puerto.MACAddress, ipAddress);
-            EnviarFrame(datoFrame, MACAddressFactory.BroadCast);
+            if (!_paquetesNoEnviadosConDestino.ContainsKey(ipAddress))
+            {
+                IFrameMessage datoFrame = _protocoloArp.CrearFramePidiendoLaDireccion(_puerto.MACAddress, ipAddress);
+                EnviarFrame(datoFrame, MACAddressFactory.BroadCast);
+
+            }
         }
         private void EnviarFrame(IFrameMessage mensaje, string MACDestino)
         {

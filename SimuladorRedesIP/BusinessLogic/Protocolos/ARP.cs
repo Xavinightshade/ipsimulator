@@ -26,6 +26,7 @@ namespace BusinessLogic.Protocolos
         }
         public void ActualizarARP(DatosFrameArpIPEncontrada datosFrame)
         {
+
             _IP_To_MAC.Add(datosFrame.DireccionIP, datosFrame.MacAddress);
         }
     }

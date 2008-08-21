@@ -27,7 +27,9 @@ namespace SimuladorCliente.Formularios
         }
         public int Numero
         {
-            get { return int.Parse(_numero.Text); }
+            get {
+                return 4;
+                return int.Parse(_numero.Text); }
         }
 
         private void _Aceptar_Click(object sender, EventArgs e)

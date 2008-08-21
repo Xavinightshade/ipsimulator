@@ -62,8 +62,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
 			RegistrarFrame(puertoQueRecibioElFrame, frameRecibido);		
 
             /// Si es Broadcast
-            if (frameRecibido.MACAddressDestino==MACAddressFactory.BroadCast)
+            if (frameRecibido.MACAddressDestino == MACAddressFactory.BroadCast)
+            {
                 TransmitirFrameATodosLosPuertos(puertoQueRecibioElFrame, frameRecibido);
+                return;
+            }
 	
 			/// Le pregunto a la tabla del switch si conoce el puerto destino de este frame,
 			/// si es asi solo envio el frame a ese puerto.

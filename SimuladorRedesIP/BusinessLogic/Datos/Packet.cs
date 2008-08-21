@@ -32,5 +32,9 @@ namespace BusinessLogic.Modelos.Logicos.Datos
             _ipDestino = ipDestino;
             _datos = datos;
         }
+        public override string ToString()
+        {
+            return "";
+        }
     }
 }
