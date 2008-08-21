@@ -59,7 +59,7 @@ namespace RedesIP.Vistas
                         {
                             MarcadorEquipo marcadorEquipo = Estacion._marcadores[j] as MarcadorEquipo;
                             if (marcadorEquipo == null)
-                                return;
+                                continue;
                             if (marcadorEquipo!=null && marcadorEquipo.Equipo == par.Value)
                             {
                                 yaEstaSeleccionado = true;
