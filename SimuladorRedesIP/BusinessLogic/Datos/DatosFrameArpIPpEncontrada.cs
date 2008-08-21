@@ -23,8 +23,11 @@ namespace BusinessLogic.Datos
         public DatosFrameArpIPEncontrada(string direccionIP, string macAddress)
         {
             _direccionIP = direccionIP;
-            _direccionIP = direccionIP;
             _macAddress = macAddress;
         }
+        public override string ToString()
+        {
+            return _direccionIP + " en " + _macAddress;
+        } 
     }
 }

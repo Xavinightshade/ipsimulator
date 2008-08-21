@@ -18,12 +18,18 @@ namespace RedesIP.Modelos.Datos
             FrameSOA frameSOA = new FrameSOA();
             frameSOA.MACAddressOrigen = frameLogico.MACAddressOrigen;
             frameSOA.MACAddressDestino = frameLogico.MACAddressDestino;
-            PacketSOA paqueteSOA = new PacketSOA();
+            frameSOA.Info = frameLogico.Informacion.ToString();
             Packet paqueteLogico = frameLogico.Informacion as Packet;
-            paqueteSOA.IpOrigen = paqueteLogico.IpOrigen;
-            paqueteSOA.IpDestino = paqueteLogico.IpDestino;
-            paqueteSOA.Datos = paqueteLogico.Datos;
+            PacketSOA paqueteSOA = new PacketSOA();
+            if (paqueteLogico != null)
+            {
+                paqueteSOA.IpOrigen = paqueteLogico.IpOrigen;
+                paqueteSOA.IpDestino = paqueteLogico.IpDestino;
+                paqueteSOA.Datos = paqueteLogico.Datos;
+               
+            }
             frameSOA.Paquete = paqueteSOA;
+            
             return frameSOA;
         }
 		private IFrameMessage _informacion;

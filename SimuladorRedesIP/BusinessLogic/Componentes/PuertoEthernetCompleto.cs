@@ -10,7 +10,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
     {
         public static PuertoCompletoSOA ConvertirPuerto(PuertoEthernetCompleto puertoLogico)
         {
-            PuertoCompletoSOA puertoSOA = new PuertoCompletoSOA(puertoLogico.Id, puertoLogico.MACAddress, puertoLogico.Nombre);
+            PuertoCompletoSOA puertoSOA = new PuertoCompletoSOA(puertoLogico.Id, puertoLogico.MACAddress, puertoLogico.Nombre,puertoLogico.IPAddress);
             return puertoSOA;
         }
         private string _MACAddress;

@@ -16,6 +16,13 @@ namespace RedesIP.SOA
             get { return _paquete; }
             set { _paquete = value; }
         }
+        private string _info;
+        [DataMember]
+        public string Info
+        {
+            get { return _info; }
+            set { _info = value; }
+        }
 
         private string _MACAddressDestino;
         [DataMember]

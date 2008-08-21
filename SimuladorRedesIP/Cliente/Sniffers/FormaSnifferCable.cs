@@ -72,7 +72,7 @@ namespace SimuladorCliente
                 grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressDestino);
                 grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.IpOrigen);
                 grid[1, 5] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.IpDestino);
-                grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.Datos);
+                grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.Datos+" "+mensaje.Frame.Info);
 
                 grid[1, 0].View = _vista;
                 grid[1, 1].View = _vista;

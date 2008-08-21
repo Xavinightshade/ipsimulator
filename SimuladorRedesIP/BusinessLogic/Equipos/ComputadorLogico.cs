@@ -6,6 +6,8 @@ using RedesIP.Modelos.Equipos.Componentes;
 using System.Collections.ObjectModel;
 using RedesIP.Common;
 using BusinessLogic.Modelos.Logicos.Datos;
+using BusinessLogic.OSI;
+using BusinessLogic.Protocolos;
 
 
 namespace RedesIP.Modelos.Logicos.Equipos
@@ -15,6 +17,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
 		private PuertoEthernetCompleto _puertoEthernet;
+        private CapaDatos _capaDatos;
 		private string _nombreDelPc;
 		/// <summary>
 		/// Puerto Ethernet Del PC
@@ -42,15 +45,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		}
 
 
-		private void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
-		{
-
-
-		}
         public void Ping(Guid idEquipo, string ipDestino, string datos)
         {
             Packet paquete = new Packet(_puertoEthernet.IPAddress, ipDestino, datos);
-            EnviarMensaje(paquete, MACAddressFactory.NewMAC());
+            _capaDatos.EnviarPaquete(paquete);
         }
  
 
@@ -81,7 +79,8 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
         public override void InicializarEquipo()
         {
-            _puertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
+            _capaDatos = new CapaDatos(new ARP(), _puertoEthernet);
+
 
         }
 

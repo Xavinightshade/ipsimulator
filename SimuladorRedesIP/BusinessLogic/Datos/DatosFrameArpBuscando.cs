@@ -18,5 +18,9 @@ namespace BusinessLogic.Datos
        {
            _ipDestino=ipDestino;
        }
+       public override string ToString()
+       {
+           return "Buscando: " + _ipDestino;
+       }
     }
 }

@@ -42,7 +42,7 @@ namespace RedesIP.Vistas
                         if (formaPC.ShowDialog() == DialogResult.OK)
                             _estacion.Contrato.PeticionEstablecerDatosPuertoCompleto(
                                 new RedesIP.SOA.PuertoCompletoSOA(pc.Puerto.Id,
-                                    formaPC.MACAddress, formaPC.NombrePuerto));
+                                    formaPC.MACAddress, formaPC.NombrePuerto,formaPC.IPAddress));
                         return;
                     }
                 }
