@@ -51,10 +51,17 @@ namespace BusinessLogic.OSI
 
                 _protocoloArp.ActualizarARP(datosFrame);
                 List<Packet> paqueteNoEnviados = _paquetesNoEnviadosConDestino[datosFrame.DireccionIP];
-                foreach (Packet paqueteNoEnviado in paqueteNoEnviados)
-                {
-                    EnviarPaquete(paqueteNoEnviado);
-                }
+                List<Packet> temp = new List<Packet>();
+                    foreach (Packet paqueteNoEnviado in paqueteNoEnviados)
+                    {
+                        temp.Add(paqueteNoEnviado);                       
+                    }
+                    foreach (Packet item in temp)
+                    {
+                        EnviarPaquete(item);
+                    }
+
+
 
         }
         private Dictionary<string, List<Packet>> _paquetesNoEnviadosConDestino = new Dictionary<string, List<Packet>>();
