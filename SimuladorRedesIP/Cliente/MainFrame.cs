@@ -212,7 +212,10 @@ namespace SimuladorCliente
                     InicializarServicio(singletonCalculator,modeloConexion.Puerto,modeloConexion.DireccionIp);
 
                     notifyIcon1.Visible = true;
-                    notifyIcon1.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado", ToolTipIcon.Info);
+                    notifyIcon1.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado."+Environment.NewLine+
+                        "Dirección IP: "+modeloConexion.DireccionIp+ Environment.NewLine+
+                    "Puerto: "+modeloConexion.Puerto,
+                    ToolTipIcon.Info);
                 }
             }		
 
