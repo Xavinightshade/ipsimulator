@@ -137,7 +137,7 @@ namespace RedesIP.Vistas
         private DockPanel _dockMain;
 
 
-        internal void Inicializar(PresenterLocal presenterLocal, DockPanel dockMain)
+        internal void Inicializar(IModeloSOA presenterLocal, DockPanel dockMain)
         {
             _server = presenterLocal;
             _dockMain = dockMain;

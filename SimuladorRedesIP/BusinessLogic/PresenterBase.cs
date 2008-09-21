@@ -36,7 +36,6 @@ namespace RedesIP
         }
         public void SetEstacion(EstacionModelo estacion)
         {
-            _vistas.Clear();
             _estacion = estacion;
             _snifferMaster = new ModeloSnifferMaster(_vistas, estacion);
         }

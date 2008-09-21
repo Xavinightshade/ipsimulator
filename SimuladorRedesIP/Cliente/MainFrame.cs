@@ -106,6 +106,9 @@ namespace SimuladorCliente
                 (context, binding, address);
            IModeloSOA clien = factory.CreateChannel();
 
+           _estacionView.Limpiar();
+           _estacionView.Inicializar(clien, _dockMain);
+     
 
 
 
