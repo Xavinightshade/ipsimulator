@@ -88,7 +88,6 @@ namespace SimuladorCliente
 
 
 
-		IModeloSOA _clien = null;
 
 
         private void ConectarSOA(string ipAddress,string puerto)
@@ -121,14 +120,7 @@ namespace SimuladorCliente
 
 
 
-		private void MainFrame_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			if (_clien != null)
-			{
-				_clien.DesconectarCliente();
-				//_clien.Close();
-			}
-		}
+
 
 		private void toolStripButton5_Click(object sender, EventArgs e)
 		{
@@ -195,10 +187,11 @@ namespace SimuladorCliente
             {
                 if (customForm.ShowDialog() == DialogResult.OK)
                 {
-                    IModeloSOA singletonCalculator = new PresenterSOA();
-                    _clien = singletonCalculator;
+                    PresenterSOA presenterSOA = new PresenterSOA();
+                    presenterSOA.SetEstacion(_estacionModelo);
 
-                    InicializarServicio(singletonCalculator,modeloConexion.Puerto,modeloConexion.DireccionIp);
+
+                    InicializarServicio(presenterSOA, modeloConexion.Puerto, modeloConexion.DireccionIp);
 
                     notifyIcon1.Visible = true;
                     notifyIcon1.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado."+Environment.NewLine+
