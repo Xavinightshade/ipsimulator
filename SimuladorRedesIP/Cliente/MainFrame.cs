@@ -15,6 +15,7 @@ using RedesIP.SOA;
 using SimuladorCliente.Herramientas;
 using System.Net;
 using TesGestion.SOA;
+using SimuladorCliente.Formularios;
 
 namespace SimuladorCliente
 {
@@ -90,12 +91,14 @@ namespace SimuladorCliente
 		IModeloSOA _clien = null;
 
 
-        private void ConectarSOA()
+        private void ConectarSOA(string ipAddress,string puerto)
         {
             System.ServiceModel.Channels.Binding binding =
                 new NetTcpBinding(SecurityMode.None, true);
             EndpointAddress address =
-                new EndpointAddress(@"net.tcp://localhost:8000/Simulador/");
+
+
+               new EndpointAddress(@"net.tcp://" + ipAddress + ":" + puerto + "/Simulador/");
 
 
             InstanceContext context = new InstanceContext(_estacionView);
@@ -133,31 +136,9 @@ namespace SimuladorCliente
 		}
 
 
-        private void button2_Click(object sender, EventArgs e)
-        {
 
-            IModeloSOA singletonCalculator = new PresenterSOA();
-            _clien = singletonCalculator;
 
-            ServiceHost calculatorHost =
-                new ServiceHost(singletonCalculator);
 
-            NetTcpBinding binding =
-                new NetTcpBinding(SecurityMode.None, true);
-            Uri address =
-                new Uri(@"net.tcp://localhost:8000/Simulador");
-
-            calculatorHost.AddServiceEndpoint(
-                typeof(IModeloSOA), binding, address);
-
-            calculatorHost.Open();
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ConectarSOA();
-        }
 
         private void guardarEnBDToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -196,7 +177,15 @@ namespace SimuladorCliente
 
         private void cToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConectarSOA();
+            using (ConexionServidor formularioConexion = new ConexionServidor())
+            {
+                if (formularioConexion.ShowDialog() == DialogResult.OK)
+                {
+                    ConectarSOA(formularioConexion.IPAddress.ToString(),formularioConexion.Puerto.ToString());
+                }
+            }	
+
+            
         }
 
         private void inicializarServidorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -230,7 +219,8 @@ namespace SimuladorCliente
             NetTcpBinding binding =
                 new NetTcpBinding(SecurityMode.None, true);
             Uri address =
-                new Uri(@"net.tcp://"+direccionIP +":"+puerto+"/Simulador");
+
+               new Uri(@"net.tcp://"+direccionIP +":"+puerto+"/Simulador");
 
             calculatorHost.AddServiceEndpoint(
                 typeof(IModeloSOA), binding, address);

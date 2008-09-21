@@ -6,7 +6,7 @@ using System.ServiceModel;
 
 namespace RedesIP.SOA
 {
-    [ServiceContract(Name = "EstacionServer", SessionMode = SessionMode.Required, CallbackContract = typeof(IVisualizacion))]
+    [ServiceContract(Name = "EstacionServer", SessionMode = SessionMode.Required, CallbackContract = typeof(ICallBackSniffer))]
 
     public interface IModeloSniffer
     {

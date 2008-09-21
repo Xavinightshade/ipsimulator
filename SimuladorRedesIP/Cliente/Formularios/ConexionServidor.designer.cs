@@ -78,7 +78,7 @@
             this.ipTextBox1.ReadOnly = false;
             this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
             this.ipTextBox1.TabIndex = 1;
-            this.ipTextBox1.Text = "...";
+            this.ipTextBox1.Text = "192.168.0.101";
             // 
             // label3
             // 
@@ -95,6 +95,7 @@
             this._puerto.Name = "_puerto";
             this._puerto.Size = new System.Drawing.Size(48, 20);
             this._puerto.TabIndex = 9;
+            this._puerto.Text = "8000";
             // 
             // ConexionServidor
             // 
