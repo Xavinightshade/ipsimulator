@@ -54,36 +54,48 @@ namespace SimuladorCliente
 
 
 
-		private void toolStripButton2_Click(object sender, EventArgs e)
+		private void pc_Click(object sender, EventArgs e)
 		{
 			_estacionView.PeticionCrearEquipo(TipoDeEquipo.Computador);
-			toolStripButton1.Enabled = true;
-			toolStripButton3.Enabled = true;
-			toolStripButton4.Enabled = true;
+            _mouse.CheckState = CheckState.Unchecked;
+            _pc.CheckState = CheckState.Checked;
+            _switch.CheckState = CheckState.Unchecked;
+            _conexion.CheckState = CheckState.Unchecked;
+            _router.CheckState = CheckState.Unchecked;
+            _punta.CheckState = CheckState.Unchecked;
 		}
 
-		private void toolStripButton1_Click(object sender, EventArgs e)
+		private void Nouse_Click(object sender, EventArgs e)
 		{
 			_estacionView.CambiarHerramienta(Herramienta.Seleccion);
-			toolStripButton2.Enabled = true;
-			toolStripButton3.Enabled = true;
-			toolStripButton4.Enabled = true;
+            _mouse.CheckState = CheckState.Checked;
+            _pc.CheckState = CheckState.Unchecked;
+            _switch.CheckState = CheckState.Unchecked;
+            _conexion.CheckState = CheckState.Unchecked;
+            _router.CheckState = CheckState.Unchecked;
+            _punta.CheckState = CheckState.Unchecked;
 		}
 
-		private void toolStripButton3_Click(object sender, EventArgs e)
+		private void Switch_Click(object sender, EventArgs e)
 		{
 			_estacionView.PeticionCrearEquipo(TipoDeEquipo.Switch);
-			toolStripButton2.Enabled = true;
-			toolStripButton1.Enabled = true;
-			toolStripButton4.Enabled = true;
+            _mouse.CheckState = CheckState.Unchecked;
+            _pc.CheckState = CheckState.Unchecked;
+            _switch.CheckState = CheckState.Checked;
+            _conexion.CheckState = CheckState.Unchecked;
+            _router.CheckState = CheckState.Unchecked;
+            _punta.CheckState = CheckState.Unchecked;
 		}
 
-		private void toolStripButton4_Click(object sender, EventArgs e)
+		private void Conexion_Click(object sender, EventArgs e)
 		{
 			_estacionView.CambiarHerramienta(Herramienta.Conectar);
-			toolStripButton2.Enabled = true;
-			toolStripButton3.Enabled = true;
-			toolStripButton1.Enabled = true;
+            _mouse.CheckState = CheckState.Unchecked;
+            _pc.CheckState = CheckState.Unchecked;
+            _switch.CheckState = CheckState.Unchecked;
+            _conexion.CheckState = CheckState.Checked;
+            _router.CheckState = CheckState.Unchecked;
+            _punta.CheckState = CheckState.Unchecked;
 		}
 
 
@@ -115,19 +127,25 @@ namespace SimuladorCliente
             clien.ConectarCliente();
 
       //      button1.Visible = false;
-            toolStripButton1.Enabled = true;
-            toolStripButton2.Enabled = true;
-            toolStripButton3.Enabled = true;
-            toolStripButton4.Enabled = true;
+            _mouse.Enabled = true;
+            _pc.Enabled = true;
+            _switch.Enabled = true;
+            _conexion.Enabled = true;
         }
 
 
 
 
 
-		private void toolStripButton5_Click(object sender, EventArgs e)
+		private void Punta_Click(object sender, EventArgs e)
 		{
 			_estacionView.CambiarHerramienta(Herramienta.Marcadores);
+            _mouse.CheckState = CheckState.Unchecked;
+            _pc.CheckState = CheckState.Unchecked;
+            _switch.CheckState = CheckState.Unchecked;
+            _conexion.CheckState = CheckState.Unchecked;
+            _router.CheckState = CheckState.Unchecked;
+            _punta.CheckState = CheckState.Checked;
 		}
 
 
@@ -148,11 +166,7 @@ namespace SimuladorCliente
             presenter.SetEstacion(_estacionModelo);
             _estacionView.Inicializar(presenter, _dockMain);
             presenter.ConectarCliente();
-        //    button1.Visible = false;
-            toolStripButton1.Enabled = true;
-            toolStripButton2.Enabled = true;
-            toolStripButton3.Enabled = true;
-            toolStripButton4.Enabled = true;
+
         }
 
         private void eliToolStripMenuItem_Click(object sender, EventArgs e)
@@ -160,12 +174,15 @@ namespace SimuladorCliente
             AccesoDatos.AlmacenadorInformacion.Eliminar(new Guid("0f65682b-0d70-4b29-a72a-e7784a21a3c9"));
         }
 
-        private void toolStripButton6_Click(object sender, EventArgs e)
+        private void Router_Click(object sender, EventArgs e)
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Router);
-            toolStripButton2.Enabled = true;
-            toolStripButton1.Enabled = true;
-            toolStripButton4.Enabled = true;
+            _mouse.CheckState = CheckState.Unchecked;
+            _pc.CheckState = CheckState.Unchecked;
+            _switch.CheckState = CheckState.Unchecked;
+            _conexion.CheckState = CheckState.Unchecked;
+            _router.CheckState = CheckState.Checked;
+            _punta.CheckState = CheckState.Unchecked;
         }
 
 
@@ -177,6 +194,7 @@ namespace SimuladorCliente
                 if (formularioConexion.ShowDialog() == DialogResult.OK)
                 {
                     ConectarSOA(formularioConexion.IPAddress.ToString(),formularioConexion.Puerto.ToString());
+                    _servicioConectado = true;
                 }
             }	
 
@@ -224,11 +242,23 @@ namespace SimuladorCliente
             calculatorHost.Open();
         }
 
+        private void MainFrame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_servicioConectado)
+                _estacionView.Contrato.DesconectarCliente();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            _estacionView.Contrato.DesconectarCliente();
+            _servicioConectado = false;
+        }
 
 
 
 
 
+        private bool _servicioConectado;
 
 
 
