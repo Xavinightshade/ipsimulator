@@ -54,6 +54,9 @@
     <Compile Include="AlmacenadorInformacion.cs" />
     <Compile Include="Datos\DatosFrameArpBuscando.cs" />
     <Compile Include="Datos\DatosFrameArpIPpEncontrada.cs" />
+    <Compile Include="Domain Object\DomainObject.cs" />
+    <Compile Include="Domain Object\Rule.cs" />
+    <Compile Include="Domain Object\SimpleRule.cs" />
     <Compile Include="ICallBackContract\ICallBackEstacion.cs" />
     <Compile Include="ICallBackContract\ICallBackSniffer.cs" />
     <Compile Include="IContrato\IModeloEstacion.cs" />

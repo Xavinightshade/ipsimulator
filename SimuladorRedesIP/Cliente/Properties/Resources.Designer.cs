@@ -60,6 +60,13 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Icon AppIcon {
+            get {
+                object obj = ResourceManager.GetObject("AppIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Cable {
             get {
                 object obj = ResourceManager.GetObject("Cable", resourceCulture);

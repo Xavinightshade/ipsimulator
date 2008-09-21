@@ -13,6 +13,8 @@ using WeifenLuo.WinFormsUI.Docking;
 using SimuladorCliente.Vistas;
 using RedesIP.SOA;
 using SimuladorCliente.Herramientas;
+using System.Net;
+using TesGestion.SOA;
 
 namespace SimuladorCliente
 {
@@ -189,6 +191,50 @@ namespace SimuladorCliente
             toolStripButton1.Enabled = true;
             toolStripButton4.Enabled = true;
         }
+
+
+
+        private void cToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConectarSOA();
+        }
+
+        private void inicializarServidorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CustomConnectionModel modeloConexion = new CustomConnectionModel(8000);
+            using (CustomConnectionForm customForm = new CustomConnectionForm(modeloConexion))
+            {
+                if (customForm.ShowDialog() == DialogResult.OK)
+                {
+                    IModeloSOA singletonCalculator = new PresenterSOA();
+                    _clien = singletonCalculator;
+
+                    InicializarServicio(singletonCalculator,modeloConexion.Puerto,modeloConexion.DireccionIp);
+
+                    notifyIcon1.Visible = true;
+                    notifyIcon1.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado", ToolTipIcon.Info);
+                }
+            }		
+
+
+        }
+
+        private static void InicializarServicio(IModeloSOA singletonCalculator, string puerto, string direccionIP)
+        {
+            ServiceHost calculatorHost =
+                new ServiceHost(singletonCalculator);
+
+            NetTcpBinding binding =
+                new NetTcpBinding(SecurityMode.None, true);
+            Uri address =
+                new Uri(@"net.tcp://"+direccionIP +":"+puerto+"/Simulador");
+
+            calculatorHost.AddServiceEndpoint(
+                typeof(IModeloSOA), binding, address);
+
+            calculatorHost.Open();
+        }
+
 
 
 

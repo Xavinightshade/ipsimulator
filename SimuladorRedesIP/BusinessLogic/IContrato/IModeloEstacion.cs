@@ -7,6 +7,8 @@ using RedesIP.SOA;
 
 namespace RedesIP.SOA
 {
+    [ServiceContract(Name = "EstacionServer", SessionMode = SessionMode.Required, CallbackContract = typeof(IVisualizacion))]
+
     public interface IModeloEstacion
     {
         [OperationContract()]

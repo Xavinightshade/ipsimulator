@@ -18,6 +18,8 @@ namespace RedesIP.Modelos.Logicos.Equipos
             }
             return rouRespuesta;
         }
+
+
         private List<PuertoEthernetLogicoBase> _puertosEthernet = new List<PuertoEthernetLogicoBase>();
 
 		public RouterLogico(Guid id,int X,int Y):base(id,TipoDeEquipo.Router,X,Y)

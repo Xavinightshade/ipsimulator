@@ -201,6 +201,10 @@
       <DependentUpon>FormaSnifferCable.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utilidades\Formulario de Conexion Servidor\CustomConnectionForm.resx">
+      <DependentUpon>CustomConnectionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -241,6 +245,13 @@
     <Compile Include="EstacionView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utilidades\Formulario de Conexion Servidor\CustomConnectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilidades\Formulario de Conexion Servidor\CustomConnectionForm.designer.cs">
+      <DependentUpon>CustomConnectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilidades\Formulario de Conexion Servidor\CustomConnectionModel.cs" />
     <Compile Include="Utilidades\IRegistroMovimientosMouse.cs" />
     <Compile Include="Marcadores\MarcadorBase.cs">
     </Compile>
@@ -338,15 +349,16 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\AppIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="Red.sdf">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

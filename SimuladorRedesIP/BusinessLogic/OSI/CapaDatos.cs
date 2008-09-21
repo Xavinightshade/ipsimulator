@@ -26,6 +26,7 @@ namespace BusinessLogic.OSI
         {
             DatosFrameArpIPEncontrada datosFrameEncontrada = e.FrameRecibido.Informacion as DatosFrameArpIPEncontrada;
             DatosFrameArpBuscando datosFrameBuscando = e.FrameRecibido.Informacion as DatosFrameArpBuscando;
+            Packet paquete = e.FrameRecibido.Informacion as Packet;
             if (datosFrameEncontrada != null)
             {
                 ProcesarIPEncontrada(datosFrameEncontrada);
@@ -34,7 +35,21 @@ namespace BusinessLogic.OSI
             {
                 ProcesarBusquedaDeDireccionIP(datosFrameBuscando,e.FrameRecibido.MACAddressOrigen);
             }
+            if (paquete != null)
+                ProcesarPaquete(paquete);
             
+        }
+
+        private void ProcesarPaquete(Packet paquete)
+        {
+            if (paquete.Datos.Contains("Reply"))
+            {
+                return;
+            }
+            if (paquete.IpDestino==_puerto.IPAddress)
+            {
+                EnviarPaquete(new Packet(_puerto.IPAddress, paquete.IpOrigen, "Reply " + paquete.Datos));
+            }
         }
 
         private void ProcesarBusquedaDeDireccionIP(DatosFrameArpBuscando datosFrameBuscando,string macOrigen)
@@ -48,7 +63,10 @@ namespace BusinessLogic.OSI
 
         private void ProcesarIPEncontrada(DatosFrameArpIPEncontrada datosFrame)
         {
-
+            if (datosFrame.DireccionIP == _puerto.IPAddress)
+                return;
+            if (_protocoloArp.ContieneLaDireccionDe(datosFrame.DireccionIP))
+                return;
                 _protocoloArp.ActualizarARP(datosFrame);
                 List<Packet> paqueteNoEnviados = _paquetesNoEnviadosConDestino[datosFrame.DireccionIP];
                 List<Packet> temp = new List<Packet>();
