@@ -63,15 +63,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
 
-		public override ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet
-		{
-			get {
-			Collection<PuertoEthernetLogicoBase> puertos=	new Collection<PuertoEthernetLogicoBase>();
-				puertos.Add(_puertoEthernet);
 
-				return new ReadOnlyCollection<PuertoEthernetLogicoBase>(puertos);
-			}
-		}
         public override void AgregarPuerto(Guid idPuerto,string nombre)
         {
             _puertoEthernet = new PuertoEthernetCompleto(MACAddressFactory.NewMAC(), idPuerto,nombre);

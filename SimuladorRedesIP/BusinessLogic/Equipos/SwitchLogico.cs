@@ -30,7 +30,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
         {
             get { return _switchTable; }
         }
-		public override ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet
+		public  ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}

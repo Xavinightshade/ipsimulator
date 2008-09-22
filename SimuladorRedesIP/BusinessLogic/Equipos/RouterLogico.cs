@@ -4,6 +4,8 @@ using System.Text;
 using RedesIP.Modelos.Equipos.Componentes;
 using RedesIP.Common;
 using RedesIP.SOA;
+using BusinessLogic.OSI;
+using BusinessLogic.Protocolos;
 
 namespace RedesIP.Modelos.Logicos.Equipos
 {
@@ -20,26 +22,31 @@ namespace RedesIP.Modelos.Logicos.Equipos
         }
 
 
-        private List<PuertoEthernetLogicoBase> _puertosEthernet = new List<PuertoEthernetLogicoBase>();
+        private List<PuertoEthernetCompleto> _puertosEthernet = new List<PuertoEthernetCompleto>();
+
+        public List<PuertoEthernetCompleto> PuertosEthernet
+        {
+            get { return _puertosEthernet; }
+        }
 
 		public RouterLogico(Guid id,int X,int Y):base(id,TipoDeEquipo.Router,X,Y)
 		{
 			
 		}
 
-		public override System.Collections.ObjectModel.ReadOnlyCollection<RedesIP.Modelos.Equipos.Componentes.PuertoEthernetLogicoBase> PuertosEthernet
-		{
-            get { return _puertosEthernet.AsReadOnly(); }
-		}
+
         public override void AgregarPuerto(Guid idPuerto,string nombre)
         {
             _puertosEthernet.Add(new PuertoEthernetCompleto(MACAddressFactory.NewMAC(), idPuerto,nombre));
 
         }
-
+        private Dictionary<PuertoEthernetCompleto, CapaDatos> _puertoEthernetCapaDatos = new Dictionary<PuertoEthernetCompleto, CapaDatos>();
         public override void InicializarEquipo()
         {
-            //throw new NotImplementedException();
+            foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
+            {
+                _puertoEthernetCapaDatos.Add(puerto, new CapaDatos(new ARP(), puerto));
+            }
         }
     }
 }

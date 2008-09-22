@@ -14,50 +14,50 @@ namespace AccesoDatos
     {
         public static void AlmacenarEstacion(EstacionModelo estacion)
         {
-            Estaciones estacionBD = new Estaciones();
-            estacionBD.Id = estacion.Id;
-            List<EquipoLogico> equipos = new List<EquipoLogico>();
-            foreach (KeyValuePair<Guid,ComputadorLogico> pc in estacion.Computadores)
-            {
-                equipos.Add(pc.Value);
-            }
-            foreach (KeyValuePair<Guid, SwitchLogico> swi in estacion.Switches)
-            {
-                equipos.Add(swi.Value);
-            }
-            foreach (KeyValuePair<Guid, RouterLogico> rou in estacion.Routers)
-            {
-                equipos.Add(rou.Value);
-            }
-            foreach (EquipoLogico equipoLogico in equipos)
-            {
+            //Estaciones estacionBD = new Estaciones();
+            //estacionBD.Id = estacion.Id;
+            //List<EquipoLogico> equipos = new List<EquipoLogico>();
+            //foreach (KeyValuePair<Guid,ComputadorLogico> pc in estacion.Computadores)
+            //{
+            //    equipos.Add(pc.Value);
+            //}
+            //foreach (KeyValuePair<Guid, SwitchLogico> swi in estacion.Switches)
+            //{
+            //    equipos.Add(swi.Value);
+            //}
+            //foreach (KeyValuePair<Guid, RouterLogico> rou in estacion.Routers)
+            //{
+            //    equipos.Add(rou.Value);
+            //}
+            //foreach (EquipoLogico equipoLogico in equipos)
+            //{
 
-                Equipos equipoBD = new Equipos();
-                equipoBD.Id = equipoLogico.Id;
-                equipoBD.TipoDeEquipo = (int)equipoLogico.TipoDeEquipo;
-                equipoBD.IdEstacion = estacion.Id;
-                equipoBD.X = equipoLogico.X;
-                equipoBD.Y = equipoLogico.Y;
-                foreach (PuertoEthernetLogicoBase puertoLogico in equipoLogico.PuertosEthernet)
-                {
-                    Puertos puertoBD = new Puertos();
-                    puertoBD.Id = puertoLogico.Id;
-                    puertoBD.IdEquipo = equipoLogico.Id;
-                    equipoBD.AgregarPuerto(puertoBD);
-                }
-                estacionBD.AgregarEquipo(equipoBD);
-            }
-            foreach (KeyValuePair<Guid, CableDeRedLogico> par in estacion.Cables)
-            {
-                CableDeRedLogico cableLogico = par.Value;
-                Cables cableBD = new Cables();
-                cableBD.Id = cableLogico.Id;
-                cableBD.IdPuerto1 = cableLogico.Puerto1.Id;
-                cableBD.IdPuerto2 = cableLogico.Puerto2.Id;
-                estacionBD.AgregarCable(cableBD);
+            //    Equipos equipoBD = new Equipos();
+            //    equipoBD.Id = equipoLogico.Id;
+            //    equipoBD.TipoDeEquipo = (int)equipoLogico.TipoDeEquipo;
+            //    equipoBD.IdEstacion = estacion.Id;
+            //    equipoBD.X = equipoLogico.X;
+            //    equipoBD.Y = equipoLogico.Y;
+            //    foreach (PuertoEthernetLogicoBase puertoLogico in equipoLogico.PuertosEthernet)
+            //    {
+            //        Puertos puertoBD = new Puertos();
+            //        puertoBD.Id = puertoLogico.Id;
+            //        puertoBD.IdEquipo = equipoLogico.Id;
+            //        equipoBD.AgregarPuerto(puertoBD);
+            //    }
+            //    estacionBD.AgregarEquipo(equipoBD);
+            //}
+            //foreach (KeyValuePair<Guid, CableDeRedLogico> par in estacion.Cables)
+            //{
+            //    CableDeRedLogico cableLogico = par.Value;
+            //    Cables cableBD = new Cables();
+            //    cableBD.Id = cableLogico.Id;
+            //    cableBD.IdPuerto1 = cableLogico.Puerto1.Id;
+            //    cableBD.IdPuerto2 = cableLogico.Puerto2.Id;
+            //    estacionBD.AgregarCable(cableBD);
 
-            }
-            AccesoDatosBD.GuardarEstacion(estacionBD);
+            //}
+            //AccesoDatosBD.GuardarEstacion(estacionBD);
         }
         public static void Eliminar(Guid id)
         {

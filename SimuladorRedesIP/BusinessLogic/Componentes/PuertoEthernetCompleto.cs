@@ -26,6 +26,14 @@ namespace RedesIP.Modelos.Equipos.Componentes
             get { return _IPAddress; }
             set { _IPAddress = value; }
         }
+        private string _mascara;
+
+        public string Mascara
+        {
+            get { return _mascara; }
+            set { _mascara = value; }
+        }
+
         public PuertoEthernetCompleto(string MACAddress, Guid id,string nombre)
             : base(id,nombre)
         {

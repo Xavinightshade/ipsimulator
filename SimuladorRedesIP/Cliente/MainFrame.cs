@@ -25,6 +25,8 @@ namespace SimuladorCliente
         EstacionModelo _estacionModelo;
 		public MainFrame()
 		{
+            BusinessLogic.IPAddressFactory.GetValor("1.23.456.78");
+            BusinessLogic.IPAddressFactory.PerteneceAlaRed("", 22);
 			InitializeComponent();
 
             FormaEstacion formaEstacion = new FormaEstacion();

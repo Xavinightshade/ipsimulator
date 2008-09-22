@@ -124,7 +124,14 @@ namespace RedesIP
         }
 
 
-        private void LLenarPuertos(Dictionary<Guid, PuertoEthernetLogicoBase> diccionarioPuertos, IEnumerable<PuertoEthernetLogicoBase> puertos)
+        private static void LLenarPuertos(Dictionary<Guid, PuertoEthernetLogicoBase> diccionarioPuertos, IEnumerable<PuertoEthernetLogicoBase> puertos)
+        {
+            foreach (PuertoEthernetLogicoBase puerto in puertos)
+            {
+                diccionarioPuertos.Add(puerto.Id, puerto);
+            }
+        }
+        private static void LLenarPuertos(Dictionary<Guid, PuertoEthernetLogicoBase> diccionarioPuertos, IEnumerable<PuertoEthernetCompleto> puertos)
         {
             foreach (PuertoEthernetLogicoBase puerto in puertos)
             {
