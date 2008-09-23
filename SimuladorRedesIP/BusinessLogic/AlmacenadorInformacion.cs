@@ -99,7 +99,7 @@ namespace AccesoDatos
             {
                 if (estacionBD.Foto == null)
                     continue;
-                redes.Add(new RedBrowserModel(estacionBD.Foto.ToArray(), estacionBD.Nombre));
+                redes.Add(new RedBrowserModel(estacionBD.Foto.ToArray(), estacionBD.Nombre,estacionBD.Id));
             }
             return redes;
         }

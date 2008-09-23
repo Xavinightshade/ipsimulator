@@ -9,6 +9,12 @@ namespace SimuladorCliente.Formularios
 {
     public class RedBrowserModel
     {
+        private Guid _id;
+
+        public Guid Id
+        {
+            get { return _id; }
+        }
         private Image _imagen;
 
         public Image Imagen
@@ -21,8 +27,14 @@ namespace SimuladorCliente.Formularios
         {
             get { return _nombre; }
         }
-        public RedBrowserModel(byte[] imagen,string nombre)
+
+        public string Descripcion
         {
+            get { return _nombre+Environment.NewLine+_id.ToString()+Environment.NewLine+DateTime.Now.ToString(); }
+        }
+        public RedBrowserModel(byte[] imagen,string nombre,Guid id)
+        {
+            _id = id;
             _nombre = nombre;
             using (MemoryStream ms = new MemoryStream(imagen))
             {
