@@ -145,6 +145,7 @@ namespace RedesIP.Vistas
 			_puerto1 = null;
 			_equipos.Clear();
 			_switches.Clear();
+            _routers.Clear();
 			_computadores.Clear();
 			_marcadores.Clear();
 		}

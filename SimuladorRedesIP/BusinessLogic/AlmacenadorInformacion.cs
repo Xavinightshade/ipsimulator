@@ -142,6 +142,14 @@ namespace AccesoDatos
                         estacionLogica.CrearSwitch(swi);
 
                         break;
+                    case TipoDeEquipo.Router:
+                        RouterLogico rou = new RouterLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
+                        foreach (Puertos puertoBD in equipoBD.PuertosBD)
+                        {
+                            rou.AgregarPuerto(puertoBD.Id, "E." + equipoBD.PuertosBD.IndexOf(puertoBD).ToString());
+                        }
+                        estacionLogica.CrearRouter(rou);
+                        break;
                     default:
                         break;
                 }
