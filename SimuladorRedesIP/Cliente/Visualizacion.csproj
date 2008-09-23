@@ -382,6 +382,25 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Network-Internet-Connection-16x16.png" />
+    <None Include="Resources\Network-Drive-16x16.png" />
+    <None Include="Resources\sm_black_pointer.gif" />
+    <None Include="Resources\Pointer-black.png" />
+    <None Include="Resources\database-search-16x16.png" />
+    <None Include="Resources\database-process-16x16.png" />
+    <None Include="Resources\database-16x16.png" />
+    <None Include="Resources\globe-16x16.png" />
+    <None Include="Resources\synchronize-16x16.png" />
+    <None Include="Resources\disconnect-16x16.png" />
+    <None Include="Resources\connect-16x16.png" />
+    <None Include="Resources\delete-16x16.png" />
+    <None Include="Resources\save-16x16.png" />
+    <None Include="Resources\new-16x16.png" />
+    <None Include="Resources\open-16x16.png" />
+    <None Include="Resources\open.ico" />
+    <None Include="Resources\Stop.ico" />
+    <None Include="Resources\Stop.png" />
+    <None Include="Resources\Bin %28with item%29.png" />
     <None Include="Resources\AlarmaLiquidacion.gif" />
     <None Include="Resources\Guardar.bmp" />
     <None Include="Resources\Delete.bmp" />

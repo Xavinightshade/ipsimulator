@@ -275,6 +275,11 @@ namespace SimuladorCliente
 
         private bool _servicioConectado;
 
+        private void toolStripMenuItem10_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 
