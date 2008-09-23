@@ -23,6 +23,7 @@ namespace SimuladorCliente
 {
     public partial class MainFrame : Form
     {
+        private bool _esEstacionNueva;
         EstacionView _estacionView;
         EstacionModelo _estacionModelo;
         public MainFrame()
@@ -41,6 +42,8 @@ namespace SimuladorCliente
 
             _estacionView = formaEstacion.EstacionView;
             _estacionModelo = new EstacionModelo(Guid.NewGuid());
+            _esEstacionNueva = true;
+            _deleteItem.Enabled = false;
 
             PresenterLocal presenterLocal = new PresenterLocal(_estacionView);
             presenterLocal.SetEstacion(_estacionModelo);
@@ -121,7 +124,7 @@ namespace SimuladorCliente
                 (context, binding, address);
             IModeloSOA clien = factory.CreateChannel();
 
-            _estacionView.Limpiar();
+            _estacionView.LimpiarEstacion();
             _estacionView.Inicializar(clien, _dockMain);
 
 
@@ -265,12 +268,14 @@ namespace SimuladorCliente
             {
                 if (forma.ShowDialog() == DialogResult.OK)
                 {
-                    _estacionView.Limpiar();
+                    _estacionView.LimpiarEstacion();
                     _estacionModelo = AccesoDatos.AlmacenadorInformacion.CargarEstacion(forma.Id);
 
 
                     PresenterLocal presenter = new PresenterLocal(_estacionView);
                     presenter.SetEstacion(_estacionModelo);
+                    _esEstacionNueva = false;
+                    _deleteItem.Enabled = true;
                     _estacionView.Inicializar(presenter, _dockMain);
                     presenter.ConectarCliente();
                 }
@@ -279,7 +284,14 @@ namespace SimuladorCliente
 
         private void toolStripMenuItem9_Click(object sender, EventArgs e)
         {
-            CargarDesdeBD(sender, e);
+            _estacionView.LimpiarEstacion();
+            _estacionModelo = new EstacionModelo(Guid.NewGuid());
+            PresenterLocal presenter = new PresenterLocal(_estacionView);
+            presenter.SetEstacion(_estacionModelo);
+            _esEstacionNueva = true;
+            _deleteItem.Enabled = false;
+            _estacionView.Inicializar(presenter, _dockMain);
+            presenter.ConectarCliente();
         }
 
         private void toolStripMenuItem7_Click(object sender, EventArgs e)
@@ -288,7 +300,24 @@ namespace SimuladorCliente
             MemoryStream ms = new MemoryStream();
             imagenEstacion.Save(ms, ImageFormat.Jpeg);
             byte[] bitmapData = ms.ToArray();
-            AccesoDatos.AlmacenadorInformacion.GuardarNuevaEstacion(_estacionModelo, bitmapData);
+
+            if (_esEstacionNueva)
+            {
+                AccesoDatos.AlmacenadorInformacion.GuardarNuevaEstacion(_estacionModelo, bitmapData);
+
+            }
+            else
+            {
+                AccesoDatos.AlmacenadorInformacion.ActualizarEstacion(_estacionModelo, bitmapData);
+            }
+
+
+        }
+
+        private void _deleteItem_Click(object sender, EventArgs e)
+        {
+            AccesoDatos.AlmacenadorInformacion.Eliminar(_estacionModelo.Id);
+            toolStripMenuItem9_Click(sender, e);
 
         }
 

@@ -133,8 +133,12 @@ namespace RedesIP.Vistas
             }
 			Invalidate();
 		}
-		private void LimpiarEstacion()
+		public void LimpiarEstacion()
 		{
+            foreach (KeyValuePair<Guid, EquipoView> equipo in _equipos)
+            {
+                equipo.Value.DesconectarDelContenedor();
+            }
 			_conexiones.Clear();
 			_diccioPuertos.Clear();
 			_puertos.Clear();

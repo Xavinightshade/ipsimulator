@@ -43,6 +43,12 @@ namespace RedesIP.Vistas.Equipos
             inst.MouseMove += new System.Windows.Forms.MouseEventHandler(OnMouseMove);
             inst.MouseUp += new System.Windows.Forms.MouseEventHandler(OnMouseUp);
         }
+        public void DesconectarDelContenedor()
+        {
+            _ownerControl.MouseDown -= new System.Windows.Forms.MouseEventHandler(OnMouseDown);
+            _ownerControl.MouseMove -= new System.Windows.Forms.MouseEventHandler(OnMouseMove);
+            _ownerControl.MouseUp -= new System.Windows.Forms.MouseEventHandler(OnMouseUp);
+        }
         public void MoverEquipo(int x, int y)
         {
             Dimension.OrigenX = x;

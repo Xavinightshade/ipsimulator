@@ -33,17 +33,6 @@ namespace RedesIP.Vistas
         }
 
 
-        internal void Limpiar()
-        {
-            this._computadores.Clear();
-            this._conexiones.Clear();
-            this._diccioPuertos.Clear();
-            this._equipos.Clear();
-            this._marcadores.Clear();
-            this._puerto1 = null;
-            this._puertos.Clear();
-            this._switches.Clear();
-            this._routers.Clear();
-        }
+
     }
 }

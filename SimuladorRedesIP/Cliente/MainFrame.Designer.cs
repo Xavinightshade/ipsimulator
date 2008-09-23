@@ -35,7 +35,7 @@ namespace SimuladorCliente
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this._deleteItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.predeterminadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,8 +64,9 @@ namespace SimuladorCliente
             this.guardarEnBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,21 +74,20 @@ namespace SimuladorCliente
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.equiposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearRouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.conexionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conectarEquiposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.puntaDeMediciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -99,7 +99,7 @@ namespace SimuladorCliente
             this.toolStripMenuItem9,
             this.toolStripMenuItem8,
             this.toolStripMenuItem7,
-            this.toolStripMenuItem6,
+            this._deleteItem,
             this.toolStripSeparator13,
             this.toolStripDropDownButton1,
             this.toolStripDropDownButton2,
@@ -151,13 +151,14 @@ namespace SimuladorCliente
             this.toolStripMenuItem7.Text = "Guardar Topologia";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
-            // toolStripMenuItem6
+            // _deleteItem
             // 
-            this.toolStripMenuItem6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuItem6.Image = global::SimuladorCliente.Properties.Resources.delete_16x16;
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(28, 25);
-            this.toolStripMenuItem6.Text = "Eliminar Topologia";
+            this._deleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._deleteItem.Image = global::SimuladorCliente.Properties.Resources.delete_16x16;
+            this._deleteItem.Name = "_deleteItem";
+            this._deleteItem.Size = new System.Drawing.Size(28, 25);
+            this._deleteItem.Text = "Eliminar Topologia";
+            this._deleteItem.Click += new System.EventHandler(this._deleteItem_Click);
             // 
             // toolStripSeparator13
             // 
@@ -363,21 +364,21 @@ namespace SimuladorCliente
             // 
             this.toolStripMenuItem5.Image = global::SimuladorCliente.Properties.Resources.new_16x16;
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(201, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(215, 22);
             this.toolStripMenuItem5.Text = "Nueva Topologia";
             // 
             // cargarDesdeBDToolStripMenuItem
             // 
             this.cargarDesdeBDToolStripMenuItem.Image = global::SimuladorCliente.Properties.Resources.open_16x16;
             this.cargarDesdeBDToolStripMenuItem.Name = "cargarDesdeBDToolStripMenuItem";
-            this.cargarDesdeBDToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.cargarDesdeBDToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.cargarDesdeBDToolStripMenuItem.Text = "Abrir Topologia";
             // 
             // guardarEnBDToolStripMenuItem
             // 
             this.guardarEnBDToolStripMenuItem.Image = global::SimuladorCliente.Properties.Resources.save_16x16;
             this.guardarEnBDToolStripMenuItem.Name = "guardarEnBDToolStripMenuItem";
-            this.guardarEnBDToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.guardarEnBDToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.guardarEnBDToolStripMenuItem.Text = "Guardar Topologia";
             // 
             // toolStripMenuItem14
@@ -390,19 +391,24 @@ namespace SimuladorCliente
             // 
             this.toolStripMenuItem4.Image = global::SimuladorCliente.Properties.Resources.delete_16x16;
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(201, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(215, 22);
             this.toolStripMenuItem4.Text = "Eliminar Topologia";
             // 
-            // toolStripSeparator2
+            // toolStripSeparator8
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(198, 6);
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(212, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.salirToolStripMenuItem.Text = "Salir";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(212, 6);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -459,6 +465,11 @@ namespace SimuladorCliente
             this.toolStripMenuItem13.Size = new System.Drawing.Size(269, 22);
             this.toolStripMenuItem13.Text = "Inicializar servidor";
             // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(266, 6);
+            // 
             // equiposToolStripMenuItem
             // 
             this.equiposToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -491,6 +502,11 @@ namespace SimuladorCliente
             this.crearRouterToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.crearRouterToolStripMenuItem.Text = "Crear Router";
             // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(171, 6);
+            // 
             // conexionesToolStripMenuItem
             // 
             this.conexionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -514,26 +530,6 @@ namespace SimuladorCliente
             this.puntaDeMediciónToolStripMenuItem.Name = "puntaDeMediciónToolStripMenuItem";
             this.puntaDeMediciónToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.puntaDeMediciónToolStripMenuItem.Text = "Punta de medición";
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "_notifyIcon";
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(198, 6);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(266, 6);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(171, 6);
             // 
             // toolStripSeparator12
             // 
@@ -560,6 +556,11 @@ namespace SimuladorCliente
             this.acercaToolStripMenuItem.Name = "acercaToolStripMenuItem";
             this.acercaToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.acercaToolStripMenuItem.Text = "Acerca";
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "_notifyIcon";
             // 
             // MainFrame
             // 
@@ -618,7 +619,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem _deleteItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem predeterminadaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem desdeArchivoToolStripMenuItem;
