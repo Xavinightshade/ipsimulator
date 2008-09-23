@@ -34,7 +34,7 @@
             // 
             // _estacionView
             // 
-            this._estacionView.BackColor = System.Drawing.Color.Black;
+            this._estacionView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(44)))));
             this._estacionView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._estacionView.Location = new System.Drawing.Point(0, 0);
             this._estacionView.Name = "_estacionView";
