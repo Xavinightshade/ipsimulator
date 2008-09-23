@@ -8,10 +8,17 @@ namespace AccesoDatos
 {
     public static class AccesoDatosBD
     {
+        private static string _rutaPorDefecto = Environment.CurrentDirectory + "\\Red.sdf";
+        private static string _rutaBD = _rutaPorDefecto;
+
+        public static string RutaBD
+        {
+            get { return AccesoDatosBD._rutaBD; }
+            set { AccesoDatosBD._rutaBD = _rutaPorDefecto; }
+        }
         private static Red GetNewBD()
         {
-         //   return new Red(Environment.CurrentDirectory+"\\Red.sdf");
-                   return new Red(@"D:\Tesis\SimuladorRedesIp\Red.sdf");
+                   return new Red(_rutaBD);
      
         }
         static Red db = GetNewBD();

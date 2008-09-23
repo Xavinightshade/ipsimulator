@@ -321,6 +321,31 @@ namespace SimuladorCliente
 
         }
 
+        private void desdeArchivoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();            
+            dialog.FileName = "Red.sdf";
+            dialog.Filter = "(*.sdf)|*.sdf";
+            dialog.ValidateNames = true;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                AccesoDatos.AlmacenadorInformacion.RutaBD = dialog.FileName;
+
+            }
+        }
+
+        private void guardarArchivoDeBaseDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = "Red.sdf";
+            dialog.Filter = "(*.sdf)|*.sdf";
+            dialog.ValidateNames = true;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                File.Copy(AccesoDatos.AlmacenadorInformacion.RutaBD, dialog.FileName);
+            }
+        }
+
 
 
 

@@ -14,6 +14,11 @@ namespace AccesoDatos
 {
     public static class AlmacenadorInformacion
     {
+        public static string RutaBD
+        {
+            get { return AccesoDatosBD.RutaBD; }
+            set { AccesoDatosBD.RutaBD = value; }
+        }
         private static Equipos AgregarEquipo(Estaciones estacionBD, EquipoLogico equipo)
         {
             Equipos equipoBD = new Equipos();

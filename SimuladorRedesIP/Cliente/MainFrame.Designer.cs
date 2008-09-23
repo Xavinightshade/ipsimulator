@@ -88,6 +88,7 @@ namespace SimuladorCliente
             this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.guardarArchivoDeBaseDeDatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -170,7 +171,8 @@ namespace SimuladorCliente
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.predeterminadaToolStripMenuItem,
-            this.desdeArchivoToolStripMenuItem});
+            this.desdeArchivoToolStripMenuItem,
+            this.guardarArchivoDeBaseDeDatosToolStripMenuItem});
             this.toolStripDropDownButton1.Image = global::SimuladorCliente.Properties.Resources.database_16x16;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -181,15 +183,16 @@ namespace SimuladorCliente
             // 
             this.predeterminadaToolStripMenuItem.Image = global::SimuladorCliente.Properties.Resources.database_process_16x16;
             this.predeterminadaToolStripMenuItem.Name = "predeterminadaToolStripMenuItem";
-            this.predeterminadaToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.predeterminadaToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
             this.predeterminadaToolStripMenuItem.Text = "Predeterminada";
             // 
             // desdeArchivoToolStripMenuItem
             // 
             this.desdeArchivoToolStripMenuItem.Image = global::SimuladorCliente.Properties.Resources.database_search_16x16;
             this.desdeArchivoToolStripMenuItem.Name = "desdeArchivoToolStripMenuItem";
-            this.desdeArchivoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.desdeArchivoToolStripMenuItem.Text = "Desde Archivo";
+            this.desdeArchivoToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.desdeArchivoToolStripMenuItem.Text = "Abrir archivo de base de datos";
+            this.desdeArchivoToolStripMenuItem.Click += new System.EventHandler(this.desdeArchivoToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton2
             // 
@@ -562,6 +565,13 @@ namespace SimuladorCliente
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "_notifyIcon";
             // 
+            // guardarArchivoDeBaseDeDatosToolStripMenuItem
+            // 
+            this.guardarArchivoDeBaseDeDatosToolStripMenuItem.Name = "guardarArchivoDeBaseDeDatosToolStripMenuItem";
+            this.guardarArchivoDeBaseDeDatosToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.guardarArchivoDeBaseDeDatosToolStripMenuItem.Text = "Guardar Archivo de base de datos";
+            this.guardarArchivoDeBaseDeDatosToolStripMenuItem.Click += new System.EventHandler(this.guardarArchivoDeBaseDeDatosToolStripMenuItem_Click);
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -648,6 +658,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem documentaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem guardarArchivoDeBaseDeDatosToolStripMenuItem;
 
 
 
