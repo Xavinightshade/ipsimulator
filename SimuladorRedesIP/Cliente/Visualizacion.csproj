@@ -122,6 +122,13 @@
     <Compile Include="Formularios\PingForm.designer.cs">
       <DependentUpon>PingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\RedBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RedBrowser.Designer.cs">
+      <DependentUpon>RedBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RedBrowserModel.cs" />
     <Compile Include="Herramientas\Herramienta.cs" />
     <Compile Include="Herramientas\FabricaHerramienta.cs">
       <SubType>Component</SubType>
@@ -188,6 +195,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\PingForm.resx">
       <DependentUpon>PingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RedBrowser.resx">
+      <DependentUpon>RedBrowser.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\PaletaHerramienta.resx">
@@ -359,16 +370,17 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\DataSources\SimuladorCliente.Formularios.RedBrowserModel.datasource" />
     <None Include="Resources\AppIcon.ico" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="Red.sdf">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

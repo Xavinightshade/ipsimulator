@@ -48,6 +48,7 @@ namespace RedesIP
 
         public void PeticionMoverEquipo(Guid idEquipo, int x, int y)
         {
+            _estacion.MoverPosicionElemento(idEquipo, x, y);
             foreach (IVisualizacion cliente in _vistas)
             {
                 RealizarOperacionEnVista(cliente);

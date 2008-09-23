@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this._estacionView = new RedesIP.Vistas.EstacionView();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._estacionView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,13 +43,25 @@
             this._estacionView.TabIndex = 7;
             this._estacionView.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(54, 35);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 24);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormaEstacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 266);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this._estacionView);
             this.Name = "FormaEstacion";
+            this.TabText = "FormaEstacion";
             this.Text = "FormaEstacion";
             ((System.ComponentModel.ISupportInitialize)(this._estacionView)).EndInit();
             this.ResumeLayout(false);
@@ -58,5 +71,6 @@
         #endregion
 
         private RedesIP.Vistas.EstacionView _estacionView;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -37,8 +37,6 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		EventWaitHandle whTrans = new AutoResetEvent(false);
 		EventWaitHandle whREc = new AutoResetEvent(false);
 
-		public int Aenviar { get { return _bufferFramesAEnviar.Count; } }
-		public int Recibidos { get { return _bufferFramesRecibidos.Count; } }
 		private readonly Queue<Frame> _bufferFramesAEnviar = new Queue<Frame>();
 		Thread _hiloDeProcesamientoDeFramesRecibidos;
 		private readonly Queue<Frame> _bufferFramesRecibidos = new Queue<Frame>();

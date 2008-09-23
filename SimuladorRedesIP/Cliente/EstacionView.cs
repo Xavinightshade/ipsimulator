@@ -13,6 +13,7 @@ using RedesIP.Common;
 using RedesIP.SOA;
 using DevAge.Drawing.VisualElements;
 using WeifenLuo.WinFormsUI.Docking;
+using System.Drawing.Imaging;
 
 namespace RedesIP.Vistas
 {
@@ -21,7 +22,14 @@ namespace RedesIP.Vistas
 	 UseSynchronizationContext = false)]
 	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion
 	{
-
+        public void GetImagen()
+        {
+            Bitmap b = new Bitmap(Width, Height);
+            Graphics g = Graphics.FromImage(b);
+            DibujarGrafico(g);
+            b.Save(@"d:\hola.bmp", ImageFormat.Bmp);
+          
+            }
 
 
         public IWin32Window Window { get { return this; } }
@@ -53,28 +61,33 @@ namespace RedesIP.Vistas
 		{
 			base.OnPaint(pe);
 			Graphics g = pe.Graphics;
-			for (int i = 0; i < _computadores.Count; i++)
-			{
-				_computadores[i].DibujarElemento(g);
-			}
-			for (int i = 0; i < _switches.Count; i++)
-			{
-				_switches[i].DibujarElemento(g);
-			}
+            DibujarGrafico(g);
+          
+		}
+
+        private void DibujarGrafico(Graphics g)
+        {
+            for (int i = 0; i < _computadores.Count; i++)
+            {
+                _computadores[i].DibujarElemento(g);
+            }
+            for (int i = 0; i < _switches.Count; i++)
+            {
+                _switches[i].DibujarElemento(g);
+            }
             for (int i = 0; i < _routers.Count; i++)
             {
                 _routers[i].DibujarElemento(g);
             }
-			for (int i = 0; i < _conexiones.Count; i++)
-			{
-				_conexiones[i].DibujarElemento(g);
-			}
-			for (int i = 0; i < _marcadores.Count; i++)
-			{
-				_marcadores[i].DibujarElemento(g);
-			}
-          
-		}    
+            for (int i = 0; i < _conexiones.Count; i++)
+            {
+                _conexiones[i].DibujarElemento(g);
+            }
+            for (int i = 0; i < _marcadores.Count; i++)
+            {
+                _marcadores[i].DibujarElemento(g);
+            }
+        }    
 		protected override void OnMouseDoubleClick(MouseEventArgs e)
 		{
 			base.OnMouseDoubleClick(e);

@@ -21,5 +21,10 @@ namespace SimuladorCliente
         {
             get { return _estacionView; }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _estacionView.GetImagen();
+        }
     }
 }

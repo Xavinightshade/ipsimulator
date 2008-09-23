@@ -48,6 +48,8 @@ namespace SimuladorCliente
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.cToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.inicializarServidorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.guardarEnBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,8 +63,6 @@ namespace SimuladorCliente
             this.fToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -214,6 +214,18 @@ namespace SimuladorCliente
             this.cToolStripMenuItem.Text = "Conectar a servidor";
             this.cToolStripMenuItem.Click += new System.EventHandler(this.cToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 22);
+            this.toolStripMenuItem2.Text = "Desconectar del servidor";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(201, 6);
+            // 
             // inicializarServidorToolStripMenuItem
             // 
             this.inicializarServidorToolStripMenuItem.Name = "inicializarServidorToolStripMenuItem";
@@ -317,19 +329,6 @@ namespace SimuladorCliente
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "_notifyIcon";
-            this.notifyIcon1.Visible = true;
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 22);
-            this.toolStripMenuItem2.Text = "Desconectar del servidor";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(201, 6);
             // 
             // MainFrame
             // 
