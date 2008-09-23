@@ -126,7 +126,6 @@
         private System.Windows.Forms.Button _Aceptar;
         private System.Windows.Forms.Button _cancel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox _numero;
         private System.Windows.Forms.TextBox _puerto;
     }
 }

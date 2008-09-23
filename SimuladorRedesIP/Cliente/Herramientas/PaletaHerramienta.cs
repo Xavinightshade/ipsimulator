@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using SimuladorCliente.Properties;
 
 namespace SimuladorCliente.Herramientas
 {
@@ -15,6 +16,21 @@ namespace SimuladorCliente.Herramientas
         public PaletaHerramienta()
         {
             InitializeComponent();
+            ToolStripMenuItem bdDefault=new ToolStripMenuItem("Cargar base de datos Predeterminada",Resources.database_process_16x16);
+            ToolStripMenuItem dbArchivo = new ToolStripMenuItem("Cargar base de datos desde archivo", Resources.database_search_16x16);
+            _menuBD.Items.Add(bdDefault);
+            //_menuBD.Items.Add(new ToolStripSeparator());
+            _menuBD.Items.Add(dbArchivo);
+
+            ToolStripMenuItem soaConectar = new ToolStripMenuItem("Conectar a Servidor", Resources.connect_16x16);
+            ToolStripMenuItem soaDesconectar = new ToolStripMenuItem("Desconectar del servidor", Resources.disconnect_16x16);
+            ToolStripMenuItem soaConfigurar = new ToolStripMenuItem("Inicializar servicio", Resources.synchronize_16x16);
+
+            _menuSOA.Items.Add(soaConectar);
+            _menuSOA.Items.Add(soaDesconectar);
+            _menuSOA.Items.Add(new ToolStripSeparator());
+            _menuSOA.Items.Add(soaConfigurar);
+
         }
 
         private void _mouse_Click(object sender, EventArgs e)
@@ -83,6 +99,23 @@ namespace SimuladorCliente.Herramientas
             _conexion.FlatStyle = FlatStyle.Standard;
             _punta.FlatStyle = FlatStyle.Flat;
         }
+        ContextMenuStrip _menuBD = new ContextMenuStrip();
+        ContextMenuStrip _menuSOA = new ContextMenuStrip();
+        private void button7_Click(object sender, EventArgs e)
+        {
+            
+            _menuSOA.Show(button7, button7.Width, button7.Height / 2);
+
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            _menuBD.Show(button8, button8.Width, button8.Height / 2);
+
+        }
+
+
 
 
 

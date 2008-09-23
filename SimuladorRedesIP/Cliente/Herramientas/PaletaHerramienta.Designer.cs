@@ -50,22 +50,24 @@
             this.button8.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.button8.FlatAppearance.BorderSize = 5;
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.Location = new System.Drawing.Point(6, 105);
+            this.button8.Location = new System.Drawing.Point(7, 17);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(106, 84);
             this.button8.TabIndex = 7;
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
             this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.button7.FlatAppearance.BorderSize = 5;
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.Location = new System.Drawing.Point(6, 19);
+            this.button7.Location = new System.Drawing.Point(7, 107);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(106, 80);
             this.button7.TabIndex = 6;
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // _mouse
             // 
@@ -193,8 +195,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._mouse);
             this.Name = "PaletaHerramienta";
-            this.TabText = "Herramientas";
-            this.Text = "Herramientas";
+            this.TabText = "Paleta";
+            this.Text = "Paleta";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

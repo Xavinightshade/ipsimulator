@@ -85,6 +85,9 @@ namespace SimuladorCliente
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -328,7 +331,8 @@ namespace SimuladorCliente
             this.toolStripMenuItem1,
             this.herramientasToolStripMenuItem,
             this.equiposToolStripMenuItem,
-            this.conexionesToolStripMenuItem});
+            this.conexionesToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(895, 24);
@@ -374,8 +378,8 @@ namespace SimuladorCliente
             // toolStripMenuItem14
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(201, 22);
-            this.toolStripMenuItem14.Text = "Guardar Topologia como";
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(215, 22);
+            this.toolStripMenuItem14.Text = "Guardar Topologia Como...";
             // 
             // toolStripMenuItem4
             // 
@@ -531,6 +535,27 @@ namespace SimuladorCliente
             this.toolStripSeparator12.Name = "toolStripSeparator12";
             this.toolStripSeparator12.Size = new System.Drawing.Size(169, 6);
             // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.documentaciónToolStripMenuItem,
+            this.acercaToolStripMenuItem});
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // documentaciónToolStripMenuItem
+            // 
+            this.documentaciónToolStripMenuItem.Name = "documentaciónToolStripMenuItem";
+            this.documentaciónToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.documentaciónToolStripMenuItem.Text = "Documentación";
+            // 
+            // acercaToolStripMenuItem
+            // 
+            this.acercaToolStripMenuItem.Name = "acercaToolStripMenuItem";
+            this.acercaToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.acercaToolStripMenuItem.Text = "Acerca";
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,6 +639,9 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem documentaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acercaToolStripMenuItem;
 
 
 

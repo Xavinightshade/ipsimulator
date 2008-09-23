@@ -57,7 +57,6 @@ namespace RedesIP.Vistas
                 {
                     case TipoDeEquipo.Ninguno:
                         throw new NotImplementedException();
-                        break;
                     case TipoDeEquipo.Computador:
                         Estacion._server.PeticionCrearComputador(new ComputadorSOA(_tipoEquipo,e.X,e.Y));
                         break;
@@ -69,7 +68,6 @@ namespace RedesIP.Vistas
                         break;
                     default:
                         throw new NotImplementedException();
-                        break;
                 }
                 
             }

@@ -29,7 +29,7 @@ namespace RedesIP.Vistas.Equipos
             pingForm.Text = "Host: IP:" + _puerto.IPAddress + ", MAC:" + _puerto.DireccionMAC;
             if (pingForm.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < pingForm.Numero; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     Contenedor.Contrato.Ping(Id, pingForm.IPAddress, pingForm.Dato);
 

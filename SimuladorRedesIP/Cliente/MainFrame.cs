@@ -27,14 +27,13 @@ namespace SimuladorCliente
         EstacionModelo _estacionModelo;
         public MainFrame()
         {
-            BusinessLogic.IPAddressFactory.GetValor("1.23.456.78");
-            BusinessLogic.IPAddressFactory.PerteneceAlaRed("", 22);
             InitializeComponent();
 
             FormaEstacion formaEstacion = new FormaEstacion();
             formaEstacion.Show(_dockMain, DockState.Document);
 
             PaletaHerramienta formaPaletaHerramientas = new PaletaHerramienta();
+
             formaPaletaHerramientas.Show(_dockMain, DockState.DockLeftAutoHide);
             formaPaletaHerramientas.DockPanel.DockLeftPortion = 140;
             formaPaletaHerramientas.DockHandler.AllowEndUserDocking = false;
