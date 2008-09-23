@@ -22,13 +22,12 @@ namespace RedesIP.Vistas
 	 UseSynchronizationContext = false)]
 	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion
 	{
-        public void GetImagen()
+        public Bitmap GetImagen()
         {
             Bitmap b = new Bitmap(Width, Height);
             Graphics g = Graphics.FromImage(b);
             DibujarGrafico(g);
-            b.Save(@"d:\hola.bmp", ImageFormat.Bmp);
-          
+            return b;
             }
 
 

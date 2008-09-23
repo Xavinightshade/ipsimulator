@@ -7,6 +7,7 @@ using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.Modelos.Equipos.Componentes;
 using AccesoDatos;
 using RedesIP.Modelos;
+using System.IO;
 
 namespace AccesoDatos
 {
@@ -30,18 +31,21 @@ namespace AccesoDatos
             puertoBD.IdEquipo = equipoBD.Id;
             equipoBD.AgregarPuerto(puertoBD);
         }
-        public static void AlmacenarEstacion(EstacionModelo estacion)
+        public static void AlmacenarEstacion(EstacionModelo estacion, byte[] bitmapData)
         {
+
+
             Estaciones estacionBD = new Estaciones();
             estacionBD.Id = estacion.Id;
+            estacionBD.Foto = new System.Data.Linq.Binary(bitmapData);
             foreach (KeyValuePair<Guid, ComputadorLogico> pc in estacion.Computadores)
             {
-              Equipos equipoBD=  AgregarEquipo(estacionBD, pc.Value);
-              AgregarPuerto(equipoBD, pc.Value.PuertoEthernet);
+                Equipos equipoBD = AgregarEquipo(estacionBD, pc.Value);
+                AgregarPuerto(equipoBD, pc.Value.PuertoEthernet);
             }
             foreach (KeyValuePair<Guid, SwitchLogico> swi in estacion.Switches)
             {
-                Equipos equipoBD=  AgregarEquipo(estacionBD, swi.Value);
+                Equipos equipoBD = AgregarEquipo(estacionBD, swi.Value);
 
                 foreach (PuertoEthernetLogicoBase puerto in swi.Value.PuertosEthernet)
                 {
@@ -78,7 +82,11 @@ namespace AccesoDatos
         public static EstacionModelo CargarEstacion(Guid id)
         {
             Estaciones estacionBD = AccesoDatosBD.GetEstacionById(id);
+
+
             EstacionModelo estacionLogica = new EstacionModelo(estacionBD.Id);
+            if (estacionBD.Foto != null)
+                estacionLogica.Imagen = estacionBD.Foto.ToArray();
 
             CrearEquipos(estacionLogica, estacionBD);
             foreach (Cables cableBD in estacionBD.Cables)

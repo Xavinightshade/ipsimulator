@@ -13,6 +13,14 @@ namespace RedesIP
 {
     public class EstacionModelo
     {
+        private byte[] _imagen;
+
+        public byte[] Imagen
+        {
+            get { return _imagen; }
+            set { _imagen = value; }
+        }
+
         private Guid _id;
 
         public Guid Id

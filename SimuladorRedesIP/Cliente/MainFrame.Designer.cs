@@ -52,9 +52,14 @@ namespace SimuladorCliente
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.inicializarServidorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.guardarEnBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarDesdeBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guardarEnBDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.predeterminadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.desdeArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._dockMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -236,35 +241,71 @@ namespace SimuladorCliente
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.guardarEnBDToolStripMenuItem,
             this.cargarDesdeBDToolStripMenuItem,
-            this.eliToolStripMenuItem});
+            this.guardarEnBDToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.toolStripSeparator11,
+            this.toolStripSeparator12,
+            this.toolStripMenuItem3});
             this.toolStripDropDownButton1.Image = global::SimuladorCliente.Properties.Resources.DB;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(105, 22);
             this.toolStripDropDownButton1.Text = "Base de Datos";
             // 
-            // guardarEnBDToolStripMenuItem
-            // 
-            this.guardarEnBDToolStripMenuItem.Name = "guardarEnBDToolStripMenuItem";
-            this.guardarEnBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.guardarEnBDToolStripMenuItem.Text = "Guardar en BD";
-            this.guardarEnBDToolStripMenuItem.Click += new System.EventHandler(this.guardarEnBDToolStripMenuItem_Click);
-            // 
             // cargarDesdeBDToolStripMenuItem
             // 
+            this.cargarDesdeBDToolStripMenuItem.Image = global::SimuladorCliente.Properties.Resources.AlarmaLiquidacion;
             this.cargarDesdeBDToolStripMenuItem.Name = "cargarDesdeBDToolStripMenuItem";
-            this.cargarDesdeBDToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.cargarDesdeBDToolStripMenuItem.Text = "Cargar desde BD";
+            this.cargarDesdeBDToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.cargarDesdeBDToolStripMenuItem.Text = "Abrir Topologia";
             this.cargarDesdeBDToolStripMenuItem.Click += new System.EventHandler(this.CargarDesdeBD);
             // 
-            // eliToolStripMenuItem
+            // guardarEnBDToolStripMenuItem
             // 
-            this.eliToolStripMenuItem.Name = "eliToolStripMenuItem";
-            this.eliToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.eliToolStripMenuItem.Text = "eli";
-            this.eliToolStripMenuItem.Click += new System.EventHandler(this.eliToolStripMenuItem_Click);
+            this.guardarEnBDToolStripMenuItem.Image = global::SimuladorCliente.Properties.Resources.Guardar;
+            this.guardarEnBDToolStripMenuItem.Name = "guardarEnBDToolStripMenuItem";
+            this.guardarEnBDToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.guardarEnBDToolStripMenuItem.Text = "Guardar Topologia";
+            this.guardarEnBDToolStripMenuItem.Click += new System.EventHandler(this.guardarEnBDToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Image = global::SimuladorCliente.Properties.Resources.Delete;
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(211, 22);
+            this.toolStripMenuItem4.Text = "Eliminar Topologia";
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(208, 6);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(208, 6);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.predeterminadaToolStripMenuItem,
+            this.desdeArchivoToolStripMenuItem});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(211, 22);
+            this.toolStripMenuItem3.Text = "Seleccionar Base de Datos";
+            // 
+            // predeterminadaToolStripMenuItem
+            // 
+            this.predeterminadaToolStripMenuItem.Name = "predeterminadaToolStripMenuItem";
+            this.predeterminadaToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.predeterminadaToolStripMenuItem.Text = "Predeterminada";
+            // 
+            // desdeArchivoToolStripMenuItem
+            // 
+            this.desdeArchivoToolStripMenuItem.Name = "desdeArchivoToolStripMenuItem";
+            this.desdeArchivoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.desdeArchivoToolStripMenuItem.Text = "Desde Archivo";
             // 
             // _dockMain
             // 
@@ -367,7 +408,6 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem guardarEnBDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cargarDesdeBDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eliToolStripMenuItem;
         private WeifenLuo.WinFormsUI.Docking.DockPanel _dockMain;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -391,6 +431,12 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripMenuItem inicializarServidorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem predeterminadaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem desdeArchivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
 
 
 

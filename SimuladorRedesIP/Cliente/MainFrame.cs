@@ -16,18 +16,20 @@ using SimuladorCliente.Herramientas;
 using System.Net;
 using TesGestion.SOA;
 using SimuladorCliente.Formularios;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace SimuladorCliente
 {
     public partial class MainFrame : Form
-	{
+    {
         EstacionView _estacionView;
         EstacionModelo _estacionModelo;
-		public MainFrame()
-		{
+        public MainFrame()
+        {
             BusinessLogic.IPAddressFactory.GetValor("1.23.456.78");
             BusinessLogic.IPAddressFactory.PerteneceAlaRed("", 22);
-			InitializeComponent();
+            InitializeComponent();
 
             FormaEstacion formaEstacion = new FormaEstacion();
             formaEstacion.Show(_dockMain, DockState.Document);
@@ -43,68 +45,68 @@ namespace SimuladorCliente
 
             PresenterLocal presenterLocal = new PresenterLocal(_estacionView);
             presenterLocal.SetEstacion(_estacionModelo);
-            _estacionView.Inicializar(presenterLocal,_dockMain);
+            _estacionView.Inicializar(presenterLocal, _dockMain);
 
             presenterLocal.ConectarCliente();
 
 
-           
-
-
-		}
 
 
 
+        }
 
-		private void pc_Click(object sender, EventArgs e)
-		{
-			_estacionView.PeticionCrearEquipo(TipoDeEquipo.Computador);
+
+
+
+        private void pc_Click(object sender, EventArgs e)
+        {
+            _estacionView.PeticionCrearEquipo(TipoDeEquipo.Computador);
             _mouse.CheckState = CheckState.Unchecked;
             _pc.CheckState = CheckState.Checked;
             _switch.CheckState = CheckState.Unchecked;
             _conexion.CheckState = CheckState.Unchecked;
             _router.CheckState = CheckState.Unchecked;
             _punta.CheckState = CheckState.Unchecked;
-		}
+        }
 
-		private void Nouse_Click(object sender, EventArgs e)
-		{
-			_estacionView.CambiarHerramienta(Herramienta.Seleccion);
+        private void Nouse_Click(object sender, EventArgs e)
+        {
+            _estacionView.CambiarHerramienta(Herramienta.Seleccion);
             _mouse.CheckState = CheckState.Checked;
             _pc.CheckState = CheckState.Unchecked;
             _switch.CheckState = CheckState.Unchecked;
             _conexion.CheckState = CheckState.Unchecked;
             _router.CheckState = CheckState.Unchecked;
             _punta.CheckState = CheckState.Unchecked;
-		}
+        }
 
-		private void Switch_Click(object sender, EventArgs e)
-		{
-			_estacionView.PeticionCrearEquipo(TipoDeEquipo.Switch);
+        private void Switch_Click(object sender, EventArgs e)
+        {
+            _estacionView.PeticionCrearEquipo(TipoDeEquipo.Switch);
             _mouse.CheckState = CheckState.Unchecked;
             _pc.CheckState = CheckState.Unchecked;
             _switch.CheckState = CheckState.Checked;
             _conexion.CheckState = CheckState.Unchecked;
             _router.CheckState = CheckState.Unchecked;
             _punta.CheckState = CheckState.Unchecked;
-		}
+        }
 
-		private void Conexion_Click(object sender, EventArgs e)
-		{
-			_estacionView.CambiarHerramienta(Herramienta.Conectar);
+        private void Conexion_Click(object sender, EventArgs e)
+        {
+            _estacionView.CambiarHerramienta(Herramienta.Conectar);
             _mouse.CheckState = CheckState.Unchecked;
             _pc.CheckState = CheckState.Unchecked;
             _switch.CheckState = CheckState.Unchecked;
             _conexion.CheckState = CheckState.Checked;
             _router.CheckState = CheckState.Unchecked;
             _punta.CheckState = CheckState.Unchecked;
-		}
+        }
 
 
 
 
 
-        private void ConectarSOA(string ipAddress,string puerto)
+        private void ConectarSOA(string ipAddress, string puerto)
         {
             System.ServiceModel.Channels.Binding binding =
                 new NetTcpBinding(SecurityMode.None, true);
@@ -118,17 +120,17 @@ namespace SimuladorCliente
             DuplexChannelFactory<IModeloSOA> factory =
                 new DuplexChannelFactory<IModeloSOA>
                 (context, binding, address);
-           IModeloSOA clien = factory.CreateChannel();
+            IModeloSOA clien = factory.CreateChannel();
 
-           _estacionView.Limpiar();
-           _estacionView.Inicializar(clien, _dockMain);
-     
+            _estacionView.Limpiar();
+            _estacionView.Inicializar(clien, _dockMain);
+
 
 
 
             clien.ConectarCliente();
 
-      //      button1.Visible = false;
+            //      button1.Visible = false;
             _mouse.Enabled = true;
             _pc.Enabled = true;
             _switch.Enabled = true;
@@ -139,16 +141,16 @@ namespace SimuladorCliente
 
 
 
-		private void Punta_Click(object sender, EventArgs e)
-		{
-			_estacionView.CambiarHerramienta(Herramienta.Marcadores);
+        private void Punta_Click(object sender, EventArgs e)
+        {
+            _estacionView.CambiarHerramienta(Herramienta.Marcadores);
             _mouse.CheckState = CheckState.Unchecked;
             _pc.CheckState = CheckState.Unchecked;
             _switch.CheckState = CheckState.Unchecked;
             _conexion.CheckState = CheckState.Unchecked;
             _router.CheckState = CheckState.Unchecked;
             _punta.CheckState = CheckState.Checked;
-		}
+        }
 
 
 
@@ -157,13 +159,27 @@ namespace SimuladorCliente
 
         private void guardarEnBDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccesoDatos.AlmacenadorInformacion.AlmacenarEstacion(_estacionModelo);
+            Bitmap imagenEstacion = _estacionView.GetImagen();
+            MemoryStream ms = new MemoryStream();
+            imagenEstacion.Save(ms, ImageFormat.Jpeg);
+            byte[] bitmapData = ms.ToArray();
+            AccesoDatos.AlmacenadorInformacion.AlmacenarEstacion(_estacionModelo, bitmapData);
         }
-        
+
         private void CargarDesdeBD(object sender, EventArgs e)
         {
             _estacionView.Limpiar();
             _estacionModelo = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("47400cea-24e5-45f1-9bcd-5fb7c3c068e6"));
+            if (_estacionModelo.Imagen != null)
+            {
+                using (MemoryStream ms = new MemoryStream(_estacionModelo.Imagen))
+                {
+
+                    Bitmap img = (Bitmap)Image.FromStream(ms);
+
+                }
+            }
+
             PresenterLocal presenter = new PresenterLocal(_estacionView);
             presenter.SetEstacion(_estacionModelo);
             _estacionView.Inicializar(presenter, _dockMain);
@@ -171,10 +187,7 @@ namespace SimuladorCliente
 
         }
 
-        private void eliToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AccesoDatos.AlmacenadorInformacion.Eliminar(new Guid("0f65682b-0d70-4b29-a72a-e7784a21a3c9"));
-        }
+
 
         private void Router_Click(object sender, EventArgs e)
         {
@@ -195,12 +208,12 @@ namespace SimuladorCliente
             {
                 if (formularioConexion.ShowDialog() == DialogResult.OK)
                 {
-                    ConectarSOA(formularioConexion.IPAddress.ToString(),formularioConexion.Puerto.ToString());
+                    ConectarSOA(formularioConexion.IPAddress.ToString(), formularioConexion.Puerto.ToString());
                     _servicioConectado = true;
                 }
-            }	
+            }
 
-            
+
         }
 
         private void inicializarServidorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -217,12 +230,12 @@ namespace SimuladorCliente
                     InicializarServicio(presenterSOA, modeloConexion.Puerto, modeloConexion.DireccionIp);
 
                     notifyIcon1.Visible = true;
-                    notifyIcon1.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado."+Environment.NewLine+
-                        "Dirección IP: "+modeloConexion.DireccionIp+ Environment.NewLine+
-                    "Puerto: "+modeloConexion.Puerto,
+                    notifyIcon1.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado." + Environment.NewLine +
+                        "Dirección IP: " + modeloConexion.DireccionIp + Environment.NewLine +
+                    "Puerto: " + modeloConexion.Puerto,
                     ToolTipIcon.Info);
                 }
-            }		
+            }
 
 
         }
@@ -236,7 +249,7 @@ namespace SimuladorCliente
                 new NetTcpBinding(SecurityMode.None, true);
             Uri address =
 
-               new Uri(@"net.tcp://"+direccionIP +":"+puerto+"/Simulador");
+               new Uri(@"net.tcp://" + direccionIP + ":" + puerto + "/Simulador");
 
             calculatorHost.AddServiceEndpoint(
                 typeof(IModeloSOA), binding, address);
@@ -276,5 +289,5 @@ namespace SimuladorCliente
 
 
 
-	}
+    }
 }
