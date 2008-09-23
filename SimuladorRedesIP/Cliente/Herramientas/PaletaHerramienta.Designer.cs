@@ -194,6 +194,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._mouse);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PaletaHerramienta";
             this.TabText = "Paleta";
             this.Text = "Paleta";

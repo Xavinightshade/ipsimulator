@@ -309,12 +309,14 @@ namespace SimuladorCliente
             // _dockMain
             // 
             this._dockMain.ActiveAutoHideContent = null;
-            this._dockMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._dockMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._dockMain.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingSdi;
             this._dockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this._dockMain.Location = new System.Drawing.Point(0, 49);
             this._dockMain.Name = "_dockMain";
-            this._dockMain.Size = new System.Drawing.Size(895, 633);
+            this._dockMain.Size = new System.Drawing.Size(895, 608);
             this._dockMain.TabIndex = 10;
             // 
             // statusStrip1
