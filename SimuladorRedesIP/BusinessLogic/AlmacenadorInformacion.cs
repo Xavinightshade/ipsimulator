@@ -8,6 +8,7 @@ using RedesIP.Modelos.Equipos.Componentes;
 using AccesoDatos;
 using RedesIP.Modelos;
 using System.IO;
+using SimuladorCliente.Formularios;
 
 namespace AccesoDatos
 {
@@ -31,10 +32,22 @@ namespace AccesoDatos
             puertoBD.IdEquipo = equipoBD.Id;
             equipoBD.AgregarPuerto(puertoBD);
         }
-        public static void AlmacenarEstacion(EstacionModelo estacion, byte[] bitmapData)
+        public static void GuardarNuevaEstacion(EstacionModelo estacion, byte[] bitmapData)
         {
 
 
+            Estaciones estacionBD = LlenarEstacion(estacion, bitmapData);
+            AccesoDatosBD.GuardarNuevaEstacion(estacionBD);
+        }
+        public static void ActualizarEstacion(EstacionModelo estacion, byte[] bitmapData)
+        {
+            
+            Estaciones estacionBD = LlenarEstacion(estacion, bitmapData);
+            AccesoDatosBD.ActualizarEstacion(estacionBD);
+        }
+
+        private static Estaciones LlenarEstacion(EstacionModelo estacion, byte[] bitmapData)
+        {
             Estaciones estacionBD = new Estaciones();
             estacionBD.Id = estacion.Id;
             estacionBD.Foto = new System.Data.Linq.Binary(bitmapData);
@@ -73,11 +86,22 @@ namespace AccesoDatos
                 estacionBD.AgregarCable(cableBD);
 
             }
-            AccesoDatosBD.GuardarEstacion(estacionBD);
+            return estacionBD;
         }
         public static void Eliminar(Guid id)
         {
             AccesoDatosBD.Delete(id);
+        }
+        public static  List<RedBrowserModel> CargarEstaciones()
+        {
+            List<RedBrowserModel> redes = new List<RedBrowserModel>();
+            foreach (Estaciones estacionBD in AccesoDatosBD.GetAllEstaciones())
+            {
+                if (estacionBD.Foto == null)
+                    continue;
+                redes.Add(new RedBrowserModel(estacionBD.Foto.ToArray(), estacionBD.Nombre));
+            }
+            return redes;
         }
         public static EstacionModelo CargarEstacion(Guid id)
         {

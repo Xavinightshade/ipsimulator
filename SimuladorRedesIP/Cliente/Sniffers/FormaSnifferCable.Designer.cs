@@ -50,7 +50,7 @@
             this.grid.Name = "grid";
             this.grid.OptimizeMode = SourceGrid.CellOptimizeMode.ForRows;
             this.grid.SelectionMode = SourceGrid.GridSelectionMode.Cell;
-            this.grid.Size = new System.Drawing.Size(684, 302);
+            this.grid.Size = new System.Drawing.Size(680, 298);
             this.grid.TabIndex = 1;
             this.grid.TabStop = true;
             this.grid.ToolTipText = "";
@@ -71,7 +71,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.grid);
-            this.splitContainer1.Size = new System.Drawing.Size(686, 338);
+            this.splitContainer1.Size = new System.Drawing.Size(682, 334);
             this.splitContainer1.SplitterDistance = 30;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -85,13 +85,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(684, 28);
+            this.panel1.Size = new System.Drawing.Size(680, 28);
             this.panel1.TabIndex = 0;
             // 
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button2.Location = new System.Drawing.Point(501, 3);
+            this.button2.Location = new System.Drawing.Point(497, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 22);
             this.button2.TabIndex = 8;
@@ -109,7 +109,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(601, 3);
+            this.button1.Location = new System.Drawing.Point(597, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 22);
             this.button1.TabIndex = 5;
@@ -130,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 338);
+            this.ClientSize = new System.Drawing.Size(682, 334);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormaSnifferCable";

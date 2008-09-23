@@ -156,28 +156,13 @@ namespace SimuladorCliente
 
 
 
-        private void guardarEnBDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Bitmap imagenEstacion = _estacionView.GetImagen();
-            MemoryStream ms = new MemoryStream();
-            imagenEstacion.Save(ms, ImageFormat.Jpeg);
-            byte[] bitmapData = ms.ToArray();
-            AccesoDatos.AlmacenadorInformacion.AlmacenarEstacion(_estacionModelo, bitmapData);
-        }
+
 
         private void CargarDesdeBD(object sender, EventArgs e)
         {
             _estacionView.Limpiar();
             _estacionModelo = AccesoDatos.AlmacenadorInformacion.CargarEstacion(new Guid("47400cea-24e5-45f1-9bcd-5fb7c3c068e6"));
-            if (_estacionModelo.Imagen != null)
-            {
-                using (MemoryStream ms = new MemoryStream(_estacionModelo.Imagen))
-                {
 
-                    Bitmap img = (Bitmap)Image.FromStream(ms);
-
-                }
-            }
 
             PresenterLocal presenter = new PresenterLocal(_estacionView);
             presenter.SetEstacion(_estacionModelo);
@@ -276,6 +261,28 @@ namespace SimuladorCliente
 
         private void toolStripMenuItem10_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            List<RedBrowserModel> redes = AccesoDatos.AlmacenadorInformacion.CargarEstaciones();
+            RedBrowser forma = new RedBrowser(redes);
+            forma.Show();
+        }
+
+        private void toolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            CargarDesdeBD(sender, e);
+        }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            Bitmap imagenEstacion = _estacionView.GetImagen();
+            MemoryStream ms = new MemoryStream();
+            imagenEstacion.Save(ms, ImageFormat.Jpeg);
+            byte[] bitmapData = ms.ToArray();
+            AccesoDatos.AlmacenadorInformacion.GuardarNuevaEstacion(_estacionModelo, bitmapData);
 
         }
 

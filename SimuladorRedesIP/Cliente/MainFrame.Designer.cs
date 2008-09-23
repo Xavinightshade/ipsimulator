@@ -115,7 +115,7 @@ namespace SimuladorCliente
             this.toolStripSeparator4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(895, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(893, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -131,6 +131,7 @@ namespace SimuladorCliente
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
             this.toolStripMenuItem9.Size = new System.Drawing.Size(28, 25);
             this.toolStripMenuItem9.Text = "Nueva Topologia";
+            this.toolStripMenuItem9.Click += new System.EventHandler(this.toolStripMenuItem9_Click);
             // 
             // toolStripMenuItem8
             // 
@@ -139,6 +140,7 @@ namespace SimuladorCliente
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             this.toolStripMenuItem8.Size = new System.Drawing.Size(28, 25);
             this.toolStripMenuItem8.Text = "Abrir Topologia";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
             // 
             // toolStripMenuItem7
             // 
@@ -147,6 +149,7 @@ namespace SimuladorCliente
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
             this.toolStripMenuItem7.Size = new System.Drawing.Size(28, 25);
             this.toolStripMenuItem7.Text = "Guardar Topologia";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -316,14 +319,14 @@ namespace SimuladorCliente
             this._dockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this._dockMain.Location = new System.Drawing.Point(0, 49);
             this._dockMain.Name = "_dockMain";
-            this._dockMain.Size = new System.Drawing.Size(895, 608);
+            this._dockMain.Size = new System.Drawing.Size(893, 606);
             this._dockMain.TabIndex = 10;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 660);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 658);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(895, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(893, 22);
             this.statusStrip1.TabIndex = 15;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -337,7 +340,7 @@ namespace SimuladorCliente
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(895, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(893, 24);
             this.menuStrip1.TabIndex = 16;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -563,7 +566,7 @@ namespace SimuladorCliente
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(895, 682);
+            this.ClientSize = new System.Drawing.Size(893, 680);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this._dockMain);
             this.Controls.Add(this.toolStrip1);
@@ -571,7 +574,7 @@ namespace SimuladorCliente
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainFrame";
-            this.Text = "Simulador";
+            this.Text = "Simulador TCP/IP";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrame_FormClosing);
             this.toolStrip1.ResumeLayout(false);

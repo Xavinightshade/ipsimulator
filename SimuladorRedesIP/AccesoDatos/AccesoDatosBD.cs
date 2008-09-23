@@ -10,7 +10,9 @@ namespace AccesoDatos
     {
         private static Red GetNewBD()
         {
-            return new Red(Environment.CurrentDirectory+"\\Red.sdf");
+         //   return new Red(Environment.CurrentDirectory+"\\Red.sdf");
+                   return new Red(@"D:\Tesis\SimuladorRedesIp\Red.sdf");
+     
         }
         static Red db = GetNewBD();
         public static ReadOnlyCollection<Estaciones> GetAllEstaciones()
@@ -79,10 +81,14 @@ namespace AccesoDatos
         }
 
 
-
-        public static void GuardarEstacion(Estaciones estacion)
+        public static void ActualizarEstacion(Estaciones estacion)
         {
             Delete(estacion.Id);
+            GuardarNuevaEstacion(estacion);
+        }
+
+        public static void GuardarNuevaEstacion(Estaciones estacion)
+        {
             db = GetNewBD();
             db.Estaciones.InsertOnSubmit(estacion);
             foreach (Equipos equipo in estacion.EquiposBD)

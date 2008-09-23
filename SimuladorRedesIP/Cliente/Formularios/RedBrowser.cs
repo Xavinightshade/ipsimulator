@@ -13,7 +13,14 @@ namespace SimuladorCliente.Formularios
     {
         public RedBrowser()
         {
+            InitializeComponent();
 
+        }
+        public RedBrowser(List<RedBrowserModel> redes)
+        {
+            InitializeComponent();
+            BindingList<RedBrowserModel> redesBinding=new BindingList<RedBrowserModel>(redes);
+            _redesSource.DataSource = redesBinding;
 
         }
     }

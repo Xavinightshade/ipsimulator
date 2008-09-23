@@ -31,10 +31,10 @@
             this.grid = new SourceGrid.Grid();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.marcadorImagen1 = new SimuladorCliente.Vistas.MarcadorCablePictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.marcadorImagen1 = new SimuladorCliente.Vistas.MarcadorCablePictureBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -49,7 +49,7 @@
             this.grid.Name = "grid";
             this.grid.OptimizeMode = SourceGrid.CellOptimizeMode.ForRows;
             this.grid.SelectionMode = SourceGrid.GridSelectionMode.Cell;
-            this.grid.Size = new System.Drawing.Size(684, 302);
+            this.grid.Size = new System.Drawing.Size(680, 298);
             this.grid.TabIndex = 1;
             this.grid.TabStop = true;
             this.grid.ToolTipText = "";
@@ -70,7 +70,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.grid);
-            this.splitContainer1.Size = new System.Drawing.Size(686, 338);
+            this.splitContainer1.Size = new System.Drawing.Size(682, 334);
             this.splitContainer1.SplitterDistance = 30;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -84,8 +84,36 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(684, 28);
+            this.panel1.Size = new System.Drawing.Size(680, 28);
             this.panel1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button2.Location = new System.Drawing.Point(497, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 22);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Ocultar";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(82, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 7;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button1.Location = new System.Drawing.Point(597, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(80, 22);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Cerrar";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // marcadorImagen1
             // 
@@ -97,41 +125,13 @@
             this.marcadorImagen1.TabIndex = 6;
             this.marcadorImagen1.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(601, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 22);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Cerrar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(82, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 7;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button2.Location = new System.Drawing.Point(501, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 22);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Ocultar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // SnifferBeta
+            // FormaSnifferSwitch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 338);
+            this.ClientSize = new System.Drawing.Size(682, 334);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "SnifferBeta";
+            this.Name = "FormaSnifferSwitch";
             this.TabText = "SnifferBeta";
             this.Text = "SnifferBeta";
             this.splitContainer1.Panel1.ResumeLayout(false);
