@@ -133,7 +133,6 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Topologia";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // button1
             // 
@@ -174,7 +173,6 @@
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Descripción";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // Fecha
             // 
