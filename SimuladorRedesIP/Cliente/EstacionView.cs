@@ -45,7 +45,7 @@ namespace RedesIP.Vistas
 
         public EstacionView()
         {
-            _herramienta = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this);
+            _herramienta = FabricaHerramienta.CrearHerramienta(Herramienta.Seleccion, this);
         }
 
 
