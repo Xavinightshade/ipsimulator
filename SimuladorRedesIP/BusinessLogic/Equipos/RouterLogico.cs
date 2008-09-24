@@ -6,6 +6,7 @@ using RedesIP.Common;
 using RedesIP.SOA;
 using BusinessLogic.OSI;
 using BusinessLogic.Protocolos;
+using BusinessLogic.Componentes;
 
 namespace RedesIP.Modelos.Logicos.Equipos
 {
@@ -21,7 +22,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             return rouRespuesta;
         }
 
-
+        private RouteTable tablaDeRutas = new RouteTable();
         private List<PuertoEthernetCompleto> _puertosEthernet = new List<PuertoEthernetCompleto>();
 
         public List<PuertoEthernetCompleto> PuertosEthernet

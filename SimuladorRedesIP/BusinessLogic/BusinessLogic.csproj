@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenadorInformacion.cs" />
+    <Compile Include="Componentes\EntradaTablaRouter.cs" />
+    <Compile Include="Componentes\RouteTable.cs" />
     <Compile Include="Datos\DatosFrameArpBuscando.cs" />
     <Compile Include="Datos\DatosFrameArpIPpEncontrada.cs" />
     <Compile Include="Domain Object\DomainObject.cs" />

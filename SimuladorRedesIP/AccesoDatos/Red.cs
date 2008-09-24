@@ -47,6 +47,12 @@ namespace AccesoDatos
     partial void InsertPuertosCompletos(PuertosCompletos instance);
     partial void UpdatePuertosCompletos(PuertosCompletos instance);
     partial void DeletePuertosCompletos(PuertosCompletos instance);
+    partial void InsertRouters(Routers instance);
+    partial void UpdateRouters(Routers instance);
+    partial void DeleteRouters(Routers instance);
+    partial void InsertRutas(Rutas instance);
+    partial void UpdateRutas(Rutas instance);
+    partial void DeleteRutas(Rutas instance);
     #endregion
 		
 		public Red(string connection) : 
@@ -120,6 +126,22 @@ namespace AccesoDatos
 				return this.GetTable<PuertosCompletos>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Routers> Routers
+		{
+			get
+			{
+				return this.GetTable<Routers>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Rutas> Rutas
+		{
+			get
+			{
+				return this.GetTable<Rutas>();
+			}
+		}
 	}
 	
 	[Table()]
@@ -136,6 +158,8 @@ namespace AccesoDatos
 		
 		private EntityRef<Puertos> _Puertos;
 		
+		private EntitySet<Rutas> _Rutas;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -151,6 +175,7 @@ namespace AccesoDatos
 		public Cables()
 		{
 			this._Puertos = default(EntityRef<Puertos>);
+			this._Rutas = new EntitySet<Rutas>(new Action<Rutas>(this.attach_Rutas), new Action<Rutas>(this.detach_Rutas));
 			OnCreated();
 		}
 		
@@ -252,6 +277,19 @@ namespace AccesoDatos
 			}
 		}
 		
+		[Association(Name="RouterRuta", Storage="_Rutas", ThisKey="Id", OtherKey="IdRouter", DeleteRule="CASCADE")]
+		public EntitySet<Rutas> Rutas
+		{
+			get
+			{
+				return this._Rutas;
+			}
+			set
+			{
+				this._Rutas.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -270,6 +308,18 @@ namespace AccesoDatos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Rutas(Rutas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cables = this;
+		}
+		
+		private void detach_Rutas(Rutas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Cables = null;
 		}
 	}
 	
@@ -424,6 +474,8 @@ namespace AccesoDatos
 		
 		private EntitySet<Puertos> _Puertos;
 		
+		private EntityRef<Routers> _Routers;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -447,6 +499,7 @@ namespace AccesoDatos
 			this._Computadores = default(EntityRef<Computadores>);
 			this._Estaciones = default(EntityRef<Estaciones>);
 			this._Puertos = new EntitySet<Puertos>(new Action<Puertos>(this.attach_Puertos), new Action<Puertos>(this.detach_Puertos));
+			this._Routers = default(EntityRef<Routers>);
 			OnCreated();
 		}
 		
@@ -647,6 +700,35 @@ namespace AccesoDatos
 			set
 			{
 				this._Puertos.Assign(value);
+			}
+		}
+		
+		[Association(Name="RouterEQuipo", Storage="_Routers", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false, DeleteRule="CASCADE")]
+		public Routers Routers
+		{
+			get
+			{
+				return this._Routers.Entity;
+			}
+			set
+			{
+				Routers previousValue = this._Routers.Entity;
+				if (((previousValue != value) 
+							|| (this._Routers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Routers.Entity = null;
+						previousValue.Equipos = null;
+					}
+					this._Routers.Entity = value;
+					if ((value != null))
+					{
+						value.Equipos = this;
+					}
+					this.SendPropertyChanged("Routers");
+				}
 			}
 		}
 		
@@ -1230,6 +1312,284 @@ namespace AccesoDatos
 						this._Id = default(System.Guid);
 					}
 					this.SendPropertyChanged("Puertos");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table()]
+	public partial class Routers : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private EntityRef<Equipos> _Equipos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    #endregion
+		
+		public Routers()
+		{
+			this._Equipos = default(EntityRef<Equipos>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					if (this._Equipos.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Association(Name="RouterEQuipo", Storage="_Equipos", ThisKey="Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public Equipos Equipos
+		{
+			get
+			{
+				return this._Equipos.Entity;
+			}
+			set
+			{
+				Equipos previousValue = this._Equipos.Entity;
+				if (((previousValue != value) 
+							|| (this._Equipos.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Equipos.Entity = null;
+						previousValue.Routers = null;
+					}
+					this._Equipos.Entity = value;
+					if ((value != null))
+					{
+						value.Routers = this;
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(System.Guid);
+					}
+					this.SendPropertyChanged("Equipos");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table()]
+	public partial class Rutas : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Nullable<System.Guid> _IdPuerto;
+		
+		private System.Nullable<long> _Red;
+		
+		private System.Nullable<System.Guid> _IdRouter;
+		
+		private EntityRef<Cables> _Cables;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnIdPuertoChanging(System.Nullable<System.Guid> value);
+    partial void OnIdPuertoChanged();
+    partial void OnRedChanging(System.Nullable<long> value);
+    partial void OnRedChanged();
+    partial void OnIdRouterChanging(System.Nullable<System.Guid> value);
+    partial void OnIdRouterChanged();
+    #endregion
+		
+		public Rutas()
+		{
+			this._Cables = default(EntityRef<Cables>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdPuerto", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> IdPuerto
+		{
+			get
+			{
+				return this._IdPuerto;
+			}
+			set
+			{
+				if ((this._IdPuerto != value))
+				{
+					this.OnIdPuertoChanging(value);
+					this.SendPropertyChanging();
+					this._IdPuerto = value;
+					this.SendPropertyChanged("IdPuerto");
+					this.OnIdPuertoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Red", DbType="BigInt")]
+		public System.Nullable<long> Red
+		{
+			get
+			{
+				return this._Red;
+			}
+			set
+			{
+				if ((this._Red != value))
+				{
+					this.OnRedChanging(value);
+					this.SendPropertyChanging();
+					this._Red = value;
+					this.SendPropertyChanged("Red");
+					this.OnRedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdRouter", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> IdRouter
+		{
+			get
+			{
+				return this._IdRouter;
+			}
+			set
+			{
+				if ((this._IdRouter != value))
+				{
+					if (this._Cables.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdRouterChanging(value);
+					this.SendPropertyChanging();
+					this._IdRouter = value;
+					this.SendPropertyChanged("IdRouter");
+					this.OnIdRouterChanged();
+				}
+			}
+		}
+		
+		[Association(Name="RouterRuta", Storage="_Cables", ThisKey="IdRouter", OtherKey="Id", IsForeignKey=true)]
+		public Cables Cables
+		{
+			get
+			{
+				return this._Cables.Entity;
+			}
+			set
+			{
+				Cables previousValue = this._Cables.Entity;
+				if (((previousValue != value) 
+							|| (this._Cables.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Cables.Entity = null;
+						previousValue.Rutas.Remove(this);
+					}
+					this._Cables.Entity = value;
+					if ((value != null))
+					{
+						value.Rutas.Add(this);
+						this._IdRouter = value.Id;
+					}
+					else
+					{
+						this._IdRouter = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("Cables");
 				}
 			}
 		}
