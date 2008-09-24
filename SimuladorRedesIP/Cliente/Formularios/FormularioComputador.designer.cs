@@ -37,11 +37,11 @@
             this._nombrePc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this._mask = new System.Windows.Forms.TextBox();
             this._defaultGW = new SimuladorCliente.NewFolder1.IPTextBox();
             this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.macTextBox1 = new SimuladorCliente.Formularios.MACTextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this._mask = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -76,7 +76,7 @@
             this._nombrePuerto.Location = new System.Drawing.Point(107, 107);
             this._nombrePuerto.Name = "_nombrePuerto";
             this._nombrePuerto.Size = new System.Drawing.Size(47, 20);
-            this._nombrePuerto.TabIndex = 5;
+            this._nombrePuerto.TabIndex = 4;
             // 
             // _Aceptar
             // 
@@ -104,7 +104,7 @@
             this._nombrePc.Location = new System.Drawing.Point(107, 25);
             this._nombrePc.Name = "_nombrePc";
             this._nombrePc.Size = new System.Drawing.Size(220, 20);
-            this._nombrePc.TabIndex = 9;
+            this._nombrePc.TabIndex = 0;
             // 
             // label4
             // 
@@ -124,6 +124,22 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Default GateWay";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(286, 54);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(12, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "/";
+            // 
+            // _mask
+            // 
+            this._mask.Location = new System.Drawing.Point(304, 51);
+            this._mask.Name = "_mask";
+            this._mask.Size = new System.Drawing.Size(23, 20);
+            this._mask.TabIndex = 2;
+            // 
             // _defaultGW
             // 
             this._defaultGW.AllowInternalTab = false;
@@ -135,7 +151,7 @@
             this._defaultGW.Name = "_defaultGW";
             this._defaultGW.ReadOnly = false;
             this._defaultGW.Size = new System.Drawing.Size(173, 20);
-            this._defaultGW.TabIndex = 10;
+            this._defaultGW.TabIndex = 3;
             this._defaultGW.Text = "...";
             // 
             // ipTextBox1
@@ -159,23 +175,7 @@
             this.macTextBox1.Location = new System.Drawing.Point(107, 133);
             this.macTextBox1.Name = "macTextBox1";
             this.macTextBox1.Size = new System.Drawing.Size(173, 20);
-            this.macTextBox1.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(286, 54);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(12, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "/";
-            // 
-            // _mask
-            // 
-            this._mask.Location = new System.Drawing.Point(304, 51);
-            this._mask.Name = "_mask";
-            this._mask.Size = new System.Drawing.Size(23, 20);
-            this._mask.TabIndex = 13;
+            this.macTextBox1.TabIndex = 5;
             // 
             // FormularioComputador
             // 

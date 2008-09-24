@@ -97,7 +97,7 @@ namespace RedesIP.Vistas.Equipos
                 
                 if (HitTest(e.X, e.Y))
                 {
-                    _tooltip.Show(GetInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY, 4000);
+                    _tooltip.Show(GetFullInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY+DimensionMundo.Alto, 4000);
                 }
                 else
                 {
@@ -123,12 +123,17 @@ namespace RedesIP.Vistas.Equipos
         public override void DibujarElemento(Graphics grafico)
         {
             grafico.DrawImage(Imagen, this.Dimension.OrigenX, this.Dimension.OrigenY, this.Dimension.Ancho, this.Dimension.Alto);
-            grafico.DrawString(Environment.NewLine+ GetInfoMapa(), new Font("Arial", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX, DimensionMundo.OrigenY + DimensionMundo.Alto));
+            grafico.DrawString(Environment.NewLine+ GetInfoMapa(), new Font("Arial Narrow", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX, DimensionMundo.OrigenY + DimensionMundo.Alto-14));
             Imagen.Dispose();
         }
         protected virtual string GetInfoMapa()
         {
             return this.Id.ToString();
+        }
+        protected virtual string GetFullInfoMapa()
+        {
+            string tip = "Nombre: " + _nombre;
+            return tip;
         }
         private ToolTip _tooltip = new ToolTip();
 
