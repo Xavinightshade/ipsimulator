@@ -43,7 +43,7 @@ namespace SimuladorCliente
             _estacionView = formaEstacion.EstacionView;
             _estacionModelo = new EstacionModelo(Guid.NewGuid());
             _esEstacionNueva = true;
-            _deleteItem.Enabled = false;
+            _toolBarDelete.Enabled = false;
 
             PresenterLocal presenterLocal = new PresenterLocal(_estacionView);
             presenterLocal.SetEstacion(_estacionModelo);
@@ -64,44 +64,44 @@ namespace SimuladorCliente
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Computador);
             _mouse.CheckState = CheckState.Unchecked;
-            _pc.CheckState = CheckState.Checked;
-            _switch.CheckState = CheckState.Unchecked;
-            _conexion.CheckState = CheckState.Unchecked;
-            _router.CheckState = CheckState.Unchecked;
-            _punta.CheckState = CheckState.Unchecked;
+            _toolBarPC.CheckState = CheckState.Checked;
+            _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
+            _toolBarRouter.CheckState = CheckState.Unchecked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
 
         private void Nouse_Click(object sender, EventArgs e)
         {
             _estacionView.CambiarHerramienta(Herramienta.Seleccion);
             _mouse.CheckState = CheckState.Checked;
-            _pc.CheckState = CheckState.Unchecked;
-            _switch.CheckState = CheckState.Unchecked;
-            _conexion.CheckState = CheckState.Unchecked;
-            _router.CheckState = CheckState.Unchecked;
-            _punta.CheckState = CheckState.Unchecked;
+            _toolBarPC.CheckState = CheckState.Unchecked;
+            _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
+            _toolBarRouter.CheckState = CheckState.Unchecked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
 
         private void Switch_Click(object sender, EventArgs e)
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Switch);
             _mouse.CheckState = CheckState.Unchecked;
-            _pc.CheckState = CheckState.Unchecked;
-            _switch.CheckState = CheckState.Checked;
-            _conexion.CheckState = CheckState.Unchecked;
-            _router.CheckState = CheckState.Unchecked;
-            _punta.CheckState = CheckState.Unchecked;
+            _toolBarPC.CheckState = CheckState.Unchecked;
+            _toolBarSwitch.CheckState = CheckState.Checked;
+            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
+            _toolBarRouter.CheckState = CheckState.Unchecked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
 
         private void Conexion_Click(object sender, EventArgs e)
         {
             _estacionView.CambiarHerramienta(Herramienta.Conectar);
             _mouse.CheckState = CheckState.Unchecked;
-            _pc.CheckState = CheckState.Unchecked;
-            _switch.CheckState = CheckState.Unchecked;
-            _conexion.CheckState = CheckState.Checked;
-            _router.CheckState = CheckState.Unchecked;
-            _punta.CheckState = CheckState.Unchecked;
+            _toolBarPC.CheckState = CheckState.Unchecked;
+            _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarConectarEquipos.CheckState = CheckState.Checked;
+            _toolBarRouter.CheckState = CheckState.Unchecked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
 
 
@@ -134,9 +134,9 @@ namespace SimuladorCliente
 
             //      button1.Visible = false;
             _mouse.Enabled = true;
-            _pc.Enabled = true;
-            _switch.Enabled = true;
-            _conexion.Enabled = true;
+            _toolBarPC.Enabled = true;
+            _toolBarSwitch.Enabled = true;
+            _toolBarConectarEquipos.Enabled = true;
         }
 
 
@@ -147,11 +147,11 @@ namespace SimuladorCliente
         {
             _estacionView.CambiarHerramienta(Herramienta.Marcadores);
             _mouse.CheckState = CheckState.Unchecked;
-            _pc.CheckState = CheckState.Unchecked;
-            _switch.CheckState = CheckState.Unchecked;
-            _conexion.CheckState = CheckState.Unchecked;
-            _router.CheckState = CheckState.Unchecked;
-            _punta.CheckState = CheckState.Checked;
+            _toolBarPC.CheckState = CheckState.Unchecked;
+            _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
+            _toolBarRouter.CheckState = CheckState.Unchecked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Checked;
         }
 
 
@@ -173,11 +173,11 @@ namespace SimuladorCliente
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Router);
             _mouse.CheckState = CheckState.Unchecked;
-            _pc.CheckState = CheckState.Unchecked;
-            _switch.CheckState = CheckState.Unchecked;
-            _conexion.CheckState = CheckState.Unchecked;
-            _router.CheckState = CheckState.Checked;
-            _punta.CheckState = CheckState.Unchecked;
+            _toolBarPC.CheckState = CheckState.Unchecked;
+            _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
+            _toolBarRouter.CheckState = CheckState.Checked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
 
 
@@ -275,7 +275,7 @@ namespace SimuladorCliente
                     PresenterLocal presenter = new PresenterLocal(_estacionView);
                     presenter.SetEstacion(_estacionModelo);
                     _esEstacionNueva = false;
-                    _deleteItem.Enabled = true;
+                    _toolBarDelete.Enabled = true;
                     _estacionView.Inicializar(presenter, _dockMain);
                     presenter.ConectarCliente();
                 }
@@ -289,7 +289,7 @@ namespace SimuladorCliente
             PresenterLocal presenter = new PresenterLocal(_estacionView);
             presenter.SetEstacion(_estacionModelo);
             _esEstacionNueva = true;
-            _deleteItem.Enabled = false;
+            _toolBarDelete.Enabled = false;
             _estacionView.Inicializar(presenter, _dockMain);
             presenter.ConectarCliente();
         }
