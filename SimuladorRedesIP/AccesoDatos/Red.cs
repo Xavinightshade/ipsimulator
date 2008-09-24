@@ -44,6 +44,9 @@ namespace AccesoDatos
     partial void InsertPuertos(Puertos instance);
     partial void UpdatePuertos(Puertos instance);
     partial void DeletePuertos(Puertos instance);
+    partial void InsertPuertosCompletos(PuertosCompletos instance);
+    partial void UpdatePuertosCompletos(PuertosCompletos instance);
+    partial void DeletePuertosCompletos(PuertosCompletos instance);
     #endregion
 		
 		public Red(string connection) : 
@@ -107,6 +110,14 @@ namespace AccesoDatos
 			get
 			{
 				return this.GetTable<Puertos>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PuertosCompletos> PuertosCompletos
+		{
+			get
+			{
+				return this.GetTable<PuertosCompletos>();
 			}
 		}
 	}
@@ -844,9 +855,13 @@ namespace AccesoDatos
 		
 		private System.Guid _IdEquipo;
 		
+		private string _Nombre;
+		
 		private EntitySet<Cables> _Cables;
 		
 		private EntityRef<Equipos> _Equipos;
+		
+		private EntityRef<PuertosCompletos> _PuertosCompletos;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -856,12 +871,15 @@ namespace AccesoDatos
     partial void OnIdChanged();
     partial void OnIdEquipoChanging(System.Guid value);
     partial void OnIdEquipoChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
     #endregion
 		
 		public Puertos()
 		{
 			this._Cables = new EntitySet<Cables>(new Action<Cables>(this.attach_Cables), new Action<Cables>(this.detach_Cables));
 			this._Equipos = default(EntityRef<Equipos>);
+			this._PuertosCompletos = default(EntityRef<PuertosCompletos>);
 			OnCreated();
 		}
 		
@@ -905,6 +923,26 @@ namespace AccesoDatos
 					this._IdEquipo = value;
 					this.SendPropertyChanged("IdEquipo");
 					this.OnIdEquipoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
 				}
 			}
 		}
@@ -956,6 +994,35 @@ namespace AccesoDatos
 			}
 		}
 		
+		[Association(Storage="_PuertosCompletos", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false, DeleteRule="CASCADE")]
+		public PuertosCompletos PuertosCompletos
+		{
+			get
+			{
+				return this._PuertosCompletos.Entity;
+			}
+			set
+			{
+				PuertosCompletos previousValue = this._PuertosCompletos.Entity;
+				if (((previousValue != value) 
+							|| (this._PuertosCompletos.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PuertosCompletos.Entity = null;
+						previousValue.Puertos = null;
+					}
+					this._PuertosCompletos.Entity = value;
+					if ((value != null))
+					{
+						value.Puertos = this;
+					}
+					this.SendPropertyChanged("PuertosCompletos");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -986,6 +1053,133 @@ namespace AccesoDatos
 		{
 			this.SendPropertyChanging();
 			entity.Puertos = null;
+		}
+	}
+	
+	[Table()]
+	public partial class PuertosCompletos : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _DireccionIP;
+		
+		private EntityRef<Puertos> _Puertos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnDireccionIPChanging(string value);
+    partial void OnDireccionIPChanged();
+    #endregion
+		
+		public PuertosCompletos()
+		{
+			this._Puertos = default(EntityRef<Puertos>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					if (this._Puertos.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DireccionIP", DbType="NVarChar(100)")]
+		public string DireccionIP
+		{
+			get
+			{
+				return this._DireccionIP;
+			}
+			set
+			{
+				if ((this._DireccionIP != value))
+				{
+					this.OnDireccionIPChanging(value);
+					this.SendPropertyChanging();
+					this._DireccionIP = value;
+					this.SendPropertyChanged("DireccionIP");
+					this.OnDireccionIPChanged();
+				}
+			}
+		}
+		
+		[Association(Name="PuertosCompletos", Storage="_Puertos", ThisKey="Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public Puertos Puertos
+		{
+			get
+			{
+				return this._Puertos.Entity;
+			}
+			set
+			{
+				Puertos previousValue = this._Puertos.Entity;
+				if (((previousValue != value) 
+							|| (this._Puertos.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Puertos.Entity = null;
+						previousValue.PuertosCompletos = null;
+					}
+					this._Puertos.Entity = value;
+					if ((value != null))
+					{
+						value.PuertosCompletos = this;
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(System.Guid);
+					}
+					this.SendPropertyChanged("Puertos");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
