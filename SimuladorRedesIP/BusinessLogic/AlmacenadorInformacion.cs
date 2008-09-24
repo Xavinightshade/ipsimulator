@@ -35,6 +35,7 @@ namespace AccesoDatos
         {
             Puertos puertoBD = new Puertos();
             puertoBD.Id = puerto.Id;
+            puertoBD.Nombre = puerto.Nombre;
             puertoBD.IdEquipo = equipoBD.Id;
             PuertoEthernetCompleto puertoCompletoLogico = puerto as PuertoEthernetCompleto;
             if (puertoCompletoLogico != null)
