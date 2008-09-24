@@ -72,6 +72,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Extensiones\IPAddressControlLib.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="SourceGrid, Version=4.11.3154.17202, Culture=neutral, PublicKeyToken=df6f5e538749e85d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Extensiones\SourceGrid.dll</HintPath>
@@ -90,6 +92,7 @@
     </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -118,6 +121,12 @@
     <Compile Include="Formularios\ConexionServidor.designer.cs">
       <DependentUpon>ConexionServidor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FilterTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FilterTableForm.Designer.cs">
+      <DependentUpon>FilterTableForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\PingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +144,18 @@
     </Compile>
     <Compile Include="Formularios\RedSaveForm.Designer.cs">
       <DependentUpon>RedSaveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RouteTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RouteTableForm.Designer.cs">
+      <DependentUpon>RouteTableForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Tabla ARP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Tabla ARP.Designer.cs">
+      <DependentUpon>Tabla ARP.cs</DependentUpon>
     </Compile>
     <Compile Include="Herramientas\Herramienta.cs" />
     <Compile Include="Herramientas\FabricaHerramienta.cs">
@@ -200,6 +221,9 @@
       <DependentUpon>ConexionServidor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FilterTableForm.resx">
+      <DependentUpon>FilterTableForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\PingForm.resx">
       <DependentUpon>PingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -210,6 +234,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\RedSaveForm.resx">
       <DependentUpon>RedSaveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RouteTableForm.resx">
+      <DependentUpon>RouteTableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Tabla ARP.resx">
+      <DependentUpon>Tabla ARP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Herramientas\PaletaHerramienta.resx">
       <DependentUpon>PaletaHerramienta.cs</DependentUpon>
