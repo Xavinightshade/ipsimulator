@@ -40,11 +40,18 @@ namespace RedesIP.SOA
 			set { _id = value; }
 		}
 
+        private string _nombre;
 
-		public EquipoBaseSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y)
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
+
+		public EquipoBaseSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y,string nombre)
             :this(tipoEquipo,x,y)
 		{
-
+            _nombre = nombre;
 			_id = id;
 
 		}

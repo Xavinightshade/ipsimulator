@@ -13,7 +13,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 	{
         public static RouterSOA CrearRouterSOA(RouterLogico routerLogico)
         {
-            RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y);
+            RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y,routerLogico.Nombre);
             foreach (PuertoEthernetCompleto puerto in routerLogico.PuertosEthernet)
             {
                 rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress,puerto.Nombre,puerto.IPAddress));
@@ -29,7 +29,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             get { return _puertosEthernet; }
         }
 
-		public RouterLogico(Guid id,int X,int Y):base(id,TipoDeEquipo.Router,X,Y)
+		public RouterLogico(Guid id,int X,int Y,string nombre):base(id,TipoDeEquipo.Router,X,Y,nombre)
 		{
 			
 		}

@@ -9,8 +9,8 @@ namespace RedesIP.SOA
     [DataContract]
     public class RouterSOA : EquipoBaseSOA
     {
-        public RouterSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y)
-            : base(tipoEquipo, id, x, y)
+        public RouterSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y, string nombre)
+            : base(tipoEquipo, id, x, y,nombre)
         {
 
         }

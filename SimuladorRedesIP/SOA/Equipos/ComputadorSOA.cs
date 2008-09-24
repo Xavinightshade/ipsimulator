@@ -11,8 +11,8 @@ namespace RedesIP.SOA
     [DataContract]
     public class ComputadorSOA : EquipoBaseSOA
     {
-        public ComputadorSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y)
-            : base(tipoEquipo, id, x, y)
+        public ComputadorSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y, string nombre)
+            : base(tipoEquipo, id, x, y,nombre)
         {
 
         }
@@ -20,6 +20,13 @@ namespace RedesIP.SOA
             : base(tipoEquipo, x, y)
         {
 
+        }
+        private string _defaultGateWay;
+        [DataMember]
+        public string DefaultGateWay
+        {
+            get { return _defaultGateWay; }
+            set { _defaultGateWay = value; }
         }
         private string _direccionIP;
         [DataMember]

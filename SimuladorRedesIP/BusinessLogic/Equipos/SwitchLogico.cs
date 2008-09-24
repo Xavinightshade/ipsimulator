@@ -15,7 +15,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 	{
         public static SwitchSOA CrearSwitchSOA(SwitchLogico swiLogico)
         {
-            SwitchSOA swiRespuesta = new SwitchSOA(swiLogico.TipoDeEquipo, swiLogico.Id, swiLogico.X, swiLogico.Y);
+            SwitchSOA swiRespuesta = new SwitchSOA(swiLogico.TipoDeEquipo, swiLogico.Id, swiLogico.X, swiLogico.Y,swiLogico.Nombre);
             foreach (PuertoEthernetLogicoBase puerto in swiLogico.PuertosEthernet)
             {
                 swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id,puerto.Nombre));
@@ -34,8 +34,8 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}
-        public SwitchLogico(Guid id, int X, int Y)
-            : base(id, TipoDeEquipo.Switch, X, Y)
+        public SwitchLogico(Guid id, int X, int Y,string nombre)
+            : base(id, TipoDeEquipo.Switch, X, Y,nombre)
         {
 
 

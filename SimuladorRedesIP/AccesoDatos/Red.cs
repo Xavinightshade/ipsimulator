@@ -416,6 +416,8 @@ namespace AccesoDatos
 		
 		private System.Guid _IdEstacion;
 		
+		private string _Nombre;
+		
 		private EntityRef<Computadores> _Computadores;
 		
 		private EntityRef<Estaciones> _Estaciones;
@@ -436,6 +438,8 @@ namespace AccesoDatos
     partial void OnTipoDeEquipoChanged();
     partial void OnIdEstacionChanging(System.Guid value);
     partial void OnIdEstacionChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
     #endregion
 		
 		public Equipos()
@@ -546,6 +550,26 @@ namespace AccesoDatos
 					this._IdEstacion = value;
 					this.SendPropertyChanged("IdEstacion");
 					this.OnIdEstacionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
 				}
 			}
 		}

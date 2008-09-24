@@ -139,7 +139,9 @@ namespace RedesIP
         public void PeticionCrearComputador(ComputadorSOA computadorVisulizacion)
         {
 
-            ComputadorLogico pcLogico = new ComputadorLogico(Guid.NewGuid(), computadorVisulizacion.X, computadorVisulizacion.Y);
+            ComputadorLogico pcLogico = new ComputadorLogico(Guid.NewGuid(),
+                computadorVisulizacion.X, computadorVisulizacion.Y,computadorVisulizacion.Nombre,
+                computadorVisulizacion.DefaultGateWay);
             pcLogico.AgregarPuerto(Guid.NewGuid(),"E.0");
             _estacion.CrearComputador(pcLogico);
 
@@ -153,14 +155,14 @@ namespace RedesIP
 
         private static ComputadorSOA CrearComputadorSOA(ComputadorLogico pcLogico)
         {
-            ComputadorSOA equipoRespuesta = new ComputadorSOA(pcLogico.TipoDeEquipo, pcLogico.Id, pcLogico.X, pcLogico.Y);
+            ComputadorSOA equipoRespuesta = new ComputadorSOA(pcLogico.TipoDeEquipo, pcLogico.Id, pcLogico.X, pcLogico.Y,pcLogico.Nombre);
             equipoRespuesta.AgregarPuerto(new PuertoCompletoSOA(pcLogico.PuertoEthernet.Id, pcLogico.PuertoEthernet.MACAddress,pcLogico.PuertoEthernet.Nombre,pcLogico.PuertoEthernet.IPAddress));
             return equipoRespuesta;
         }
 
         public void PeticionCrearSwitch(SwitchSOA swiPeticion)
         {
-            SwitchLogico swiLogico = new SwitchLogico(Guid.NewGuid(), swiPeticion.X, swiPeticion.Y);
+            SwitchLogico swiLogico = new SwitchLogico(Guid.NewGuid(), swiPeticion.X, swiPeticion.Y,swiPeticion.Nombre);
             for (int i = 0; i < 5; i++)
             {
                 swiLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString());
@@ -182,7 +184,7 @@ namespace RedesIP
 
         public void PeticionCrearRouter(RouterSOA router)
         {
-            RouterLogico routerLogico = new RouterLogico(Guid.NewGuid(), router.X, router.Y);
+            RouterLogico routerLogico = new RouterLogico(Guid.NewGuid(), router.X, router.Y, router.Nombre);
             for (int i = 0; i < 5; i++)
             {
                 routerLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString());

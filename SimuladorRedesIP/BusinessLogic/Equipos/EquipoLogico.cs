@@ -12,14 +12,21 @@ namespace RedesIP.Modelos.Logicos.Equipos
         private int _X;
         private int _Y;
         private TipoDeEquipo _tipoDeEquipo;
+        private string _nombre;
+
+        public string Nombre
+        {
+            get { return _nombre; }
+        }
 
         public TipoDeEquipo TipoDeEquipo
         {
             get { return _tipoDeEquipo; }
         }
-        public EquipoLogico(Guid id, TipoDeEquipo tipoEquipo,int X, int Y)
+        public EquipoLogico(Guid id, TipoDeEquipo tipoEquipo,int X, int Y,string nombre)
         {
             _id = id;
+            _nombre = nombre;
             _tipoDeEquipo = tipoEquipo;
             _X = X;
             _Y = Y;

@@ -18,7 +18,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 		private PuertoEthernetCompleto _puertoEthernet;
         private CapaDatos _capaDatos;
-		private string _nombreDelPc;
+        private string _defaultGateWay;
 		/// <summary>
 		/// Puerto Ethernet Del PC
 		/// </summary>
@@ -29,18 +29,18 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		/// <summary>
 		/// Nombre Del Pc
 		/// </summary>
-		public string Nombre
+		public string DefaultGateWay
 		{
-			get { return _nombreDelPc; }
+            get { return _defaultGateWay; }
 		}
 		/// <summary>
 		/// Crea un nuevo PC
 		/// </summary>
 		/// <param name="nombre"></param>
-		public ComputadorLogico(Guid id, int X,int Y):base(id, TipoDeEquipo.Computador,X,Y)
+		public ComputadorLogico(Guid id, int X,int Y,string nombre,string defaultGateWay):base(id, TipoDeEquipo.Computador,X,Y,nombre)
 		{
 
-			_nombreDelPc = "PC_"+GetHashCode().ToString();
+            _defaultGateWay = defaultGateWay;
 
 		}
 

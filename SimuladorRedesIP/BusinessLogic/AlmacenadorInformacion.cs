@@ -23,6 +23,7 @@ namespace AccesoDatos
         {
             Equipos equipoBD = new Equipos();
             equipoBD.Id = equipo.Id;
+            equipoBD.Nombre = equipo.Nombre;
             equipoBD.TipoDeEquipo = (int)equipo.TipoDeEquipo;
             equipoBD.IdEstacion = estacionBD.Id;
             equipoBD.X = equipo.X;
@@ -59,6 +60,11 @@ namespace AccesoDatos
             foreach (KeyValuePair<Guid, ComputadorLogico> pc in estacion.Computadores)
             {
                 Equipos equipoBD = AgregarEquipo(estacionBD, pc.Value);
+                Computadores pcBD = new Computadores();
+                pcBD.Id = pc.Value.Id;
+                pcBD.DefaultGateWay = pc.Value.DefaultGateWay;
+                equipoBD.Computadores = pcBD;
+                pcBD.Equipos = equipoBD;
                 AgregarPuerto(equipoBD, pc.Value.PuertoEthernet);
             }
             foreach (KeyValuePair<Guid, SwitchLogico> swi in estacion.Switches)
@@ -134,12 +140,12 @@ namespace AccesoDatos
                     case TipoDeEquipo.Ninguno:
                         break;
                     case TipoDeEquipo.Computador:
-                        ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
+                        ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Computadores.DefaultGateWay, equipoBD.Nombre);
                         pc.AgregarPuerto(equipoBD.PuertosBD[0].Id, "E.1");
                         estacionLogica.CrearComputador(pc);
                         break;
                     case TipoDeEquipo.Switch:
-                        SwitchLogico swi = new SwitchLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
+                        SwitchLogico swi = new SwitchLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre);
                         foreach (Puertos puertoBD in equipoBD.PuertosBD)
                         {
                             swi.AgregarPuerto(puertoBD.Id, "E." + equipoBD.PuertosBD.IndexOf(puertoBD).ToString());
@@ -148,7 +154,7 @@ namespace AccesoDatos
 
                         break;
                     case TipoDeEquipo.Router:
-                        RouterLogico rou = new RouterLogico(equipoBD.Id, equipoBD.X, equipoBD.Y);
+                        RouterLogico rou = new RouterLogico(equipoBD.Id, equipoBD.X, equipoBD.Y,equipoBD.Nombre);
                         foreach (Puertos puertoBD in equipoBD.PuertosBD)
                         {
                             rou.AgregarPuerto(puertoBD.Id, "E." + equipoBD.PuertosBD.IndexOf(puertoBD).ToString());
