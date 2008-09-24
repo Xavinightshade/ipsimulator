@@ -230,6 +230,9 @@
     <EmbeddedResource Include="Formularios\FilterTableForm.resx">
       <DependentUpon>FilterTableForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FormularioRouter.resx">
+      <DependentUpon>FormularioRouter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\PingForm.resx">
       <DependentUpon>PingForm.cs</DependentUpon>
       <SubType>Designer</SubType>

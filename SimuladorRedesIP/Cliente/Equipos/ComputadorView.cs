@@ -79,6 +79,39 @@ namespace RedesIP.Vistas.Equipos
             return tip;
 
         }
+        protected override void OnMouseDobleClick(MouseEventArgs e)
+        {
+           
+            FormularioComputador formaPC = new FormularioComputador();
+            if (this.Puerto.DireccionIP != null)
+                formaPC.IPAddress = this.Puerto.DireccionIP;
+            if (this.Puerto.Nombre != null)
+                formaPC.NombrePuerto = this.Puerto.Nombre;
+            if (this.Puerto.Mask != null)
+                formaPC.Mask = this.Puerto.Mask.ToString();
+            if (this.Nombre != null)
+                formaPC.NombrePC = this.Nombre;
+            if (this.DefaultGateWay != null)
+                formaPC.DefaultGateWay = this.DefaultGateWay;
+
+            formaPC.MACAddress = this.Puerto.DireccionMAC;
+            if (formaPC.ShowDialog() == DialogResult.OK)
+            {
+
+                base.Contenedor.Contrato.PeticionEstablecerDatosComputador(new RedesIP.SOA.ComputadorSOA(this.Id, formaPC.NombrePC, formaPC.DefaultGateWay));
+                int? mask = null;
+                int maskParsed;
+                if (int.TryParse(formaPC.Mask, out maskParsed))
+                {
+                    mask = maskParsed;
+                }
+                base.Contenedor.Contrato.PeticionEstablecerDatosPuertoCompleto(
+                    new RedesIP.SOA.PuertoCompletoSOA(this.Puerto.Id,
+                        formaPC.MACAddress, formaPC.NombrePuerto, formaPC.IPAddress, mask));
+            }
+            return;
+        }
+
 
 
 

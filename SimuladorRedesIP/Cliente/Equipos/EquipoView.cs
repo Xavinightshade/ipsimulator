@@ -49,12 +49,31 @@ namespace RedesIP.Vistas.Equipos
             inst.MouseDown += new System.Windows.Forms.MouseEventHandler(OnMouseDown);
             inst.MouseMove += new System.Windows.Forms.MouseEventHandler(OnMouseMove);
             inst.MouseUp += new System.Windows.Forms.MouseEventHandler(OnMouseUp);
+            _ownerControl.MouseDoubleClick += new MouseEventHandler(_ownerControl_MouseDoubleClick);
+        }
+
+        void _ownerControl_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (HitTest(e.X, e.Y))
+            {
+
+                OnMouseDobleClick(e);
+
+            }
+        }
+
+        protected virtual void OnMouseDobleClick(MouseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
         public void DesconectarDelContenedor()
         {
             _ownerControl.MouseDown -= new System.Windows.Forms.MouseEventHandler(OnMouseDown);
             _ownerControl.MouseMove -= new System.Windows.Forms.MouseEventHandler(OnMouseMove);
             _ownerControl.MouseUp -= new System.Windows.Forms.MouseEventHandler(OnMouseUp);
+            _ownerControl.MouseDoubleClick -= new MouseEventHandler(_ownerControl_MouseDoubleClick);
+
+            
         }
         public void MoverEquipo(int x, int y)
         {

@@ -88,11 +88,7 @@ namespace RedesIP.Vistas
                 _marcadores[i].DibujarElemento(g);
             }
         }    
-		protected override void OnMouseDoubleClick(MouseEventArgs e)
-		{
-			base.OnMouseDoubleClick(e);
-            _herramienta.OnMouseDoubleClick(e);
-		}
+
 		protected override void OnMouseUp(MouseEventArgs e)
 		{
             base.OnMouseUp(e);
