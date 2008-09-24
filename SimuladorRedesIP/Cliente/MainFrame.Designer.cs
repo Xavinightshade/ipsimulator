@@ -30,7 +30,7 @@ namespace SimuladorCliente
 		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this._toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._toolBarNew = new System.Windows.Forms.ToolStripMenuItem();
             this._toolBarOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,8 +57,8 @@ namespace SimuladorCliente
             this._toolBarPuntaMedicion = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this._dockMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this._statusStrip = new System.Windows.Forms.StatusStrip();
+            this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this._menuNew = new System.Windows.Forms.ToolStripMenuItem();
             this._menuOpen = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,14 +88,14 @@ namespace SimuladorCliente
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.toolStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this._menuStrip = new System.Windows.Forms.MenuStrip();
+            this._toolStrip.SuspendLayout();
+            this._menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // _toolStrip
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator3,
             this._toolBarNew,
             this._toolBarOpen,
@@ -114,11 +114,11 @@ namespace SimuladorCliente
             this._toolBarConectarEquipos,
             this._toolBarPuntaMedicion,
             this.toolStripSeparator4});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(893, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this._toolStrip.Location = new System.Drawing.Point(0, 24);
+            this._toolStrip.Name = "_toolStrip";
+            this._toolStrip.Size = new System.Drawing.Size(893, 25);
+            this._toolStrip.TabIndex = 1;
+            this._toolStrip.Text = "toolStrip1";
             // 
             // toolStripSeparator3
             // 
@@ -221,7 +221,7 @@ namespace SimuladorCliente
             this._toolBarConectar.Name = "_toolBarConectar";
             this._toolBarConectar.Size = new System.Drawing.Size(204, 22);
             this._toolBarConectar.Text = "Conectar a servidor";
-            this._toolBarConectar.Click += new System.EventHandler(this.cToolStripMenuItem_Click);
+            this._toolBarConectar.Click += new System.EventHandler(this.ToolBarConectarClick);
             // 
             // _toolBarDesonectar
             // 
@@ -229,7 +229,7 @@ namespace SimuladorCliente
             this._toolBarDesonectar.Name = "_toolBarDesonectar";
             this._toolBarDesonectar.Size = new System.Drawing.Size(204, 22);
             this._toolBarDesonectar.Text = "Desconectar del servidor";
-            this._toolBarDesonectar.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this._toolBarDesonectar.Click += new System.EventHandler(this.ToolBarDesconectarClick);
             // 
             // toolStripSeparator10
             // 
@@ -242,7 +242,7 @@ namespace SimuladorCliente
             this._toolBarConfigurarServidor.Name = "_toolBarConfigurarServidor";
             this._toolBarConfigurarServidor.Size = new System.Drawing.Size(204, 22);
             this._toolBarConfigurarServidor.Text = "Inicializar servidor";
-            this._toolBarConfigurarServidor.Click += new System.EventHandler(this.inicializarServidorToolStripMenuItem_Click);
+            this._toolBarConfigurarServidor.Click += new System.EventHandler(this.ToolBarConfigurarServidorClick);
             // 
             // toolStripSeparator6
             // 
@@ -333,27 +333,18 @@ namespace SimuladorCliente
             this._dockMain.Size = new System.Drawing.Size(893, 606);
             this._dockMain.TabIndex = 10;
             // 
-            // statusStrip1
+            // _statusStrip
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 658);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(893, 22);
-            this.statusStrip1.TabIndex = 15;
-            this.statusStrip1.Text = "statusStrip1";
+            this._statusStrip.Location = new System.Drawing.Point(0, 658);
+            this._statusStrip.Name = "_statusStrip";
+            this._statusStrip.Size = new System.Drawing.Size(893, 22);
+            this._statusStrip.TabIndex = 15;
+            this._statusStrip.Text = "statusStrip1";
             // 
-            // menuStrip1
+            // _notifyIcon
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.herramientasToolStripMenuItem,
-            this.equiposToolStripMenuItem,
-            this._menuConectar,
-            this.ayudaToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(893, 24);
-            this.menuStrip1.TabIndex = 16;
-            this.menuStrip1.Text = "menuStrip1";
+            this._notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("_notifyIcon.Icon")));
+            this._notifyIcon.Text = "_notifyIcon";
             // 
             // toolStripMenuItem1
             // 
@@ -447,7 +438,6 @@ namespace SimuladorCliente
             this._menuCargarDBArchivo.Name = "_menuCargarDBArchivo";
             this._menuCargarDBArchivo.Size = new System.Drawing.Size(269, 22);
             this._menuCargarDBArchivo.Text = " Cargar Base de Datos Desde Archivo";
-            this._menuCargarDBArchivo.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
             // 
             // toolStripSeparator1
             // 
@@ -567,10 +557,19 @@ namespace SimuladorCliente
             this.acercaToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.acercaToolStripMenuItem.Text = "Acerca";
             // 
-            // notifyIcon1
+            // _menuStrip
             // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "_notifyIcon";
+            this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.herramientasToolStripMenuItem,
+            this.equiposToolStripMenuItem,
+            this._menuConectar,
+            this.ayudaToolStripMenuItem});
+            this._menuStrip.Location = new System.Drawing.Point(0, 0);
+            this._menuStrip.Name = "_menuStrip";
+            this._menuStrip.Size = new System.Drawing.Size(893, 24);
+            this._menuStrip.TabIndex = 16;
+            this._menuStrip.Text = "menuStrip1";
             // 
             // MainFrame
             // 
@@ -578,20 +577,20 @@ namespace SimuladorCliente
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(893, 680);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this._statusStrip);
             this.Controls.Add(this._dockMain);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this._toolStrip);
+            this.Controls.Add(this._menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this._menuStrip;
             this.Name = "MainFrame";
             this.Text = "Simulador TCP/IP";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrame_FormClosing);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrameClosing);
+            this._toolStrip.ResumeLayout(false);
+            this._toolStrip.PerformLayout();
+            this._menuStrip.ResumeLayout(false);
+            this._menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -600,7 +599,7 @@ namespace SimuladorCliente
 		#endregion
 
 
-		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStrip _toolStrip;
 		private System.Windows.Forms.ToolStripButton _mouse;
 		private System.Windows.Forms.ToolStripButton _toolBarPC;
 		private System.Windows.Forms.ToolStripButton _toolBarSwitch;
@@ -608,24 +607,17 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripButton _toolBarPuntaMedicion;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private WeifenLuo.WinFormsUI.Docking.DockPanel _dockMain;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem herramientasToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip _statusStrip;
         private System.Windows.Forms.ToolStripButton _toolBarRouter;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.NotifyIcon _notifyIcon;
         private System.Windows.Forms.ToolStripMenuItem _toolBarConectar;
         private System.Windows.Forms.ToolStripMenuItem _toolBarConfigurarServidor;
         private System.Windows.Forms.ToolStripMenuItem _toolBarDesonectar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-        private System.Windows.Forms.ToolStripMenuItem _menuNew;
-        private System.Windows.Forms.ToolStripMenuItem _menuOpen;
-        private System.Windows.Forms.ToolStripMenuItem _menuGuardar;
-        private System.Windows.Forms.ToolStripMenuItem _menuDelete;
         private System.Windows.Forms.ToolStripMenuItem _toolBarNew;
         private System.Windows.Forms.ToolStripMenuItem _toolBarOpen;
         private System.Windows.Forms.ToolStripMenuItem _toolBarSave;
@@ -633,32 +625,39 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem _toolBarCargarBDdefault;
         private System.Windows.Forms.ToolStripMenuItem _toolBarCargarBDarchivo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem _toolBarGuardarBD;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem _menuNew;
+        private System.Windows.Forms.ToolStripMenuItem _menuOpen;
+        private System.Windows.Forms.ToolStripMenuItem _menuGuardar;
+        private System.Windows.Forms.ToolStripMenuItem _menuGuardarComo;
+        private System.Windows.Forms.ToolStripMenuItem _menuDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem _menuSalir;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem herramientasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _menuCargarDBDefault;
         private System.Windows.Forms.ToolStripMenuItem _menuCargarDBArchivo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem _menuConectarServidor;
         private System.Windows.Forms.ToolStripMenuItem _menuDesconectarServidor;
         private System.Windows.Forms.ToolStripMenuItem _menuConfigurarServidor;
-        private System.Windows.Forms.ToolStripMenuItem _menuGuardarComo;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem _menuSalir;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem equiposToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _menuPC;
         private System.Windows.Forms.ToolStripMenuItem _menuSwitch;
         private System.Windows.Forms.ToolStripMenuItem _menuRouter;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem _menuConectar;
         private System.Windows.Forms.ToolStripMenuItem conectarEquiposToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _menuPuntaMedicion;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem documentaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _toolBarGuardarBD;
+        private System.Windows.Forms.MenuStrip _menuStrip;
 
 
 

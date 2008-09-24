@@ -24,8 +24,9 @@ namespace SimuladorCliente
     public partial class MainFrame : Form
     {
         private bool _esEstacionNueva;
-        EstacionView _estacionView;
-        EstacionModelo _estacionModelo;
+        private EstacionView _estacionView;
+        private EstacionModelo _estacionModelo;
+        private bool _servicioConectado;
         public MainFrame()
         {
             InitializeComponent();
@@ -57,9 +58,7 @@ namespace SimuladorCliente
 
         }
 
-
-
-
+        #region ToolBarEstados
         private void pc_Click(object sender, EventArgs e)
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Computador);
@@ -70,7 +69,6 @@ namespace SimuladorCliente
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
-
         private void Nouse_Click(object sender, EventArgs e)
         {
             _estacionView.CambiarHerramienta(Herramienta.Seleccion);
@@ -81,7 +79,6 @@ namespace SimuladorCliente
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
-
         private void Switch_Click(object sender, EventArgs e)
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Switch);
@@ -92,7 +89,16 @@ namespace SimuladorCliente
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
-
+        private void Router_Click(object sender, EventArgs e)
+        {
+            _estacionView.PeticionCrearEquipo(TipoDeEquipo.Router);
+            _mouse.CheckState = CheckState.Unchecked;
+            _toolBarPC.CheckState = CheckState.Unchecked;
+            _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
+            _toolBarRouter.CheckState = CheckState.Checked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
+        }
         private void Conexion_Click(object sender, EventArgs e)
         {
             _estacionView.CambiarHerramienta(Herramienta.Conectar);
@@ -103,9 +109,17 @@ namespace SimuladorCliente
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
         }
-
-
-
+        private void Punta_Click(object sender, EventArgs e)
+        {
+            _estacionView.CambiarHerramienta(Herramienta.Marcadores);
+            _mouse.CheckState = CheckState.Unchecked;
+            _toolBarPC.CheckState = CheckState.Unchecked;
+            _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
+            _toolBarRouter.CheckState = CheckState.Unchecked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Checked;
+        }
+        #endregion
 
 
         private void ConectarSOA(string ipAddress, string puerto)
@@ -132,57 +146,13 @@ namespace SimuladorCliente
 
             clien.ConectarCliente();
 
-            //      button1.Visible = false;
             _mouse.Enabled = true;
             _toolBarPC.Enabled = true;
             _toolBarSwitch.Enabled = true;
             _toolBarConectarEquipos.Enabled = true;
         }
 
-
-
-
-
-        private void Punta_Click(object sender, EventArgs e)
-        {
-            _estacionView.CambiarHerramienta(Herramienta.Marcadores);
-            _mouse.CheckState = CheckState.Unchecked;
-            _toolBarPC.CheckState = CheckState.Unchecked;
-            _toolBarSwitch.CheckState = CheckState.Unchecked;
-            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
-            _toolBarRouter.CheckState = CheckState.Unchecked;
-            _toolBarPuntaMedicion.CheckState = CheckState.Checked;
-        }
-
-
-
-
-
-
-
-
-        private void CargarDesdeBD(object sender, EventArgs e)
-        {
-
-
-        }
-
-
-
-        private void Router_Click(object sender, EventArgs e)
-        {
-            _estacionView.PeticionCrearEquipo(TipoDeEquipo.Router);
-            _mouse.CheckState = CheckState.Unchecked;
-            _toolBarPC.CheckState = CheckState.Unchecked;
-            _toolBarSwitch.CheckState = CheckState.Unchecked;
-            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
-            _toolBarRouter.CheckState = CheckState.Checked;
-            _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
-        }
-
-
-
-        private void cToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolBarConectarClick(object sender, EventArgs e)
         {
             using (ConexionServidor formularioConexion = new ConexionServidor())
             {
@@ -196,7 +166,7 @@ namespace SimuladorCliente
 
         }
 
-        private void inicializarServidorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolBarConfigurarServidorClick(object sender, EventArgs e)
         {
             CustomConnectionModel modeloConexion = new CustomConnectionModel(8000);
             using (CustomConnectionForm customForm = new CustomConnectionForm(modeloConexion))
@@ -209,8 +179,8 @@ namespace SimuladorCliente
 
                     InicializarServicio(presenterSOA, modeloConexion.Puerto, modeloConexion.DireccionIp);
 
-                    notifyIcon1.Visible = true;
-                    notifyIcon1.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado." + Environment.NewLine +
+                    _notifyIcon.Visible = true;
+                    _notifyIcon.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado." + Environment.NewLine +
                         "Dirección IP: " + modeloConexion.DireccionIp + Environment.NewLine +
                     "Puerto: " + modeloConexion.Puerto,
                     ToolTipIcon.Info);
@@ -237,28 +207,19 @@ namespace SimuladorCliente
             calculatorHost.Open();
         }
 
-        private void MainFrame_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainFrameClosing(object sender, FormClosingEventArgs e)
         {
             if (_servicioConectado)
                 _estacionView.Contrato.DesconectarCliente();
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void ToolBarDesconectarClick(object sender, EventArgs e)
         {
             _estacionView.Contrato.DesconectarCliente();
             _servicioConectado = false;
         }
 
 
-
-
-
-        private bool _servicioConectado;
-
-        private void toolStripMenuItem10_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void toolStripMenuItem8_Click(object sender, EventArgs e)
         {
