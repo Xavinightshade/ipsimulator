@@ -287,10 +287,12 @@ namespace SimuladorCliente
 
         private void ToolBarDeleteClick(object sender, EventArgs e)
         {
-            AccesoDatos.AlmacenadorInformacion.Eliminar(_estacionModelo.Id);
-            _estacionModelo = new EstacionModelo(Guid.NewGuid());
-            CrearNuevaEstacion();
-
+            if (MessageBox.Show("Desea eliminar red: " + _estacionModelo.Nombre + "?", "Eliminar Red", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
+            {
+                AccesoDatos.AlmacenadorInformacion.Eliminar(_estacionModelo.Id);
+                _estacionModelo = new EstacionModelo(Guid.NewGuid());
+                CrearNuevaEstacion();
+            }
 
         }
 

@@ -783,7 +783,7 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Column(Storage="_Descripcion", DbType="NVarChar(200)")]
+		[Column(Storage="_Descripcion", DbType="NVarChar(2000)")]
 		public string Descripcion
 		{
 			get
