@@ -32,6 +32,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		public string DefaultGateWay
 		{
             get { return _defaultGateWay; }
+            set { _defaultGateWay = value; }
 		}
 		/// <summary>
 		/// Crea un nuevo PC
@@ -64,9 +65,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
 
-        public override void AgregarPuerto(Guid idPuerto,string nombre)
+
+        public void AgregarPuerto(Guid idPuerto, string nombre, string macAddress, string direccionIP, int? mask)
         {
-            _puertoEthernet = new PuertoEthernetCompleto(MACAddressFactory.NewMAC(), idPuerto,nombre);
+            _puertoEthernet = new PuertoEthernetCompleto(macAddress, idPuerto, nombre, mask, direccionIP);
         }
 
         public override void InicializarEquipo()

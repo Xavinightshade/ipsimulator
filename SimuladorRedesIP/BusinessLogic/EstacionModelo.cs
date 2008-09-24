@@ -182,6 +182,13 @@ namespace RedesIP
             puertoLogico.Nombre = puerto.Nombre;
             puertoLogico.IPAddress = puerto.IPAddress;
         }
+
+        internal void EstablecerDatosComputador(ComputadorSOA pcSOA)
+        {
+            ComputadorLogico pcLogico = _computadores[pcSOA.Id] as ComputadorLogico;
+            pcLogico.Nombre = pcSOA.Nombre;
+            pcLogico.DefaultGateWay = pcSOA.DefaultGateWay;
+        }
     }
 
 

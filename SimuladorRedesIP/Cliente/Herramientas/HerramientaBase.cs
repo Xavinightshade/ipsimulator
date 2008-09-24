@@ -33,16 +33,22 @@ namespace RedesIP.Vistas
                     {
                         ComputadorView pc = _estacion._computadores[i];
                         FormularioComputador formaPC = new FormularioComputador();
-                        formaPC.Text = pc.Puerto.DireccionMAC;
                         if (pc.Puerto.IPAddress != null)
                             formaPC.IPAddress = pc.Puerto.IPAddress;
                         if (pc.Puerto.Nombre != null)
                             formaPC.NombrePuerto = pc.Puerto.Nombre;
+                        if (pc.Nombre != null)
+                            formaPC.NombrePC = pc.Nombre;
+                        if (pc.DefaultGateWay != null)
+                            formaPC.DefaultGateWay = pc.DefaultGateWay;
                         formaPC.MACAddress = pc.Puerto.DireccionMAC;
                         if (formaPC.ShowDialog() == DialogResult.OK)
+                        {
+                            _estacion.Contrato.PeticionEstablecerDatosComputador(new RedesIP.SOA.ComputadorSOA(pc.Id, formaPC.NombrePC, formaPC.DefaultGateWay));
                             _estacion.Contrato.PeticionEstablecerDatosPuertoCompleto(
                                 new RedesIP.SOA.PuertoCompletoSOA(pc.Puerto.Id,
-                                    formaPC.MACAddress, formaPC.NombrePuerto,formaPC.IPAddress));
+                                    formaPC.MACAddress, formaPC.NombrePuerto, formaPC.IPAddress));
+                        }
                         return;
                     }
                 }

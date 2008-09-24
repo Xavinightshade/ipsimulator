@@ -28,6 +28,8 @@ namespace RedesIP.SOA
         [OperationContract()]
         void PeticionEstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto);
         [OperationContract()]
+        void PeticionEstablecerDatosComputador(ComputadorSOA pcSOA);
+        [OperationContract()]
         void Ping(Guid idEquipo, string ipDestino, string datos);
     }
 }

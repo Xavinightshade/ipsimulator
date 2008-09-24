@@ -103,9 +103,19 @@ namespace AccesoDatos
             foreach (Equipos equipo in estacion.EquiposBD)
             {
                 db.Equipos.InsertOnSubmit(equipo);
+
+                if (equipo.Computadores != null)
+                {
+                    db.Computadores.InsertOnSubmit(equipo.Computadores);
+                }
                 foreach (Puertos puerto in equipo.PuertosBD)
                 {
                     db.Puertos.InsertOnSubmit(puerto);
+                    if (puerto.PuertosCompletos != null)
+                    {
+                        db.PuertosCompletos.InsertOnSubmit(puerto.PuertosCompletos);
+                    }
+
                 }
             }
             foreach (Cables cable in estacion.Cables)

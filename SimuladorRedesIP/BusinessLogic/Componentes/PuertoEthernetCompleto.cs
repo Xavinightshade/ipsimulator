@@ -26,18 +26,20 @@ namespace RedesIP.Modelos.Equipos.Componentes
             get { return _IPAddress; }
             set { _IPAddress = value; }
         }
-        private string _mascara;
+        private int? _mascara;
 
-        public string Mascara
+        public int? Mascara
         {
             get { return _mascara; }
             set { _mascara = value; }
         }
 
-        public PuertoEthernetCompleto(string MACAddress, Guid id,string nombre)
+        public PuertoEthernetCompleto(string MACAddress, Guid id,string nombre,int? mask,string ipAddress)
             : base(id,nombre)
         {
             _MACAddress = MACAddress;
+            _mascara = mask;
+            _IPAddress = ipAddress;
         }
     }
 }

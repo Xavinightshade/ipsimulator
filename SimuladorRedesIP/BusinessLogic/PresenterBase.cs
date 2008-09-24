@@ -142,7 +142,7 @@ namespace RedesIP
             ComputadorLogico pcLogico = new ComputadorLogico(Guid.NewGuid(),
                 computadorVisulizacion.X, computadorVisulizacion.Y,computadorVisulizacion.Nombre,
                 computadorVisulizacion.DefaultGateWay);
-            pcLogico.AgregarPuerto(Guid.NewGuid(),"E.0");
+            pcLogico.AgregarPuerto(Guid.NewGuid(),"E.0",MACAddressFactory.NewMAC(),null,null);
             _estacion.CrearComputador(pcLogico);
 
             ComputadorSOA equipoRespuesta = CrearComputadorSOA(pcLogico);
@@ -187,7 +187,7 @@ namespace RedesIP
             RouterLogico routerLogico = new RouterLogico(Guid.NewGuid(), router.X, router.Y, router.Nombre);
             for (int i = 0; i < 5; i++)
             {
-                routerLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString());
+                routerLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString(),MACAddressFactory.NewMAC(),null,null);
             }
             _estacion.CrearRouter(routerLogico);
             RouterSOA rouRespuesta = RouterLogico.CrearRouterSOA(routerLogico);
@@ -236,6 +236,20 @@ namespace RedesIP
         public void PeticionEnviarInformacionSwitch(Guid idSwitch)
         {
             _snifferMaster.PeticionEnviarInformacionSwitch(idSwitch);
+        }
+
+        #endregion
+
+        #region IModeloEstacion Members
+
+
+        public void PeticionEstablecerDatosComputador(ComputadorSOA pcSOA)
+        {
+            _estacion.EstablecerDatosComputador(pcSOA);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.EstablecerDatosComputador(pcSOA);
+            }
         }
 
         #endregion

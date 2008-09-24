@@ -8,10 +8,17 @@ namespace RedesIP.Vistas.Equipos
 {
     public abstract class EquipoView : ElementoGraficoCuadrado
     {
-        public EquipoView(Guid id, int origenX, int origenY, int ancho, int alto)
+        public EquipoView(Guid id,string nombre, int origenX, int origenY, int ancho, int alto)
             : base(id, origenX, origenY, ancho, alto)
         {
+            _nombre = nombre;
+        }
+        private string _nombre;
 
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
         }
         private IRegistroMovimientosMouse _reg;
         ContextMenuStrip _menu = new ContextMenuStrip();

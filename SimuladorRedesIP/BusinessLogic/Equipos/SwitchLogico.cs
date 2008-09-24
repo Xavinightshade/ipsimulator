@@ -102,7 +102,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 			if (!_switchTable.YaEstaRegistradoDireccionMAC(direccionMacOrigen))
 				_switchTable.RegistrarDireccionMAC(direccionMacOrigen, puertoQueRecibioElFrame);
 		}
-        public override void AgregarPuerto(Guid idPuerto,string nombre)
+        public  void AgregarPuerto(Guid idPuerto,string nombre)
         {
             _puertosEthernet.Add(new PuertoEthernetLogicoBase(idPuerto,nombre));
         }

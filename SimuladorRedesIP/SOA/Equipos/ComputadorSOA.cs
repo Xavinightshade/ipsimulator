@@ -21,6 +21,12 @@ namespace RedesIP.SOA
         {
 
         }
+        public ComputadorSOA(Guid id,string nombre,string defaultGateWay )
+        {
+            Id = id;
+            Nombre = nombre;
+            DefaultGateWay = defaultGateWay;
+        }
         private string _defaultGateWay;
         [DataMember]
         public string DefaultGateWay
@@ -28,13 +34,7 @@ namespace RedesIP.SOA
             get { return _defaultGateWay; }
             set { _defaultGateWay = value; }
         }
-        private string _direccionIP;
-        [DataMember]
-        public string DireccionIP
-        {
-            get { return _direccionIP; }
-            set { _direccionIP = value; }
-        }
+
         PuertoCompletoSOA _puerto;
 
 

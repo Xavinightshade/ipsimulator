@@ -15,13 +15,23 @@ namespace RedesIP.Vistas.Equipos
 	public class ComputadorView:EquipoView
 	{
 		public ComputadorView(ComputadorSOA equipo)
-            : base(equipo.Id, equipo.X, equipo.Y, Resources.Computador.Width, Resources.Computador.Height)
+            : base(equipo.Id,equipo.Nombre, equipo.X, equipo.Y, Resources.Computador.Width, Resources.Computador.Height)
 		{
+            _defaultGateWay = equipo.DefaultGateWay;
             ToolStripMenuItem item = new ToolStripMenuItem("Hacer Ping", Resources.sniffer);
             item.Click += new EventHandler(OnPingClick);
             Menu.Items.Add(item);
             _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id, equipo.Puerto.DireccionMAC,15, 30, this,equipo.Puerto.Nombre);
 		}
+
+        private string _defaultGateWay;
+
+        public string DefaultGateWay
+        {
+            get { return _defaultGateWay; }
+            set { _defaultGateWay = value; }
+        }
+
 
         private void OnPingClick(object sender, EventArgs e)
         {

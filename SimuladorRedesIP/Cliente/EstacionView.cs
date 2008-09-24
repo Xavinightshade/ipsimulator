@@ -185,5 +185,17 @@ namespace RedesIP.Vistas
         }
 
 
+
+        #region ICallBackEstacion Members
+
+
+        public void EstablecerDatosComputador(ComputadorSOA pcSOA)
+        {
+            ComputadorView pcView = _equipos[pcSOA.Id] as ComputadorView;
+            pcView.Nombre = pcSOA.Nombre;
+            pcView.DefaultGateWay = pcSOA.DefaultGateWay;
+        }
+
+        #endregion
     }
 }

@@ -35,10 +35,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
 		}
 
 
-        public override void AgregarPuerto(Guid idPuerto,string nombre)
-        {
-            _puertosEthernet.Add(new PuertoEthernetCompleto(MACAddressFactory.NewMAC(), idPuerto,nombre));
 
+        public void AgregarPuerto(Guid idPuerto, string nombre, string macAddress, string direccionIP,int? mask)
+        {
+            _puertosEthernet.Add(new PuertoEthernetCompleto(macAddress, idPuerto, nombre,mask,direccionIP));
         }
         private Dictionary<PuertoEthernetCompleto, CapaDatos> _puertoEthernetCapaDatos = new Dictionary<PuertoEthernetCompleto, CapaDatos>();
         public override void InicializarEquipo()

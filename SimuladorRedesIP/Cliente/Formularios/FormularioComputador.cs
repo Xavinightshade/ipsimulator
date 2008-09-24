@@ -31,6 +31,16 @@ namespace SimuladorCliente.Formularios
             get { return ipTextBox1.Text; }
             set { ipTextBox1.Text=value; }
         }
+        public string DefaultGateWay
+        {
+            get { return _defaultGW.Text; }
+            set { _defaultGW.Text = value; }
+        }
+        public string NombrePC
+        {
+            get { return _nombrePc.Text; }
+            set { _nombrePc.Text = value; }
+        }
 
         private void _Aceptar_Click(object sender, EventArgs e)
         {

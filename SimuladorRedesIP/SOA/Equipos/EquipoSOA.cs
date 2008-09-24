@@ -62,6 +62,10 @@ namespace RedesIP.SOA
             _y = y;
 
         }
+        public EquipoBaseSOA()
+        {
+
+        }
 
 
 	}
