@@ -34,14 +34,17 @@
             this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this._dato = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this._numero = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this._equipoInfo = new System.Windows.Forms.TextBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 24);
+            this.label1.Location = new System.Drawing.Point(6, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 2;
@@ -49,7 +52,8 @@
             // 
             // _Aceptar
             // 
-            this._Aceptar.Location = new System.Drawing.Point(12, 162);
+            this._Aceptar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._Aceptar.Location = new System.Drawing.Point(12, 243);
             this._Aceptar.Name = "_Aceptar";
             this._Aceptar.Size = new System.Drawing.Size(85, 23);
             this._Aceptar.TabIndex = 6;
@@ -60,7 +64,7 @@
             // _cancel
             // 
             this._cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancel.Location = new System.Drawing.Point(183, 162);
+            this._cancel.Location = new System.Drawing.Point(192, 243);
             this._cancel.Name = "_cancel";
             this._cancel.Size = new System.Drawing.Size(85, 23);
             this._cancel.TabIndex = 7;
@@ -75,7 +79,7 @@
             this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipTextBox1.Location = new System.Drawing.Point(95, 24);
+            this.ipTextBox1.Location = new System.Drawing.Point(83, 19);
             this.ipTextBox1.Name = "ipTextBox1";
             this.ipTextBox1.ReadOnly = false;
             this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
@@ -85,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 74);
+            this.label2.Location = new System.Drawing.Point(6, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 8;
@@ -93,49 +97,62 @@
             // 
             // _dato
             // 
-            this._dato.Location = new System.Drawing.Point(95, 56);
+            this._dato.Location = new System.Drawing.Point(83, 47);
             this._dato.Multiline = true;
             this._dato.Name = "_dato";
             this._dato.Size = new System.Drawing.Size(173, 43);
-            this._dato.TabIndex = 9;
+            this._dato.TabIndex = 2;
             // 
-            // label3
+            // groupBox1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 116);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Numero";
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.ipTextBox1);
+            this.groupBox1.Controls.Add(this._dato);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(265, 99);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos Destino";
             // 
-            // _numero
+            // groupBox2
             // 
-            this._numero.Location = new System.Drawing.Point(95, 113);
-            this._numero.Name = "_numero";
-            this._numero.Size = new System.Drawing.Size(62, 20);
-            this._numero.TabIndex = 11;
+            this.groupBox2.Controls.Add(this._equipoInfo);
+            this.groupBox2.Location = new System.Drawing.Point(12, 117);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(265, 111);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Información Equipo Actual";
+            // 
+            // _equipoInfo
+            // 
+            this._equipoInfo.Location = new System.Drawing.Point(9, 19);
+            this._equipoInfo.Multiline = true;
+            this._equipoInfo.Name = "_equipoInfo";
+            this._equipoInfo.ReadOnly = true;
+            this._equipoInfo.Size = new System.Drawing.Size(247, 77);
+            this._equipoInfo.TabIndex = 3;
             // 
             // PingForm
             // 
-            this.AcceptButton = this._Aceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this._cancel;
-            this.ClientSize = new System.Drawing.Size(285, 197);
-            this.Controls.Add(this._numero);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this._dato);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(288, 280);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._cancel);
             this.Controls.Add(this._Aceptar);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.ipTextBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "PingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Computador";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -147,7 +164,8 @@
         private System.Windows.Forms.Button _cancel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox _dato;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox _numero;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox _equipoInfo;
     }
 }

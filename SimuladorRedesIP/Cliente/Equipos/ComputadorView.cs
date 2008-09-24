@@ -38,14 +38,11 @@ namespace RedesIP.Vistas.Equipos
         private void OnPingClick(object sender, EventArgs e)
         {
             PingForm pingForm = new PingForm();
-            pingForm.Text = "Host: IP:" + _puerto.DireccionIP + ", MAC:" + _puerto.DireccionMAC;
+            pingForm.SetInfoEquipo(GetFullInfoMapa());
             if (pingForm.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < 4; i++)
-                {
                     Contenedor.Contrato.Ping(Id, pingForm.IPAddress, pingForm.Dato);
 
-                }
             }
         }
         PuertoEthernetViewCompleto _puerto;

@@ -34,6 +34,12 @@ namespace SimuladorCliente.Formularios
             this.Close();
 
         }
+        public void SetInfoEquipo(string info)
+        {
+            _equipoInfo.Text = info;
+            ipTextBox1.Focus();
+
+        }
 
         private void _cancel_Click(object sender, EventArgs e)
         {
