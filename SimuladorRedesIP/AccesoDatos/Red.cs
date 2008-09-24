@@ -1066,6 +1066,8 @@ namespace AccesoDatos
 		
 		private string _DireccionIP;
 		
+		private System.Nullable<int> _Mascara;
+		
 		private EntityRef<Puertos> _Puertos;
 		
     #region Extensibility Method Definitions
@@ -1076,6 +1078,8 @@ namespace AccesoDatos
     partial void OnIdChanged();
     partial void OnDireccionIPChanging(string value);
     partial void OnDireccionIPChanged();
+    partial void OnMascaraChanging(System.Nullable<int> value);
+    partial void OnMascaraChanged();
     #endregion
 		
 		public PuertosCompletos()
@@ -1124,6 +1128,26 @@ namespace AccesoDatos
 					this._DireccionIP = value;
 					this.SendPropertyChanged("DireccionIP");
 					this.OnDireccionIPChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Mascara", DbType="Int")]
+		public System.Nullable<int> Mascara
+		{
+			get
+			{
+				return this._Mascara;
+			}
+			set
+			{
+				if ((this._Mascara != value))
+				{
+					this.OnMascaraChanging(value);
+					this.SendPropertyChanging();
+					this._Mascara = value;
+					this.SendPropertyChanged("Mascara");
+					this.OnMascaraChanged();
 				}
 			}
 		}
