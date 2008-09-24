@@ -857,6 +857,8 @@ namespace AccesoDatos
 		
 		private string _Nombre;
 		
+		private string _DireccionMAC;
+		
 		private EntitySet<Cables> _Cables;
 		
 		private EntityRef<Equipos> _Equipos;
@@ -873,6 +875,8 @@ namespace AccesoDatos
     partial void OnIdEquipoChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
+    partial void OnDireccionMACChanging(string value);
+    partial void OnDireccionMACChanged();
     #endregion
 		
 		public Puertos()
@@ -943,6 +947,26 @@ namespace AccesoDatos
 					this._Nombre = value;
 					this.SendPropertyChanged("Nombre");
 					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DireccionMAC", DbType="NVarChar(100)")]
+		public string DireccionMAC
+		{
+			get
+			{
+				return this._DireccionMAC;
+			}
+			set
+			{
+				if ((this._DireccionMAC != value))
+				{
+					this.OnDireccionMACChanging(value);
+					this.SendPropertyChanging();
+					this._DireccionMAC = value;
+					this.SendPropertyChanged("DireccionMAC");
+					this.OnDireccionMACChanged();
 				}
 			}
 		}
