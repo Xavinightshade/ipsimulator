@@ -15,6 +15,21 @@ namespace RedesIP
     {
         private byte[] _imagen;
 
+        private string _nombre;
+
+        public string Nombre
+        {
+            get { return _nombre; }
+            set { _nombre = value; }
+        }
+        private string _descripcion;
+
+        public string Descripcion
+        {
+            get { return _descripcion; }
+            set { _descripcion = value; }
+        }
+
         public byte[] Imagen
         {
             get { return _imagen; }

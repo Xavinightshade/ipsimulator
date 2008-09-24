@@ -68,6 +68,8 @@ namespace AccesoDatos
         {
             Estaciones estacionBD = new Estaciones();
             estacionBD.Id = estacion.Id;
+            estacionBD.Nombre = estacion.Nombre;
+            estacionBD.Descripcion = estacion.Descripcion;
             estacionBD.Foto = new System.Data.Linq.Binary(bitmapData);
             foreach (KeyValuePair<Guid, ComputadorLogico> pc in estacion.Computadores)
             {
@@ -132,6 +134,8 @@ namespace AccesoDatos
 
 
             EstacionModelo estacionLogica = new EstacionModelo(estacionBD.Id);
+            estacionLogica.Nombre = estacionBD.Nombre;
+            estacionLogica.Descripcion = estacionBD.Descripcion;
             if (estacionBD.Foto != null)
                 estacionLogica.Imagen = estacionBD.Foto.ToArray();
 

@@ -255,18 +255,31 @@ namespace SimuladorCliente
         private void ToolBarSaveClick(object sender, EventArgs e)
         {
             Bitmap imagenEstacion = _estacionView.GetImagen();
-            MemoryStream ms = new MemoryStream();
-            imagenEstacion.Save(ms, ImageFormat.Jpeg);
-            byte[] bitmapData = ms.ToArray();
 
-            if (_esEstacionNueva)
+            using (RedSaveForm redSaveForm = new RedSaveForm())
             {
-                AccesoDatos.AlmacenadorInformacion.GuardarNuevaEstacion(_estacionModelo, bitmapData);
+                redSaveForm.Inicializar(_estacionModelo.Nombre, _estacionModelo.Descripcion,imagenEstacion);
 
-            }
-            else
-            {
-                AccesoDatos.AlmacenadorInformacion.ActualizarEstacion(_estacionModelo, bitmapData);
+                if (redSaveForm.ShowDialog() == DialogResult.OK)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    imagenEstacion.Save(ms, ImageFormat.Jpeg);
+                    byte[] bitmapData = ms.ToArray();
+                    _estacionModelo.Nombre = redSaveForm.NombreRed;
+                    _estacionModelo.Descripcion = redSaveForm.DescripcionRed;
+
+                    if (_esEstacionNueva)
+                    {
+                        AccesoDatos.AlmacenadorInformacion.GuardarNuevaEstacion(_estacionModelo, bitmapData);
+
+                    }
+                    else
+                    {
+                        AccesoDatos.AlmacenadorInformacion.ActualizarEstacion(_estacionModelo, bitmapData);
+                    }
+                }
+
+
             }
 
 
@@ -283,7 +296,7 @@ namespace SimuladorCliente
 
         private void ToolBarDBOpenClick(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();            
+            OpenFileDialog dialog = new OpenFileDialog();
             dialog.FileName = "Red.sdf";
             dialog.Filter = "(*.sdf)|*.sdf";
             dialog.ValidateNames = true;
