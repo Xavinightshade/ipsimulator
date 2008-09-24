@@ -13,12 +13,7 @@ namespace RedesIP.Vistas.Equipos.Componentes
         {
             get { return _direccionMAC; }
         }
-        private string _IPAddress;
-        public string IPAddress
-        {
-            get { return _IPAddress; }
-            set { _IPAddress = value; }
-        }
+
         private int? _mask;
 
         public int? Mask
@@ -37,6 +32,7 @@ namespace RedesIP.Vistas.Equipos.Componentes
         public PuertoEthernetViewCompleto(Guid id, string direccionMAC,string direccionIp,int? mask, int origenX, int origenY, EquipoView equipoPadre,string nombre)
             :base(id,origenX,origenY,equipoPadre,nombre)
         {
+           
             _direccionMAC = direccionMAC;
             _direccionIP = direccionIp;
             _mask = mask;

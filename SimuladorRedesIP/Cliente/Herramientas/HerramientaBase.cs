@@ -33,8 +33,8 @@ namespace RedesIP.Vistas
                     {
                         ComputadorView pc = _estacion._computadores[i];
                         FormularioComputador formaPC = new FormularioComputador();
-                        if (pc.Puerto.IPAddress != null)
-                            formaPC.IPAddress = pc.Puerto.IPAddress;
+                        if (pc.Puerto.DireccionIP != null)
+                            formaPC.IPAddress = pc.Puerto.DireccionIP;
                         if (pc.Puerto.Nombre != null)
                             formaPC.NombrePuerto = pc.Puerto.Nombre;
                         if (pc.Puerto.Mask != null)

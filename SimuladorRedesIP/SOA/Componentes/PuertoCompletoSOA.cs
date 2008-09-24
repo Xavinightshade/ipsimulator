@@ -33,6 +33,9 @@ namespace  RedesIP.SOA
         }
         private int? _mask;
 
+
+
+
         public PuertoCompletoSOA(Guid id, string direccionMAC,string nombre,string ipAddress,int? mask)
             : base(id,nombre)
         {
