@@ -11,6 +11,7 @@ using System.IO;
 using SimuladorCliente.Formularios;
 using BusinessLogic.Componentes;
 using SOA.Componentes;
+using BusinessLogic;
 
 namespace AccesoDatos
 {
@@ -110,6 +111,7 @@ namespace AccesoDatos
                     ruta.Id = entrada.Id;
                     ruta.IdPuerto = entrada.IdPuerto;
                     ruta.IdRouter = rou.Value.Id;
+                    ruta.Red = IPAddressFactory.GetValor(entrada.Red);
                     routerBD.Rutas.Add(ruta);
                 }
 
