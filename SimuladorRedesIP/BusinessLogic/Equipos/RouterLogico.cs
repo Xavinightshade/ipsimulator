@@ -22,7 +22,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             return rouRespuesta;
         }
 
-        private RouteTable tablaDeRutas = new RouteTable();
+        private RouteTable _tablaDeRutas = new RouteTable();
         private List<PuertoEthernetCompleto> _puertosEthernet = new List<PuertoEthernetCompleto>();
 
         public List<PuertoEthernetCompleto> PuertosEthernet
@@ -48,6 +48,18 @@ namespace RedesIP.Modelos.Logicos.Equipos
             {
                 _puertoEthernetCapaDatos.Add(puerto, new CapaDatos(new ARP(), puerto));
             }
+        }
+        public void CrearNuevaRuta(Guid idRuta,Guid idPuerto, uint red)
+        {
+            foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
+            {
+                if (puerto.Id == idPuerto)
+                {
+                    _tablaDeRutas.IngresarEntrada(idRuta, red, puerto);
+                    return;
+                }
+            }
+            throw new Exception();
         }
     }
 }

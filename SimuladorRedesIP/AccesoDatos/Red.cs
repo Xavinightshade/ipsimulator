@@ -158,8 +158,6 @@ namespace AccesoDatos
 		
 		private EntityRef<Puertos> _Puertos;
 		
-		private EntitySet<Rutas> _Rutas;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -175,7 +173,6 @@ namespace AccesoDatos
 		public Cables()
 		{
 			this._Puertos = default(EntityRef<Puertos>);
-			this._Rutas = new EntitySet<Rutas>(new Action<Rutas>(this.attach_Rutas), new Action<Rutas>(this.detach_Rutas));
 			OnCreated();
 		}
 		
@@ -277,19 +274,6 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Association(Name="RouterRuta", Storage="_Rutas", ThisKey="Id", OtherKey="IdRouter", DeleteRule="CASCADE")]
-		public EntitySet<Rutas> Rutas
-		{
-			get
-			{
-				return this._Rutas;
-			}
-			set
-			{
-				this._Rutas.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -308,18 +292,6 @@ namespace AccesoDatos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Rutas(Rutas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Cables = this;
-		}
-		
-		private void detach_Rutas(Rutas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Cables = null;
 		}
 	}
 	
@@ -1347,6 +1319,8 @@ namespace AccesoDatos
 		
 		private EntityRef<Equipos> _Equipos;
 		
+		private EntitySet<Rutas> _Rutas;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1358,6 +1332,7 @@ namespace AccesoDatos
 		public Routers()
 		{
 			this._Equipos = default(EntityRef<Equipos>);
+			this._Rutas = new EntitySet<Rutas>(new Action<Rutas>(this.attach_Rutas), new Action<Rutas>(this.detach_Rutas));
 			OnCreated();
 		}
 		
@@ -1419,6 +1394,19 @@ namespace AccesoDatos
 			}
 		}
 		
+		[Association(Name="RouterRuta", Storage="_Rutas", ThisKey="Id", OtherKey="IdRouter", DeleteRule="NO ACTION")]
+		public EntitySet<Rutas> Rutas
+		{
+			get
+			{
+				return this._Rutas;
+			}
+			set
+			{
+				this._Rutas.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1438,6 +1426,18 @@ namespace AccesoDatos
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Rutas(Rutas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Routers = this;
+		}
+		
+		private void detach_Rutas(Rutas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Routers = null;
+		}
 	}
 	
 	[Table()]
@@ -1448,13 +1448,13 @@ namespace AccesoDatos
 		
 		private System.Guid _Id;
 		
-		private System.Nullable<System.Guid> _IdPuerto;
+		private System.Guid _IdPuerto;
 		
-		private System.Nullable<long> _Red;
+		private long _Red;
 		
-		private System.Nullable<System.Guid> _IdRouter;
+		private System.Guid _IdRouter;
 		
-		private EntityRef<Cables> _Cables;
+		private EntityRef<Routers> _Routers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1462,17 +1462,17 @@ namespace AccesoDatos
     partial void OnCreated();
     partial void OnIdChanging(System.Guid value);
     partial void OnIdChanged();
-    partial void OnIdPuertoChanging(System.Nullable<System.Guid> value);
+    partial void OnIdPuertoChanging(System.Guid value);
     partial void OnIdPuertoChanged();
-    partial void OnRedChanging(System.Nullable<long> value);
+    partial void OnRedChanging(long value);
     partial void OnRedChanged();
-    partial void OnIdRouterChanging(System.Nullable<System.Guid> value);
+    partial void OnIdRouterChanging(System.Guid value);
     partial void OnIdRouterChanged();
     #endregion
 		
 		public Rutas()
 		{
-			this._Cables = default(EntityRef<Cables>);
+			this._Routers = default(EntityRef<Routers>);
 			OnCreated();
 		}
 		
@@ -1496,8 +1496,8 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Column(Storage="_IdPuerto", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> IdPuerto
+		[Column(Storage="_IdPuerto", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdPuerto
 		{
 			get
 			{
@@ -1516,8 +1516,8 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Column(Storage="_Red", DbType="BigInt")]
-		public System.Nullable<long> Red
+		[Column(Storage="_Red", DbType="BigInt NOT NULL")]
+		public long Red
 		{
 			get
 			{
@@ -1536,8 +1536,8 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Column(Storage="_IdRouter", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> IdRouter
+		[Column(Storage="_IdRouter", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdRouter
 		{
 			get
 			{
@@ -1547,7 +1547,7 @@ namespace AccesoDatos
 			{
 				if ((this._IdRouter != value))
 				{
-					if (this._Cables.HasLoadedOrAssignedValue)
+					if (this._Routers.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1560,26 +1560,26 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Association(Name="RouterRuta", Storage="_Cables", ThisKey="IdRouter", OtherKey="Id", IsForeignKey=true)]
-		public Cables Cables
+		[Association(Name="RouterRuta", Storage="_Routers", ThisKey="IdRouter", OtherKey="Id", IsForeignKey=true)]
+		public Routers Routers
 		{
 			get
 			{
-				return this._Cables.Entity;
+				return this._Routers.Entity;
 			}
 			set
 			{
-				Cables previousValue = this._Cables.Entity;
+				Routers previousValue = this._Routers.Entity;
 				if (((previousValue != value) 
-							|| (this._Cables.HasLoadedOrAssignedValue == false)))
+							|| (this._Routers.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Cables.Entity = null;
+						this._Routers.Entity = null;
 						previousValue.Rutas.Remove(this);
 					}
-					this._Cables.Entity = value;
+					this._Routers.Entity = value;
 					if ((value != null))
 					{
 						value.Rutas.Add(this);
@@ -1587,9 +1587,9 @@ namespace AccesoDatos
 					}
 					else
 					{
-						this._IdRouter = default(Nullable<System.Guid>);
+						this._IdRouter = default(System.Guid);
 					}
-					this.SendPropertyChanged("Cables");
+					this.SendPropertyChanged("Routers");
 				}
 			}
 		}

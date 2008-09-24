@@ -10,9 +10,9 @@ namespace BusinessLogic.Componentes
     {
        private List<EntradaTablaRouter> _tablaRouter = new List<EntradaTablaRouter>();
 
-       public void IngresarEntrada(uint red, PuertoEthernetCompleto puerto)
+       public void IngresarEntrada(Guid id,uint red, PuertoEthernetCompleto puerto)
        {
-           EntradaTablaRouter entrada = new EntradaTablaRouter();
+           EntradaTablaRouter entrada=new EntradaTablaRouter(id);
            entrada.Puerto = puerto;
            entrada.Red = red;
            _tablaRouter.Add(entrada);

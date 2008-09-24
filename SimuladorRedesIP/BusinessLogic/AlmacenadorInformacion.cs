@@ -174,12 +174,16 @@ namespace AccesoDatos
                         break;
                     case TipoDeEquipo.Router:
                         RouterLogico rou = new RouterLogico(equipoBD.Id, equipoBD.X, equipoBD.Y,equipoBD.Nombre);
-
+                        
                         foreach (Puertos puertoBD in equipoBD.PuertosBD)
                         {
                             PuertosCompletos puertoFull = puertoBD.PuertosCompletos;
 
                             rou.AgregarPuerto(puertoFull.Id, puertoFull.Puertos.Nombre, puertoFull.DireccionMAC, puertoFull.DireccionIP, puertoFull.Mascara);
+                        }
+                        foreach (Rutas ruta in equipoBD.Routers.Rutas)
+                        {
+                            rou.CrearNuevaRuta(ruta.Id, ruta.IdPuerto, (uint)ruta.Red);
                         }
                         estacionLogica.CrearRouter(rou);
                         break;
