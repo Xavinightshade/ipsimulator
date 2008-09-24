@@ -18,17 +18,85 @@ namespace BusinessLogic
             uint parte3 = uint.Parse(ipAddress.Substring(segundoPunto+1, tercerPunto-segundoPunto-1));
             uint parte4 = uint.Parse(ipAddress.Substring(tercerPunto+1, longitud-tercerPunto-1));
             uint total = parte4 + parte3 * 256 + parte2 * 256 * 256 + parte1 * 256 * 256 * 256;
+          
             return total;
 
 
         }
-        public static bool PerteneceAlaRed(string ipAddress, int numeroRed)
+        public static bool PerteneceAlaRed(string ipAddressOrigen,string ipAddressDestino, int mascara)
         {
-            uint inicial = (uint)Math.Pow(2, numeroRed);
-            uint tamano = (uint)Math.Pow(2, 32 - numeroRed);
-            return true;
+            uint red = GetRed(ipAddressOrigen, mascara);
+            uint valorIpDestino=GetValor(ipAddressDestino);
+            uint sizeRed = (uint)Math.Pow(2, 32 - mascara);
+            return (red < valorIpDestino) && (valorIpDestino < red + sizeRed);
 
 
+        }
+        public static uint GetValorRed(int mask)
+        {
+            uint valorTotalRed=0;
+            for (int i = 0; i < mask; i++)
+            {
+                valorTotalRed += (uint)Math.Pow(2, 31 - i);
+            }
+            return valorTotalRed;
+ 
+        }
+        public static uint GetRed(string ipAddress, int mask)
+        {
+            uint valorIp = GetValor(ipAddress);
+            uint cociente = valorIp;
+            List<byte> valoresIP = new List<byte>();
+            for (int i = 0; i < 32; i++)
+			{		 
+
+                byte residuo = (byte)(cociente % 2);
+                valoresIP.Add(residuo);
+                cociente = (uint)(cociente / 2);
+            }
+            List<byte> valoresMASK = new List<byte>();
+            uint cocienteMASK = GetValorRed(mask);
+            for (int i = 0; i < 32; i++)
+            {
+
+                byte residuoMASK = (byte)(cocienteMASK % 2);
+                valoresMASK.Add(residuoMASK);
+                cocienteMASK = (uint)(cocienteMASK / 2);
+            }
+
+            uint red=0;
+            for (int i = 0; i < 32; i++)
+            {
+                red += (uint)(Math.Pow(2, i) * valoresIP[i] * valoresMASK[i]);
+            }
+            return red;
+        }
+
+        public static string GetIpRep(uint ipValor)
+        {
+                        List<uint> valores = new List<uint>();
+            uint cociente = ipValor;
+            for (int i = 0; i < 4; i++)
+			{
+
+                uint residuo = (uint)(cociente %256);
+                valores.Add(residuo);
+                cociente = (uint)(cociente / 256);
+            }
+            string red = string.Empty;
+            for (int i = 0; i < valores.Count; i++)
+            {
+                red += valores[valores.Count - 1 - i].ToString() + ".";
+            }
+            red = red.Substring(0, red.Length - 1);
+            return red;
+
+        }
+
+
+        public static string GetRedRep(string ipAddress, int mascara)
+        {
+            return GetIpRep(GetRed(ipAddress, mascara));
         }
     }
 }
