@@ -127,6 +127,12 @@
     <Compile Include="Formularios\FilterTableForm.Designer.cs">
       <DependentUpon>FilterTableForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FormularioRouter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FormularioRouter.Designer.cs">
+      <DependentUpon>FormularioRouter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\PingForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -39,10 +39,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this._mask = new System.Windows.Forms.TextBox();
-            this._defaultGW = new SimuladorCliente.NewFolder1.IPTextBox();
-            this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.macTextBox1 = new SimuladorCliente.Formularios.MACTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
+            this._defaultGW = new SimuladorCliente.NewFolder1.IPTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -142,34 +142,6 @@
             this._mask.Size = new System.Drawing.Size(23, 20);
             this._mask.TabIndex = 2;
             // 
-            // _defaultGW
-            // 
-            this._defaultGW.AllowInternalTab = false;
-            this._defaultGW.AutoHeight = true;
-            this._defaultGW.BackColor = System.Drawing.SystemColors.Window;
-            this._defaultGW.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this._defaultGW.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this._defaultGW.Location = new System.Drawing.Point(100, 75);
-            this._defaultGW.Name = "_defaultGW";
-            this._defaultGW.ReadOnly = false;
-            this._defaultGW.Size = new System.Drawing.Size(173, 20);
-            this._defaultGW.TabIndex = 3;
-            this._defaultGW.Text = "...";
-            // 
-            // ipTextBox1
-            // 
-            this.ipTextBox1.AllowInternalTab = false;
-            this.ipTextBox1.AutoHeight = true;
-            this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipTextBox1.Location = new System.Drawing.Point(101, 45);
-            this.ipTextBox1.Name = "ipTextBox1";
-            this.ipTextBox1.ReadOnly = false;
-            this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
-            this.ipTextBox1.TabIndex = 1;
-            this.ipTextBox1.Text = "...";
-            // 
             // macTextBox1
             // 
             this.macTextBox1.BackColor = System.Drawing.SystemColors.Window;
@@ -181,14 +153,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._defaultGW);
+            this.groupBox1.Controls.Add(this.ipTextBox1);
             this.groupBox1.Controls.Add(this._nombrePc);
             this.groupBox1.Controls.Add(this._mask);
             this.groupBox1.Controls.Add(this.macTextBox1);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.ipTextBox1);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this._defaultGW);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
@@ -199,6 +171,34 @@
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
+            // 
+            // ipTextBox1
+            // 
+            this.ipTextBox1.AllowInternalTab = false;
+            this.ipTextBox1.AutoHeight = true;
+            this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ipTextBox1.Location = new System.Drawing.Point(100, 48);
+            this.ipTextBox1.Name = "ipTextBox1";
+            this.ipTextBox1.ReadOnly = false;
+            this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
+            this.ipTextBox1.TabIndex = 13;
+            this.ipTextBox1.Text = "...";
+            // 
+            // _defaultGW
+            // 
+            this._defaultGW.AllowInternalTab = false;
+            this._defaultGW.AutoHeight = true;
+            this._defaultGW.BackColor = System.Drawing.SystemColors.Window;
+            this._defaultGW.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._defaultGW.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this._defaultGW.Location = new System.Drawing.Point(100, 75);
+            this._defaultGW.Name = "_defaultGW";
+            this._defaultGW.ReadOnly = false;
+            this._defaultGW.Size = new System.Drawing.Size(173, 20);
+            this._defaultGW.TabIndex = 14;
+            this._defaultGW.Text = "...";
             // 
             // FormularioComputador
             // 
@@ -223,7 +223,6 @@
         #endregion
 
         private MACTextBox macTextBox1;
-        private SimuladorCliente.NewFolder1.IPTextBox ipTextBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -233,9 +232,10 @@
         private System.Windows.Forms.TextBox _nombrePc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private SimuladorCliente.NewFolder1.IPTextBox _defaultGW;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox _mask;
         private System.Windows.Forms.GroupBox groupBox1;
+        private SimuladorCliente.NewFolder1.IPTextBox ipTextBox1;
+        private SimuladorCliente.NewFolder1.IPTextBox _defaultGW;
     }
 }
