@@ -32,6 +32,9 @@ namespace AccesoDatos
     partial void InsertCables(Cables instance);
     partial void UpdateCables(Cables instance);
     partial void DeleteCables(Cables instance);
+    partial void InsertComputadores(Computadores instance);
+    partial void UpdateComputadores(Computadores instance);
+    partial void DeleteComputadores(Computadores instance);
     partial void InsertEquipos(Equipos instance);
     partial void UpdateEquipos(Equipos instance);
     partial void DeleteEquipos(Equipos instance);
@@ -72,6 +75,14 @@ namespace AccesoDatos
 			get
 			{
 				return this.GetTable<Cables>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Computadores> Computadores
+		{
+			get
+			{
+				return this.GetTable<Computadores>();
 			}
 		}
 		
@@ -226,6 +237,92 @@ namespace AccesoDatos
 						this._IdPuerto1 = default(System.Guid);
 					}
 					this.SendPropertyChanged("Puertos");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table()]
+	public partial class Computadores : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _DefaultGateWay;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnDefaultGateWayChanging(string value);
+    partial void OnDefaultGateWayChanged();
+    #endregion
+		
+		public Computadores()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DefaultGateWay", DbType="NVarChar(100)")]
+		public string DefaultGateWay
+		{
+			get
+			{
+				return this._DefaultGateWay;
+			}
+			set
+			{
+				if ((this._DefaultGateWay != value))
+				{
+					this.OnDefaultGateWayChanging(value);
+					this.SendPropertyChanging();
+					this._DefaultGateWay = value;
+					this.SendPropertyChanged("DefaultGateWay");
+					this.OnDefaultGateWayChanged();
 				}
 			}
 		}
@@ -490,6 +587,10 @@ namespace AccesoDatos
 		
 		private System.Data.Linq.Binary _Foto;
 		
+		private string _Descripcion;
+		
+		private System.Nullable<System.DateTime> _Fecha;
+		
 		private EntitySet<Equipos> _Equipos;
 		
     #region Extensibility Method Definitions
@@ -502,6 +603,10 @@ namespace AccesoDatos
     partial void OnNombreChanged();
     partial void OnFotoChanging(System.Data.Linq.Binary value);
     partial void OnFotoChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    partial void OnFechaChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaChanged();
     #endregion
 		
 		public Estaciones()
@@ -566,6 +671,46 @@ namespace AccesoDatos
 					this._Foto = value;
 					this.SendPropertyChanged("Foto");
 					this.OnFotoChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Descripcion", DbType="NVarChar(200)")]
+		public string Descripcion
+		{
+			get
+			{
+				return this._Descripcion;
+			}
+			set
+			{
+				if ((this._Descripcion != value))
+				{
+					this.OnDescripcionChanging(value);
+					this.SendPropertyChanging();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Fecha", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Fecha
+		{
+			get
+			{
+				return this._Fecha;
+			}
+			set
+			{
+				if ((this._Fecha != value))
+				{
+					this.OnFechaChanging(value);
+					this.SendPropertyChanging();
+					this._Fecha = value;
+					this.SendPropertyChanged("Fecha");
+					this.OnFechaChanged();
 				}
 			}
 		}
