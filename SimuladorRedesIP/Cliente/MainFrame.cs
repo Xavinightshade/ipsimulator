@@ -221,7 +221,7 @@ namespace SimuladorCliente
 
 
 
-        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        private void ToolBarOpenClick(object sender, EventArgs e)
         {
             List<RedBrowserModel> redes = AccesoDatos.AlmacenadorInformacion.CargarEstaciones();
 
@@ -229,33 +229,30 @@ namespace SimuladorCliente
             {
                 if (forma.ShowDialog() == DialogResult.OK)
                 {
-                    _estacionView.LimpiarEstacion();
                     _estacionModelo = AccesoDatos.AlmacenadorInformacion.CargarEstacion(forma.Id);
-
-
-                    PresenterLocal presenter = new PresenterLocal(_estacionView);
-                    presenter.SetEstacion(_estacionModelo);
-                    _esEstacionNueva = false;
-                    _toolBarDelete.Enabled = true;
-                    _estacionView.Inicializar(presenter, _dockMain);
-                    presenter.ConectarCliente();
+                    CrearNuevaEstacion();
                 }
             }
         }
 
-        private void toolStripMenuItem9_Click(object sender, EventArgs e)
+        private void CrearNuevaEstacion()
         {
             _estacionView.LimpiarEstacion();
-            _estacionModelo = new EstacionModelo(Guid.NewGuid());
             PresenterLocal presenter = new PresenterLocal(_estacionView);
             presenter.SetEstacion(_estacionModelo);
-            _esEstacionNueva = true;
-            _toolBarDelete.Enabled = false;
+            _esEstacionNueva = false;
+            _toolBarDelete.Enabled = true;
             _estacionView.Inicializar(presenter, _dockMain);
             presenter.ConectarCliente();
         }
 
-        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        private void ToolBarNewClick(object sender, EventArgs e)
+        {
+            _estacionModelo = new EstacionModelo(Guid.NewGuid());
+            CrearNuevaEstacion();
+        }
+
+        private void ToolBarSaveClick(object sender, EventArgs e)
         {
             Bitmap imagenEstacion = _estacionView.GetImagen();
             MemoryStream ms = new MemoryStream();
@@ -275,14 +272,16 @@ namespace SimuladorCliente
 
         }
 
-        private void _deleteItem_Click(object sender, EventArgs e)
+        private void ToolBarDeleteClick(object sender, EventArgs e)
         {
             AccesoDatos.AlmacenadorInformacion.Eliminar(_estacionModelo.Id);
-            toolStripMenuItem9_Click(sender, e);
+            _estacionModelo = new EstacionModelo(Guid.NewGuid());
+            CrearNuevaEstacion();
+
 
         }
 
-        private void desdeArchivoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolBarDBOpenClick(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();            
             dialog.FileName = "Red.sdf";
@@ -295,7 +294,7 @@ namespace SimuladorCliente
             }
         }
 
-        private void guardarArchivoDeBaseDeDatosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolBarDBSaveClick(object sender, EventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.FileName = "Red.sdf";

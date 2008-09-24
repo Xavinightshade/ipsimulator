@@ -132,7 +132,7 @@ namespace SimuladorCliente
             this._toolBarNew.Name = "_toolBarNew";
             this._toolBarNew.Size = new System.Drawing.Size(28, 25);
             this._toolBarNew.Text = "Nueva Topologia";
-            this._toolBarNew.Click += new System.EventHandler(this.toolStripMenuItem9_Click);
+            this._toolBarNew.Click += new System.EventHandler(this.ToolBarNewClick);
             // 
             // _toolBarOpen
             // 
@@ -141,7 +141,7 @@ namespace SimuladorCliente
             this._toolBarOpen.Name = "_toolBarOpen";
             this._toolBarOpen.Size = new System.Drawing.Size(28, 25);
             this._toolBarOpen.Text = "Abrir Topologia";
-            this._toolBarOpen.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
+            this._toolBarOpen.Click += new System.EventHandler(this.ToolBarOpenClick);
             // 
             // _toolBarSave
             // 
@@ -150,7 +150,7 @@ namespace SimuladorCliente
             this._toolBarSave.Name = "_toolBarSave";
             this._toolBarSave.Size = new System.Drawing.Size(28, 25);
             this._toolBarSave.Text = "Guardar Topologia";
-            this._toolBarSave.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
+            this._toolBarSave.Click += new System.EventHandler(this.ToolBarSaveClick);
             // 
             // _toolBarDelete
             // 
@@ -159,7 +159,7 @@ namespace SimuladorCliente
             this._toolBarDelete.Name = "_toolBarDelete";
             this._toolBarDelete.Size = new System.Drawing.Size(28, 25);
             this._toolBarDelete.Text = "Eliminar Topologia";
-            this._toolBarDelete.Click += new System.EventHandler(this._deleteItem_Click);
+            this._toolBarDelete.Click += new System.EventHandler(this.ToolBarDeleteClick);
             // 
             // toolStripSeparator13
             // 
@@ -192,14 +192,14 @@ namespace SimuladorCliente
             this._toolBarCargarBDarchivo.Name = "_toolBarCargarBDarchivo";
             this._toolBarCargarBDarchivo.Size = new System.Drawing.Size(249, 22);
             this._toolBarCargarBDarchivo.Text = "Abrir archivo de base de datos";
-            this._toolBarCargarBDarchivo.Click += new System.EventHandler(this.desdeArchivoToolStripMenuItem_Click);
+            this._toolBarCargarBDarchivo.Click += new System.EventHandler(this.ToolBarDBOpenClick);
             // 
             // _toolBarGuardarBD
             // 
             this._toolBarGuardarBD.Name = "_toolBarGuardarBD";
             this._toolBarGuardarBD.Size = new System.Drawing.Size(249, 22);
             this._toolBarGuardarBD.Text = "Guardar Archivo de base de datos";
-            this._toolBarGuardarBD.Click += new System.EventHandler(this.guardarArchivoDeBaseDeDatosToolStripMenuItem_Click);
+            this._toolBarGuardarBD.Click += new System.EventHandler(this.ToolBarDBSaveClick);
             // 
             // toolStripDropDownButton2
             // 
