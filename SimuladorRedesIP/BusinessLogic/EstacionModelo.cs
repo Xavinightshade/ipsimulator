@@ -181,6 +181,7 @@ namespace RedesIP
             PuertoEthernetCompleto puertoLogico = _puertos[puerto.Id] as PuertoEthernetCompleto;
             puertoLogico.Nombre = puerto.Nombre;
             puertoLogico.IPAddress = puerto.IPAddress;
+            puertoLogico.Mascara = puerto.Mask;
         }
 
         internal void EstablecerDatosComputador(ComputadorSOA pcSOA)

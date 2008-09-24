@@ -18,10 +18,12 @@ namespace RedesIP.Vistas.Equipos
             : base(equipo.Id,equipo.Nombre, equipo.X, equipo.Y, Resources.Computador.Width, Resources.Computador.Height)
 		{
             _defaultGateWay = equipo.DefaultGateWay;
+            Nombre = equipo.Nombre;
             ToolStripMenuItem item = new ToolStripMenuItem("Hacer Ping", Resources.sniffer);
             item.Click += new EventHandler(OnPingClick);
             Menu.Items.Add(item);
-            _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id, equipo.Puerto.DireccionMAC,15, 30, this,equipo.Puerto.Nombre);
+            _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id,
+                equipo.Puerto.DireccionMAC,equipo.Puerto.IPAddress,equipo.Puerto.Mask,15, 30, this,equipo.Puerto.Nombre);
 		}
 
         private string _defaultGateWay;

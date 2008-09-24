@@ -41,6 +41,11 @@ namespace SimuladorCliente.Formularios
             get { return _nombrePc.Text; }
             set { _nombrePc.Text = value; }
         }
+        public string Mask
+        {
+            get { return _mask.Text; }
+            set { _mask.Text = value; }
+        }
 
         private void _Aceptar_Click(object sender, EventArgs e)
         {
@@ -54,6 +59,8 @@ namespace SimuladorCliente.Formularios
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+
 
     }
 }

@@ -19,11 +19,27 @@ namespace RedesIP.Vistas.Equipos.Componentes
             get { return _IPAddress; }
             set { _IPAddress = value; }
         }
+        private int? _mask;
 
-        public PuertoEthernetViewCompleto(Guid id, string direccionMAC, int origenX, int origenY, EquipoView equipoPadre,string nombre)
+        public int? Mask
+        {
+            get { return _mask; }
+            set { _mask = value; }
+        }
+        private string _direccionIP;
+
+        public string DireccionIP
+        {
+            get { return _direccionIP; }
+            set { _direccionIP = value; }
+        }
+
+        public PuertoEthernetViewCompleto(Guid id, string direccionMAC,string direccionIp,int? mask, int origenX, int origenY, EquipoView equipoPadre,string nombre)
             :base(id,origenX,origenY,equipoPadre,nombre)
         {
             _direccionMAC = direccionMAC;
+            _direccionIP = direccionIp;
+            _mask = mask;
         }
     }
 }

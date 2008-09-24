@@ -33,7 +33,8 @@ namespace RedesIP.Vistas.Equipos
             foreach (PuertoCompletoSOA puerto in puertos)
             {
 
-                _puertosEthernet.Add(new PuertoEthernetViewCompleto(puerto.Id, puerto.DireccionMAC, (i * 30)+3 , 7, this,puerto.Nombre));
+                _puertosEthernet.Add(new PuertoEthernetViewCompleto(puerto.Id,
+                    puerto.DireccionMAC,puerto.IPAddress,puerto.Mask, (i * 30)+3 , 7, this,puerto.Nombre));
                 i++;
             }
 

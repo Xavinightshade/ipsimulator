@@ -16,7 +16,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y,routerLogico.Nombre);
             foreach (PuertoEthernetCompleto puerto in routerLogico.PuertosEthernet)
             {
-                rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress,puerto.Nombre,puerto.IPAddress));
+                rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress,puerto.Nombre,puerto.IPAddress,puerto.Mascara));
             }
             return rouRespuesta;
         }

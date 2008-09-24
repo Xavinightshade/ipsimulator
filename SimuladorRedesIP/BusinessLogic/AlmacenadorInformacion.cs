@@ -36,15 +36,16 @@ namespace AccesoDatos
             Puertos puertoBD = new Puertos();
             puertoBD.Id = puerto.Id;
             puertoBD.IdEquipo = equipoBD.Id;
-            if (puertoBD.PuertosCompletos!=null)
+            PuertoEthernetCompleto puertoCompletoLogico = puerto as PuertoEthernetCompleto;
+            if (puertoCompletoLogico != null)
             {
-                PuertosCompletos puertoCompleto = new PuertosCompletos();
-                puertoCompleto.Id = puertoBD.PuertosCompletos.Id;
-                puertoCompleto.DireccionMAC = puertoBD.PuertosCompletos.DireccionMAC;
-                puertoCompleto.DireccionIP = puertoBD.PuertosCompletos.DireccionIP;
-                puertoCompleto.Mascara = puertoBD.PuertosCompletos.Mascara;
-                puertoBD.PuertosCompletos = puertoCompleto;
-                puertoCompleto.Puertos = puertoBD;
+                PuertosCompletos puertoCompletoBD = new PuertosCompletos();
+                puertoCompletoBD.Id = puertoCompletoLogico.Id;
+                puertoCompletoBD.DireccionMAC = puertoCompletoLogico.MACAddress;
+                puertoCompletoBD.DireccionIP = puertoCompletoLogico.IPAddress;
+                puertoCompletoBD.Mascara = puertoCompletoLogico.Mascara;
+                puertoBD.PuertosCompletos = puertoCompletoBD;
+                puertoCompletoBD.Puertos = puertoBD;
             }
             equipoBD.AgregarPuerto(puertoBD);
         }
@@ -150,7 +151,7 @@ namespace AccesoDatos
                     case TipoDeEquipo.Ninguno:
                         break;
                     case TipoDeEquipo.Computador:
-                        ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Computadores.DefaultGateWay, equipoBD.Nombre);
+                        ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y,equipoBD.Nombre, equipoBD.Computadores.DefaultGateWay);
                         PuertosCompletos puertoCompleto=equipoBD.Puertos[0].PuertosCompletos;
                         pc.AgregarPuerto(puertoCompleto.Id,puertoCompleto.Puertos.Nombre,puertoCompleto.DireccionMAC,puertoCompleto.DireccionIP,puertoCompleto.Mascara);
                         estacionLogica.CrearComputador(pc);

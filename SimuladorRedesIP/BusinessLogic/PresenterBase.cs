@@ -156,7 +156,8 @@ namespace RedesIP
         private static ComputadorSOA CrearComputadorSOA(ComputadorLogico pcLogico)
         {
             ComputadorSOA equipoRespuesta = new ComputadorSOA(pcLogico.TipoDeEquipo, pcLogico.Id, pcLogico.X, pcLogico.Y,pcLogico.Nombre);
-            equipoRespuesta.AgregarPuerto(new PuertoCompletoSOA(pcLogico.PuertoEthernet.Id, pcLogico.PuertoEthernet.MACAddress,pcLogico.PuertoEthernet.Nombre,pcLogico.PuertoEthernet.IPAddress));
+            equipoRespuesta.AgregarPuerto(new PuertoCompletoSOA(pcLogico.PuertoEthernet.Id, pcLogico.PuertoEthernet.MACAddress,pcLogico.PuertoEthernet.Nombre,
+                pcLogico.PuertoEthernet.IPAddress,pcLogico.PuertoEthernet.Mascara));
             return equipoRespuesta;
         }
 

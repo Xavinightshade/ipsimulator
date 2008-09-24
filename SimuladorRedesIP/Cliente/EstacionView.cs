@@ -174,6 +174,7 @@ namespace RedesIP.Vistas
             PuertoEthernetViewCompleto puertoLogico = _diccioPuertos[puerto.Id] as PuertoEthernetViewCompleto;
             puertoLogico.Nombre = puerto.Nombre;
             puertoLogico.IPAddress = puerto.IPAddress;
+            puertoLogico.Mask = puerto.Mask;
         }
 
 
