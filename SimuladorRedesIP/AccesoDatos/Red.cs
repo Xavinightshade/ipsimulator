@@ -272,6 +272,8 @@ namespace AccesoDatos
 		
 		private string _DefaultGateWay;
 		
+		private EntityRef<Equipos> _Equipos;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -284,6 +286,7 @@ namespace AccesoDatos
 		
 		public Computadores()
 		{
+			this._Equipos = default(EntityRef<Equipos>);
 			OnCreated();
 		}
 		
@@ -298,6 +301,10 @@ namespace AccesoDatos
 			{
 				if ((this._Id != value))
 				{
+					if (this._Equipos.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIdChanging(value);
 					this.SendPropertyChanging();
 					this._Id = value;
@@ -323,6 +330,40 @@ namespace AccesoDatos
 					this._DefaultGateWay = value;
 					this.SendPropertyChanged("DefaultGateWay");
 					this.OnDefaultGateWayChanged();
+				}
+			}
+		}
+		
+		[Association(Name="ComputadoresEquipos", Storage="_Equipos", ThisKey="Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public Equipos Equipos
+		{
+			get
+			{
+				return this._Equipos.Entity;
+			}
+			set
+			{
+				Equipos previousValue = this._Equipos.Entity;
+				if (((previousValue != value) 
+							|| (this._Equipos.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Equipos.Entity = null;
+						previousValue.Computadores = null;
+					}
+					this._Equipos.Entity = value;
+					if ((value != null))
+					{
+						value.Computadores = this;
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(System.Guid);
+					}
+					this.SendPropertyChanged("Equipos");
 				}
 			}
 		}
@@ -364,6 +405,8 @@ namespace AccesoDatos
 		
 		private System.Guid _IdEstacion;
 		
+		private EntityRef<Computadores> _Computadores;
+		
 		private EntityRef<Estaciones> _Estaciones;
 		
 		private EntitySet<Puertos> _Puertos;
@@ -386,6 +429,7 @@ namespace AccesoDatos
 		
 		public Equipos()
 		{
+			this._Computadores = default(EntityRef<Computadores>);
 			this._Estaciones = default(EntityRef<Estaciones>);
 			this._Puertos = new EntitySet<Puertos>(new Action<Puertos>(this.attach_Puertos), new Action<Puertos>(this.detach_Puertos));
 			OnCreated();
@@ -491,6 +535,35 @@ namespace AccesoDatos
 					this._IdEstacion = value;
 					this.SendPropertyChanged("IdEstacion");
 					this.OnIdEstacionChanged();
+				}
+			}
+		}
+		
+		[Association(Name="ComputadoresEquipos", Storage="_Computadores", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false, DeleteRule="CASCADE")]
+		public Computadores Computadores
+		{
+			get
+			{
+				return this._Computadores.Entity;
+			}
+			set
+			{
+				Computadores previousValue = this._Computadores.Entity;
+				if (((previousValue != value) 
+							|| (this._Computadores.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Computadores.Entity = null;
+						previousValue.Equipos = null;
+					}
+					this._Computadores.Entity = value;
+					if ((value != null))
+					{
+						value.Equipos = this;
+					}
+					this.SendPropertyChanged("Computadores");
 				}
 			}
 		}
