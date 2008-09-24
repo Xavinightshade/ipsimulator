@@ -71,6 +71,7 @@ namespace AccesoDatos
             estacionBD.Nombre = estacion.Nombre;
             estacionBD.Descripcion = estacion.Descripcion;
             estacionBD.Foto = new System.Data.Linq.Binary(bitmapData);
+            estacionBD.Fecha = DateTime.Now;
             foreach (KeyValuePair<Guid, ComputadorLogico> pc in estacion.Computadores)
             {
                 Equipos equipoBD = AgregarEquipo(estacionBD, pc.Value);
@@ -124,7 +125,8 @@ namespace AccesoDatos
             {
                 if (estacionBD.Foto == null)
                     continue;
-                redes.Add(new RedBrowserModel(estacionBD.Foto.ToArray(), estacionBD.Nombre,estacionBD.Id));
+                
+                redes.Add(new RedBrowserModel(estacionBD.Foto.ToArray(), estacionBD.Nombre,estacionBD.Id,estacionBD.Descripcion,estacionBD.Fecha));
             }
             return redes;
         }

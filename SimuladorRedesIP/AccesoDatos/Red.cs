@@ -697,7 +697,7 @@ namespace AccesoDatos
 		
 		private string _Descripcion;
 		
-		private System.Nullable<System.DateTime> _Fecha;
+		private System.DateTime _Fecha;
 		
 		private EntitySet<Equipos> _Equipos;
 		
@@ -713,7 +713,7 @@ namespace AccesoDatos
     partial void OnFotoChanged();
     partial void OnDescripcionChanging(string value);
     partial void OnDescripcionChanged();
-    partial void OnFechaChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaChanging(System.DateTime value);
     partial void OnFechaChanged();
     #endregion
 		
@@ -803,8 +803,8 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Column(Storage="_Fecha", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Fecha
+		[Column(Storage="_Fecha", DbType="DateTime NOT NULL")]
+		public System.DateTime Fecha
 		{
 			get
 			{

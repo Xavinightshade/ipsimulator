@@ -27,15 +27,27 @@ namespace SimuladorCliente.Formularios
         {
             get { return _nombre; }
         }
+        private string _descripcion;
+
+
+        private DateTime _fecha;
+
+        public DateTime Fecha
+        {
+            get { return _fecha; }
+        }
 
         public string Descripcion
         {
-            get { return _nombre+Environment.NewLine+_id.ToString()+Environment.NewLine+DateTime.Now.ToString(); }
+            get { return _nombre+":"+Environment.NewLine+_descripcion; }
         }
-        public RedBrowserModel(byte[] imagen,string nombre,Guid id)
+        public RedBrowserModel(byte[] imagen,string nombre,Guid id,string descripcion,DateTime fecha)
         {
             _id = id;
             _nombre = nombre;
+            _descripcion = descripcion;
+            _fecha = fecha;
+            
             using (MemoryStream ms = new MemoryStream(imagen))
             {
 
