@@ -1394,7 +1394,7 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Association(Name="RouterRuta", Storage="_Rutas", ThisKey="Id", OtherKey="IdRouter", DeleteRule="NO ACTION")]
+		[Association(Name="RutasRouter", Storage="_Rutas", ThisKey="Id", OtherKey="IdRouter", DeleteRule="CASCADE")]
 		public EntitySet<Rutas> Rutas
 		{
 			get
@@ -1560,7 +1560,7 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Association(Name="RouterRuta", Storage="_Routers", ThisKey="IdRouter", OtherKey="Id", IsForeignKey=true)]
+		[Association(Name="RutasRouter", Storage="_Routers", ThisKey="IdRouter", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
 		public Routers Routers
 		{
 			get

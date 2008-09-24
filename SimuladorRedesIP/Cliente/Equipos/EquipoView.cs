@@ -79,7 +79,7 @@ namespace RedesIP.Vistas.Equipos
                 _reg.Contrato.PeticionMoverEquipo(Id, DimensionMundo.OrigenX, DimensionMundo.OrigenY);
                 if (e.Button == MouseButtons.Right)
                 {
-                    Menu.Show(OwnerControl, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY + DimensionMundo.Alto);
+                    Menu.Show(OwnerControl, e.X, e.Y);
                 }
         }
 
