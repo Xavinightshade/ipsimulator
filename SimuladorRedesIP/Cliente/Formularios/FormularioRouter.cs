@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using RedesIP.Vistas.Equipos.Componentes;
 
 namespace SimuladorCliente.Formularios
 {
@@ -14,11 +15,14 @@ namespace SimuladorCliente.Formularios
         public FormularioRouter()
         {
             InitializeComponent();
+            macTextBox1.SetAsReadOnly();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
 
+
+        internal void Inicializar(List<PuertoEthernetViewCompleto> puertosEthernet)
+        {
+            _puertosBS.DataSource = new BindingList<PuertoEthernetViewCompleto>(puertosEthernet);
         }
     }
 }

@@ -79,6 +79,14 @@ namespace RedesIP.Vistas.Equipos
         {
             get { return Resources.Router; }
         }
+        protected override void OnMouseDobleClick(MouseEventArgs e)
+        {
+            using (FormularioRouter rouForm=new FormularioRouter())
+            {
+                rouForm.Inicializar(_puertosEthernet);
+                rouForm.ShowDialog();
+            }
+        }
 
     }
 }
