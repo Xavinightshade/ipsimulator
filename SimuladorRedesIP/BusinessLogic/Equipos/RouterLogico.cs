@@ -7,22 +7,29 @@ using RedesIP.SOA;
 using BusinessLogic.OSI;
 using BusinessLogic.Protocolos;
 using BusinessLogic.Componentes;
+using SOA.Componentes;
+using BusinessLogic;
 
 namespace RedesIP.Modelos.Logicos.Equipos
 {
-	public class RouterLogico:EquipoLogico
-	{
+    public class RouterLogico : EquipoLogico
+    {
         public static RouterSOA CrearRouterSOA(RouterLogico routerLogico)
         {
-            RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y,routerLogico.Nombre);
+            RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y, routerLogico.Nombre);
             foreach (PuertoEthernetCompleto puerto in routerLogico.PuertosEthernet)
             {
-                rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress,puerto.Nombre,puerto.IPAddress,puerto.Mascara));
+                rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress, puerto.Nombre, puerto.IPAddress, puerto.Mascara));
             }
             return rouRespuesta;
         }
 
         private RouteTable _tablaDeRutas = new RouteTable();
+
+        public RouteTable TablaDeRutas
+        {
+            get { return _tablaDeRutas; }
+        }
         private List<PuertoEthernetCompleto> _puertosEthernet = new List<PuertoEthernetCompleto>();
 
         public List<PuertoEthernetCompleto> PuertosEthernet
@@ -30,16 +37,17 @@ namespace RedesIP.Modelos.Logicos.Equipos
             get { return _puertosEthernet; }
         }
 
-		public RouterLogico(Guid id,int X,int Y,string nombre):base(id,TipoDeEquipo.Router,X,Y,nombre)
-		{
-			
-		}
-
-
-
-        public void AgregarPuerto(Guid idPuerto, string nombre, string macAddress, string direccionIP,int? mask)
+        public RouterLogico(Guid id, int X, int Y, string nombre)
+            : base(id, TipoDeEquipo.Router, X, Y, nombre)
         {
-            _puertosEthernet.Add(new PuertoEthernetCompleto(macAddress, idPuerto, nombre,mask,direccionIP));
+
+        }
+
+
+
+        public void AgregarPuerto(Guid idPuerto, string nombre, string macAddress, string direccionIP, int? mask)
+        {
+            _puertosEthernet.Add(new PuertoEthernetCompleto(macAddress, idPuerto, nombre, mask, direccionIP));
         }
         private Dictionary<PuertoEthernetCompleto, CapaDatos> _puertoEthernetCapaDatos = new Dictionary<PuertoEthernetCompleto, CapaDatos>();
         public override void InicializarEquipo()
@@ -49,7 +57,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
                 _puertoEthernetCapaDatos.Add(puerto, new CapaDatos(new ARP(), puerto));
             }
         }
-        public void CrearNuevaRuta(Guid idRuta,Guid idPuerto, uint red)
+        public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, uint red)
         {
             foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
             {
@@ -60,6 +68,26 @@ namespace RedesIP.Modelos.Logicos.Equipos
                 }
             }
             throw new Exception();
+        }
+
+        internal List<RutaSOA> TraerRutas()
+        {
+            return _tablaDeRutas.GetRutas();
+        }
+
+        internal void ActualizarRutas(List<RutaSOA> rutas)
+        {
+            _tablaDeRutas.LimpiarRutas();
+            Dictionary<Guid, PuertoEthernetCompleto> puertos = new Dictionary<Guid, PuertoEthernetCompleto>();
+            foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
+            {
+                puertos.Add(puerto.Id, puerto);
+            }
+            foreach (RutaSOA ruta in rutas)
+            {
+                _tablaDeRutas.IngresarEntrada(ruta.Id, IPAddressFactory.GetValor(ruta.Red), puertos[ruta.IdPuerto]);
+            }
+
         }
     }
 }

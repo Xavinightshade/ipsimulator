@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using RedesIP.SOA.Elementos;
+using SOA.Componentes;
 
 namespace RedesIP.SOA
 {
@@ -28,6 +29,7 @@ namespace RedesIP.SOA
 		void ActualizarEstacion(EstacionSOA estacion);
         [OperationContract(IsOneWay = true)]
         void EnviarCambioDeTablaDeSwitch(MensajeSwitchTableSOA mensajeTablaSwitch);
+
 
 
     }

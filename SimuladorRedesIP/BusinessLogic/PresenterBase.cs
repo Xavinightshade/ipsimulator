@@ -12,6 +12,7 @@ using RedesIP.SOA.Elementos;
 using RedesIP.Common;
 using BusinessLogic.Modelos.Logicos.Datos;
 using BusinessLogic.Sniffer;
+using SOA.Componentes;
 
 namespace RedesIP
 {
@@ -251,6 +252,27 @@ namespace RedesIP
             {
                 cliente.EstablecerDatosComputador(pcSOA);
             }
+        }
+
+        #endregion
+
+        #region IModeloEstacion Members
+
+
+        public List<RutaSOA> TraerRutas(Guid idRouter)
+        {
+            List<RutaSOA> rutasSOA = _estacion.Routers[idRouter].TraerRutas();
+            return rutasSOA;
+        }
+
+        #endregion
+
+        #region IModeloEstacion Members
+
+
+        public void ActualizarRutas(Guid IdRouter, List<RutaSOA> rutas)
+        {
+            _estacion.Routers[IdRouter].ActualizarRutas(rutas);
         }
 
         #endregion

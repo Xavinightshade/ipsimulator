@@ -7,6 +7,7 @@ using RedesIP.Modelos.Datos;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.Modelos;
 using RedesIP.Modelos.Equipos.Componentes;
+using SOA.Componentes;
 
 namespace RedesIP.SOA
 {
@@ -24,6 +25,8 @@ namespace RedesIP.SOA
         [OperationContract()]
         void  SetVelocidadSimulacion(float valor);
 
+
+       
     }
 
 

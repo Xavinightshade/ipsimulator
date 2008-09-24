@@ -14,6 +14,7 @@ using RedesIP.SOA;
 using DevAge.Drawing.VisualElements;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Drawing.Imaging;
+using SOA.Componentes;
 
 namespace RedesIP.Vistas
 {
@@ -198,5 +199,7 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+
     }
 }

@@ -9,6 +9,8 @@ using AccesoDatos;
 using RedesIP.Modelos;
 using System.IO;
 using SimuladorCliente.Formularios;
+using BusinessLogic.Componentes;
+using SOA.Componentes;
 
 namespace AccesoDatos
 {
@@ -94,9 +96,21 @@ namespace AccesoDatos
             foreach (KeyValuePair<Guid, RouterLogico> rou in estacion.Routers)
             {
                 Equipos equipoBD = AgregarEquipo(estacionBD, rou.Value);
+                Routers routerBD = new Routers();
+                routerBD.Id = equipoBD.Id;
+                equipoBD.Routers = routerBD;
+                routerBD.Equipos = equipoBD;
                 foreach (PuertoEthernetLogicoBase puerto in rou.Value.PuertosEthernet)
                 {
                     AgregarPuerto(equipoBD, puerto);
+                }
+                foreach (RutaSOA entrada in rou.Value.TablaDeRutas.GetRutas())
+                {
+                    Rutas ruta = new Rutas();
+                    ruta.Id = entrada.Id;
+                    ruta.IdPuerto = entrada.IdPuerto;
+                    ruta.IdRouter = rou.Value.Id;
+                    routerBD.Rutas.Add(ruta);
                 }
 
             }

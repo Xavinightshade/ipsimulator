@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using RedesIP.SOA;
+using SOA.Componentes;
 
 namespace RedesIP.SOA
 {
@@ -31,5 +32,9 @@ namespace RedesIP.SOA
         void PeticionEstablecerDatosComputador(ComputadorSOA pcSOA);
         [OperationContract()]
         void Ping(Guid idEquipo, string ipDestino, string datos);
+        [OperationContract()]
+        List<RutaSOA> TraerRutas(Guid idRouter);
+        [OperationContract()]
+        void ActualizarRutas(Guid IdRouter, List<RutaSOA> rutas);
     }
 }

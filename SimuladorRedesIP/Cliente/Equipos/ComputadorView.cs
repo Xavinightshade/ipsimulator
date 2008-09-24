@@ -66,10 +66,7 @@ namespace RedesIP.Vistas.Equipos
         protected override void OnMouseUpEvent(MouseEventArgs e)
         {
             base.OnMouseUpEvent(e);
-            if (e.Button == MouseButtons.Right)
-            {
-                Menu.Show(base.OwnerControl, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY + DimensionMundo.Alto);
-            }
+
 
         }
         protected override string GetFullInfoMapa()

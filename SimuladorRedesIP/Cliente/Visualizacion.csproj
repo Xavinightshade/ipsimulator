@@ -423,6 +423,8 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\DataSources\RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto.datasource" />
+    <None Include="Properties\DataSources\SOA.Componentes.RutaSOA.datasource" />
     <None Include="Resources\Network-Internet-Connection-16x16.png" />
     <None Include="Resources\Network-Drive-16x16.png" />
     <None Include="Resources\sm_black_pointer.gif" />

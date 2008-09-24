@@ -77,6 +77,10 @@ namespace RedesIP.Vistas.Equipos
         {
              _elBotonDelMouseEstaPresionado = false;
                 _reg.Contrato.PeticionMoverEquipo(Id, DimensionMundo.OrigenX, DimensionMundo.OrigenY);
+                if (e.Button == MouseButtons.Right)
+                {
+                    Menu.Show(OwnerControl, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY + DimensionMundo.Alto);
+                }
         }
 
         private void OnMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RedesIP.Modelos.Equipos.Componentes;
+using SOA.Componentes;
 
 namespace BusinessLogic.Componentes
 {
@@ -29,5 +30,24 @@ namespace BusinessLogic.Componentes
            return null;
        }
 
+
+       internal List<RutaSOA> GetRutas()
+       {
+           List<RutaSOA> rutas = new List<RutaSOA>();
+           foreach (EntradaTablaRouter item in _tablaRouter)
+           {
+               RutaSOA ruta = new RutaSOA(item.Id);
+               ruta.IdPuerto = item.Puerto.Id;
+               ruta.Red = IPAddressFactory.GetIpRep(item.Red);
+               ruta.NombrePuerto = item.Puerto.Nombre;
+               rutas.Add(ruta);
+           }
+           return rutas;
+       }
+
+       internal void LimpiarRutas()
+       {
+           _tablaRouter.Clear();
+       }
     }
 }

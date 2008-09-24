@@ -108,6 +108,15 @@ namespace AccesoDatos
                 {
                     db.Computadores.InsertOnSubmit(equipo.Computadores);
                 }
+                if (equipo.Routers != null)
+                {
+                    db.Routers.InsertOnSubmit(equipo.Routers);
+                    foreach (Rutas ruta in equipo.Routers.Rutas)
+                    {
+                        db.Rutas.InsertOnSubmit(ruta);
+                    }
+                }
+
                 foreach (Puertos puerto in equipo.PuertosBD)
                 {
                     db.Puertos.InsertOnSubmit(puerto);

@@ -5,6 +5,9 @@ using SimuladorCliente.Properties;
 using RedesIP.Vistas.Equipos.Componentes;
 using RedesIP.SOA;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
+using SimuladorCliente.Formularios;
+using SOA.Componentes;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -15,7 +18,25 @@ namespace RedesIP.Vistas.Equipos
             Resources.Switch.Size.Height)
 		{
 			CrearPuertos(equipo.Puertos);
+            ToolStripMenuItem item = new ToolStripMenuItem("Tabla de Rutas", Resources.sniffer);
+            item.Click += new EventHandler(MenuRutasClick);
+            Menu.Items.Add(item);
+
 		}
+
+        private void MenuRutasClick(object sender, EventArgs e)
+        {
+            List<RutaSOA> rutas = Contenedor.Contrato.TraerRutas(this.Id);
+            using (RouteTableForm rouForm=new RouteTableForm() )
+            {
+                rouForm.Inicializar(rutas,_puertosEthernet);
+                if (rouForm.ShowDialog()==DialogResult.OK)
+                {
+                    Contenedor.Contrato.ActualizarRutas(Id, rutas);
+                } 
+                
+            }
+        }
 
         private List<PuertoEthernetViewCompleto> _puertosEthernet = new List<PuertoEthernetViewCompleto>();
 
