@@ -63,7 +63,7 @@ namespace RedesIP.Vistas.Equipos.Componentes
             	                Pen p = new Pen(Color.White);
             grafico.FillRectangle(brush, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
             grafico.DrawRectangle(p, DimensionMundo.OrigenX, DimensionMundo.OrigenY, Dimension.Ancho, Dimension.Alto);
-            grafico.DrawString(_nombre, new Font("Arial", 7, FontStyle.Bold), Brushes.White, new PointF(DimensionMundo.OrigenX, DimensionMundo.OrigenY + DimensionMundo.Alto));
+       //     grafico.DrawString(_nombre, new Font("Arial", 7, FontStyle.Bold), Brushes.White, new PointF(DimensionMundo.OrigenX, DimensionMundo.OrigenY + DimensionMundo.Alto));
 
             //    brush.Dispose();
             p.Dispose();

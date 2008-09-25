@@ -61,7 +61,7 @@ namespace RedesIP.Vistas.Equipos
 		}
         protected override string GetInfoMapa()
         {
-            return _puerto.Nombre+ Environment.NewLine+_puerto.DireccionIP+"/"+_puerto.Mask;
+            return Nombre+ Environment.NewLine+_puerto.DireccionIP+" / "+_puerto.Mask;
         }
         protected override void OnMouseUpEvent(MouseEventArgs e)
         {
@@ -73,7 +73,7 @@ namespace RedesIP.Vistas.Equipos
         {
             string tip = base.GetFullInfoMapa();
             tip += Environment.NewLine + "Puerto:  " + _puerto.Nombre;
-            tip += Environment.NewLine+"Dirección IP:  " + _puerto.DireccionIP + "/" + _puerto.Mask;
+            tip += Environment.NewLine+"Dirección IP:  " + _puerto.DireccionIP + " / " + _puerto.Mask;
             tip += Environment.NewLine + "Default GateWay:  " + _defaultGateWay;
             tip += Environment.NewLine + "Dirección MAC:  " + _puerto.DireccionMAC;
             return tip;

@@ -81,7 +81,7 @@ namespace RedesIP.Vistas.Equipos
             foreach (PuertoEthernetViewCompleto puerto in _puertosEthernet)
             {
                 tip += Environment.NewLine + "Puerto:  " + puerto.Nombre;
-                tip += Environment.NewLine + "Dirección IP:  " + puerto.DireccionIP + "/" + puerto.Mask;
+                tip += Environment.NewLine + "Dirección IP:  " + puerto.DireccionIP + " / " + puerto.Mask;
                 tip += Environment.NewLine + "Dirección MAC:  " + puerto.DireccionMAC;
 
             }
