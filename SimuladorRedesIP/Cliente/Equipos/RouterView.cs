@@ -73,7 +73,19 @@ namespace RedesIP.Vistas.Equipos
         }
         protected override string GetInfoMapa()
         {
-            return "Router";
+            return Nombre;
+        }
+        protected override string GetFullInfoMapa()
+        {
+            string tip = base.GetFullInfoMapa();
+            foreach (PuertoEthernetViewCompleto puerto in _puertosEthernet)
+            {
+                tip += Environment.NewLine + "Puerto:  " + puerto.Nombre;
+                tip += Environment.NewLine + "Dirección IP:  " + puerto.DireccionIP + "/" + puerto.Mask;
+                tip += Environment.NewLine + "Dirección MAC:  " + puerto.DireccionMAC;
+
+            }
+            return tip;
         }
         public override System.Drawing.Image Imagen
         {
@@ -94,8 +106,8 @@ namespace RedesIP.Vistas.Equipos
                 rouForm.NombreRouter = Nombre;
                 if (rouForm.ShowDialog() == DialogResult.OK)
                 {
-                    RouterSOA router=new RouterSOA();
-                    router.Id=Id;
+                    RouterSOA router = new RouterSOA();
+                    router.Id = Id;
                     router.Nombre = rouForm.NombreRouter;
                     Contenedor.Contrato.PeticionEstablecerDatosRouter(router);
 
