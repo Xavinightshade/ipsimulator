@@ -19,9 +19,9 @@ namespace BusinessLogic.OSI
         }
         protected override void ProcesarPaquete(Packet paquete)
         {
+            base.ProcesarPaquete(paquete);
             foreach (EntradaTablaRouter ruta in _router.TablaDeRutas.TablaRouter)
             {      
-       //         uint redPuerto = IPAddressFactory.GetRed(base.CapaDatos.Puerto.IPAddress, base.CapaDatos.Puerto.Mascara.Value);
 
                 bool perteneceAlaRed = IPAddressFactory.PerteneceAlaRed(ruta.Red, paquete.IpDestino);
                 if (perteneceAlaRed)

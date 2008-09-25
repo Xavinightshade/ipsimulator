@@ -35,16 +35,18 @@ namespace BusinessLogic.OSI
             {
                 return;
             }
-            
-            if (paquete.IpDestino == _capaDatos.Puerto.IPAddress)
+
+            if (paquete.IpDestino == CapaDatos.Puerto.IPAddress)
             {
-                EnviarPaquete(new Packet(_capaDatos.Puerto.IPAddress, paquete.IpOrigen, "Reply " + paquete.Datos),paquete.IpOrigen);
+                EnviarPaquete(paquete.IpOrigen, new Packet(CapaDatos.Puerto.IPAddress, paquete.IpOrigen, "Reply " + paquete.Datos));
             }
         }
 
-        internal void EnviarPaquete(Packet paquete,string ipDestino)
+        protected virtual void EnviarPaquete(string direccionIP, Packet packet)
         {
-            _capaDatos.EnviarPaquete(paquete, ipDestino);
+            _capaDatos.EnviarPaquete(packet, direccionIP);
         }
+
+
     }
 }

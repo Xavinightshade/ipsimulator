@@ -183,7 +183,7 @@ namespace RedesIP
 
         public void Ping(Guid idEquipo, string ipDestino,string datos)
         {
-            _computadores[idEquipo].Ping(idEquipo, ipDestino, datos);
+            _computadores[idEquipo].Ping(ipDestino, datos);
         }
 
         public void EstablecerDatosPueroBase(PuertoBaseSOA puerto)

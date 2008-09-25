@@ -18,7 +18,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
         private PuertoEthernetCompleto _puertoEthernet;
-        private CapaRed _capaRed;
+        private CapaRedPC _capaRed;
         private string _defaultGateWay;
         /// <summary>
         /// Puerto Ethernet Del PC
@@ -48,28 +48,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
         }
 
 
-        public void Ping(Guid idEquipo, string ipDestino, string datos)
-        {
-            Packet paquete = new Packet(_puertoEthernet.IPAddress, ipDestino, datos);
 
-            uint redPuerto = IPAddressFactory.GetRed(PuertoEthernet.IPAddress, PuertoEthernet.Mascara.Value);
-
-            bool perteneceAlaRed = IPAddressFactory.PerteneceAlaRed(redPuerto, ipDestino);
-            if (perteneceAlaRed)
-            {
-                _capaRed.EnviarPaquete(paquete, ipDestino);
-            }
-            else
-            {
-                _capaRed.EnviarPaquete(paquete, DefaultGateWay);
-            }
-
-
-
-
-
-
-        }
 
 
 
@@ -86,10 +65,17 @@ namespace RedesIP.Modelos.Logicos.Equipos
         public override void InicializarEquipo()
         {
             CapaDatos capaDatos = new CapaDatos(new ARP(), _puertoEthernet);
-            _capaRed = new CapaRed(capaDatos);
+            _capaRed = new CapaRedPC(capaDatos,this);
+            _capaRed.Inicializar();
             _capaRed.Inicializar();
         }
 
 
+
+        internal void Ping(string ipDestino, string datos)
+        {
+
+            _capaRed.Ping(ipDestino, datos);
+        }
     }
 }

@@ -91,6 +91,7 @@
     <Compile Include="IContrato\IContract.cs" />
     <Compile Include="OSI\CapaDatos.cs" />
     <Compile Include="OSI\CapaRed.cs" />
+    <Compile Include="OSI\CapaRedPC.cs" />
     <Compile Include="OSI\CapaRedRouter.cs" />
     <Compile Include="PresenterLocal.cs" />
     <Compile Include="PresenterBase.cs" />

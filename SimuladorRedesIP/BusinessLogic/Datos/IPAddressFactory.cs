@@ -104,6 +104,7 @@ namespace BusinessLogic
 
             uint sizeRed = GetTamanoDeREd(redPuerto);
             uint valorIp = GetValor(ipAddress);
+            string gg = GetIpRep(redPuerto);
             return (redPuerto < valorIp) && (valorIp < redPuerto + sizeRed);
 
         }
