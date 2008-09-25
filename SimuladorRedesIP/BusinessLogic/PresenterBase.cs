@@ -276,6 +276,20 @@ namespace RedesIP
         }
 
         #endregion
+
+        #region IModeloEstacion Members
+
+
+        public void PeticionEstablecerDatosRouter(RouterSOA router)
+        {
+            _estacion.EstablecerDatosRouter(router);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.EstablecerDatosRouter(router);
+            }
+        }
+
+        #endregion
     }
 
 

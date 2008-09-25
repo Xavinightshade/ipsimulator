@@ -201,9 +201,15 @@ namespace RedesIP
 
         internal void EstablecerDatosComputador(ComputadorSOA pcSOA)
         {
-            ComputadorLogico pcLogico = _computadores[pcSOA.Id] as ComputadorLogico;
+            ComputadorLogico pcLogico = _computadores[pcSOA.Id];
             pcLogico.Nombre = pcSOA.Nombre;
             pcLogico.DefaultGateWay = pcSOA.DefaultGateWay;
+        }
+
+        internal void EstablecerDatosRouter(RouterSOA router)
+        {
+            RouterLogico rou = _routers[router.Id];
+            rou.Nombre = router.Nombre;
         }
     }
 

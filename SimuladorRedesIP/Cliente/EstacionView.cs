@@ -194,8 +194,13 @@ namespace RedesIP.Vistas
             pcView.DefaultGateWay = pcSOA.DefaultGateWay;
         }
 
+        
+        public void EstablecerDatosRouter(RouterSOA router)
+        {
+            RouterView rouView = _equipos[router.Id] as RouterView;
+            rouView.Nombre = router.Nombre;
+        }
+
         #endregion
-
-
     }
 }

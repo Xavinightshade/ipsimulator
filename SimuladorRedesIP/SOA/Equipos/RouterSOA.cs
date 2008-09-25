@@ -19,6 +19,10 @@ namespace RedesIP.SOA
         {
 
         }
+        public RouterSOA()
+        {
+
+        }
         List<PuertoCompletoSOA> _puertos = new List<PuertoCompletoSOA>();
         [DataMember]
         public List<PuertoCompletoSOA> Puertos

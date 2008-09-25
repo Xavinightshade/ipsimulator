@@ -13,28 +13,28 @@ namespace RedesIP.Vistas.Equipos
 {
     class RouterView : EquipoView
     {
-		public RouterView(RouterSOA equipo)
-            : base(equipo.Id,equipo.Nombre, equipo.X, equipo.Y, Resources.Switch.Size.Width,
+        public RouterView(RouterSOA equipo)
+            : base(equipo.Id, equipo.Nombre, equipo.X, equipo.Y, Resources.Switch.Size.Width,
             Resources.Switch.Size.Height)
-		{
-			CrearPuertos(equipo.Puertos);
+        {
+            CrearPuertos(equipo.Puertos);
             ToolStripMenuItem item = new ToolStripMenuItem("Tabla de Rutas", Resources.sniffer);
             item.Click += new EventHandler(MenuRutasClick);
             Menu.Items.Add(item);
 
-		}
+        }
 
         private void MenuRutasClick(object sender, EventArgs e)
         {
             List<RutaSOA> rutas = Contenedor.Contrato.TraerRutas(this.Id);
-            using (RouteTableForm rouForm=new RouteTableForm() )
+            using (RouteTableForm rouForm = new RouteTableForm())
             {
-                rouForm.Inicializar(rutas,_puertosEthernet);
-                if (rouForm.ShowDialog()==DialogResult.OK)
+                rouForm.Inicializar(rutas, _puertosEthernet);
+                if (rouForm.ShowDialog() == DialogResult.OK)
                 {
                     Contenedor.Contrato.ActualizarRutas(Id, rutas);
-                } 
-                
+                }
+
             }
         }
 
@@ -55,7 +55,7 @@ namespace RedesIP.Vistas.Equipos
             {
 
                 _puertosEthernet.Add(new PuertoEthernetViewCompleto(puerto.Id,
-                    puerto.DireccionMAC,puerto.IPAddress,puerto.Mask, (i * 30)+3 , 7, this,puerto.Nombre));
+                    puerto.DireccionMAC, puerto.IPAddress, puerto.Mask, (i * 30) + 3, 7, this, puerto.Nombre));
                 i++;
             }
 
@@ -81,10 +81,30 @@ namespace RedesIP.Vistas.Equipos
         }
         protected override void OnMouseDobleClick(MouseEventArgs e)
         {
-            using (FormularioRouter rouForm=new FormularioRouter())
+            using (FormularioRouter rouForm = new FormularioRouter())
             {
-                rouForm.Inicializar(_puertosEthernet);
-                rouForm.ShowDialog();
+                List<PuertoCompletoSOA> puertos = new List<PuertoCompletoSOA>();
+                foreach (PuertoEthernetViewCompleto item in _puertosEthernet)
+                {
+                    PuertoCompletoSOA puerto = new PuertoCompletoSOA(item.Id, item.DireccionMAC, item.Nombre, item.DireccionIP, item.Mask);
+                    puertos.Add(puerto);
+
+                }
+                rouForm.Inicializar(puertos);
+                rouForm.NombreRouter = Nombre;
+                if (rouForm.ShowDialog() == DialogResult.OK)
+                {
+                    RouterSOA router=new RouterSOA();
+                    router.Id=Id;
+                    router.Nombre = rouForm.NombreRouter;
+                    Contenedor.Contrato.PeticionEstablecerDatosRouter(router);
+
+                    foreach (PuertoCompletoSOA puertoNuevo in puertos)
+                    {
+                        Contenedor.Contrato.PeticionEstablecerDatosPuertoCompleto(puertoNuevo);
+                    }
+
+                }
             }
         }
 

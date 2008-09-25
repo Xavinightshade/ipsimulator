@@ -46,12 +46,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this._nombrePc = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
-            this._puertosBS = new System.Windows.Forms.BindingSource(this.components);
-            this.macTextBox1 = new SimuladorCliente.Formularios.MACTextBox();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccionIPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.IPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._puertosBS = new System.Windows.Forms.BindingSource(this.components);
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -61,25 +61,25 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.ipTextBox1);
             this.groupBox1.Controls.Add(this._mask);
-            this.groupBox1.Controls.Add(this.macTextBox1);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this._nombrePuerto);
-            this.groupBox1.Location = new System.Drawing.Point(254, 11);
+            this.groupBox1.Location = new System.Drawing.Point(263, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 149);
+            this.groupBox1.Size = new System.Drawing.Size(284, 141);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
             // _mask
             // 
-            this._mask.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "Mask", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._mask.Location = new System.Drawing.Point(301, 16);
+            this._mask.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "Mask", true));
+            this._mask.Location = new System.Drawing.Point(253, 20);
             this._mask.Name = "_mask";
             this._mask.Size = new System.Drawing.Size(23, 20);
             this._mask.TabIndex = 2;
@@ -87,7 +87,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(283, 19);
+            this.label6.Location = new System.Drawing.Point(235, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(12, 13);
             this.label6.TabIndex = 12;
@@ -122,30 +122,32 @@
             // 
             // _nombrePuerto
             // 
-            this._nombrePuerto.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "Nombre", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._nombrePuerto.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "Nombre", true));
             this._nombrePuerto.Location = new System.Drawing.Point(103, 62);
             this._nombrePuerto.Name = "_nombrePuerto";
             this._nombrePuerto.Size = new System.Drawing.Size(47, 20);
-            this._nombrePuerto.TabIndex = 4;
+            this._nombrePuerto.TabIndex = 3;
             // 
             // _cancel
             // 
             this._cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancel.Location = new System.Drawing.Point(506, 47);
+            this._cancel.Location = new System.Drawing.Point(483, 47);
             this._cancel.Name = "_cancel";
             this._cancel.Size = new System.Drawing.Size(85, 23);
-            this._cancel.TabIndex = 15;
+            this._cancel.TabIndex = 5;
             this._cancel.Text = "Cancelar";
             this._cancel.UseVisualStyleBackColor = true;
+            this._cancel.Click += new System.EventHandler(this._cancel_Click);
             // 
             // _Aceptar
             // 
-            this._Aceptar.Location = new System.Drawing.Point(506, 18);
+            this._Aceptar.Location = new System.Drawing.Point(483, 18);
             this._Aceptar.Name = "_Aceptar";
             this._Aceptar.Size = new System.Drawing.Size(85, 23);
-            this._Aceptar.TabIndex = 14;
+            this._Aceptar.TabIndex = 4;
             this._Aceptar.Text = "Aceptar";
             this._Aceptar.UseVisualStyleBackColor = true;
+            this._Aceptar.Click += new System.EventHandler(this._Aceptar_Click);
             // 
             // dataGridView1
             // 
@@ -166,7 +168,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombreDataGridViewTextBoxColumn,
-            this.direccionIPDataGridViewTextBoxColumn,
+            this.IPAddress,
             this.Mask});
             this.dataGridView1.DataSource = this._puertosBS;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -194,7 +196,7 @@
             this.dataGridView1.RowHeadersWidth = 20;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(242, 141);
+            this.dataGridView1.Size = new System.Drawing.Size(251, 141);
             this.dataGridView1.TabIndex = 17;
             // 
             // groupBox2
@@ -203,7 +205,7 @@
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(12, 76);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(592, 166);
+            this.groupBox2.Size = new System.Drawing.Size(556, 166);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Puertos";
@@ -235,52 +237,21 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos";
             // 
-            // ipTextBox1
+            // textBox1
             // 
-            this.ipTextBox1.AllowInternalTab = false;
-            this.ipTextBox1.AutoHeight = true;
-            this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "DireccionIP", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ipTextBox1.Location = new System.Drawing.Point(104, 19);
-            this.ipTextBox1.Name = "ipTextBox1";
-            this.ipTextBox1.ReadOnly = false;
-            this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
-            this.ipTextBox1.TabIndex = 13;
-            this.ipTextBox1.Text = "...";
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "DireccionMAC", true));
+            this.textBox1.Location = new System.Drawing.Point(104, 104);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(125, 20);
+            this.textBox1.TabIndex = 14;
             // 
-            // _puertosBS
+            // IPAddress
             // 
-            this._puertosBS.DataSource = typeof(RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto);
-            // 
-            // macTextBox1
-            // 
-            this.macTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.macTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.macTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this._puertosBS, "DireccionMAC", true));
-            this.macTextBox1.Location = new System.Drawing.Point(103, 104);
-            this.macTextBox1.Name = "macTextBox1";
-            this.macTextBox1.Size = new System.Drawing.Size(173, 20);
-            this.macTextBox1.TabIndex = 5;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreDataGridViewTextBoxColumn.Width = 69;
-            // 
-            // direccionIPDataGridViewTextBoxColumn
-            // 
-            this.direccionIPDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.direccionIPDataGridViewTextBoxColumn.DataPropertyName = "DireccionIP";
-            this.direccionIPDataGridViewTextBoxColumn.HeaderText = "Dirección IP";
-            this.direccionIPDataGridViewTextBoxColumn.Name = "direccionIPDataGridViewTextBoxColumn";
-            this.direccionIPDataGridViewTextBoxColumn.ReadOnly = true;
-            this.direccionIPDataGridViewTextBoxColumn.Width = 90;
+            this.IPAddress.DataPropertyName = "IPAddress";
+            this.IPAddress.HeaderText = "Dirección IP";
+            this.IPAddress.Name = "IPAddress";
+            this.IPAddress.ReadOnly = true;
             // 
             // Mask
             // 
@@ -291,11 +262,39 @@
             this.Mask.ReadOnly = true;
             this.Mask.Width = 73;
             // 
+            // _puertosBS
+            // 
+            this._puertosBS.DataSource = typeof(RedesIP.SOA.PuertoCompletoSOA);
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn.Width = 69;
+            // 
+            // ipTextBox1
+            // 
+            this.ipTextBox1.AllowInternalTab = false;
+            this.ipTextBox1.AutoHeight = true;
+            this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ipTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "IPAddress", true));
+            this.ipTextBox1.Location = new System.Drawing.Point(104, 19);
+            this.ipTextBox1.Name = "ipTextBox1";
+            this.ipTextBox1.ReadOnly = false;
+            this.ipTextBox1.Size = new System.Drawing.Size(125, 20);
+            this.ipTextBox1.TabIndex = 1;
+            this.ipTextBox1.Text = "...";
+            // 
             // FormularioRouter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 254);
+            this.ClientSize = new System.Drawing.Size(575, 254);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this._cancel);
@@ -321,7 +320,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private SimuladorCliente.NewFolder1.IPTextBox ipTextBox1;
         private System.Windows.Forms.TextBox _mask;
-        private MACTextBox macTextBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -335,8 +333,9 @@
         private System.Windows.Forms.TextBox _nombrePc;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.BindingSource _puertosBS;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn direccionIPDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IPAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mask;
     }
 }

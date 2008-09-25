@@ -36,5 +36,8 @@ namespace RedesIP.SOA
         List<RutaSOA> TraerRutas(Guid idRouter);
         [OperationContract()]
         void ActualizarRutas(Guid IdRouter, List<RutaSOA> rutas);
+        [OperationContract()]
+        void PeticionEstablecerDatosRouter(RouterSOA router);
+
     }
 }

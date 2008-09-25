@@ -432,6 +432,7 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\DataSources\RedesIP.SOA.PuertoCompletoSOA.datasource" />
     <None Include="Properties\DataSources\RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto.datasource" />
     <None Include="Properties\DataSources\RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto1.datasource" />
     <None Include="Properties\DataSources\SOA.Componentes.RutaSOA.datasource" />
