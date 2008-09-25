@@ -17,7 +17,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
 		private PuertoEthernetCompleto _puertoEthernet;
-        private CapaDatos _capaDatos;
+        private CapaRed _capaRed;
         private string _defaultGateWay;
 		/// <summary>
 		/// Puerto Ethernet Del PC
@@ -49,17 +49,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
         public void Ping(Guid idEquipo, string ipDestino, string datos)
         {
             Packet paquete = new Packet(_puertoEthernet.IPAddress, ipDestino, datos);
-            _capaDatos.EnviarPaquete(paquete);
+            _capaRed.EnviarPaquete(paquete,ipDestino);
         }
  
 
-
-		private void EnviarMensaje(IFrameMessage mensaje, string MACDestino)
-		{
-            Frame frameATransmitir = new Frame(mensaje, _puertoEthernet.MACAddress, MACDestino);
-			((IEnvioReciboDatos)_puertoEthernet).TransmitirFrame(frameATransmitir);
-
-		}
 
 
 
@@ -73,9 +66,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
         public override void InicializarEquipo()
         {
-            _capaDatos = new CapaDatos(new ARP(), _puertoEthernet);
-
-
+            CapaDatos capaDatos = new CapaDatos(new ARP(), _puertoEthernet);
+            _capaRed = new CapaRed(capaDatos);
+            _capaRed.Inicializar();
         }
 
 

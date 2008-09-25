@@ -98,5 +98,37 @@ namespace BusinessLogic
         {
             return GetIpRep(GetRed(ipAddress, mascara));
         }
+
+        internal static bool PerteneceAlaRed(uint redPuerto, string ipAddress)
+        {
+
+            uint sizeRed = GetTamanoDeREd(redPuerto);
+            uint valorIp = GetValor(ipAddress);
+            return (redPuerto < valorIp) && (valorIp < redPuerto + sizeRed);
+
+        }
+
+        private static uint GetTamanoDeREd(uint redPuerto)
+        {
+            uint cociente = redPuerto;
+            List<byte> valoresIP = new List<byte>();
+            for (int i = 0; i < 32; i++)
+            {
+
+                byte residuo = (byte)(cociente % 2);
+                valoresIP.Add(residuo);
+                cociente = (uint)(cociente / 2);
+            }
+            uint size = 0;
+            for (int i = 0; i < 32; i++)
+            {
+                if (valoresIP[i] == 0)
+                {
+                    size += (uint)(Math.Pow(2, i));
+                }
+
+            }
+            return size;
+        }
     }
 }

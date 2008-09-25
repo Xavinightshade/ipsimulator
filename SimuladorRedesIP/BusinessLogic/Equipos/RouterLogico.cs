@@ -49,12 +49,12 @@ namespace RedesIP.Modelos.Logicos.Equipos
         {
             _puertosEthernet.Add(new PuertoEthernetCompleto(macAddress, idPuerto, nombre, mask, direccionIP));
         }
-        private Dictionary<PuertoEthernetCompleto, CapaDatos> _puertoEthernetCapaDatos = new Dictionary<PuertoEthernetCompleto, CapaDatos>();
+        private Dictionary<PuertoEthernetCompleto, CapaRedRouter> _puertoEthernetCapaRed = new Dictionary<PuertoEthernetCompleto, CapaRedRouter>();
         public override void InicializarEquipo()
         {
             foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
             {
-                _puertoEthernetCapaDatos.Add(puerto, new CapaDatos(new ARP(), puerto));
+                _puertoEthernetCapaRed.Add(puerto, new CapaRedRouter(new CapaDatos(new ARP(), puerto), _tablaDeRutas));
             }
         }
         public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, uint red)

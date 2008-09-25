@@ -62,6 +62,7 @@
     <Compile Include="Componentes\RouteTable.cs" />
     <Compile Include="Datos\DatosFrameArpBuscando.cs" />
     <Compile Include="Datos\DatosFrameArpIPpEncontrada.cs" />
+    <Compile Include="Datos\EventosPacket.cs" />
     <Compile Include="Domain Object\DomainObject.cs" />
     <Compile Include="Domain Object\Rule.cs" />
     <Compile Include="Domain Object\SimpleRule.cs" />
@@ -89,6 +90,8 @@
     <Compile Include="ICallBackContract\ICallBackContract.cs" />
     <Compile Include="IContrato\IContract.cs" />
     <Compile Include="OSI\CapaDatos.cs" />
+    <Compile Include="OSI\CapaRed.cs" />
+    <Compile Include="OSI\CapaRedRouter.cs" />
     <Compile Include="PresenterLocal.cs" />
     <Compile Include="PresenterBase.cs" />
     <Compile Include="PresenterSOA.cs" />

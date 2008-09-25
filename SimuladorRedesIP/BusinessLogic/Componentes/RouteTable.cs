@@ -9,7 +9,12 @@ namespace BusinessLogic.Componentes
 {
    public class RouteTable
     {
-       private List<EntradaTablaRouter> _tablaRouter = new List<EntradaTablaRouter>();
+        private List<EntradaTablaRouter> _tablaRouter = new List<EntradaTablaRouter>();
+
+        public List<EntradaTablaRouter> TablaRouter
+        {
+            get { return _tablaRouter; }
+        }
 
        public void IngresarEntrada(Guid id,uint red, PuertoEthernetCompleto puerto)
        {
