@@ -4,24 +4,30 @@ using System.Linq;
 using System.Text;
 using BusinessLogic.Componentes;
 using BusinessLogic.Modelos.Logicos.Datos;
+using RedesIP.Modelos.Logicos.Equipos;
+using RedesIP.Common;
 
 namespace BusinessLogic.OSI
 {
     public class CapaRedRouter:CapaRed
     {
-        private RouteTable _tablaRouter;
-        public CapaRedRouter(CapaDatos capaDatos,RouteTable tablaRouter)
+        private RouterLogico _router;
+        public CapaRedRouter(CapaDatos capaDatos,RouterLogico router)
             :base(capaDatos)
         {
-            _tablaRouter = tablaRouter;
+            _router = router;
         }
         protected override void ProcesarPaquete(Packet paquete)
         {
-            uint redPuerto = IPAddressFactory.GetRed(base.CapaDatos.Puerto.IPAddress, base.CapaDatos.Puerto.Mascara.Value);
-            foreach (EntradaTablaRouter ruta in _tablaRouter.TablaRouter)
-            {
-                bool perteneceAlaRed = IPAddressFactory.PerteneceAlaRed(redPuerto, paquete.IpDestino);
-                //CapaDatos.EnviarPaquete(paquete,);
+            foreach (EntradaTablaRouter ruta in _router.TablaDeRutas.TablaRouter)
+            {      
+       //         uint redPuerto = IPAddressFactory.GetRed(base.CapaDatos.Puerto.IPAddress, base.CapaDatos.Puerto.Mascara.Value);
+
+                bool perteneceAlaRed = IPAddressFactory.PerteneceAlaRed(ruta.Red, paquete.IpDestino);
+                if (perteneceAlaRed)
+                {
+                    _router.PuertoEthernetCapaRed[ruta.Puerto].CapaDatos.EnviarPaqueteDirecto(paquete, MACAddressFactory.BroadCast);
+                }
             }
         }
     }

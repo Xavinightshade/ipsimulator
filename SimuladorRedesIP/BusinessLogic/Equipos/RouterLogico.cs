@@ -50,11 +50,18 @@ namespace RedesIP.Modelos.Logicos.Equipos
             _puertosEthernet.Add(new PuertoEthernetCompleto(macAddress, idPuerto, nombre, mask, direccionIP));
         }
         private Dictionary<PuertoEthernetCompleto, CapaRedRouter> _puertoEthernetCapaRed = new Dictionary<PuertoEthernetCompleto, CapaRedRouter>();
+
+        public Dictionary<PuertoEthernetCompleto, CapaRedRouter> PuertoEthernetCapaRed
+        {
+            get { return _puertoEthernetCapaRed; }
+        }
         public override void InicializarEquipo()
         {
             foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
             {
-                _puertoEthernetCapaRed.Add(puerto, new CapaRedRouter(new CapaDatos(new ARP(), puerto), _tablaDeRutas));
+                CapaRedRouter capaRed = new CapaRedRouter(new CapaDatos(new ARP(),puerto), this);
+                capaRed.Inicializar();
+                _puertoEthernetCapaRed.Add(puerto, capaRed);
             }
         }
         public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, uint red)

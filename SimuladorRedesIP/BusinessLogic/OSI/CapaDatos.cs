@@ -135,5 +135,9 @@ namespace BusinessLogic.OSI
             ((IEnvioReciboDatos)_puerto).TransmitirFrame(frameATransmitir);
 
         }
+        public void EnviarPaqueteDirecto(Packet paquete, string MACDestino)
+        {
+            EnviarFrame(paquete, MACDestino);
+        }
     }
 }

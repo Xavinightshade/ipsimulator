@@ -8,50 +8,69 @@ using RedesIP.Common;
 using BusinessLogic.Modelos.Logicos.Datos;
 using BusinessLogic.OSI;
 using BusinessLogic.Protocolos;
+using BusinessLogic;
 
 
 namespace RedesIP.Modelos.Logicos.Equipos
 {
-	public class ComputadorLogico : EquipoLogico
-	{
+    public class ComputadorLogico : EquipoLogico
+    {
 
 
-		private PuertoEthernetCompleto _puertoEthernet;
+        private PuertoEthernetCompleto _puertoEthernet;
         private CapaRed _capaRed;
         private string _defaultGateWay;
-		/// <summary>
-		/// Puerto Ethernet Del PC
-		/// </summary>
+        /// <summary>
+        /// Puerto Ethernet Del PC
+        /// </summary>
         public PuertoEthernetCompleto PuertoEthernet
-		{
-			get { return _puertoEthernet; }
-		}
-		/// <summary>
-		/// Nombre Del Pc
-		/// </summary>
-		public string DefaultGateWay
-		{
+        {
+            get { return _puertoEthernet; }
+        }
+        /// <summary>
+        /// Nombre Del Pc
+        /// </summary>
+        public string DefaultGateWay
+        {
             get { return _defaultGateWay; }
             set { _defaultGateWay = value; }
-		}
-		/// <summary>
-		/// Crea un nuevo PC
-		/// </summary>
-		/// <param name="nombre"></param>
-		public ComputadorLogico(Guid id, int X,int Y,string nombre,string defaultGateWay):base(id, TipoDeEquipo.Computador,X,Y,nombre)
-		{
+        }
+        /// <summary>
+        /// Crea un nuevo PC
+        /// </summary>
+        /// <param name="nombre"></param>
+        public ComputadorLogico(Guid id, int X, int Y, string nombre, string defaultGateWay)
+            : base(id, TipoDeEquipo.Computador, X, Y, nombre)
+        {
 
             _defaultGateWay = defaultGateWay;
 
-		}
+        }
 
 
         public void Ping(Guid idEquipo, string ipDestino, string datos)
         {
             Packet paquete = new Packet(_puertoEthernet.IPAddress, ipDestino, datos);
-            _capaRed.EnviarPaquete(paquete,ipDestino);
+
+            uint redPuerto = IPAddressFactory.GetRed(PuertoEthernet.IPAddress, PuertoEthernet.Mascara.Value);
+
+            bool perteneceAlaRed = IPAddressFactory.PerteneceAlaRed(redPuerto, ipDestino);
+            if (perteneceAlaRed)
+            {
+                _capaRed.EnviarPaquete(paquete, ipDestino);
+            }
+            else
+            {
+                _capaRed.EnviarPaquete(paquete, DefaultGateWay);
+            }
+
+
+
+
+
+
         }
- 
+
 
 
 
