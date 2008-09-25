@@ -10,20 +10,31 @@ using WeifenLuo.WinFormsUI.Docking;
 using SourceGrid.Cells.Views;
 using RedesIP.Vistas;
 using RedesIP.SOA.Elementos;
+using DevAge.Windows.Forms;
+using SimuladorCliente.Marcadores;
 
 namespace SimuladorCliente
 {
     public partial class FormaSnifferCable : DockContent
     {
-        CableView _cable;
-        public FormaSnifferCable(CableView cable,Color color)
+        MarcadorCable _marcador;
+        public FormaSnifferCable(MarcadorCable marcador)
         {
-            _cable = cable;
+            _marcador = marcador;
             InitializeComponent();
             ConfigurarGrilla();
-            marcadorImagen1.Color = color;
-            this.TabText =_cable.Id.ToString().Substring(0, 5);
-            this.label1.Text = _cable.Id.ToString();
+            marcadorImagen1.Color = marcador.Color;
+            this.TabText = _marcador.Nombre;
+            this.textBox1.Text = _marcador.Nombre;
+            this.textBox1.TextChanged += new EventHandler(textBox1_TextChanged);
+
+        }
+
+        void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            TabText = textBox1.Text;
+            _marcador.Nombre = textBox1.Text;
+
         }
 
 
@@ -72,7 +83,7 @@ namespace SimuladorCliente
                 grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressDestino);
                 grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.IpOrigen);
                 grid[1, 5] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.IpDestino);
-                grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.Datos+" "+mensaje.Frame.Info);
+                grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.Datos + " " + mensaje.Frame.Info);
 
                 grid[1, 0].View = _vista;
                 grid[1, 1].View = _vista;
@@ -103,6 +114,25 @@ namespace SimuladorCliente
 
             LlenarGrilla(_mensajes);
 
+        }
+
+
+
+        private void marcadorImagen1_DoubleClick(object sender, EventArgs e)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _marcador.Color = colorDialog.Color;
+                    marcadorImagen1.Color = _marcador.Color;
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
 
     }

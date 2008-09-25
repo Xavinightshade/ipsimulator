@@ -18,6 +18,7 @@ using TesGestion.SOA;
 using SimuladorCliente.Formularios;
 using System.IO;
 using System.Drawing.Imaging;
+using DevAge.Windows.Forms;
 
 namespace SimuladorCliente
 {

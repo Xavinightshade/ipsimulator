@@ -5,6 +5,7 @@ using System.Text;
 using RedesIP.Vistas.Equipos;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using RedesIP.Vistas;
 
 namespace SimuladorCliente.Marcadores
 {
@@ -20,8 +21,8 @@ namespace SimuladorCliente.Marcadores
             get { return _equipo; }
         }
 
-        public MarcadorEquipo(EquipoView equipo)
-            : base(equipo.Id)
+        public MarcadorEquipo(EquipoView equipo, IRegistroMovimientosMouse mainView,string nombre)
+            : base(equipo.Id,nombre,mainView)
         {
             _equipo = equipo;
         }
@@ -34,7 +35,7 @@ namespace SimuladorCliente.Marcadores
             int mitadY = _equipo.DimensionMundo.Centro.Y;
             grafico.DrawLine(p, mitadX, mitadY, mitadX + 30, mitadY - 30);
             grafico.FillEllipse(new SolidBrush(Color), mitadX + 20, mitadY - 30, 10, 10);
-            grafico.DrawString(this.Id.ToString().Substring(0, 8), new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX + 15, mitadY - 15));
+            grafico.DrawString(Nombre, new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX + 15, mitadY - 15));
 
         }
 

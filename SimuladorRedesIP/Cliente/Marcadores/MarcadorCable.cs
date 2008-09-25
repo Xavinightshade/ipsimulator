@@ -21,8 +21,8 @@ namespace SimuladorCliente.Marcadores
         }
 
         Random r = new Random();
-        public MarcadorCable(CableView conexion)
-            : base(conexion.Id)
+        public MarcadorCable(string nombre, CableView conexion, IRegistroMovimientosMouse mainView)
+            : base( conexion.Id,nombre,mainView)
         {
 
             _conexion = conexion;
@@ -36,7 +36,7 @@ namespace SimuladorCliente.Marcadores
             int mitadY = (_conexion.PosicionMundoPuerto1.Y + _conexion.PosicionMundoPuerto2.Y) / 2;
             grafico.DrawLine(p, mitadX, mitadY, mitadX + 30, mitadY - 30);
             grafico.FillEllipse(new SolidBrush(Color), mitadX + 20, mitadY - 30, 10, 10);
-            grafico.DrawString(this.Id.ToString().Substring(0, 8), new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX + 15, mitadY - 15));
+            grafico.DrawString(Nombre, new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX + 15, mitadY - 15));
 
         }
 

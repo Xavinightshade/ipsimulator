@@ -46,9 +46,13 @@ namespace RedesIP.Vistas
 			}
 			}
 		}
+        private string _nombre;
+
+
 		public CableView(Guid id,PuertoEthernetViewBase puerto1,PuertoEthernetViewBase puerto2)
 			:base(id)
 		{
+ 
 			_puerto1 = puerto1;
 			_puerto2 = puerto2;
 			_puerto1.Conectado = true;

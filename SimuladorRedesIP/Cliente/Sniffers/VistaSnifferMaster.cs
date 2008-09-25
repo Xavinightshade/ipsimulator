@@ -37,7 +37,7 @@ namespace SimuladorCliente.Sniffers
        public void IniciarSnifferCable(MarcadorCable marcador,DockPanel dockMain)
        {
            _modeloSniffer.PeticionEnviarInformacionConexion(marcador.Id);
-           FormaSnifferCable sniffer = new FormaSnifferCable(marcador.Conexion, marcador.Color);
+           FormaSnifferCable sniffer = new FormaSnifferCable(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockMain, DockState.DockBottom);
            _cableSniffers.Add(marcador.Id,sniffer);

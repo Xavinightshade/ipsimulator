@@ -68,7 +68,7 @@ namespace RedesIP.Vistas
                         }
                         if (!yaEstaSeleccionado)
                         {
-                            MarcadorEquipo marcador = new MarcadorEquipo(par.Value);
+                            MarcadorEquipo marcador = new MarcadorEquipo(par.Value, this as IRegistroMovimientosMouse, par.Value.Nombre);
                             if (par.Value is SwitchView)
                             {
                                 Estacion._marcadores.Add(marcador);
@@ -97,7 +97,7 @@ namespace RedesIP.Vistas
                         }
                         if (!yaEstaSeleccionado)
                         {
-                            MarcadorCable marcador = new MarcadorCable(cable);
+                            MarcadorCable marcador = new MarcadorCable(cable.Puerto1.Nombre+" <-> "+cable.Puerto2.Nombre, cable,Estacion as IRegistroMovimientosMouse);
                             Estacion._marcadores.Add(marcador);
                             Estacion._snifferMaster.IniciarSnifferCable(marcador,Estacion._dockMain);
                             

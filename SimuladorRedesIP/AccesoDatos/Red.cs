@@ -1454,6 +1454,10 @@ namespace AccesoDatos
 		
 		private System.Guid _IdRouter;
 		
+		private System.Nullable<int> _Mascara;
+		
+		private string _NextHopIP;
+		
 		private EntityRef<Routers> _Routers;
 		
     #region Extensibility Method Definitions
@@ -1468,6 +1472,10 @@ namespace AccesoDatos
     partial void OnRedChanged();
     partial void OnIdRouterChanging(System.Guid value);
     partial void OnIdRouterChanged();
+    partial void OnMascaraChanging(System.Nullable<int> value);
+    partial void OnMascaraChanged();
+    partial void OnNextHopIPChanging(string value);
+    partial void OnNextHopIPChanged();
     #endregion
 		
 		public Rutas()
@@ -1556,6 +1564,46 @@ namespace AccesoDatos
 					this._IdRouter = value;
 					this.SendPropertyChanged("IdRouter");
 					this.OnIdRouterChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Mascara", DbType="Int")]
+		public System.Nullable<int> Mascara
+		{
+			get
+			{
+				return this._Mascara;
+			}
+			set
+			{
+				if ((this._Mascara != value))
+				{
+					this.OnMascaraChanging(value);
+					this.SendPropertyChanging();
+					this._Mascara = value;
+					this.SendPropertyChanged("Mascara");
+					this.OnMascaraChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_NextHopIP", DbType="NVarChar(100)")]
+		public string NextHopIP
+		{
+			get
+			{
+				return this._NextHopIP;
+			}
+			set
+			{
+				if ((this._NextHopIP != value))
+				{
+					this.OnNextHopIPChanging(value);
+					this.SendPropertyChanging();
+					this._NextHopIP = value;
+					this.SendPropertyChanged("NextHopIP");
+					this.OnNextHopIPChanged();
 				}
 			}
 		}

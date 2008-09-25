@@ -20,7 +20,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
         }
 		private static int CalcularVelocidad(float porcentaje)
 		{
-            return 1500;
+            return 150;
 			float m = (7000 - 10) / 100;
 			return (int)(m * (100 - porcentaje) + 10);
 		}
