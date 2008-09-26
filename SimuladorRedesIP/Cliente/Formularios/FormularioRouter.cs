@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using RedesIP.Vistas.Equipos.Componentes;
 using RedesIP.SOA;
+using BusinessLogic;
 
 namespace SimuladorCliente.Formularios
 {
@@ -29,6 +30,25 @@ namespace SimuladorCliente.Formularios
 
         private void _Aceptar_Click(object sender, EventArgs e)
         {
+            string mensajeDeError = string.Empty;
+
+            foreach (PuertoCompletoSOA puerto in (BindingList<PuertoCompletoSOA>)_puertosBS.DataSource)
+            {
+                string mensajePuerto = string.Empty;
+                if (!IPAddressFactory.EsValidaLaDireccion(puerto.IPAddress))
+                    mensajePuerto += "Dirección IP invalida";
+                if (!IPAddressFactory.EsValidaLaMascara(puerto.Mask))
+                    mensajePuerto += ", Valor de Mascara invalida";
+                if (mensajePuerto != string.Empty)
+                {
+                    mensajeDeError += puerto.Nombre + ": " + mensajePuerto+Environment.NewLine;
+                }
+            }
+            if (mensajeDeError != string.Empty)
+            {
+                MessageBox.Show(mensajeDeError, "Datos", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
             DialogResult = DialogResult.OK;
         }
 

@@ -27,12 +27,16 @@ namespace BusinessLogic
 
 
         }
-        public static bool EsValidaLaMascara(int mascara)
+        public static bool EsValidaLaMascara(int? mascara)
         {
-            return ((0 <= mascara) && (mascara <= 32));
+            if (!mascara.HasValue)
+                return false;
+            return ((0 < mascara) && (mascara <= 32));
         }
         public static bool EsValidaLaDireccion(string ipAddress)
         {
+            if (ipAddress == null)
+                return false;
             int longitud = ipAddress.Length;
             int primerPunto = ipAddress.IndexOf('.', 0);
             int segundoPunto = ipAddress.IndexOf('.', primerPunto + 1);
@@ -42,39 +46,44 @@ namespace BusinessLogic
             uint parte2;
             uint parte3;
             uint parte4;
-            esDireccionValida = uint.TryParse(ipAddress.Substring(0, primerPunto), out parte1);
-            esDireccionValida = ((0 <= parte1) && (parte1 <= 255));
-            esDireccionValida = uint.TryParse(ipAddress.Substring(primerPunto + 1, segundoPunto - primerPunto - 1), out parte2);
-            esDireccionValida = ((0 <= parte2) && (parte2 <= 255));
-            esDireccionValida = uint.TryParse(ipAddress.Substring(segundoPunto + 1, tercerPunto - segundoPunto - 1), out parte3);
-            esDireccionValida = ((0 <= parte3) && (parte3 <= 255));
-            esDireccionValida = uint.TryParse(ipAddress.Substring(tercerPunto + 1, longitud - tercerPunto - 1), out parte4);
-            esDireccionValida = ((0 <= parte4) && (parte4 <= 255));
+            esDireccionValida &= uint.TryParse(ipAddress.Substring(0, primerPunto), out parte1);
+            esDireccionValida &= ((0 <= parte1) && (parte1 <= 255));
+            esDireccionValida &= uint.TryParse(ipAddress.Substring(primerPunto + 1, segundoPunto - primerPunto - 1), out parte2);
+            esDireccionValida &= ((0 <= parte2) && (parte2 <= 255));
+            esDireccionValida &= uint.TryParse(ipAddress.Substring(segundoPunto + 1, tercerPunto - segundoPunto - 1), out parte3);
+            esDireccionValida &= ((0 <= parte3) && (parte3 <= 255));
+            esDireccionValida &= uint.TryParse(ipAddress.Substring(tercerPunto + 1, longitud - tercerPunto - 1), out parte4);
+            esDireccionValida &= ((0 <= parte4) && (parte4 <= 255));
 
             return esDireccionValida;
 
 
         }
-        public static bool PerteneceAlaRed(string ipAddressOrigen,string ipAddressDestino, int mascara)
+        public static bool PerteneceAlaRed(string ipAddressOrigen,string ipAddressDestino, int? mascara)
         {
             uint red = GetRed(ipAddressOrigen, mascara);
             uint valorIpDestino=GetValor(ipAddressDestino);
-            uint sizeRed = (uint)Math.Pow(2, 32 - mascara);
+            uint sizeRed = (uint)Math.Pow(2, 32 - mascara.Value);
             return (red < valorIpDestino) && (valorIpDestino < red + sizeRed);
 
 
         }
-        public static uint GetValorRed(int mask)
+        public static uint GetValorRed(int? mask)
         {
+            if (!EsValidaLaMascara(mask))
+            {
+          throw new Exception("Mascara no valida");
+
+            }
             uint valorTotalRed=0;
-            for (int i = 0; i < mask; i++)
+            for (int i = 0; i < mask.Value; i++)
             {
                 valorTotalRed += (uint)Math.Pow(2, 31 - i);
             }
             return valorTotalRed;
  
         }
-        public static uint GetRed(string ipAddress, int mask)
+        public static uint GetRed(string ipAddress, int? mask)
         {
             uint valorIp = GetValor(ipAddress);
             uint cociente = valorIp;
@@ -126,7 +135,7 @@ namespace BusinessLogic
         }
 
 
-        public static string GetRedRep(string ipAddress, int mascara)
+        public static string GetRedRep(string ipAddress, int? mascara)
         {
             return GetIpRep(GetRed(ipAddress, mascara));
         }

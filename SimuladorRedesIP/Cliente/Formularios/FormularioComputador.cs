@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace SimuladorCliente.Formularios
 {
@@ -49,6 +50,18 @@ namespace SimuladorCliente.Formularios
 
         private void _Aceptar_Click(object sender, EventArgs e)
         {
+            string mensajeDeError = string.Empty;
+            if (!IPAddressFactory.EsValidaLaDireccion(IPAddress))
+                mensajeDeError += "Dirección IP invalida";
+            if (!IPAddressFactory.EsValidaLaDireccion(DefaultGateWay))
+                mensajeDeError += "Dirección IP Default Gate Way invalida";
+            if (!IPAddressFactory.EsValidaLaMascara(int.Parse(Mask)))
+                mensajeDeError += "Valor de Mascara invalida";
+            if (mensajeDeError!=string.Empty)
+            {
+                MessageBox.Show(mensajeDeError, "Datos", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
 
