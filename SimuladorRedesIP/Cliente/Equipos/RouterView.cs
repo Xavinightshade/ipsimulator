@@ -26,13 +26,15 @@ namespace RedesIP.Vistas.Equipos
 
         private void MenuRutasClick(object sender, EventArgs e)
         {
-            List<RutaSOA> rutas = Contenedor.Contrato.TraerRutas(this.Id);
+            List<RutaSOA> rutasEstaticas = Contenedor.Contrato.TraerRutas(this.Id);
+            List<RutaSOA> rutasRouter = Contenedor.Contrato.TraerRutasRouter(this.Id);
+
             using (RouteTableForm rouForm = new RouteTableForm())
             {
-                rouForm.Inicializar(rutas, _puertosEthernet);
+                rouForm.Inicializar(rutasEstaticas,rutasRouter, _puertosEthernet);
                 if (rouForm.ShowDialog() == DialogResult.OK)
                 {
-                    Contenedor.Contrato.ActualizarRutas(Id, rutas);
+                    Contenedor.Contrato.ActualizarRutas(Id, rutasEstaticas);
                 }
 
             }

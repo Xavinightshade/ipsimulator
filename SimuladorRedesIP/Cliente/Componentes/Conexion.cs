@@ -46,7 +46,6 @@ namespace RedesIP.Vistas
 			}
 			}
 		}
-        private string _nombre;
 
 
 		public CableView(Guid id,PuertoEthernetViewBase puerto1,PuertoEthernetViewBase puerto2)

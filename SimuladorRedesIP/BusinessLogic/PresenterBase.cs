@@ -290,6 +290,17 @@ namespace RedesIP
         }
 
         #endregion
+
+        #region IModeloSOA Members
+
+
+        public List<RutaSOA> TraerRutasRouter(Guid idRouter)
+        {
+            List<RutaSOA> rutasSOA = _estacion.Routers[idRouter].TraerRutasRouter();
+            return rutasSOA;
+        }
+
+        #endregion
     }
 
 

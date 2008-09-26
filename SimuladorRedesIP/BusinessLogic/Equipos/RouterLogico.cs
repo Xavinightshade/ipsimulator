@@ -96,5 +96,26 @@ namespace RedesIP.Modelos.Logicos.Equipos
             }
 
         }
+
+        public List<RutaSOA> TraerRutasRouter()
+        {
+            return CalcularRutasInternas();
+        }
+
+        private List<RutaSOA> CalcularRutasInternas()
+        {
+            List<RutaSOA> rutasInternas = new List<RutaSOA>();
+            foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
+            {
+                RutaSOA ruta = new RutaSOA(Guid.Empty);
+                ruta.Mask = puerto.Mascara;
+                ruta.NombrePuerto = puerto.Nombre;
+                if (!puerto.Mascara.HasValue)
+                    continue;
+                ruta.Red=IPAddressFactory.GetRedRep(puerto.IPAddress,puerto.Mascara.Value);
+                rutasInternas.Add(ruta);
+            }            
+            return rutasInternas;
+        }
     }
 }

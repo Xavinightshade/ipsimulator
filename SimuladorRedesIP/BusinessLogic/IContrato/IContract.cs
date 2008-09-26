@@ -27,6 +27,8 @@ namespace RedesIP.SOA
 
 
 
+
+        List<RutaSOA> TraerRutasRouter(Guid guid);
     }
 
 

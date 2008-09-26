@@ -19,13 +19,14 @@ namespace SimuladorCliente.Formularios
         }
         private List<PuertoEthernetViewCompleto> _puertos;
         BindingList<RutaSOA> _rutasMD;
-        internal void Inicializar(List<RutaSOA> rutas,List<PuertoEthernetViewCompleto> puertos)
+        internal void Inicializar(List<RutaSOA> rutasEstaticas,List<RutaSOA> rutasRouter, List<PuertoEthernetViewCompleto> puertos)
         {
             _puertos = puertos;
-            _rutasMD = new BindingList<RutaSOA>(rutas);
-            _rutas.DataSource = _rutasMD;
+            _rutasMD = new BindingList<RutaSOA>(rutasEstaticas);
+            _rutasEstaticas.DataSource = _rutasMD;
+            _rutasRouter.DataSource = rutasRouter;
             _puertosBS.DataSource = _puertos;
-            _rutas.Position = 0;
+            _rutasEstaticas.Position = 0;
                 if (_rutasMD.Count == 0)
                 {
                     _eliminar.Enabled = false;
@@ -54,7 +55,7 @@ namespace SimuladorCliente.Formularios
             ruta.IdPuerto = _puertos[0].Id;
             ruta.NombrePuerto = _puertos[0].Nombre;
             _rutasMD.Add(ruta);
-            _rutas.Position = _rutas.IndexOf(ruta);
+            _rutasEstaticas.Position = _rutasEstaticas.IndexOf(ruta);
             comboBox1.SelectedIndex = 0;
             _eliminar.Enabled = true;
             groupBox1.Enabled = true;
@@ -64,7 +65,7 @@ namespace SimuladorCliente.Formularios
 
         private void button3_Click(object sender, EventArgs e)
         {
-            _rutasMD.Remove((RutaSOA)_rutas.Current);
+            _rutasMD.Remove((RutaSOA)_rutasEstaticas.Current);
             if (_rutasMD.Count == 0)
             {
                 _eliminar.Enabled = false;
@@ -74,7 +75,7 @@ namespace SimuladorCliente.Formularios
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ((RutaSOA)_rutas.Current).IdPuerto = ((PuertoEthernetViewCompleto)comboBox1.SelectedItem).Id;
+            ((RutaSOA)_rutasEstaticas.Current).IdPuerto = ((PuertoEthernetViewCompleto)comboBox1.SelectedItem).Id;
         }
 
         private void RouteTableForm_FormClosing(object sender, FormClosingEventArgs e)
