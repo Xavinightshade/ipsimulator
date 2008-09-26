@@ -201,7 +201,7 @@ namespace AccesoDatos
                         }
                         foreach (Rutas ruta in equipoBD.Routers.Rutas)
                         {
-                            rou.CrearNuevaRuta(ruta.Id, ruta.IdPuerto, (uint)ruta.Red,ruta.Mascara,ruta.NextHopIP);
+                            rou.CrearNuevaRuta(ruta.Id, ruta.IdPuerto,IPAddressFactory.GetIpRep((uint)ruta.Red),ruta.Mascara,ruta.NextHopIP);
                         }
                         estacionLogica.CrearRouter(rou);
                         break;

@@ -9,43 +9,60 @@ namespace BusinessLogic.Componentes
 {
    public class RouteTable
     {
-        private List<EntradaTablaRouter> _tablaRouter = new List<EntradaTablaRouter>();
+        private List<EntradaTablaRouter> _tablaRouterEstatico = new List<EntradaTablaRouter>();
 
-        public List<EntradaTablaRouter> TablaRouter
-        {
-            get { return _tablaRouter; }
-        }
 
-       public void IngresarEntrada(Guid id,uint red,int? mask,string nextHopIP, PuertoEthernetCompleto puerto)
+
+       public void IngresarEntrada(Guid id,string red,int? mask,string nextHopIP, PuertoEthernetCompleto puerto)
        {
            EntradaTablaRouter entrada=new EntradaTablaRouter(id);
            entrada.Puerto = puerto;
            entrada.Red = red;
            entrada.Mask = mask;
            entrada.NextHopIP = nextHopIP;
-           _tablaRouter.Add(entrada);
+           _tablaRouterEstatico.Add(entrada);
        }
-       public PuertoEthernetCompleto BuscarPuertoDeLaRed(uint red)
+       public PuertoEthernetCompleto BuscarPuertoDeLaRed(string ipAddress)
        {
-           foreach (EntradaTablaRouter entrada in _tablaRouter)
+           foreach (EntradaTablaRouter entrada in CalcularRutasInternas())
            {
-               if (entrada.Red==red)
+               uint valorRedPuerto=IPAddressFactory.GetRed(entrada.Puerto.IPAddress,entrada.Puerto.Mascara.Value);
+               uint valorRedIpAddress=IPAddressFactory.GetRed(ipAddress,entrada.Puerto.Mascara.Value);
+               if (valorRedIpAddress==valorRedPuerto)
+               {
+                   return entrada.Puerto;
+               }
+           }
+           foreach (EntradaTablaRouter entrada in _tablaRouterEstatico)
+           {
+               uint valorRedPuerto = IPAddressFactory.GetRed(entrada.Red, entrada.Mask.Value);
+               uint valorRedIpAddress = IPAddressFactory.GetRed(ipAddress, entrada.Puerto.Mascara.Value);
+
+               if (valorRedIpAddress == valorRedPuerto)
                {
                    return entrada.Puerto;
                }
            }
            return null;
        }
-
+       List<PuertoEthernetCompleto> _puertos;
+       public RouteTable(List<PuertoEthernetCompleto> puertos)
+       {
+           _puertos=puertos;
+       }
 
        internal List<RutaSOA> GetRutas()
        {
+           return LlenarRutas(_tablaRouterEstatico);
+       }
+       private List<RutaSOA> LlenarRutas(List<EntradaTablaRouter> entradas)
+       {
            List<RutaSOA> rutas = new List<RutaSOA>();
-           foreach (EntradaTablaRouter item in _tablaRouter)
+           foreach (EntradaTablaRouter item in entradas)
            {
                RutaSOA ruta = new RutaSOA(item.Id);
                ruta.IdPuerto = item.Puerto.Id;
-               ruta.Red = IPAddressFactory.GetIpRep(item.Red);
+               ruta.Red = item.Red;
                ruta.NombrePuerto = item.Puerto.Nombre;
                ruta.NextHopIP = item.NextHopIP;
                ruta.Mask = item.Mask;
@@ -53,10 +70,29 @@ namespace BusinessLogic.Componentes
            }
            return rutas;
        }
-
        internal void LimpiarRutas()
        {
-           _tablaRouter.Clear();
+           _tablaRouterEstatico.Clear();
+       }
+
+       private List<EntradaTablaRouter> CalcularRutasInternas()
+       {
+           List<EntradaTablaRouter> rutasInternas = new List<EntradaTablaRouter>();
+           foreach (PuertoEthernetCompleto puerto in _puertos)
+           {
+               EntradaTablaRouter ruta = new EntradaTablaRouter(Guid.Empty);
+               ruta.Mask = puerto.Mascara;
+               ruta.Puerto = puerto;
+              ruta.Red = IPAddressFactory.GetRedRep(ruta.Puerto.IPAddress, ruta.Puerto.Mascara.Value);
+
+               rutasInternas.Add(ruta);
+           }
+           return rutasInternas;
+       }
+
+       internal List<RutaSOA> GetRutasInternas()
+       {
+           return LlenarRutas(CalcularRutasInternas());
        }
     }
 }

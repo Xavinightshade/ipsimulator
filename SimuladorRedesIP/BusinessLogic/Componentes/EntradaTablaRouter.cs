@@ -14,9 +14,9 @@ namespace BusinessLogic.Componentes
         {
             get { return _id; }
         }
-        private uint _red;
+        private string _red;
 
-        public uint Red
+        public string Red
         {
             get { return _red; }
             set { _red = value; }

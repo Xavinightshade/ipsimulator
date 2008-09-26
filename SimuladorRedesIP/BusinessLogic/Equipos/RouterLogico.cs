@@ -24,7 +24,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             return rouRespuesta;
         }
 
-        private RouteTable _tablaDeRutas = new RouteTable();
+        private RouteTable _tablaDeRutas;
 
         public RouteTable TablaDeRutas
         {
@@ -63,9 +63,12 @@ namespace RedesIP.Modelos.Logicos.Equipos
                 capaRed.Inicializar();
                 _puertoEthernetCapaRed.Add(puerto, capaRed);
             }
+            _tablaDeRutas = new RouteTable(_puertosEthernet);
         }
-        public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, uint red,int? mask, string nextHopIP)
+        public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, string red,int? mask, string nextHopIP)
         {
+            if (_tablaDeRutas == null)
+                _tablaDeRutas = new RouteTable(_puertosEthernet);
             foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
             {
                 if (puerto.Id == idPuerto)
@@ -92,7 +95,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             }
             foreach (RutaSOA ruta in rutas)
             {
-                _tablaDeRutas.IngresarEntrada(ruta.Id, IPAddressFactory.GetValor(ruta.Red),ruta.Mask,ruta.NextHopIP, puertos[ruta.IdPuerto]);
+                _tablaDeRutas.IngresarEntrada(ruta.Id, ruta.Red,ruta.Mask,ruta.NextHopIP, puertos[ruta.IdPuerto]);
             }
 
         }
@@ -104,18 +107,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
         private List<RutaSOA> CalcularRutasInternas()
         {
-            List<RutaSOA> rutasInternas = new List<RutaSOA>();
-            foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
-            {
-                RutaSOA ruta = new RutaSOA(Guid.Empty);
-                ruta.Mask = puerto.Mascara;
-                ruta.NombrePuerto = puerto.Nombre;
-                if (!puerto.Mascara.HasValue)
-                    continue;
-                ruta.Red=IPAddressFactory.GetRedRep(puerto.IPAddress,puerto.Mascara.Value);
-                rutasInternas.Add(ruta);
-            }            
-            return rutasInternas;
+            return _tablaDeRutas.GetRutasInternas();
         }
     }
 }

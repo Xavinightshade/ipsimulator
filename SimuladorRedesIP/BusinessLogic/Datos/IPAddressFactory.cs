@@ -9,6 +9,10 @@ namespace BusinessLogic
     {
         public static uint GetValor(string ipAddress)
         {
+            if (!EsValidaLaDireccion(ipAddress))
+            {
+                throw new Exception("DireccionIP no valida");
+            }
             int longitud = ipAddress.Length;
             int primerPunto = ipAddress.IndexOf('.', 0);
             int segundoPunto = ipAddress.IndexOf('.', primerPunto+1);
@@ -20,6 +24,30 @@ namespace BusinessLogic
             uint total = parte4 + parte3 * 256 + parte2 * 256 * 256 + parte1 * 256 * 256 * 256;
           
             return total;
+
+
+        }
+        public static bool EsValidaLaDireccion(string ipAddress)
+        {
+            int longitud = ipAddress.Length;
+            int primerPunto = ipAddress.IndexOf('.', 0);
+            int segundoPunto = ipAddress.IndexOf('.', primerPunto + 1);
+            int tercerPunto = ipAddress.IndexOf('.', segundoPunto + 1);
+            bool esDireccionValida = true;
+            uint parte1;
+            uint parte2;
+            uint parte3;
+            uint parte4;
+            esDireccionValida = uint.TryParse(ipAddress.Substring(0, primerPunto), out parte1);
+            esDireccionValida = ((0 <= parte1) && (parte1 <= 255));
+            esDireccionValida = uint.TryParse(ipAddress.Substring(primerPunto + 1, segundoPunto - primerPunto - 1), out parte2);
+            esDireccionValida = ((0 <= parte2) && (parte2 <= 255));
+            esDireccionValida = uint.TryParse(ipAddress.Substring(segundoPunto + 1, tercerPunto - segundoPunto - 1), out parte3);
+            esDireccionValida = ((0 <= parte3) && (parte3 <= 255));
+            esDireccionValida = uint.TryParse(ipAddress.Substring(tercerPunto + 1, longitud - tercerPunto - 1), out parte4);
+            esDireccionValida = ((0 <= parte4) && (parte4 <= 255));
+
+            return esDireccionValida;
 
 
         }
