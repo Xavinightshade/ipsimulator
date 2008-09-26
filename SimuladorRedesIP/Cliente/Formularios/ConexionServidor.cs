@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace SimuladorCliente.Formularios
 {
@@ -30,7 +31,12 @@ namespace SimuladorCliente.Formularios
 
         private void _Aceptar_Click(object sender, EventArgs e)
         {
-           
+            if (!IPAddressFactory.EsValidaLaDireccion(IPAddress))
+            {
+                MessageBox.Show("Dirección IP invalida", "Dirección IP", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
 

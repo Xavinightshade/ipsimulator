@@ -27,6 +27,10 @@ namespace BusinessLogic
 
 
         }
+        public static bool EsValidaLaMascara(int mascara)
+        {
+            return ((0 <= mascara) && (mascara <= 32));
+        }
         public static bool EsValidaLaDireccion(string ipAddress)
         {
             int longitud = ipAddress.Length;
