@@ -28,6 +28,22 @@ namespace BusinessLogic.Componentes
             get { return _puerto; }
             set { _puerto = value; }
         }
+
+        private int? _mask;
+
+        public int? Mask
+        {
+            get { return _mask; }
+            set { _mask = value; }
+        }
+
+        private string _nextHopIP;
+
+        public string NextHopIP
+        {
+            get { return _nextHopIP; }
+            set { _nextHopIP = value; }
+        }
         public EntradaTablaRouter(Guid id)
         {
             _id = id;

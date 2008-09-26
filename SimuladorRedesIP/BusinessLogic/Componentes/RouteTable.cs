@@ -16,11 +16,13 @@ namespace BusinessLogic.Componentes
             get { return _tablaRouter; }
         }
 
-       public void IngresarEntrada(Guid id,uint red, PuertoEthernetCompleto puerto)
+       public void IngresarEntrada(Guid id,uint red,int? mask,string nextHopIP, PuertoEthernetCompleto puerto)
        {
            EntradaTablaRouter entrada=new EntradaTablaRouter(id);
            entrada.Puerto = puerto;
            entrada.Red = red;
+           entrada.Mask = mask;
+           entrada.NextHopIP = nextHopIP;
            _tablaRouter.Add(entrada);
        }
        public PuertoEthernetCompleto BuscarPuertoDeLaRed(uint red)
@@ -45,6 +47,8 @@ namespace BusinessLogic.Componentes
                ruta.IdPuerto = item.Puerto.Id;
                ruta.Red = IPAddressFactory.GetIpRep(item.Red);
                ruta.NombrePuerto = item.Puerto.Nombre;
+               ruta.NextHopIP = item.NextHopIP;
+               ruta.Mask = item.Mask;
                rutas.Add(ruta);
            }
            return rutas;

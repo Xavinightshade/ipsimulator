@@ -33,20 +33,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nombrePuertoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.redDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._rutas = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this._puertosBS = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ipTextBox2 = new SimuladorCliente.NewFolder1.IPTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this._mask = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this._eliminar = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.nombrePuertoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.redDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NextHopIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._rutas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._puertosBS)).BeginInit();
@@ -73,7 +79,9 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombrePuertoDataGridViewTextBoxColumn,
-            this.redDataGridViewTextBoxColumn});
+            this.redDataGridViewTextBoxColumn,
+            this.Mask,
+            this.NextHopIP});
             this.dataGridView1.DataSource = this._rutas;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -84,7 +92,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 19);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -100,22 +108,8 @@
             this.dataGridView1.RowHeadersWidth = 20;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(238, 152);
+            this.dataGridView1.Size = new System.Drawing.Size(387, 152);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // nombrePuertoDataGridViewTextBoxColumn
-            // 
-            this.nombrePuertoDataGridViewTextBoxColumn.DataPropertyName = "NombrePuerto";
-            this.nombrePuertoDataGridViewTextBoxColumn.HeaderText = "NombrePuerto";
-            this.nombrePuertoDataGridViewTextBoxColumn.Name = "nombrePuertoDataGridViewTextBoxColumn";
-            this.nombrePuertoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // redDataGridViewTextBoxColumn
-            // 
-            this.redDataGridViewTextBoxColumn.DataPropertyName = "Red";
-            this.redDataGridViewTextBoxColumn.HeaderText = "Red";
-            this.redDataGridViewTextBoxColumn.Name = "redDataGridViewTextBoxColumn";
-            this.redDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // _rutas
             // 
@@ -140,7 +134,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(107, 18);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(135, 21);
+            this.comboBox1.Size = new System.Drawing.Size(118, 21);
             this.comboBox1.TabIndex = 3;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -159,16 +153,61 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ipTextBox2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this._mask);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.ipTextBox1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(269, 57);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(251, 84);
+            this.groupBox1.Size = new System.Drawing.Size(279, 100);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ruta";
+            // 
+            // ipTextBox2
+            // 
+            this.ipTextBox2.AllowInternalTab = false;
+            this.ipTextBox2.AutoHeight = true;
+            this.ipTextBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.ipTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ipTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ipTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._rutas, "NextHopIP", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ipTextBox2.Location = new System.Drawing.Point(106, 71);
+            this.ipTextBox2.Name = "ipTextBox2";
+            this.ipTextBox2.ReadOnly = false;
+            this.ipTextBox2.Size = new System.Drawing.Size(119, 20);
+            this.ipTextBox2.TabIndex = 16;
+            this.ipTextBox2.Text = "...";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Dirección IP";
+            // 
+            // _mask
+            // 
+            this._mask.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._rutas, "Mask", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._mask.Location = new System.Drawing.Point(249, 45);
+            this._mask.Name = "_mask";
+            this._mask.Size = new System.Drawing.Size(23, 20);
+            this._mask.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(231, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(12, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "/";
             // 
             // ipTextBox1
             // 
@@ -181,7 +220,7 @@
             this.ipTextBox1.Location = new System.Drawing.Point(107, 45);
             this.ipTextBox1.Name = "ipTextBox1";
             this.ipTextBox1.ReadOnly = false;
-            this.ipTextBox1.Size = new System.Drawing.Size(135, 20);
+            this.ipTextBox1.Size = new System.Drawing.Size(118, 20);
             this.ipTextBox1.TabIndex = 5;
             this.ipTextBox1.Text = "...";
             // 
@@ -189,9 +228,9 @@
             // 
             this.button1.Image = global::SimuladorCliente.Properties.Resources.new_16x16;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(269, 22);
+            this.button1.Location = new System.Drawing.Point(297, 38);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 29);
+            this.button1.Size = new System.Drawing.Size(72, 29);
             this.button1.TabIndex = 7;
             this.button1.Text = "Nuevo";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -202,9 +241,9 @@
             // 
             this._eliminar.Image = global::SimuladorCliente.Properties.Resources.delete_16x16;
             this._eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._eliminar.Location = new System.Drawing.Point(443, 22);
+            this._eliminar.Location = new System.Drawing.Point(297, 83);
             this._eliminar.Name = "_eliminar";
-            this._eliminar.Size = new System.Drawing.Size(68, 29);
+            this._eliminar.Size = new System.Drawing.Size(72, 29);
             this._eliminar.TabIndex = 9;
             this._eliminar.Text = "Eliminar";
             this._eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -213,9 +252,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(269, 155);
+            this.button4.Location = new System.Drawing.Point(416, 234);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(96, 25);
+            this.button4.Size = new System.Drawing.Size(93, 25);
             this.button4.TabIndex = 10;
             this.button4.Text = "Aceptar";
             this.button4.UseVisualStyleBackColor = true;
@@ -223,7 +262,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(427, 155);
+            this.button5.Location = new System.Drawing.Point(416, 264);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(93, 25);
             this.button5.TabIndex = 11;
@@ -234,18 +273,46 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 3);
+            this.groupBox2.Location = new System.Drawing.Point(12, 118);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(251, 177);
+            this.groupBox2.Size = new System.Drawing.Size(400, 180);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rutas";
+            // 
+            // nombrePuertoDataGridViewTextBoxColumn
+            // 
+            this.nombrePuertoDataGridViewTextBoxColumn.DataPropertyName = "NombrePuerto";
+            this.nombrePuertoDataGridViewTextBoxColumn.HeaderText = "NombrePuerto";
+            this.nombrePuertoDataGridViewTextBoxColumn.Name = "nombrePuertoDataGridViewTextBoxColumn";
+            this.nombrePuertoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // redDataGridViewTextBoxColumn
+            // 
+            this.redDataGridViewTextBoxColumn.DataPropertyName = "Red";
+            this.redDataGridViewTextBoxColumn.HeaderText = "Red";
+            this.redDataGridViewTextBoxColumn.Name = "redDataGridViewTextBoxColumn";
+            this.redDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Mask
+            // 
+            this.Mask.DataPropertyName = "Mask";
+            this.Mask.HeaderText = "Mask";
+            this.Mask.Name = "Mask";
+            this.Mask.ReadOnly = true;
+            // 
+            // NextHopIP
+            // 
+            this.NextHopIP.DataPropertyName = "NextHopIP";
+            this.NextHopIP.HeaderText = "NextHopIP";
+            this.NextHopIP.Name = "NextHopIP";
+            this.NextHopIP.ReadOnly = true;
             // 
             // RouteTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 190);
+            this.ClientSize = new System.Drawing.Size(512, 301);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button5);
@@ -281,8 +348,14 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.BindingSource _rutas;
+        private System.Windows.Forms.BindingSource _puertosBS;
+        private SimuladorCliente.NewFolder1.IPTextBox ipTextBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox _mask;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombrePuertoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn redDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource _puertosBS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mask;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NextHopIP;
     }
 }

@@ -111,6 +111,8 @@ namespace AccesoDatos
                     ruta.Id = entrada.Id;
                     ruta.IdPuerto = entrada.IdPuerto;
                     ruta.IdRouter = rou.Value.Id;
+                    ruta.NextHopIP = entrada.NextHopIP;
+                    ruta.Mascara = entrada.Mask;
                     ruta.Red = IPAddressFactory.GetValor(entrada.Red);
                     routerBD.Rutas.Add(ruta);
                 }
@@ -199,7 +201,7 @@ namespace AccesoDatos
                         }
                         foreach (Rutas ruta in equipoBD.Routers.Rutas)
                         {
-                            rou.CrearNuevaRuta(ruta.Id, ruta.IdPuerto, (uint)ruta.Red);
+                            rou.CrearNuevaRuta(ruta.Id, ruta.IdPuerto, (uint)ruta.Red,ruta.Mascara,ruta.NextHopIP);
                         }
                         estacionLogica.CrearRouter(rou);
                         break;

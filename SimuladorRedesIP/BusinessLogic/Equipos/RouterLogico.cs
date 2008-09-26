@@ -64,13 +64,13 @@ namespace RedesIP.Modelos.Logicos.Equipos
                 _puertoEthernetCapaRed.Add(puerto, capaRed);
             }
         }
-        public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, uint red)
+        public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, uint red,int? mask, string nextHopIP)
         {
             foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
             {
                 if (puerto.Id == idPuerto)
                 {
-                    _tablaDeRutas.IngresarEntrada(idRuta, red, puerto);
+                    _tablaDeRutas.IngresarEntrada(idRuta, red,mask,nextHopIP,puerto);
                     return;
                 }
             }
@@ -92,7 +92,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             }
             foreach (RutaSOA ruta in rutas)
             {
-                _tablaDeRutas.IngresarEntrada(ruta.Id, IPAddressFactory.GetValor(ruta.Red), puertos[ruta.IdPuerto]);
+                _tablaDeRutas.IngresarEntrada(ruta.Id, IPAddressFactory.GetValor(ruta.Red),ruta.Mask,ruta.NextHopIP, puertos[ruta.IdPuerto]);
             }
 
         }

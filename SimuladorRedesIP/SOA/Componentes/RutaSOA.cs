@@ -38,5 +38,20 @@ namespace SOA.Componentes
         {
             _id = id;
         }
+        private int? _mask;
+
+        public int? Mask
+        {
+            get { return _mask; }
+            set { _mask = value; }
+        }
+
+        private string _nextHopIP;
+
+        public string NextHopIP
+        {
+            get { return _nextHopIP; }
+            set { _nextHopIP = value; }
+        }
     }
 }
