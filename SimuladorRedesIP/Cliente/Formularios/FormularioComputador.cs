@@ -59,7 +59,8 @@ namespace SimuladorCliente.Formularios
                 mensajeDeError += "Valor de Mascara invalida";
             if (mensajeDeError!=string.Empty)
             {
-                MessageBox.Show(mensajeDeError, "Datos", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                mensajeDeError += Environment.NewLine + "Rectificar los datos";
+                MessageBox.Show(mensajeDeError, "Datos", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
             this.DialogResult = DialogResult.OK;

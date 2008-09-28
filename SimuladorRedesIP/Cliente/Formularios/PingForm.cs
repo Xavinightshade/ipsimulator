@@ -32,7 +32,7 @@ namespace SimuladorCliente.Formularios
         {
             if (!IPAddressFactory.EsValidaLaDireccion(IPAddress))
             {
-                MessageBox.Show("Dirección IP invalida", "Dirección IP", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Dirección IP invalida", "Dirección IP", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
 
             }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using SOA.Componentes;
 using RedesIP.Vistas.Equipos.Componentes;
+using BusinessLogic;
 
 namespace SimuladorCliente.Formularios
 {
@@ -38,8 +39,29 @@ namespace SimuladorCliente.Formularios
         private void button4_Click(object sender, EventArgs e)
         {
             this.comboBox1.SelectedIndexChanged -= new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            string mensajeDeError = string.Empty;
 
-            this.DialogResult = DialogResult.OK;
+            foreach (RutaSOA ruta in _rutasMD)
+            {
+                string mensajePuerto = string.Empty;
+                if (!IPAddressFactory.EsValidaLaDireccion(ruta.Red))
+                    mensajePuerto += "Dirección de Red invalida";
+                if (!IPAddressFactory.EsValidaLaMascara(ruta.Mask))
+                    mensajePuerto += ", Valor de Mascara invalida";
+                if (!IPAddressFactory.EsValidaLaDireccion(ruta.NextHopIP))
+                    mensajePuerto += ", Dirección IP Next Hop Invalida";
+                if (mensajePuerto != string.Empty)
+                {
+                    mensajeDeError += ruta.NombrePuerto + ": " + mensajePuerto + Environment.NewLine;
+                }
+            }
+            if (mensajeDeError != string.Empty)
+            {
+                mensajeDeError += "Rectificar los datos";
+                MessageBox.Show(mensajeDeError, "Datos", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            DialogResult = DialogResult.OK;
         }
 
         private void button5_Click(object sender, EventArgs e)
