@@ -10,12 +10,19 @@ namespace SOA.Datos
     public class ARP_SOA
 	{
 
-        private List<AsociacionIpMacSOA> _asociaciones = new List<AsociacionIpMacSOA>();
+        private List<AsociacionIpMacSOA> _asociacionesAntes = new List<AsociacionIpMacSOA>();
         [DataMember]
-        public List<AsociacionIpMacSOA> Asociaciones
+        public List<AsociacionIpMacSOA> AsociacionesAntes
         {
-            get { return _asociaciones; }
-            set { _asociaciones = value; }
+            get { return _asociacionesAntes; }
+            set { _asociacionesAntes = value; }
+        }
+        private List<AsociacionIpMacSOA> _asociacionesDespues = new List<AsociacionIpMacSOA>();
+        [DataMember]
+        public List<AsociacionIpMacSOA> AsociacionesDespues
+        {
+            get { return _asociacionesDespues; }
+            set { _asociacionesDespues = value; }
         }
 
     }
