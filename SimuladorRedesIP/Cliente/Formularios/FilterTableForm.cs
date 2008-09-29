@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using RedesIP.SOA.Elementos;
 
 namespace SimuladorCliente.Formularios
 {
@@ -14,7 +15,17 @@ namespace SimuladorCliente.Formularios
         public FilterTableForm()
         {
             InitializeComponent();
-            macTextBox1.SetAsReadOnly();
+        }
+
+        internal void Inicializar(MensajeSwitchTableSOA mensa)
+        {
+            _asociacionesBS.DataSource = mensa.SwiTable.Asociaciones;
+            _hora.Text = mensa.HoraRecepcion.ToString();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

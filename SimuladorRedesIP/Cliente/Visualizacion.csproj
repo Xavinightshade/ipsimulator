@@ -132,6 +132,12 @@
     <Compile Include="Formularios\FormularioRouter.Designer.cs">
       <DependentUpon>FormularioRouter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FrameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrameForm.Designer.cs">
+      <DependentUpon>FrameForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\PingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +239,9 @@
     <EmbeddedResource Include="Formularios\FormularioRouter.resx">
       <DependentUpon>FormularioRouter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrameForm.resx">
+      <DependentUpon>FrameForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\PingForm.resx">
       <DependentUpon>PingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -296,6 +305,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Sniffers\DoubleClickEventSnifferSwitch.cs" />
+    <Compile Include="Sniffers\DoubleClickEventSnifferCable.cs" />
     <Compile Include="Sniffers\FormaSnifferPuerto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -446,6 +457,7 @@
     <None Include="Properties\DataSources\RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto.datasource" />
     <None Include="Properties\DataSources\RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto1.datasource" />
     <None Include="Properties\DataSources\SOA.Componentes.RutaSOA.datasource" />
+    <None Include="Properties\DataSources\SOA.Datos.AsociacionPuertoMACAddressSOA.datasource" />
     <None Include="Resources\Network-Internet-Connection-16x16.png" />
     <None Include="Resources\Network-Drive-16x16.png" />
     <None Include="Resources\sm_black_pointer.gif" />

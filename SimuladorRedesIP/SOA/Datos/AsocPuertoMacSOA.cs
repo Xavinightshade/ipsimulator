@@ -24,6 +24,13 @@ namespace SOA.Datos
             get { return _macAddress; }
             set { _macAddress = value; }
         }
+        private string _descPuerto;
+        [DataMember]
+        public string DescPuerto
+        {
+            get { return _descPuerto; }
+            set { _descPuerto = value; }
+        }
     }
 
 }

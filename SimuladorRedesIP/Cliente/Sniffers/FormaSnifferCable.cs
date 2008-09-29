@@ -12,6 +12,7 @@ using RedesIP.Vistas;
 using RedesIP.SOA.Elementos;
 using DevAge.Windows.Forms;
 using SimuladorCliente.Marcadores;
+using SimuladorCliente.Sniffers;
 
 namespace SimuladorCliente
 {
@@ -73,14 +74,17 @@ namespace SimuladorCliente
             foreach (MensajeCableSOA mensaje in mensajes)
             {
                 grid.Rows.Insert(1);
+                grid.Rows[1].Tag = mensaje;
                 grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
                 grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToString());
                 grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressOrigen);
                 grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressDestino);
-                grid[1, 4] = new SourceGrid.Cells.Cell("Ip Origen: "+mensaje.Frame.Paquete.IpOrigen+
-                    "Ip Destino: "+mensaje.Frame.Paquete.IpDestino+" "+ mensaje.Frame.Paquete.Datos + 
-                    " " + mensaje.Frame.Info);
-
+                grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.Frame.Info.Replace(",,", "@@"));
+                grid[1, 0].AddController(new DoubleClickEventSnifferCable());
+                grid[1, 1].AddController(new DoubleClickEventSnifferCable());
+                grid[1, 2].AddController(new DoubleClickEventSnifferCable());
+                grid[1, 3].AddController(new DoubleClickEventSnifferCable());
+                grid[1, 4].AddController(new DoubleClickEventSnifferCable());
                 grid[1, 0].View = _vista;
                 grid[1, 1].View = _vista;
                 grid[1, 2].View = _vista;

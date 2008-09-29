@@ -10,6 +10,7 @@ using SimuladorCliente.Vistas;
 using WeifenLuo.WinFormsUI.Docking;
 using SimuladorCliente.Marcadores;
 using RedesIP.Vistas.Equipos;
+using SOA.Datos;
 
 namespace SimuladorCliente.Sniffers
 {
@@ -48,6 +49,7 @@ namespace SimuladorCliente.Sniffers
 
        internal void EnviarCambioDeTablaDeSwitch(MensajeSwitchTableSOA mensajeTablaSwitch)
        {
+
            _switchSniffers[mensajeTablaSwitch.Id].ReportarMensaje(mensajeTablaSwitch);
        }
 

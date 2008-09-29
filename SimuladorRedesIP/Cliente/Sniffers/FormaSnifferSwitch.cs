@@ -11,6 +11,7 @@ using SourceGrid.Cells.Views;
 using RedesIP.Vistas;
 using RedesIP.SOA.Elementos;
 using RedesIP.Vistas.Equipos;
+using SimuladorCliente.Sniffers;
 
 namespace SimuladorCliente
 {
@@ -59,17 +60,19 @@ namespace SimuladorCliente
             foreach (MensajeSwitchTableSOA mensaje in mensajes)
             {
                 grid.Rows.Insert(1);
+                grid.Rows[1].Tag = mensaje;
                 grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
                 grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToString());
                 string mostrar = String.Empty;
                 for (int i = 0; i < mensaje.SwiTable.Asociaciones.Count; i++)
                 {
                     mostrar+=  "Dir: " + mensaje.SwiTable.Asociaciones[i].MacAddress + " Puerto: " + mensaje.SwiTable.Asociaciones[i].Puerto.Nombre+"@@ ";
-
                 }
                   grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
 
-
+                grid[1, 0].AddController(new DoubleClickEventSnifferSwitch());
+                grid[1, 1].AddController(new DoubleClickEventSnifferSwitch());
+                grid[1, 2].AddController(new DoubleClickEventSnifferSwitch());
                 grid[1, 0].View = _vista;
                 grid[1, 1].View = _vista;
                 grid[1, 2].View = _vista;

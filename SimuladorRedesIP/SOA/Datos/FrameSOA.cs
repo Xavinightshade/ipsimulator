@@ -9,13 +9,7 @@ namespace RedesIP.SOA
     [DataContract]
     public class FrameSOA
     {
-        private PacketSOA _paquete;
-        [DataMember]
-        public PacketSOA Paquete
-        {
-            get { return _paquete; }
-            set { _paquete = value; }
-        }
+
         private string _info;
         [DataMember]
         public string Info

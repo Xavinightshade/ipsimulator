@@ -35,6 +35,7 @@ namespace BusinessLogic.Sniffer
             {
                 AsociacionPuertoMACAddressSOA aso = new AsociacionPuertoMACAddressSOA();
                 aso.Puerto = new PuertoBaseSOA(par.Value.Id, par.Value.Nombre);
+                aso.DescPuerto = par.Value.Nombre;
                 aso.MacAddress = par.Key;
                 tablaSOA.Asociaciones.Add(aso);
             }
