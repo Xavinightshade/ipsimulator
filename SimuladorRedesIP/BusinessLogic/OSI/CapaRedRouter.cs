@@ -10,29 +10,30 @@ using RedesIP.Modelos.Equipos.Componentes;
 
 namespace BusinessLogic.OSI
 {
-    public class CapaRedRouter:CapaRed
+    public class CapaRedRouter : CapaRed
     {
         private RouterLogico _router;
-        public CapaRedRouter(CapaDatos capaDatos,RouterLogico router)
-            :base(capaDatos)
+        public CapaRedRouter(CapaDatos capaDatos, RouterLogico router)
+            : base(capaDatos)
         {
             _router = router;
         }
         protected override void ProcesarPaquete(Packet paquete)
         {
             base.ProcesarPaquete(paquete);
-            PuertoEthernetCompleto puerto=_router.TablaDeRutas.BuscarPuertoDeLaRed(paquete.IpDestino);
-            _router.PuertoEthernetCapaRed[puerto].CapaDatos.EnviarPaquete(paquete, paquete.IpDestino);
+            EntradaTablaRouter rutaInterna = _router.TablaDeRutas.BuscarRutaEnRutasInternas(paquete.IpDestino);
+            if (rutaInterna != null)
+            {
+                _router.PuertoEthernetCapaRed[rutaInterna.Puerto].CapaDatos.EnviarPaquete(paquete, paquete.IpDestino);
+                return;
+            }
+            EntradaTablaRouter rutaEstatica = _router.TablaDeRutas.BuscarPuertoEnRutasEstaticas(paquete.IpDestino);
+            if (rutaEstatica!=null)
+            {
+                _router.PuertoEthernetCapaRed[rutaEstatica.Puerto].CapaDatos.EnviarPaquete(paquete, rutaEstatica.NextHopIP);
 
-            //foreach (EntradaTablaRouter ruta in _router.TablaDeRutas.TablaRouter)
-            //{      
+            }
 
-            //    bool perteneceAlaRed = IPAddressFactory.PerteneceAlaRed(ruta.Red, paquete.IpDestino);
-            //    if (perteneceAlaRed)
-            //    {
-            //        _router.PuertoEthernetCapaRed[ruta.Puerto].CapaDatos.EnviarPaqueteDirecto(paquete, MACAddressFactory.BroadCast);
-            //    }
-            //}
         }
     }
 }

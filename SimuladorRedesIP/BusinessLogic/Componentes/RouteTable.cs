@@ -22,7 +22,7 @@ namespace BusinessLogic.Componentes
            entrada.NextHopIP = nextHopIP;
            _tablaRouterEstatico.Add(entrada);
        }
-       public PuertoEthernetCompleto BuscarPuertoDeLaRed(string ipAddress)
+       public EntradaTablaRouter BuscarRutaEnRutasInternas(string ipAddress)
        {
            foreach (EntradaTablaRouter entrada in CalcularRutasInternas())
            {
@@ -30,9 +30,14 @@ namespace BusinessLogic.Componentes
                uint valorRedIpAddress=IPAddressFactory.GetRed(ipAddress,entrada.Puerto.Mascara.Value);
                if (valorRedIpAddress==valorRedPuerto)
                {
-                   return entrada.Puerto;
+                   return entrada;
                }
            }
+           return null;
+       }
+
+       public EntradaTablaRouter BuscarPuertoEnRutasEstaticas(string ipAddress)
+       {
            foreach (EntradaTablaRouter entrada in _tablaRouterEstatico)
            {
                uint valorRedPuerto = IPAddressFactory.GetRed(entrada.Red, entrada.Mask.Value);
@@ -40,7 +45,7 @@ namespace BusinessLogic.Componentes
 
                if (valorRedIpAddress == valorRedPuerto)
                {
-                   return entrada.Puerto;
+                   return entrada;
                }
            }
            return null;
