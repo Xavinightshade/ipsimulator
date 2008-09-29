@@ -14,6 +14,7 @@ namespace SimuladorCliente.Formularios
         public FilterTableForm()
         {
             InitializeComponent();
+            macTextBox1.SetAsReadOnly();
         }
     }
 }

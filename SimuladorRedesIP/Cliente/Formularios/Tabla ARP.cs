@@ -14,6 +14,7 @@ namespace SimuladorCliente.Formularios
         public Tabla_ARP()
         {
             InitializeComponent();
+            macTextBox1.SetAsReadOnly();
         }
     }
 }
