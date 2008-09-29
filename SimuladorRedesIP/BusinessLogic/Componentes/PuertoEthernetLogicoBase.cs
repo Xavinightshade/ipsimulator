@@ -57,7 +57,9 @@ namespace RedesIP.Modelos.Equipos.Componentes
             _nombre = nombre;
             _id = id;
 			_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);
+            _hiloDeProcesamientoDeFramesAEnviar.IsBackground = true;
 			_hiloDeProcesamientoDeFramesRecibidos = new Thread(ProcesarFramesRecibidos);
+            _hiloDeProcesamientoDeFramesRecibidos.IsBackground = true;
 			_hiloDeProcesamientoDeFramesAEnviar.Start();
 
 			_hiloDeProcesamientoDeFramesRecibidos.Start();
