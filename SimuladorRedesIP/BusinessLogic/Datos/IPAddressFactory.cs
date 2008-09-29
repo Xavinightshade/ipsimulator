@@ -140,15 +140,7 @@ namespace BusinessLogic
             return GetIpRep(GetRed(ipAddress, mascara));
         }
 
-        internal static bool PerteneceAlaRed(uint redPuerto, string ipAddress)
-        {
 
-            uint sizeRed = GetTamanoDeREd(redPuerto);
-            uint valorIp = GetValor(ipAddress);
-            string gg = GetIpRep(redPuerto);
-            return (redPuerto < valorIp) && (valorIp < redPuerto + sizeRed);
-
-        }
 
         private static uint GetTamanoDeREd(uint redPuerto)
         {

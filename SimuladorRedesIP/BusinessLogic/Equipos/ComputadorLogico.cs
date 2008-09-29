@@ -67,7 +67,6 @@ namespace RedesIP.Modelos.Logicos.Equipos
             CapaDatos capaDatos = new CapaDatos(new ARP(), _puertoEthernet);
             _capaRed = new CapaRedPC(capaDatos,this);
             _capaRed.Inicializar();
-            _capaRed.Inicializar();
         }
 
 
