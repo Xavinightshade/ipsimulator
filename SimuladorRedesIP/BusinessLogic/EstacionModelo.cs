@@ -97,6 +97,11 @@ namespace RedesIP
         /// </summary>
         private Dictionary<Guid, PuertoEthernetLogicoBase> _puertos = new Dictionary<Guid, PuertoEthernetLogicoBase>();
 
+        public Dictionary<Guid, PuertoEthernetLogicoBase> Puertos
+        {
+            get { return _puertos; }
+        }
+
 
 
 

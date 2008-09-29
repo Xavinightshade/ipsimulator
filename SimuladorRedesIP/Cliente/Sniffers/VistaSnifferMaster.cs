@@ -62,7 +62,7 @@ namespace SimuladorCliente.Sniffers
 
        internal void IniciarSnifferPuerto(MarcadorPuertoCompleto marcador, DockPanel dockPanel)
        {
-           throw new NotImplementedException();
+           _modeloSniffer.PeticionEnviarInformacionPuertoCompleto(marcador.Id);
        }
     }
 }

@@ -6,6 +6,7 @@ using RedesIP.SOA;
 using RedesIP;
 using RedesIP.Modelos;
 using RedesIP.Modelos.Logicos.Equipos;
+using RedesIP.Modelos.Equipos.Componentes;
 
 namespace BusinessLogic.Sniffer
 {
@@ -35,5 +36,16 @@ namespace BusinessLogic.Sniffer
         }
 
 
+
+        #region IModeloSniffer Members
+
+
+        public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto)
+        {
+            PuertoEthernetCompleto puerto = _estacion.Puertos[idPuerto] as PuertoEthernetCompleto;
+           
+        }
+
+        #endregion
     }
 }

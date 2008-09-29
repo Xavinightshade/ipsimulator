@@ -301,6 +301,16 @@ namespace RedesIP
         }
 
         #endregion
+
+        #region IModeloSniffer Members
+
+
+        public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto)
+        {
+            _snifferMaster.PeticionEnviarInformacionPuertoCompleto(idPuerto);
+        }
+
+        #endregion
     }
 
 
