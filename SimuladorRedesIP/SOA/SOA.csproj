@@ -56,6 +56,9 @@
     <Compile Include="Componentes\PuertoCompletoSOA.cs" />
     <Compile Include="Componentes\PuertoBaseSOA.cs" />
     <Compile Include="Componentes\RutaSOA.cs" />
+    <Compile Include="Datos\ARP_SOA.cs" />
+    <Compile Include="Datos\AsociacionIpMacSOA.cs" />
+    <Compile Include="Datos\AsocPuertoMacSOA.cs" />
     <Compile Include="Datos\SwitchTableSOA.cs" />
     <Compile Include="Equipos\TipoDeEquipo.cs" />
     <Compile Include="EstacionSOA.cs" />
