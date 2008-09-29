@@ -59,5 +59,10 @@ namespace SimuladorCliente.Sniffers
            sniffer.Show(dockPanel, DockState.DockBottom);
            _switchSniffers.Add(marcador.Id, sniffer);
        }
+
+       internal void IniciarSnifferPuerto(MarcadorPuertoCompleto marcador, DockPanel dockPanel)
+       {
+           throw new NotImplementedException();
+       }
     }
 }

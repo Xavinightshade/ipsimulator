@@ -75,7 +75,7 @@ namespace RedesIP.Vistas
                             MarcadorPuertoCompleto marcador = new MarcadorPuertoCompleto(puerto.Nombre, puerto, Estacion as IRegistroMovimientosMouse);
                             Estacion._marcadores.Add(marcador);
                             System.Windows.Forms.MessageBox.Show("Test Puerto");
-                            //   Estacion._snifferMaster.IniciarSnifferCable(marcador, Estacion._dockMain);
+                            Estacion._snifferMaster.IniciarSnifferPuerto(marcador, Estacion._dockMain);
                             return;
                         }
                     }
