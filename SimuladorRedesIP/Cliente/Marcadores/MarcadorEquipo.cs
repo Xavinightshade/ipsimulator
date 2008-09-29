@@ -35,7 +35,7 @@ namespace SimuladorCliente.Marcadores
             int mitadY = _equipo.DimensionMundo.Centro.Y;
             grafico.DrawLine(p, mitadX, mitadY, mitadX + 30, mitadY - 30);
             grafico.FillEllipse(new SolidBrush(Color), mitadX + 20, mitadY - 30, 10, 10);
-            grafico.DrawString(Nombre, new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX + 15, mitadY - 15));
+            grafico.DrawString(Nombre, new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX + 30, mitadY - 30));
 
         }
 

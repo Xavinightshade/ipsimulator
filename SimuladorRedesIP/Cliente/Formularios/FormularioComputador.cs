@@ -55,7 +55,7 @@ namespace SimuladorCliente.Formularios
                 mensajeDeError += "Dirección IP invalida";
             if (!IPAddressFactory.EsValidaLaDireccion(DefaultGateWay))
                 mensajeDeError += "Dirección IP Default Gate Way invalida";
-            if (!IPAddressFactory.EsValidaLaMascara(int.Parse(Mask)))
+            if ((string.IsNullOrEmpty(Mask) ) && (!IPAddressFactory.EsValidaLaMascara(int.Parse(Mask))))
                 mensajeDeError += "Valor de Mascara invalida";
             if (mensajeDeError!=string.Empty)
             {
