@@ -30,7 +30,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
         {
             get { return _tablaDeRutas; }
         }
-        private List<PuertoEthernetCompleto> _puertosEthernet = new List<PuertoEthernetCompleto>();
+        private List<PuertoEthernetCompleto> _puertosEthernet;
 
         public List<PuertoEthernetCompleto> PuertosEthernet
         {
@@ -40,7 +40,8 @@ namespace RedesIP.Modelos.Logicos.Equipos
         public RouterLogico(Guid id, int X, int Y, string nombre)
             : base(id, TipoDeEquipo.Router, X, Y, nombre)
         {
-
+            _puertosEthernet = new List<PuertoEthernetCompleto>();
+            _tablaDeRutas = new RouteTable(_puertosEthernet);
         }
 
 
@@ -63,12 +64,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
                 capaRed.Inicializar();
                 _puertoEthernetCapaRed.Add(puerto, capaRed);
             }
-            _tablaDeRutas = new RouteTable(_puertosEthernet);
         }
         public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, string red,int? mask, string nextHopIP)
         {
-            if (_tablaDeRutas == null)
-                _tablaDeRutas = new RouteTable(_puertosEthernet);
             foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
             {
                 if (puerto.Id == idPuerto)
