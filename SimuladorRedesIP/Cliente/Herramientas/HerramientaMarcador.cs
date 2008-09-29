@@ -8,6 +8,7 @@ using RedesIP.SOA.Elementos;
 using SimuladorCliente.Sniffers;
 using SimuladorCliente.Marcadores;
 using RedesIP.Vistas.Equipos;
+using RedesIP.Vistas.Equipos.Componentes;
 
 namespace RedesIP.Vistas
 {
@@ -50,6 +51,35 @@ namespace RedesIP.Vistas
             }
             public override void OnMouseUp(System.Windows.Forms.MouseEventArgs e)
             {
+                for (int i = 0; i < Estacion._puertos.Count; i++)
+                {
+                    PuertoEthernetViewBase puertoGenerico = Estacion._puertos[i];
+                    PuertoEthernetViewCompleto puerto = puertoGenerico as PuertoEthernetViewCompleto;
+                    if (puerto == null)
+                        continue;
+                    if (puerto.HitTest(e.X, e.Y))
+                    {
+                        bool yaEstaSeleccionado = false;
+                        for (int j = 0; j < Estacion._marcadores.Count; j++)
+                        {
+                            MarcadorPuertoCompleto marcador = Estacion._marcadores[j] as MarcadorPuertoCompleto;
+
+                            if (marcador != null && marcador.Puerto == puerto)
+                            {
+                                yaEstaSeleccionado = true;
+                                break;
+                            }
+                        }
+                        if (!yaEstaSeleccionado)
+                        {
+                            MarcadorPuertoCompleto marcador = new MarcadorPuertoCompleto(puerto.Nombre, puerto, Estacion as IRegistroMovimientosMouse);
+                            Estacion._marcadores.Add(marcador);
+                            System.Windows.Forms.MessageBox.Show("Test Puerto");
+                            //   Estacion._snifferMaster.IniciarSnifferCable(marcador, Estacion._dockMain);
+                            return;
+                        }
+                    }
+                }
                 foreach (KeyValuePair<Guid,EquipoView> par in Estacion._equipos)
                 {
                     if (par.Value.HitTest(e.X,e.Y))
@@ -74,11 +104,17 @@ namespace RedesIP.Vistas
                                 Estacion._marcadores.Add(marcador);
                                 Estacion._snifferMaster.IniciarSnifferSwitch(marcador, Estacion._dockMain);
                             }
+                            if (par.Value is ComputadorView)
+                            {
+                                Estacion._marcadores.Add(marcador);
+                                System.Windows.Forms.MessageBox.Show("Test PC");
+                            }
                             return;
 
                         }
                     }
                 }
+              
                 for (int i = 0; i < Estacion._conexiones.Count; i++)
                 {
                     CableView cable = Estacion._conexiones[i];
@@ -100,10 +136,12 @@ namespace RedesIP.Vistas
                             MarcadorCable marcador = new MarcadorCable(cable.Puerto1.Nombre+" <-> "+cable.Puerto2.Nombre, cable,Estacion as IRegistroMovimientosMouse);
                             Estacion._marcadores.Add(marcador);
                             Estacion._snifferMaster.IniciarSnifferCable(marcador,Estacion._dockMain);
+                            return;
                             
                         }
                     }
                 }
+
             }
         }
 

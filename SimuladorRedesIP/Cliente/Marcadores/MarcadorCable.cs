@@ -20,7 +20,6 @@ namespace SimuladorCliente.Marcadores
             get { return _conexion; }
         }
 
-        Random r = new Random();
         public MarcadorCable(string nombre, CableView conexion, IRegistroMovimientosMouse mainView)
             : base( conexion.Id,nombre,mainView)
         {

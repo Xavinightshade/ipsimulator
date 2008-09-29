@@ -54,5 +54,9 @@ namespace RedesIP.Vistas.Equipos
         {
             return "Switch";
         }
+        public override bool HitTest(int x, int y)
+        {
+            return base.HitTest(x, y);
+        }
 	}
 }

@@ -217,6 +217,7 @@
       <DependentUpon>MACTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Marcadores\MarcadorEquipo.cs" />
+    <Compile Include="Marcadores\MarcadorPuertoCompleto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormaEstacion.resx">
       <DependentUpon>FormaEstacion.cs</DependentUpon>

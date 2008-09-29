@@ -43,15 +43,13 @@ namespace SimuladorCliente
         private void ConfigurarGrilla()
         {
             grid.Rows.Clear();
-            grid.Redim(1, 7);
+            grid.Redim(1, 5);
 
             grid.Columns[0].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
             grid.Columns[1].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
             grid.Columns[2].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
             grid.Columns[3].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
             grid.Columns[4].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
-            grid.Columns[5].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
-            grid.Columns[6].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
 
 
             grid.FixedRows = 1;
@@ -60,9 +58,7 @@ namespace SimuladorCliente
             grid[0, 1] = new SourceGrid.Cells.ColumnHeader("HORA RECEPCION");
             grid[0, 2] = new SourceGrid.Cells.ColumnHeader("MAC ORIGEN");
             grid[0, 3] = new SourceGrid.Cells.ColumnHeader("MAC DESTINO");
-            grid[0, 4] = new SourceGrid.Cells.ColumnHeader("IP ORIGEN");
-            grid[0, 5] = new SourceGrid.Cells.ColumnHeader("IP DESTINO");
-            grid[0, 6] = new SourceGrid.Cells.ColumnHeader("DATOS");
+            grid[0, 4] = new SourceGrid.Cells.ColumnHeader("DATOS");
 
             grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
             grid.Columns.AutoSize(true);
@@ -81,17 +77,15 @@ namespace SimuladorCliente
                 grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToString());
                 grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressOrigen);
                 grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressDestino);
-                grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.IpOrigen);
-                grid[1, 5] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.IpDestino);
-                grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.Frame.Paquete.Datos + " " + mensaje.Frame.Info);
+                grid[1, 4] = new SourceGrid.Cells.Cell("Ip Origen: "+mensaje.Frame.Paquete.IpOrigen+
+                    "Ip Destino: "+mensaje.Frame.Paquete.IpDestino+" "+ mensaje.Frame.Paquete.Datos + 
+                    " " + mensaje.Frame.Info);
 
                 grid[1, 0].View = _vista;
                 grid[1, 1].View = _vista;
                 grid[1, 2].View = _vista;
                 grid[1, 3].View = _vista;
                 grid[1, 4].View = _vista;
-                grid[1, 5].View = _vista;
-                grid[1, 6].View = _vista;
 
             }
             grid.Columns.AutoSizeView();
