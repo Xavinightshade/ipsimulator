@@ -9,5 +9,7 @@ namespace RedesIP.SOA
 	public interface IVisualizacion:ICallBackEstacion,ICallBackSniffer
 	{
         void EstablecerDatosRouter(RouterSOA router);
+
+        void EstablecerDatosSwitch(SwitchSOA swi);
     }
 }

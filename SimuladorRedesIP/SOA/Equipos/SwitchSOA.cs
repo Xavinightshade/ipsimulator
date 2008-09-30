@@ -19,6 +19,10 @@ namespace RedesIP.SOA
         {
 
         }
+        public SwitchSOA()
+        {
+
+        }
         List<PuertoBaseSOA> _puertos = new List<PuertoBaseSOA>();
         [DataMember]
         public List<PuertoBaseSOA> Puertos

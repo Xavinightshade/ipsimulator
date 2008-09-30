@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using SimuladorCliente.Properties;
 using RedesIP.SOA;
 using System.Drawing;
+using SimuladorCliente.Formularios;
+using System.Windows.Forms;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -57,6 +59,34 @@ namespace RedesIP.Vistas.Equipos
         public override bool HitTest(int x, int y)
         {
             return base.HitTest(x, y);
+        }
+        protected override void OnMouseDobleClick(System.Windows.Forms.MouseEventArgs e)
+        {
+            using (FormularioSwitch swiForm = new FormularioSwitch())
+            {
+                List<PuertoBaseSOA> puertos = new List<PuertoBaseSOA>();
+                foreach (PuertoEthernetViewBase item in _puertosEthernet)
+                {
+                    PuertoBaseSOA puerto = new PuertoBaseSOA(item.Id, item.Nombre);
+                    puertos.Add(puerto);
+
+                }
+                swiForm.Inicializar(puertos);
+                swiForm.NombreSwitch = Nombre;
+                if (swiForm.ShowDialog() == DialogResult.OK)
+                {
+                    SwitchSOA swi = new SwitchSOA();
+                    swi.Id = Id;
+                    swi.Nombre = swiForm.NombreSwitch;
+                    Contenedor.Contrato.PeticionEstablecerDatosSwitch(swi);
+
+                    foreach (PuertoBaseSOA puertoNuevo in puertos)
+                    {
+                        Contenedor.Contrato.PeticionEstablecerDatosPuertoBase(puertoNuevo);
+                    }
+
+                }
+            }
         }
 	}
 }

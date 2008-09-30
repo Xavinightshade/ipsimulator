@@ -311,6 +311,20 @@ namespace RedesIP
         }
 
         #endregion
+
+        #region IModeloSOA Members
+
+
+        public void PeticionEstablecerDatosSwitch(SwitchSOA swi)
+        {
+            _estacion.EstablecerDatosSwitch(swi);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.EstablecerDatosSwitch(swi);
+            }
+        }
+
+        #endregion
     }
 
 

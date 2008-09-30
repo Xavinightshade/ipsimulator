@@ -216,6 +216,12 @@ namespace RedesIP
             RouterLogico rou = _routers[router.Id];
             rou.Nombre = router.Nombre;
         }
+
+        internal void EstablecerDatosSwitch(SwitchSOA swi)
+        {
+            SwitchLogico swiLogico = _switches[swi.Id];
+            swiLogico.Nombre = swi.Nombre;
+        }
     }
 
 

@@ -202,5 +202,16 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+        #region IVisualizacion Members
+
+
+        public void EstablecerDatosSwitch(SwitchSOA swi)
+        {
+            SwitchView swiView = _equipos[swi.Id] as SwitchView;
+            swiView.Nombre = swi.Nombre;
+        }
+
+        #endregion
     }
 }
