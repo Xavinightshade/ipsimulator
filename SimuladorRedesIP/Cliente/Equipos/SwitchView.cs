@@ -52,9 +52,14 @@ namespace RedesIP.Vistas.Equipos
 				_puertosEthernet[i].DibujarElemento(grafico);
 			}
 		}
-        protected override string GetInfoMapa()
+        protected override string GetFullInfoMapa()
         {
-            return "Switch";
+            string tip = base.GetFullInfoMapa();
+            foreach (PuertoEthernetViewBase puerto in _puertosEthernet)
+            {
+                tip += Environment.NewLine + "Puerto:  " + puerto.Nombre;
+            }
+            return tip;
         }
         public override bool HitTest(int x, int y)
         {

@@ -151,7 +151,7 @@ namespace RedesIP.Vistas.Equipos
         }
         protected virtual string GetInfoMapa()
         {
-            return this.Id.ToString();
+            return this.Nombre;
         }
         protected virtual string GetFullInfoMapa()
         {
