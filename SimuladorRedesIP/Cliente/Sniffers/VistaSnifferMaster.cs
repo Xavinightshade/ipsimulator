@@ -20,6 +20,7 @@ namespace SimuladorCliente.Sniffers
        private Dictionary<Guid, FormaSnifferCable> _cableSniffers = new Dictionary<Guid, FormaSnifferCable>();
        private Dictionary<Guid, FormaSnifferSwitch> _switchSniffers = new Dictionary<Guid, FormaSnifferSwitch>();
 
+       private Dictionary<Guid, FormaSnifferPuerto> _puertoSniffers = new Dictionary<Guid, FormaSnifferPuerto>();
        public VistaSnifferMaster(IModeloSniffer modeloSniffer)
        {
            _modeloSniffer = modeloSniffer;
@@ -65,6 +66,15 @@ namespace SimuladorCliente.Sniffers
        internal void IniciarSnifferPuerto(MarcadorPuertoCompleto marcador, DockPanel dockPanel)
        {
            _modeloSniffer.PeticionEnviarInformacionPuertoCompleto(marcador.Id);
+           FormaSnifferPuerto sniffer = new FormaSnifferPuerto(marcador);
+           sniffer.AllowEndUserDocking = false;
+           sniffer.Show(dockPanel, DockState.DockBottom);
+           _puertoSniffers.Add(marcador.Id, sniffer);
+       }
+
+       internal void EnviarCambioDeTablaARP(Guid idPuerto, List<AsociacionIpMacSOA> listARP)
+       {
+           _puertoSniffers[idPuerto].ReportarMensaje(listARP);
        }
     }
 }

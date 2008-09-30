@@ -23,7 +23,7 @@
     <SignManifests>false</SignManifests>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <TargetFrameworkSubset>Client</TargetFrameworkSubset>
-    <PublishUrl>D:\Tesis\Publish\</PublishUrl>
+    <PublishUrl>c:\inetpub\wwwroot\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -35,7 +35,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://jaus.selfip.net/simulador/</InstallUrl>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

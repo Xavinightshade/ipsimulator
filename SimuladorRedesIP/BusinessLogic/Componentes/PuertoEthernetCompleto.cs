@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RedesIP.SOA;
+using BusinessLogic.Protocolos;
 
 namespace RedesIP.Modelos.Equipos.Componentes
 {
     public class PuertoEthernetCompleto : PuertoEthernetLogicoBase
     {
+        private ARP _arp;
+
+        public ARP Arp
+        {
+            get { return _arp; }
+            set { _arp = value; }
+        }
         public static PuertoCompletoSOA ConvertirPuerto(PuertoEthernetCompleto puertoLogico)
         {
             PuertoCompletoSOA puertoSOA = new PuertoCompletoSOA(puertoLogico.Id, puertoLogico.MACAddress, puertoLogico.Nombre,puertoLogico.IPAddress,puertoLogico.Mascara);

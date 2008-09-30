@@ -11,5 +11,7 @@ namespace RedesIP.SOA
         void EstablecerDatosRouter(RouterSOA router);
 
         void EstablecerDatosSwitch(SwitchSOA swi);
+
+        void EnviarCambioARP(Guid guid, List<global::SOA.Datos.AsociacionIpMacSOA> listARP);
     }
 }

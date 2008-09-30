@@ -15,6 +15,7 @@ using DevAge.Drawing.VisualElements;
 using WeifenLuo.WinFormsUI.Docking;
 using System.Drawing.Imaging;
 using SOA.Componentes;
+using SOA.Datos;
 
 namespace RedesIP.Vistas
 {
@@ -210,6 +211,17 @@ namespace RedesIP.Vistas
         {
             SwitchView swiView = _equipos[swi.Id] as SwitchView;
             swiView.Nombre = swi.Nombre;
+        }
+
+        #endregion
+
+        #region IVisualizacion Members
+
+
+        public void EnviarCambioARP(Guid idPuerto, List<AsociacionIpMacSOA> listARP)
+        {
+            _snifferMaster.EnviarCambioDeTablaARP(idPuerto, listARP);
+                
         }
 
         #endregion

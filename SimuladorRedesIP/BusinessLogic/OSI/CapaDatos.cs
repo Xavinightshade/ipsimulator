@@ -24,6 +24,7 @@ namespace BusinessLogic.OSI
         {
             _protocoloArp = protocoloArp;
             _puerto = puerto;
+            _puerto.Arp = protocoloArp;
             _puerto.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
         }
 

@@ -51,6 +51,8 @@ namespace RedesIP.Vistas
             }
             public override void OnMouseUp(System.Windows.Forms.MouseEventArgs e)
             {
+                if (e.Button != System.Windows.Forms.MouseButtons.Left)
+                    return;
                 for (int i = 0; i < Estacion._puertos.Count; i++)
                 {
                     PuertoEthernetViewBase puertoGenerico = Estacion._puertos[i];
@@ -74,7 +76,6 @@ namespace RedesIP.Vistas
                         {
                             MarcadorPuertoCompleto marcador = new MarcadorPuertoCompleto(puerto.Nombre, puerto, Estacion as IRegistroMovimientosMouse);
                             Estacion._marcadores.Add(marcador);
-                            System.Windows.Forms.MessageBox.Show("Test Puerto");
                             Estacion._snifferMaster.IniciarSnifferPuerto(marcador, Estacion._dockMain);
                             return;
                         }

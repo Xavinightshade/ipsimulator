@@ -43,7 +43,7 @@ namespace BusinessLogic.Sniffer
         public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto)
         {
             PuertoEthernetCompleto puerto = _estacion.Puertos[idPuerto] as PuertoEthernetCompleto;
-           
+            ModeloSnifferPuertoCompleto puertoSniffer = new ModeloSnifferPuertoCompleto(puerto, _vistas);
         }
 
         #endregion
