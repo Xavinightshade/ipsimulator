@@ -29,6 +29,9 @@ namespace AccesoDatos
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertAsociacionesPuertosVLans(AsociacionesPuertosVLans instance);
+    partial void UpdateAsociacionesPuertosVLans(AsociacionesPuertosVLans instance);
+    partial void DeleteAsociacionesPuertosVLans(AsociacionesPuertosVLans instance);
     partial void InsertCables(Cables instance);
     partial void UpdateCables(Cables instance);
     partial void DeleteCables(Cables instance);
@@ -53,6 +56,12 @@ namespace AccesoDatos
     partial void InsertRutas(Rutas instance);
     partial void UpdateRutas(Rutas instance);
     partial void DeleteRutas(Rutas instance);
+    partial void InsertSwitch(Switch instance);
+    partial void UpdateSwitch(Switch instance);
+    partial void DeleteSwitch(Switch instance);
+    partial void InsertVLans(VLans instance);
+    partial void UpdateVLans(VLans instance);
+    partial void DeleteVLans(VLans instance);
     #endregion
 		
 		public Red(string connection) : 
@@ -77,6 +86,14 @@ namespace AccesoDatos
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<AsociacionesPuertosVLans> AsociacionesPuertosVLans
+		{
+			get
+			{
+				return this.GetTable<AsociacionesPuertosVLans>();
+			}
 		}
 		
 		public System.Data.Linq.Table<Cables> Cables
@@ -140,6 +157,214 @@ namespace AccesoDatos
 			get
 			{
 				return this.GetTable<Rutas>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Switch> Switch
+		{
+			get
+			{
+				return this.GetTable<Switch>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VLans> VLans
+		{
+			get
+			{
+				return this.GetTable<VLans>();
+			}
+		}
+	}
+	
+	[Table()]
+	public partial class AsociacionesPuertosVLans : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Guid _IdVLan;
+		
+		private System.Guid _IdPuerto;
+		
+		private EntityRef<Puertos> _Puertos;
+		
+		private EntityRef<VLans> _VLans;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnIdVLanChanging(System.Guid value);
+    partial void OnIdVLanChanged();
+    partial void OnIdPuertoChanging(System.Guid value);
+    partial void OnIdPuertoChanged();
+    #endregion
+		
+		public AsociacionesPuertosVLans()
+		{
+			this._Puertos = default(EntityRef<Puertos>);
+			this._VLans = default(EntityRef<VLans>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdVLan", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdVLan
+		{
+			get
+			{
+				return this._IdVLan;
+			}
+			set
+			{
+				if ((this._IdVLan != value))
+				{
+					if (this._VLans.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdVLanChanging(value);
+					this.SendPropertyChanging();
+					this._IdVLan = value;
+					this.SendPropertyChanged("IdVLan");
+					this.OnIdVLanChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdPuerto", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdPuerto
+		{
+			get
+			{
+				return this._IdPuerto;
+			}
+			set
+			{
+				if ((this._IdPuerto != value))
+				{
+					if (this._Puertos.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdPuertoChanging(value);
+					this.SendPropertyChanging();
+					this._IdPuerto = value;
+					this.SendPropertyChanged("IdPuerto");
+					this.OnIdPuertoChanged();
+				}
+			}
+		}
+		
+		[Association(Name="AsocPuerto", Storage="_Puertos", ThisKey="IdPuerto", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public Puertos Puertos
+		{
+			get
+			{
+				return this._Puertos.Entity;
+			}
+			set
+			{
+				Puertos previousValue = this._Puertos.Entity;
+				if (((previousValue != value) 
+							|| (this._Puertos.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Puertos.Entity = null;
+						previousValue.AsociacionesPuertosVLans.Remove(this);
+					}
+					this._Puertos.Entity = value;
+					if ((value != null))
+					{
+						value.AsociacionesPuertosVLans.Add(this);
+						this._IdPuerto = value.Id;
+					}
+					else
+					{
+						this._IdPuerto = default(System.Guid);
+					}
+					this.SendPropertyChanged("Puertos");
+				}
+			}
+		}
+		
+		[Association(Name="AsocVLan", Storage="_VLans", ThisKey="IdVLan", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public VLans VLans
+		{
+			get
+			{
+				return this._VLans.Entity;
+			}
+			set
+			{
+				VLans previousValue = this._VLans.Entity;
+				if (((previousValue != value) 
+							|| (this._VLans.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VLans.Entity = null;
+						previousValue.AsociacionesPuertosVLans.Remove(this);
+					}
+					this._VLans.Entity = value;
+					if ((value != null))
+					{
+						value.AsociacionesPuertosVLans.Add(this);
+						this._IdVLan = value.Id;
+					}
+					else
+					{
+						this._IdVLan = default(System.Guid);
+					}
+					this.SendPropertyChanged("VLans");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -448,6 +673,8 @@ namespace AccesoDatos
 		
 		private EntityRef<Routers> _Routers;
 		
+		private EntityRef<Switch> _Switch;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -472,6 +699,7 @@ namespace AccesoDatos
 			this._Estaciones = default(EntityRef<Estaciones>);
 			this._Puertos = new EntitySet<Puertos>(new Action<Puertos>(this.attach_Puertos), new Action<Puertos>(this.detach_Puertos));
 			this._Routers = default(EntityRef<Routers>);
+			this._Switch = default(EntityRef<Switch>);
 			OnCreated();
 		}
 		
@@ -700,6 +928,35 @@ namespace AccesoDatos
 						value.Equipos = this;
 					}
 					this.SendPropertyChanged("Routers");
+				}
+			}
+		}
+		
+		[Association(Name="SwitchEquipos", Storage="_Switch", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false, DeleteRule="NO ACTION")]
+		public Switch Switch
+		{
+			get
+			{
+				return this._Switch.Entity;
+			}
+			set
+			{
+				Switch previousValue = this._Switch.Entity;
+				if (((previousValue != value) 
+							|| (this._Switch.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Switch.Entity = null;
+						previousValue.Equipos = null;
+					}
+					this._Switch.Entity = value;
+					if ((value != null))
+					{
+						value.Equipos = this;
+					}
+					this.SendPropertyChanged("Switch");
 				}
 			}
 		}
@@ -935,6 +1192,8 @@ namespace AccesoDatos
 		
 		private string _Nombre;
 		
+		private EntitySet<AsociacionesPuertosVLans> _AsociacionesPuertosVLans;
+		
 		private EntitySet<Cables> _Cables;
 		
 		private EntityRef<Equipos> _Equipos;
@@ -955,6 +1214,7 @@ namespace AccesoDatos
 		
 		public Puertos()
 		{
+			this._AsociacionesPuertosVLans = new EntitySet<AsociacionesPuertosVLans>(new Action<AsociacionesPuertosVLans>(this.attach_AsociacionesPuertosVLans), new Action<AsociacionesPuertosVLans>(this.detach_AsociacionesPuertosVLans));
 			this._Cables = new EntitySet<Cables>(new Action<Cables>(this.attach_Cables), new Action<Cables>(this.detach_Cables));
 			this._Equipos = default(EntityRef<Equipos>);
 			this._PuertosCompletos = default(EntityRef<PuertosCompletos>);
@@ -1022,6 +1282,19 @@ namespace AccesoDatos
 					this.SendPropertyChanged("Nombre");
 					this.OnNombreChanged();
 				}
+			}
+		}
+		
+		[Association(Name="AsocPuerto", Storage="_AsociacionesPuertosVLans", ThisKey="Id", OtherKey="IdPuerto", DeleteRule="CASCADE")]
+		public EntitySet<AsociacionesPuertosVLans> AsociacionesPuertosVLans
+		{
+			get
+			{
+				return this._AsociacionesPuertosVLans;
+			}
+			set
+			{
+				this._AsociacionesPuertosVLans.Assign(value);
 			}
 		}
 		
@@ -1119,6 +1392,18 @@ namespace AccesoDatos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_AsociacionesPuertosVLans(AsociacionesPuertosVLans entity)
+		{
+			this.SendPropertyChanging();
+			entity.Puertos = this;
+		}
+		
+		private void detach_AsociacionesPuertosVLans(AsociacionesPuertosVLans entity)
+		{
+			this.SendPropertyChanging();
+			entity.Puertos = null;
 		}
 		
 		private void attach_Cables(Cables entity)
@@ -1660,6 +1945,316 @@ namespace AccesoDatos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table()]
+	public partial class Switch : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private EntityRef<Equipos> _Equipos;
+		
+		private EntitySet<VLans> _VLans;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    #endregion
+		
+		public Switch()
+		{
+			this._Equipos = default(EntityRef<Equipos>);
+			this._VLans = new EntitySet<VLans>(new Action<VLans>(this.attach_VLans), new Action<VLans>(this.detach_VLans));
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					if (this._Equipos.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Association(Name="SwitchEquipos", Storage="_Equipos", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		public Equipos Equipos
+		{
+			get
+			{
+				return this._Equipos.Entity;
+			}
+			set
+			{
+				Equipos previousValue = this._Equipos.Entity;
+				if (((previousValue != value) 
+							|| (this._Equipos.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Equipos.Entity = null;
+						previousValue.Switch = null;
+					}
+					this._Equipos.Entity = value;
+					if ((value != null))
+					{
+						value.Switch = this;
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(System.Guid);
+					}
+					this.SendPropertyChanged("Equipos");
+				}
+			}
+		}
+		
+		[Association(Name="VlanSwitch", Storage="_VLans", ThisKey="Id", OtherKey="IdSwitch", DeleteRule="CASCADE")]
+		public EntitySet<VLans> VLans
+		{
+			get
+			{
+				return this._VLans;
+			}
+			set
+			{
+				this._VLans.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_VLans(VLans entity)
+		{
+			this.SendPropertyChanging();
+			entity.Switch = this;
+		}
+		
+		private void detach_VLans(VLans entity)
+		{
+			this.SendPropertyChanging();
+			entity.Switch = null;
+		}
+	}
+	
+	[Table()]
+	public partial class VLans : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private System.Guid _IdSwitch;
+		
+		private string _Nombre;
+		
+		private EntitySet<AsociacionesPuertosVLans> _AsociacionesPuertosVLans;
+		
+		private EntityRef<Switch> _Switch;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnIdSwitchChanging(System.Guid value);
+    partial void OnIdSwitchChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    #endregion
+		
+		public VLans()
+		{
+			this._AsociacionesPuertosVLans = new EntitySet<AsociacionesPuertosVLans>(new Action<AsociacionesPuertosVLans>(this.attach_AsociacionesPuertosVLans), new Action<AsociacionesPuertosVLans>(this.detach_AsociacionesPuertosVLans));
+			this._Switch = default(EntityRef<Switch>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdSwitch", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IdSwitch
+		{
+			get
+			{
+				return this._IdSwitch;
+			}
+			set
+			{
+				if ((this._IdSwitch != value))
+				{
+					if (this._Switch.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdSwitchChanging(value);
+					this.SendPropertyChanging();
+					this._IdSwitch = value;
+					this.SendPropertyChanged("IdSwitch");
+					this.OnIdSwitchChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nombre", DbType="NVarChar(100)")]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[Association(Name="AsocVLan", Storage="_AsociacionesPuertosVLans", ThisKey="Id", OtherKey="IdVLan", DeleteRule="CASCADE")]
+		public EntitySet<AsociacionesPuertosVLans> AsociacionesPuertosVLans
+		{
+			get
+			{
+				return this._AsociacionesPuertosVLans;
+			}
+			set
+			{
+				this._AsociacionesPuertosVLans.Assign(value);
+			}
+		}
+		
+		[Association(Name="VlanSwitch", Storage="_Switch", ThisKey="IdSwitch", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public Switch Switch
+		{
+			get
+			{
+				return this._Switch.Entity;
+			}
+			set
+			{
+				Switch previousValue = this._Switch.Entity;
+				if (((previousValue != value) 
+							|| (this._Switch.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Switch.Entity = null;
+						previousValue.VLans.Remove(this);
+					}
+					this._Switch.Entity = value;
+					if ((value != null))
+					{
+						value.VLans.Add(this);
+						this._IdSwitch = value.Id;
+					}
+					else
+					{
+						this._IdSwitch = default(System.Guid);
+					}
+					this.SendPropertyChanged("Switch");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AsociacionesPuertosVLans(AsociacionesPuertosVLans entity)
+		{
+			this.SendPropertyChanging();
+			entity.VLans = this;
+		}
+		
+		private void detach_AsociacionesPuertosVLans(AsociacionesPuertosVLans entity)
+		{
+			this.SendPropertyChanging();
+			entity.VLans = null;
 		}
 	}
 }
