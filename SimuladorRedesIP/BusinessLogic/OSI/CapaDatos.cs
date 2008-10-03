@@ -42,8 +42,19 @@ namespace BusinessLogic.OSI
                 ProcesarBusquedaDeDireccionIP(datosFrameBuscando, e.FrameRecibido.MACAddressOrigen);
             }
             if (paquete != null)
+            {
+                if (e.FrameRecibido.Informacion is Packet)
+                    EventPaqueteDesencapsulador(e.FrameRecibido);
                 ProcesarPaquete(paquete);
+            }
 
+        }
+
+        private void EventPaqueteDesencapsulador(Frame frame)
+        {
+            PaqueteDesencapsuladoEventArgs evento = new PaqueteDesencapsuladoEventArgs(frame, DateTime.Now);
+            if (PaqueteDesEncapsulado != null)
+                PaqueteDesEncapsulado(this, evento);
         }
 
         private void ProcesarPaquete(Packet paquete)
@@ -55,7 +66,8 @@ namespace BusinessLogic.OSI
             }
         }
         public event EventHandler<PaqueteRecibidoEventArgs> PaqueteRecibido;
-
+        public event EventHandler<PaqueteEncapsuladoEventArgs> PaqueteEncapsulado;
+        public event EventHandler<PaqueteDesencapsuladoEventArgs> PaqueteDesEncapsulado;
 
 
 
@@ -83,14 +95,14 @@ namespace BusinessLogic.OSI
             }
             foreach (Packet item in temp)
             {
-                EnviarPaquete(item,datosFrame.DireccionIP);
+                EnviarPaquete(item, datosFrame.DireccionIP);
             }
 
 
 
         }
         private Dictionary<string, List<Packet>> _paquetesNoEnviadosConDestino = new Dictionary<string, List<Packet>>();
-        public void EnviarPaquete(Packet paquete,string ipDestino)
+        public void EnviarPaquete(Packet paquete, string ipDestino)
         {
             if (_protocoloArp.ContieneLaDireccionDe(ipDestino))
             {
@@ -133,8 +145,17 @@ namespace BusinessLogic.OSI
         private void EnviarFrame(IFrameMessage mensaje, string MACDestino)
         {
             Frame frameATransmitir = new Frame(mensaje, _puerto.MACAddress, MACDestino);
+            if (mensaje is Packet)
+                EventPaqueteEncapsulado(frameATransmitir);
             ((IEnvioReciboDatos)_puerto).TransmitirFrame(frameATransmitir);
 
+        }
+
+        private void EventPaqueteEncapsulado(Frame frameATransmitir)
+        {
+            PaqueteEncapsuladoEventArgs evento = new PaqueteEncapsuladoEventArgs(frameATransmitir, DateTime.Now);
+            if (PaqueteEncapsulado != null)
+                PaqueteEncapsulado(this, evento);
         }
 
     }

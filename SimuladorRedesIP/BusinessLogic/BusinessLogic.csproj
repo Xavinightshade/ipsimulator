@@ -63,6 +63,8 @@
     <Compile Include="Datos\DatosFrameArpBuscando.cs" />
     <Compile Include="Datos\DatosFrameArpIPpEncontrada.cs" />
     <Compile Include="Datos\EventosPacket.cs" />
+    <Compile Include="Datos\PaqueteEncapsuladoEventArgs.cs" />
+    <Compile Include="Datos\PaqueteDesencapsuladoEventArgs.cs" />
     <Compile Include="Domain Object\DomainObject.cs" />
     <Compile Include="Domain Object\Rule.cs" />
     <Compile Include="Domain Object\SimpleRule.cs" />
