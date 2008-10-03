@@ -24,5 +24,10 @@ namespace SimuladorCliente.Formularios
             _ArpBS.DataSource = mensa.Asociaciones;
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
