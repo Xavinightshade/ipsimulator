@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using RedesIP.Modelos.Equipos.Componentes;
 using RedesIP.Common;
 using RedesIP.SOA;
+using BusinessLogic.Componentes;
 
 
 
@@ -13,6 +14,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 {
 	public class SwitchLogico:EquipoLogico
 	{
+        private CapaSwitcheo _capaSwitcheo=new CapaSwitcheo();
         public static SwitchSOA CrearSwitchSOA(SwitchLogico swiLogico)
         {
             SwitchSOA swiRespuesta = new SwitchSOA(swiLogico.TipoDeEquipo, swiLogico.Id, swiLogico.X, swiLogico.Y,swiLogico.Nombre);
@@ -24,12 +26,8 @@ namespace RedesIP.Modelos.Logicos.Equipos
         }
 
 		private List<PuertoEthernetLogicoBase> _puertosEthernet=new List<PuertoEthernetLogicoBase>();
-        private SwitchTable _switchTable = new SwitchTable();
 
-        public SwitchTable SwitchTable
-        {
-            get { return _switchTable; }
-        }
+
 		public  ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
@@ -40,77 +38,26 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
         }
+        public SwitchTable SwitchTable
+        {
+            get { return _capaSwitcheo.SwitchTable; }
+        }
 
 
 
 
-		private void InicializarPuertos()
-		{
-			foreach (PuertoEthernetLogicoBase puertoEthernet in _puertosEthernet)
-			{
-				puertoEthernet.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibidoEnAlgunPuerto);
-			}
-		}
 
-		private void OnFrameRecibidoEnAlgunPuerto(object sender, FrameRecibidoEventArgs e)
-		{
-
-			PuertoEthernetLogicoBase puertoQueRecibioElFrame = (PuertoEthernetLogicoBase)sender;
-			Frame frameRecibido = e.FrameRecibido;
-
-			///Le aviso a la tabla del switch del nuevo Frame, para que lo guarde
-			RegistrarFrame(puertoQueRecibioElFrame, frameRecibido);		
-
-            /// Si es Broadcast
-            if (frameRecibido.MACAddressDestino == MACAddressFactory.BroadCast)
-            {
-                TransmitirFrameATodosLosPuertos(puertoQueRecibioElFrame, frameRecibido);
-                return;
-            }
-	
-			/// Le pregunto a la tabla del switch si conoce el puerto destino de este frame,
-			/// si es asi solo envio el frame a ese puerto.
-            string direccionMACDestino = frameRecibido.MACAddressDestino;
-			if (_switchTable.YaEstaRegistradoDireccionMAC(direccionMACDestino))
-			{
-				PuertoEthernetLogicoBase puertoDestinoDelFrame = _switchTable.BuscarPuertoByDireccionMac(direccionMACDestino);
-				((IEnvioReciboDatos)puertoDestinoDelFrame).TransmitirFrame(frameRecibido);
-				return;
-			}
-			/// Si la tabla del switch no contiene informacion de esta direccion MAC, envio este frame
-			/// por todos los puertos, menos por el puerto en donde se recibio el frame
-
-			TransmitirFrameATodosLosPuertos(puertoQueRecibioElFrame, frameRecibido);
-
-
-		}
-
-		private void TransmitirFrameATodosLosPuertos(PuertoEthernetLogicoBase puertoQueRecibioElFrame, Frame frameATransmitir)
-		{
-			foreach (PuertoEthernetLogicoBase puertoEthernet in _puertosEthernet)
-			{
-				if (puertoEthernet == puertoQueRecibioElFrame)
-					continue;
-
-				((IEnvioReciboDatos)puertoEthernet).TransmitirFrame(frameATransmitir);
-			}
-		}
-
-		private void RegistrarFrame(PuertoEthernetLogicoBase puertoQueRecibioElFrame, Frame frameRecibido)
-		{
-            string direccionMacOrigen = frameRecibido.MACAddressOrigen;
-			if (!_switchTable.YaEstaRegistradoDireccionMAC(direccionMacOrigen))
-				_switchTable.RegistrarDireccionMAC(direccionMacOrigen, puertoQueRecibioElFrame);
-		}
         public  void AgregarPuerto(Guid idPuerto,string nombre)
         {
-            _puertosEthernet.Add(new PuertoEthernetLogicoBase(idPuerto,nombre));
+            PuertoEthernetLogicoBase puerto = new PuertoEthernetLogicoBase(idPuerto, nombre);
+            _puertosEthernet.Add(puerto);
+            _capaSwitcheo.AgregarPuerto(puerto);
         }
 
 
         public override void InicializarEquipo()
         {
-            InicializarPuertos();
+          //  InicializarPuertos();
         }
     }
 }

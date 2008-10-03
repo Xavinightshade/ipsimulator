@@ -27,9 +27,9 @@ namespace RedesIP.SOA
 
 
 
-
+        [OperationContract()]
         List<RutaSOA> TraerRutasRouter(Guid guid);
-
+        [OperationContract()]
         void PeticionEstablecerDatosSwitch(SwitchSOA swi);
     }
 

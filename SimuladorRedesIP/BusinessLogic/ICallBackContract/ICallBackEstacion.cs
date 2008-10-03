@@ -21,9 +21,9 @@ namespace RedesIP.SOA
 		[OperationContract(IsOneWay = true)]
 		void ConectarPuertos(CableSOA cable);
         void EstablecerDatosPuertoBase(PuertoBaseSOA puerto);
-        [OperationContract()]
+        [OperationContract(IsOneWay = true)]
         void EstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto);
-        [OperationContract()]
+        [OperationContract(IsOneWay = true)]
         void EstablecerDatosComputador(ComputadorSOA pcSOA);
         [OperationContract(IsOneWay = true)]
 		void ActualizarEstacion(EstacionSOA estacion);
