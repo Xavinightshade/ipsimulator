@@ -1,6 +1,6 @@
 ﻿namespace SimuladorCliente.Formularios
 {
-    partial class Encapsulacion
+    partial class DesEncapsulacion
     {
         /// <summary>
         /// Required designer variable.
@@ -84,7 +84,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 91);
+            this.groupBox1.Location = new System.Drawing.Point(309, 92);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(180, 149);
             this.groupBox1.TabIndex = 2;
@@ -134,7 +134,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.textBox6);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(221, 17);
+            this.groupBox2.Location = new System.Drawing.Point(12, 11);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(269, 230);
             this.groupBox2.TabIndex = 3;
@@ -254,7 +254,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(198, 143);
+            this.label10.Location = new System.Drawing.Point(287, 144);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(16, 13);
             this.label10.TabIndex = 4;
@@ -290,27 +290,27 @@
             // 
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this._fecha);
-            this.groupBox4.Location = new System.Drawing.Point(12, 15);
+            this.groupBox4.Location = new System.Drawing.Point(309, 13);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(180, 63);
             this.groupBox4.TabIndex = 36;
             this.groupBox4.TabStop = false;
             // 
-            // Encapsulacion
+            // DesEncapsulacion
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 287);
+            this.ClientSize = new System.Drawing.Size(499, 290);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "Encapsulacion";
+            this.Name = "DesEncapsulacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Encapsulacion";
+            this.Text = "DesEncapsulacion";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

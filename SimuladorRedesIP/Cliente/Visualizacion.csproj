@@ -120,6 +120,12 @@
     <Compile Include="Formularios\ConexionServidor.designer.cs">
       <DependentUpon>ConexionServidor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\DesEncapsulacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\DesEncapsulacion.Designer.cs">
+      <DependentUpon>DesEncapsulacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Encapsulacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     <EmbeddedResource Include="Formularios\ConexionServidor.resx">
       <DependentUpon>ConexionServidor.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\DesEncapsulacion.resx">
+      <DependentUpon>DesEncapsulacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Encapsulacion.resx">
       <DependentUpon>Encapsulacion.cs</DependentUpon>
