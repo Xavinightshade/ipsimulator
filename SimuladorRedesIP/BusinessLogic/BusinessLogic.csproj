@@ -103,6 +103,7 @@
     <Compile Include="RedBrowserModel.cs" />
     <Compile Include="Sniffer\ModeloCableSniffer.cs" />
     <Compile Include="Sniffer\ModeloSnifferMaster.cs" />
+    <Compile Include="Sniffer\ModeloSnifferPC.cs" />
     <Compile Include="Sniffer\ModeloSnifferPuertoCompleto.cs" />
     <Compile Include="Sniffer\ModeloSnifferSwitch.cs" />
   </ItemGroup>

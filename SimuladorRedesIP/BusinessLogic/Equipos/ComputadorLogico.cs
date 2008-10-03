@@ -19,6 +19,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
         private PuertoEthernetCompleto _puertoEthernet;
         private CapaRedPC _capaRed;
+
+        public CapaRedPC CapaRed
+        {
+            get { return _capaRed; }
+        }
         private string _defaultGateWay;
         /// <summary>
         /// Puerto Ethernet Del PC
@@ -68,6 +73,8 @@ namespace RedesIP.Modelos.Logicos.Equipos
             _capaRed = new CapaRedPC(capaDatos,this);
             _capaRed.Inicializar();
         }
+
+
 
 
 
