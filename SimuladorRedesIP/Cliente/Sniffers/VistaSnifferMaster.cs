@@ -19,6 +19,7 @@ namespace SimuladorCliente.Sniffers
        private IModeloSniffer _modeloSniffer;
        private Dictionary<Guid, FormaSnifferCable> _cableSniffers = new Dictionary<Guid, FormaSnifferCable>();
        private Dictionary<Guid, FormaSnifferSwitch> _switchSniffers = new Dictionary<Guid, FormaSnifferSwitch>();
+       private Dictionary<Guid, FormaSnifferPC> _pcSniffers = new Dictionary<Guid, FormaSnifferPC>();
 
        private Dictionary<Guid, FormaSnifferPuerto> _puertoSniffers = new Dictionary<Guid, FormaSnifferPuerto>();
        public VistaSnifferMaster(IModeloSniffer modeloSniffer)
@@ -75,6 +76,25 @@ namespace SimuladorCliente.Sniffers
        internal void EnviarCambioDeTablaARP(Guid idPuerto, ARP_SOA listARP)
        {
            _puertoSniffers[idPuerto].ReportarMensaje(listARP);
+       }
+
+       internal void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion)
+       {
+           _pcSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
+       }
+
+       internal void EnviarInformacionDesEncapsulacionPC(EncapsulacionSOA encapsulacion)
+       {
+           _pcSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
+       }
+
+       internal void IniciarSnifferPC(MarcadorEquipo marcador, DockPanel dockPanel)
+       {
+           _modeloSniffer.PeticionEnviarInformacionPC(marcador.Id);
+           FormaSnifferPC sniffer = new FormaSnifferPC(marcador.Equipo as ComputadorView, marcador.Color);
+           sniffer.AllowEndUserDocking = false;
+           sniffer.Show(dockPanel, DockState.DockBottom);
+           _pcSniffers.Add(marcador.Id, sniffer);
        }
     }
 }

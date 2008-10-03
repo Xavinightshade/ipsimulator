@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._ipOrigen1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this._datos1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this._ipDestino1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this._datos2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this._ipDestino2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this._ipOrigen2 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this._macDestino = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this._macOrigen = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -68,21 +68,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Ip Origen";
             // 
-            // textBox1
+            // _ipOrigen1
             // 
-            this.textBox1.Location = new System.Drawing.Point(68, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(105, 20);
-            this.textBox1.TabIndex = 1;
+            this._ipOrigen1.Location = new System.Drawing.Point(68, 19);
+            this._ipOrigen1.Name = "_ipOrigen1";
+            this._ipOrigen1.ReadOnly = true;
+            this._ipOrigen1.Size = new System.Drawing.Size(105, 20);
+            this._ipOrigen1.TabIndex = 1;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this._datos1);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this._ipDestino1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this._ipOrigen1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 91);
             this.groupBox1.Name = "groupBox1";
@@ -91,14 +91,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Paquete IP";
             // 
-            // textBox3
+            // _datos1
             // 
-            this.textBox3.Location = new System.Drawing.Point(67, 71);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(106, 72);
-            this.textBox3.TabIndex = 5;
+            this._datos1.Location = new System.Drawing.Point(67, 71);
+            this._datos1.Multiline = true;
+            this._datos1.Name = "_datos1";
+            this._datos1.ReadOnly = true;
+            this._datos1.Size = new System.Drawing.Size(106, 72);
+            this._datos1.TabIndex = 5;
             // 
             // label3
             // 
@@ -109,13 +109,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Datos";
             // 
-            // textBox2
+            // _ipDestino1
             // 
-            this.textBox2.Location = new System.Drawing.Point(68, 45);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(106, 20);
-            this.textBox2.TabIndex = 3;
+            this._ipDestino1.Location = new System.Drawing.Point(68, 45);
+            this._ipDestino1.Name = "_ipDestino1";
+            this._ipDestino1.ReadOnly = true;
+            this._ipDestino1.Size = new System.Drawing.Size(106, 20);
+            this._ipDestino1.TabIndex = 3;
             // 
             // label2
             // 
@@ -130,9 +130,9 @@
             // 
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this._macDestino);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this._macOrigen);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(221, 17);
             this.groupBox2.Name = "groupBox2";
@@ -143,11 +143,11 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this._datos2);
             this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBox7);
+            this.groupBox3.Controls.Add(this._ipDestino2);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.textBox8);
+            this.groupBox3.Controls.Add(this._ipOrigen2);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Location = new System.Drawing.Point(82, 74);
             this.groupBox3.Name = "groupBox3";
@@ -156,14 +156,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dato";
             // 
-            // textBox4
+            // _datos2
             // 
-            this.textBox4.Location = new System.Drawing.Point(67, 71);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(106, 72);
-            this.textBox4.TabIndex = 5;
+            this._datos2.Location = new System.Drawing.Point(68, 74);
+            this._datos2.Multiline = true;
+            this._datos2.Name = "_datos2";
+            this._datos2.ReadOnly = true;
+            this._datos2.Size = new System.Drawing.Size(106, 72);
+            this._datos2.TabIndex = 5;
             // 
             // label7
             // 
@@ -174,13 +174,13 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "Datos";
             // 
-            // textBox7
+            // _ipDestino2
             // 
-            this.textBox7.Location = new System.Drawing.Point(68, 45);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(106, 20);
-            this.textBox7.TabIndex = 3;
+            this._ipDestino2.Location = new System.Drawing.Point(68, 45);
+            this._ipDestino2.Name = "_ipDestino2";
+            this._ipDestino2.ReadOnly = true;
+            this._ipDestino2.Size = new System.Drawing.Size(106, 20);
+            this._ipDestino2.TabIndex = 3;
             // 
             // label8
             // 
@@ -191,13 +191,13 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "Ip Destino";
             // 
-            // textBox8
+            // _ipOrigen2
             // 
-            this.textBox8.Location = new System.Drawing.Point(68, 19);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(105, 20);
-            this.textBox8.TabIndex = 1;
+            this._ipOrigen2.Location = new System.Drawing.Point(68, 19);
+            this._ipOrigen2.Name = "_ipOrigen2";
+            this._ipOrigen2.ReadOnly = true;
+            this._ipOrigen2.Size = new System.Drawing.Size(105, 20);
+            this._ipOrigen2.TabIndex = 1;
             // 
             // label9
             // 
@@ -217,13 +217,13 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Dato:";
             // 
-            // textBox5
+            // _macDestino
             // 
-            this.textBox5.Location = new System.Drawing.Point(82, 45);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(180, 20);
-            this.textBox5.TabIndex = 3;
+            this._macDestino.Location = new System.Drawing.Point(82, 45);
+            this._macDestino.Name = "_macDestino";
+            this._macDestino.ReadOnly = true;
+            this._macDestino.Size = new System.Drawing.Size(180, 20);
+            this._macDestino.TabIndex = 3;
             // 
             // label5
             // 
@@ -234,13 +234,13 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "MAC Destino";
             // 
-            // textBox6
+            // _macOrigen
             // 
-            this.textBox6.Location = new System.Drawing.Point(82, 19);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(180, 20);
-            this.textBox6.TabIndex = 1;
+            this._macOrigen.Location = new System.Drawing.Point(82, 19);
+            this._macOrigen.Name = "_macOrigen";
+            this._macOrigen.ReadOnly = true;
+            this._macOrigen.Size = new System.Drawing.Size(180, 20);
+            this._macOrigen.TabIndex = 1;
             // 
             // label6
             // 
@@ -327,24 +327,24 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox _ipOrigen1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox _datos1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox _ipDestino1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox _datos2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox _ipDestino2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox _ipOrigen2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox _macDestino;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox _macOrigen;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button1;

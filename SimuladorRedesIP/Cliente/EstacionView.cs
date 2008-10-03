@@ -229,14 +229,15 @@ namespace RedesIP.Vistas
         #region IVisualizacion Members
 
 
-        public void EnviarInformacionEncapsulacionPC(Guid guid, FrameSOA frameSOA, PacketSOA packSOA, DateTime dateTime)
+        public void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion)
         {
-            throw new NotImplementedException();
+            _snifferMaster.EnviarInformacionEncapsulacionPC(encapsulacion);
         }
 
-        public void EnviarInformacionDesEncapsulacionPC(Guid guid, FrameSOA frameSOA, PacketSOA packSOA, DateTime dateTime)
+        public void EnviarInformacionDesEncapsulacionPC(EncapsulacionSOA encapsulacion)
         {
-            throw new NotImplementedException();
+            _snifferMaster.EnviarInformacionDesEncapsulacionPC(encapsulacion);
+
         }
 
         #endregion

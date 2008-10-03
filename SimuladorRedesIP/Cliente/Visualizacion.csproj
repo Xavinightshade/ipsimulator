@@ -303,6 +303,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sniffers\FormaSnifferPC.resx">
+      <DependentUpon>FormaSnifferPC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sniffers\FormaSnifferPuerto.resx">
       <DependentUpon>FormaSnifferPuerto.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -331,6 +334,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Sniffers\DoubleClickEventSnifferPC.cs" />
+    <Compile Include="Sniffers\FormaSnifferPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sniffers\FormaSnifferPC.Designer.cs">
+      <DependentUpon>FormaSnifferPC.cs</DependentUpon>
     </Compile>
     <Compile Include="Sniffers\DoubleClickEventPuertoCompleto.cs" />
     <Compile Include="Sniffers\DoubleClickEventSnifferSwitch.cs" />
@@ -488,6 +498,7 @@
     <None Include="Properties\DataSources\SOA.Componentes.RutaSOA.datasource" />
     <None Include="Properties\DataSources\SOA.Datos.AsociacionIpMacSOA.datasource" />
     <None Include="Properties\DataSources\SOA.Datos.AsociacionPuertoMACAddressSOA.datasource" />
+    <None Include="Properties\DataSources\SOA.Datos.EncapsulacionSOA.datasource" />
     <None Include="Resources\Network-Internet-Connection-16x16.png" />
     <None Include="Resources\Network-Drive-16x16.png" />
     <None Include="Resources\sm_black_pointer.gif" />

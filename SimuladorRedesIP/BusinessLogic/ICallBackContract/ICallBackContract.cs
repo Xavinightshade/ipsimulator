@@ -16,8 +16,9 @@ namespace RedesIP.SOA
         void EnviarCambioARP(Guid guid, ARP_SOA listARP);
 
 
-        void EnviarInformacionEncapsulacionPC(Guid guid, FrameSOA frameSOA, PacketSOA packSOA, DateTime dateTime);
 
-        void EnviarInformacionDesEncapsulacionPC(Guid guid, FrameSOA frameSOA, PacketSOA packSOA, DateTime dateTime);
+        void EnviarInformacionDesEncapsulacionPC(EncapsulacionSOA encapsulacion);
+
+        void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion);
     }
 }

@@ -108,7 +108,8 @@ namespace RedesIP.Vistas
                             if (par.Value is ComputadorView)
                             {
                                 Estacion._marcadores.Add(marcador);
-                                System.Windows.Forms.MessageBox.Show("Test PC");
+                                Estacion._snifferMaster.IniciarSnifferPC(marcador, Estacion._dockMain);
+
                             }
                             return;
 

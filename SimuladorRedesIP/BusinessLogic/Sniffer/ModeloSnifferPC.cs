@@ -5,6 +5,7 @@ using System.Text;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.SOA;
 using BusinessLogic.Modelos.Logicos.Datos;
+using SOA.Datos;
 
 namespace BusinessLogic.Sniffer
 {
@@ -34,9 +35,15 @@ namespace BusinessLogic.Sniffer
             packSOA.IpOrigen = paquete.IpOrigen;
             packSOA.IpDestino = paquete.IpDestino;
             packSOA.Datos = paquete.Datos;
+            EncapsulacionSOA encapsulacion = new EncapsulacionSOA();
+            encapsulacion.Fecha = e.HoraDeRecepcion;
+            encapsulacion.Frame = frameSOA;
+            encapsulacion.Paquete = packSOA;
+            encapsulacion.IdEquipo = _pc.Id;
+            encapsulacion.EsEncapsulacion = false;
             foreach (IVisualizacion vist in _vistas)
             {
-                vist.EnviarInformacionDesEncapsulacionPC(_pc.Id, frameSOA, packSOA, e.HoraDeRecepcion);
+                vist.EnviarInformacionDesEncapsulacionPC(encapsulacion);
 
             }
         }
@@ -51,9 +58,15 @@ namespace BusinessLogic.Sniffer
             packSOA.IpOrigen = paquete.IpOrigen;
             packSOA.IpDestino = paquete.IpDestino;
             packSOA.Datos = paquete.Datos;
+            EncapsulacionSOA encapsulacion = new EncapsulacionSOA();
+            encapsulacion.Fecha = e.HoraDeRecepcion;
+            encapsulacion.Frame = frameSOA;
+            encapsulacion.Paquete = packSOA;
+            encapsulacion.IdEquipo = _pc.Id;
+            encapsulacion.EsEncapsulacion = true;
             foreach (IVisualizacion vist in _vistas)
             {
-                vist.EnviarInformacionEncapsulacionPC(_pc.Id, frameSOA, packSOA, e.HoraDeRecepcion);
+                vist.EnviarInformacionEncapsulacionPC(encapsulacion);
 
             }
         }
