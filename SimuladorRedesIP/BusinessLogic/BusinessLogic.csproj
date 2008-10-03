@@ -101,6 +101,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocolos\ARP.cs" />
     <Compile Include="RedBrowserModel.cs" />
+    <Compile Include="Sniffer\ModeloSnifferRouter.cs" />
     <Compile Include="Sniffer\ModeloCableSniffer.cs" />
     <Compile Include="Sniffer\ModeloSnifferMaster.cs" />
     <Compile Include="Sniffer\ModeloSnifferPC.cs" />
