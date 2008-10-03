@@ -225,5 +225,20 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+        #region IVisualizacion Members
+
+
+        public void EnviarInformacionEncapsulacionPC(Guid guid, FrameSOA frameSOA, PacketSOA packSOA, DateTime dateTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EnviarInformacionDesEncapsulacionPC(Guid guid, FrameSOA frameSOA, PacketSOA packSOA, DateTime dateTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

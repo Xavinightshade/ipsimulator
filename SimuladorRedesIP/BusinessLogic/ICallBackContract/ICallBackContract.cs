@@ -14,5 +14,10 @@ namespace RedesIP.SOA
         void EstablecerDatosSwitch(SwitchSOA swi);
 
         void EnviarCambioARP(Guid guid, ARP_SOA listARP);
+
+
+        void EnviarInformacionEncapsulacionPC(Guid guid, FrameSOA frameSOA, PacketSOA packSOA, DateTime dateTime);
+
+        void EnviarInformacionDesEncapsulacionPC(Guid guid, FrameSOA frameSOA, PacketSOA packSOA, DateTime dateTime);
     }
 }

@@ -37,7 +37,6 @@ namespace BusinessLogic.Sniffer
 
 
 
-        #region IModeloSniffer Members
 
 
         public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto)
@@ -46,6 +45,20 @@ namespace BusinessLogic.Sniffer
             ModeloSnifferPuertoCompleto puertoSniffer = new ModeloSnifferPuertoCompleto(puerto, _vistas);
         }
 
-        #endregion
+
+
+        public void PeticionEnviarInformacionPC(Guid idPC)
+        {
+            ComputadorLogico pc = _estacion.Computadores[idPC];
+            ModeloSnifferPC sniffer = new ModeloSnifferPC(pc, _vistas);
+        }
+
+        public void PeticionEnviarInformacionRouter(Guid idRouter)
+        {
+            RouterLogico rou = _estacion.Routers[idRouter];
+            ModeloSnifferRouter sniffer = new ModeloSnifferRouter(rou, _vistas);
+        }
+
+
     }
 }

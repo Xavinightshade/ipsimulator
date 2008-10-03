@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.SOA;
+using BusinessLogic.Modelos.Logicos.Datos;
 
 namespace BusinessLogic.Sniffer
 {
@@ -25,12 +26,36 @@ namespace BusinessLogic.Sniffer
 
         void CapaDatos_PaqueteDesEncapsulado(object sender, BusinessLogic.Datos.PaqueteDesencapsuladoEventArgs e)
         {
-            throw new NotImplementedException();
+            FrameSOA frameSOA = new FrameSOA();
+            frameSOA.MACAddressOrigen = e.Frame.MACAddressOrigen;
+            frameSOA.MACAddressDestino = e.Frame.MACAddressDestino;
+            Packet paquete = e.Frame.Informacion as Packet;
+            PacketSOA packSOA = new PacketSOA();
+            packSOA.IpOrigen = paquete.IpOrigen;
+            packSOA.IpDestino = paquete.IpDestino;
+            packSOA.Datos = paquete.Datos;
+            foreach (IVisualizacion vist in _vistas)
+            {
+                vist.EnviarInformacionDesEncapsulacionPC(_pc.Id, frameSOA, packSOA, e.HoraDeRecepcion);
+
+            }
         }
 
         void CapaDatos_PaqueteEncapsulado(object sender, BusinessLogic.Datos.PaqueteEncapsuladoEventArgs e)
         {
-            throw new NotImplementedException();
+            FrameSOA frameSOA = new FrameSOA();
+            frameSOA.MACAddressOrigen = e.Frame.MACAddressOrigen;
+            frameSOA.MACAddressDestino = e.Frame.MACAddressDestino;
+            Packet paquete=e.Frame.Informacion as Packet;
+            PacketSOA packSOA = new PacketSOA();
+            packSOA.IpOrigen = paquete.IpOrigen;
+            packSOA.IpDestino = paquete.IpDestino;
+            packSOA.Datos = paquete.Datos;
+            foreach (IVisualizacion vist in _vistas)
+            {
+                vist.EnviarInformacionEncapsulacionPC(_pc.Id, frameSOA, packSOA, e.HoraDeRecepcion);
+
+            }
         }
     }
 }

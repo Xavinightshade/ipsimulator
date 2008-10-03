@@ -325,6 +325,21 @@ namespace RedesIP
         }
 
         #endregion
+
+
+
+
+        public void PeticionEnviarInformacionPC(Guid idPC)
+        {
+            _snifferMaster.PeticionEnviarInformacionPC(idPC);
+        }
+
+        public void PeticionEnviarInformacionRouter(Guid idRouter)
+        {
+            _snifferMaster.PeticionEnviarInformacionRouter(idRouter);
+        }
+
+
     }
 
 
