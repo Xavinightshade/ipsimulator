@@ -17,8 +17,9 @@ namespace RedesIP.SOA
 
 
 
-        void EnviarInformacionDesEncapsulacionPC(EncapsulacionSOA encapsulacion);
 
         void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion);
+
+        void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion);
     }
 }

@@ -112,6 +112,17 @@ namespace SimuladorCliente
             LlenarGrilla(_mensajes);
 
         }
+        private void marcadorImagen1_DoubleClick(object sender, EventArgs e)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _marcador.Color = colorDialog.Color;
+                    marcadorImagen1.Color = _marcador.Color;
+                }
+            }
+        }
 
     }
 

@@ -43,7 +43,7 @@ namespace BusinessLogic.Sniffer
             encapsulacion.EsEncapsulacion = false;
             foreach (IVisualizacion vist in _vistas)
             {
-                vist.EnviarInformacionDesEncapsulacionPC(encapsulacion);
+                vist.EnviarInformacionEncapsulacionPC(encapsulacion);
 
             }
         }

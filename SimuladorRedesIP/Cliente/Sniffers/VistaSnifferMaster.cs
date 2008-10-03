@@ -20,7 +20,7 @@ namespace SimuladorCliente.Sniffers
        private Dictionary<Guid, FormaSnifferCable> _cableSniffers = new Dictionary<Guid, FormaSnifferCable>();
        private Dictionary<Guid, FormaSnifferSwitch> _switchSniffers = new Dictionary<Guid, FormaSnifferSwitch>();
        private Dictionary<Guid, FormaSnifferPC> _pcSniffers = new Dictionary<Guid, FormaSnifferPC>();
-
+       private Dictionary<Guid, FormaSnifferRouter> _routerSniffers = new Dictionary<Guid, FormaSnifferRouter>();
        private Dictionary<Guid, FormaSnifferPuerto> _puertoSniffers = new Dictionary<Guid, FormaSnifferPuerto>();
        public VistaSnifferMaster(IModeloSniffer modeloSniffer)
        {
@@ -83,10 +83,7 @@ namespace SimuladorCliente.Sniffers
            _pcSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
        }
 
-       internal void EnviarInformacionDesEncapsulacionPC(EncapsulacionSOA encapsulacion)
-       {
-           _pcSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
-       }
+
 
        internal void IniciarSnifferPC(MarcadorPC marcador, DockPanel dockPanel)
        {
@@ -97,9 +94,18 @@ namespace SimuladorCliente.Sniffers
            _pcSniffers.Add(marcador.Id, sniffer);
        }
 
-       internal void IniciarSnifferRouter(MarcadorEquipo marcador, DockPanel dockPanel)
+       internal void IniciarSnifferRouter(MarcadorRouter marcador, DockPanel dockPanel)
        {
-           throw new NotImplementedException();
+           _modeloSniffer.PeticionEnviarInformacionRouter(marcador.Id);
+           FormaSnifferRouter sniffer = new FormaSnifferRouter(marcador, marcador.Color);
+           sniffer.AllowEndUserDocking = false;
+           sniffer.Show(dockPanel, DockState.DockBottom);
+           _routerSniffers.Add(marcador.Id, sniffer);
+       }
+
+       internal void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion)
+       {
+           _routerSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
        }
     }
 }

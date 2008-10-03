@@ -234,10 +234,12 @@ namespace RedesIP.Vistas
             _snifferMaster.EnviarInformacionEncapsulacionPC(encapsulacion);
         }
 
-        public void EnviarInformacionDesEncapsulacionPC(EncapsulacionSOA encapsulacion)
-        {
-            _snifferMaster.EnviarInformacionDesEncapsulacionPC(encapsulacion);
 
+
+
+        public void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion)
+        {
+            _snifferMaster.EnviarInformacionEncapsulacionRouter(encapsulacion);
         }
 
         #endregion

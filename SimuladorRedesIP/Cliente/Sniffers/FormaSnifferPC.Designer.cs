@@ -31,11 +31,11 @@
             this.grid = new SourceGrid.Grid();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.marcadorImagen1 = new SimuladorCliente.Vistas.MarcadorCablePictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -89,6 +89,13 @@
             this.panel1.Size = new System.Drawing.Size(680, 28);
             this.panel1.TabIndex = 0;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(49, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(77, 20);
+            this.textBox1.TabIndex = 10;
+            // 
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -116,6 +123,7 @@
             this.marcadorImagen1.Size = new System.Drawing.Size(40, 21);
             this.marcadorImagen1.TabIndex = 6;
             this.marcadorImagen1.TabStop = false;
+            this.marcadorImagen1.DoubleClick += new System.EventHandler(this.marcadorImagen1_DoubleClick);
             // 
             // button1
             // 
@@ -126,13 +134,6 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Cerrar";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(49, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(77, 20);
-            this.textBox1.TabIndex = 10;
             // 
             // FormaSnifferPC
             // 

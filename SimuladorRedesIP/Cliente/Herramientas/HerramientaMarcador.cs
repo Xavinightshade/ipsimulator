@@ -108,7 +108,7 @@ namespace RedesIP.Vistas
                             }
                             if (par.Value is ComputadorView)
                             {
-                                MarcadorPC marcador = new MarcadorPC(par.Value as ComputadorView, this as IRegistroMovimientosMouse);
+                                MarcadorPC marcador = new MarcadorPC(par.Value as ComputadorView, Estacion as IRegistroMovimientosMouse);
                                 Estacion._marcadores.Add(marcador);
                                 Estacion._snifferMaster.IniciarSnifferPC(marcador, Estacion._dockMain);
                                 return;
@@ -116,7 +116,7 @@ namespace RedesIP.Vistas
                             }
                             if (par.Value is RouterView)
                             {
-                                MarcadorRouter marcador = new MarcadorRouter(par.Value as RouterView, this as IRegistroMovimientosMouse);
+                                MarcadorRouter marcador = new MarcadorRouter(par.Value as RouterView, Estacion as IRegistroMovimientosMouse);
                                 Estacion._marcadores.Add(marcador);
                                 Estacion._snifferMaster.IniciarSnifferRouter(marcador, Estacion._dockMain);
                                 return;

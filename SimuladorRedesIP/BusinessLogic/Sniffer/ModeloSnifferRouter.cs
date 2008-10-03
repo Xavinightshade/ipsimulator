@@ -6,6 +6,8 @@ using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.SOA;
 using RedesIP.Modelos.Equipos.Componentes;
 using BusinessLogic.OSI;
+using SOA.Datos;
+using BusinessLogic.Modelos.Logicos.Datos;
 
 namespace BusinessLogic.Sniffer
 {
@@ -30,12 +32,48 @@ namespace BusinessLogic.Sniffer
 
         void CapaDatos_PaqueteEncapsulado(object sender, BusinessLogic.Datos.PaqueteEncapsuladoEventArgs e)
         {
-            throw new NotImplementedException();
+            FrameSOA frameSOA = new FrameSOA();
+            frameSOA.MACAddressOrigen = e.Frame.MACAddressOrigen;
+            frameSOA.MACAddressDestino = e.Frame.MACAddressDestino;
+            Packet paquete = e.Frame.Informacion as Packet;
+            PacketSOA packSOA = new PacketSOA();
+            packSOA.IpOrigen = paquete.IpOrigen;
+            packSOA.IpDestino = paquete.IpDestino;
+            packSOA.Datos = paquete.Datos;
+            EncapsulacionSOA encapsulacion = new EncapsulacionSOA();
+            encapsulacion.Fecha = e.HoraDeRecepcion;
+            encapsulacion.Frame = frameSOA;
+            encapsulacion.Paquete = packSOA;
+            encapsulacion.IdEquipo = _router.Id;
+            encapsulacion.EsEncapsulacion = true;
+            foreach (IVisualizacion vist in _vistas)
+            {
+                vist.EnviarInformacionEncapsulacionRouter(encapsulacion);
+
+            }
         }
 
         void CapaDatos_PaqueteDesEncapsulado(object sender, BusinessLogic.Datos.PaqueteDesencapsuladoEventArgs e)
         {
-            throw new NotImplementedException();
+            FrameSOA frameSOA = new FrameSOA();
+            frameSOA.MACAddressOrigen = e.Frame.MACAddressOrigen;
+            frameSOA.MACAddressDestino = e.Frame.MACAddressDestino;
+            Packet paquete = e.Frame.Informacion as Packet;
+            PacketSOA packSOA = new PacketSOA();
+            packSOA.IpOrigen = paquete.IpOrigen;
+            packSOA.IpDestino = paquete.IpDestino;
+            packSOA.Datos = paquete.Datos;
+            EncapsulacionSOA encapsulacion = new EncapsulacionSOA();
+            encapsulacion.Fecha = e.HoraDeRecepcion;
+            encapsulacion.Frame = frameSOA;
+            encapsulacion.Paquete = packSOA;
+            encapsulacion.IdEquipo = _router.Id;
+            encapsulacion.EsEncapsulacion = false;
+            foreach (IVisualizacion vist in _vistas)
+            {
+                vist.EnviarInformacionEncapsulacionRouter(encapsulacion);
+
+            }
         }
     }
 }
