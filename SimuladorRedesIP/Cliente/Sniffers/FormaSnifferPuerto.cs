@@ -13,6 +13,7 @@ using RedesIP.SOA.Elementos;
 using DevAge.Windows.Forms;
 using SimuladorCliente.Marcadores;
 using SOA.Datos;
+using SimuladorCliente.Sniffers;
 
 namespace SimuladorCliente
 {
@@ -44,20 +45,19 @@ namespace SimuladorCliente
         private void ConfigurarGrilla()
         {
             grid.Rows.Clear();
-            grid.Redim(1, 4);
+            grid.Redim(1, 3);
 
             grid.Columns[0].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
             grid.Columns[1].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
             grid.Columns[2].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
-            grid.Columns[3].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
 
 
             grid.FixedRows = 1;
 
             grid[0, 0] = new SourceGrid.Cells.ColumnHeader("CONSECUTIVO");
             grid[0, 1] = new SourceGrid.Cells.ColumnHeader("HORA RECEPCION");
-            grid[0, 2] = new SourceGrid.Cells.ColumnHeader("IP");
-            grid[0, 3] = new SourceGrid.Cells.ColumnHeader("MAC");
+            grid[0, 2] = new SourceGrid.Cells.ColumnHeader("Asociaciones");
+
 
             grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
             grid.Columns.AutoSize(true);
@@ -65,30 +65,37 @@ namespace SimuladorCliente
 
 
         private IView _vista = new CellBackColorAlternate(Color.LightSkyBlue, Color.WhiteSmoke);
-        private void LlenarGrilla(List<AsociacionIpMacSOA> mensajes)
+        private void LlenarGrilla(List<ARP_SOA> mensajes)
         {
             int c = 0;
             ConfigurarGrilla();
-            foreach (AsociacionIpMacSOA mensaje in mensajes)
+            foreach (ARP_SOA mensaje in mensajes)
             {
+                string asociaciones = string.Empty;
+                foreach (AsociacionIpMacSOA item in mensaje.Asociaciones)
+                {
+                    asociaciones += "Ip: " + item.Ip + "-> MAC: " + item.MacAddress + "@@ ";
+                }
                 grid.Rows.Insert(1);
+                grid.Rows[1].Tag = mensaje;
                 grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
-                grid[1, 1] = new SourceGrid.Cells.Cell(DateTime.Now.ToString());
-                grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.Ip);
-                grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.MacAddress);
+                grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.Fecha);
+                grid[1, 2] = new SourceGrid.Cells.Cell(asociaciones);
 
+                grid[1, 0].AddController(new DoubleClickEventPuertoCompleto());
+                grid[1, 1].AddController(new DoubleClickEventPuertoCompleto());
+                grid[1, 2].AddController(new DoubleClickEventPuertoCompleto());
 
                 grid[1, 0].View = _vista;
                 grid[1, 1].View = _vista;
                 grid[1, 2].View = _vista;
-                grid[1, 3].View = _vista;
 
             }
             grid.Columns.AutoSizeView();
 
         }
 
-        private delegate void SetLabelTextDelegate(List<AsociacionIpMacSOA> mensajes);
+        private delegate void SetLabelTextDelegate(ARP_SOA mensajes);
 
 
 
@@ -110,8 +117,8 @@ namespace SimuladorCliente
             this.Hide();
         }
 
-
-        internal void ReportarMensaje(List<AsociacionIpMacSOA> listARP)
+        private List<ARP_SOA> _mensajes = new List<ARP_SOA>();
+        internal void ReportarMensaje(ARP_SOA listARP)
         {
 
             if (this.InvokeRequired)
@@ -122,8 +129,8 @@ namespace SimuladorCliente
                 return;
             }
 
-
-            LlenarGrilla(listARP);
+            _mensajes.Add(listARP);
+            LlenarGrilla(_mensajes);
         }
     }
 

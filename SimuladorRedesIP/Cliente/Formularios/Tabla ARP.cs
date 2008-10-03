@@ -14,7 +14,15 @@ namespace SimuladorCliente.Formularios
         public Tabla_ARP()
         {
             InitializeComponent();
-            macTextBox1.SetAsReadOnly();
+            
+        }
+
+
+        internal void Inicializar(SOA.Datos.ARP_SOA mensa)
+        {
+            _fecha.Text = mensa.Fecha.ToString();
+            _ArpBS.DataSource = mensa.Asociaciones;
+
         }
     }
 }

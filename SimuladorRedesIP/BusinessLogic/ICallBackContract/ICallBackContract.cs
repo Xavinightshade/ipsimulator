@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ServiceModel;
 using RedesIP.SOA.Elementos;
+using SOA.Datos;
 
 namespace RedesIP.SOA
 {
@@ -12,6 +13,6 @@ namespace RedesIP.SOA
 
         void EstablecerDatosSwitch(SwitchSOA swi);
 
-        void EnviarCambioARP(Guid guid, List<global::SOA.Datos.AsociacionIpMacSOA> listARP);
+        void EnviarCambioARP(Guid guid, ARP_SOA listARP);
     }
 }

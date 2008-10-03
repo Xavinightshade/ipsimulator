@@ -314,6 +314,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Sniffers\DoubleClickEventPuertoCompleto.cs" />
     <Compile Include="Sniffers\DoubleClickEventSnifferSwitch.cs" />
     <Compile Include="Sniffers\DoubleClickEventSnifferCable.cs" />
     <Compile Include="Sniffers\FormaSnifferPuerto.cs">
@@ -467,6 +468,7 @@
     <None Include="Properties\DataSources\RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto.datasource" />
     <None Include="Properties\DataSources\RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto1.datasource" />
     <None Include="Properties\DataSources\SOA.Componentes.RutaSOA.datasource" />
+    <None Include="Properties\DataSources\SOA.Datos.AsociacionIpMacSOA.datasource" />
     <None Include="Properties\DataSources\SOA.Datos.AsociacionPuertoMACAddressSOA.datasource" />
     <None Include="Resources\Network-Internet-Connection-16x16.png" />
     <None Include="Resources\Network-Drive-16x16.png" />

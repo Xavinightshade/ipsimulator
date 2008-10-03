@@ -218,7 +218,7 @@ namespace RedesIP.Vistas
         #region IVisualizacion Members
 
 
-        public void EnviarCambioARP(Guid idPuerto, List<AsociacionIpMacSOA> listARP)
+        public void EnviarCambioARP(Guid idPuerto, ARP_SOA listARP)
         {
             _snifferMaster.EnviarCambioDeTablaARP(idPuerto, listARP);
                 

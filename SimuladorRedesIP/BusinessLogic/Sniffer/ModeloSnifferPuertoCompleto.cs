@@ -25,17 +25,18 @@ namespace BusinessLogic.Sniffer
 
        private void Arp_CambioDeTablaArp(object sender, TiempoEventArgs e)
         {
-            List<AsociacionIpMacSOA> listARP = new List<AsociacionIpMacSOA>();
+            ARP_SOA arp = new ARP_SOA();
+            arp.Fecha = e.HoraDeRecepcion;
             foreach (KeyValuePair<string,string> asociacionIP_MAC in _puerto.Arp.IP_To_MAC)
             {
                 AsociacionIpMacSOA asoc = new AsociacionIpMacSOA();
                 asoc.Ip = asociacionIP_MAC.Key;
                 asoc.MacAddress = asociacionIP_MAC.Value;
-                listARP.Add(asoc);
+                arp.Asociaciones.Add(asoc);
             }
             foreach (IVisualizacion vist in _vistas)
             {
-                vist.EnviarCambioARP(_puerto.Id, listARP);
+                vist.EnviarCambioARP(_puerto.Id, arp);
 
             }
         }

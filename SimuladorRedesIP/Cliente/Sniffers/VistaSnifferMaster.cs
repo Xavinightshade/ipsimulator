@@ -72,7 +72,7 @@ namespace SimuladorCliente.Sniffers
            _puertoSniffers.Add(marcador.Id, sniffer);
        }
 
-       internal void EnviarCambioDeTablaARP(Guid idPuerto, List<AsociacionIpMacSOA> listARP)
+       internal void EnviarCambioDeTablaARP(Guid idPuerto, ARP_SOA listARP)
        {
            _puertoSniffers[idPuerto].ReportarMensaje(listARP);
        }
