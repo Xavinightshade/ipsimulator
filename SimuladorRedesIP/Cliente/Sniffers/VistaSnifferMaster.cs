@@ -55,10 +55,10 @@ namespace SimuladorCliente.Sniffers
            _switchSniffers[mensajeTablaSwitch.Id].ReportarMensaje(mensajeTablaSwitch);
        }
 
-       public void IniciarSnifferSwitch(MarcadorEquipo marcador, DockPanel dockPanel)
+       public void IniciarSnifferSwitch(MarcadorSwitch marcador, DockPanel dockPanel)
        {
            _modeloSniffer.PeticionEnviarInformacionSwitch(marcador.Id);
-           FormaSnifferSwitch sniffer = new FormaSnifferSwitch(marcador.Equipo as SwitchView, marcador.Color);
+           FormaSnifferSwitch sniffer = new FormaSnifferSwitch(marcador, marcador.Color);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _switchSniffers.Add(marcador.Id, sniffer);
@@ -88,13 +88,18 @@ namespace SimuladorCliente.Sniffers
            _pcSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
        }
 
-       internal void IniciarSnifferPC(MarcadorEquipo marcador, DockPanel dockPanel)
+       internal void IniciarSnifferPC(MarcadorPC marcador, DockPanel dockPanel)
        {
            _modeloSniffer.PeticionEnviarInformacionPC(marcador.Id);
-           FormaSnifferPC sniffer = new FormaSnifferPC(marcador.Equipo as ComputadorView, marcador.Color);
+           FormaSnifferPC sniffer = new FormaSnifferPC(marcador, marcador.Color);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _pcSniffers.Add(marcador.Id, sniffer);
+       }
+
+       internal void IniciarSnifferRouter(MarcadorEquipo marcador, DockPanel dockPanel)
+       {
+           throw new NotImplementedException();
        }
     }
 }

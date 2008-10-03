@@ -11,7 +11,7 @@ using SOA.Componentes;
 
 namespace RedesIP.Vistas.Equipos
 {
-    class RouterView : EquipoView
+    public class RouterView : EquipoView
     {
         public RouterView(RouterSOA equipo)
             : base(equipo.Id, equipo.Nombre, equipo.X, equipo.Y, Resources.Switch.Size.Width,

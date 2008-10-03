@@ -21,8 +21,8 @@ namespace SimuladorCliente.Marcadores
             get { return _equipo; }
         }
 
-        public MarcadorEquipo(EquipoView equipo, IRegistroMovimientosMouse mainView,string nombre)
-            : base(equipo.Id,nombre,mainView)
+        public MarcadorEquipo(EquipoView equipo, IRegistroMovimientosMouse mainView)
+            : base(equipo.Id,equipo.Nombre,mainView)
         {
             _equipo = equipo;
         }

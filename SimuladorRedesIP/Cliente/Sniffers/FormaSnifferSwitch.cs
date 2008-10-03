@@ -12,21 +12,32 @@ using RedesIP.Vistas;
 using RedesIP.SOA.Elementos;
 using RedesIP.Vistas.Equipos;
 using SimuladorCliente.Sniffers;
+using SimuladorCliente.Marcadores;
 
 namespace SimuladorCliente
 {
     public partial class FormaSnifferSwitch : DockContent
     {
-        SwitchView _switch;
-        public FormaSnifferSwitch(SwitchView swi, Color color)
+        MarcadorSwitch _marcador;
+        public FormaSnifferSwitch(MarcadorSwitch marcador, Color color)
         {
-            _switch = swi;
+            _marcador = marcador;
             InitializeComponent();
             ConfigurarGrilla();
-            marcadorImagen1.Color = color;
-            this.TabText = swi.Id.ToString().Substring(0, 5);
-            this.label1.Text = swi.Id.ToString();
+            marcadorImagen1.Color = marcador.Color;
+            this.TabText = _marcador.Nombre;
+            this.textBox1.Text = _marcador.Nombre;
+            this.textBox1.TextChanged += new EventHandler(textBox1_TextChanged);
+
         }
+
+        void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            TabText = textBox1.Text;
+            _marcador.Nombre = textBox1.Text;
+
+        }
+        
 
 
 

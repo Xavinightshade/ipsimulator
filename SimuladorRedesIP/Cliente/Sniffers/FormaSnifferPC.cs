@@ -13,25 +13,32 @@ using RedesIP.SOA.Elementos;
 using RedesIP.Vistas.Equipos;
 using SimuladorCliente.Sniffers;
 using SOA.Datos;
+using SimuladorCliente.Marcadores;
 
 namespace SimuladorCliente
 {
     public partial class FormaSnifferPC : DockContent
     {
-        ComputadorView _pc;
-        public FormaSnifferPC(ComputadorView pc, Color color)
+        MarcadorPC _marcador;
+        public FormaSnifferPC(MarcadorPC marcador, Color color)
         {
-            _pc = pc;
+            _marcador = marcador;
             InitializeComponent();
             ConfigurarGrilla();
-            marcadorImagen1.Color = color;
-            this.TabText = pc.Id.ToString().Substring(0, 5);
-            this.label1.Text = pc.Id.ToString();
+            marcadorImagen1.Color = marcador.Color;
+            this.TabText = _marcador.Nombre;
+            this.textBox1.Text = _marcador.Nombre;
+            this.textBox1.TextChanged += new EventHandler(textBox1_TextChanged);
         }
 
 
 
+        void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            TabText = textBox1.Text;
+            _marcador.Nombre = textBox1.Text;
 
+        }
         private void ConfigurarGrilla()
         {
             grid.Rows.Clear();

@@ -33,8 +33,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.marcadorImagen1 = new SimuladorCliente.Vistas.MarcadorCablePictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -77,6 +78,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.marcadorImagen1);
@@ -105,16 +107,6 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 7;
             // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(597, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 22);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Cerrar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // marcadorImagen1
             // 
             this.marcadorImagen1.BackColor = System.Drawing.Color.Black;
@@ -125,13 +117,30 @@
             this.marcadorImagen1.TabIndex = 6;
             this.marcadorImagen1.TabStop = false;
             // 
-            // FormaSnifferSwitch
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button1.Location = new System.Drawing.Point(597, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(80, 22);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Cerrar";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(49, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(77, 20);
+            this.textBox1.TabIndex = 10;
+            // 
+            // FormaSnifferPC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(682, 334);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "FormaSnifferSwitch";
+            this.Name = "FormaSnifferPC";
             this.TabText = "SnifferBeta";
             this.Text = "SnifferBeta";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -153,5 +162,6 @@
         private SimuladorCliente.Vistas.MarcadorCablePictureBox marcadorImagen1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

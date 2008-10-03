@@ -99,19 +99,31 @@ namespace RedesIP.Vistas
                         }
                         if (!yaEstaSeleccionado)
                         {
-                            MarcadorEquipo marcador = new MarcadorEquipo(par.Value, this as IRegistroMovimientosMouse, par.Value.Nombre);
                             if (par.Value is SwitchView)
                             {
+                                MarcadorSwitch marcador = new MarcadorSwitch(par.Value as SwitchView, this as IRegistroMovimientosMouse);
                                 Estacion._marcadores.Add(marcador);
                                 Estacion._snifferMaster.IniciarSnifferSwitch(marcador, Estacion._dockMain);
+                                return;
                             }
                             if (par.Value is ComputadorView)
                             {
+                                MarcadorPC marcador = new MarcadorPC(par.Value as ComputadorView, this as IRegistroMovimientosMouse);
                                 Estacion._marcadores.Add(marcador);
                                 Estacion._snifferMaster.IniciarSnifferPC(marcador, Estacion._dockMain);
+                                return;
+
+                            }
+                            if (par.Value is RouterView)
+                            {
+                                MarcadorRouter marcador = new MarcadorRouter(par.Value as RouterView, this as IRegistroMovimientosMouse);
+                                Estacion._marcadores.Add(marcador);
+                                Estacion._snifferMaster.IniciarSnifferRouter(marcador, Estacion._dockMain);
+                                return;
 
                             }
                             return;
+                            
 
                         }
                     }

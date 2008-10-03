@@ -33,5 +33,10 @@ namespace SimuladorCliente.Formularios
             _datos1.Text = mensa.Paquete.Datos;
             _datos2.Text = mensa.Paquete.Datos;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
