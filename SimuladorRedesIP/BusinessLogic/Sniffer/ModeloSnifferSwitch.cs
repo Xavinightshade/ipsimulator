@@ -13,11 +13,10 @@ namespace BusinessLogic.Sniffer
     public class ModeloSnifferSwitch
     {
         private SwitchLogico _switch;
-        private List<IVisualizacion> _vistas;
-        public ModeloSnifferSwitch(SwitchLogico swi, List<IVisualizacion> vistas)
+        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
+        public ModeloSnifferSwitch(SwitchLogico swi)
         {
             _switch = swi;
-            _vistas = vistas;
             EscucharTablasDeFiltro();
         }
         private void EscucharTablasDeFiltro()
@@ -25,6 +24,10 @@ namespace BusinessLogic.Sniffer
             _switch.SwitchTable.CambioDeTablaDeFiltro += new EventHandler<TiempoEventArgs>(OnCambioDeTabla);
 
 
+        }
+        public void AgregarVista(IVisualizacion vista)
+        {
+            _vistas.Add(vista);
         }
 
 

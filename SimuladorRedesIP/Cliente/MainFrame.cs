@@ -137,7 +137,9 @@ namespace SimuladorCliente
             DuplexChannelFactory<IModeloSOA> factory =
                 new DuplexChannelFactory<IModeloSOA>
                 (context, binding, address);
+            binding.ReceiveTimeout = TimeSpan.MaxValue;
             IModeloSOA clien = factory.CreateChannel();
+           
 
             _estacionView.LimpiarEstacion();
             _estacionView.Inicializar(clien, _dockMain);
@@ -185,6 +187,7 @@ namespace SimuladorCliente
                         "Dirección IP: " + modeloConexion.DireccionIp + Environment.NewLine +
                     "Puerto: " + modeloConexion.Puerto,
                     ToolTipIcon.Info);
+                    this.Text = "Servidor";
                 }
             }
 
@@ -198,9 +201,10 @@ namespace SimuladorCliente
 
             NetTcpBinding binding =
                 new NetTcpBinding(SecurityMode.None, true);
-            Uri address =
-
-               new Uri(@"net.tcp://" + direccionIP + ":" + puerto + "/Simulador");
+            Uri address = new Uri(@"net.tcp://" + direccionIP + ":" + puerto + "/Simulador");
+            binding.ReceiveTimeout = TimeSpan.MaxValue;
+            binding.ReliableSession.InactivityTimeout = TimeSpan.MaxValue;
+               
 
             calculatorHost.AddServiceEndpoint(
                 typeof(IModeloSOA), binding, address);

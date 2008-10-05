@@ -12,12 +12,15 @@ namespace BusinessLogic.Sniffer
     public class ModeloSnifferPC
     {
         private ComputadorLogico _pc;
-        private List<IVisualizacion> _vistas;
-        public ModeloSnifferPC(ComputadorLogico pc, List<IVisualizacion> vistas)
+        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
+        public ModeloSnifferPC(ComputadorLogico pc)
         {
            _pc=pc;
-            _vistas = vistas;
             EscucharEventos();
+        }
+        public void AgregarVista(IVisualizacion vista)
+        {
+            _vistas.Add(vista);
         }
         private void EscucharEventos()
         {

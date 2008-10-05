@@ -10,53 +10,84 @@ using RedesIP.Modelos.Equipos.Componentes;
 
 namespace BusinessLogic.Sniffer
 {
-    public class ModeloSnifferMaster:IModeloSniffer
+    public class ModeloSnifferMaster
     {
-        private List<IVisualizacion> _vistas;
         private EstacionModelo _estacion;
-        public ModeloSnifferMaster(List<IVisualizacion> vistas,EstacionModelo estacion) 
+        private Dictionary<Guid, ModeloSnifferPC> _sniffersPc = new Dictionary<Guid, ModeloSnifferPC>();
+        private Dictionary<Guid, ModeloSnifferSwitch> _sniffersSwi = new Dictionary<Guid, ModeloSnifferSwitch>();
+        private Dictionary<Guid, ModeloSnifferRouter> _sniffersRou = new Dictionary<Guid, ModeloSnifferRouter>();
+        private Dictionary<Guid, ModeloCableSniffer> _sniffersCable = new Dictionary<Guid, ModeloCableSniffer>();
+        private Dictionary<Guid, ModeloSnifferPuertoCompleto> _sniffersPuerto = new Dictionary<Guid, ModeloSnifferPuertoCompleto>();
+
+        public ModeloSnifferMaster(EstacionModelo estacion)
         {
-            _vistas = vistas;
             _estacion = estacion;
         }
 
-        public void PeticionEnviarInformacionConexion(Guid idConexion)
+        public void PeticionEnviarInformacionConexion(Guid idConexion, IVisualizacion cliente)
         {
-            CableDeRedLogico cable = _estacion.Cables[idConexion];
-            ModeloCableSniffer snifferCable = new ModeloCableSniffer(cable, _vistas);
+            if (!_sniffersCable.ContainsKey(idConexion))
+            {
+                CableDeRedLogico cable = _estacion.Cables[idConexion];
+                ModeloCableSniffer snifferCable = new ModeloCableSniffer(cable);
+                _sniffersCable.Add(idConexion, snifferCable);
+            }
+            _sniffersCable[idConexion].AgregarVista(cliente);
 
         }
 
 
 
-        public void PeticionEnviarInformacionSwitch(Guid idSwitch)
+        public void PeticionEnviarInformacionSwitch(Guid idSwitch, IVisualizacion cliente)
         {
-            SwitchLogico swi = _estacion.Switches[idSwitch];
-            ModeloSnifferSwitch snifferSwitch = new ModeloSnifferSwitch(swi, _vistas);
+            if (!_sniffersSwi.ContainsKey(idSwitch))
+            {
+                SwitchLogico swi = _estacion.Switches[idSwitch];
+                ModeloSnifferSwitch snifferSwitch = new ModeloSnifferSwitch(swi);
+                _sniffersSwi.Add(idSwitch, snifferSwitch);
+            }
+            _sniffersSwi[idSwitch].AgregarVista(cliente);
+
         }
 
 
 
 
 
-        public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto)
+        public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto, IVisualizacion cliente)
         {
-            PuertoEthernetCompleto puerto = _estacion.Puertos[idPuerto] as PuertoEthernetCompleto;
-            ModeloSnifferPuertoCompleto puertoSniffer = new ModeloSnifferPuertoCompleto(puerto, _vistas);
+            if (!_sniffersPuerto.ContainsKey(idPuerto))
+            {
+                PuertoEthernetCompleto puerto = _estacion.Puertos[idPuerto] as PuertoEthernetCompleto;
+                ModeloSnifferPuertoCompleto puertoSniffer = new ModeloSnifferPuertoCompleto(puerto);
+                _sniffersPuerto.Add(idPuerto, puertoSniffer);
+            }
+            _sniffersPuerto[idPuerto].AgregarVista(cliente);
         }
 
 
 
-        public void PeticionEnviarInformacionPC(Guid idPC)
+        public void PeticionEnviarInformacionPC(Guid idPC, IVisualizacion cliente)
         {
-            ComputadorLogico pc = _estacion.Computadores[idPC];
-            ModeloSnifferPC sniffer = new ModeloSnifferPC(pc, _vistas);
+            if (!_sniffersPc.ContainsKey(idPC))
+            {
+                ComputadorLogico pc = _estacion.Computadores[idPC];
+                ModeloSnifferPC sniffer = new ModeloSnifferPC(pc);
+                _sniffersPc.Add(idPC, sniffer);
+            }
+            _sniffersPc[idPC].AgregarVista(cliente);
         }
 
-        public void PeticionEnviarInformacionRouter(Guid idRouter)
+        public void PeticionEnviarInformacionRouter(Guid idRouter, IVisualizacion cliente)
         {
-            RouterLogico rou = _estacion.Routers[idRouter];
-            ModeloSnifferRouter sniffer = new ModeloSnifferRouter(rou, _vistas);
+
+            if (!_sniffersRou.ContainsKey(idRouter))
+            {
+                RouterLogico rou = _estacion.Routers[idRouter];
+                ModeloSnifferRouter sniffer = new ModeloSnifferRouter(rou);
+                _sniffersRou.Add(idRouter, sniffer);
+            }
+            _sniffersRou[idRouter].AgregarVista(cliente);
         }
 
 

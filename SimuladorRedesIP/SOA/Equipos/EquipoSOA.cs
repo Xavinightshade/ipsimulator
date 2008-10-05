@@ -41,7 +41,7 @@ namespace RedesIP.SOA
 		}
 
         private string _nombre;
-
+        [DataMember]
         public string Nombre
         {
             get { return _nombre; }

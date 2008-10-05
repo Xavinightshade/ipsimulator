@@ -14,12 +14,15 @@ namespace BusinessLogic.Sniffer
     public class ModeloSnifferRouter
     {
         private RouterLogico _router;
-        private List<IVisualizacion> _vistas;
-        public ModeloSnifferRouter(RouterLogico router, List<IVisualizacion> vistas)
+        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
+        public ModeloSnifferRouter(RouterLogico router)
         {
           _router=router;
-            _vistas = vistas;
             EscucharEventos();
+        }
+        public void AgregarVista(IVisualizacion vista)
+        {
+            _vistas.Add(vista);
         }
         private void EscucharEventos()
         {

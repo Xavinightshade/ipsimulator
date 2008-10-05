@@ -78,7 +78,7 @@
             this.ipTextBox1.ReadOnly = false;
             this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
             this.ipTextBox1.TabIndex = 1;
-            this.ipTextBox1.Text = "192.168.0.101";
+            this.ipTextBox1.Text = "192.168.0.103";
             // 
             // label3
             // 

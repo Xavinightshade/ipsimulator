@@ -12,11 +12,10 @@ namespace BusinessLogic.Sniffer
     public class ModeloCableSniffer
     {
         private CableDeRedLogico _cable;
-        private List<IVisualizacion> _vistas;
-        public ModeloCableSniffer(CableDeRedLogico cable, List<IVisualizacion> vistas)
+        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
+        public ModeloCableSniffer(CableDeRedLogico cable)
         {
             _cable=cable;
-            _vistas = vistas;
             EscucharPuerto();
         }
         private void EscucharPuerto()
@@ -24,6 +23,10 @@ namespace BusinessLogic.Sniffer
             _cable.FrameRecibidoPuerto1 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
             _cable.FrameRecibidoPuerto2 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);          
 
+        }
+        public void AgregarVista(IVisualizacion vista)
+        {
+            _vistas.Add(vista);
         }
 
         private void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)

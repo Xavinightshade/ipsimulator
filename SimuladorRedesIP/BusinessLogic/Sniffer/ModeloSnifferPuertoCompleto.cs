@@ -11,12 +11,15 @@ namespace BusinessLogic.Sniffer
     public class ModeloSnifferPuertoCompleto
     {
                 private PuertoEthernetCompleto _puerto;
-        private List<IVisualizacion> _vistas;
-        public ModeloSnifferPuertoCompleto(PuertoEthernetCompleto puerto, List<IVisualizacion> vistas)
+        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
+        public ModeloSnifferPuertoCompleto(PuertoEthernetCompleto puerto)
         {
             _puerto = puerto;
-            _vistas = vistas;
             EscucharARP();
+        }
+        public void AgregarVista(IVisualizacion vista)
+        {
+            _vistas.Add(vista);
         }
         private void EscucharARP()
         {

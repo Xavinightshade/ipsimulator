@@ -38,7 +38,7 @@ namespace RedesIP
         public void SetEstacion(EstacionModelo estacion)
         {
             _estacion = estacion;
-            _snifferMaster = new ModeloSnifferMaster(_vistas, estacion);
+            _snifferMaster = new ModeloSnifferMaster(estacion);
         }
 
         private static List<IVisualizacion> _vistas = new List<IVisualizacion>();
@@ -119,7 +119,7 @@ namespace RedesIP
         }
         public void PeticionEnviarInformacionConexion(Guid idConexion)
         {
-            _snifferMaster.PeticionEnviarInformacionConexion(idConexion);
+            _snifferMaster.PeticionEnviarInformacionConexion(idConexion, GetCurrentClient());
         }
 
 
@@ -237,7 +237,7 @@ namespace RedesIP
 
         public void PeticionEnviarInformacionSwitch(Guid idSwitch)
         {
-            _snifferMaster.PeticionEnviarInformacionSwitch(idSwitch);
+            _snifferMaster.PeticionEnviarInformacionSwitch(idSwitch, GetCurrentClient());
         }
 
         #endregion
@@ -307,7 +307,7 @@ namespace RedesIP
 
         public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto)
         {
-            _snifferMaster.PeticionEnviarInformacionPuertoCompleto(idPuerto);
+            _snifferMaster.PeticionEnviarInformacionPuertoCompleto(idPuerto, GetCurrentClient());
         }
 
         #endregion
@@ -331,12 +331,12 @@ namespace RedesIP
 
         public void PeticionEnviarInformacionPC(Guid idPC)
         {
-            _snifferMaster.PeticionEnviarInformacionPC(idPC);
+            _snifferMaster.PeticionEnviarInformacionPC(idPC, GetCurrentClient());
         }
 
         public void PeticionEnviarInformacionRouter(Guid idRouter)
         {
-            _snifferMaster.PeticionEnviarInformacionRouter(idRouter);
+            _snifferMaster.PeticionEnviarInformacionRouter(idRouter, GetCurrentClient());
         }
 
 
