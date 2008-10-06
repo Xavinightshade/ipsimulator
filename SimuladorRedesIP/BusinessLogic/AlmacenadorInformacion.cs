@@ -22,10 +22,13 @@ namespace AccesoDatos
             get { return AccesoDatosBD.RutaBD; }
             set { AccesoDatosBD.RutaBD = value; }
         }
-        private static Equipos AgregarEquipo(Estaciones estacionBD, EquipoLogico equipo)
+        private static Equipos AgregarEquipo(Estaciones estacionBD, EquipoLogico equipo, bool generarNuevosIds)
         {
             Equipos equipoBD = new Equipos();
-            equipoBD.Id = equipo.Id;
+            if (generarNuevosIds)
+                equipoBD.Id = Guid.NewGuid();
+            else
+                equipoBD.Id = equipo.Id;
             equipoBD.Nombre = equipo.Nombre;
             equipoBD.TipoDeEquipo = (int)equipo.TipoDeEquipo;
             equipoBD.IdEstacion = estacionBD.Id;
@@ -34,10 +37,13 @@ namespace AccesoDatos
             estacionBD.AgregarEquipo(equipoBD);
             return equipoBD;
         }
-        private static void AgregarPuerto(Equipos equipoBD, PuertoEthernetLogicoBase puerto)
+        private static Guid AgregarPuerto(Equipos equipoBD, PuertoEthernetLogicoBase puerto, bool generarNuevosIds)
         {
             Puertos puertoBD = new Puertos();
-            puertoBD.Id = puerto.Id;
+            if (generarNuevosIds)
+                puertoBD.Id = Guid.NewGuid();
+            else
+                puertoBD.Id = puerto.Id;
             puertoBD.Nombre = puerto.Nombre;
             puertoBD.IdEquipo = equipoBD.Id;
             PuertoEthernetCompleto puertoCompletoLogico = puerto as PuertoEthernetCompleto;
@@ -52,6 +58,7 @@ namespace AccesoDatos
                 puertoCompletoBD.Puertos = puertoBD;
             }
             equipoBD.AgregarPuerto(puertoBD);
+            return puertoBD.Id;
         }
         public static void GuardarNuevaEstacion(EstacionModelo estacion, byte[] bitmapData)
         {
@@ -60,57 +67,81 @@ namespace AccesoDatos
             Estaciones estacionBD = LlenarEstacion(estacion, bitmapData);
             AccesoDatosBD.GuardarNuevaEstacion(estacionBD);
         }
-        public static void ActualizarEstacion(EstacionModelo estacion, byte[] bitmapData)
+        public static void GuardarComo(EstacionModelo estacion, byte[] bitmapData)
         {
             
-            Estaciones estacionBD = LlenarEstacion(estacion, bitmapData);
-            AccesoDatosBD.ActualizarEstacion(estacionBD);
+            Estaciones estacionBD = LlenarEstacion(estacion, bitmapData,true);
+            AccesoDatosBD.GuardarNuevaEstacion(estacionBD);
         }
 
         private static Estaciones LlenarEstacion(EstacionModelo estacion, byte[] bitmapData)
         {
+            return LlenarEstacion(estacion, bitmapData, false);
+        }
+        public static void ActualizarEstacion(EstacionModelo estacion, byte[] bitmapData)
+        {
+
+            Estaciones estacionBD = LlenarEstacion(estacion, bitmapData);
+            AccesoDatosBD.ActualizarEstacion(estacionBD);
+        }
+
+        private static Estaciones LlenarEstacion(EstacionModelo estacion, byte[] bitmapData, bool generarNuevosIds)
+        {
             Estaciones estacionBD = new Estaciones();
-            estacionBD.Id = estacion.Id;
+            if (generarNuevosIds)
+                estacionBD.Id = Guid.NewGuid();
+            else
+                estacionBD.Id = estacion.Id;
+
             estacionBD.Nombre = estacion.Nombre;
             estacionBD.Descripcion = estacion.Descripcion;
             estacionBD.Foto = new System.Data.Linq.Binary(bitmapData);
             estacionBD.Fecha = DateTime.Now;
+            Dictionary<Guid, Guid> puertosMappingAntiguoNuevo = new Dictionary<Guid, Guid>();
             foreach (KeyValuePair<Guid, ComputadorLogico> pc in estacion.Computadores)
             {
-                Equipos equipoBD = AgregarEquipo(estacionBD, pc.Value);
+                Equipos equipoBD = AgregarEquipo(estacionBD, pc.Value,generarNuevosIds);
                 Computadores pcBD = new Computadores();
-                pcBD.Id = pc.Value.Id;
+
+                pcBD.Id = equipoBD.Id;
                 pcBD.DefaultGateWay = pc.Value.DefaultGateWay;
                 equipoBD.Computadores = pcBD;
                 pcBD.Equipos = equipoBD;
-                AgregarPuerto(equipoBD, pc.Value.PuertoEthernet);
+                Guid idPuerto= AgregarPuerto(equipoBD, pc.Value.PuertoEthernet,generarNuevosIds);
+                puertosMappingAntiguoNuevo.Add(pc.Value.PuertoEthernet.Id,idPuerto);
             }
             foreach (KeyValuePair<Guid, SwitchLogico> swi in estacion.Switches)
             {
-                Equipos equipoBD = AgregarEquipo(estacionBD, swi.Value);
+                Equipos equipoBD = AgregarEquipo(estacionBD, swi.Value,generarNuevosIds);
 
                 foreach (PuertoEthernetLogicoBase puerto in swi.Value.PuertosEthernet)
                 {
-                    AgregarPuerto(equipoBD, puerto);
+                    Guid idPuerto= AgregarPuerto(equipoBD, puerto,generarNuevosIds);
+                    puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
                 }
             }
             foreach (KeyValuePair<Guid, RouterLogico> rou in estacion.Routers)
             {
-                Equipos equipoBD = AgregarEquipo(estacionBD, rou.Value);
+                Equipos equipoBD = AgregarEquipo(estacionBD, rou.Value,generarNuevosIds);
                 Routers routerBD = new Routers();
                 routerBD.Id = equipoBD.Id;
                 equipoBD.Routers = routerBD;
                 routerBD.Equipos = equipoBD;
                 foreach (PuertoEthernetLogicoBase puerto in rou.Value.PuertosEthernet)
                 {
-                    AgregarPuerto(equipoBD, puerto);
+                    Guid idPuerto = AgregarPuerto(equipoBD, puerto,generarNuevosIds);
+                    puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
+
                 }
                 foreach (RutaSOA entrada in rou.Value.TablaDeRutas.GetRutas())
                 {
                     Rutas ruta = new Rutas();
-                    ruta.Id = entrada.Id;
-                    ruta.IdPuerto = entrada.IdPuerto;
-                    ruta.IdRouter = rou.Value.Id;
+                    if (generarNuevosIds)
+                        ruta.Id = Guid.NewGuid();
+                    else
+                        ruta.Id = entrada.Id;
+                    ruta.IdPuerto = puertosMappingAntiguoNuevo[entrada.IdPuerto];
+                    ruta.IdRouter = equipoBD.Id;
                     ruta.NextHopIP = entrada.NextHopIP;
                     ruta.Mascara = entrada.Mask;
                     ruta.Red = IPAddressFactory.GetValor(entrada.Red);
@@ -124,9 +155,12 @@ namespace AccesoDatos
             {
                 CableDeRedLogico cableLogico = par.Value;
                 Cables cableBD = new Cables();
-                cableBD.Id = cableLogico.Id;
-                cableBD.IdPuerto1 = cableLogico.Puerto1.Id;
-                cableBD.IdPuerto2 = cableLogico.Puerto2.Id;
+                if (generarNuevosIds)
+                    cableBD.Id = Guid.NewGuid();
+                else
+                    cableBD.Id = cableLogico.Id;
+                cableBD.IdPuerto1 = puertosMappingAntiguoNuevo[cableLogico.Puerto1.Id];
+                cableBD.IdPuerto2 = puertosMappingAntiguoNuevo[cableLogico.Puerto2.Id];
                 estacionBD.AgregarCable(cableBD);
 
             }
@@ -136,15 +170,15 @@ namespace AccesoDatos
         {
             AccesoDatosBD.Delete(id);
         }
-        public static  List<RedBrowserModel> CargarEstaciones()
+        public static List<RedBrowserModel> CargarEstaciones()
         {
             List<RedBrowserModel> redes = new List<RedBrowserModel>();
             foreach (Estaciones estacionBD in AccesoDatosBD.GetAllEstaciones())
             {
                 if (estacionBD.Foto == null)
                     continue;
-                
-                redes.Add(new RedBrowserModel(estacionBD.Foto.ToArray(), estacionBD.Nombre,estacionBD.Id,estacionBD.Descripcion,estacionBD.Fecha));
+
+                redes.Add(new RedBrowserModel(estacionBD.Foto.ToArray(), estacionBD.Nombre, estacionBD.Id, estacionBD.Descripcion, estacionBD.Fecha));
             }
             return redes;
         }
@@ -176,9 +210,9 @@ namespace AccesoDatos
                     case TipoDeEquipo.Ninguno:
                         break;
                     case TipoDeEquipo.Computador:
-                        ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y,equipoBD.Nombre, equipoBD.Computadores.DefaultGateWay);
-                        PuertosCompletos puertoCompleto=equipoBD.Puertos[0].PuertosCompletos;
-                        pc.AgregarPuerto(puertoCompleto.Id,puertoCompleto.Puertos.Nombre,puertoCompleto.DireccionMAC,puertoCompleto.DireccionIP,puertoCompleto.Mascara);
+                        ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre, equipoBD.Computadores.DefaultGateWay);
+                        PuertosCompletos puertoCompleto = equipoBD.Puertos[0].PuertosCompletos;
+                        pc.AgregarPuerto(puertoCompleto.Id, puertoCompleto.Puertos.Nombre, puertoCompleto.DireccionMAC, puertoCompleto.DireccionIP, puertoCompleto.Mascara);
                         estacionLogica.CrearComputador(pc);
                         break;
                     case TipoDeEquipo.Switch:
@@ -191,8 +225,8 @@ namespace AccesoDatos
 
                         break;
                     case TipoDeEquipo.Router:
-                        RouterLogico rou = new RouterLogico(equipoBD.Id, equipoBD.X, equipoBD.Y,equipoBD.Nombre);
-                        
+                        RouterLogico rou = new RouterLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre);
+
                         foreach (Puertos puertoBD in equipoBD.PuertosBD)
                         {
                             PuertosCompletos puertoFull = puertoBD.PuertosCompletos;
@@ -201,7 +235,7 @@ namespace AccesoDatos
                         }
                         foreach (Rutas ruta in equipoBD.Routers.Rutas)
                         {
-                            rou.CrearNuevaRuta(ruta.Id, ruta.IdPuerto,IPAddressFactory.GetIpRep((uint)ruta.Red),ruta.Mascara,ruta.NextHopIP);
+                            rou.CrearNuevaRuta(ruta.Id, ruta.IdPuerto, IPAddressFactory.GetIpRep((uint)ruta.Red), ruta.Mascara, ruta.NextHopIP);
                         }
                         estacionLogica.CrearRouter(rou);
                         break;

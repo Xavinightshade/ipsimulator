@@ -102,6 +102,20 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap database_save {
+            get {
+                object obj = ResourceManager.GetObject("database_save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap database_save1 {
+            get {
+                object obj = ResourceManager.GetObject("database_save1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap database_search_16x16 {
             get {
                 object obj = ResourceManager.GetObject("database-search-16x16", resourceCulture);

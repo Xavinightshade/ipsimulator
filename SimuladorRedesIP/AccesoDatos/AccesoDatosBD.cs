@@ -133,6 +133,7 @@ namespace AccesoDatos
             }
             db.SubmitChanges();
         }
+
         public static void Delete(Guid id)
         {
              var query = from b in db.Estaciones where b.Id == id select b;

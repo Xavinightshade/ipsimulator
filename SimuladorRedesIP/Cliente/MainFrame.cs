@@ -326,6 +326,39 @@ namespace SimuladorCliente
             }
         }
 
+        private void _menuSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void _toolBarCargarBDdefault_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Bitmap imagenEstacion = _estacionView.GetImagen();
+
+            using (RedSaveForm redSaveForm = new RedSaveForm())
+            {
+                redSaveForm.Inicializar(_estacionModelo.Nombre, _estacionModelo.Descripcion, imagenEstacion);
+
+                if (redSaveForm.ShowDialog() == DialogResult.OK)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    imagenEstacion.Save(ms, ImageFormat.Jpeg);
+                    byte[] bitmapData = ms.ToArray();
+                    _estacionModelo.Nombre = redSaveForm.NombreRed;
+                    _estacionModelo.Descripcion = redSaveForm.DescripcionRed;
+
+                    AccesoDatos.AlmacenadorInformacion.GuardarComo(_estacionModelo, bitmapData);
+                }
+
+
+            }
+        }
+
 
 
 

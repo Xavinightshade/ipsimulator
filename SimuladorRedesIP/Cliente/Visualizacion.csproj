@@ -503,6 +503,8 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\database_save1.png" />
+    <None Include="Resources\database_save.png" />
     <None Include="Properties\DataSources\RedesIP.SOA.PuertoBaseSOA.datasource" />
     <None Include="Properties\DataSources\RedesIP.SOA.PuertoCompletoSOA.datasource" />
     <None Include="Properties\DataSources\RedesIP.Vistas.Equipos.Componentes.PuertoEthernetViewCompleto.datasource" />
