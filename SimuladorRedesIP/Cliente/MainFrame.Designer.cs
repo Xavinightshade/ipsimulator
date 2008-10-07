@@ -63,6 +63,7 @@ namespace SimuladorCliente
             this._menuNew = new System.Windows.Forms.ToolStripMenuItem();
             this._menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this._menuGuardar = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuGuardarComo = new System.Windows.Forms.ToolStripMenuItem();
             this._menuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this._menuSalir = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +71,7 @@ namespace SimuladorCliente
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._menuCargarDBDefault = new System.Windows.Forms.ToolStripMenuItem();
             this._menuCargarDBArchivo = new System.Windows.Forms.ToolStripMenuItem();
+            this._menuGuardarBD = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._menuConectarServidor = new System.Windows.Forms.ToolStripMenuItem();
             this._menuDesconectarServidor = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,8 +81,6 @@ namespace SimuladorCliente
             this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._menuStrip = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStrip.SuspendLayout();
             this._menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -177,7 +177,6 @@ namespace SimuladorCliente
             this._toolBarCargarBDdefault.Name = "_toolBarCargarBDdefault";
             this._toolBarCargarBDdefault.Size = new System.Drawing.Size(249, 22);
             this._toolBarCargarBDdefault.Text = "Predeterminada";
-            this._toolBarCargarBDdefault.Click += new System.EventHandler(this._toolBarCargarBDdefault_Click);
             // 
             // _toolBarCargarBDarchivo
             // 
@@ -338,7 +337,7 @@ namespace SimuladorCliente
             // _notifyIcon
             // 
             this._notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("_notifyIcon.Icon")));
-            this._notifyIcon.Text = "_notifyIcon";
+            this._notifyIcon.Text = "Acceso Remoto";
             // 
             // toolStripMenuItem1
             // 
@@ -346,7 +345,7 @@ namespace SimuladorCliente
             this._menuNew,
             this._menuOpen,
             this._menuGuardar,
-            this.toolStripMenuItem3,
+            this._menuGuardarComo,
             this._menuDelete,
             this.toolStripSeparator8,
             this._menuSalir,
@@ -359,7 +358,7 @@ namespace SimuladorCliente
             // 
             this._menuNew.Image = global::SimuladorCliente.Properties.Resources.new_16x16;
             this._menuNew.Name = "_menuNew";
-            this._menuNew.Size = new System.Drawing.Size(173, 22);
+            this._menuNew.Size = new System.Drawing.Size(215, 22);
             this._menuNew.Text = "Nueva Topologia";
             this._menuNew.Click += new System.EventHandler(this.ToolBarNewClick);
             // 
@@ -367,7 +366,7 @@ namespace SimuladorCliente
             // 
             this._menuOpen.Image = global::SimuladorCliente.Properties.Resources.open_16x16;
             this._menuOpen.Name = "_menuOpen";
-            this._menuOpen.Size = new System.Drawing.Size(173, 22);
+            this._menuOpen.Size = new System.Drawing.Size(215, 22);
             this._menuOpen.Text = "Abrir Topologia";
             this._menuOpen.Click += new System.EventHandler(this.ToolBarOpenClick);
             // 
@@ -375,41 +374,48 @@ namespace SimuladorCliente
             // 
             this._menuGuardar.Image = global::SimuladorCliente.Properties.Resources.save_16x16;
             this._menuGuardar.Name = "_menuGuardar";
-            this._menuGuardar.Size = new System.Drawing.Size(173, 22);
+            this._menuGuardar.Size = new System.Drawing.Size(215, 22);
             this._menuGuardar.Text = "Guardar Topologia";
             this._menuGuardar.Click += new System.EventHandler(this.ToolBarSaveClick);
+            // 
+            // _menuGuardarComo
+            // 
+            this._menuGuardarComo.Name = "_menuGuardarComo";
+            this._menuGuardarComo.Size = new System.Drawing.Size(215, 22);
+            this._menuGuardarComo.Text = "Guardar Topología Como...";
+            this._menuGuardarComo.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // _menuDelete
             // 
             this._menuDelete.Image = global::SimuladorCliente.Properties.Resources.delete_16x16;
             this._menuDelete.Name = "_menuDelete";
-            this._menuDelete.Size = new System.Drawing.Size(173, 22);
+            this._menuDelete.Size = new System.Drawing.Size(215, 22);
             this._menuDelete.Text = "Eliminar Topologia";
             this._menuDelete.Click += new System.EventHandler(this.ToolBarDeleteClick);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(212, 6);
             // 
             // _menuSalir
             // 
             this._menuSalir.Name = "_menuSalir";
-            this._menuSalir.Size = new System.Drawing.Size(173, 22);
+            this._menuSalir.Size = new System.Drawing.Size(215, 22);
             this._menuSalir.Text = "Salir";
             this._menuSalir.Click += new System.EventHandler(this._menuSalir_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(170, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(212, 6);
             // 
             // herramientasToolStripMenuItem
             // 
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._menuCargarDBDefault,
             this._menuCargarDBArchivo,
-            this.toolStripMenuItem2,
+            this._menuGuardarBD,
             this.toolStripSeparator1,
             this._menuConectarServidor,
             this._menuDesconectarServidor,
@@ -433,6 +439,14 @@ namespace SimuladorCliente
             this._menuCargarDBArchivo.Size = new System.Drawing.Size(269, 22);
             this._menuCargarDBArchivo.Text = " Cargar Base de Datos Desde Archivo";
             // 
+            // _menuGuardarBD
+            // 
+            this._menuGuardarBD.Image = global::SimuladorCliente.Properties.Resources.database_save;
+            this._menuGuardarBD.Name = "_menuGuardarBD";
+            this._menuGuardarBD.Size = new System.Drawing.Size(269, 22);
+            this._menuGuardarBD.Text = "Guardar Archivo de base de datos";
+            this._menuGuardarBD.Click += new System.EventHandler(this.ToolBarDBSaveClick);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -444,6 +458,7 @@ namespace SimuladorCliente
             this._menuConectarServidor.Name = "_menuConectarServidor";
             this._menuConectarServidor.Size = new System.Drawing.Size(269, 22);
             this._menuConectarServidor.Text = "Conectar a servidor";
+            this._menuConectarServidor.Click += new System.EventHandler(this.ToolBarConectarClick);
             // 
             // _menuDesconectarServidor
             // 
@@ -458,6 +473,7 @@ namespace SimuladorCliente
             this._menuConfigurarServidor.Name = "_menuConfigurarServidor";
             this._menuConfigurarServidor.Size = new System.Drawing.Size(269, 22);
             this._menuConfigurarServidor.Text = "Inicializar servidor";
+            this._menuConfigurarServidor.Click += new System.EventHandler(this.ToolBarConfigurarServidorClick);
             // 
             // toolStripSeparator9
             // 
@@ -496,21 +512,6 @@ namespace SimuladorCliente
             this._menuStrip.Size = new System.Drawing.Size(893, 24);
             this._menuStrip.TabIndex = 16;
             this._menuStrip.Text = "menuStrip1";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Image = global::SimuladorCliente.Properties.Resources.database_save;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(269, 22);
-            this.toolStripMenuItem2.Text = "Guardar Archivo de base de datos";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.ToolBarDBSaveClick);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(215, 22);
-            this.toolStripMenuItem3.Text = "Guardar Topología Como...";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // MainFrame
             // 
@@ -589,8 +590,8 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripMenuItem documentaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaToolStripMenuItem;
         private System.Windows.Forms.MenuStrip _menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem _menuGuardarBD;
+        private System.Windows.Forms.ToolStripMenuItem _menuGuardarComo;
 
 
 

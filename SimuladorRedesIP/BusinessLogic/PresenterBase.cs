@@ -31,10 +31,7 @@ namespace RedesIP
             _vistas.Add(vista);
         }
 
-        private static void RealizarOperacionEnVista(IVisualizacion vista)
-        {
 
-        }
         public void SetEstacion(EstacionModelo estacion)
         {
             _estacion = estacion;
@@ -42,6 +39,11 @@ namespace RedesIP
         }
 
         private static List<IVisualizacion> _vistas = new List<IVisualizacion>();
+
+        protected static List<IVisualizacion> Vistas
+        {
+            get { return PresenterBase._vistas; }
+        }
 
 
 
@@ -52,7 +54,6 @@ namespace RedesIP
             _estacion.MoverPosicionElemento(idEquipo, x, y);
             foreach (IVisualizacion cliente in _vistas)
             {
-                RealizarOperacionEnVista(cliente);
                 cliente.MoverEquipo(idEquipo, x, y);
             }
 
@@ -115,6 +116,7 @@ namespace RedesIP
         {
             IVisualizacion cliente = GetCurrentClient();
             _vistas.Remove(cliente);
+            _snifferMaster.DesconectarCliente(GetCurrentClient());
 
         }
         public void PeticionEnviarInformacionConexion(Guid idConexion)

@@ -17,6 +17,15 @@ namespace RedesIP
         protected override IVisualizacion GetCurrentClient()
         {
             return OperationContext.Current.GetCallbackChannel<IVisualizacion>();
+           
+        }
+        public void DesconectarClientes()
+        {
+            foreach (IVisualizacion cliente in PresenterBase.Vistas)
+            {
+                cliente.DesconectarDeServidor();
+            }
+           
         }
 
 

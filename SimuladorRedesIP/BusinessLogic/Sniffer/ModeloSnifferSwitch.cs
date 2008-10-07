@@ -19,6 +19,11 @@ namespace BusinessLogic.Sniffer
             _switch = swi;
             EscucharTablasDeFiltro();
         }
+        public void EliminarVista(IVisualizacion vista)
+        {
+            if (_vistas.Contains(vista))
+                _vistas.Remove(vista);
+        }
         private void EscucharTablasDeFiltro()
         {
             _switch.SwitchTable.CambioDeTablaDeFiltro += new EventHandler<TiempoEventArgs>(OnCambioDeTabla);

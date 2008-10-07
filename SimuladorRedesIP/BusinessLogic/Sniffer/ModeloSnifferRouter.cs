@@ -24,6 +24,11 @@ namespace BusinessLogic.Sniffer
         {
             _vistas.Add(vista);
         }
+        public void EliminarVista(IVisualizacion vista)
+        {
+            if (_vistas.Contains(vista))
+                _vistas.Remove(vista);
+        }
         private void EscucharEventos()
         {
             foreach (KeyValuePair<PuertoEthernetCompleto, CapaRedRouter> item in _router.PuertoEthernetCapaRed)

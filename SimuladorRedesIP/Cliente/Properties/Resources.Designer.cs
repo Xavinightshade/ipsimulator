@@ -151,6 +151,13 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Icon Internet_Connect {
+            get {
+                object obj = ResourceManager.GetObject("Internet_Connect", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap mouse {
             get {
                 object obj = ResourceManager.GetObject("mouse", resourceCulture);

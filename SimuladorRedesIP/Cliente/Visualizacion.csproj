@@ -91,7 +91,6 @@
     </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -503,6 +502,7 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Internet-Connect.ico" />
     <None Include="Resources\database_save1.png" />
     <None Include="Resources\database_save.png" />
     <None Include="Properties\DataSources\RedesIP.SOA.PuertoBaseSOA.datasource" />
@@ -528,8 +528,6 @@
     <None Include="Resources\save-16x16.png" />
     <None Include="Resources\new-16x16.png" />
     <None Include="Resources\open-16x16.png" />
-    <None Include="Resources\open.ico" />
-    <None Include="Resources\Stop.ico" />
     <None Include="Resources\Stop.png" />
     <None Include="Resources\Bin %28with item%29.png" />
     <None Include="Resources\AlarmaLiquidacion.gif" />

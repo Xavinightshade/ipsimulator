@@ -22,5 +22,7 @@ namespace RedesIP.SOA
         void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion);
         [OperationContract(IsOneWay = true)]
         void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion);
+        [OperationContract(IsOneWay = true)]
+        void DesconectarDeServidor();
     }
 }

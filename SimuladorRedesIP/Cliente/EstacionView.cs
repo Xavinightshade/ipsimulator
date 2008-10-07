@@ -243,5 +243,15 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+        #region IVisualizacion Members
+
+
+        public void DesconectarDeServidor()
+        {
+            _server.DesconectarCliente();
+        }
+
+        #endregion
     }
 }

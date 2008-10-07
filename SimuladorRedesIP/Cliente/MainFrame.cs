@@ -46,7 +46,7 @@ namespace SimuladorCliente
             _estacionModelo = new EstacionModelo(Guid.NewGuid());
             _esEstacionNueva = true;
             _toolBarDelete.Enabled = false;
-
+            _menuDelete.Enabled = true;
             PresenterLocal presenterLocal = new PresenterLocal(_estacionView);
             presenterLocal.SetEstacion(_estacionModelo);
             _estacionView.Inicializar(presenterLocal, _dockMain);
@@ -163,6 +163,28 @@ namespace SimuladorCliente
                 {
                     ConectarSOA(formularioConexion.IPAddress.ToString(), formularioConexion.Puerto.ToString());
                     _servicioConectado = true;
+                    _toolBarCargarBDarchivo.Enabled = false;
+                    _toolBarCargarBDdefault.Enabled = false;
+                    _toolBarConectar.Enabled = false;
+                    _toolBarDelete.Enabled = false;
+                    _toolBarNew.Enabled = false;
+                    _toolBarOpen.Enabled = false;
+                    _toolBarConfigurarServidor.Enabled = false;
+                    _toolBarSave.Enabled = false;
+                    _menuCargarDBArchivo.Enabled = false;
+                    _menuCargarDBDefault.Enabled = false;
+                    _menuConectarServidor.Enabled = false;
+                    _menuConfigurarServidor.Enabled = false;
+                    _menuDelete.Enabled = false;
+                    _menuDesconectarServidor.Enabled = true;
+                    _menuGuardar.Enabled = false;
+                    _menuNew.Enabled = false;
+                    _menuGuardarComo.Enabled = false;
+                    _toolBarGuardarBD.Enabled = false;
+                    _menuOpen.Enabled = false;
+                    _toolBarDesonectar.Enabled = true;
+                    _menuGuardarBD.Enabled = false;
+
                 }
             }
 
@@ -181,17 +203,47 @@ namespace SimuladorCliente
 
 
                     InicializarServicio(presenterSOA, modeloConexion.Puerto, modeloConexion.DireccionIp);
-
-                    _notifyIcon.Visible = true;
-                    _notifyIcon.ShowBalloonTip(5000, "Acceso Remoto", "Servicio Iniciado." + Environment.NewLine +
+                    string texto = "Servicio Iniciado." + Environment.NewLine +
                         "Dirección IP: " + modeloConexion.DireccionIp + Environment.NewLine +
-                    "Puerto: " + modeloConexion.Puerto,
+                    "Puerto: " + modeloConexion.Puerto;
+                    _notifyIcon.Visible = true;
+                    _notifyIcon.ShowBalloonTip(5000, "Acceso Remoto", texto,
                     ToolTipIcon.Info);
-                    this.Text = "Servidor";
+                    _notifyIcon.ContextMenu = new ContextMenu();
+                    MenuItem menuDesconectar = new MenuItem("Cerrar Servicio");
+                    _notifyIcon.ContextMenu.MenuItems.Add(menuDesconectar);
+                    menuDesconectar.Click += new EventHandler(menuDesconectar_Click);
+                    _notifyIcon.Text = texto;
+                    _toolBarCargarBDarchivo.Enabled = false;
+                    _toolBarCargarBDdefault.Enabled = false;
+                    _toolBarConectar.Enabled = false;
+                    _toolBarDelete.Enabled = false;
+                    _toolBarNew.Enabled = false;
+                    _toolBarOpen.Enabled = false;
+                    _toolBarConfigurarServidor.Enabled = false;
+                    _toolBarSave.Enabled = false;
+                    _menuCargarDBArchivo.Enabled = false;
+                    _menuCargarDBDefault.Enabled = false;
+                    _menuConectarServidor.Enabled = false;
+                    _menuConfigurarServidor.Enabled = false;
+                    _menuDelete.Enabled = false;
+                    _menuDesconectarServidor.Enabled = false;
+                    _menuGuardar.Enabled = false;
+                    _menuNew.Enabled = false;
+                    _menuGuardarComo.Enabled = false;
+                    _toolBarGuardarBD.Enabled = false;
+                    _menuOpen.Enabled = false;
+                    _toolBarDesonectar.Enabled = false;
+                    _menuGuardarBD.Enabled = false;
                 }
             }
 
 
+        }
+
+        void menuDesconectar_Click(object sender, EventArgs e)
+        {
+            _notifyIcon.Visible = false;
         }
 
         private static void InicializarServicio(IModeloSOA singletonCalculator, string puerto, string direccionIP)
@@ -247,6 +299,7 @@ namespace SimuladorCliente
             presenter.SetEstacion(_estacionModelo);
             _esEstacionNueva = false;
             _toolBarDelete.Enabled = true;
+            _menuDelete.Enabled = true;
             _estacionView.Inicializar(presenter, _dockMain);
             presenter.ConectarCliente();
         }
@@ -331,10 +384,7 @@ namespace SimuladorCliente
             this.Close();
         }
 
-        private void _toolBarCargarBDdefault_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
@@ -358,6 +408,7 @@ namespace SimuladorCliente
 
             }
         }
+
 
 
 

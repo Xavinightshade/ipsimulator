@@ -21,6 +21,11 @@ namespace BusinessLogic.Sniffer
         {
             _vistas.Add(vista);
         }
+        public void EliminarVista(IVisualizacion vista)
+        {
+            if (_vistas.Contains(vista))
+                _vistas.Remove(vista);
+        }
         private void EscucharARP()
         {
             _puerto.Arp.CambioDeTablaArp += new EventHandler<TiempoEventArgs>(Arp_CambioDeTablaArp);

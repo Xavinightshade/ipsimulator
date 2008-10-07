@@ -23,6 +23,30 @@ namespace BusinessLogic.Sniffer
         {
             _estacion = estacion;
         }
+        public void DesconectarCliente(IVisualizacion cliente)
+        {
+            foreach (KeyValuePair<Guid,ModeloSnifferPC> item in _sniffersPc)
+            {
+                item.Value.EliminarVista(cliente);
+            }
+            foreach (KeyValuePair<Guid, ModeloSnifferSwitch> item in _sniffersSwi)
+            {
+                item.Value.EliminarVista(cliente);
+            }
+            foreach (KeyValuePair<Guid, ModeloSnifferRouter> item in _sniffersRou)
+            {
+                item.Value.EliminarVista(cliente);
+            }
+            foreach (KeyValuePair<Guid, ModeloCableSniffer> item in _sniffersCable)
+            {
+                item.Value.EliminarVista(cliente);
+            }
+            foreach (KeyValuePair<Guid, ModeloSnifferPuertoCompleto> item in _sniffersPuerto)
+            {
+                item.Value.EliminarVista(cliente);
+            }
+
+        }
 
         public void PeticionEnviarInformacionConexion(Guid idConexion, IVisualizacion cliente)
         {
