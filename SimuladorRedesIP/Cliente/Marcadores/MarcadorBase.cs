@@ -63,6 +63,10 @@ namespace SimuladorCliente.Marcadores
             _mainView = mainView;
             _color = _colores[r.Next(_colores.Count)];
 		}
+        public virtual void Dispose()
+        {
+            _mainView = null;
+        }
 
 	
 	}

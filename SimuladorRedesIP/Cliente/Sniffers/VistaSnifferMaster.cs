@@ -35,7 +35,6 @@ namespace SimuladorCliente.Sniffers
 
 
 
-       #region IModeloSniffer Members
 
        public void IniciarSnifferCable(MarcadorCable marcador,DockPanel dockMain)
        {
@@ -47,7 +46,7 @@ namespace SimuladorCliente.Sniffers
 
        }
 
-       #endregion
+
 
        internal void EnviarCambioDeTablaDeSwitch(MensajeSwitchTableSOA mensajeTablaSwitch)
        {
@@ -106,6 +105,15 @@ namespace SimuladorCliente.Sniffers
        internal void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion)
        {
            _routerSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
+       }
+
+       internal void DeleteSnifferCable(Guid idCable)
+       {
+
+           FormaSnifferCable formSnifferCable = _cableSniffers[idCable];
+           formSnifferCable.CerrarSniffer();
+           _cableSniffers.Remove(idCable);
+
        }
     }
 }

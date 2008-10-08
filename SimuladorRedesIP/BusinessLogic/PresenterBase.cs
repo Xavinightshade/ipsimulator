@@ -232,9 +232,9 @@ namespace RedesIP
             }
         }
 
-        #endregion
 
-        #region IModeloSniffer Members
+
+
 
 
         public void PeticionEnviarInformacionSwitch(Guid idSwitch)
@@ -242,9 +242,9 @@ namespace RedesIP
             _snifferMaster.PeticionEnviarInformacionSwitch(idSwitch, GetCurrentClient());
         }
 
-        #endregion
 
-        #region IModeloEstacion Members
+
+
 
 
         public void PeticionEstablecerDatosComputador(ComputadorSOA pcSOA)
@@ -256,9 +256,9 @@ namespace RedesIP
             }
         }
 
-        #endregion
 
-        #region IModeloEstacion Members
+
+
 
 
         public List<RutaSOA> TraerRutas(Guid idRouter)
@@ -267,9 +267,9 @@ namespace RedesIP
             return rutasSOA;
         }
 
-        #endregion
 
-        #region IModeloEstacion Members
+
+
 
 
         public void ActualizarRutas(Guid IdRouter, List<RutaSOA> rutas)
@@ -277,9 +277,9 @@ namespace RedesIP
             _estacion.Routers[IdRouter].ActualizarRutas(rutas);
         }
 
-        #endregion
 
-        #region IModeloEstacion Members
+
+
 
 
         public void PeticionEstablecerDatosRouter(RouterSOA router)
@@ -291,9 +291,9 @@ namespace RedesIP
             }
         }
 
-        #endregion
 
-        #region IModeloSOA Members
+
+
 
 
         public List<RutaSOA> TraerRutasRouter(Guid idRouter)
@@ -302,9 +302,8 @@ namespace RedesIP
             return rutasSOA;
         }
 
-        #endregion
 
-        #region IModeloSniffer Members
+
 
 
         public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto)
@@ -342,6 +341,19 @@ namespace RedesIP
         }
 
 
+
+        #region IModeloSniffer Members
+
+
+        public void PeticionPararDeEnviarInformacionConexion(Guid idConexion)
+        {
+            _snifferMaster.PeticionPararEnviarInformacionConexion(idConexion, GetCurrentClient());
+            
+
+
+        }
+
+        #endregion
     }
 
 

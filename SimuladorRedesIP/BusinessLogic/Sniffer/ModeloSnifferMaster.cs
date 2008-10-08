@@ -115,5 +115,16 @@ namespace BusinessLogic.Sniffer
         }
 
 
+
+        internal void PeticionPararEnviarInformacionConexion(Guid idConexion, IVisualizacion cliente)
+        {
+            ModeloCableSniffer snifferCable=_sniffersCable[idConexion];
+            snifferCable.EliminarVista(cliente);
+            if (snifferCable.NumeroDeClientes == 0)
+            {
+                snifferCable.Dispose();
+                _sniffersCable.Remove(idConexion);
+            }
+        }
     }
 }

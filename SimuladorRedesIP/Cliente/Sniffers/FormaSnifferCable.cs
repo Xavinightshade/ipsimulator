@@ -134,6 +134,25 @@ namespace SimuladorCliente
         }
 
 
+        private delegate void CloseDelegate();
+
+        internal void CerrarSniffer()
+        {
+            _marcador = null;
+            _mensajes = null;
+            _vista = null;
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new CloseDelegate(CerrarSniffer));
+                return;
+            }
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _marcador.EliminarSniffer();
+        }
     }
 
 }

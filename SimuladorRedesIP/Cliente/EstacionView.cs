@@ -16,6 +16,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using System.Drawing.Imaging;
 using SOA.Componentes;
 using SOA.Datos;
+using SimuladorCliente.Marcadores;
 
 namespace RedesIP.Vistas
 {
@@ -250,6 +251,27 @@ namespace RedesIP.Vistas
         public void DesconectarDeServidor()
         {
             _server.DesconectarCliente();
+        }
+
+        #endregion
+
+        #region ICallBackSniffer Members
+
+
+        public void EliminarSnifferCable(Guid idCable)
+        {
+            MarcadorBase marcadorParaBorrar = null;
+            foreach (MarcadorBase marcador in _marcadores)
+            {
+                if (marcador.Id == idCable)
+                {
+                    marcadorParaBorrar = marcador;
+                }
+            }
+            _marcadores.Remove(marcadorParaBorrar);
+            marcadorParaBorrar.Dispose();
+            _snifferMaster.DeleteSnifferCable(idCable);
+            Invalidate();
         }
 
         #endregion

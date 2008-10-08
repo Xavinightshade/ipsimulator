@@ -27,8 +27,6 @@ namespace RedesIP.SOA
         void EstablecerDatosComputador(ComputadorSOA pcSOA);
         [OperationContract(IsOneWay = true)]
 		void ActualizarEstacion(EstacionSOA estacion);
-        [OperationContract(IsOneWay = true)]
-        void EnviarCambioDeTablaDeSwitch(MensajeSwitchTableSOA mensajeTablaSwitch);
 
 
 
