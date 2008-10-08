@@ -69,6 +69,17 @@ namespace BusinessLogic.Sniffer
 
             }
         }
-       
+        public override void Dispose()
+        {
+            base.Dispose();
+            _pc = null;
+        }
+        public override void EliminarVista(IVisualizacion vista)
+        {
+            base.EliminarVista(vista);
+            vista.EliminarSnifferPC(_pc.Id);
+        }
+       
+
     }
 }

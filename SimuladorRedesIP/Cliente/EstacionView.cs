@@ -257,8 +257,7 @@ namespace RedesIP.Vistas
 
         #region ICallBackSniffer Members
 
-
-        public void EliminarSnifferCable(Guid idCable)
+        private void EliminarSniffer(Guid idCable)
         {
             MarcadorBase marcadorParaBorrar = null;
             foreach (MarcadorBase marcador in _marcadores)
@@ -270,33 +269,43 @@ namespace RedesIP.Vistas
             }
             _marcadores.Remove(marcadorParaBorrar);
             marcadorParaBorrar.Dispose();
+        }
+        public void EliminarSnifferCable(Guid idCable)
+        {
+            EliminarSniffer(idCable);
             _snifferMaster.DeleteSnifferCable(idCable);
             Invalidate();
         }
 
-        #endregion
 
-        #region ICallBackSniffer Members
 
 
         public void EliminarSnifferPC(Guid idPc)
         {
-            throw new NotImplementedException();
+            EliminarSniffer(idPc);
+            _snifferMaster.DeleteSnifferPC(idPc);
+            Invalidate();
         }
 
         public void EliminarSnifferSwitch(Guid idSwitch)
         {
-            throw new NotImplementedException();
+            EliminarSniffer(idSwitch);
+            _snifferMaster.DeleteSnifferSwitch(idSwitch);
+            Invalidate();
         }
 
         public void EliminarSnifferRouter(Guid idRouter)
         {
-            throw new NotImplementedException();
+            EliminarSniffer(idRouter);
+            _snifferMaster.DeleteSnifferRouter(idRouter);
+            Invalidate();
         }
 
         public void EliminarSnifferPuerto(Guid idPuerto)
         {
-            throw new NotImplementedException();
+            EliminarSniffer(idPuerto);
+            _snifferMaster.DeleteSnifferPuerto(idPuerto);
+            Invalidate();
         }
 
         #endregion

@@ -9,7 +9,7 @@ using RedesIP.Vistas;
 
 namespace SimuladorCliente.Marcadores
 {
-    public class MarcadorEquipo:MarcadorBase
+    public abstract class MarcadorEquipo:MarcadorBase
     {
         
 
@@ -43,5 +43,7 @@ namespace SimuladorCliente.Marcadores
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

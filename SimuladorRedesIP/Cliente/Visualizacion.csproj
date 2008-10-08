@@ -305,6 +305,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sniffers\FormaSnifferBase.resx">
+      <DependentUpon>FormaSnifferBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sniffers\FormaSnifferRouter.resx">
       <DependentUpon>FormaSnifferRouter.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,18 +344,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Sniffers\FormaSnifferRouter.cs">
+    <Compile Include="Sniffers\FormaSnifferBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sniffers\FormaSnifferRouter.Designer.cs">
-      <DependentUpon>FormaSnifferRouter.cs</DependentUpon>
+    <Compile Include="Sniffers\FormaSnifferBase.Designer.cs">
+      <DependentUpon>FormaSnifferBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sniffers\FormaSnifferRouter.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sniffers\DoubleClickEventSnifferPC.cs" />
     <Compile Include="Sniffers\FormaSnifferPC.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sniffers\FormaSnifferPC.Designer.cs">
-      <DependentUpon>FormaSnifferPC.cs</DependentUpon>
     </Compile>
     <Compile Include="Sniffers\DoubleClickEventPuertoCompleto.cs" />
     <Compile Include="Sniffers\DoubleClickEventSnifferSwitch.cs" />
@@ -359,20 +363,11 @@
     <Compile Include="Sniffers\FormaSnifferPuerto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sniffers\FormaSnifferPuerto.Designer.cs">
-      <DependentUpon>FormaSnifferPuerto.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sniffers\FormaSnifferSwitch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sniffers\FormaSnifferSwitch.Designer.cs">
-      <DependentUpon>FormaSnifferSwitch.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sniffers\FormaSnifferCable.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sniffers\FormaSnifferCable.Designer.cs">
-      <DependentUpon>FormaSnifferCable.cs</DependentUpon>
     </Compile>
     <Compile Include="Sniffers\VistaSnifferMaster.cs" />
     <Compile Include="Utilidades\CellBackColorAlternate.cs" />

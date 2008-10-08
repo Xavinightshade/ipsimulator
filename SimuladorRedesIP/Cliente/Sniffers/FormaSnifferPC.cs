@@ -17,60 +17,47 @@ using SimuladorCliente.Marcadores;
 
 namespace SimuladorCliente
 {
-    public partial class FormaSnifferPC : DockContent
+    public partial class FormaSnifferPC : FormaSnifferBase
     {
-        MarcadorPC _marcador;
-        public FormaSnifferPC(MarcadorPC marcador, Color color)
+        public FormaSnifferPC(MarcadorPC marcador)
+            :base(marcador)
         {
-            _marcador = marcador;
-            InitializeComponent();
-            ConfigurarGrilla();
-            marcadorImagen1.Color = marcador.Color;
-            this.TabText = _marcador.Nombre;
-            this.textBox1.Text = _marcador.Nombre;
-            this.textBox1.TextChanged += new EventHandler(textBox1_TextChanged);
         }
 
 
 
-        void textBox1_TextChanged(object sender, EventArgs e)
+
+        protected override  void ConfigurarGrilla()
         {
-            TabText = textBox1.Text;
-            _marcador.Nombre = textBox1.Text;
+            Grid.Rows.Clear();
+            Grid.Redim(1, 3);
 
-        }
-        private void ConfigurarGrilla()
-        {
-            grid.Rows.Clear();
-            grid.Redim(1, 3);
+            Grid.Columns[0].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
+            Grid.Columns[1].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
+            Grid.Columns[2].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
 
-            grid.Columns[0].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
-            grid.Columns[1].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize;
-            grid.Columns[2].AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize | SourceGrid.AutoSizeMode.EnableStretch;
+            Grid.FixedRows = 1;
 
-            grid.FixedRows = 1;
-
-            grid[0, 0] = new SourceGrid.Cells.ColumnHeader("CONSECUTIVO");
-            grid[0, 1] = new SourceGrid.Cells.ColumnHeader("HORA RECEPCION");
-            grid[0, 2] = new SourceGrid.Cells.ColumnHeader("DESCRIPCION");
+            Grid[0, 0] = new SourceGrid.Cells.ColumnHeader("CONSECUTIVO");
+            Grid[0, 1] = new SourceGrid.Cells.ColumnHeader("HORA RECEPCION");
+            Grid[0, 2] = new SourceGrid.Cells.ColumnHeader("DESCRIPCION");
 
 
-            grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
-            grid.Columns.AutoSize(true);
+            Grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
+            Grid.Columns.AutoSize(true);
         }
 
 
-        private IView _vista = new CellBackColorAlternate(Color.LightSkyBlue, Color.WhiteSmoke);
         private void LlenarGrilla(List<EncapsulacionSOA> mensajes)
         {
             int c = 0;
             ConfigurarGrilla();
             foreach (EncapsulacionSOA mensaje in mensajes)
             {
-                grid.Rows.Insert(1);
-                grid.Rows[1].Tag = mensaje;
-                grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
-                grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.Fecha.ToString());
+                Grid.Rows.Insert(1);
+                Grid.Rows[1].Tag = mensaje;
+                Grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
+                Grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.Fecha.ToString());
                 string mostrar = String.Empty;
                 if (mensaje.EsEncapsulacion)
                 {
@@ -80,18 +67,18 @@ namespace SimuladorCliente
                 {
                     mostrar += "Desencap";
                 }
-                  grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
+                  Grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
 
-                  grid[1, 0].AddController(new DoubleClickEventSnifferPC());
-                  grid[1, 1].AddController(new DoubleClickEventSnifferPC());
-                  grid[1, 2].AddController(new DoubleClickEventSnifferPC());
-                grid[1, 0].View = _vista;
-                grid[1, 1].View = _vista;
-                grid[1, 2].View = _vista;
+                  Grid[1, 0].AddController(new DoubleClickEventSnifferPC());
+                  Grid[1, 1].AddController(new DoubleClickEventSnifferPC());
+                  Grid[1, 2].AddController(new DoubleClickEventSnifferPC());
+                Grid[1, 0].View = Vista;
+                Grid[1, 1].View = Vista;
+                Grid[1, 2].View = Vista;
 
 
             }
-            grid.Columns.AutoSizeView();
+            Grid.Columns.AutoSizeView();
 
         }
 
@@ -112,17 +99,7 @@ namespace SimuladorCliente
             LlenarGrilla(_mensajes);
 
         }
-        private void marcadorImagen1_DoubleClick(object sender, EventArgs e)
-        {
-            using (ColorDialog colorDialog = new ColorDialog())
-            {
-                if (colorDialog.ShowDialog() == DialogResult.OK)
-                {
-                    _marcador.Color = colorDialog.Color;
-                    marcadorImagen1.Color = _marcador.Color;
-                }
-            }
-        }
+
 
     }
 

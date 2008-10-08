@@ -68,7 +68,10 @@ namespace SimuladorCliente.Marcadores
             _mainView = null;
         }
 
-	
-	}
+
+
+        public abstract void EliminarMarcador();
+
+    }
 
 }

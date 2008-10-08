@@ -18,5 +18,10 @@ namespace SimuladorCliente.Marcadores
         {
             get { return base.Equipo as ComputadorView; }
         }
+        public override void EliminarMarcador()
+        {
+            base.MainView.Contrato.PeticionPararDeEnviarInformacionPC(PC.Id);
+
+        }
     }
 }

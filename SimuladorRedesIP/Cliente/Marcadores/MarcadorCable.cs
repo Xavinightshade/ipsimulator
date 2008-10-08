@@ -44,15 +44,18 @@ namespace SimuladorCliente.Marcadores
             throw new NotImplementedException();
         }
 
-        internal void EliminarSniffer()
-        {
-            base.MainView.Contrato.PeticionPararDeEnviarInformacionConexion(_conexion.Id);
-        }
+
 
         public  override  void Dispose()
         {
             base.Dispose();
             _conexion = null;
+        }
+
+        public override void EliminarMarcador()
+        {
+            base.MainView.Contrato.PeticionPararDeEnviarInformacionConexion(_conexion.Id);
+
         }
     }
 }

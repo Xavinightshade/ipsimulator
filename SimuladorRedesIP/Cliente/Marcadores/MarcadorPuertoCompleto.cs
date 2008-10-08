@@ -40,5 +40,11 @@ namespace SimuladorCliente.Marcadores
         {
             throw new NotImplementedException();
         }
+
+        public override void EliminarMarcador()
+        {
+            base.MainView.Contrato.PeticionPararDeEnviarInformacionPuertoCompleto(_puerto.Id);
+
+        }
     }
 }

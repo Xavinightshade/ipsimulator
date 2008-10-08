@@ -74,5 +74,15 @@ namespace BusinessLogic.Sniffer
 
             }
         }
+        public override void Dispose()
+        {
+            base.Dispose();
+            _router = null;
+        }
+        public override void EliminarVista(IVisualizacion vista)
+        {
+            base.EliminarVista(vista);
+            vista.EliminarSnifferRouter(_router.Id);
+        }
     }
 }

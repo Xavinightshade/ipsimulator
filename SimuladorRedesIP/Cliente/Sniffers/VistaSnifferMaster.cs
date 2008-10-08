@@ -57,7 +57,7 @@ namespace SimuladorCliente.Sniffers
        public void IniciarSnifferSwitch(MarcadorSwitch marcador, DockPanel dockPanel)
        {
            _modeloSniffer.PeticionEnviarInformacionSwitch(marcador.Id);
-           FormaSnifferSwitch sniffer = new FormaSnifferSwitch(marcador, marcador.Color);
+           FormaSnifferSwitch sniffer = new FormaSnifferSwitch(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _switchSniffers.Add(marcador.Id, sniffer);
@@ -87,7 +87,7 @@ namespace SimuladorCliente.Sniffers
        internal void IniciarSnifferPC(MarcadorPC marcador, DockPanel dockPanel)
        {
            _modeloSniffer.PeticionEnviarInformacionPC(marcador.Id);
-           FormaSnifferPC sniffer = new FormaSnifferPC(marcador, marcador.Color);
+           FormaSnifferPC sniffer = new FormaSnifferPC(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _pcSniffers.Add(marcador.Id, sniffer);
@@ -96,7 +96,7 @@ namespace SimuladorCliente.Sniffers
        internal void IniciarSnifferRouter(MarcadorRouter marcador, DockPanel dockPanel)
        {
            _modeloSniffer.PeticionEnviarInformacionRouter(marcador.Id);
-           FormaSnifferRouter sniffer = new FormaSnifferRouter(marcador, marcador.Color);
+           FormaSnifferRouter sniffer = new FormaSnifferRouter(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _routerSniffers.Add(marcador.Id, sniffer);
@@ -114,6 +114,26 @@ namespace SimuladorCliente.Sniffers
            formSnifferCable.CerrarSniffer();
            _cableSniffers.Remove(idCable);
 
+       }
+
+       internal void DeleteSnifferPC(Guid idPc)
+       {
+           throw new NotImplementedException();
+       }
+
+       internal void DeleteSnifferSwitch(Guid idSwitch)
+       {
+           throw new NotImplementedException();
+       }
+
+       internal void DeleteSnifferRouter(Guid idRouter)
+       {
+           throw new NotImplementedException();
+       }
+
+       internal void DeleteSnifferPuerto(Guid idPuerto)
+       {
+           throw new NotImplementedException();
        }
     }
 }

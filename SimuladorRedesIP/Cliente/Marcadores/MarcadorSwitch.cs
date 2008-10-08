@@ -18,5 +18,9 @@ namespace SimuladorCliente.Marcadores
         {
             get { return base.Equipo as SwitchView; }
         }
+        public override void EliminarMarcador()
+        {
+            MainView.Contrato.PeticionPararDeEnviarInformacionSwitch(Switch.Id);
+        }
     }
 }

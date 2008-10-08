@@ -18,5 +18,9 @@ namespace SimuladorCliente.Marcadores
         {
             get { return base.Equipo as RouterView; }
         }
+        public override void EliminarMarcador()
+        {
+            MainView.Contrato.PeticionPararDeEnviarInformacionRouter(Router.Id);
+        }
     }
 }
