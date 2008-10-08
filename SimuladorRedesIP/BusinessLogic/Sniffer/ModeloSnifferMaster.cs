@@ -156,6 +156,12 @@ namespace BusinessLogic.Sniffer
 
         internal void EliminarSniffersDelEquipo(Guid idEquipo)
         {
+            List<PuertoEthernetLogicoBase> puertos = _estacion.BuscarPuertosDelEquipo(idEquipo);
+            foreach (PuertoEthernetLogicoBase puerto in puertos)
+            {
+                if (puerto is PuertoEthernetCompleto)
+                    EliminarSniffer(puerto.Id);
+            }
             EliminarSniffer(idEquipo);
         }
     }

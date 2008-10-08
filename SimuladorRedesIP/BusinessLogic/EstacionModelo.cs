@@ -246,7 +246,7 @@ namespace RedesIP
             return cablesConectados;
         }
 
-        private List<PuertoEthernetLogicoBase> BuscarPuertosDelEquipo(Guid idEquipo)
+        public List<PuertoEthernetLogicoBase> BuscarPuertosDelEquipo(Guid idEquipo)
         {
             List<PuertoEthernetLogicoBase> puertos = new List<PuertoEthernetLogicoBase>();
             if (_computadores.ContainsKey(idEquipo))
