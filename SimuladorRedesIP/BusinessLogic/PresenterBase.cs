@@ -23,6 +23,11 @@ namespace RedesIP
 
         private ModeloSnifferMaster _snifferMaster;
 
+        public ModeloSnifferMaster SnifferMaster
+        {
+            get { return _snifferMaster; }
+        }
+
         private void RegistrarCliente()
         {
             IVisualizacion vista = GetCurrentClient();
@@ -32,10 +37,10 @@ namespace RedesIP
         }
 
 
-        public void SetEstacion(EstacionModelo estacion)
+        public void SetEstacion(EstacionModelo estacion,ModeloSnifferMaster modeloSnifferMaster)
         {
             _estacion = estacion;
-            _snifferMaster = new ModeloSnifferMaster(estacion);
+            _snifferMaster = modeloSnifferMaster;
         }
 
         private static List<IVisualizacion> _vistas = new List<IVisualizacion>();

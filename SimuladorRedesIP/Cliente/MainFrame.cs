@@ -19,6 +19,7 @@ using SimuladorCliente.Formularios;
 using System.IO;
 using System.Drawing.Imaging;
 using DevAge.Windows.Forms;
+using BusinessLogic.Sniffer;
 
 namespace SimuladorCliente
 {
@@ -27,6 +28,7 @@ namespace SimuladorCliente
         private bool _esEstacionNueva;
         private EstacionView _estacionView;
         private EstacionModelo _estacionModelo;
+        PresenterLocal _presenterLocal;
         private bool _servicioConectado;
         public MainFrame()
         {
@@ -47,11 +49,13 @@ namespace SimuladorCliente
             _esEstacionNueva = true;
             _toolBarDelete.Enabled = false;
             _menuDelete.Enabled = true;
-            PresenterLocal presenterLocal = new PresenterLocal(_estacionView);
-            presenterLocal.SetEstacion(_estacionModelo);
-            _estacionView.Inicializar(presenterLocal, _dockMain);
+            _presenterLocal = new PresenterLocal(_estacionView);
+            ModeloSnifferMaster modeloSniffer = new ModeloSnifferMaster();
+            modeloSniffer.setEstacion(_estacionModelo);
+            _presenterLocal.SetEstacion(_estacionModelo, modeloSniffer);
+            _estacionView.Inicializar(_presenterLocal, _dockMain);
 
-            presenterLocal.ConectarCliente();
+            _presenterLocal.ConectarCliente();
 
 
 
@@ -199,7 +203,7 @@ namespace SimuladorCliente
                 if (customForm.ShowDialog() == DialogResult.OK)
                 {
                     PresenterSOA presenterSOA = new PresenterSOA();
-                    presenterSOA.SetEstacion(_estacionModelo);
+                    presenterSOA.SetEstacion(_estacionModelo,_presenterLocal.SnifferMaster);
 
 
                     InicializarServicio(presenterSOA, modeloConexion.Puerto, modeloConexion.DireccionIp);
@@ -295,13 +299,14 @@ namespace SimuladorCliente
         private void CrearNuevaEstacion()
         {
             _estacionView.LimpiarEstacion();
-            PresenterLocal presenter = new PresenterLocal(_estacionView);
-            presenter.SetEstacion(_estacionModelo);
+            
+            _presenterLocal.SnifferMaster.setEstacion(_estacionModelo);
+            _presenterLocal.SetEstacion(_estacionModelo, _presenterLocal.SnifferMaster);
             _esEstacionNueva = false;
             _toolBarDelete.Enabled = true;
             _menuDelete.Enabled = true;
-            _estacionView.Inicializar(presenter, _dockMain);
-            presenter.ConectarCliente();
+            _estacionView.Inicializar(_presenterLocal, _dockMain);
+            _presenterLocal.ConectarCliente();
         }
 
         private void ToolBarNewClick(object sender, EventArgs e)

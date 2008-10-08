@@ -15,7 +15,11 @@ namespace BusinessLogic.Sniffer
         private EstacionModelo _estacion;
         private Dictionary<Guid, ModeloSnifferBase> _sniffers = new Dictionary<Guid, ModeloSnifferBase>();
 
-        public ModeloSnifferMaster(EstacionModelo estacion)
+        public ModeloSnifferMaster()
+        {
+
+        }
+        public void setEstacion(EstacionModelo estacion)
         {
             _estacion = estacion;
         }
