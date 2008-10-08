@@ -19,7 +19,6 @@ namespace SimuladorCliente
 {
     public partial class FormaSnifferRouter : FormaSnifferBase
     {
-        MarcadorRouter _marcador;
         public FormaSnifferRouter(MarcadorRouter marcador)
             :base(marcador)
         {

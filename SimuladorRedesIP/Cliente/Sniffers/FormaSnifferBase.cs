@@ -35,6 +35,7 @@ namespace SimuladorCliente
         }
         public FormaSnifferBase(MarcadorBase marcador)
         {
+            this.CloseButton = false;
             _marcador = marcador;
             InitializeComponent();
             ConfigurarGrilla();
@@ -84,10 +85,7 @@ namespace SimuladorCliente
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
+
 
 
         private delegate void CloseDelegate();
@@ -106,6 +104,7 @@ namespace SimuladorCliente
         {
             _marcador = null;
             _vista = null;
+            base.Dispose();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -19,7 +19,6 @@ namespace SimuladorCliente
 {
     public partial class FormaSnifferPuerto: FormaSnifferBase
     {
-        MarcadorPuertoCompleto _marcador;
         public FormaSnifferPuerto(MarcadorPuertoCompleto marcador)
             :base(marcador)
         {

@@ -18,7 +18,6 @@ namespace SimuladorCliente
 {
     public partial class FormaSnifferSwitch : FormaSnifferBase
     {
-        MarcadorSwitch _marcador;
         public FormaSnifferSwitch(MarcadorSwitch marcador)
             :base(marcador)
         {
