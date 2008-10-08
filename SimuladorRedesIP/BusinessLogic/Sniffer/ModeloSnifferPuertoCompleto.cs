@@ -8,24 +8,15 @@ using SOA.Datos;
 
 namespace BusinessLogic.Sniffer
 {
-    public class ModeloSnifferPuertoCompleto
+    public class ModeloSnifferPuertoCompleto:ModeloSnifferBase
     {
                 private PuertoEthernetCompleto _puerto;
-        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
         public ModeloSnifferPuertoCompleto(PuertoEthernetCompleto puerto)
         {
             _puerto = puerto;
             EscucharARP();
         }
-        public void AgregarVista(IVisualizacion vista)
-        {
-            _vistas.Add(vista);
-        }
-        public void EliminarVista(IVisualizacion vista)
-        {
-            if (_vistas.Contains(vista))
-                _vistas.Remove(vista);
-        }
+
         private void EscucharARP()
         {
             _puerto.Arp.CambioDeTablaArp += new EventHandler<TiempoEventArgs>(Arp_CambioDeTablaArp);
@@ -42,7 +33,7 @@ namespace BusinessLogic.Sniffer
                 asoc.MacAddress = asociacionIP_MAC.Value;
                 arp.Asociaciones.Add(asoc);
             }
-            foreach (IVisualizacion vist in _vistas)
+            foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarCambioARP(_puerto.Id, arp);
 

@@ -10,29 +10,20 @@ using SOA.Datos;
 
 namespace BusinessLogic.Sniffer
 {
-    public class ModeloSnifferSwitch
+    public class ModeloSnifferSwitch:ModeloSnifferBase
     {
         private SwitchLogico _switch;
-        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
         public ModeloSnifferSwitch(SwitchLogico swi)
         {
             _switch = swi;
             EscucharTablasDeFiltro();
         }
-        public void EliminarVista(IVisualizacion vista)
-        {
-            if (_vistas.Contains(vista))
-                _vistas.Remove(vista);
-        }
+
         private void EscucharTablasDeFiltro()
         {
             _switch.SwitchTable.CambioDeTablaDeFiltro += new EventHandler<TiempoEventArgs>(OnCambioDeTabla);
 
 
-        }
-        public void AgregarVista(IVisualizacion vista)
-        {
-            _vistas.Add(vista);
         }
 
 
@@ -49,7 +40,7 @@ namespace BusinessLogic.Sniffer
             }
             MensajeSwitchTableSOA mensajeTablaSwitch = new MensajeSwitchTableSOA(_switch.Id, e.HoraDeRecepcion);
             mensajeTablaSwitch.SwiTable = tablaSOA;
-            foreach (IVisualizacion vist in _vistas)
+            foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarCambioDeTablaDeSwitch(mensajeTablaSwitch);
 

@@ -15,6 +15,14 @@ namespace RedesIP.SOA
         [OperationContract(IsOneWay = true)]
         void EliminarSnifferCable(Guid idCable);  
         [OperationContract(IsOneWay = true)]
+        void EliminarSnifferPC(Guid idPc);
+        [OperationContract(IsOneWay = true)]
+        void EliminarSnifferSwitch(Guid idSwitch);
+        [OperationContract(IsOneWay = true)]
+        void EliminarSnifferRouter(Guid idRouter);
+        [OperationContract(IsOneWay = true)]
+        void EliminarSnifferPuerto(Guid idPuerto);
+        [OperationContract(IsOneWay = true)]
         void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion);
         [OperationContract(IsOneWay = true)]
         void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion);

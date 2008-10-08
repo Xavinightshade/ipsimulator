@@ -9,24 +9,15 @@ using SOA.Datos;
 
 namespace BusinessLogic.Sniffer
 {
-    public class ModeloSnifferPC
+    public class ModeloSnifferPC : ModeloSnifferBase
     {
         private ComputadorLogico _pc;
-        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
         public ModeloSnifferPC(ComputadorLogico pc)
         {
            _pc=pc;
             EscucharEventos();
         }
-        public void AgregarVista(IVisualizacion vista)
-        {
-            _vistas.Add(vista);
-        }
-        public void EliminarVista(IVisualizacion vista)
-        {
-            if (_vistas.Contains(vista))
-                _vistas.Remove(vista);
-        }
+
         private void EscucharEventos()
         {
             _pc.CapaRed.CapaDatos.PaqueteEncapsulado += new EventHandler<BusinessLogic.Datos.PaqueteEncapsuladoEventArgs>(CapaDatos_PaqueteEncapsulado);
@@ -49,7 +40,7 @@ namespace BusinessLogic.Sniffer
             encapsulacion.Paquete = packSOA;
             encapsulacion.IdEquipo = _pc.Id;
             encapsulacion.EsEncapsulacion = false;
-            foreach (IVisualizacion vist in _vistas)
+            foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarInformacionEncapsulacionPC(encapsulacion);
 
@@ -72,11 +63,12 @@ namespace BusinessLogic.Sniffer
             encapsulacion.Paquete = packSOA;
             encapsulacion.IdEquipo = _pc.Id;
             encapsulacion.EsEncapsulacion = true;
-            foreach (IVisualizacion vist in _vistas)
+            foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarInformacionEncapsulacionPC(encapsulacion);
 
             }
         }
+       
     }
 }

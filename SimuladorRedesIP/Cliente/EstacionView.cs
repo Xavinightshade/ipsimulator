@@ -275,5 +275,30 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+        #region ICallBackSniffer Members
+
+
+        public void EliminarSnifferPC(Guid idPc)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EliminarSnifferSwitch(Guid idSwitch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EliminarSnifferRouter(Guid idRouter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EliminarSnifferPuerto(Guid idPuerto)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

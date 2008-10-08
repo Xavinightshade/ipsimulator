@@ -13,11 +13,7 @@ namespace BusinessLogic.Sniffer
     public class ModeloSnifferMaster
     {
         private EstacionModelo _estacion;
-        private Dictionary<Guid, ModeloSnifferPC> _sniffersPc = new Dictionary<Guid, ModeloSnifferPC>();
-        private Dictionary<Guid, ModeloSnifferSwitch> _sniffersSwi = new Dictionary<Guid, ModeloSnifferSwitch>();
-        private Dictionary<Guid, ModeloSnifferRouter> _sniffersRou = new Dictionary<Guid, ModeloSnifferRouter>();
-        private Dictionary<Guid, ModeloCableSniffer> _sniffersCable = new Dictionary<Guid, ModeloCableSniffer>();
-        private Dictionary<Guid, ModeloSnifferPuertoCompleto> _sniffersPuerto = new Dictionary<Guid, ModeloSnifferPuertoCompleto>();
+        private Dictionary<Guid, ModeloSnifferBase> _sniffers = new Dictionary<Guid, ModeloSnifferBase>();
 
         public ModeloSnifferMaster(EstacionModelo estacion)
         {
@@ -25,23 +21,7 @@ namespace BusinessLogic.Sniffer
         }
         public void DesconectarCliente(IVisualizacion cliente)
         {
-            foreach (KeyValuePair<Guid,ModeloSnifferPC> item in _sniffersPc)
-            {
-                item.Value.EliminarVista(cliente);
-            }
-            foreach (KeyValuePair<Guid, ModeloSnifferSwitch> item in _sniffersSwi)
-            {
-                item.Value.EliminarVista(cliente);
-            }
-            foreach (KeyValuePair<Guid, ModeloSnifferRouter> item in _sniffersRou)
-            {
-                item.Value.EliminarVista(cliente);
-            }
-            foreach (KeyValuePair<Guid, ModeloCableSniffer> item in _sniffersCable)
-            {
-                item.Value.EliminarVista(cliente);
-            }
-            foreach (KeyValuePair<Guid, ModeloSnifferPuertoCompleto> item in _sniffersPuerto)
+            foreach (KeyValuePair<Guid,ModeloSnifferBase> item in _sniffers)
             {
                 item.Value.EliminarVista(cliente);
             }
@@ -50,13 +30,13 @@ namespace BusinessLogic.Sniffer
 
         public void PeticionEnviarInformacionConexion(Guid idConexion, IVisualizacion cliente)
         {
-            if (!_sniffersCable.ContainsKey(idConexion))
+            if (!_sniffers.ContainsKey(idConexion))
             {
                 CableDeRedLogico cable = _estacion.Cables[idConexion];
                 ModeloCableSniffer snifferCable = new ModeloCableSniffer(cable);
-                _sniffersCable.Add(idConexion, snifferCable);
+                _sniffers.Add(idConexion, snifferCable);
             }
-            _sniffersCable[idConexion].AgregarVista(cliente);
+            _sniffers[idConexion].AgregarVista(cliente);
 
         }
 
@@ -64,13 +44,13 @@ namespace BusinessLogic.Sniffer
 
         public void PeticionEnviarInformacionSwitch(Guid idSwitch, IVisualizacion cliente)
         {
-            if (!_sniffersSwi.ContainsKey(idSwitch))
+            if (!_sniffers.ContainsKey(idSwitch))
             {
                 SwitchLogico swi = _estacion.Switches[idSwitch];
                 ModeloSnifferSwitch snifferSwitch = new ModeloSnifferSwitch(swi);
-                _sniffersSwi.Add(idSwitch, snifferSwitch);
+                _sniffers.Add(idSwitch, snifferSwitch);
             }
-            _sniffersSwi[idSwitch].AgregarVista(cliente);
+            _sniffers[idSwitch].AgregarVista(cliente);
 
         }
 
@@ -80,51 +60,77 @@ namespace BusinessLogic.Sniffer
 
         public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto, IVisualizacion cliente)
         {
-            if (!_sniffersPuerto.ContainsKey(idPuerto))
+            if (!_sniffers.ContainsKey(idPuerto))
             {
                 PuertoEthernetCompleto puerto = _estacion.Puertos[idPuerto] as PuertoEthernetCompleto;
                 ModeloSnifferPuertoCompleto puertoSniffer = new ModeloSnifferPuertoCompleto(puerto);
-                _sniffersPuerto.Add(idPuerto, puertoSniffer);
+                _sniffers.Add(idPuerto, puertoSniffer);
             }
-            _sniffersPuerto[idPuerto].AgregarVista(cliente);
+            _sniffers[idPuerto].AgregarVista(cliente);
         }
 
 
 
         public void PeticionEnviarInformacionPC(Guid idPC, IVisualizacion cliente)
         {
-            if (!_sniffersPc.ContainsKey(idPC))
+            if (!_sniffers.ContainsKey(idPC))
             {
                 ComputadorLogico pc = _estacion.Computadores[idPC];
                 ModeloSnifferPC sniffer = new ModeloSnifferPC(pc);
-                _sniffersPc.Add(idPC, sniffer);
+                _sniffers.Add(idPC, sniffer);
             }
-            _sniffersPc[idPC].AgregarVista(cliente);
+            _sniffers[idPC].AgregarVista(cliente);
         }
 
         public void PeticionEnviarInformacionRouter(Guid idRouter, IVisualizacion cliente)
         {
 
-            if (!_sniffersRou.ContainsKey(idRouter))
+            if (!_sniffers.ContainsKey(idRouter))
             {
                 RouterLogico rou = _estacion.Routers[idRouter];
                 ModeloSnifferRouter sniffer = new ModeloSnifferRouter(rou);
-                _sniffersRou.Add(idRouter, sniffer);
+                _sniffers.Add(idRouter, sniffer);
             }
-            _sniffersRou[idRouter].AgregarVista(cliente);
+            _sniffers[idRouter].AgregarVista(cliente);
         }
 
 
 
-        internal void PeticionPararEnviarInformacionConexion(Guid idConexion, IVisualizacion cliente)
+        public void PeticionPararEnviarInformacionConexion(Guid idConexion, IVisualizacion cliente)
         {
-            ModeloCableSniffer snifferCable=_sniffersCable[idConexion];
-            snifferCable.EliminarVista(cliente);
-            if (snifferCable.NumeroDeClientes == 0)
+             EliminarSniffer(idConexion, cliente);
+        }
+
+        private void EliminarSniffer(Guid idSniffer, IVisualizacion cliente)
+        {
+            ModeloSnifferBase sniffer = _sniffers[idSniffer];
+            sniffer.EliminarVista(cliente);
+            if (sniffer.NumeroDeClientes == 0)
             {
-                snifferCable.Dispose();
-                _sniffersCable.Remove(idConexion);
+                sniffer.Dispose();
+                _sniffers.Remove(idSniffer);
             }
+        }
+
+        internal void PeticionPararDeEnviarInformacionPC(Guid idPc, IVisualizacion cliente)
+        {
+            EliminarSniffer(idPc, cliente);
+
+        }
+
+        internal void PeticionPararDeEnviarInformacionPuertoCompleto(Guid idPuerto, IVisualizacion cliente)
+        {
+            EliminarSniffer(idPuerto, cliente);
+        }
+
+        internal void PeticionPararDeEnviarInformacionRouter(Guid idRouter, IVisualizacion cliente)
+        {
+            EliminarSniffer(idRouter, cliente);
+        }
+
+        internal void PeticionPararDeEnviarInformacionSwitch(Guid idSwitch, IVisualizacion cliente)
+        {
+            EliminarSniffer(idSwitch, cliente);
         }
     }
 }

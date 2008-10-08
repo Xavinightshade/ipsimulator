@@ -348,11 +348,30 @@ namespace RedesIP
         public void PeticionPararDeEnviarInformacionConexion(Guid idConexion)
         {
             _snifferMaster.PeticionPararEnviarInformacionConexion(idConexion, GetCurrentClient());
-            
-
-
+                        
         }
 
+
+
+        public void PeticionPararDeEnviarInformacionPC(Guid idPc)
+        {
+           _snifferMaster.PeticionPararDeEnviarInformacionPC(idPc,GetCurrentClient());
+        }
+
+        public void PeticionPararDeEnviarInformacionPuertoCompleto(Guid idPuerto)
+        {
+            _snifferMaster.PeticionPararDeEnviarInformacionPuertoCompleto(idPuerto, GetCurrentClient());
+        }
+
+        public void PeticionPararDeEnviarInformacionRouter(Guid idRouter)
+        {
+            _snifferMaster.PeticionPararDeEnviarInformacionRouter(idRouter, GetCurrentClient());
+        }
+
+        public void PeticionPararDeEnviarInformacionSwitch(Guid idSwitch)
+        {
+            _snifferMaster.PeticionPararDeEnviarInformacionSwitch(idSwitch, GetCurrentClient());
+        }
         #endregion
     }
 

@@ -11,24 +11,15 @@ using BusinessLogic.Modelos.Logicos.Datos;
 
 namespace BusinessLogic.Sniffer
 {
-    public class ModeloSnifferRouter
+    public class ModeloSnifferRouter:ModeloSnifferBase
     {
         private RouterLogico _router;
-        private List<IVisualizacion> _vistas=new List<IVisualizacion>();
         public ModeloSnifferRouter(RouterLogico router)
         {
           _router=router;
             EscucharEventos();
         }
-        public void AgregarVista(IVisualizacion vista)
-        {
-            _vistas.Add(vista);
-        }
-        public void EliminarVista(IVisualizacion vista)
-        {
-            if (_vistas.Contains(vista))
-                _vistas.Remove(vista);
-        }
+ 
         private void EscucharEventos()
         {
             foreach (KeyValuePair<PuertoEthernetCompleto, CapaRedRouter> item in _router.PuertoEthernetCapaRed)
@@ -54,7 +45,7 @@ namespace BusinessLogic.Sniffer
             encapsulacion.Paquete = packSOA;
             encapsulacion.IdEquipo = _router.Id;
             encapsulacion.EsEncapsulacion = true;
-            foreach (IVisualizacion vist in _vistas)
+            foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarInformacionEncapsulacionRouter(encapsulacion);
 
@@ -77,7 +68,7 @@ namespace BusinessLogic.Sniffer
             encapsulacion.Paquete = packSOA;
             encapsulacion.IdEquipo = _router.Id;
             encapsulacion.EsEncapsulacion = false;
-            foreach (IVisualizacion vist in _vistas)
+            foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarInformacionEncapsulacionRouter(encapsulacion);
 

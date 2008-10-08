@@ -16,6 +16,14 @@ namespace RedesIP.SOA
         [OperationContract()]
         void PeticionPararDeEnviarInformacionConexion(Guid idConexion);
         [OperationContract()]
+        void PeticionPararDeEnviarInformacionPC(Guid idPc);
+        [OperationContract()]
+        void PeticionPararDeEnviarInformacionPuertoCompleto(Guid idPuerto);
+        [OperationContract()]
+        void PeticionPararDeEnviarInformacionRouter(Guid idRouter);
+        [OperationContract()]
+        void PeticionPararDeEnviarInformacionSwitch(Guid idSwitch);
+        [OperationContract()]
         void PeticionEnviarInformacionSwitch(Guid idSwitch);
         [OperationContract()]
         void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto);

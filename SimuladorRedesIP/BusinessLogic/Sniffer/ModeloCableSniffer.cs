@@ -9,10 +9,9 @@ using RedesIP.SOA.Elementos;
 
 namespace BusinessLogic.Sniffer
 {
-    public class ModeloCableSniffer
+    public class ModeloCableSniffer:ModeloSnifferBase
     {
         private CableDeRedLogico _cable;
-        private List<IVisualizacion> _vistas = new List<IVisualizacion>();
         public ModeloCableSniffer(CableDeRedLogico cable)
         {
             _cable = cable;
@@ -24,28 +23,24 @@ namespace BusinessLogic.Sniffer
             _cable.FrameRecibidoPuerto2 += new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
 
         }
-        public void AgregarVista(IVisualizacion vista)
+
+        public override void EliminarVista(IVisualizacion vista)
         {
-            _vistas.Add(vista);
-        }
-        public void EliminarVista(IVisualizacion vista)
-        {
-            _vistas.Remove(vista);
+            base.EliminarVista(vista);
             vista.EliminarSnifferCable(_cable.Id);
 
         }
-        public int NumeroDeClientes { get { return _vistas.Count; } }
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             _cable.FrameRecibidoPuerto1 -= new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
             _cable.FrameRecibidoPuerto2 -= new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
             _cable = null;
-            _vistas = null;
         }
 
         private void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
         {
-            foreach (IVisualizacion vist in _vistas)
+            foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarInformacionConexion(new MensajeCableSOA(_cable.Id, Frame.ConvertirFrame(e.FrameRecibido), e.HoraDeRecepcion));
 
