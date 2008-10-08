@@ -50,6 +50,8 @@ namespace BusinessLogic.Sniffer
         public override void Dispose()
         {
             base.Dispose();
+            _switch.SwitchTable.CambioDeTablaDeFiltro -= new EventHandler<TiempoEventArgs>(OnCambioDeTabla);
+
             _switch = null;
         }
         public override void EliminarVista(IVisualizacion vista)

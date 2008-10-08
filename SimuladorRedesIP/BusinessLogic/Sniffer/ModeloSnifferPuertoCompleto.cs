@@ -42,6 +42,7 @@ namespace BusinessLogic.Sniffer
        public override void Dispose()
        {
            base.Dispose();
+           _puerto.Arp.CambioDeTablaArp -= new EventHandler<TiempoEventArgs>(Arp_CambioDeTablaArp);
            _puerto = null;
        }
        public override void EliminarVista(IVisualizacion vista)

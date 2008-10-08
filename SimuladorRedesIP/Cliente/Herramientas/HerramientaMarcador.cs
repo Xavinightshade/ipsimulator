@@ -101,7 +101,7 @@ namespace RedesIP.Vistas
                         {
                             if (par.Value is SwitchView)
                             {
-                                MarcadorSwitch marcador = new MarcadorSwitch(par.Value as SwitchView, this as IRegistroMovimientosMouse);
+                                MarcadorSwitch marcador = new MarcadorSwitch(par.Value as SwitchView, Estacion as IRegistroMovimientosMouse);
                                 Estacion._marcadores.Add(marcador);
                                 Estacion._snifferMaster.IniciarSnifferSwitch(marcador, Estacion._dockMain);
                                 return;

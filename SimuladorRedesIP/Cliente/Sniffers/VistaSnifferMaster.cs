@@ -17,11 +17,7 @@ namespace SimuladorCliente.Sniffers
    public  class VistaSnifferMaster
     {
        private IModeloSniffer _modeloSniffer;
-       private Dictionary<Guid, FormaSnifferCable> _cableSniffers = new Dictionary<Guid, FormaSnifferCable>();
-       private Dictionary<Guid, FormaSnifferSwitch> _switchSniffers = new Dictionary<Guid, FormaSnifferSwitch>();
-       private Dictionary<Guid, FormaSnifferPC> _pcSniffers = new Dictionary<Guid, FormaSnifferPC>();
-       private Dictionary<Guid, FormaSnifferRouter> _routerSniffers = new Dictionary<Guid, FormaSnifferRouter>();
-       private Dictionary<Guid, FormaSnifferPuerto> _puertoSniffers = new Dictionary<Guid, FormaSnifferPuerto>();
+       private Dictionary<Guid, FormaSnifferBase> _formsSniffers = new Dictionary<Guid, FormaSnifferBase>();
        public VistaSnifferMaster(IModeloSniffer modeloSniffer)
        {
            _modeloSniffer = modeloSniffer;
@@ -30,7 +26,7 @@ namespace SimuladorCliente.Sniffers
 
        public void EnviarInformacionConexion(MensajeCableSOA mensaje)
        {
-           _cableSniffers[mensaje.Id].ReportarMensaje(mensaje);
+           (_formsSniffers[mensaje.Id] as FormaSnifferCable).ReportarMensaje(mensaje);
        }
 
 
@@ -42,7 +38,7 @@ namespace SimuladorCliente.Sniffers
            FormaSnifferCable sniffer = new FormaSnifferCable(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockMain, DockState.DockBottom);
-           _cableSniffers.Add(marcador.Id,sniffer);
+           _formsSniffers.Add(marcador.Id, sniffer);
 
        }
 
@@ -51,7 +47,7 @@ namespace SimuladorCliente.Sniffers
        internal void EnviarCambioDeTablaDeSwitch(MensajeSwitchTableSOA mensajeTablaSwitch)
        {
 
-           _switchSniffers[mensajeTablaSwitch.Id].ReportarMensaje(mensajeTablaSwitch);
+           (_formsSniffers[mensajeTablaSwitch.Id] as FormaSnifferSwitch).ReportarMensaje(mensajeTablaSwitch);
        }
 
        public void IniciarSnifferSwitch(MarcadorSwitch marcador, DockPanel dockPanel)
@@ -60,7 +56,7 @@ namespace SimuladorCliente.Sniffers
            FormaSnifferSwitch sniffer = new FormaSnifferSwitch(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
-           _switchSniffers.Add(marcador.Id, sniffer);
+           _formsSniffers.Add(marcador.Id, sniffer);
        }
 
        internal void IniciarSnifferPuerto(MarcadorPuertoCompleto marcador, DockPanel dockPanel)
@@ -69,17 +65,17 @@ namespace SimuladorCliente.Sniffers
            FormaSnifferPuerto sniffer = new FormaSnifferPuerto(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
-           _puertoSniffers.Add(marcador.Id, sniffer);
+           _formsSniffers.Add(marcador.Id, sniffer);
        }
 
        internal void EnviarCambioDeTablaARP(Guid idPuerto, ARP_SOA listARP)
        {
-           _puertoSniffers[idPuerto].ReportarMensaje(listARP);
+           (_formsSniffers[idPuerto] as FormaSnifferPuerto ).ReportarMensaje(listARP);
        }
 
        internal void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion)
        {
-           _pcSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
+           (_formsSniffers[encapsulacion.IdEquipo] as FormaSnifferPC).ReportarMensaje(encapsulacion);
        }
 
 
@@ -90,7 +86,7 @@ namespace SimuladorCliente.Sniffers
            FormaSnifferPC sniffer = new FormaSnifferPC(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
-           _pcSniffers.Add(marcador.Id, sniffer);
+           _formsSniffers.Add(marcador.Id, sniffer);
        }
 
        internal void IniciarSnifferRouter(MarcadorRouter marcador, DockPanel dockPanel)
@@ -99,41 +95,45 @@ namespace SimuladorCliente.Sniffers
            FormaSnifferRouter sniffer = new FormaSnifferRouter(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
-           _routerSniffers.Add(marcador.Id, sniffer);
+           _formsSniffers.Add(marcador.Id, sniffer);
        }
 
        internal void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion)
        {
-           _routerSniffers[encapsulacion.IdEquipo].ReportarMensaje(encapsulacion);
+           (_formsSniffers[encapsulacion.IdEquipo] as FormaSnifferRouter).ReportarMensaje(encapsulacion);
        }
 
        internal void DeleteSnifferCable(Guid idCable)
        {
 
-           FormaSnifferCable formSnifferCable = _cableSniffers[idCable];
-           formSnifferCable.CerrarSniffer();
-           _cableSniffers.Remove(idCable);
+           DeleteSniffer(idCable);
 
+       }
+
+       private void DeleteSniffer(Guid idSniffer)
+       {
+           _formsSniffers[idSniffer].CerrarSniffer();
+           _formsSniffers.Remove(idSniffer);
        }
 
        internal void DeleteSnifferPC(Guid idPc)
        {
-           throw new NotImplementedException();
+           DeleteSniffer(idPc);
        }
 
        internal void DeleteSnifferSwitch(Guid idSwitch)
        {
-           throw new NotImplementedException();
+           DeleteSniffer(idSwitch);
        }
 
        internal void DeleteSnifferRouter(Guid idRouter)
        {
-           throw new NotImplementedException();
+           DeleteSniffer(idRouter);
        }
 
        internal void DeleteSnifferPuerto(Guid idPuerto)
        {
-           throw new NotImplementedException();
+           DeleteSniffer(idPuerto);
        }
     }
 }

@@ -77,7 +77,13 @@ namespace BusinessLogic.Sniffer
         public override void Dispose()
         {
             base.Dispose();
+            foreach (KeyValuePair<PuertoEthernetCompleto, CapaRedRouter> item in _router.PuertoEthernetCapaRed)
+            {
+                item.Value.CapaDatos.PaqueteDesEncapsulado -= new EventHandler<BusinessLogic.Datos.PaqueteDesencapsuladoEventArgs>(CapaDatos_PaqueteDesEncapsulado);
+                item.Value.CapaDatos.PaqueteEncapsulado -= new EventHandler<BusinessLogic.Datos.PaqueteEncapsuladoEventArgs>(CapaDatos_PaqueteEncapsulado);
+            }
             _router = null;
+
         }
         public override void EliminarVista(IVisualizacion vista)
         {

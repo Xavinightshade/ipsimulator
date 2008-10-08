@@ -72,6 +72,9 @@ namespace BusinessLogic.Sniffer
         public override void Dispose()
         {
             base.Dispose();
+            _pc.CapaRed.CapaDatos.PaqueteEncapsulado -= new EventHandler<BusinessLogic.Datos.PaqueteEncapsuladoEventArgs>(CapaDatos_PaqueteEncapsulado);
+            _pc.CapaRed.CapaDatos.PaqueteDesEncapsulado -= new EventHandler<BusinessLogic.Datos.PaqueteDesencapsuladoEventArgs>(CapaDatos_PaqueteDesEncapsulado);
+
             _pc = null;
         }
         public override void EliminarVista(IVisualizacion vista)
