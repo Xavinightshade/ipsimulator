@@ -126,7 +126,7 @@ namespace RedesIP
         }
         public void MoverPosicionElemento(Guid id, int x, int y)
         {
-            IPosisionable elemento=null;
+            IPosisionable elemento = null;
             if (_computadores.ContainsKey(id))
             {
                 elemento = _computadores[id];
@@ -181,13 +181,13 @@ namespace RedesIP
             _routers.Add(router.Id, router);
             LLenarPuertos(_puertos, router.PuertosEthernet);
             router.InicializarEquipo();
-            
+
         }
 
 
 
 
-        public void Ping(Guid idEquipo, string ipDestino,string datos)
+        public void Ping(Guid idEquipo, string ipDestino, string datos)
         {
             _computadores[idEquipo].Ping(ipDestino, datos);
         }
@@ -229,6 +229,77 @@ namespace RedesIP
             CableDeRedLogico cable = _diccioCables[idCable];
             cable.DesconectarPuertos();
             _diccioCables.Remove(idCable);
+        }
+
+        internal List<CableDeRedLogico> BuscarCablesConectadosAlEquipo(Guid idEquipo)
+        {
+            List<CableDeRedLogico> cablesConectados = new List<CableDeRedLogico>();
+            List<PuertoEthernetLogicoBase> puertosEquipo = BuscarPuertosDelEquipo(idEquipo);
+            foreach (KeyValuePair<Guid,CableDeRedLogico> item in _diccioCables)
+            {
+                if (puertosEquipo.Contains(item.Value.Puerto1) ||puertosEquipo.Contains(item.Value.Puerto2))
+                {
+                    cablesConectados.Add(item.Value);
+                }
+            }
+
+            return cablesConectados;
+        }
+
+        private List<PuertoEthernetLogicoBase> BuscarPuertosDelEquipo(Guid idEquipo)
+        {
+            List<PuertoEthernetLogicoBase> puertos = new List<PuertoEthernetLogicoBase>();
+            if (_computadores.ContainsKey(idEquipo))
+            {
+                puertos.Add(_computadores[idEquipo].PuertoEthernet);
+                return puertos;
+            }
+            if (_switches.ContainsKey(idEquipo))
+            {
+                foreach (PuertoEthernetLogicoBase puerto in _switches[idEquipo].PuertosEthernet)
+                {
+                    puertos.Add(puerto);
+                }
+                return puertos;
+            }
+            if (_routers.ContainsKey(idEquipo))
+            {
+                foreach (PuertoEthernetCompleto puerto in _routers[idEquipo].PuertosEthernet)
+                {
+                    puertos.Add(puerto);
+                }
+                return puertos;
+            }
+            throw new Exception();
+        }
+
+        internal void EliminarEquipo(Guid idEquipo)
+        {
+            EquipoLogico equipo = BorrarEquipoById(idEquipo);
+            equipo.DesconectarEquipo();
+        }
+
+        private EquipoLogico BorrarEquipoById(Guid idEquipo)
+        {
+            if (_computadores.ContainsKey(idEquipo))
+            {
+                EquipoLogico equipo = _computadores[idEquipo];
+                _computadores.Remove(idEquipo);
+                return equipo;
+            }
+            if (_switches.ContainsKey(idEquipo))
+            {
+                EquipoLogico equipo = _switches[idEquipo];
+                _switches.Remove(idEquipo);
+                return equipo;
+            }
+            if (_routers.ContainsKey(idEquipo))
+            {
+                EquipoLogico equipo = _routers[idEquipo];
+                _routers.Remove(idEquipo);
+                return equipo;
+            }
+            throw new Exception();
         }
     }
 

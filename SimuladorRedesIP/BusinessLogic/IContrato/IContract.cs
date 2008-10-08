@@ -33,6 +33,8 @@ namespace RedesIP.SOA
         void PeticionEstablecerDatosSwitch(SwitchSOA swi);
         [OperationContract()]
         void PeticionEliminarCable(Guid idCable);
+        [OperationContract()]
+        void PeticionEliminarEquipo(Guid IdEquipo);
     }
 
 

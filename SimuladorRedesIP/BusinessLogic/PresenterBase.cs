@@ -384,6 +384,11 @@ namespace RedesIP
 
         public void PeticionEliminarCable(Guid idCable)
         {
+            EliminarCable(idCable);
+        }
+
+        private void EliminarCable(Guid idCable)
+        {
             _snifferMaster.EliminarSnifferCableBuscandoCable(idCable);
             _estacion.EliminarCable(idCable);
             foreach (IVisualizacion cliente in _vistas)
@@ -392,9 +397,22 @@ namespace RedesIP
             }
         }
 
-        private ModeloCableSniffer BuscarSnifferDelCable(Guid idCable)
+
+
+
+        public void PeticionEliminarEquipo(Guid idEquipo)
         {
-            throw new NotImplementedException();
+            List<CableDeRedLogico> cablesConectadosAlEquipo = _estacion.BuscarCablesConectadosAlEquipo(idEquipo);
+            foreach (CableDeRedLogico cable in cablesConectadosAlEquipo)
+            {
+                EliminarCable(cable.Id);
+            }
+            _snifferMaster.EliminarSniffersDelEquipo(idEquipo);
+            _estacion.EliminarEquipo(idEquipo);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.EliminarEquipo(idEquipo);
+            }
         }
 
         #endregion

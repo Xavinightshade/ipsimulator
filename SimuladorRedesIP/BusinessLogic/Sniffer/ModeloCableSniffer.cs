@@ -52,18 +52,6 @@ namespace BusinessLogic.Sniffer
             }
         }
 
-        internal void EliminarSnifferTotal()
-        {
-            List<IVisualizacion> vistasABorrar = new List<IVisualizacion>();
-            foreach (IVisualizacion vist in Vistas)
-            {
-                vistasABorrar.Add(vist);
 
-            }
-            foreach (IVisualizacion vista in vistasABorrar)
-            {
-                EliminarVista(vista);
-            }
-        }
     }
 }

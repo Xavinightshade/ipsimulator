@@ -107,5 +107,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
         {
             return _tablaDeRutas.GetRutasInternas();
         }
+        public override void DesconectarEquipo()
+        {
+           
+        }
     }
 }

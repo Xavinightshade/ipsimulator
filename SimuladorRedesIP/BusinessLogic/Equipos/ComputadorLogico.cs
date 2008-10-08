@@ -84,5 +84,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
             _capaRed.Ping(ipDestino, datos);
             
         }
+
+        public override void DesconectarEquipo()
+        {
+          
+        }
     }
 }

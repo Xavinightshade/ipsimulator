@@ -29,6 +29,19 @@ namespace BusinessLogic.Sniffer
             if (Vistas.Contains(vista))
                 Vistas.Remove(vista);
         }
+        public void EliminarSnifferTotal()
+        {
+            List<IVisualizacion> vistasABorrar = new List<IVisualizacion>();
+            foreach (IVisualizacion vist in Vistas)
+            {
+                vistasABorrar.Add(vist);
+
+            }
+            foreach (IVisualizacion vista in vistasABorrar)
+            {
+                EliminarVista(vista);
+            }
+        }
 
 
     }

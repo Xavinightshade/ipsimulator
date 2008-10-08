@@ -331,5 +331,22 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+        #region IVisualizacion Members
+
+
+        public void EliminarEquipo(Guid idEquipo)
+        {
+            EquipoView equipo = _equipos[idEquipo];
+            if (_routers.Contains(equipo as RouterView ))
+                _routers.Remove(equipo as RouterView);
+            if (_switches.Contains(equipo as SwitchView))
+                _switches.Remove(equipo as SwitchView);
+            if (_computadores.Contains(equipo as ComputadorView))
+                _computadores.Remove(equipo as ComputadorView);
+            Invalidate();
+        }
+
+        #endregion
     }
 }

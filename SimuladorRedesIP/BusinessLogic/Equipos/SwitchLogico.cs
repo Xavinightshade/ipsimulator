@@ -59,5 +59,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
         {
           //  InicializarPuertos();
         }
+
+        public override void DesconectarEquipo()
+        {
+            _capaSwitcheo = null;
+            _puertosEthernet = null;
+        }
     }
 }

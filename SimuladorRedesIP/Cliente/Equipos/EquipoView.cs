@@ -49,7 +49,16 @@ namespace RedesIP.Vistas.Equipos
             inst.MouseDown += new System.Windows.Forms.MouseEventHandler(OnMouseDown);
             inst.MouseMove += new System.Windows.Forms.MouseEventHandler(OnMouseMove);
             inst.MouseUp += new System.Windows.Forms.MouseEventHandler(OnMouseUp);
+            ToolStripMenuItem item = new ToolStripMenuItem("Eliminar Equipo");
+            item.Click += new EventHandler(BorrarClick);
+            Menu.Items.Add(item);
+
             _ownerControl.MouseDoubleClick += new MouseEventHandler(_ownerControl_MouseDoubleClick);
+        }
+
+        private void BorrarClick(object sender, EventArgs e)
+        {
+            _reg.Contrato.PeticionEliminarEquipo(Id);
         }
 
         void _ownerControl_MouseDoubleClick(object sender, MouseEventArgs e)

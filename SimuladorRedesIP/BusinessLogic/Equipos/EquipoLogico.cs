@@ -37,7 +37,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
          public int Y { get { return _Y; } set { _Y = value; } }
          public abstract void InicializarEquipo();
 
-	}
+
+         public abstract void DesconectarEquipo();
+    }
     public interface IUnique
     {
         Guid Id { get; }

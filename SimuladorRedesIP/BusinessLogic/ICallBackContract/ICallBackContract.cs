@@ -16,5 +16,7 @@ namespace RedesIP.SOA
         void DesconectarDeServidor();
         [OperationContract(IsOneWay = true)]
         void EliminarCable(Guid idCable);
+        [OperationContract(IsOneWay = true)]
+        void EliminarEquipo(Guid idEquipo);
     }
 }

@@ -139,14 +139,24 @@ namespace BusinessLogic.Sniffer
 
         public void EliminarSnifferCableBuscandoCable(Guid idCable)
         {
-            if (_sniffers.ContainsKey(idCable))
+            EliminarSniffer(idCable);
+
+        }
+
+        private void EliminarSniffer(Guid idSnifer)
+        {
+            if (_sniffers.ContainsKey(idSnifer))
             {
-                ModeloCableSniffer snifferCable = _sniffers[idCable] as ModeloCableSniffer;
+                ModeloSnifferBase snifferCable = _sniffers[idSnifer];
                 snifferCable.EliminarSnifferTotal();
                 snifferCable.Dispose();
-                _sniffers.Remove(idCable);
+                _sniffers.Remove(idSnifer);
             }
+        }
 
+        internal void EliminarSniffersDelEquipo(Guid idEquipo)
+        {
+            EliminarSniffer(idEquipo);
         }
     }
 }
