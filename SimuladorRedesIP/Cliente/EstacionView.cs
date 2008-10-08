@@ -20,18 +20,18 @@ using SimuladorCliente.Marcadores;
 
 namespace RedesIP.Vistas
 {
-	[CallbackBehavior(
-	 ConcurrencyMode = ConcurrencyMode.Multiple,
-	 UseSynchronizationContext = false)]
-	public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion
-	{
+    [CallbackBehavior(
+     ConcurrencyMode = ConcurrencyMode.Multiple,
+     UseSynchronizationContext = false)]
+    public partial class EstacionView : PictureBox, IRegistroMovimientosMouse, IVisualizacion
+    {
         public Bitmap GetImagen()
         {
             Bitmap b = new Bitmap(Width, Height);
             Graphics g = Graphics.FromImage(b);
             DibujarGrafico(g);
             return b;
-            }
+        }
 
 
         public IWin32Window Window { get { return this; } }
@@ -39,11 +39,11 @@ namespace RedesIP.Vistas
         HerramientaBase _herramienta;
         IModeloSOA _server;
 
-		Dictionary<Guid, EquipoView> _equipos = new Dictionary<Guid, EquipoView>();
-		List<PuertoEthernetViewBase> _puertos = new List<PuertoEthernetViewBase>();
-		Dictionary<Guid, PuertoEthernetViewBase> _diccioPuertos = new Dictionary<Guid, PuertoEthernetViewBase>();
-		List<ComputadorView> _computadores = new List<ComputadorView>();
-		List<SwitchView> _switches = new List<SwitchView>();
+        Dictionary<Guid, EquipoView> _equipos = new Dictionary<Guid, EquipoView>();
+        List<PuertoEthernetViewBase> _puertos = new List<PuertoEthernetViewBase>();
+        Dictionary<Guid, PuertoEthernetViewBase> _diccioPuertos = new Dictionary<Guid, PuertoEthernetViewBase>();
+        List<ComputadorView> _computadores = new List<ComputadorView>();
+        List<SwitchView> _switches = new List<SwitchView>();
         List<RouterView> _routers = new List<RouterView>();
 
         public EstacionView()
@@ -52,20 +52,20 @@ namespace RedesIP.Vistas
         }
 
 
-		protected override void OnMouseMove(MouseEventArgs e)
-		{
-			base.OnMouseMove(e);
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
             _herramienta.OnMouseMove(e);
 
 
-		}
-		protected override void OnPaint(PaintEventArgs pe)
-		{
-			base.OnPaint(pe);
-			Graphics g = pe.Graphics;
+        }
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            base.OnPaint(pe);
+            Graphics g = pe.Graphics;
             DibujarGrafico(g);
-          
-		}
+
+        }
 
         private void DibujarGrafico(Graphics g)
         {
@@ -89,31 +89,31 @@ namespace RedesIP.Vistas
             {
                 _marcadores[i].DibujarElemento(g);
             }
-        }    
+        }
 
-		protected override void OnMouseUp(MouseEventArgs e)
-		{
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
             base.OnMouseUp(e);
             _herramienta.OnMouseUp(e);
-		}
+        }
 
 
 
 
 
-		public IModeloSOA Contrato
-		{
-			get { return _server; }
-		}
+        public IModeloSOA Contrato
+        {
+            get { return _server; }
+        }
 
-		public void MoverEquipo(Guid idEquipo, int x, int y)
-		{
-			_equipos[idEquipo].MoverEquipo(x, y);
-			Invalidate();
-		}
+        public void MoverEquipo(Guid idEquipo, int x, int y)
+        {
+            _equipos[idEquipo].MoverEquipo(x, y);
+            Invalidate();
+        }
         public void ActualizarEstacion(EstacionSOA estacionSOA)
-		{
-			LimpiarEstacion();
+        {
+            LimpiarEstacion();
             foreach (ComputadorSOA pc in estacionSOA.Computadores)
             {
                 CrearComputador(pc);
@@ -130,24 +130,24 @@ namespace RedesIP.Vistas
             {
                 ConectarPuertos(cable);
             }
-			Invalidate();
-		}
-		public void LimpiarEstacion()
-		{
+            Invalidate();
+        }
+        public void LimpiarEstacion()
+        {
             foreach (KeyValuePair<Guid, EquipoView> equipo in _equipos)
             {
                 equipo.Value.DesconectarDelContenedor();
             }
-			_conexiones.Clear();
-			_diccioPuertos.Clear();
-			_puertos.Clear();
-			_puerto1 = null;
-			_equipos.Clear();
-			_switches.Clear();
+            _conexiones.Clear();
+            _diccioPuertos.Clear();
+            _puertos.Clear();
+            _puerto1 = null;
+            _equipos.Clear();
+            _switches.Clear();
             _routers.Clear();
-			_computadores.Clear();
-			_marcadores.Clear();
-		}
+            _computadores.Clear();
+            _marcadores.Clear();
+        }
 
 
         private DockPanel _dockMain;
@@ -196,7 +196,7 @@ namespace RedesIP.Vistas
             pcView.DefaultGateWay = pcSOA.DefaultGateWay;
         }
 
-        
+
         public void EstablecerDatosRouter(RouterSOA router)
         {
             RouterView rouView = _equipos[router.Id] as RouterView;
@@ -222,7 +222,7 @@ namespace RedesIP.Vistas
         public void EnviarCambioARP(Guid idPuerto, ARP_SOA listARP)
         {
             _snifferMaster.EnviarCambioDeTablaARP(idPuerto, listARP);
-                
+
         }
 
         #endregion
@@ -306,6 +306,28 @@ namespace RedesIP.Vistas
             EliminarSniffer(idPuerto);
             _snifferMaster.DeleteSnifferPuerto(idPuerto);
             Invalidate();
+        }
+
+        #endregion
+
+        #region IVisualizacion Members
+
+
+        public void EliminarCable(Guid idCable)
+        {
+            CableView cableABorrar = null;
+            foreach (CableView cable in _conexiones)
+            {
+                if (cable.Id == idCable)
+                {
+                    cableABorrar = cable;
+                    break;
+                }
+            }
+              cableABorrar.Dispose();
+              _conexiones.Remove(cableABorrar);
+            Invalidate();
+
         }
 
         #endregion

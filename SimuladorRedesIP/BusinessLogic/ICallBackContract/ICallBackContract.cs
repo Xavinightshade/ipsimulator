@@ -14,5 +14,7 @@ namespace RedesIP.SOA
         [OperationContract(IsOneWay = true)]
         void EstablecerDatosSwitch(SwitchSOA swi);
         void DesconectarDeServidor();
+        [OperationContract(IsOneWay = true)]
+        void EliminarCable(Guid idCable);
     }
 }

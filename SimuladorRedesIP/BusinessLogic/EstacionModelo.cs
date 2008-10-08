@@ -8,6 +8,7 @@ using RedesIP.Modelos.Datos;
 using RedesIP.Common;
 using RedesIP.SOA;
 using BusinessLogic.Modelos.Logicos.Datos;
+using BusinessLogic.Sniffer;
 
 namespace RedesIP
 {
@@ -221,6 +222,13 @@ namespace RedesIP
         {
             SwitchLogico swiLogico = _switches[swi.Id];
             swiLogico.Nombre = swi.Nombre;
+        }
+
+        internal void EliminarCable(Guid idCable)
+        {
+            CableDeRedLogico cable = _diccioCables[idCable];
+            cable.DesconectarPuertos();
+            _diccioCables.Remove(idCable);
         }
     }
 

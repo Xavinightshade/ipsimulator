@@ -48,12 +48,12 @@ namespace RedesIP.Modelos
 			Puerto1.FrameTransmitido += new EventHandler<FrameTransmitidoEventArgs>(OnFrameTransmitidoDelPuerto1);
 			_puerto2.FrameTransmitido += new EventHandler<FrameTransmitidoEventArgs>(OnFrameTransmitidoDelPuerto2);
             Puerto1.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(Puerto1_FrameRecibido);
-            _puerto2.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(_puerto2_FrameRecibido);
+            _puerto2.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(Puerto2_FrameRecibido);
 			_listaPuertos.Add(Puerto1);
 			_listaPuertos.Add(_puerto2);
 		}
 
-        void _puerto2_FrameRecibido(object sender, FrameRecibidoEventArgs e)
+        private void Puerto2_FrameRecibido(object sender, FrameRecibidoEventArgs e)
         {
             if (FrameRecibidoPuerto2 != null)
             {
@@ -70,6 +70,7 @@ namespace RedesIP.Modelos
         }
 		public void DesconectarPuertos()
 		{
+           
 			Puerto1.FrameTransmitido -= new EventHandler<FrameTransmitidoEventArgs>(OnFrameTransmitidoDelPuerto1);
 			_puerto2.FrameTransmitido -= new EventHandler<FrameTransmitidoEventArgs>(OnFrameTransmitidoDelPuerto2);
 			_listaPuertos.Remove(Puerto1);

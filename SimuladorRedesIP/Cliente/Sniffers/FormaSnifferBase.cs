@@ -100,7 +100,7 @@ namespace SimuladorCliente
             Dispose();
             this.Close();
         }
-        protected virtual void Dispose()
+        protected new virtual void  Dispose()
         {
             _marcador = null;
             _vista = null;

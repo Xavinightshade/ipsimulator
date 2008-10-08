@@ -373,6 +373,26 @@ namespace RedesIP
             _snifferMaster.PeticionPararDeEnviarInformacionSwitch(idSwitch, GetCurrentClient());
         }
         #endregion
+
+        #region IModeloSOA Members
+
+
+        public void PeticionEliminarCable(Guid idCable)
+        {
+            _snifferMaster.EliminarSnifferCableBuscandoCable(idCable);
+            _estacion.EliminarCable(idCable);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.EliminarCable(idCable);
+            }
+        }
+
+        private ModeloCableSniffer BuscarSnifferDelCable(Guid idCable)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 
 

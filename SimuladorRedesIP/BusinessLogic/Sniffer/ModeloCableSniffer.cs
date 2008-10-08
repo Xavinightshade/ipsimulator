@@ -12,6 +12,11 @@ namespace BusinessLogic.Sniffer
     public class ModeloCableSniffer:ModeloSnifferBase
     {
         private CableDeRedLogico _cable;
+
+        public CableDeRedLogico Cable
+        {
+            get { return _cable; }
+        }
         public ModeloCableSniffer(CableDeRedLogico cable)
         {
             _cable = cable;
@@ -44,6 +49,20 @@ namespace BusinessLogic.Sniffer
             {
                 vist.EnviarInformacionConexion(new MensajeCableSOA(_cable.Id, Frame.ConvertirFrame(e.FrameRecibido), e.HoraDeRecepcion));
 
+            }
+        }
+
+        internal void EliminarSnifferTotal()
+        {
+            List<IVisualizacion> vistasABorrar = new List<IVisualizacion>();
+            foreach (IVisualizacion vist in Vistas)
+            {
+                vistasABorrar.Add(vist);
+
+            }
+            foreach (IVisualizacion vista in vistasABorrar)
+            {
+                EliminarVista(vista);
             }
         }
     }

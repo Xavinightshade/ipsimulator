@@ -23,7 +23,7 @@ namespace RedesIP.Vistas
 
         public void ConectarPuertos(CableSOA cable)
         {
-            _conexiones.Add(new CableView(cable.Id, _diccioPuertos[cable.IdPuerto1], _diccioPuertos[cable.IdPuerto2]));
+            _conexiones.Add(new CableView(cable.Id, this as Control, _diccioPuertos[cable.IdPuerto1], _diccioPuertos[cable.IdPuerto2]));
             Invalidate();
         }
         private PuertoEthernetViewBase _puerto1;

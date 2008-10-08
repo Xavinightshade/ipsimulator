@@ -5,6 +5,7 @@ using RedesIP.Vistas.Equipos.Componentes;
 using RedesIP.Vistas.Equipos;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace RedesIP.Vistas
 {
@@ -46,17 +47,29 @@ namespace RedesIP.Vistas
 			}
 			}
 		}
+        ContextMenuStrip _menu = new ContextMenuStrip();
 
 
-		public CableView(Guid id,PuertoEthernetViewBase puerto1,PuertoEthernetViewBase puerto2)
+        Control _contenedor;
+        public CableView(Guid id, Control inst, PuertoEthernetViewBase puerto1, PuertoEthernetViewBase puerto2)
 			:base(id)
 		{
- 
+            ToolStripMenuItem item = new ToolStripMenuItem("Borrar Cable");
+            item.Click += new EventHandler(BorrarClick);
+             _menu.Items.Add(item);
+             _contenedor = inst;
+             _contenedor.MouseUp += new MouseEventHandler(OnMouseUp);
 			_puerto1 = puerto1;
 			_puerto2 = puerto2;
 			_puerto1.Conectado = true;
 			_puerto2.Conectado = true;
 		}
+
+        private void  BorrarClick(object sender, EventArgs e)
+        {
+            IRegistroMovimientosMouse contenedor = _contenedor as IRegistroMovimientosMouse;
+            contenedor.Contrato.PeticionEliminarCable(Id);
+        }
 		float _anchoPen = 1;
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{
@@ -69,9 +82,28 @@ namespace RedesIP.Vistas
 			p.Dispose();
 
 		}
+        private void OnMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+
+            if (HitTest(e.X, e.Y))
+            {
+
+                OnMouseUpEvent(e);
+
+            }
+
+
+        }
+        private  void OnMouseUpEvent(System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                _menu.Show(_contenedor, e.X, e.Y);
+            }
+        }
 		public override bool HitTest(int x, int y)
 		{
-			Pen p = new Pen(Color.Black, _anchoPen+3);
+			Pen p = new Pen(Color.Black, _anchoPen+5);
 			GraphicsPath pth = new GraphicsPath();
 			pth.AddLine(_puerto1.DimensionMundo.Centro.X, _puerto1.DimensionMundo.Centro.Y, _puerto2.DimensionMundo.Centro.X, _puerto2.DimensionMundo.Centro.Y);
 			pth.Widen(p);
@@ -84,5 +116,18 @@ namespace RedesIP.Vistas
 			pth.Dispose();
 			return false;
 		}
-	}
+
+        internal void Dispose()
+        {
+            _puerto1.Conectado = false;
+            _puerto2.Conectado = false;
+            _puerto1.Seleccionado = false;
+            _puerto2.Seleccionado = false;
+            _contenedor.MouseUp -= new MouseEventHandler(OnMouseUp);
+            _contenedor = null;
+            _puerto1 = null;
+            _puerto2 = null;
+            _menu = null;
+        }
+    }
 }
