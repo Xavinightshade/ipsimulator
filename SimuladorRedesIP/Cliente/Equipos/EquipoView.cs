@@ -130,7 +130,7 @@ namespace RedesIP.Vistas.Equipos
                 
                 if (HitTest(e.X, e.Y))
                 {
-                    _tooltip.Show(GetFullInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY+DimensionMundo.Alto, 4000);
+                    _tooltip.Show(GetFullInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY+DimensionMundo.Alto,2000);
                 }
                 else
                 {

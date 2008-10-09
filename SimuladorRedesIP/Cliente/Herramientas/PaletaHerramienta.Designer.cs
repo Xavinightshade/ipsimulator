@@ -31,12 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaletaHerramienta));
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this._mouse = new System.Windows.Forms.Button();
-            this._punta = new System.Windows.Forms.Button();
-            this._conexion = new System.Windows.Forms.Button();
-            this._router = new System.Windows.Forms.Button();
-            this._switch = new System.Windows.Forms.Button();
-            this._pc = new System.Windows.Forms.Button();
+            this._PaletaMouse = new System.Windows.Forms.Button();
+            this._PaletaPunta = new System.Windows.Forms.Button();
+            this._PaletaConexion = new System.Windows.Forms.Button();
+            this._PaletaRouter = new System.Windows.Forms.Button();
+            this._PaletaSwitch = new System.Windows.Forms.Button();
+            this._PaletaPc = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -69,83 +69,76 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // _mouse
+            // _PaletaMouse
             // 
-            this._mouse.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this._mouse.FlatAppearance.BorderSize = 5;
-            this._mouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._mouse.Image = global::SimuladorCliente.Properties.Resources.mouse;
-            this._mouse.Location = new System.Drawing.Point(12, 12);
-            this._mouse.Name = "_mouse";
-            this._mouse.Size = new System.Drawing.Size(106, 57);
-            this._mouse.TabIndex = 5;
-            this._mouse.UseVisualStyleBackColor = true;
-            this._mouse.Click += new System.EventHandler(this._mouse_Click);
+            this._PaletaMouse.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this._PaletaMouse.FlatAppearance.BorderSize = 5;
+            this._PaletaMouse.Image = global::SimuladorCliente.Properties.Resources.mouse;
+            this._PaletaMouse.Location = new System.Drawing.Point(12, 12);
+            this._PaletaMouse.Name = "_PaletaMouse";
+            this._PaletaMouse.Size = new System.Drawing.Size(106, 57);
+            this._PaletaMouse.TabIndex = 5;
+            this._PaletaMouse.UseVisualStyleBackColor = true;
             // 
-            // _punta
+            // _PaletaPunta
             // 
-            this._punta.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this._punta.FlatAppearance.BorderSize = 5;
-            this._punta.Image = global::SimuladorCliente.Properties.Resources.sniffer;
-            this._punta.Location = new System.Drawing.Point(6, 83);
-            this._punta.Name = "_punta";
-            this._punta.Size = new System.Drawing.Size(106, 67);
-            this._punta.TabIndex = 4;
-            this._punta.UseVisualStyleBackColor = true;
-            this._punta.Click += new System.EventHandler(this._punta_Click);
+            this._PaletaPunta.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this._PaletaPunta.FlatAppearance.BorderSize = 5;
+            this._PaletaPunta.Image = global::SimuladorCliente.Properties.Resources.sniffer;
+            this._PaletaPunta.Location = new System.Drawing.Point(6, 83);
+            this._PaletaPunta.Name = "_PaletaPunta";
+            this._PaletaPunta.Size = new System.Drawing.Size(106, 67);
+            this._PaletaPunta.TabIndex = 4;
+            this._PaletaPunta.UseVisualStyleBackColor = true;
             // 
-            // _conexion
+            // _PaletaConexion
             // 
-            this._conexion.BackColor = System.Drawing.Color.DarkRed;
-            this._conexion.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this._conexion.FlatAppearance.BorderSize = 5;
-            this._conexion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
-            this._conexion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this._conexion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this._conexion.Image = global::SimuladorCliente.Properties.Resources.Cable;
-            this._conexion.Location = new System.Drawing.Point(6, 19);
-            this._conexion.Name = "_conexion";
-            this._conexion.Size = new System.Drawing.Size(106, 58);
-            this._conexion.TabIndex = 3;
-            this._conexion.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this._conexion.UseVisualStyleBackColor = false;
-            this._conexion.Click += new System.EventHandler(this._conexion_Click);
+            this._PaletaConexion.BackColor = System.Drawing.Color.DarkRed;
+            this._PaletaConexion.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this._PaletaConexion.FlatAppearance.BorderSize = 5;
+            this._PaletaConexion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
+            this._PaletaConexion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this._PaletaConexion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this._PaletaConexion.Image = global::SimuladorCliente.Properties.Resources.Cable;
+            this._PaletaConexion.Location = new System.Drawing.Point(6, 19);
+            this._PaletaConexion.Name = "_PaletaConexion";
+            this._PaletaConexion.Size = new System.Drawing.Size(106, 58);
+            this._PaletaConexion.TabIndex = 3;
+            this._PaletaConexion.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this._PaletaConexion.UseVisualStyleBackColor = false;
             // 
-            // _router
+            // _PaletaRouter
             // 
-            this._router.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this._router.FlatAppearance.BorderSize = 3;
-            this._router.Image = global::SimuladorCliente.Properties.Resources.Router;
-            this._router.Location = new System.Drawing.Point(6, 100);
-            this._router.Name = "_router";
-            this._router.Size = new System.Drawing.Size(110, 29);
-            this._router.TabIndex = 2;
-            this._router.UseVisualStyleBackColor = true;
-            this._router.Click += new System.EventHandler(this._router_Click);
+            this._PaletaRouter.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this._PaletaRouter.FlatAppearance.BorderSize = 3;
+            this._PaletaRouter.Image = global::SimuladorCliente.Properties.Resources.Router;
+            this._PaletaRouter.Location = new System.Drawing.Point(6, 100);
+            this._PaletaRouter.Name = "_PaletaRouter";
+            this._PaletaRouter.Size = new System.Drawing.Size(110, 29);
+            this._PaletaRouter.TabIndex = 2;
+            this._PaletaRouter.UseVisualStyleBackColor = true;
             // 
-            // _switch
+            // _PaletaSwitch
             // 
-            this._switch.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this._switch.FlatAppearance.BorderSize = 3;
-            this._switch.Image = global::SimuladorCliente.Properties.Resources.Switch;
-            this._switch.Location = new System.Drawing.Point(6, 65);
-            this._switch.Name = "_switch";
-            this._switch.Size = new System.Drawing.Size(110, 29);
-            this._switch.TabIndex = 1;
-            this._switch.UseVisualStyleBackColor = true;
-            this._switch.Click += new System.EventHandler(this._switch_Click);
+            this._PaletaSwitch.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this._PaletaSwitch.FlatAppearance.BorderSize = 3;
+            this._PaletaSwitch.Image = global::SimuladorCliente.Properties.Resources.Switch;
+            this._PaletaSwitch.Location = new System.Drawing.Point(6, 65);
+            this._PaletaSwitch.Name = "_PaletaSwitch";
+            this._PaletaSwitch.Size = new System.Drawing.Size(110, 29);
+            this._PaletaSwitch.TabIndex = 1;
+            this._PaletaSwitch.UseVisualStyleBackColor = true;
             // 
-            // _pc
+            // _PaletaPc
             // 
-            this._pc.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this._pc.FlatAppearance.BorderSize = 3;
-            this._pc.Image = global::SimuladorCliente.Properties.Resources.Computador;
-            this._pc.Location = new System.Drawing.Point(39, 19);
-            this._pc.Name = "_pc";
-            this._pc.Size = new System.Drawing.Size(45, 40);
-            this._pc.TabIndex = 0;
-            this._pc.UseVisualStyleBackColor = true;
-            this._pc.Click += new System.EventHandler(this._pc_Click);
+            this._PaletaPc.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this._PaletaPc.FlatAppearance.BorderSize = 3;
+            this._PaletaPc.Image = global::SimuladorCliente.Properties.Resources.Computador;
+            this._PaletaPc.Location = new System.Drawing.Point(39, 19);
+            this._PaletaPc.Name = "_PaletaPc";
+            this._PaletaPc.Size = new System.Drawing.Size(45, 40);
+            this._PaletaPc.TabIndex = 0;
+            this._PaletaPc.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -161,8 +154,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this._conexion);
-            this.groupBox2.Controls.Add(this._punta);
+            this.groupBox2.Controls.Add(this._PaletaConexion);
+            this.groupBox2.Controls.Add(this._PaletaPunta);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(6, 218);
             this.groupBox2.Name = "groupBox2";
@@ -173,9 +166,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this._pc);
-            this.groupBox3.Controls.Add(this._switch);
-            this.groupBox3.Controls.Add(this._router);
+            this.groupBox3.Controls.Add(this._PaletaPc);
+            this.groupBox3.Controls.Add(this._PaletaSwitch);
+            this.groupBox3.Controls.Add(this._PaletaRouter);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(6, 75);
             this.groupBox3.Name = "groupBox3";
@@ -193,7 +186,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this._mouse);
+            this.Controls.Add(this._PaletaMouse);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PaletaHerramienta";
             this.TabText = "Paleta";
@@ -207,16 +200,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button _pc;
-        private System.Windows.Forms.Button _switch;
-        private System.Windows.Forms.Button _router;
-        private System.Windows.Forms.Button _conexion;
-        private System.Windows.Forms.Button _punta;
-        private System.Windows.Forms.Button _mouse;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.Button _PaletaPc;
+        public System.Windows.Forms.Button _PaletaSwitch;
+        public System.Windows.Forms.Button _PaletaRouter;
+        public System.Windows.Forms.Button _PaletaConexion;
+        public System.Windows.Forms.Button _PaletaPunta;
+        public System.Windows.Forms.Button _PaletaMouse;
     }
 }

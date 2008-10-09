@@ -30,6 +30,7 @@ namespace SimuladorCliente
         private EstacionModelo _estacionModelo;
         PresenterLocal _presenterLocal;
         private bool _servicioConectado;
+        PaletaHerramienta _formaPaletaHerramientas;
         public MainFrame()
         {
             InitializeComponent();
@@ -37,12 +38,13 @@ namespace SimuladorCliente
             FormaEstacion formaEstacion = new FormaEstacion();
             formaEstacion.Show(_dockMain, DockState.Document);
 
-            PaletaHerramienta formaPaletaHerramientas = new PaletaHerramienta();
+            _formaPaletaHerramientas = new PaletaHerramienta();
 
-            formaPaletaHerramientas.Show(_dockMain, DockState.DockLeftAutoHide);
-            formaPaletaHerramientas.DockPanel.DockLeftPortion = 140;
-            formaPaletaHerramientas.DockHandler.AllowEndUserDocking = false;
-            formaPaletaHerramientas.AutoHidePortion = 140;
+            _formaPaletaHerramientas.Show(_dockMain, DockState.DockLeftAutoHide);
+            _formaPaletaHerramientas.DockPanel.DockLeftPortion = 140;
+            _formaPaletaHerramientas.DockHandler.AllowEndUserDocking = false;
+            _formaPaletaHerramientas.AutoHidePortion = 140;
+            UnificarPaleta();
 
             _estacionView = formaEstacion.EstacionView;
             _estacionModelo = new EstacionModelo(Guid.NewGuid());
@@ -62,6 +64,22 @@ namespace SimuladorCliente
 
         }
 
+        private void UnificarPaleta()
+        {
+            _formaPaletaHerramientas._PaletabdDefault.Click+=new EventHandler(ToolBarCargarBDdefault_Click);
+            _formaPaletaHerramientas._PaletaConexion.Click+=new EventHandler(Conexion_Click);
+            _formaPaletaHerramientas._PaletadbArchivo.Click+=new EventHandler(ToolBarDBOpenClick);
+            _formaPaletaHerramientas._PaletadbSave.Click+=new EventHandler(ToolBarDBSaveClick);
+            _formaPaletaHerramientas._PaletaMouse.Click+=new EventHandler(Nouse_Click);
+            _formaPaletaHerramientas._PaletaPc.Click+=new EventHandler(pc_Click);
+            _formaPaletaHerramientas._PaletaPunta.Click+=new EventHandler(Punta_Click);
+            _formaPaletaHerramientas._PaletaRouter.Click+=new EventHandler(Router_Click);
+            _formaPaletaHerramientas._PaletaSwitch.Click+=new EventHandler(Switch_Click);
+            _formaPaletaHerramientas._PaletasoaConectar.Click+=new EventHandler(ToolBarConectarClick);
+            _formaPaletaHerramientas._PaletasoaConfigurar.Click+=new EventHandler(ToolBarConfigurarServidorClick);
+            _formaPaletaHerramientas._PaletasoaDesconectar.Click+=new EventHandler(ToolBarDesconectarClick);
+        }
+
         #region ToolBarEstados
         private void pc_Click(object sender, EventArgs e)
         {
@@ -72,6 +90,13 @@ namespace SimuladorCliente
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
+
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
         }
         private void Nouse_Click(object sender, EventArgs e)
         {
@@ -82,6 +107,13 @@ namespace SimuladorCliente
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
+
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
         }
         private void Switch_Click(object sender, EventArgs e)
         {
@@ -92,6 +124,13 @@ namespace SimuladorCliente
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
+
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
         }
         private void Router_Click(object sender, EventArgs e)
         {
@@ -102,6 +141,13 @@ namespace SimuladorCliente
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Checked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
+
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
         }
         private void Conexion_Click(object sender, EventArgs e)
         {
@@ -112,6 +158,13 @@ namespace SimuladorCliente
             _toolBarConectarEquipos.CheckState = CheckState.Checked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
+
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
         }
         private void Punta_Click(object sender, EventArgs e)
         {
@@ -122,6 +175,13 @@ namespace SimuladorCliente
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Checked;
+
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Flat;
         }
         #endregion
 
@@ -142,20 +202,15 @@ namespace SimuladorCliente
                 (context, binding, address);
             binding.ReceiveTimeout = TimeSpan.MaxValue;
             IModeloSOA clien = factory.CreateChannel();
-
+            
 
             _estacionView.LimpiarEstacion();
             _estacionView.Inicializar(clien, _dockMain);
-
-
+            _servicioConectado = true;
 
 
             clien.ConectarCliente();
 
-            _toolBarMouse.Enabled = true;
-            _toolBarPC.Enabled = true;
-            _toolBarSwitch.Enabled = true;
-            _toolBarConectarEquipos.Enabled = true;
         }
 
         private void ToolBarConectarClick(object sender, EventArgs e)
@@ -164,34 +219,56 @@ namespace SimuladorCliente
             {
                 if (formularioConexion.ShowDialog() == DialogResult.OK)
                 {
-                    ConectarSOA(formularioConexion.IPAddress.ToString(), formularioConexion.Puerto.ToString());
-                    _servicioConectado = true;
-                    _toolBarCargarBDarchivo.Enabled = false;
-                    _toolBarCargarBDdefault.Enabled = false;
-                    _toolBarConectar.Enabled = false;
-                    _toolBarDelete.Enabled = false;
-                    _toolBarNew.Enabled = false;
-                    _toolBarOpen.Enabled = false;
-                    _toolBarConfigurarServidor.Enabled = false;
-                    _toolBarSave.Enabled = false;
-                    _menuCargarDBArchivo.Enabled = false;
-                    _menuCargarDBDefault.Enabled = false;
-                    _menuConectarServidor.Enabled = false;
-                    _menuConfigurarServidor.Enabled = false;
-                    _menuDelete.Enabled = false;
-                    _menuDesconectarServidor.Enabled = true;
-                    _menuGuardar.Enabled = false;
-                    _menuNew.Enabled = false;
-                    _menuGuardarComo.Enabled = false;
-                    _toolBarGuardarBD.Enabled = false;
-                    _menuOpen.Enabled = false;
-                    _toolBarDesonectar.Enabled = true;
-                    _menuGuardarBD.Enabled = false;
+                    try
+                    {
+                        ConectarSOA(formularioConexion.IPAddress.ToString(), formularioConexion.Puerto.ToString());
+                        EstablecerToolBarConectarServidor();
+
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("No se pudo conectar al servidor," + Environment.NewLine + "compruebe la dirección IP y el puerto" 
+                            ,"Conectar Servidor",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                 }
             }
 
 
+        }
+
+        private void EstablecerToolBarConectarServidor()
+        {
+            _toolBarCargarBDarchivo.Enabled = false;
+            _toolBarCargarBDdefault.Enabled = false;
+            _toolBarConectar.Enabled = false;
+            _toolBarDelete.Enabled = false;
+            _toolBarNew.Enabled = false;
+            _toolBarOpen.Enabled = false;
+            _toolBarConfigurarServidor.Enabled = false;
+            _toolBarSave.Enabled = false;
+            _toolBarGuardarBD.Enabled = false;
+            _toolBarDesonectar.Enabled = true;
+
+            _menuCargarDBArchivo.Enabled = false;
+            _menuCargarDBDefault.Enabled = false;
+            _menuConectarServidor.Enabled = false;
+            _menuConfigurarServidor.Enabled = false;
+            _menuDelete.Enabled = false;
+            _menuDesconectarServidor.Enabled = true;
+            _menuGuardar.Enabled = false;
+            _menuNew.Enabled = false;
+            _menuGuardarComo.Enabled = false;
+            _menuOpen.Enabled = false;
+            _menuGuardarBD.Enabled = false;
+
+            _formaPaletaHerramientas._PaletadbArchivo.Enabled = false;
+            _formaPaletaHerramientas._PaletabdDefault.Enabled = false;
+            _formaPaletaHerramientas._PaletasoaConectar.Enabled = false;
+            _formaPaletaHerramientas._PaletasoaConfigurar.Enabled = false;
+            _formaPaletaHerramientas._PaletasoaDesconectar.Enabled = false;
+            _formaPaletaHerramientas._PaletadbSave.Enabled = false;
         }
 
         private void ToolBarConfigurarServidorClick(object sender, EventArgs e)
@@ -204,8 +281,18 @@ namespace SimuladorCliente
                     PresenterSOA presenterSOA = new PresenterSOA();
                     presenterSOA.SetEstacion(_estacionModelo, _presenterLocal.SnifferMaster);
 
+                    try
+                    {
+                        InicializarServicio(presenterSOA, modeloConexion.Puerto, modeloConexion.DireccionIp);
 
-                    InicializarServicio(presenterSOA, modeloConexion.Puerto, modeloConexion.DireccionIp);
+                    }
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show("No se pudo iniciar el servidor,"+Environment.NewLine+"compruebe que el puerto no este siendo usado,"+
+                            Environment.NewLine+"o que esté protegido por un Firewall", "Servicio Remoto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     string texto = "Servicio Iniciado." + Environment.NewLine +
                         "Dirección IP: " + modeloConexion.DireccionIp + Environment.NewLine +
                     "Puerto: " + modeloConexion.Puerto;
@@ -217,32 +304,46 @@ namespace SimuladorCliente
                     _notifyIcon.ContextMenu.MenuItems.Add(menuDesconectar);
                     menuDesconectar.Click += new EventHandler(menuDesconectar_Click);
                     _notifyIcon.Text = texto;
-                    _toolBarCargarBDarchivo.Enabled = false;
-                    _toolBarCargarBDdefault.Enabled = false;
-                    _toolBarConectar.Enabled = false;
-                    _toolBarDelete.Enabled = false;
-                    _toolBarNew.Enabled = false;
-                    _toolBarOpen.Enabled = false;
-                    _toolBarConfigurarServidor.Enabled = false;
-                    _toolBarSave.Enabled = false;
-                    _menuCargarDBArchivo.Enabled = false;
-                    _menuCargarDBDefault.Enabled = false;
-                    _menuConectarServidor.Enabled = false;
-                    _menuConfigurarServidor.Enabled = false;
-                    _menuDelete.Enabled = false;
-                    _menuDesconectarServidor.Enabled = false;
-                    _menuGuardar.Enabled = false;
-                    _menuNew.Enabled = false;
-                    _menuGuardarComo.Enabled = false;
-                    _toolBarGuardarBD.Enabled = false;
-                    _menuOpen.Enabled = false;
-                    _toolBarDesonectar.Enabled = false;
-                    _menuGuardarBD.Enabled = false;
-                    _toolBarMouse.Checked = false;
+                    EstablecerToolBarConfigurarServicio();
                 }
             }
 
 
+        }
+
+        private void EstablecerToolBarConfigurarServicio()
+        {
+            _toolBarCargarBDarchivo.Enabled = false;
+            _toolBarCargarBDdefault.Enabled = false;
+            _toolBarConectar.Enabled = false;
+            _toolBarDelete.Enabled = false;
+            _toolBarNew.Enabled = false;
+            _toolBarOpen.Enabled = false;
+            _toolBarConfigurarServidor.Enabled = false;
+            _toolBarSave.Enabled = false;
+            _toolBarMouse.Checked = false;
+            _toolBarDesonectar.Enabled = false;
+            _toolBarGuardarBD.Enabled = false;
+
+            _menuCargarDBArchivo.Enabled = false;
+            _menuCargarDBDefault.Enabled = false;
+            _menuConectarServidor.Enabled = false;
+            _menuConfigurarServidor.Enabled = false;
+            _menuDelete.Enabled = false;
+            _menuDesconectarServidor.Enabled = false;
+            _menuGuardar.Enabled = false;
+            _menuNew.Enabled = false;
+            _menuGuardarComo.Enabled = false;
+            _menuOpen.Enabled = false;
+            _menuGuardarBD.Enabled = false;
+
+
+            _formaPaletaHerramientas._PaletadbArchivo.Enabled = false;
+            _formaPaletaHerramientas._PaletabdDefault.Enabled = false;
+            _formaPaletaHerramientas._PaletasoaConectar.Enabled = false;
+            _formaPaletaHerramientas._PaletasoaConfigurar.Enabled = false;
+            _formaPaletaHerramientas._PaletasoaDesconectar.Enabled = false;
+            _formaPaletaHerramientas._PaletadbSave.Enabled = false;
         }
 
         void menuDesconectar_Click(object sender, EventArgs e)
@@ -264,8 +365,9 @@ namespace SimuladorCliente
 
             calculatorHost.AddServiceEndpoint(
                 typeof(IModeloSOA), binding, address);
-
             calculatorHost.Open();
+
+            
         }
 
         private void MainFrameClosing(object sender, FormClosingEventArgs e)
@@ -309,6 +411,7 @@ namespace SimuladorCliente
             EstablecerToolBarCrearTopologia();
             _estacionView.Inicializar(_presenterLocal, _dockMain);
             _presenterLocal.ConectarCliente();
+            _estacionView.Invalidate();
         }
 
         private void EstablecerToolBarCrearTopologia()
@@ -333,6 +436,22 @@ namespace SimuladorCliente
             _toolBarConfigurarServidor.Enabled = true;
             _toolBarConectarEquipos.Enabled = true;
             _toolBarMouse.Checked = true;
+
+            _formaPaletaHerramientas._PaletadbArchivo.Enabled = false;
+            _formaPaletaHerramientas._PaletabdDefault.Enabled = false;
+            _formaPaletaHerramientas._PaletasoaConectar.Enabled = true;
+            _formaPaletaHerramientas._PaletasoaConfigurar.Enabled = true;
+            _formaPaletaHerramientas._PaletasoaDesconectar.Enabled = false;
+            _formaPaletaHerramientas._PaletadbSave.Enabled = false;
+
+            _formaPaletaHerramientas._PaletaMouse.Enabled = true;
+            _formaPaletaHerramientas._PaletaRouter.Enabled = true;
+            _formaPaletaHerramientas._PaletaPc.Enabled = true;
+            _formaPaletaHerramientas._PaletaSwitch.Enabled = true;
+            _formaPaletaHerramientas._PaletaPunta.Enabled = true;
+            _formaPaletaHerramientas._PaletaConexion.Enabled = true;
+
+            
         }
 
         private void ToolBarNewClick(object sender, EventArgs e)
@@ -398,20 +517,35 @@ namespace SimuladorCliente
             _menuConectarServidor.Enabled = false;
             _menuConfigurarServidor.Enabled = false;
             _menuDesconectarServidor.Enabled = false;
-            _menuConectarServidor.Enabled = false;
+            _menuConectarServidor.Enabled = true;
             _menuConfigurarServidor.Enabled = false;
             _menuDesconectarServidor.Enabled = false;
+
             _toolBarDelete.Enabled = false;
             _toolBarSave.Enabled = false;
             _toolBarPuntaMedicion.Enabled = false;
             _toolBarRouter.Enabled = false;
             _toolBarSwitch.Enabled = false;
             _toolBarPC.Enabled = false;
-            _toolBarConectar.Enabled = false;
+            _toolBarConectar.Enabled = true;
             _toolBarDesonectar.Enabled = false;
             _toolBarMouse.Enabled = false;
             _toolBarConfigurarServidor.Enabled = false;
             _toolBarConectarEquipos.Enabled = false;
+
+            _formaPaletaHerramientas._PaletadbArchivo.Enabled = true;
+            _formaPaletaHerramientas._PaletabdDefault.Enabled = true;
+            _formaPaletaHerramientas._PaletasoaConectar.Enabled = true;
+            _formaPaletaHerramientas._PaletasoaConfigurar.Enabled = false;
+            _formaPaletaHerramientas._PaletasoaDesconectar.Enabled = false;
+            _formaPaletaHerramientas._PaletadbSave.Enabled = true;
+
+            _formaPaletaHerramientas._PaletaMouse.Enabled = false;
+            _formaPaletaHerramientas._PaletaRouter.Enabled = false;
+            _formaPaletaHerramientas._PaletaPc.Enabled = false;
+            _formaPaletaHerramientas._PaletaSwitch.Enabled = false;
+            _formaPaletaHerramientas._PaletaPunta.Enabled = false;
+            _formaPaletaHerramientas._PaletaConexion.Enabled = false;
         }
 
         private void ToolBarDBOpenClick(object sender, EventArgs e)
@@ -476,11 +610,20 @@ namespace SimuladorCliente
 
 
 
-        private void _toolBarCargarBDdefault_Click(object sender, EventArgs e)
+        private void ToolBarCargarBDdefault_Click(object sender, EventArgs e)
         {
             AccesoDatos.AlmacenadorInformacion.SetDefaultBD();
             EstablecerToolBarCrearTopologia();
             _esEstacionNueva = true;
+        }
+
+        private void _menuDesconectarServidor_Click(object sender, EventArgs e)
+        {
+           
+            _estacionView.Contrato.DesconectarCliente();
+            CrearNuevaEstacion();
+            _servicioConectado = false;
+      
         }
 
 

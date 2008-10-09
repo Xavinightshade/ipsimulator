@@ -25,9 +25,10 @@ namespace BusinessLogic.Sniffer
         }
         public void DesconectarCliente(IVisualizacion cliente)
         {
-            foreach (KeyValuePair<Guid,ModeloSnifferBase> item in _sniffers)
+            foreach (KeyValuePair<Guid, ModeloSnifferBase> item in _sniffers)
             {
-                item.Value.EliminarVista(cliente);
+                if (item.Value.Vistas.Contains(cliente))
+                    item.Value.Vistas.Remove(cliente);
             }
 
         }
@@ -102,7 +103,7 @@ namespace BusinessLogic.Sniffer
 
         public void PeticionPararEnviarInformacionConexion(Guid idConexion, IVisualizacion cliente)
         {
-             EliminarSniffer(idConexion, cliente);
+            EliminarSniffer(idConexion, cliente);
         }
 
         private void EliminarSniffer(Guid idSniffer, IVisualizacion cliente)

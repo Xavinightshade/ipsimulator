@@ -10,7 +10,7 @@ namespace BusinessLogic.Sniffer
     {
         private List<IVisualizacion> _vistas = new List<IVisualizacion>();
 
-        protected List<IVisualizacion> Vistas
+        public List<IVisualizacion> Vistas
         {
             get { return _vistas; }
         }
@@ -26,7 +26,6 @@ namespace BusinessLogic.Sniffer
         }
         public virtual void EliminarVista(IVisualizacion vista)
         {
-            if (Vistas.Contains(vista))
                 Vistas.Remove(vista);
         }
         public void EliminarSnifferTotal()

@@ -134,6 +134,7 @@ namespace RedesIP.Vistas
         }
         public void LimpiarEstacion()
         {
+            
             foreach (KeyValuePair<Guid, EquipoView> equipo in _equipos)
             {
                 equipo.Value.DesconectarDelContenedor();

@@ -58,6 +58,7 @@ namespace SimuladorCliente
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this._dockMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this._statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this._menuNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,6 +83,7 @@ namespace SimuladorCliente
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._menuStrip = new System.Windows.Forms.MenuStrip();
             this._toolStrip.SuspendLayout();
+            this._statusStrip.SuspendLayout();
             this._menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -177,7 +179,7 @@ namespace SimuladorCliente
             this._toolBarCargarBDdefault.Name = "_toolBarCargarBDdefault";
             this._toolBarCargarBDdefault.Size = new System.Drawing.Size(289, 22);
             this._toolBarCargarBDdefault.Text = "Seleccionar base de datos predeterminada";
-            this._toolBarCargarBDdefault.Click += new System.EventHandler(this._toolBarCargarBDdefault_Click);
+            this._toolBarCargarBDdefault.Click += new System.EventHandler(this.ToolBarCargarBDdefault_Click);
             // 
             // _toolBarCargarBDarchivo
             // 
@@ -223,7 +225,7 @@ namespace SimuladorCliente
             this._toolBarDesonectar.Name = "_toolBarDesonectar";
             this._toolBarDesonectar.Size = new System.Drawing.Size(204, 22);
             this._toolBarDesonectar.Text = "Desconectar del servidor";
-            this._toolBarDesonectar.Click += new System.EventHandler(this.ToolBarDesconectarClick);
+            this._toolBarDesonectar.Click += new System.EventHandler(this._menuDesconectarServidor_Click);
             // 
             // toolStripSeparator10
             // 
@@ -327,11 +329,20 @@ namespace SimuladorCliente
             // 
             // _statusStrip
             // 
+            this._statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
             this._statusStrip.Location = new System.Drawing.Point(0, 658);
             this._statusStrip.Name = "_statusStrip";
             this._statusStrip.Size = new System.Drawing.Size(893, 22);
             this._statusStrip.TabIndex = 15;
+            this._statusStrip.Tag = "gf";
             this._statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(38, 17);
+            this.toolStripStatusLabel1.Text = "Ready";
             // 
             // _notifyIcon
             // 
@@ -430,7 +441,7 @@ namespace SimuladorCliente
             this._menuCargarDBDefault.Name = "_menuCargarDBDefault";
             this._menuCargarDBDefault.Size = new System.Drawing.Size(289, 22);
             this._menuCargarDBDefault.Text = "Seleccionar base de datos predeterminada";
-            this._menuCargarDBDefault.Click += new System.EventHandler(this._toolBarCargarBDdefault_Click);
+            this._menuCargarDBDefault.Click += new System.EventHandler(this.ToolBarCargarBDdefault_Click);
             // 
             // _menuCargarDBArchivo
             // 
@@ -467,6 +478,7 @@ namespace SimuladorCliente
             this._menuDesconectarServidor.Name = "_menuDesconectarServidor";
             this._menuDesconectarServidor.Size = new System.Drawing.Size(289, 22);
             this._menuDesconectarServidor.Text = "Desconectar del servidor";
+            this._menuDesconectarServidor.Click += new System.EventHandler(this._menuDesconectarServidor_Click);
             // 
             // _menuConfigurarServidor
             // 
@@ -532,6 +544,8 @@ namespace SimuladorCliente
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrameClosing);
             this._toolStrip.ResumeLayout(false);
             this._toolStrip.PerformLayout();
+            this._statusStrip.ResumeLayout(false);
+            this._statusStrip.PerformLayout();
             this._menuStrip.ResumeLayout(false);
             this._menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -593,6 +607,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.MenuStrip _menuStrip;
         private System.Windows.Forms.ToolStripMenuItem _menuGuardarBD;
         private System.Windows.Forms.ToolStripMenuItem _menuGuardarComo;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 
 
 
