@@ -26,7 +26,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
         private void OnCambioDeTablaDeFiltro()
         {
             if (CambioDeTablaDeFiltro != null)
-                CambioDeTablaDeFiltro(this, new TiempoEventArgs(DateTime.Now));
+                CambioDeTablaDeFiltro(this, new TiempoEventArgs(BusinessLogic.Threads.ThreadManager.HoraActual));
         }
 		public void RegistrarDireccionMAC(string direccionMAC, PuertoEthernetLogicoBase puertoEthenet)
         {

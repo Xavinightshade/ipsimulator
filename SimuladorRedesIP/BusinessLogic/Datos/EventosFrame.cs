@@ -12,14 +12,14 @@ namespace RedesIP.Modelos.Datos
         {
             get { return _frameTransmitido; }
         }
-        private DateTime _horaDeTransmision;
+        private TimeSpan _horaDeTransmision;
 
-        public DateTime HoraDeTransmision
+        public TimeSpan HoraDeTransmision
         {
             get { return _horaDeTransmision; }
         }
 
-        public FrameTransmitidoEventArgs(Frame frame,DateTime horaTransmision)
+        public FrameTransmitidoEventArgs(Frame frame,TimeSpan horaTransmision)
         {
             _frameTransmitido = frame;
             _horaDeTransmision = horaTransmision;
@@ -33,13 +33,13 @@ namespace RedesIP.Modelos.Datos
         {
             get { return _frameRecibido; }
         }
-        private DateTime _horaDeRecepcion;
-        public DateTime HoraDeRecepcion
+        private TimeSpan _horaDeRecepcion;
+        public TimeSpan HoraDeRecepcion
         {
             get { return _horaDeRecepcion; }
         }
 
-        public FrameRecibidoEventArgs(Frame frame,DateTime horaDeRecepcion)
+        public FrameRecibidoEventArgs(Frame frame,TimeSpan horaDeRecepcion)
         {
             _frameRecibido = frame;
             _horaDeRecepcion = horaDeRecepcion;
@@ -51,13 +51,13 @@ public class TiempoEventArgs : EventArgs
 {
 
 
-    private DateTime _horaDeRecepcion;
-    public DateTime HoraDeRecepcion
+    private TimeSpan _horaDeRecepcion;
+    public TimeSpan HoraDeRecepcion
     {
         get { return _horaDeRecepcion; }
     }
 
-    public TiempoEventArgs(DateTime horaDeRecepcion)
+    public TiempoEventArgs(TimeSpan horaDeRecepcion)
     {
         _horaDeRecepcion = horaDeRecepcion;
 

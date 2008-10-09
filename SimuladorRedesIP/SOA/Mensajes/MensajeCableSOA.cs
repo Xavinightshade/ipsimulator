@@ -20,7 +20,7 @@ namespace RedesIP.SOA.Elementos
 
 
 
-        public MensajeCableSOA (Guid idConexion, FrameSOA frame,DateTime horaRecepcion)
+        public MensajeCableSOA (Guid idConexion, FrameSOA frame,TimeSpan horaRecepcion)
             :base(idConexion,horaRecepcion)
 	{
 

@@ -52,7 +52,7 @@ namespace BusinessLogic.OSI
 
         private void EventPaqueteDesencapsulador(Frame frame)
         {
-            PaqueteDesencapsuladoEventArgs evento = new PaqueteDesencapsuladoEventArgs(frame, DateTime.Now);
+            PaqueteDesencapsuladoEventArgs evento = new PaqueteDesencapsuladoEventArgs(frame, BusinessLogic.Threads.ThreadManager.HoraActual);
             if (PaqueteDesEncapsulado != null)
                 PaqueteDesEncapsulado(this, evento);
         }
@@ -61,7 +61,7 @@ namespace BusinessLogic.OSI
         {
             if (PaqueteRecibido != null)
             {
-                PaqueteRecibidoEventArgs evento = new PaqueteRecibidoEventArgs(paquete, DateTime.Now);
+                PaqueteRecibidoEventArgs evento = new PaqueteRecibidoEventArgs(paquete, BusinessLogic.Threads.ThreadManager.HoraActual);
                 PaqueteRecibido(this, evento);
             }
         }
@@ -153,7 +153,7 @@ namespace BusinessLogic.OSI
 
         private void EventPaqueteEncapsulado(Frame frameATransmitir)
         {
-            PaqueteEncapsuladoEventArgs evento = new PaqueteEncapsuladoEventArgs(frameATransmitir, DateTime.Now);
+            PaqueteEncapsuladoEventArgs evento = new PaqueteEncapsuladoEventArgs(frameATransmitir, BusinessLogic.Threads.ThreadManager.HoraActual);
             if (PaqueteEncapsulado != null)
                 PaqueteEncapsulado(this, evento);
         }

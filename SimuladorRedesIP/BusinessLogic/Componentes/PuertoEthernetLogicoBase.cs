@@ -121,12 +121,12 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		private void OnFrameTransmitido(Frame frame)
 		{
 			if (FrameTransmitido != null)
-				FrameTransmitido(this, new FrameTransmitidoEventArgs(frame,DateTime.Now));
+                FrameTransmitido(this, new FrameTransmitidoEventArgs(frame, BusinessLogic.Threads.ThreadManager.HoraActual));
 		}
 		private void OnFrameRecibido(Frame frame)
 		{
 			if (FrameRecibido != null)
-                FrameRecibido(this, new FrameRecibidoEventArgs(frame,DateTime.Now));
+                FrameRecibido(this, new FrameRecibidoEventArgs(frame, BusinessLogic.Threads.ThreadManager.HoraActual));
 		}
 
 

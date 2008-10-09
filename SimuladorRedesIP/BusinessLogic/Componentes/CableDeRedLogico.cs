@@ -57,7 +57,7 @@ namespace RedesIP.Modelos
         {
             if (FrameRecibidoPuerto2 != null)
             {
-                FrameRecibidoPuerto2(this, new FrameRecibidoEventArgs(e.FrameRecibido,DateTime.Now));
+                FrameRecibidoPuerto2(this, new FrameRecibidoEventArgs(e.FrameRecibido, BusinessLogic.Threads.ThreadManager.HoraActual));
             }
         }
 
@@ -65,7 +65,7 @@ namespace RedesIP.Modelos
         {
             if (FrameRecibidoPuerto1 != null)
             {
-                FrameRecibidoPuerto1(this, new FrameRecibidoEventArgs(e.FrameRecibido,DateTime.Now));
+                FrameRecibidoPuerto1(this, new FrameRecibidoEventArgs(e.FrameRecibido, BusinessLogic.Threads.ThreadManager.HoraActual));
             }
         }
 		public void DesconectarPuertos()

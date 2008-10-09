@@ -10,8 +10,8 @@ namespace BusinessLogic.Datos
     public class PaqueteEncapsuladoEventArgs:EventArgs
     {
 
-        private DateTime _horaDeRecepcion;
-        public DateTime HoraDeRecepcion
+        private TimeSpan _horaDeRecepcion;
+        public TimeSpan HoraDeRecepcion
         {
             get { return _horaDeRecepcion; }
         }
@@ -25,7 +25,7 @@ namespace BusinessLogic.Datos
             get { return _frame.Informacion as Packet; }
         }
 
-        public PaqueteEncapsuladoEventArgs(Frame frame, DateTime horaDeRecepcion)
+        public PaqueteEncapsuladoEventArgs(Frame frame, TimeSpan horaDeRecepcion)
         {
             _frame = frame;
             _horaDeRecepcion = horaDeRecepcion;

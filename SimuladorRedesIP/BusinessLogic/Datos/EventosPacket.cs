@@ -13,13 +13,13 @@ namespace BusinessLogic.Datos
         {
             get { return _paqueteRecibido; }
         }
-        private DateTime _horaDeRecepcion;
-        public DateTime HoraDeRecepcion
+        private TimeSpan _horaDeRecepcion;
+        public TimeSpan HoraDeRecepcion
         {
             get { return _horaDeRecepcion; }
         }
 
-        public PaqueteRecibidoEventArgs(Packet paquete, DateTime horaDeRecepcion)
+        public PaqueteRecibidoEventArgs(Packet paquete, TimeSpan horaDeRecepcion)
         {
            _paqueteRecibido=paquete;
             _horaDeRecepcion = horaDeRecepcion;

@@ -17,9 +17,9 @@ namespace SOA.Datos
             get { return _idEquipo; }
             set { _idEquipo = value; }
         }
-        private DateTime _fecha;
+        private TimeSpan _fecha;
         [DataMember]
-        public DateTime Fecha
+        public TimeSpan Fecha
         {
             get { return _fecha; }
             set { _fecha = value; }

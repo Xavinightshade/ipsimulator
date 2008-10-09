@@ -16,14 +16,14 @@ namespace RedesIP.SOA.Elementos
             get { return _id; }
             set { _id = value; }
         }
-        DateTime _horaRecepcion;
+        TimeSpan _horaRecepcion;
         [DataMember]
-        public DateTime HoraRecepcion
+        public TimeSpan HoraRecepcion
         {
             get { return _horaRecepcion; }
             set { _horaRecepcion = value; }
         }
-        public MensajeBaseSOA(Guid id, DateTime horaRecepcion)
+        public MensajeBaseSOA(Guid id, TimeSpan horaRecepcion)
         {
             _id = id;
             _horaRecepcion = horaRecepcion;

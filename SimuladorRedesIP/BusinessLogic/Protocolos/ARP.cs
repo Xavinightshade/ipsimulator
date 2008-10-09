@@ -40,7 +40,7 @@ namespace BusinessLogic.Protocolos
         private void OnCambioDeTablaDeArp()
         {
             if (CambioDeTablaArp != null)
-                CambioDeTablaArp(this, new TiempoEventArgs(DateTime.Now));
+                CambioDeTablaArp(this, new TiempoEventArgs(BusinessLogic.Threads.ThreadManager.HoraActual));
         }
     }
 }

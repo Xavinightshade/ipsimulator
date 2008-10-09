@@ -17,7 +17,7 @@ namespace RedesIP.SOA.Elementos
             get { return _swiTable; }
             set { _swiTable = value; }
         }
-        public MensajeSwitchTableSOA(Guid id,DateTime horaDeCambio)
+        public MensajeSwitchTableSOA(Guid id,TimeSpan horaDeCambio)
             :base(id,horaDeCambio)
         {
 
