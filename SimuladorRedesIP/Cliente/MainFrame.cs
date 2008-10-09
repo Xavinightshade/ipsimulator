@@ -142,7 +142,7 @@ namespace SimuladorCliente
                 (context, binding, address);
             binding.ReceiveTimeout = TimeSpan.MaxValue;
             IModeloSOA clien = factory.CreateChannel();
-           
+
 
             _estacionView.LimpiarEstacion();
             _estacionView.Inicializar(clien, _dockMain);
@@ -202,7 +202,7 @@ namespace SimuladorCliente
                 if (customForm.ShowDialog() == DialogResult.OK)
                 {
                     PresenterSOA presenterSOA = new PresenterSOA();
-                    presenterSOA.SetEstacion(_estacionModelo,_presenterLocal.SnifferMaster);
+                    presenterSOA.SetEstacion(_estacionModelo, _presenterLocal.SnifferMaster);
 
 
                     InicializarServicio(presenterSOA, modeloConexion.Puerto, modeloConexion.DireccionIp);
@@ -260,7 +260,7 @@ namespace SimuladorCliente
             Uri address = new Uri(@"net.tcp://" + direccionIP + ":" + puerto + "/Simulador");
             binding.ReceiveTimeout = TimeSpan.MaxValue;
             binding.ReliableSession.InactivityTimeout = TimeSpan.MaxValue;
-               
+
 
             calculatorHost.AddServiceEndpoint(
                 typeof(IModeloSOA), binding, address);
@@ -302,7 +302,7 @@ namespace SimuladorCliente
         private void CrearNuevaEstacion()
         {
             _estacionView.LimpiarEstacion();
-            
+
             _presenterLocal.SnifferMaster.setEstacion(_estacionModelo);
             _presenterLocal.SetEstacion(_estacionModelo, _presenterLocal.SnifferMaster);
             _esEstacionNueva = true;
@@ -347,7 +347,7 @@ namespace SimuladorCliente
 
             using (RedSaveForm redSaveForm = new RedSaveForm())
             {
-                redSaveForm.Inicializar(_estacionModelo.Nombre, _estacionModelo.Descripcion,imagenEstacion);
+                redSaveForm.Inicializar(_estacionModelo.Nombre, _estacionModelo.Descripcion, imagenEstacion);
 
                 if (redSaveForm.ShowDialog() == DialogResult.OK)
                 {
@@ -379,7 +379,7 @@ namespace SimuladorCliente
 
         private void ToolBarDeleteClick(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Desea eliminar red: " + _estacionModelo.Nombre + "?", "Eliminar Red", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
+            if (MessageBox.Show("Desea eliminar red: " + _estacionModelo.Nombre + "?", "Eliminar Red", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 AccesoDatos.AlmacenadorInformacion.Eliminar(_estacionModelo.Id);
                 EstablecerToolBarInicial();
@@ -438,6 +438,8 @@ namespace SimuladorCliente
             dialog.ValidateNames = true;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                if (File.Exists(dialog.FileName))
+                    File.Delete(dialog.FileName);
                 File.Copy(AccesoDatos.AlmacenadorInformacion.RutaBD, dialog.FileName);
             }
         }
