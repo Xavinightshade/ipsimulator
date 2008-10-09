@@ -1,4 +1,4 @@
-namespace TesGestion.SOA
+namespace SOA
 {
     partial class CustomConnectionForm
     {
@@ -65,7 +65,7 @@ namespace TesGestion.SOA
             // 
             // _bsConfiguracion
             // 
-            this._bsConfiguracion.DataSource = typeof(TesGestion.SOA.CustomConnectionModel);
+            this._bsConfiguracion.DataSource = typeof(SOA.CustomConnectionModel);
             // 
             // _btnConectar
             // 

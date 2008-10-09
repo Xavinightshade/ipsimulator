@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tes.BusinessObjects
+namespace BusinessObjects
 {
     /// <summary>
     /// A simple type of domain object rule that uses a delegate for validation. 

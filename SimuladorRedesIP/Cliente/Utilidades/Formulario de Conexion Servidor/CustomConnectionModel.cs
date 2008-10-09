@@ -4,9 +4,9 @@ using System.Text;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.ComponentModel;
-using Tes.BusinessObjects;
+using BusinessObjects;
 
-namespace TesGestion.SOA
+namespace SOA
 {
 	public class CustomConnectionModel : DomainObject
 	{

@@ -14,7 +14,7 @@ using SimuladorCliente.Vistas;
 using RedesIP.SOA;
 using SimuladorCliente.Herramientas;
 using System.Net;
-using TesGestion.SOA;
+using SOA;
 using SimuladorCliente.Formularios;
 using System.IO;
 using System.Drawing.Imaging;
@@ -39,10 +39,11 @@ namespace SimuladorCliente
             formaEstacion.Show(_dockMain, DockState.Document);
 
             _formaPaletaHerramientas = new PaletaHerramienta();
+            _formaPaletaHerramientas.CloseButton = false;
 
-            _formaPaletaHerramientas.Show(_dockMain, DockState.DockLeftAutoHide);
+            _formaPaletaHerramientas.Show(_dockMain, DockState.DockLeft);
             _formaPaletaHerramientas.DockPanel.DockLeftPortion = 140;
-            _formaPaletaHerramientas.DockHandler.AllowEndUserDocking = false;
+            _formaPaletaHerramientas.AllowEndUserDocking = false;
             _formaPaletaHerramientas.AutoHidePortion = 140;
             UnificarPaleta();
 
@@ -445,6 +446,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletadbSave.Enabled = false;
 
             _formaPaletaHerramientas._PaletaMouse.Enabled = true;
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Flat;
             _formaPaletaHerramientas._PaletaRouter.Enabled = true;
             _formaPaletaHerramientas._PaletaPc.Enabled = true;
             _formaPaletaHerramientas._PaletaSwitch.Enabled = true;

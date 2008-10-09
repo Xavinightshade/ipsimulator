@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tes.BusinessObjects
+namespace BusinessObjects
 {
     /// <summary>
     /// An abstract class that contains information about a rule as well as a method to validate it.

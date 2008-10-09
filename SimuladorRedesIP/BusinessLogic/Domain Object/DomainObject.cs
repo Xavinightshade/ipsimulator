@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace Tes.BusinessObjects
+namespace BusinessObjects
 {
 	/// <summary>
 	/// The class all domain objects must inherit from. Allows changes via a BeginEdit()/EndEdit() combination, and 
