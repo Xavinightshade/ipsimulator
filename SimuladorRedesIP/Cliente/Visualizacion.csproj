@@ -497,6 +497,8 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\play-16x16.png" />
+    <None Include="Resources\pause-16x16.png" />
     <None Include="Resources\shell-script-16x16.png" />
     <None Include="Resources\x-mag-16x16.png" />
     <None Include="Resources\Symbols-Delete-16x16.png" />

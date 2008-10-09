@@ -9,6 +9,11 @@ namespace BusinessLogic.Threads
 {
     public class ThreadManager
     {
+        private static readonly DateTime _horaInicial = DateTime.Now;
+        public static TimeSpan HoraActual
+        {
+            get { return DateTime.Now.Subtract(_horaInicial); }
+        }
         private static Random _r = new Random();
         private static EventWaitHandle _waitHandle = new AutoResetEvent(false);
         private static Dictionary<Thread, EventWaitHandle> _threads = new Dictionary<Thread, EventWaitHandle>();
@@ -18,7 +23,7 @@ namespace BusinessLogic.Threads
         public static void Sleep()
         {
             Thread current = Thread.CurrentThread;
-            Console.WriteLine(current.ThreadState.ToString()+" "+current.ManagedThreadId.ToString());
+            Console.WriteLine(current.ThreadState.ToString() + " " + current.ManagedThreadId.ToString());
             if (!_threads.ContainsKey(current))
             {
                 _threads.Add(current, new AutoResetEvent(false));
@@ -55,10 +60,10 @@ namespace BusinessLogic.Threads
                             _threadsPausado[item.Key] = false;
                             item.Value.Set();
                         }
-                              
 
-                        
-                       
+
+
+
                     }
                 }
 

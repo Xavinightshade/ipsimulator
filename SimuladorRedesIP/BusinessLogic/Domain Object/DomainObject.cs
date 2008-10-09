@@ -132,7 +132,6 @@ namespace BusinessObjects
 				if (r.PropertyName == property || property.Length == 0)
 				{
 					bool isRuleBroken = !r.ValidateRule(this);
-					//Debug.WriteLine(DateTime.Now.ToLongTimeString() + ": Validating the rule: '" + r.ToString() + "' on object '" + this.ToString() + "'. Result = " + ((isRuleBroken == false) ? "Valid" : "Broken"));
 					if (isRuleBroken)
 					{
 						broken.Add(r);

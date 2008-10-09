@@ -46,6 +46,8 @@ namespace SimuladorCliente
             this._toolBarDesonectar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this._toolBarConfigurarServidor = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this._toolBarPlayPause = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this._toolBarMouse = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -82,7 +84,6 @@ namespace SimuladorCliente
             this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._menuStrip = new System.Windows.Forms.MenuStrip();
-            this.threadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStrip.SuspendLayout();
             this._statusStrip.SuspendLayout();
             this._menuStrip.SuspendLayout();
@@ -99,6 +100,8 @@ namespace SimuladorCliente
             this.toolStripSeparator13,
             this.toolStripDropDownButton1,
             this.toolStripDropDownButton2,
+            this.toolStripSeparator11,
+            this._toolBarPlayPause,
             this.toolStripSeparator6,
             this._toolBarMouse,
             this.toolStripSeparator5,
@@ -240,6 +243,21 @@ namespace SimuladorCliente
             this._toolBarConfigurarServidor.Size = new System.Drawing.Size(204, 22);
             this._toolBarConfigurarServidor.Text = "Inicializar servidor";
             this._toolBarConfigurarServidor.Click += new System.EventHandler(this.ToolBarConfigurarServidorClick);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 25);
+            // 
+            // _toolBarPlayPause
+            // 
+            this._toolBarPlayPause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._toolBarPlayPause.Image = global::SimuladorCliente.Properties.Resources.pause_16x16;
+            this._toolBarPlayPause.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolBarPlayPause.Name = "_toolBarPlayPause";
+            this._toolBarPlayPause.Size = new System.Drawing.Size(23, 22);
+            this._toolBarPlayPause.Text = "Detener la ejecución";
+            this._toolBarPlayPause.Click += new System.EventHandler(this._toolBarPlayPause_Click);
             // 
             // toolStripSeparator6
             // 
@@ -520,20 +538,12 @@ namespace SimuladorCliente
             this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.herramientasToolStripMenuItem,
-            this.ayudaToolStripMenuItem,
-            this.threadToolStripMenuItem});
+            this.ayudaToolStripMenuItem});
             this._menuStrip.Location = new System.Drawing.Point(0, 0);
             this._menuStrip.Name = "_menuStrip";
             this._menuStrip.Size = new System.Drawing.Size(893, 24);
             this._menuStrip.TabIndex = 16;
             this._menuStrip.Text = "menuStrip1";
-            // 
-            // threadToolStripMenuItem
-            // 
-            this.threadToolStripMenuItem.Name = "threadToolStripMenuItem";
-            this.threadToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.threadToolStripMenuItem.Text = "thread";
-            this.threadToolStripMenuItem.Click += new System.EventHandler(this.threadToolStripMenuItem_Click);
             // 
             // MainFrame
             // 
@@ -617,7 +627,8 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripMenuItem _menuGuardarBD;
         private System.Windows.Forms.ToolStripMenuItem _menuGuardarComo;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem threadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripButton _toolBarPlayPause;
 
 
 

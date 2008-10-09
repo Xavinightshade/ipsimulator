@@ -193,6 +193,20 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap pause_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("pause_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap play_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("play_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Pointer_black {
             get {
                 object obj = ResourceManager.GetObject("Pointer-black", resourceCulture);

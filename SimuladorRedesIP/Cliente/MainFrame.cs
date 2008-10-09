@@ -18,9 +18,9 @@ using SOA;
 using SimuladorCliente.Formularios;
 using System.IO;
 using System.Drawing.Imaging;
-using DevAge.Windows.Forms;
 using BusinessLogic.Sniffer;
 using BusinessLogic.Threads;
+using SimuladorCliente.Properties;
 
 namespace SimuladorCliente
 {
@@ -629,10 +629,23 @@ namespace SimuladorCliente
       
         }
 
-        private void threadToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void _toolBarPlayPause_Click(object sender, EventArgs e)
         {
             ThreadManager.Pausado = !ThreadManager.Pausado;
-            threadToolStripMenuItem.Text = ThreadManager.Pausado.ToString();
+            if (ThreadManager.Pausado)
+            {
+                _toolBarPlayPause.Image = Resources.play_16x16;
+                _toolBarPlayPause.Text = "Continuar la ejecución";
+            }
+            else
+            {
+                _toolBarPlayPause.Image = Resources.pause_16x16;
+                _toolBarPlayPause.Text = "Detener la ejecución";
+            }
+
+
         }
 
 
