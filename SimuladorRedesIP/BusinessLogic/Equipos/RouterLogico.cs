@@ -25,6 +25,12 @@ namespace RedesIP.Modelos.Logicos.Equipos
         }
 
         private RouteTable _tablaDeRutas;
+        private RIPV2 _ripV2;
+
+        public RIPV2 RipV2
+        {
+            get { return _ripV2; }
+        }
 
         public RouteTable TablaDeRutas
         {
@@ -42,6 +48,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
         {
             _puertosEthernet = new List<PuertoEthernetCompleto>();
             _tablaDeRutas = new RouteTable(_puertosEthernet);
+            _ripV2 = new RIPV2(_tablaDeRutas, _puertoEthernetCapaRed);
         }
 
 
@@ -64,6 +71,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
                 capaRed.Inicializar();
                 _puertoEthernetCapaRed.Add(puerto, capaRed);
             }
+            _ripV2.Inicializar();
         }
         public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, string red,int? mask, string nextHopIP)
         {
@@ -80,7 +88,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
         internal List<RutaSOA> TraerRutas()
         {
-            return _tablaDeRutas.GetRutas();
+            return _tablaDeRutas.GetRutasEstaticas();
         }
 
         internal void ActualizarRutas(List<RutaSOA> rutas)

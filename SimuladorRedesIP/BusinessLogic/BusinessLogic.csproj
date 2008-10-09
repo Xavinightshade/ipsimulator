@@ -63,9 +63,13 @@
     <Compile Include="Componentes\RouteTable.cs" />
     <Compile Include="Datos\DatosFrameArpBuscando.cs" />
     <Compile Include="Datos\DatosFrameArpIPpEncontrada.cs" />
+    <Compile Include="Datos\EchoReplyMessage.cs" />
     <Compile Include="Datos\EventosPacket.cs" />
+    <Compile Include="Datos\IPacketMessage.cs" />
     <Compile Include="Datos\PaqueteEncapsuladoEventArgs.cs" />
     <Compile Include="Datos\PaqueteDesencapsuladoEventArgs.cs" />
+    <Compile Include="Datos\EchoMessage.cs" />
+    <Compile Include="Datos\RoutesMessage.cs" />
     <Compile Include="Domain Object\DomainObject.cs" />
     <Compile Include="Domain Object\Rule.cs" />
     <Compile Include="Domain Object\SimpleRule.cs" />
@@ -101,6 +105,7 @@
     <Compile Include="PresenterSOA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protocolos\ARP.cs" />
+    <Compile Include="Protocolos\RIPV2.cs" />
     <Compile Include="RedBrowserModel.cs" />
     <Compile Include="Sniffer\ModeloSnifferBase.cs" />
     <Compile Include="Sniffer\ModeloSnifferRouter.cs" />

@@ -56,9 +56,16 @@ namespace BusinessLogic.Componentes
            _puertos=puertos;
        }
 
-       internal List<RutaSOA> GetRutas()
+       public List<RutaSOA> GetRutasEstaticas()
        {
            return LlenarRutas(_tablaRouterEstatico);
+       }
+       public List<RutaSOA> GetAllRutas()
+       {
+           List<RutaSOA> rutasTotales = new List<RutaSOA>();
+           rutasTotales.AddRange(GetRutasInternas());
+           rutasTotales.AddRange(GetRutasEstaticas());
+           return rutasTotales;
        }
        private List<RutaSOA> LlenarRutas(List<EntradaTablaRouter> entradas)
        {

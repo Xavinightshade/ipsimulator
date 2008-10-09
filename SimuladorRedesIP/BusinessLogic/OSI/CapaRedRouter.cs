@@ -7,6 +7,8 @@ using BusinessLogic.Modelos.Logicos.Datos;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.Common;
 using RedesIP.Modelos.Equipos.Componentes;
+using SOA.Componentes;
+using BusinessLogic.Datos;
 
 namespace BusinessLogic.OSI
 {
@@ -21,6 +23,12 @@ namespace BusinessLogic.OSI
         protected override void ProcesarPaquete(Packet paquete)
         {
             base.ProcesarPaquete(paquete);
+            RoutesMessage mensajeRutas = paquete.Datos as RoutesMessage;
+            if (mensajeRutas != null)
+            {
+                _router.RipV2.ProcesarRutas(mensajeRutas);
+                return;
+            }
             EntradaTablaRouter rutaInterna = _router.TablaDeRutas.BuscarRutaEnRutasInternas(paquete.IpDestino);
             if (rutaInterna != null)
             {
@@ -34,6 +42,13 @@ namespace BusinessLogic.OSI
 
             }
 
+        }
+
+        public void EnviarRutas(List<RutaSOA> rutasTotales)
+        {
+            IPacketMessage mensajeRutas=new RoutesMessage(rutasTotales);
+            Packet paqueteRutas=new Packet(CapaDatos.Puerto.IPAddress,IPAddressFactory.CalcularBroadCastAddress(),mensajeRutas);
+            CapaDatos.EnviarPaquete(paqueteRutas, IPAddressFactory.CalcularBroadCastAddress());
         }
     }
 }

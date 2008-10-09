@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RedesIP.Modelos.Datos;
+using BusinessLogic.Datos;
 
 namespace BusinessLogic.Modelos.Logicos.Datos
 {
@@ -20,13 +21,13 @@ namespace BusinessLogic.Modelos.Logicos.Datos
         {
             get { return _ipDestino; }
         }
-        private string _datos;
+        private IPacketMessage _datos;
 
-        public string Datos
+        public IPacketMessage Datos
         {
             get { return _datos; }
         }
-        public Packet(string ipOrigen,string ipDestino,string datos)
+        public Packet(string ipOrigen, string ipDestino, IPacketMessage datos)
         {
             _ipOrigen = ipOrigen;
             _ipDestino = ipDestino;

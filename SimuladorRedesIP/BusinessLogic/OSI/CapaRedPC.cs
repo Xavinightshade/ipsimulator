@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using RedesIP.Modelos.Logicos.Equipos;
 using BusinessLogic.Modelos.Logicos.Datos;
+using BusinessLogic.Datos;
 
 namespace BusinessLogic.OSI
 {
@@ -19,7 +20,7 @@ namespace BusinessLogic.OSI
 
        public void Ping(string ipDestino)
        {
-           Packet paquete = new Packet(CapaDatos.Puerto.IPAddress, ipDestino, IPAddressFactory.EchoMessage);
+           Packet paquete = new Packet(CapaDatos.Puerto.IPAddress, ipDestino, new EchoMessage());
 
            EnviarPaquete(ipDestino, paquete);
 

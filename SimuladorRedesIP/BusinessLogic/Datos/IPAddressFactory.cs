@@ -27,6 +27,10 @@ namespace BusinessLogic
 
 
         }
+        public static string CalcularBroadCastAddress()
+        {
+            return "255.255.255.255";
+        }
         public static string EchoMessage
         {
             get { return "abcdefghijklmnopqrstuvwxyz"; }

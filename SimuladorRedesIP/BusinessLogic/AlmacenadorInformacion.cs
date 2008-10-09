@@ -138,7 +138,7 @@ namespace AccesoDatos
                     puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
 
                 }
-                foreach (RutaSOA entrada in rou.Value.TablaDeRutas.GetRutas())
+                foreach (RutaSOA entrada in rou.Value.TablaDeRutas.GetRutasEstaticas())
                 {
                     Rutas ruta = new Rutas();
                     if (generarNuevosIds)

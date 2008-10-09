@@ -38,7 +38,7 @@ namespace BusinessLogic.Sniffer
             PacketSOA packSOA = new PacketSOA();
             packSOA.IpOrigen = paquete.IpOrigen;
             packSOA.IpDestino = paquete.IpDestino;
-            packSOA.Datos = paquete.Datos;
+            packSOA.Datos = paquete.Datos.ToString();
             EncapsulacionSOA encapsulacion = new EncapsulacionSOA();
             encapsulacion.Fecha = e.HoraDeRecepcion;
             encapsulacion.Frame = frameSOA;
@@ -61,7 +61,7 @@ namespace BusinessLogic.Sniffer
             PacketSOA packSOA = new PacketSOA();
             packSOA.IpOrigen = paquete.IpOrigen;
             packSOA.IpDestino = paquete.IpDestino;
-            packSOA.Datos = paquete.Datos;
+            packSOA.Datos = paquete.Datos.ToString();
             EncapsulacionSOA encapsulacion = new EncapsulacionSOA();
             encapsulacion.Fecha = e.HoraDeRecepcion;
             encapsulacion.Frame = frameSOA;

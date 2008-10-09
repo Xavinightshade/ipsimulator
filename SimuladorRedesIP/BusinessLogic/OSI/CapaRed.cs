@@ -31,15 +31,19 @@ namespace BusinessLogic.OSI
 
         protected virtual void ProcesarPaquete(Packet paquete)
         {
-            if (paquete.Datos.Contains("Reply"))
+            if (paquete.Datos is EchoReplyMessage)
             {
                 return;
             }
-
-            if (paquete.IpDestino == CapaDatos.Puerto.IPAddress)
+            else if (paquete.Datos is EchoMessage)
             {
-                EnviarPaquete(paquete.IpOrigen, new Packet(CapaDatos.Puerto.IPAddress, paquete.IpOrigen, "Reply " + paquete.Datos));
+                if (paquete.IpDestino == CapaDatos.Puerto.IPAddress)
+                {
+                    EnviarPaquete(paquete.IpOrigen, new Packet(CapaDatos.Puerto.IPAddress, paquete.IpOrigen, new EchoReplyMessage()));
+                }
             }
+
+
         }
 
         protected virtual void EnviarPaquete(string direccionIP, Packet packet)
