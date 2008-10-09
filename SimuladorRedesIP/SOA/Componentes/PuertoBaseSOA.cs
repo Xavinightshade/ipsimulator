@@ -24,7 +24,7 @@ namespace RedesIP.SOA
             set { _nombre = value; }
         }
         private bool _habilitado;
-
+        [DataMember]
         public bool Habilitado
         {
             get { return _habilitado; }
