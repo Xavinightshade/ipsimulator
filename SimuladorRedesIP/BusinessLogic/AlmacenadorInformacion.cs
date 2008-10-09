@@ -22,6 +22,10 @@ namespace AccesoDatos
             get { return AccesoDatosBD.RutaBD; }
             set { AccesoDatosBD.RutaBD = value; }
         }
+        public static void SetDefaultBD()
+        {
+            AccesoDatosBD.SetDefaultBD();
+        }
         private static Equipos AgregarEquipo(Estaciones estacionBD, EquipoLogico equipo, bool generarNuevosIds)
         {
             Equipos equipoBD = new Equipos();

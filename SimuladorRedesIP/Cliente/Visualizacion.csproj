@@ -497,6 +497,9 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\shell-script-16x16.png" />
+    <None Include="Resources\x-mag-16x16.png" />
+    <None Include="Resources\Symbols-Delete-16x16.png" />
     <None Include="Resources\Internet-Connect.ico" />
     <None Include="Resources\database_save1.png" />
     <None Include="Resources\database_save.png" />

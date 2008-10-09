@@ -200,13 +200,6 @@ namespace SimuladorCliente.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap PuertoEthernet {
-            get {
-                object obj = ResourceManager.GetObject("PuertoEthernet", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Router {
             get {
                 object obj = ResourceManager.GetObject("Router", resourceCulture);
@@ -217,6 +210,13 @@ namespace SimuladorCliente.Properties {
         internal static System.Drawing.Bitmap save_16x16 {
             get {
                 object obj = ResourceManager.GetObject("save-16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap shell_script_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("shell_script_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -249,9 +249,23 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Symbols_Delete_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Symbols_Delete_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap synchronize_16x16 {
             get {
                 object obj = ResourceManager.GetObject("synchronize-16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap x_mag_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("x-mag-16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -6,6 +6,7 @@ using RedesIP.Vistas.Equipos;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using SimuladorCliente.Properties;
 
 namespace RedesIP.Vistas
 {
@@ -54,7 +55,7 @@ namespace RedesIP.Vistas
         public CableView(Guid id, Control inst, PuertoEthernetViewBase puerto1, PuertoEthernetViewBase puerto2)
 			:base(id)
 		{
-            ToolStripMenuItem item = new ToolStripMenuItem("Borrar Cable");
+            ToolStripMenuItem item = new ToolStripMenuItem("Desconectar Cable", Resources.disconnect_16x16);
             item.Click += new EventHandler(BorrarClick);
              _menu.Items.Add(item);
              _contenedor = inst;

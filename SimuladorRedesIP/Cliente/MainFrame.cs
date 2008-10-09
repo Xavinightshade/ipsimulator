@@ -47,8 +47,7 @@ namespace SimuladorCliente
             _estacionView = formaEstacion.EstacionView;
             _estacionModelo = new EstacionModelo(Guid.NewGuid());
             _esEstacionNueva = true;
-            _toolBarDelete.Enabled = false;
-            _menuDelete.Enabled = true;
+            EstablecerToolBarInicial();
             _presenterLocal = new PresenterLocal(_estacionView);
             ModeloSnifferMaster modeloSniffer = new ModeloSnifferMaster();
             modeloSniffer.setEstacion(_estacionModelo);
@@ -67,7 +66,7 @@ namespace SimuladorCliente
         private void pc_Click(object sender, EventArgs e)
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Computador);
-            _mouse.CheckState = CheckState.Unchecked;
+            _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Checked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
@@ -77,7 +76,7 @@ namespace SimuladorCliente
         private void Nouse_Click(object sender, EventArgs e)
         {
             _estacionView.CambiarHerramienta(Herramienta.Seleccion);
-            _mouse.CheckState = CheckState.Checked;
+            _toolBarMouse.CheckState = CheckState.Checked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
@@ -87,7 +86,7 @@ namespace SimuladorCliente
         private void Switch_Click(object sender, EventArgs e)
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Switch);
-            _mouse.CheckState = CheckState.Unchecked;
+            _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Checked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
@@ -97,7 +96,7 @@ namespace SimuladorCliente
         private void Router_Click(object sender, EventArgs e)
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.Router);
-            _mouse.CheckState = CheckState.Unchecked;
+            _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
@@ -107,7 +106,7 @@ namespace SimuladorCliente
         private void Conexion_Click(object sender, EventArgs e)
         {
             _estacionView.CambiarHerramienta(Herramienta.Conectar);
-            _mouse.CheckState = CheckState.Unchecked;
+            _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Checked;
@@ -117,7 +116,7 @@ namespace SimuladorCliente
         private void Punta_Click(object sender, EventArgs e)
         {
             _estacionView.CambiarHerramienta(Herramienta.Marcadores);
-            _mouse.CheckState = CheckState.Unchecked;
+            _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
@@ -153,7 +152,7 @@ namespace SimuladorCliente
 
             clien.ConectarCliente();
 
-            _mouse.Enabled = true;
+            _toolBarMouse.Enabled = true;
             _toolBarPC.Enabled = true;
             _toolBarSwitch.Enabled = true;
             _toolBarConectarEquipos.Enabled = true;
@@ -239,6 +238,7 @@ namespace SimuladorCliente
                     _menuOpen.Enabled = false;
                     _toolBarDesonectar.Enabled = false;
                     _menuGuardarBD.Enabled = false;
+                    _toolBarMouse.Checked = false;
                 }
             }
 
@@ -292,6 +292,9 @@ namespace SimuladorCliente
                 {
                     _estacionModelo = AccesoDatos.AlmacenadorInformacion.CargarEstacion(forma.Id);
                     CrearNuevaEstacion();
+                    _toolBarDelete.Enabled = true;
+                    _menuDelete.Enabled = true;
+                    _esEstacionNueva = false;
                 }
             }
         }
@@ -302,11 +305,34 @@ namespace SimuladorCliente
             
             _presenterLocal.SnifferMaster.setEstacion(_estacionModelo);
             _presenterLocal.SetEstacion(_estacionModelo, _presenterLocal.SnifferMaster);
-            _esEstacionNueva = false;
-            _toolBarDelete.Enabled = true;
-            _menuDelete.Enabled = true;
+            _esEstacionNueva = true;
+            EstablecerToolBarCrearTopologia();
             _estacionView.Inicializar(_presenterLocal, _dockMain);
             _presenterLocal.ConectarCliente();
+        }
+
+        private void EstablecerToolBarCrearTopologia()
+        {
+            _menuDelete.Enabled = false;
+            _menuNew.Enabled = true;
+            _menuOpen.Enabled = true;
+            _menuGuardar.Enabled = true;
+            _menuGuardarComo.Enabled = true;
+            _menuConectarServidor.Enabled = true;
+            _menuConfigurarServidor.Enabled = true;
+            _menuDesconectarServidor.Enabled = false;
+            _toolBarDelete.Enabled = false;
+            _toolBarSave.Enabled = true;
+            _toolBarPuntaMedicion.Enabled = true;
+            _toolBarRouter.Enabled = true;
+            _toolBarSwitch.Enabled = true;
+            _toolBarPC.Enabled = true;
+            _toolBarConectar.Enabled = true;
+            _toolBarDesonectar.Enabled = false;
+            _toolBarMouse.Enabled = true;
+            _toolBarConfigurarServidor.Enabled = true;
+            _toolBarConectarEquipos.Enabled = true;
+            _toolBarMouse.Checked = true;
         }
 
         private void ToolBarNewClick(object sender, EventArgs e)
@@ -340,6 +366,9 @@ namespace SimuladorCliente
                     {
                         AccesoDatos.AlmacenadorInformacion.ActualizarEstacion(_estacionModelo, bitmapData);
                     }
+                    EstablecerToolBarCrearTopologia();
+                    _menuDelete.Enabled = true;
+                    _toolBarDelete.Enabled = true;
                 }
 
 
@@ -353,10 +382,36 @@ namespace SimuladorCliente
             if (MessageBox.Show("Desea eliminar red: " + _estacionModelo.Nombre + "?", "Eliminar Red", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
             {
                 AccesoDatos.AlmacenadorInformacion.Eliminar(_estacionModelo.Id);
-                _estacionModelo = new EstacionModelo(Guid.NewGuid());
-                CrearNuevaEstacion();
+                EstablecerToolBarInicial();
+
             }
 
+        }
+
+        private void EstablecerToolBarInicial()
+        {
+            _menuDelete.Enabled = false;
+            _menuNew.Enabled = true;
+            _menuOpen.Enabled = true;
+            _menuGuardar.Enabled = false;
+            _menuGuardarComo.Enabled = false;
+            _menuConectarServidor.Enabled = false;
+            _menuConfigurarServidor.Enabled = false;
+            _menuDesconectarServidor.Enabled = false;
+            _menuConectarServidor.Enabled = false;
+            _menuConfigurarServidor.Enabled = false;
+            _menuDesconectarServidor.Enabled = false;
+            _toolBarDelete.Enabled = false;
+            _toolBarSave.Enabled = false;
+            _toolBarPuntaMedicion.Enabled = false;
+            _toolBarRouter.Enabled = false;
+            _toolBarSwitch.Enabled = false;
+            _toolBarPC.Enabled = false;
+            _toolBarConectar.Enabled = false;
+            _toolBarDesonectar.Enabled = false;
+            _toolBarMouse.Enabled = false;
+            _toolBarConfigurarServidor.Enabled = false;
+            _toolBarConectarEquipos.Enabled = false;
         }
 
         private void ToolBarDBOpenClick(object sender, EventArgs e)
@@ -367,7 +422,10 @@ namespace SimuladorCliente
             dialog.ValidateNames = true;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+
                 AccesoDatos.AlmacenadorInformacion.RutaBD = dialog.FileName;
+                EstablecerToolBarCrearTopologia();
+                _esEstacionNueva = true;
 
             }
         }
@@ -413,6 +471,17 @@ namespace SimuladorCliente
 
             }
         }
+
+
+
+        private void _toolBarCargarBDdefault_Click(object sender, EventArgs e)
+        {
+            AccesoDatos.AlmacenadorInformacion.SetDefaultBD();
+            EstablecerToolBarCrearTopologia();
+            _esEstacionNueva = true;
+        }
+
+
 
 
 

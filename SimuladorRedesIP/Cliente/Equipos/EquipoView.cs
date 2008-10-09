@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+using SimuladorCliente.Properties;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -49,7 +50,7 @@ namespace RedesIP.Vistas.Equipos
             inst.MouseDown += new System.Windows.Forms.MouseEventHandler(OnMouseDown);
             inst.MouseMove += new System.Windows.Forms.MouseEventHandler(OnMouseMove);
             inst.MouseUp += new System.Windows.Forms.MouseEventHandler(OnMouseUp);
-            ToolStripMenuItem item = new ToolStripMenuItem("Eliminar Equipo");
+            ToolStripMenuItem item = new ToolStripMenuItem("Eliminar Equipo",Resources.Symbols_Delete_16x16);
             item.Click += new EventHandler(BorrarClick);
             Menu.Items.Add(item);
 

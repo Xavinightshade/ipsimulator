@@ -19,7 +19,7 @@ namespace RedesIP.Vistas.Equipos
 		{
             _defaultGateWay = equipo.DefaultGateWay;
             Nombre = equipo.Nombre;
-            ToolStripMenuItem item = new ToolStripMenuItem("Hacer Ping", Resources.sniffer);
+            ToolStripMenuItem item = new ToolStripMenuItem("Hacer Ping", Resources.shell_script_16x16);
             item.Click += new EventHandler(OnPingClick);
             Menu.Items.Add(item);
             _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id,

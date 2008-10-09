@@ -47,7 +47,7 @@ namespace SimuladorCliente
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this._toolBarConfigurarServidor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this._mouse = new System.Windows.Forms.ToolStripButton();
+            this._toolBarMouse = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this._toolBarPC = new System.Windows.Forms.ToolStripButton();
             this._toolBarSwitch = new System.Windows.Forms.ToolStripButton();
@@ -97,7 +97,7 @@ namespace SimuladorCliente
             this.toolStripDropDownButton1,
             this.toolStripDropDownButton2,
             this.toolStripSeparator6,
-            this._mouse,
+            this._toolBarMouse,
             this.toolStripSeparator5,
             this._toolBarPC,
             this._toolBarSwitch,
@@ -175,23 +175,24 @@ namespace SimuladorCliente
             // 
             this._toolBarCargarBDdefault.Image = global::SimuladorCliente.Properties.Resources.database_process_16x16;
             this._toolBarCargarBDdefault.Name = "_toolBarCargarBDdefault";
-            this._toolBarCargarBDdefault.Size = new System.Drawing.Size(249, 22);
-            this._toolBarCargarBDdefault.Text = "Predeterminada";
+            this._toolBarCargarBDdefault.Size = new System.Drawing.Size(289, 22);
+            this._toolBarCargarBDdefault.Text = "Seleccionar base de datos predeterminada";
+            this._toolBarCargarBDdefault.Click += new System.EventHandler(this._toolBarCargarBDdefault_Click);
             // 
             // _toolBarCargarBDarchivo
             // 
             this._toolBarCargarBDarchivo.Image = global::SimuladorCliente.Properties.Resources.database_search_16x16;
             this._toolBarCargarBDarchivo.Name = "_toolBarCargarBDarchivo";
-            this._toolBarCargarBDarchivo.Size = new System.Drawing.Size(249, 22);
-            this._toolBarCargarBDarchivo.Text = "Abrir archivo de base de datos";
+            this._toolBarCargarBDarchivo.Size = new System.Drawing.Size(289, 22);
+            this._toolBarCargarBDarchivo.Text = "Seleccionar base de datos desde archivo";
             this._toolBarCargarBDarchivo.Click += new System.EventHandler(this.ToolBarDBOpenClick);
             // 
             // _toolBarGuardarBD
             // 
             this._toolBarGuardarBD.Image = global::SimuladorCliente.Properties.Resources.database_save;
             this._toolBarGuardarBD.Name = "_toolBarGuardarBD";
-            this._toolBarGuardarBD.Size = new System.Drawing.Size(249, 22);
-            this._toolBarGuardarBD.Text = "Guardar Archivo de base de datos";
+            this._toolBarGuardarBD.Size = new System.Drawing.Size(289, 22);
+            this._toolBarGuardarBD.Text = "Guardar base de datos actual a archivo";
             this._toolBarGuardarBD.Click += new System.EventHandler(this.ToolBarDBSaveClick);
             // 
             // toolStripDropDownButton2
@@ -242,16 +243,14 @@ namespace SimuladorCliente
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
-            // _mouse
+            // _toolBarMouse
             // 
-            this._mouse.Checked = true;
-            this._mouse.CheckState = System.Windows.Forms.CheckState.Checked;
-            this._mouse.Image = global::SimuladorCliente.Properties.Resources.sm_black_pointer;
-            this._mouse.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._mouse.Name = "_mouse";
-            this._mouse.Size = new System.Drawing.Size(65, 22);
-            this._mouse.Text = "Puntero";
-            this._mouse.Click += new System.EventHandler(this.Nouse_Click);
+            this._toolBarMouse.Image = global::SimuladorCliente.Properties.Resources.sm_black_pointer;
+            this._toolBarMouse.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolBarMouse.Name = "_toolBarMouse";
+            this._toolBarMouse.Size = new System.Drawing.Size(65, 22);
+            this._toolBarMouse.Text = "Puntero";
+            this._toolBarMouse.Click += new System.EventHandler(this.Nouse_Click);
             // 
             // toolStripSeparator5
             // 
@@ -301,7 +300,7 @@ namespace SimuladorCliente
             // 
             // _toolBarPuntaMedicion
             // 
-            this._toolBarPuntaMedicion.Image = global::SimuladorCliente.Properties.Resources.sniffer;
+            this._toolBarPuntaMedicion.Image = global::SimuladorCliente.Properties.Resources.x_mag_16x16;
             this._toolBarPuntaMedicion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarPuntaMedicion.Name = "_toolBarPuntaMedicion";
             this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 22);
@@ -429,34 +428,36 @@ namespace SimuladorCliente
             // 
             this._menuCargarDBDefault.Image = global::SimuladorCliente.Properties.Resources.database_process_16x16;
             this._menuCargarDBDefault.Name = "_menuCargarDBDefault";
-            this._menuCargarDBDefault.Size = new System.Drawing.Size(269, 22);
-            this._menuCargarDBDefault.Text = "Cargar Base de Datos Predeterminada";
+            this._menuCargarDBDefault.Size = new System.Drawing.Size(289, 22);
+            this._menuCargarDBDefault.Text = "Seleccionar base de datos predeterminada";
+            this._menuCargarDBDefault.Click += new System.EventHandler(this._toolBarCargarBDdefault_Click);
             // 
             // _menuCargarDBArchivo
             // 
             this._menuCargarDBArchivo.Image = global::SimuladorCliente.Properties.Resources.database_search_16x16;
             this._menuCargarDBArchivo.Name = "_menuCargarDBArchivo";
-            this._menuCargarDBArchivo.Size = new System.Drawing.Size(269, 22);
-            this._menuCargarDBArchivo.Text = " Cargar Base de Datos Desde Archivo";
+            this._menuCargarDBArchivo.Size = new System.Drawing.Size(289, 22);
+            this._menuCargarDBArchivo.Text = "Seleccionar base de datos desde archivo";
+            this._menuCargarDBArchivo.Click += new System.EventHandler(this.ToolBarDBOpenClick);
             // 
             // _menuGuardarBD
             // 
             this._menuGuardarBD.Image = global::SimuladorCliente.Properties.Resources.database_save;
             this._menuGuardarBD.Name = "_menuGuardarBD";
-            this._menuGuardarBD.Size = new System.Drawing.Size(269, 22);
-            this._menuGuardarBD.Text = "Guardar Archivo de base de datos";
+            this._menuGuardarBD.Size = new System.Drawing.Size(289, 22);
+            this._menuGuardarBD.Text = "Guardar base de datos actual a archivo";
             this._menuGuardarBD.Click += new System.EventHandler(this.ToolBarDBSaveClick);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(266, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(286, 6);
             // 
             // _menuConectarServidor
             // 
             this._menuConectarServidor.Image = global::SimuladorCliente.Properties.Resources.connect_16x16;
             this._menuConectarServidor.Name = "_menuConectarServidor";
-            this._menuConectarServidor.Size = new System.Drawing.Size(269, 22);
+            this._menuConectarServidor.Size = new System.Drawing.Size(289, 22);
             this._menuConectarServidor.Text = "Conectar a servidor";
             this._menuConectarServidor.Click += new System.EventHandler(this.ToolBarConectarClick);
             // 
@@ -464,21 +465,21 @@ namespace SimuladorCliente
             // 
             this._menuDesconectarServidor.Image = global::SimuladorCliente.Properties.Resources.disconnect_16x16;
             this._menuDesconectarServidor.Name = "_menuDesconectarServidor";
-            this._menuDesconectarServidor.Size = new System.Drawing.Size(269, 22);
+            this._menuDesconectarServidor.Size = new System.Drawing.Size(289, 22);
             this._menuDesconectarServidor.Text = "Desconectar del servidor";
             // 
             // _menuConfigurarServidor
             // 
             this._menuConfigurarServidor.Image = global::SimuladorCliente.Properties.Resources.synchronize_16x16;
             this._menuConfigurarServidor.Name = "_menuConfigurarServidor";
-            this._menuConfigurarServidor.Size = new System.Drawing.Size(269, 22);
+            this._menuConfigurarServidor.Size = new System.Drawing.Size(289, 22);
             this._menuConfigurarServidor.Text = "Inicializar servidor";
             this._menuConfigurarServidor.Click += new System.EventHandler(this.ToolBarConfigurarServidorClick);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(266, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(286, 6);
             // 
             // ayudaToolStripMenuItem
             // 
@@ -542,7 +543,7 @@ namespace SimuladorCliente
 
 
 		private System.Windows.Forms.ToolStrip _toolStrip;
-		private System.Windows.Forms.ToolStripButton _mouse;
+		private System.Windows.Forms.ToolStripButton _toolBarMouse;
 		private System.Windows.Forms.ToolStripButton _toolBarPC;
 		private System.Windows.Forms.ToolStripButton _toolBarSwitch;
         private System.Windows.Forms.ToolStripButton _toolBarConectarEquipos;
