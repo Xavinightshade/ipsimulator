@@ -20,5 +20,7 @@ namespace RedesIP.SOA
         void EliminarEquipo(Guid idEquipo);
         [OperationContract(IsOneWay = true)]
         void SetValorConstanteSimulacion(int valor);
+        [OperationContract(IsOneWay = true)]
+        void SetEstadoSimulacion(bool pausado);
     }
 }

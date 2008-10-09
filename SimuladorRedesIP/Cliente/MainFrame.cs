@@ -24,7 +24,7 @@ using SimuladorCliente.Properties;
 
 namespace SimuladorCliente
 {
-    public partial class MainFrame : Form
+    public partial class MainFrame : Form,IPaletaHerramienta
     {
         private bool _esEstacionNueva;
         private EstacionView _estacionView;
@@ -56,7 +56,7 @@ namespace SimuladorCliente
             ModeloSnifferMaster modeloSniffer = new ModeloSnifferMaster();
             modeloSniffer.setEstacion(_estacionModelo);
             _presenterLocal.SetEstacion(_estacionModelo, modeloSniffer);
-            _estacionView.Inicializar(_presenterLocal, _dockMain,_formaPaletaHerramientas);
+            _estacionView.Inicializar(_presenterLocal, _dockMain,this);
 
             _presenterLocal.ConectarCliente();
 
@@ -213,7 +213,7 @@ namespace SimuladorCliente
             
 
             _estacionView.LimpiarEstacion();
-            _estacionView.Inicializar(clien, _dockMain, _formaPaletaHerramientas);
+            _estacionView.Inicializar(clien, _dockMain, this);
             _servicioConectado = true;
 
 
@@ -417,7 +417,7 @@ namespace SimuladorCliente
             _presenterLocal.SetEstacion(_estacionModelo, _presenterLocal.SnifferMaster);
             _esEstacionNueva = true;
             EstablecerToolBarCrearTopologia();
-            _estacionView.Inicializar(_presenterLocal, _dockMain, _formaPaletaHerramientas);
+            _estacionView.Inicializar(_presenterLocal, _dockMain, this);
             _presenterLocal.ConectarCliente();
             _estacionView.Invalidate();
         }
@@ -639,8 +639,18 @@ namespace SimuladorCliente
 
         private void _toolBarPlayPause_Click(object sender, EventArgs e)
         {
-            ThreadManager.Pausado = !ThreadManager.Pausado;
-            if (ThreadManager.Pausado)
+            _estacionView.PeticionPlayPause();
+        }
+
+        public void EstablecerEstadoSimulacion(bool pausado)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new EstablecerEstadoSimulacionDelegate(EstablecerEstadoSimulacion), new object[] { pausado });
+                return;
+            }
+
+            if (pausado)
             {
                 _toolBarPlayPause.Image = Resources.play_16x16;
                 _toolBarPlayPause.Text = "Continuar la ejecución";
@@ -650,25 +660,14 @@ namespace SimuladorCliente
                 _toolBarPlayPause.Image = Resources.pause_16x16;
                 _toolBarPlayPause.Text = "Detener la ejecución";
             }
-
-
         }
 
+        private delegate void EstablecerEstadoSimulacionDelegate(bool pausado);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public void SetValor(int valor)
+        {
+            _formaPaletaHerramientas.SetValor(valor);
+        }
 
 
     }

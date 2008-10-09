@@ -13,6 +13,7 @@ using RedesIP.Common;
 using BusinessLogic.Modelos.Logicos.Datos;
 using BusinessLogic.Sniffer;
 using SOA.Componentes;
+using BusinessLogic.Threads;
 
 namespace RedesIP
 {
@@ -418,6 +419,25 @@ namespace RedesIP
             {
                 cliente.EliminarEquipo(idEquipo);
             }
+        }
+
+
+
+
+        public void PeticionPlayPause()
+        {
+            ThreadManager.Pausado = !ThreadManager.Pausado;
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.SetEstadoSimulacion(ThreadManager.Pausado);
+            }
+        }
+
+
+
+        public bool GetEstadoSimulacion()
+        {
+            return ThreadManager.Pausado;
         }
 
         #endregion

@@ -59,7 +59,11 @@ namespace RedesIP.Vistas.Equipos
 
         private void BorrarClick(object sender, EventArgs e)
         {
-            _reg.Contrato.PeticionEliminarEquipo(Id);
+            if (MessageBox.Show("Elminar Equipo: "+Nombre+"?","Eliminar Equipo",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+            {
+                _reg.Contrato.PeticionEliminarEquipo(Id);
+            }
+            
         }
 
         void _ownerControl_MouseDoubleClick(object sender, MouseEventArgs e)

@@ -24,6 +24,10 @@ namespace RedesIP.SOA
         int GetFactorSimulacion();
         [OperationContract()]
         void  PeticionSetFactorSimulacion(int valor);
+        [OperationContract()]
+        void PeticionPlayPause();
+        [OperationContract()]
+        bool GetEstadoSimulacion();
 
 
 
@@ -35,6 +39,7 @@ namespace RedesIP.SOA
         void PeticionEliminarCable(Guid idCable);
         [OperationContract()]
         void PeticionEliminarEquipo(Guid IdEquipo);
+
     }
 
 

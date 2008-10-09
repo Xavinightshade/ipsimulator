@@ -133,6 +133,7 @@ namespace RedesIP.Vistas
             }
             Invalidate();
             _paleta.SetValor(_server.GetFactorSimulacion());
+            _paleta.EstablecerEstadoSimulacion(_server.GetEstadoSimulacion());
         }
         public void LimpiarEstacion()
         {
@@ -362,11 +363,23 @@ namespace RedesIP.Vistas
            _paleta.SetValor(valor);
         }
 
-        #endregion
+
 
         internal void peticionEstablecerConstanteSimulacion(int valor)
         {
             _server.PeticionSetFactorSimulacion(valor);
         }
+
+        internal void PeticionPlayPause()
+        {
+            _server.PeticionPlayPause();
+        }
+
+        public void SetEstadoSimulacion(bool pausado)
+        {
+           _paleta.EstablecerEstadoSimulacion(pausado);
+        }
+
+        #endregion
     }
 }

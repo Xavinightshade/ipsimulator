@@ -43,7 +43,7 @@ namespace BusinessLogic.Threads
             Thread.Sleep(valor * Constante);
 
         }
-        private static int _constante=5;
+        private static int _constante=1;
         public static int Constante
         {
             get { return _constante; }
