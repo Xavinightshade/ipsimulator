@@ -31,7 +31,7 @@ namespace RedesIP.SOA
         [OperationContract()]
         void PeticionEstablecerDatosComputador(ComputadorSOA pcSOA);
         [OperationContract()]
-        void Ping(Guid idEquipo, string ipDestino, string datos);
+        void Ping(Guid idEquipo, string ipDestino);
         [OperationContract()]
         List<RutaSOA> TraerRutas(Guid idRouter);
         [OperationContract()]

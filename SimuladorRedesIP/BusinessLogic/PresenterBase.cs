@@ -210,9 +210,9 @@ namespace RedesIP
 
 
 
-        public void Ping(Guid idEquipo, string ipDestino, string datos)
+        public void Ping(Guid idEquipo, string ipDestino)
         {
-            _estacion.Ping(idEquipo, ipDestino, datos);
+            _estacion.Ping(idEquipo, ipDestino);
         }
 
 

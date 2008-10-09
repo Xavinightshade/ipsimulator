@@ -17,9 +17,9 @@ namespace BusinessLogic.OSI
        }
 
 
-       public void Ping(string ipDestino, string datos)
+       public void Ping(string ipDestino)
        {
-           Packet paquete = new Packet(CapaDatos.Puerto.IPAddress, ipDestino, datos);
+           Packet paquete = new Packet(CapaDatos.Puerto.IPAddress, ipDestino, IPAddressFactory.EchoMessage);
 
            EnviarPaquete(ipDestino, paquete);
 

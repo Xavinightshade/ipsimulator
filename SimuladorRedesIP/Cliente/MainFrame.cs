@@ -20,6 +20,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using DevAge.Windows.Forms;
 using BusinessLogic.Sniffer;
+using BusinessLogic.Threads;
 
 namespace SimuladorCliente
 {
@@ -626,6 +627,12 @@ namespace SimuladorCliente
             CrearNuevaEstacion();
             _servicioConectado = false;
       
+        }
+
+        private void threadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThreadManager.Pausado = !ThreadManager.Pausado;
+            threadToolStripMenuItem.Text = ThreadManager.Pausado.ToString();
         }
 
 

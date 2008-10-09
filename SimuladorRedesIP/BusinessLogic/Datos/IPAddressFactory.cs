@@ -27,6 +27,10 @@ namespace BusinessLogic
 
 
         }
+        public static string EchoMessage
+        {
+            get { return "abcdefghijklmnopqrstuvwxyz"; }
+        }
         public static bool EsValidaLaMascara(int? mascara)
         {
             if (!mascara.HasValue)

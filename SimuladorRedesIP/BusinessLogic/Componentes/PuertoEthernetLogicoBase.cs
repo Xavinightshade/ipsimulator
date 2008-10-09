@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using RedesIP.Modelos.Logicos.Equipos;
 using RedesIP.Common;
 using RedesIP.SOA;
+using BusinessLogic.Threads;
 
 namespace RedesIP.Modelos.Equipos.Componentes
 {
@@ -18,12 +19,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
             PuertoBaseSOA puertoSOA = new PuertoBaseSOA(puertoLogico.Id, puertoLogico.Nombre);
             return puertoSOA;
         }
-		private static int CalcularVelocidad(float porcentaje)
-		{
-            return 150;
-			float m = (7000 - 10) / 100;
-			return (int)(m * (100 - porcentaje) + 10);
-		}
+
 		private Guid _id;
 
 
@@ -81,7 +77,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-						Thread.Sleep(r.Next(CalcularVelocidad(EstacionModelo.PorcentajeDeVelocidadSimulacion)));
+                    ThreadManager.Sleep();
 					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
 				}
 				else
@@ -95,7 +91,6 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 		}
 
-		private Random r = new Random();
 		private void ProcesarFramesRecibidos()
 		{
 
@@ -108,7 +103,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-                    Thread.Sleep(r.Next(CalcularVelocidad(EstacionModelo.PorcentajeDeVelocidadSimulacion)));
+                    ThreadManager.Sleep();
 					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
 				}
 				else

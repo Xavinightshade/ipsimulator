@@ -339,6 +339,7 @@ namespace RedesIP.Vistas
         public void EliminarEquipo(Guid idEquipo)
         {
             EquipoView equipo = _equipos[idEquipo];
+            equipo.DesconectarDelContenedor();
             if (_routers.Contains(equipo as RouterView ))
                 _routers.Remove(equipo as RouterView);
             if (_switches.Contains(equipo as SwitchView))

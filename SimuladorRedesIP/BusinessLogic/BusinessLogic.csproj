@@ -109,6 +109,7 @@
     <Compile Include="Sniffer\ModeloSnifferPC.cs" />
     <Compile Include="Sniffer\ModeloSnifferPuertoCompleto.cs" />
     <Compile Include="Sniffer\ModeloSnifferSwitch.cs" />
+    <Compile Include="Threads\ThreadManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">

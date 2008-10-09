@@ -41,7 +41,7 @@ namespace RedesIP.Vistas.Equipos
             pingForm.SetInfoEquipo(GetFullInfoMapa());
             if (pingForm.ShowDialog() == DialogResult.OK)
             {
-                    Contenedor.Contrato.Ping(Id, pingForm.IPAddress, pingForm.Dato);
+                    Contenedor.Contrato.Ping(Id, pingForm.IPAddress);
 
             }
         }

@@ -78,10 +78,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
 
-        internal void Ping(string ipDestino, string datos)
+        internal void Ping(string ipDestino)
         {
 
-            _capaRed.Ping(ipDestino, datos);
+            _capaRed.Ping(ipDestino);
             
         }
 

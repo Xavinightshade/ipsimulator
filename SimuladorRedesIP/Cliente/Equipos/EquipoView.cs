@@ -170,5 +170,7 @@ namespace RedesIP.Vistas.Equipos
         }
         private ToolTip _tooltip = new ToolTip();
 
+
+
     }
 }

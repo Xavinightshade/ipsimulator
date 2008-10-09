@@ -61,11 +61,11 @@ namespace SimuladorCliente
                 string mostrar = String.Empty;
                 if (mensaje.EsEncapsulacion)
                 {
-                    mostrar += "Encap";
+                    mostrar += "Paquete Encapsulado";
                 }
                 else
                 {
-                    mostrar += "Desencap";
+                    mostrar += "Paquete Desencapsulado";
                 }
                   Grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
 

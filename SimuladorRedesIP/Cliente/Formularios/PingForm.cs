@@ -22,10 +22,7 @@ namespace SimuladorCliente.Formularios
             get { return ipTextBox1.Text; }
             set { ipTextBox1.Text=value; }
         }
-        public string Dato
-        {
-            get { return _dato.Text; }
-        }
+
 
 
         private void _Aceptar_Click(object sender, EventArgs e)

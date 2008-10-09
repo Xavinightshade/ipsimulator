@@ -82,6 +82,7 @@ namespace SimuladorCliente
             this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._menuStrip = new System.Windows.Forms.MenuStrip();
+            this.threadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStrip.SuspendLayout();
             this._statusStrip.SuspendLayout();
             this._menuStrip.SuspendLayout();
@@ -519,12 +520,20 @@ namespace SimuladorCliente
             this._menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.herramientasToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
+            this.ayudaToolStripMenuItem,
+            this.threadToolStripMenuItem});
             this._menuStrip.Location = new System.Drawing.Point(0, 0);
             this._menuStrip.Name = "_menuStrip";
             this._menuStrip.Size = new System.Drawing.Size(893, 24);
             this._menuStrip.TabIndex = 16;
             this._menuStrip.Text = "menuStrip1";
+            // 
+            // threadToolStripMenuItem
+            // 
+            this.threadToolStripMenuItem.Name = "threadToolStripMenuItem";
+            this.threadToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.threadToolStripMenuItem.Text = "thread";
+            this.threadToolStripMenuItem.Click += new System.EventHandler(this.threadToolStripMenuItem_Click);
             // 
             // MainFrame
             // 
@@ -608,6 +617,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripMenuItem _menuGuardarBD;
         private System.Windows.Forms.ToolStripMenuItem _menuGuardarComo;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem threadToolStripMenuItem;
 
 
 
