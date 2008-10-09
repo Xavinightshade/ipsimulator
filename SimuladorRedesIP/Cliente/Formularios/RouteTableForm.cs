@@ -20,12 +20,13 @@ namespace SimuladorCliente.Formularios
         }
         private List<PuertoEthernetViewCompleto> _puertos;
         BindingList<RutaSOA> _rutasMD;
-        internal void Inicializar(List<RutaSOA> rutasEstaticas,List<RutaSOA> rutasRouter, List<PuertoEthernetViewCompleto> puertos)
+        internal void Inicializar(List<RutaSOA> rutasEstaticas,List<RutaSOA> rutasInternas,List<RutaSOA> rutasDinamicas, List<PuertoEthernetViewCompleto> puertos)
         {
             _puertos = puertos;
             _rutasMD = new BindingList<RutaSOA>(rutasEstaticas);
             _rutasEstaticas.DataSource = _rutasMD;
-            _rutasRouter.DataSource = rutasRouter;
+            _rutasRouter.DataSource = rutasInternas;
+            _rutasDinamicas.DataSource = rutasDinamicas;
             _puertosBS.DataSource = _puertos;
             _rutasEstaticas.Position = 0;
                 if (_rutasMD.Count == 0)

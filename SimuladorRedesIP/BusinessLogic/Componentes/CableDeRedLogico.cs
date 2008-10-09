@@ -55,6 +55,8 @@ namespace RedesIP.Modelos
 
         private void Puerto2_FrameRecibido(object sender, FrameRecibidoEventArgs e)
         {
+            if (!Puerto2.Habilitado)
+                return;
             if (FrameRecibidoPuerto2 != null)
             {
                 FrameRecibidoPuerto2(this, new FrameRecibidoEventArgs(e.FrameRecibido, BusinessLogic.Threads.ThreadManager.HoraActual));
@@ -63,6 +65,8 @@ namespace RedesIP.Modelos
 
         void Puerto1_FrameRecibido(object sender, FrameRecibidoEventArgs e)
         {
+            if (!Puerto1.Habilitado)
+                return;
             if (FrameRecibidoPuerto1 != null)
             {
                 FrameRecibidoPuerto1(this, new FrameRecibidoEventArgs(e.FrameRecibido, BusinessLogic.Threads.ThreadManager.HoraActual));
@@ -81,12 +85,16 @@ namespace RedesIP.Modelos
 
 		private void OnFrameTransmitidoDelPuerto2(object sender, FrameTransmitidoEventArgs e)
 		{
+            if (!_puerto1.Habilitado)
+                return;
 			((IEnvioReciboDatos)Puerto1).RecibirFrame(e.FrameTransmitido);
 
 		}
 
 		private void OnFrameTransmitidoDelPuerto1(object sender, FrameTransmitidoEventArgs e)
 		{
+            if (!_puerto2.Habilitado)
+                return;
 			((IEnvioReciboDatos)_puerto2).RecibirFrame(e.FrameTransmitido);
 
 		}

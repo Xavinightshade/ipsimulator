@@ -272,12 +272,6 @@ namespace RedesIP
 
 
 
-        public List<RutaSOA> TraerRutas(Guid idRouter)
-        {
-            List<RutaSOA> rutasSOA = _estacion.Routers[idRouter].TraerRutas();
-            return rutasSOA;
-        }
-
 
 
 
@@ -307,14 +301,24 @@ namespace RedesIP
 
 
 
-        public List<RutaSOA> TraerRutasRouter(Guid idRouter)
+        public List<RutaSOA> TraerRutasInternas(Guid idRouter)
         {
-            List<RutaSOA> rutasSOA = _estacion.Routers[idRouter].TraerRutasRouter();
+            List<RutaSOA> rutasSOA = _estacion.Routers[idRouter].TraerRutasInternas();
+            return rutasSOA;
+        }
+        public List<RutaSOA> TraerRutasDinamicas(Guid idRouter)
+        {
+            List<RutaSOA> rutasSOA = _estacion.Routers[idRouter].TraerRutasDinamicas();
             return rutasSOA;
         }
 
 
 
+        public List<RutaSOA> TraerRutasEstaticas(Guid idRouter)
+        {
+            List<RutaSOA> rutasSOA = _estacion.Routers[idRouter].TraerRutasEstaticas();
+            return rutasSOA;
+        }
 
 
         public void PeticionEnviarInformacionPuertoCompleto(Guid idPuerto)
@@ -441,6 +445,8 @@ namespace RedesIP
         }
 
         #endregion
+
+
     }
 
 

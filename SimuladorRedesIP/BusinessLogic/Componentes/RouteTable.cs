@@ -7,108 +7,162 @@ using SOA.Componentes;
 
 namespace BusinessLogic.Componentes
 {
-   public class RouteTable
+    public class RouteTable
     {
         private List<EntradaTablaRouter> _tablaRouterEstatico = new List<EntradaTablaRouter>();
+        private List<EntradaTablaRouter> _tablaRouterDinamico = new List<EntradaTablaRouter>();
 
 
 
-       public void IngresarEntrada(Guid id,string red,int? mask,string nextHopIP, PuertoEthernetCompleto puerto)
-       {
-           EntradaTablaRouter entrada=new EntradaTablaRouter(id);
-           entrada.Puerto = puerto;
-           entrada.Red = red;
-           entrada.Mask = mask;
-           entrada.NextHopIP = nextHopIP;
-           _tablaRouterEstatico.Add(entrada);
-       }
-       public EntradaTablaRouter BuscarRutaEnRutasInternas(string ipAddress)
-       {
-           foreach (EntradaTablaRouter entrada in CalcularRutasInternas())
-           {
-               uint valorRedPuerto=IPAddressFactory.GetRed(entrada.Puerto.IPAddress,entrada.Puerto.Mascara.Value);
-               uint valorRedIpAddress=IPAddressFactory.GetRed(ipAddress,entrada.Puerto.Mascara.Value);
-               if (valorRedIpAddress==valorRedPuerto)
-               {
-                   return entrada;
-               }
-           }
-           return null;
-       }
+        public void IngresarEntradaEstatica(Guid id, string red, int? mask, string nextHopIP, PuertoEthernetCompleto puerto)
+        {
+            EntradaTablaRouter entrada = new EntradaTablaRouter(id);
+            entrada.Puerto = puerto;
+            entrada.Red = red;
+            entrada.Mask = mask;
+            entrada.NextHopIP = nextHopIP;
+            _tablaRouterEstatico.Add(entrada);
+        }
+        public EntradaTablaRouter BuscarRutaEnRutasInternas(string ipAddress)
+        {
+            foreach (EntradaTablaRouter entrada in CalcularRutasInternas())
+            {
+                uint valorRedPuerto = IPAddressFactory.GetRed(entrada.Puerto.IPAddress, entrada.Puerto.Mascara.Value);
+                uint valorRedIpAddress = IPAddressFactory.GetRed(ipAddress, entrada.Puerto.Mascara.Value);
+                if (valorRedIpAddress == valorRedPuerto)
+                {
+                    return entrada;
+                }
+            }
+            return null;
+        }
 
-       public EntradaTablaRouter BuscarPuertoEnRutasEstaticas(string ipAddress)
-       {
-           foreach (EntradaTablaRouter entrada in _tablaRouterEstatico)
-           {
-               uint valorRedPuerto = IPAddressFactory.GetRed(entrada.Red, entrada.Mask.Value);
-               uint valorRedIpAddress = IPAddressFactory.GetRed(ipAddress, entrada.Puerto.Mascara.Value);
+        public EntradaTablaRouter BuscarRutaEnRutasEstaticas(string ipAddress)
+        {
+            return BuscarRutaEnTabla(ipAddress, _tablaRouterEstatico);
+        }
+        public EntradaTablaRouter BuscarRutaEnRutasDinamicas(string ipAddress)
+        {
+            return BuscarRutaEnTabla(ipAddress, _tablaRouterDinamico);
+        }
 
-               if (valorRedIpAddress == valorRedPuerto)
-               {
-                   return entrada;
-               }
-           }
-           return null;
-       }
-       List<PuertoEthernetCompleto> _puertos;
-       public RouteTable(List<PuertoEthernetCompleto> puertos)
-       {
-           _puertos=puertos;
-       }
+        private EntradaTablaRouter BuscarRutaEnTabla(string ipAddress, List<EntradaTablaRouter> tabla)
+        {
+            foreach (EntradaTablaRouter entrada in tabla)
+            {
+                uint valorRedPuerto = IPAddressFactory.GetRed(entrada.Red, entrada.Mask.Value);
+                uint valorRedIpAddress = IPAddressFactory.GetRed(ipAddress, entrada.Puerto.Mascara.Value);
 
-       public List<RutaSOA> GetRutasEstaticas()
-       {
-           return LlenarRutas(_tablaRouterEstatico);
-       }
-       public List<RutaSOA> GetAllRutas()
-       {
-           List<RutaSOA> rutasTotales = new List<RutaSOA>();
-           rutasTotales.AddRange(GetRutasInternas());
-           rutasTotales.AddRange(GetRutasEstaticas());
-           return rutasTotales;
-       }
-       private List<RutaSOA> LlenarRutas(List<EntradaTablaRouter> entradas)
-       {
-           List<RutaSOA> rutas = new List<RutaSOA>();
-           foreach (EntradaTablaRouter item in entradas)
-           {
-               RutaSOA ruta = new RutaSOA(item.Id);
-               ruta.IdPuerto = item.Puerto.Id;
-               ruta.Red = item.Red;
-               ruta.NombrePuerto = item.Puerto.Nombre;
-               ruta.NextHopIP = item.NextHopIP;
-               ruta.Mask = item.Mask;
-               rutas.Add(ruta);
-           }
-           return rutas;
-       }
-       internal void LimpiarRutas()
-       {
-           _tablaRouterEstatico.Clear();
-       }
+                if (valorRedIpAddress == valorRedPuerto)
+                {
+                    return entrada;
+                }
+            }
+            return null;
+        }
+        List<PuertoEthernetCompleto> _puertos;
+        public RouteTable(List<PuertoEthernetCompleto> puertos)
+        {
+            _puertos = puertos;
+        }
 
-       private List<EntradaTablaRouter> CalcularRutasInternas()
-       {
-           List<EntradaTablaRouter> rutasInternas = new List<EntradaTablaRouter>();
-           foreach (PuertoEthernetCompleto puerto in _puertos)
-           {
-               if (!puerto.Habilitado)
-                   continue;
-               if ((puerto.IPAddress == null) || (puerto.Mascara == null))
-                   continue;
-               EntradaTablaRouter ruta = new EntradaTablaRouter(Guid.Empty);
-               ruta.Mask = puerto.Mascara;
-               ruta.Puerto = puerto;                
-              ruta.Red = IPAddressFactory.GetRedRep(ruta.Puerto.IPAddress, ruta.Puerto.Mascara.Value);
+        public List<RutaSOA> GetRutasEstaticas()
+        {
+            return LlenarRutas(_tablaRouterEstatico);
+        }
+        public List<RutaSOA> GetRutasDinamicas()
+        {
+            return LlenarRutas(_tablaRouterDinamico);
+        }
+        public List<RutaSOA> GetAllRutas()
+        {
+            List<RutaSOA> rutasTotales = new List<RutaSOA>();
+            rutasTotales.AddRange(GetRutasInternas());
+            rutasTotales.AddRange(GetRutasEstaticas());
+            return rutasTotales;
+        }
+        private List<RutaSOA> LlenarRutas(List<EntradaTablaRouter> entradas)
+        {
+            List<RutaSOA> rutas = new List<RutaSOA>();
+            foreach (EntradaTablaRouter item in entradas)
+            {
+                RutaSOA ruta = new RutaSOA(item.Id);
+                ruta.IdPuerto = item.Puerto.Id;
+                ruta.Red = item.Red;
+                ruta.NombrePuerto = item.Puerto.Nombre;
+                ruta.NextHopIP = item.NextHopIP;
+                ruta.Mask = item.Mask;
+                rutas.Add(ruta);
+            }
+            return rutas;
+        }
+        internal void LimpiarRutas()
+        {
+            _tablaRouterEstatico.Clear();
+        }
 
-               rutasInternas.Add(ruta);
-           }
-           return rutasInternas;
-       }
+        private List<EntradaTablaRouter> CalcularRutasInternas()
+        {
+            List<EntradaTablaRouter> rutasInternas = new List<EntradaTablaRouter>();
+            foreach (PuertoEthernetCompleto puerto in _puertos)
+            {
+                if (!puerto.Habilitado)
+                    continue;
+                if ((puerto.IPAddress == null) || (puerto.Mascara == null))
+                    continue;
+                EntradaTablaRouter ruta = new EntradaTablaRouter(Guid.Empty);
+                ruta.Mask = puerto.Mascara;
+                ruta.Puerto = puerto;
+                ruta.Red = IPAddressFactory.GetRedRep(ruta.Puerto.IPAddress, ruta.Puerto.Mascara.Value);
 
-       internal List<RutaSOA> GetRutasInternas()
-       {
-           return LlenarRutas(CalcularRutasInternas());
-       }
+                rutasInternas.Add(ruta);
+            }
+            return rutasInternas;
+        }
+
+        public List<RutaSOA> GetRutasInternas()
+        {
+            return LlenarRutas(CalcularRutasInternas());
+        }
+
+        public void IngresarEntradasDinamicas(List<RutaSOA> entradas, string nextHopIp, Guid idPuertoDondeSeRecibio)
+        {
+
+            foreach (RutaSOA ruta in entradas)
+            {
+                EntradaTablaRouter entrada = new EntradaTablaRouter(ruta.Id);
+                entrada.Mask = ruta.Mask;
+                entrada.NextHopIP = nextHopIp;
+                entrada.Puerto = BuscarPuertoConId(idPuertoDondeSeRecibio);
+                entrada.Red = ruta.Red;
+                bool rutaExiste = BuscarSiYaExisteLaRuta(entrada);
+                if (!rutaExiste)
+                    _tablaRouterDinamico.Add(entrada);
+            }
+        }
+
+        private bool BuscarSiYaExisteLaRuta(EntradaTablaRouter entrada)
+        {
+            foreach (EntradaTablaRouter entradaDinamica in _tablaRouterDinamico)
+            {
+                if ((entradaDinamica.Mask == entrada.Mask) &&
+                    (entradaDinamica.NextHopIP == entrada.NextHopIP) &&
+                    (entrada.Red == entradaDinamica.Red))
+                    return true;
+            }
+            return false;
+        }
+
+        private PuertoEthernetCompleto BuscarPuertoConId(Guid id)
+        {
+            foreach (PuertoEthernetCompleto puerto in _puertos)
+            {
+                if (puerto.Id == id)
+                {
+                    return puerto;
+                }
+            }
+            throw new Exception();
+        }
     }
 }

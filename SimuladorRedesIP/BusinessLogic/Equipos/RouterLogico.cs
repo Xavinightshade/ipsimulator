@@ -79,14 +79,14 @@ namespace RedesIP.Modelos.Logicos.Equipos
             {
                 if (puerto.Id == idPuerto)
                 {
-                    _tablaDeRutas.IngresarEntrada(idRuta, red,mask,nextHopIP,puerto);
+                    _tablaDeRutas.IngresarEntradaEstatica(idRuta, red,mask,nextHopIP,puerto);
                     return;
                 }
             }
             throw new Exception();
         }
 
-        internal List<RutaSOA> TraerRutas()
+        internal List<RutaSOA> TraerRutasEstaticas()
         {
             return _tablaDeRutas.GetRutasEstaticas();
         }
@@ -101,12 +101,12 @@ namespace RedesIP.Modelos.Logicos.Equipos
             }
             foreach (RutaSOA ruta in rutas)
             {
-                _tablaDeRutas.IngresarEntrada(ruta.Id, ruta.Red,ruta.Mask,ruta.NextHopIP, puertos[ruta.IdPuerto]);
+                _tablaDeRutas.IngresarEntradaEstatica(ruta.Id, ruta.Red,ruta.Mask,ruta.NextHopIP, puertos[ruta.IdPuerto]);
             }
 
         }
 
-        public List<RutaSOA> TraerRutasRouter()
+        public List<RutaSOA> TraerRutasInternas()
         {
             return CalcularRutasInternas();
         }
@@ -118,6 +118,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
         public override void DesconectarEquipo()
         {
            
+        }
+
+        internal List<RutaSOA> TraerRutasDinamicas()
+        {
+            return _tablaDeRutas.GetRutasDinamicas();
         }
     }
 }

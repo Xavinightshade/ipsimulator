@@ -30,9 +30,14 @@ namespace RedesIP.SOA
         bool GetEstadoSimulacion();
 
 
+        [OperationContract()]
+        List<RutaSOA> TraerRutasEstaticas(Guid idRouter);
 
         [OperationContract()]
-        List<RutaSOA> TraerRutasRouter(Guid guid);
+        List<RutaSOA> TraerRutasDinamicas(Guid idRouter);
+
+        [OperationContract()]
+        List<RutaSOA> TraerRutasInternas(Guid idRouter);
         [OperationContract()]
         void PeticionEstablecerDatosSwitch(SwitchSOA swi);
         [OperationContract()]

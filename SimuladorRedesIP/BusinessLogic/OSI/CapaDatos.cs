@@ -42,9 +42,7 @@ namespace BusinessLogic.OSI
                 ProcesarBusquedaDeDireccionIP(datosFrameBuscando, e.FrameRecibido.MACAddressOrigen);
             }
             if (paquete != null)
-            {
-                if (e.FrameRecibido.Informacion is Packet)
-                    EventPaqueteDesencapsulador(e.FrameRecibido);
+            {   EventPaqueteDesencapsulador(e.FrameRecibido);
                 ProcesarPaquete(paquete);
             }
 
@@ -82,6 +80,7 @@ namespace BusinessLogic.OSI
 
         private void ProcesarIPEncontrada(DatosFrameArpIPEncontrada datosFrame)
         {
+
             if (datosFrame.DireccionIP == _puerto.IPAddress)
                 return;
             if (_protocoloArp.ContieneLaDireccionDe(datosFrame.DireccionIP))
@@ -104,6 +103,12 @@ namespace BusinessLogic.OSI
         private Dictionary<string, List<Packet>> _paquetesNoEnviadosConDestino = new Dictionary<string, List<Packet>>();
         public void EnviarPaquete(Packet paquete, string ipDestino)
         {
+            string broadCastAddress = IPAddressFactory.GetBroadCastAddress(_puerto.IPAddress, _puerto.Mascara);
+            if (ipDestino == broadCastAddress)
+            {
+                EnviarFrame(paquete, MACAddressFactory.BroadCast);
+                return;
+            }
             if (_protocoloArp.ContieneLaDireccionDe(ipDestino))
             {
                 string macDestino = _protocoloArp.GetMacAddressFromIPAddress(ipDestino);

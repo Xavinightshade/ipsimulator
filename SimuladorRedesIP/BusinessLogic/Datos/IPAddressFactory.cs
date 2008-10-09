@@ -27,9 +27,12 @@ namespace BusinessLogic
 
 
         }
-        public static string CalcularBroadCastAddress()
+        public static string GetBroadCastAddress(string ipAddress, int? mask)
         {
-            return "255.255.255.255";
+            uint red = GetRed(ipAddress, mask);
+            uint sizeRed = (uint)Math.Pow(2, 32 - mask.Value);
+            uint broadCastAddressRep = red + sizeRed - 1;
+            return GetIpRep(broadCastAddressRep);
         }
         public static string EchoMessage
         {

@@ -46,13 +46,16 @@ namespace BusinessLogic.Protocolos
             List<RutaSOA> rutasTotales = _routeTable.GetAllRutas();
             foreach (KeyValuePair<PuertoEthernetCompleto,CapaRedRouter> puertos in _puertos)
             {
-                puertos.Value.EnviarRutas(rutasTotales);
+                if (puertos.Key.Habilitado)
+                {
+                    puertos.Value.EnviarRutas(rutasTotales);
+                }
             }
         }
 
-        internal void ProcesarRutas(RoutesMessage mensajeRutas)
+        internal void ProcesarRutas(RoutesMessage mensajeRutas,string nextHopIp,Guid idPuertoDondeSeRecibio)
         {
-            throw new NotImplementedException();
+            _routeTable.IngresarEntradasDinamicas(mensajeRutas.RutasTotales,nextHopIp,idPuertoDondeSeRecibio);
         }
     }
 }

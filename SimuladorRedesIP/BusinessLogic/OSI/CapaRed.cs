@@ -26,6 +26,12 @@ namespace BusinessLogic.OSI
 
         private void OnPaqueteRecibido(object sender, PaqueteRecibidoEventArgs e)
         {
+            Packet paquete = e.PaqueteRecibido;
+            string broadCastAddress = IPAddressFactory.GetBroadCastAddress(CapaDatos.Puerto.IPAddress, CapaDatos.Puerto.Mascara);
+
+            if (paquete.IpDestino != broadCastAddress && paquete.IpDestino != CapaDatos.Puerto.IPAddress)
+                return;
+
             ProcesarPaquete(e.PaqueteRecibido);
         }
 
