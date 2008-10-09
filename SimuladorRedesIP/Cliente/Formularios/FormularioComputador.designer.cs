@@ -43,6 +43,7 @@
             this._defaultGW = new SimuladorCliente.NewFolder1.IPTextBox();
             this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.macTextBox1 = new SimuladorCliente.Formularios.MACTextBox();
+            this._ChkBoxpuertoHabilitado = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,6 +145,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._ChkBoxpuertoHabilitado);
             this.groupBox1.Controls.Add(this._defaultGW);
             this.groupBox1.Controls.Add(this.ipTextBox1);
             this.groupBox1.Controls.Add(this._nombrePc);
@@ -200,6 +202,16 @@
             this.macTextBox1.Size = new System.Drawing.Size(173, 20);
             this.macTextBox1.TabIndex = 5;
             // 
+            // checkBox1
+            // 
+            this._ChkBoxpuertoHabilitado.AutoSize = true;
+            this._ChkBoxpuertoHabilitado.Location = new System.Drawing.Point(214, 104);
+            this._ChkBoxpuertoHabilitado.Name = "checkBox1";
+            this._ChkBoxpuertoHabilitado.Size = new System.Drawing.Size(107, 17);
+            this._ChkBoxpuertoHabilitado.TabIndex = 13;
+            this._ChkBoxpuertoHabilitado.Text = "Puerto Habilitado";
+            this._ChkBoxpuertoHabilitado.UseVisualStyleBackColor = true;
+            // 
             // FormularioComputador
             // 
             this.AcceptButton = this._Aceptar;
@@ -237,5 +249,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private SimuladorCliente.NewFolder1.IPTextBox ipTextBox1;
         private SimuladorCliente.NewFolder1.IPTextBox _defaultGW;
+        private System.Windows.Forms.CheckBox _ChkBoxpuertoHabilitado;
     }
 }

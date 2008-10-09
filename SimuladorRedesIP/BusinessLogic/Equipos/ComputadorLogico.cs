@@ -62,9 +62,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
 
-        public void AgregarPuerto(Guid idPuerto, string nombre, string macAddress, string direccionIP, int? mask)
+        public void AgregarPuerto(Guid idPuerto, string nombre, string macAddress, string direccionIP, int? mask,bool habilitado)
         {
-            _puertoEthernet = new PuertoEthernetCompleto(macAddress, idPuerto, nombre, mask, direccionIP);
+            _puertoEthernet = new PuertoEthernetCompleto(macAddress, idPuerto, nombre, mask, direccionIP,habilitado);
         }
 
         public override void InicializarEquipo()

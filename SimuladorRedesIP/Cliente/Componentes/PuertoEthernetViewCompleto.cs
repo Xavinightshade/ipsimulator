@@ -29,8 +29,8 @@ namespace RedesIP.Vistas.Equipos.Componentes
             set { _direccionIP = value; }
         }
 
-        public PuertoEthernetViewCompleto(Guid id, string direccionMAC,string direccionIp,int? mask, int origenX, int origenY, EquipoView equipoPadre,string nombre)
-            :base(id,origenX,origenY,equipoPadre,nombre)
+        public PuertoEthernetViewCompleto(Guid id, string direccionMAC,string direccionIp,int? mask, int origenX, int origenY, EquipoView equipoPadre,string nombre,bool habilitado)
+            :base(id,origenX,origenY,equipoPadre,nombre,habilitado)
         {
            
             _direccionMAC = direccionMAC;

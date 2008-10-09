@@ -18,7 +18,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
         }
         public static PuertoCompletoSOA ConvertirPuerto(PuertoEthernetCompleto puertoLogico)
         {
-            PuertoCompletoSOA puertoSOA = new PuertoCompletoSOA(puertoLogico.Id, puertoLogico.MACAddress, puertoLogico.Nombre,puertoLogico.IPAddress,puertoLogico.Mascara);
+            PuertoCompletoSOA puertoSOA = new PuertoCompletoSOA(puertoLogico.Id, puertoLogico.MACAddress, puertoLogico.Nombre,puertoLogico.IPAddress,puertoLogico.Mascara,puertoLogico.Habilitado);
             return puertoSOA;
         }
         private string _MACAddress;
@@ -42,8 +42,8 @@ namespace RedesIP.Modelos.Equipos.Componentes
             set { _mascara = value; }
         }
 
-        public PuertoEthernetCompleto(string MACAddress, Guid id,string nombre,int? mask,string ipAddress)
-            : base(id,nombre)
+        public PuertoEthernetCompleto(string MACAddress, Guid id,string nombre,int? mask,string ipAddress,bool habilitado)
+            : base(id,nombre,habilitado)
         {
             _MACAddress = MACAddress;
             _mascara = mask;

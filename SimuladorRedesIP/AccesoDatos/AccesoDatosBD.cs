@@ -103,6 +103,7 @@ namespace AccesoDatos
 
         public static void GuardarNuevaEstacion(Estaciones estacion)
         {
+            _db = GetNewBD();
             _db.Estaciones.InsertOnSubmit(estacion);
             foreach (Equipos equipo in estacion.EquiposBD)
             {

@@ -47,6 +47,11 @@ namespace SimuladorCliente.Formularios
             get { return _mask.Text; }
             set { _mask.Text = value; }
         }
+        public bool PuertoHabilitado
+        {
+            get { return _ChkBoxpuertoHabilitado.Checked; }
+            set { _ChkBoxpuertoHabilitado.Checked = value; }
+        }
 
         private void _Aceptar_Click(object sender, EventArgs e)
         {

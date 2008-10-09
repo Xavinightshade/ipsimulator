@@ -156,7 +156,7 @@ namespace RedesIP
             ComputadorLogico pcLogico = new ComputadorLogico(Guid.NewGuid(),
                 computadorVisulizacion.X, computadorVisulizacion.Y,computadorVisulizacion.Nombre,
                 computadorVisulizacion.DefaultGateWay);
-            pcLogico.AgregarPuerto(Guid.NewGuid(),"E.0",MACAddressFactory.NewMAC(),null,null);
+            pcLogico.AgregarPuerto(Guid.NewGuid(),"E.0",MACAddressFactory.NewMAC(),null,null,false);
             _estacion.CrearComputador(pcLogico);
 
             ComputadorSOA equipoRespuesta = CrearComputadorSOA(pcLogico);
@@ -171,7 +171,7 @@ namespace RedesIP
         {
             ComputadorSOA equipoRespuesta = new ComputadorSOA(pcLogico.TipoDeEquipo, pcLogico.Id, pcLogico.X, pcLogico.Y,pcLogico.Nombre,pcLogico.DefaultGateWay);
             equipoRespuesta.AgregarPuerto(new PuertoCompletoSOA(pcLogico.PuertoEthernet.Id, pcLogico.PuertoEthernet.MACAddress,pcLogico.PuertoEthernet.Nombre,
-                pcLogico.PuertoEthernet.IPAddress,pcLogico.PuertoEthernet.Mascara));
+                pcLogico.PuertoEthernet.IPAddress,pcLogico.PuertoEthernet.Mascara,pcLogico.PuertoEthernet.Habilitado));
             return equipoRespuesta;
         }
 
@@ -180,7 +180,7 @@ namespace RedesIP
             SwitchLogico swiLogico = new SwitchLogico(Guid.NewGuid(), swiPeticion.X, swiPeticion.Y,swiPeticion.Nombre);
             for (int i = 0; i < 5; i++)
             {
-                swiLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString());
+                swiLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString(),true);
             }
             _estacion.CrearSwitch(swiLogico);
 
@@ -202,7 +202,7 @@ namespace RedesIP
             RouterLogico routerLogico = new RouterLogico(Guid.NewGuid(), router.X, router.Y, router.Nombre);
             for (int i = 0; i < 5; i++)
             {
-                routerLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString(),MACAddressFactory.NewMAC(),null,null);
+                routerLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString(),MACAddressFactory.NewMAC(),null,null,false);
             }
             _estacion.CrearRouter(routerLogico);
             RouterSOA rouRespuesta = RouterLogico.CrearRouterSOA(routerLogico);

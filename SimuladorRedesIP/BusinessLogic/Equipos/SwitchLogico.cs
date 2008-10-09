@@ -20,7 +20,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             SwitchSOA swiRespuesta = new SwitchSOA(swiLogico.TipoDeEquipo, swiLogico.Id, swiLogico.X, swiLogico.Y,swiLogico.Nombre);
             foreach (PuertoEthernetLogicoBase puerto in swiLogico.PuertosEthernet)
             {
-                swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id,puerto.Nombre));
+                swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id,puerto.Nombre,puerto.Habilitado));
             }
             return swiRespuesta;
         }
@@ -47,9 +47,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
 
-        public  void AgregarPuerto(Guid idPuerto,string nombre)
+        public  void AgregarPuerto(Guid idPuerto,string nombre,bool habilitado)
         {
-            PuertoEthernetLogicoBase puerto = new PuertoEthernetLogicoBase(idPuerto, nombre);
+            PuertoEthernetLogicoBase puerto = new PuertoEthernetLogicoBase(idPuerto, nombre,habilitado);
             _puertosEthernet.Add(puerto);
             _capaSwitcheo.AgregarPuerto(puerto);
         }

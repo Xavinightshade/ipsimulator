@@ -23,11 +23,18 @@ namespace RedesIP.SOA
             get { return _nombre; }
             set { _nombre = value; }
         }
+        private bool _habilitado;
 
-        public PuertoBaseSOA(Guid id,string nombre)
+        public bool Habilitado
+        {
+            get { return _habilitado; }
+            set { _habilitado = value; }
+        }
+        public PuertoBaseSOA(Guid id,string nombre,bool habilitado)
 		{
 			_id = id;
             _nombre = nombre;
+            _habilitado = habilitado;
 		}
 	}
 

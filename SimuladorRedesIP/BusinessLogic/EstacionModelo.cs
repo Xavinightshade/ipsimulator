@@ -196,11 +196,13 @@ namespace RedesIP
         {
             PuertoEthernetLogicoBase puertoLogico = _puertos[puerto.Id];
             puertoLogico.Nombre = puerto.Nombre;
+            puertoLogico.Habilitado = puerto.Habilitado;
         }
         public void EstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto)
         {
             PuertoEthernetCompleto puertoLogico = _puertos[puerto.Id] as PuertoEthernetCompleto;
             puertoLogico.Nombre = puerto.Nombre;
+            puertoLogico.Habilitado = puerto.Habilitado;
             puertoLogico.IPAddress = puerto.IPAddress;
             puertoLogico.Mascara = puerto.Mask;
         }

@@ -33,7 +33,7 @@ namespace RedesIP.Vistas.Equipos
 			foreach (PuertoBaseSOA puerto in puertos)
 	{
 
-        _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 30)+3, 7, this,puerto.Nombre));
+        _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 30)+3, 7, this,puerto.Nombre,puerto.Habilitado));
 				i++;
 	}
 
@@ -72,7 +72,7 @@ namespace RedesIP.Vistas.Equipos
                 List<PuertoBaseSOA> puertos = new List<PuertoBaseSOA>();
                 foreach (PuertoEthernetViewBase item in _puertosEthernet)
                 {
-                    PuertoBaseSOA puerto = new PuertoBaseSOA(item.Id, item.Nombre);
+                    PuertoBaseSOA puerto = new PuertoBaseSOA(item.Id, item.Nombre,item.Habilitado);
                     puertos.Add(puerto);
 
                 }

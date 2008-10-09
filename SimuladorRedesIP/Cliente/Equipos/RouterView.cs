@@ -57,7 +57,7 @@ namespace RedesIP.Vistas.Equipos
             {
 
                 _puertosEthernet.Add(new PuertoEthernetViewCompleto(puerto.Id,
-                    puerto.DireccionMAC, puerto.IPAddress, puerto.Mask, (i * 30) + 3, 7, this, puerto.Nombre));
+                    puerto.DireccionMAC, puerto.IPAddress, puerto.Mask, (i * 30) + 3, 7, this, puerto.Nombre,puerto.Habilitado));
                 i++;
             }
 
@@ -100,7 +100,7 @@ namespace RedesIP.Vistas.Equipos
                 List<PuertoCompletoSOA> puertos = new List<PuertoCompletoSOA>();
                 foreach (PuertoEthernetViewCompleto item in _puertosEthernet)
                 {
-                    PuertoCompletoSOA puerto = new PuertoCompletoSOA(item.Id, item.DireccionMAC, item.Nombre, item.DireccionIP, item.Mask);
+                    PuertoCompletoSOA puerto = new PuertoCompletoSOA(item.Id, item.DireccionMAC, item.Nombre, item.DireccionIP, item.Mask,item.Habilitado);
                     puertos.Add(puerto);
 
                 }

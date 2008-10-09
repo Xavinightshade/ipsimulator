@@ -23,7 +23,7 @@ namespace RedesIP.Vistas.Equipos
             item.Click += new EventHandler(OnPingClick);
             Menu.Items.Add(item);
             _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id,
-                equipo.Puerto.DireccionMAC,equipo.Puerto.IPAddress,equipo.Puerto.Mask,15, 30, this,equipo.Puerto.Nombre);
+                equipo.Puerto.DireccionMAC,equipo.Puerto.IPAddress,equipo.Puerto.Mask,15, 30, this,equipo.Puerto.Nombre,equipo.Puerto.Habilitado);
 		}
 
         private string _defaultGateWay;
@@ -93,6 +93,7 @@ namespace RedesIP.Vistas.Equipos
                 formaPC.NombrePC = this.Nombre;
             if (this.DefaultGateWay != null)
                 formaPC.DefaultGateWay = this.DefaultGateWay;
+            formaPC.PuertoHabilitado = this.Puerto.Habilitado;
 
             formaPC.MACAddress = this.Puerto.DireccionMAC;
             if (formaPC.ShowDialog() == DialogResult.OK)
@@ -107,7 +108,7 @@ namespace RedesIP.Vistas.Equipos
                 }
                 base.Contenedor.Contrato.PeticionEstablecerDatosPuertoCompleto(
                     new RedesIP.SOA.PuertoCompletoSOA(this.Puerto.Id,
-                        formaPC.MACAddress, formaPC.NombrePuerto, formaPC.IPAddress, mask));
+                        formaPC.MACAddress, formaPC.NombrePuerto, formaPC.IPAddress, mask,formaPC.PuertoHabilitado));
             }
             return;
         }

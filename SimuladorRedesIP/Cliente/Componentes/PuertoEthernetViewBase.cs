@@ -34,11 +34,18 @@ namespace RedesIP.Vistas.Equipos.Componentes
             get { return _nombre; }
             set { _nombre = value; }
         }
+        private bool _habilitado;
 
-		public PuertoEthernetViewBase(Guid id,int origenX,int origenY,EquipoView equipoPadre,string nombre)
+        public bool Habilitado
+        {
+            get { return _habilitado; }
+            set { _habilitado = value; }
+        }
+		public PuertoEthernetViewBase(Guid id,int origenX,int origenY,EquipoView equipoPadre,string nombre,bool habilitado)
 			: base(id,origenX,origenY, 10, 10)
 		{
 			ElementoPadre = equipoPadre;
+            _habilitado = habilitado;
             _nombre = nombre;
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)

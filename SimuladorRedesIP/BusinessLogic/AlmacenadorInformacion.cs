@@ -49,6 +49,7 @@ namespace AccesoDatos
             else
                 puertoBD.Id = puerto.Id;
             puertoBD.Nombre = puerto.Nombre;
+            puertoBD.Habilitado = puerto.Habilitado;
             puertoBD.IdEquipo = equipoBD.Id;
             PuertoEthernetCompleto puertoCompletoLogico = puerto as PuertoEthernetCompleto;
             if (puertoCompletoLogico != null)
@@ -216,14 +217,14 @@ namespace AccesoDatos
                     case TipoDeEquipo.Computador:
                         ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre, equipoBD.Computadores.DefaultGateWay);
                         PuertosCompletos puertoCompleto = equipoBD.Puertos[0].PuertosCompletos;
-                        pc.AgregarPuerto(puertoCompleto.Id, puertoCompleto.Puertos.Nombre, puertoCompleto.DireccionMAC, puertoCompleto.DireccionIP, puertoCompleto.Mascara);
+                        pc.AgregarPuerto(puertoCompleto.Id, puertoCompleto.Puertos.Nombre, puertoCompleto.DireccionMAC, puertoCompleto.DireccionIP, puertoCompleto.Mascara,puertoCompleto.Puertos.Habilitado);
                         estacionLogica.CrearComputador(pc);
                         break;
                     case TipoDeEquipo.Switch:
                         SwitchLogico swi = new SwitchLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre);
                         foreach (Puertos puertoBD in equipoBD.PuertosBD)
                         {
-                            swi.AgregarPuerto(puertoBD.Id, puertoBD.Nombre);
+                            swi.AgregarPuerto(puertoBD.Id, puertoBD.Nombre,puertoBD.Habilitado);
                         }
                         estacionLogica.CrearSwitch(swi);
 
@@ -235,7 +236,7 @@ namespace AccesoDatos
                         {
                             PuertosCompletos puertoFull = puertoBD.PuertosCompletos;
 
-                            rou.AgregarPuerto(puertoFull.Id, puertoFull.Puertos.Nombre, puertoFull.DireccionMAC, puertoFull.DireccionIP, puertoFull.Mascara);
+                            rou.AgregarPuerto(puertoFull.Id, puertoFull.Puertos.Nombre, puertoFull.DireccionMAC, puertoFull.DireccionIP, puertoFull.Mascara,puertoFull.Puertos.Habilitado);
                         }
                         foreach (Rutas ruta in equipoBD.Routers.Rutas)
                         {

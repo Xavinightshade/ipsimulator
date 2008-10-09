@@ -16,7 +16,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 	{
         public static PuertoBaseSOA ConvertirPuerto(PuertoEthernetLogicoBase puertoLogico)
         {
-            PuertoBaseSOA puertoSOA = new PuertoBaseSOA(puertoLogico.Id, puertoLogico.Nombre);
+            PuertoBaseSOA puertoSOA = new PuertoBaseSOA(puertoLogico.Id, puertoLogico.Nombre,puertoLogico.Habilitado);
             return puertoSOA;
         }
 
@@ -27,6 +27,14 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		{
 			get { return _id; }
 		}
+
+        private bool _habilitado;
+
+        public bool Habilitado
+        {
+            get { return _habilitado; }
+            set { _habilitado = value; }
+        }
 		private object _syncObjectRecibidos = new object();
 		private object _syncObjectEnviados = new object();
 
@@ -48,8 +56,9 @@ namespace RedesIP.Modelos.Equipos.Componentes
             get { return _nombre; }
             set { _nombre = value; }
         }
-		public PuertoEthernetLogicoBase(Guid id,string nombre)
+		public PuertoEthernetLogicoBase(Guid id,string nombre,bool habilitado)
 		{
+            _habilitado = habilitado;
             _nombre = nombre;
             _id = id;
 			_hiloDeProcesamientoDeFramesAEnviar = new Thread(ProcesarFramesAEnviar);

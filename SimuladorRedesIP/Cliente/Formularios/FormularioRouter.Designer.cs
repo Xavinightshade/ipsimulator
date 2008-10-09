@@ -35,7 +35,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this._puertosBS = new System.Windows.Forms.BindingSource(this.components);
-            this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this._mask = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,13 +44,16 @@
             this._cancel = new System.Windows.Forms.Button();
             this._Aceptar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this._nombrePc = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this._ChkBoxpuertoHabilitado = new System.Windows.Forms.CheckBox();
+            this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._puertosBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -61,6 +63,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this._ChkBoxpuertoHabilitado);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.ipTextBox1);
             this.groupBox1.Controls.Add(this._mask);
@@ -69,7 +72,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this._nombrePuerto);
-            this.groupBox1.Location = new System.Drawing.Point(263, 19);
+            this.groupBox1.Location = new System.Drawing.Point(371, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(284, 141);
             this.groupBox1.TabIndex = 16;
@@ -88,21 +91,6 @@
             // _puertosBS
             // 
             this._puertosBS.DataSource = typeof(RedesIP.SOA.PuertoCompletoSOA);
-            // 
-            // ipTextBox1
-            // 
-            this.ipTextBox1.AllowInternalTab = false;
-            this.ipTextBox1.AutoHeight = true;
-            this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "IPAddress", true));
-            this.ipTextBox1.Location = new System.Drawing.Point(104, 19);
-            this.ipTextBox1.Name = "ipTextBox1";
-            this.ipTextBox1.ReadOnly = false;
-            this.ipTextBox1.Size = new System.Drawing.Size(125, 20);
-            this.ipTextBox1.TabIndex = 1;
-            this.ipTextBox1.Text = "...";
             // 
             // _mask
             // 
@@ -159,7 +147,7 @@
             // _cancel
             // 
             this._cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancel.Location = new System.Drawing.Point(483, 47);
+            this._cancel.Location = new System.Drawing.Point(588, 41);
             this._cancel.Name = "_cancel";
             this._cancel.Size = new System.Drawing.Size(85, 23);
             this._cancel.TabIndex = 5;
@@ -169,7 +157,7 @@
             // 
             // _Aceptar
             // 
-            this._Aceptar.Location = new System.Drawing.Point(483, 18);
+            this._Aceptar.Location = new System.Drawing.Point(588, 12);
             this._Aceptar.Name = "_Aceptar";
             this._Aceptar.Size = new System.Drawing.Size(85, 23);
             this._Aceptar.TabIndex = 4;
@@ -196,6 +184,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombreDataGridViewTextBoxColumn,
+            this.Habilitado,
             this.IPAddress,
             this.Mask});
             this.dataGridView1.DataSource = this._puertosBS;
@@ -208,7 +197,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 19);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -224,33 +213,8 @@
             this.dataGridView1.RowHeadersWidth = 20;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(251, 141);
+            this.dataGridView1.Size = new System.Drawing.Size(356, 141);
             this.dataGridView1.TabIndex = 17;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreDataGridViewTextBoxColumn.Width = 69;
-            // 
-            // IPAddress
-            // 
-            this.IPAddress.DataPropertyName = "IPAddress";
-            this.IPAddress.HeaderText = "Dirección IP";
-            this.IPAddress.Name = "IPAddress";
-            this.IPAddress.ReadOnly = true;
-            // 
-            // Mask
-            // 
-            this.Mask.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Mask.DataPropertyName = "Mask";
-            this.Mask.HeaderText = "Mascara";
-            this.Mask.Name = "Mask";
-            this.Mask.ReadOnly = true;
-            this.Mask.Width = 73;
             // 
             // groupBox2
             // 
@@ -258,7 +222,7 @@
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(12, 76);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(556, 166);
+            this.groupBox2.Size = new System.Drawing.Size(661, 166);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Puertos";
@@ -290,11 +254,69 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos";
             // 
+            // _ChkBoxpuertoHabilitado
+            // 
+            this._ChkBoxpuertoHabilitado.AutoSize = true;
+            this._ChkBoxpuertoHabilitado.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this._puertosBS, "Habilitado", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ChkBoxpuertoHabilitado.Location = new System.Drawing.Point(169, 65);
+            this._ChkBoxpuertoHabilitado.Name = "_ChkBoxpuertoHabilitado";
+            this._ChkBoxpuertoHabilitado.Size = new System.Drawing.Size(107, 17);
+            this._ChkBoxpuertoHabilitado.TabIndex = 15;
+            this._ChkBoxpuertoHabilitado.Text = "Puerto Habilitado";
+            this._ChkBoxpuertoHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // ipTextBox1
+            // 
+            this.ipTextBox1.AllowInternalTab = false;
+            this.ipTextBox1.AutoHeight = true;
+            this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ipTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "IPAddress", true));
+            this.ipTextBox1.Location = new System.Drawing.Point(104, 19);
+            this.ipTextBox1.Name = "ipTextBox1";
+            this.ipTextBox1.ReadOnly = false;
+            this.ipTextBox1.Size = new System.Drawing.Size(125, 20);
+            this.ipTextBox1.TabIndex = 1;
+            this.ipTextBox1.Text = "...";
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn.Width = 69;
+            // 
+            // Habilitado
+            // 
+            this.Habilitado.DataPropertyName = "Habilitado";
+            this.Habilitado.HeaderText = "Habilitado";
+            this.Habilitado.Name = "Habilitado";
+            this.Habilitado.ReadOnly = true;
+            // 
+            // IPAddress
+            // 
+            this.IPAddress.DataPropertyName = "IPAddress";
+            this.IPAddress.HeaderText = "Dirección IP";
+            this.IPAddress.Name = "IPAddress";
+            this.IPAddress.ReadOnly = true;
+            // 
+            // Mask
+            // 
+            this.Mask.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Mask.DataPropertyName = "Mask";
+            this.Mask.HeaderText = "Mascara";
+            this.Mask.Name = "Mask";
+            this.Mask.ReadOnly = true;
+            this.Mask.Width = 73;
+            // 
             // FormularioRouter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 254);
+            this.ClientSize = new System.Drawing.Size(685, 254);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this._cancel);
@@ -334,7 +356,9 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.BindingSource _puertosBS;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox _ChkBoxpuertoHabilitado;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Habilitado;
         private System.Windows.Forms.DataGridViewTextBoxColumn IPAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mask;
     }

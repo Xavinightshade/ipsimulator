@@ -20,6 +20,7 @@ namespace RedesIP.SOA
 		void MoverEquipo(Guid idEquipo, int x, int y);
 		[OperationContract(IsOneWay = true)]
 		void ConectarPuertos(CableSOA cable);
+        [OperationContract(IsOneWay = true)]
         void EstablecerDatosPuertoBase(PuertoBaseSOA puerto);
         [OperationContract(IsOneWay = true)]
         void EstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto);

@@ -33,7 +33,7 @@ namespace BusinessLogic.Sniffer
             foreach (KeyValuePair<string, PuertoEthernetLogicoBase> par in _switch.SwitchTable.TablaDeFiltro)
             {
                 AsociacionPuertoMACAddressSOA aso = new AsociacionPuertoMACAddressSOA();
-                aso.Puerto = new PuertoBaseSOA(par.Value.Id, par.Value.Nombre);
+                aso.Puerto = new PuertoBaseSOA(par.Value.Id, par.Value.Nombre,par.Value.Habilitado);
                 aso.DescPuerto = par.Value.Nombre;
                 aso.MacAddress = par.Key;
                 tablaSOA.Asociaciones.Add(aso);
