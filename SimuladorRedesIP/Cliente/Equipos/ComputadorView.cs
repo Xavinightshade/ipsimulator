@@ -37,6 +37,12 @@ namespace RedesIP.Vistas.Equipos
 
         private void OnPingClick(object sender, EventArgs e)
         {
+            if (!_puerto.Habilitado)
+            {
+                MessageBox.Show("El puerto del Equipo no está habilitado,"+
+                Environment.NewLine+"Configure el puerto del equipo","Ping",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                return;
+            }
             PingForm pingForm = new PingForm();
             pingForm.SetInfoEquipo(GetFullInfoMapa());
             if (pingForm.ShowDialog() == DialogResult.OK)

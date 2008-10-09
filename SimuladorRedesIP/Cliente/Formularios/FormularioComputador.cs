@@ -56,12 +56,15 @@ namespace SimuladorCliente.Formularios
         private void _Aceptar_Click(object sender, EventArgs e)
         {
             string mensajeDeError = string.Empty;
-            if (!IPAddressFactory.EsValidaLaDireccion(IPAddress))
-                mensajeDeError += "Dirección IP invalida";
-            if (!IPAddressFactory.EsValidaLaDireccion(DefaultGateWay))
-                mensajeDeError += "Dirección IP Default Gate Way invalida";
-            if ((string.IsNullOrEmpty(Mask) ) || (!IPAddressFactory.EsValidaLaMascara(int.Parse(Mask))))
-                mensajeDeError += "Valor de Mascara invalida";
+            if (PuertoHabilitado)
+            {
+                if (!IPAddressFactory.EsValidaLaDireccion(IPAddress))
+                    mensajeDeError += "Dirección IP invalida";
+                if (!IPAddressFactory.EsValidaLaDireccion(DefaultGateWay))
+                    mensajeDeError += "Dirección IP Default Gate Way invalida";
+                if ((string.IsNullOrEmpty(Mask)) || (!IPAddressFactory.EsValidaLaMascara(int.Parse(Mask))))
+                    mensajeDeError += "Valor de Mascara invalida";
+            }
             if (mensajeDeError!=string.Empty)
             {
                 mensajeDeError += Environment.NewLine + "Rectificar los datos";

@@ -35,13 +35,16 @@ namespace SimuladorCliente.Formularios
             foreach (PuertoCompletoSOA puerto in (BindingList<PuertoCompletoSOA>)_puertosBS.DataSource)
             {
                 string mensajePuerto = string.Empty;
-                if (!IPAddressFactory.EsValidaLaDireccion(puerto.IPAddress))
-                    mensajePuerto += "Dirección IP invalida";
-                if (!IPAddressFactory.EsValidaLaMascara(puerto.Mask))
-                    mensajePuerto += ", Valor de Mascara invalida";
-                if (mensajePuerto != string.Empty)
+                if (puerto.Habilitado)
                 {
-                    mensajeDeError += puerto.Nombre + ": " + mensajePuerto+Environment.NewLine;
+                    if (!IPAddressFactory.EsValidaLaDireccion(puerto.IPAddress))
+                        mensajePuerto += "Dirección IP invalida";
+                    if (!IPAddressFactory.EsValidaLaMascara(puerto.Mask))
+                        mensajePuerto += ", Valor de Mascara invalida";
+                    if (mensajePuerto != string.Empty)
+                    {
+                        mensajeDeError += puerto.Nombre + ": " + mensajePuerto + Environment.NewLine;
+                    }
                 }
             }
             if (mensajeDeError != string.Empty)

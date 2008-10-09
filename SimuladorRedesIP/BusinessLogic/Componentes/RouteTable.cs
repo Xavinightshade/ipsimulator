@@ -85,6 +85,8 @@ namespace BusinessLogic.Componentes
            List<EntradaTablaRouter> rutasInternas = new List<EntradaTablaRouter>();
            foreach (PuertoEthernetCompleto puerto in _puertos)
            {
+               if (!puerto.Habilitado)
+                   continue;
                if ((puerto.IPAddress == null) || (puerto.Mascara == null))
                    continue;
                EntradaTablaRouter ruta = new EntradaTablaRouter(Guid.Empty);
