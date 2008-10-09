@@ -9,18 +9,24 @@ namespace BusinessLogic.Threads
 {
     public class ThreadManager
     {
-        private static readonly DateTime _horaInicial = DateTime.Now;
+        private static  DateTime _horaInicial = DateTime.Now;
+        private static TimeSpan _contador = TimeSpan.Zero;
         public static TimeSpan HoraActual
         {
-            get { return DateTime.Now.Subtract(_horaInicial); }
+            get
+            {
+                double miliSecondsElapsed = DateTime.Now.Subtract(_horaInicial).TotalMilliseconds / _constante;
+
+                return _contador.Add(TimeSpan.FromMilliseconds(miliSecondsElapsed));            
+            }
         }
-        private static Random _r = new Random();
+
         private static EventWaitHandle _waitHandle = new AutoResetEvent(false);
         private static Dictionary<Thread, EventWaitHandle> _threads = new Dictionary<Thread, EventWaitHandle>();
         private static Dictionary<Thread, bool> _threadsPausado = new Dictionary<Thread, bool>();
 
 
-        public static void Sleep()
+        public static void Sleep(int valor)
         {
             Thread current = Thread.CurrentThread;
             Console.WriteLine(current.ThreadState.ToString() + " " + current.ManagedThreadId.ToString());
@@ -34,14 +40,21 @@ namespace BusinessLogic.Threads
                 _threadsPausado[current] = true;
                 _threads[current].WaitOne();
             }
-            Thread.Sleep(_r.Next(CalcularVelocidad(EstacionModelo.PorcentajeDeVelocidadSimulacion)));
+            Thread.Sleep(valor * Constante);
 
         }
-        private static int CalcularVelocidad(float porcentaje)
+        private static int _constante=5;
+        public static int Constante
         {
-            return 90;
-            float m = (7000 - 10) / 100;
-            return (int)(m * (100 - porcentaje) + 10);
+            get { return _constante; }
+            set
+            {
+                double miliSecondsElapsed = _contador.TotalMilliseconds / _constante;
+                _contador = _contador.Add(TimeSpan.FromMilliseconds(miliSecondsElapsed));           
+                _constante = value;
+            
+            }
+
         }
         private static bool _pausado;
 

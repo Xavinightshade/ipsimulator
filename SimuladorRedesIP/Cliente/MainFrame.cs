@@ -56,7 +56,7 @@ namespace SimuladorCliente
             ModeloSnifferMaster modeloSniffer = new ModeloSnifferMaster();
             modeloSniffer.setEstacion(_estacionModelo);
             _presenterLocal.SetEstacion(_estacionModelo, modeloSniffer);
-            _estacionView.Inicializar(_presenterLocal, _dockMain);
+            _estacionView.Inicializar(_presenterLocal, _dockMain,_formaPaletaHerramientas);
 
             _presenterLocal.ConectarCliente();
 
@@ -80,6 +80,12 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletasoaConectar.Click+=new EventHandler(ToolBarConectarClick);
             _formaPaletaHerramientas._PaletasoaConfigurar.Click+=new EventHandler(ToolBarConfigurarServidorClick);
             _formaPaletaHerramientas._PaletasoaDesconectar.Click+=new EventHandler(ToolBarDesconectarClick);
+            _formaPaletaHerramientas._paletaTrackBar.MouseUp += new MouseEventHandler(_paletaTrackBar_MouseUp);
+        }
+
+        void _paletaTrackBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            _estacionView.peticionEstablecerConstanteSimulacion(11-_formaPaletaHerramientas._paletaTrackBar.Value);
         }
 
         #region ToolBarEstados
@@ -207,7 +213,7 @@ namespace SimuladorCliente
             
 
             _estacionView.LimpiarEstacion();
-            _estacionView.Inicializar(clien, _dockMain);
+            _estacionView.Inicializar(clien, _dockMain, _formaPaletaHerramientas);
             _servicioConectado = true;
 
 
@@ -411,7 +417,7 @@ namespace SimuladorCliente
             _presenterLocal.SetEstacion(_estacionModelo, _presenterLocal.SnifferMaster);
             _esEstacionNueva = true;
             EstablecerToolBarCrearTopologia();
-            _estacionView.Inicializar(_presenterLocal, _dockMain);
+            _estacionView.Inicializar(_presenterLocal, _dockMain, _formaPaletaHerramientas);
             _presenterLocal.ConectarCliente();
             _estacionView.Invalidate();
         }

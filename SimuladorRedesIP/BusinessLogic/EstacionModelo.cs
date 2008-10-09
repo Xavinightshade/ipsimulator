@@ -9,6 +9,7 @@ using RedesIP.Common;
 using RedesIP.SOA;
 using BusinessLogic.Modelos.Logicos.Datos;
 using BusinessLogic.Sniffer;
+using BusinessLogic.Threads;
 
 namespace RedesIP
 {
@@ -47,12 +48,11 @@ namespace RedesIP
         {
             _id = id;
         }
-        private static float _porcentajeDeVelocidad = 50;
 
-        public static float PorcentajeDeVelocidadSimulacion
+        public static int PorcentajeDeVelocidadSimulacion
         {
-            get { return EstacionModelo._porcentajeDeVelocidad; }
-            set { EstacionModelo._porcentajeDeVelocidad = value; }
+            get { return ThreadManager.Constante; }
+            set { ThreadManager.Constante = value; }
         }
 
         /// <summary>

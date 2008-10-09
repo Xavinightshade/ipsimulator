@@ -11,7 +11,7 @@ using SimuladorCliente.Properties;
 
 namespace SimuladorCliente.Herramientas
 {
-    public partial class PaletaHerramienta : DockContent
+    public partial class PaletaHerramienta : DockContent, SimuladorCliente.Herramientas.IPaletaHerramienta
     {
         public ToolStripMenuItem _PaletabdDefault = new ToolStripMenuItem("Seleccionar base de datos predeterminada", Resources.database_process_16x16);
         public ToolStripMenuItem _PaletadbArchivo = new ToolStripMenuItem("Seleccionar base de datos desde archivo", Resources.database_search_16x16);
@@ -57,9 +57,16 @@ namespace SimuladorCliente.Herramientas
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-
+            _paletaValorLabel.Text = "1 seg  :  " + (11- _paletaTrackBar.Value).ToString() + " seg";
         }
 
+
+        public void SetValor(int valor)
+        {
+            _paletaTrackBar.Value =11- valor;
+            _paletaValorLabel.Text = "1 seg  :  " + (valor).ToString() + " seg";
+
+        }
 
 
 

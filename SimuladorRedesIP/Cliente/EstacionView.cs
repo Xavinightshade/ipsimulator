@@ -17,6 +17,7 @@ using System.Drawing.Imaging;
 using SOA.Componentes;
 using SOA.Datos;
 using SimuladorCliente.Marcadores;
+using SimuladorCliente.Herramientas;
 
 namespace RedesIP.Vistas
 {
@@ -131,6 +132,7 @@ namespace RedesIP.Vistas
                 ConectarPuertos(cable);
             }
             Invalidate();
+            _paleta.SetValor(_server.GetFactorSimulacion());
         }
         public void LimpiarEstacion()
         {
@@ -153,9 +155,10 @@ namespace RedesIP.Vistas
 
         private DockPanel _dockMain;
 
-
-        internal void Inicializar(IModeloSOA presenterLocal, DockPanel dockMain)
+        IPaletaHerramienta _paleta;
+        internal void Inicializar(IModeloSOA presenterLocal, DockPanel dockMain,IPaletaHerramienta paleta)
         {
+            _paleta=paleta;
             _server = presenterLocal;
             _dockMain = dockMain;
             _snifferMaster = new SimuladorCliente.Sniffers.VistaSnifferMaster(presenterLocal);
@@ -350,5 +353,20 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+        #region IVisualizacion Members
+
+
+        public void SetValorConstanteSimulacion(int valor)
+        {
+           _paleta.SetValor(valor);
+        }
+
+        #endregion
+
+        internal void peticionEstablecerConstanteSimulacion(int valor)
+        {
+            _server.PeticionSetFactorSimulacion(valor);
+        }
     }
 }

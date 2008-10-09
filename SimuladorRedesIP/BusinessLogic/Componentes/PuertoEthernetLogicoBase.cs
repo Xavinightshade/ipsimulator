@@ -63,6 +63,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 
 		}
 
+        private static Random _r = new Random();
 
 		private void ProcesarFramesAEnviar()
 		{
@@ -77,7 +78,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-                    ThreadManager.Sleep();
+                    ThreadManager.Sleep(_r.Next(100));
 					OnFrameTransmitido(_bufferFramesAEnviar.Dequeue());
 				}
 				else
@@ -103,7 +104,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 				}
 				if (colaNoVacia)
 				{
-                    ThreadManager.Sleep();
+                    ThreadManager.Sleep(_r.Next(100));
 					OnFrameRecibido(_bufferFramesRecibidos.Dequeue());
 				}
 				else

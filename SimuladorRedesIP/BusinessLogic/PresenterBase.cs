@@ -131,14 +131,19 @@ namespace RedesIP
 
 
 
-        public float GetVelocidadSimulacion()
+        public int GetFactorSimulacion()
         {
             return EstacionModelo.PorcentajeDeVelocidadSimulacion;
         }
 
-        public void SetVelocidadSimulacion(float valor)
+        public void PeticionSetFactorSimulacion(int valor)
         {
             EstacionModelo.PorcentajeDeVelocidadSimulacion = valor;
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.SetValorConstanteSimulacion(valor);
+            }
+
         }
 
 

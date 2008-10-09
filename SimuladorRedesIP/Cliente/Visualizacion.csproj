@@ -201,6 +201,7 @@
     <Compile Include="Herramientas\HerramientaMarcador.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Herramientas\IPaletaHerramienta.cs" />
     <Compile Include="Herramientas\PaletaHerramienta.cs">
       <SubType>Form</SubType>
     </Compile>

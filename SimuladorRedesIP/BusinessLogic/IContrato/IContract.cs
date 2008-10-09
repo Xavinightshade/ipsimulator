@@ -21,9 +21,9 @@ namespace RedesIP.SOA
 		[OperationContract()]
 		void DesconectarCliente();
 		[OperationContract()]
-        float GetVelocidadSimulacion();
+        int GetFactorSimulacion();
         [OperationContract()]
-        void  SetVelocidadSimulacion(float valor);
+        void  PeticionSetFactorSimulacion(int valor);
 
 
 

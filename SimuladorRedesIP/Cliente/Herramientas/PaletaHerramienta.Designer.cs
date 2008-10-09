@@ -41,12 +41,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this._paletaValorLabel = new System.Windows.Forms.Label();
+            this._paletaTrackBar = new System.Windows.Forms.TrackBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._paletaTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // button8
@@ -183,7 +184,8 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.trackBar1);
+            this.groupBox4.Controls.Add(this._paletaValorLabel);
+            this.groupBox4.Controls.Add(this._paletaTrackBar);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(6, 75);
             this.groupBox4.Name = "groupBox4";
@@ -192,13 +194,24 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Velocidad simulación";
             // 
-            // trackBar1
+            // _paletaValorLabel
             // 
-            this.trackBar1.Location = new System.Drawing.Point(6, 12);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(106, 45);
-            this.trackBar1.TabIndex = 18;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this._paletaValorLabel.AutoSize = true;
+            this._paletaValorLabel.Location = new System.Drawing.Point(17, 44);
+            this._paletaValorLabel.Name = "_paletaValorLabel";
+            this._paletaValorLabel.Size = new System.Drawing.Size(74, 13);
+            this._paletaValorLabel.TabIndex = 19;
+            this._paletaValorLabel.Text = "1 seg  :  1 seg";
+            // 
+            // _paletaTrackBar
+            // 
+            this._paletaTrackBar.LargeChange = 3;
+            this._paletaTrackBar.Location = new System.Drawing.Point(6, 12);
+            this._paletaTrackBar.Name = "_paletaTrackBar";
+            this._paletaTrackBar.Size = new System.Drawing.Size(106, 45);
+            this._paletaTrackBar.TabIndex = 18;
+            this._paletaTrackBar.Value = 10;
+            this._paletaTrackBar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // PaletaHerramienta
             // 
@@ -220,7 +233,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._paletaTrackBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -239,6 +252,7 @@
         public System.Windows.Forms.Button _PaletaPunta;
         public System.Windows.Forms.Button _PaletaMouse;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label _paletaValorLabel;
+        public System.Windows.Forms.TrackBar _paletaTrackBar;
     }
 }
