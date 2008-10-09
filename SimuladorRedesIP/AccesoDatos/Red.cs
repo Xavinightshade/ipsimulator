@@ -1192,6 +1192,8 @@ namespace AccesoDatos
 		
 		private string _Nombre;
 		
+		private bool _Habilitado;
+		
 		private EntitySet<AsociacionesPuertosVLans> _AsociacionesPuertosVLans;
 		
 		private EntitySet<Cables> _Cables;
@@ -1210,6 +1212,8 @@ namespace AccesoDatos
     partial void OnIdEquipoChanged();
     partial void OnNombreChanging(string value);
     partial void OnNombreChanged();
+    partial void OnHabilitadoChanging(bool value);
+    partial void OnHabilitadoChanged();
     #endregion
 		
 		public Puertos()
@@ -1281,6 +1285,26 @@ namespace AccesoDatos
 					this._Nombre = value;
 					this.SendPropertyChanged("Nombre");
 					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Habilitado", DbType="Bit NOT NULL")]
+		public bool Habilitado
+		{
+			get
+			{
+				return this._Habilitado;
+			}
+			set
+			{
+				if ((this._Habilitado != value))
+				{
+					this.OnHabilitadoChanging(value);
+					this.SendPropertyChanging();
+					this._Habilitado = value;
+					this.SendPropertyChanged("Habilitado");
+					this.OnHabilitadoChanged();
 				}
 			}
 		}
