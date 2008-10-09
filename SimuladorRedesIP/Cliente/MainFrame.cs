@@ -497,6 +497,7 @@ namespace SimuladorCliente
                     EstablecerToolBarCrearTopologia();
                     _menuDelete.Enabled = true;
                     _toolBarDelete.Enabled = true;
+                    _esEstacionNueva = false;
                 }
 
 

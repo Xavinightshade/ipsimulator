@@ -97,13 +97,15 @@ namespace AccesoDatos
 
         public static void ActualizarEstacion(Estaciones estacion)
         {
-            Delete(estacion.Id);
-            GuardarNuevaEstacion(estacion);
+            _db = GetNewBD();
+            OperacionDelete(estacion.Id);
+            _db.SubmitChanges();
+            OperacionGuardarNuevaEstacion(estacion);
+            _db.SubmitChanges();
         }
 
-        public static void GuardarNuevaEstacion(Estaciones estacion)
+        private static void OperacionGuardarNuevaEstacion(Estaciones estacion)
         {
-            _db = GetNewBD();
             _db.Estaciones.InsertOnSubmit(estacion);
             foreach (Equipos equipo in estacion.EquiposBD)
             {
@@ -136,19 +138,31 @@ namespace AccesoDatos
             {
                 _db.Cables.InsertOnSubmit(cable);
             }
-            _db.SubmitChanges();
         }
 
         public static void Delete(Guid id)
         {
+            _db = GetNewBD();
+
+            OperacionDelete(id);
+            _db.SubmitChanges();
+        }
+        private static void OperacionDelete(Guid id)
+        {
             var query = from b in _db.Estaciones where b.Id == id select b;
             Estaciones estacionBD = query.First();
             _db.Estaciones.DeleteOnSubmit(estacionBD);
-            _db.SubmitChanges();
+
         }
 
 
 
 
+        public static void GuardarNuevaEstacion(Estaciones estacionBD)
+        {
+            _db = GetNewBD();
+            OperacionGuardarNuevaEstacion(estacionBD);
+            _db.SubmitChanges();
+        }
     }
 }
