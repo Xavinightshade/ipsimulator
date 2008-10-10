@@ -20,7 +20,12 @@ namespace BusinessLogic.Datos
         }
         public override string ToString()
         {
-            return "Rutas";
+            string mensaje = "Informando redes: @@ ";
+            foreach (RutaSOA ruta in _rutasTotales)
+            {
+                mensaje += ruta.Red + "/" + ruta.Mask.Value.ToString() + " @@ ";
+            }
+            return mensaje;
         }
     }
 }

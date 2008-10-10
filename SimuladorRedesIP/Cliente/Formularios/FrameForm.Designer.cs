@@ -33,11 +33,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this._datos = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._macOrigen = new SimuladorCliente.Formularios.MACTextBox();
+            this._macDestino = new SimuladorCliente.Formularios.MACTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this._hora = new System.Windows.Forms.TextBox();
-            this._macOrigen = new SimuladorCliente.Formularios.MACTextBox();
-            this._macDestino = new SimuladorCliente.Formularios.MACTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +74,7 @@
             this._datos.Multiline = true;
             this._datos.Name = "_datos";
             this._datos.ReadOnly = true;
+            this._datos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._datos.Size = new System.Drawing.Size(173, 65);
             this._datos.TabIndex = 11;
             // 
@@ -91,6 +92,24 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Frame";
+            // 
+            // _macOrigen
+            // 
+            this._macOrigen.BackColor = System.Drawing.SystemColors.Window;
+            this._macOrigen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._macOrigen.Location = new System.Drawing.Point(101, 22);
+            this._macOrigen.Name = "_macOrigen";
+            this._macOrigen.Size = new System.Drawing.Size(173, 20);
+            this._macOrigen.TabIndex = 7;
+            // 
+            // _macDestino
+            // 
+            this._macDestino.BackColor = System.Drawing.SystemColors.Window;
+            this._macDestino.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._macDestino.Location = new System.Drawing.Point(101, 48);
+            this._macDestino.Name = "_macDestino";
+            this._macDestino.Size = new System.Drawing.Size(173, 20);
+            this._macDestino.TabIndex = 9;
             // 
             // button1
             // 
@@ -118,24 +137,6 @@
             this._hora.ReadOnly = true;
             this._hora.Size = new System.Drawing.Size(181, 20);
             this._hora.TabIndex = 15;
-            // 
-            // _macOrigen
-            // 
-            this._macOrigen.BackColor = System.Drawing.SystemColors.Window;
-            this._macOrigen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this._macOrigen.Location = new System.Drawing.Point(101, 22);
-            this._macOrigen.Name = "_macOrigen";
-            this._macOrigen.Size = new System.Drawing.Size(173, 20);
-            this._macOrigen.TabIndex = 7;
-            // 
-            // _macDestino
-            // 
-            this._macDestino.BackColor = System.Drawing.SystemColors.Window;
-            this._macDestino.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this._macDestino.Location = new System.Drawing.Point(101, 48);
-            this._macDestino.Name = "_macDestino";
-            this._macDestino.Size = new System.Drawing.Size(173, 20);
-            this._macDestino.TabIndex = 9;
             // 
             // FrameForm
             // 
