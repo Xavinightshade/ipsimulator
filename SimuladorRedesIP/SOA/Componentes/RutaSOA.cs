@@ -57,5 +57,13 @@ namespace SOA.Componentes
             get { return _nextHopIP; }
             set { _nextHopIP = value; }
         }
+        private int hopCount;
+        [DataMember]
+        public int HopCount
+        {
+            get { return hopCount; }
+            set { hopCount = value; }
+        }
+
     }
 }

@@ -23,7 +23,7 @@ namespace BusinessLogic.Datos
             string mensaje = "Informando redes: @@ ";
             foreach (RutaSOA ruta in _rutasTotales)
             {
-                mensaje += ruta.Red + "/" + ruta.Mask.Value.ToString() + " @@ ";
+                mensaje += ruta.Red + "/" + ruta.Mask.Value.ToString() +" HC:"+ruta.HopCount.ToString()+ " @@ ";
             }
             return mensaje;
         }

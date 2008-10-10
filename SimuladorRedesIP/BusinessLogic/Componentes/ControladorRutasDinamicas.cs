@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Timers;
+using BusinessLogic.Threads;
 
 namespace BusinessLogic.Componentes
 {
@@ -23,13 +24,13 @@ namespace BusinessLogic.Componentes
             {
                 if (entradaTabla.EsIgual(entrada))
                 {
-                    _timers[entrada].Stop();
-                    _timers[entrada].Start();
+                    _timers[entradaTabla].Stop();
+                    _timers[entradaTabla].Start();
                     return;
                 }
             }
             _tablaDinamica.Add(entrada);
-            Timer timer = new Timer(5000);
+            Timer timer = new Timer(ThreadManager.GetIntervalo(500000));
             _timers.Add(entrada, timer);
             _entradas.Add(timer, entrada);
             timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);

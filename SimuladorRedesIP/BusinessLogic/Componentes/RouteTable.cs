@@ -87,13 +87,6 @@ namespace BusinessLogic.Componentes
         {
             return LlenarRutas(_tablaRouterDinamico);
         }
-        public List<RutaSOA> GetAllRutas()
-        {
-            List<RutaSOA> rutasTotales = new List<RutaSOA>();
-            rutasTotales.AddRange(GetRutasInternas());
-            rutasTotales.AddRange(GetRutasEstaticas());
-            return rutasTotales;
-        }
         private List<RutaSOA> LlenarRutas(List<EntradaTablaRouter> entradas)
         {
             List<RutaSOA> rutas = new List<RutaSOA>();
@@ -105,6 +98,7 @@ namespace BusinessLogic.Componentes
                 ruta.NombrePuerto = item.Puerto.Nombre;
                 ruta.NextHopIP = item.NextHopIP;
                 ruta.Mask = item.Mask;
+                ruta.HopCount = item.HopCount;
                 rutas.Add(ruta);
             }
             return rutas;
@@ -127,7 +121,7 @@ namespace BusinessLogic.Componentes
                 ruta.Mask = puerto.Mascara;
                 ruta.Puerto = puerto;
                 ruta.Red = IPAddressFactory.GetRedRep(ruta.Puerto.IPAddress, ruta.Puerto.Mascara.Value);
-
+                ruta.HopCount = 0;
                 rutasInternas.Add(ruta);
             }
             return rutasInternas;
@@ -146,5 +140,14 @@ namespace BusinessLogic.Componentes
         {
             _tablaRouterDinamico.Add(entrada);
         }
+
+        internal List<RutaSOA> GetRutasInternasYDinamicas()
+        {  
+            List<RutaSOA> rutasTotales = new List<RutaSOA>();
+            rutasTotales.AddRange(GetRutasInternas());
+            rutasTotales.AddRange(GetRutasDinamicas());
+            return rutasTotales;
+        }
+      
     }
 }

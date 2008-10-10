@@ -15,7 +15,7 @@ namespace BusinessLogic.Threads
         {
             get
             {
-                double miliSecondsElapsed = DateTime.Now.Subtract(_horaInicial).TotalMilliseconds / _constante;
+                double miliSecondsElapsed = DateTime.Now.Subtract(_horaInicial).TotalMilliseconds * _constante;
 
                 return _contador.Add(TimeSpan.FromMilliseconds(miliSecondsElapsed));            
             }
@@ -42,6 +42,10 @@ namespace BusinessLogic.Threads
             }
             Thread.Sleep(valor * Constante);
 
+        }
+        public static int GetIntervalo(int valor)
+        {
+            return valor * _constante;
         }
         private static int _constante=1;
         public static int Constante

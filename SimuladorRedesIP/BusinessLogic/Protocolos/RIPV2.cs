@@ -39,20 +39,29 @@ namespace BusinessLogic.Protocolos
             do
             {
                 EnviarRutasPorPuertos();
-                ThreadManager.Sleep(30000);
+                ThreadManager.Sleep(ThreadManager.GetIntervalo(5000));
             } while (true);
 
         }
 
         private void EnviarRutasPorPuertos()
         {
-            List<RutaSOA> rutasTotales = _routeTable.GetAllRutas();
+            List<RutaSOA> rutasTotales = _routeTable.GetRutasInternasYDinamicas();
+            IncrementarHopCountDeRutas(rutasTotales);
             foreach (KeyValuePair<PuertoEthernetCompleto, CapaRedRouter> puertos in _puertos)
             {
                 if (puertos.Key.Habilitado)
                 {
                     puertos.Value.EnviarRutas(rutasTotales);
                 }
+            }
+        }
+
+        private void IncrementarHopCountDeRutas(List<RutaSOA> rutasTotales)
+        {
+            foreach (RutaSOA ruta in rutasTotales)
+            {
+                ruta.HopCount++;
             }
         }
 
@@ -70,6 +79,7 @@ namespace BusinessLogic.Protocolos
                 entrada.NextHopIP = nextHopIp;
                 entrada.Puerto = puertoDondeSeRecibio;
                 entrada.Red = ruta.Red;
+                entrada.HopCount = ruta.HopCount;
                 if (ExisteLaRuta(entrada, _routeTable.TablaRouterInternas))
                     continue;
                 if (ExisteLaRuta(entrada, _routeTable.TablaRouterEstatico))

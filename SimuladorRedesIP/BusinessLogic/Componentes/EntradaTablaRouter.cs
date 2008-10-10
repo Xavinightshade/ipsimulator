@@ -44,6 +44,15 @@ namespace BusinessLogic.Componentes
             get { return _nextHopIP; }
             set { _nextHopIP = value; }
         }
+        private int hopCount;
+
+        public int HopCount
+        {
+            get { return hopCount; }
+            set { hopCount = value; }
+        }
+
+
         public EntradaTablaRouter(Guid id)
         {
             _id = id;
