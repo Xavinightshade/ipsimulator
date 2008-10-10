@@ -305,7 +305,7 @@ namespace SimuladorCliente
             this._toolBarSwitchVLan.Name = "_toolBarSwitchVLan";
             this._toolBarSwitchVLan.Size = new System.Drawing.Size(116, 22);
             this._toolBarSwitchVLan.Text = "Crear Switch VLAN";
-            this._toolBarSwitchVLan.Click += new System.EventHandler(this._toolBarSwitchVLan_Click);
+            this._toolBarSwitchVLan.Click += new System.EventHandler(this.SwitchVLan_Click);
             // 
             // _toolBarRouter
             // 

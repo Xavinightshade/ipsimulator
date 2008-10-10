@@ -77,6 +77,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaPunta.Click+=new EventHandler(Punta_Click);
             _formaPaletaHerramientas._PaletaRouter.Click+=new EventHandler(Router_Click);
             _formaPaletaHerramientas._PaletaSwitch.Click+=new EventHandler(Switch_Click);
+            _formaPaletaHerramientas._paletaSwitchVLan.Click+=new EventHandler(SwitchVLan_Click);
             _formaPaletaHerramientas._PaletasoaConectar.Click+=new EventHandler(ToolBarConectarClick);
             _formaPaletaHerramientas._PaletasoaConfigurar.Click+=new EventHandler(ToolBarConfigurarServidorClick);
             _formaPaletaHerramientas._PaletasoaDesconectar.Click+=new EventHandler(ToolBarDesconectarClick);
@@ -102,6 +103,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Flat;
             _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._paletaSwitchVLan.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
@@ -112,6 +114,7 @@ namespace SimuladorCliente
             _toolBarMouse.CheckState = CheckState.Checked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarSwitchVLan.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
@@ -119,6 +122,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Flat;
             _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._paletaSwitchVLan.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
@@ -129,6 +133,7 @@ namespace SimuladorCliente
             _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Checked;
+            _toolBarSwitchVLan.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
@@ -136,6 +141,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._paletaSwitchVLan.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
@@ -146,6 +152,7 @@ namespace SimuladorCliente
             _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarSwitchVLan.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Checked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
@@ -153,6 +160,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._paletaSwitchVLan.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Flat;
             _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
@@ -164,12 +172,14 @@ namespace SimuladorCliente
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Checked;
+            _toolBarSwitchVLan.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
 
             _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._paletaSwitchVLan.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Flat;
             _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
@@ -180,6 +190,7 @@ namespace SimuladorCliente
             _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarSwitchVLan.CheckState = CheckState.Unchecked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Checked;
@@ -187,6 +198,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._paletaSwitchVLan.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Flat;
@@ -437,6 +449,7 @@ namespace SimuladorCliente
             _toolBarPuntaMedicion.Enabled = true;
             _toolBarRouter.Enabled = true;
             _toolBarSwitch.Enabled = true;
+            _toolBarSwitchVLan.Enabled = true;
             _toolBarPC.Enabled = true;
             _toolBarConectar.Enabled = true;
             _toolBarDesonectar.Enabled = false;
@@ -457,6 +470,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaRouter.Enabled = true;
             _formaPaletaHerramientas._PaletaPc.Enabled = true;
             _formaPaletaHerramientas._PaletaSwitch.Enabled = true;
+            _formaPaletaHerramientas._paletaSwitchVLan.Enabled = true;
             _formaPaletaHerramientas._PaletaPunta.Enabled = true;
             _formaPaletaHerramientas._PaletaConexion.Enabled = true;
 
@@ -536,6 +550,7 @@ namespace SimuladorCliente
             _toolBarPuntaMedicion.Enabled = false;
             _toolBarRouter.Enabled = false;
             _toolBarSwitch.Enabled = false;
+            _toolBarSwitchVLan.Enabled = false;
             _toolBarPC.Enabled = false;
             _toolBarConectar.Enabled = true;
             _toolBarDesonectar.Enabled = false;
@@ -554,6 +569,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaRouter.Enabled = false;
             _formaPaletaHerramientas._PaletaPc.Enabled = false;
             _formaPaletaHerramientas._PaletaSwitch.Enabled = false;
+            _formaPaletaHerramientas._paletaSwitchVLan.Enabled = false;
             _formaPaletaHerramientas._PaletaPunta.Enabled = false;
             _formaPaletaHerramientas._PaletaConexion.Enabled = false;
         }
@@ -670,22 +686,25 @@ namespace SimuladorCliente
             _formaPaletaHerramientas.SetValor(valor);
         }
 
-        private void _toolBarSwitchVLan_Click(object sender, EventArgs e)
+        private void SwitchVLan_Click(object sender, EventArgs e)
         {
             _estacionView.PeticionCrearEquipo(TipoDeEquipo.SwitchVLan);
             _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
-            _toolBarSwitch.CheckState = CheckState.Checked;
+            _toolBarSwitch.CheckState = CheckState.Unchecked;
+            _toolBarSwitchVLan.CheckState = CheckState.Checked;
             _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
             _toolBarRouter.CheckState = CheckState.Unchecked;
             _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
 
             _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
-            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._paletaSwitchVLan.FlatStyle = FlatStyle.Flat;
             _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
             _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
+
         }
 
 
