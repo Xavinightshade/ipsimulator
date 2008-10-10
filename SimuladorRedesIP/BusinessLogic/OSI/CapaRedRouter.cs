@@ -39,7 +39,13 @@ namespace BusinessLogic.OSI
             if (rutaEstatica!=null)
             {
                 _router.PuertoEthernetCapaRed[rutaEstatica.Puerto].CapaDatos.EnviarPaquete(paquete, rutaEstatica.NextHopIP);
-
+                return;
+            }
+            EntradaTablaRouter rutaDinamica = _router.TablaDeRutas.BuscarRutaEnRutasDinamicas(paquete.IpDestino);
+            if (rutaDinamica != null)
+            {
+                _router.PuertoEthernetCapaRed[rutaDinamica.Puerto].CapaDatos.EnviarPaquete(paquete, rutaDinamica.NextHopIP);
+                return;
             }
 
         }
