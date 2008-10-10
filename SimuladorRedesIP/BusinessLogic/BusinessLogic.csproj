@@ -62,6 +62,7 @@
     <Compile Include="Componentes\ControladorRutasDinamicas.cs" />
     <Compile Include="Componentes\EntradaTablaRouter.cs" />
     <Compile Include="Componentes\RouteTable.cs" />
+    <Compile Include="Componentes\VLan.cs" />
     <Compile Include="Datos\DatosFrameArpBuscando.cs" />
     <Compile Include="Datos\DatosFrameArpIPpEncontrada.cs" />
     <Compile Include="Datos\EchoReplyMessage.cs" />

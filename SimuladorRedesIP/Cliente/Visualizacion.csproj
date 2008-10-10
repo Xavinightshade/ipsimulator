@@ -120,6 +120,12 @@
     <Compile Include="Formularios\ConexionServidor.designer.cs">
       <DependentUpon>ConexionServidor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\FormularioVLans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FormularioVLans.Designer.cs">
+      <DependentUpon>FormularioVLans.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\DesEncapsulacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +260,9 @@
     <EmbeddedResource Include="Formularios\ConexionServidor.resx">
       <DependentUpon>ConexionServidor.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FormularioVLans.resx">
+      <DependentUpon>FormularioVLans.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\DesEncapsulacion.resx">
       <DependentUpon>DesEncapsulacion.cs</DependentUpon>
@@ -499,6 +508,7 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\DataSources\SOA.Componentes.VLanSOA.datasource" />
     <None Include="Resources\SwitchVLan.bmp" />
     <None Include="Resources\play-16x16.png" />
     <None Include="Resources\pause-16x16.png" />

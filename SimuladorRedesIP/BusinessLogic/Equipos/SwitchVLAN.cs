@@ -7,50 +7,51 @@ using RedesIP.Modelos.Equipos.Componentes;
 using RedesIP;
 using System.Collections.ObjectModel;
 using RedesIP.Modelos.Logicos.Equipos;
+using BusinessLogic.Componentes;
 
 namespace BusinessLogic.Equipos
 {
-    public class SwitchVLAN:EquipoLogico
+    public class SwitchVLAN : EquipoLogico
     {
-                public static SwitchVLanSOA CrearSwitchVLanSOA(SwitchVLAN swiLogico)
+        public static SwitchVLanSOA CrearSwitchVLanSOA(SwitchVLAN swiLogico)
         {
             SwitchVLanSOA swiRespuesta = new SwitchVLanSOA(swiLogico.TipoDeEquipo, swiLogico.Id, swiLogico.X, swiLogico.Y, swiLogico.Nombre);
             foreach (PuertoEthernetLogicoBase puerto in swiLogico.PuertosEthernet)
             {
-                swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id,puerto.Nombre,puerto.Habilitado));
+                swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id, puerto.Nombre, puerto.Habilitado));
             }
             return swiRespuesta;
         }
 
-		private List<PuertoEthernetLogicoBase> _puertosEthernet=new List<PuertoEthernetLogicoBase>();
+        private List<PuertoEthernetLogicoBase> _puertosEthernet = new List<PuertoEthernetLogicoBase>();
 
 
-		public  ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet
-		{
-			get { return _puertosEthernet.AsReadOnly(); }
-		}
+        public ReadOnlyCollection<PuertoEthernetLogicoBase> PuertosEthernet
+        {
+            get { return _puertosEthernet.AsReadOnly(); }
+        }
         public SwitchVLAN(Guid id, int X, int Y, string nombre)
-            : base(id, TipoDeEquipo.SwitchVLan, X, Y,nombre)
+            : base(id, TipoDeEquipo.SwitchVLan, X, Y, nombre)
         {
 
 
         }
 
 
+        List<VLan> _vLans = new List<VLan>();
 
 
 
-
-        public  void AgregarPuerto(Guid idPuerto,string nombre,bool habilitado)
+        public void AgregarPuerto(Guid idPuerto, string nombre, bool habilitado)
         {
-            PuertoEthernetLogicoBase puerto = new PuertoEthernetLogicoBase(idPuerto, nombre,habilitado);
+            PuertoEthernetLogicoBase puerto = new PuertoEthernetLogicoBase(idPuerto, nombre, habilitado);
             _puertosEthernet.Add(puerto);
         }
 
 
         public override void InicializarEquipo()
         {
-          //  InicializarPuertos();
+            //  InicializarPuertos();
         }
 
         public override void DesconectarEquipo()
