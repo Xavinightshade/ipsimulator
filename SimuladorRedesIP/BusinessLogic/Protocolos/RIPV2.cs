@@ -29,18 +29,41 @@ namespace BusinessLogic.Protocolos
             _routeTable = routeTable;
 
         }
-        public void Inicializar()
+        private void Start()
         {
+            if (_habilitado)
+                return;
+            _habilitado = true;
             _hiloDePublicacionTablas.Start();
         }
+        private void Stop()
+        {
+            _habilitado = false;
+            _controladorRutas.Stop();
+        }
+        private bool _habilitado;
 
+        public bool Habilitado
+        {
+            get { return _habilitado; }
+            set{
+                if (value)
+                {
+                    Start();
+                }
+                else
+                {
+                    Stop();
+                }
+            }
+        }
         private void PublicarTablasDeRutas()
         {
-            do
+            while (_habilitado)
             {
                 EnviarRutasPorPuertos();
                 ThreadManager.Sleep(ThreadManager.GetIntervalo(5000));
-            } while (true);
+            }
 
         }
 

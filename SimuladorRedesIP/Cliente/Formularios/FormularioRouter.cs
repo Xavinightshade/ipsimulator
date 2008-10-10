@@ -64,5 +64,10 @@ namespace SimuladorCliente.Formularios
             get { return _nombrePc.Text; }
             set { _nombrePc.Text = value; }
         }
+        public bool RipHabilitado
+        {
+            get { return _chbboxRip.Checked; }
+            set { _chbboxRip.Checked = value; }
+        }
     }
 }

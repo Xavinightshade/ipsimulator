@@ -26,7 +26,9 @@ namespace BusinessLogic.OSI
             RoutesMessage mensajeRutas = paquete.Datos as RoutesMessage;
             if (mensajeRutas != null)
             {
-                _router.RipV2.ProcesarRutas(mensajeRutas,paquete.IpOrigen,CapaDatos.Puerto.Id);
+                if (!_router.RipV2.Habilitado)
+                    return;
+                _router.RipV2.ProcesarRutas(mensajeRutas, paquete.IpOrigen, CapaDatos.Puerto.Id);
                 return;
             }
             EntradaTablaRouter rutaInterna = _router.TablaDeRutas.BuscarRutaEnRutasInternas(paquete.IpDestino);
@@ -36,7 +38,7 @@ namespace BusinessLogic.OSI
                 return;
             }
             EntradaTablaRouter rutaEstatica = _router.TablaDeRutas.BuscarRutaEnRutasEstaticas(paquete.IpDestino);
-            if (rutaEstatica!=null)
+            if (rutaEstatica != null)
             {
                 _router.PuertoEthernetCapaRed[rutaEstatica.Puerto].CapaDatos.EnviarPaquete(paquete, rutaEstatica.NextHopIP);
                 return;
@@ -52,9 +54,9 @@ namespace BusinessLogic.OSI
 
         public void EnviarRutas(List<RutaSOA> rutasTotales)
         {
-            IPacketMessage mensajeRutas=new RoutesMessage(rutasTotales);
+            IPacketMessage mensajeRutas = new RoutesMessage(rutasTotales);
             string broadCastAddress = IPAddressFactory.GetBroadCastAddress(CapaDatos.Puerto.IPAddress, CapaDatos.Puerto.Mascara);
-            Packet paqueteRutas=new Packet(CapaDatos.Puerto.IPAddress,broadCastAddress,mensajeRutas);
+            Packet paqueteRutas = new Packet(CapaDatos.Puerto.IPAddress, broadCastAddress, mensajeRutas);
             CapaDatos.EnviarPaquete(paqueteRutas, broadCastAddress);
         }
     }

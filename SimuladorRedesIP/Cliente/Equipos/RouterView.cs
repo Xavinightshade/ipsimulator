@@ -17,13 +17,20 @@ namespace RedesIP.Vistas.Equipos
             : base(equipo.Id, equipo.Nombre, equipo.X, equipo.Y, Resources.Switch.Size.Width,
             Resources.Switch.Size.Height)
         {
+            _ripHabilitado = equipo.RipHabilitado;
             CrearPuertos(equipo.Puertos);
             ToolStripMenuItem item = new ToolStripMenuItem("Tabla de Rutas", Resources.sniffer);
             item.Click += new EventHandler(MenuRutasClick);
             Menu.Items.Add(item);
 
         }
+        private bool _ripHabilitado;
 
+        public bool RipHabilitado
+        {
+            get { return _ripHabilitado; }
+            set { _ripHabilitado = value; }
+        }
         private void MenuRutasClick(object sender, EventArgs e)
         {
             List<RutaSOA> rutasEstaticas = Contenedor.Contrato.TraerRutasEstaticas(this.Id);
@@ -106,11 +113,13 @@ namespace RedesIP.Vistas.Equipos
                 }
                 rouForm.Inicializar(puertos);
                 rouForm.NombreRouter = Nombre;
+                rouForm.RipHabilitado=_ripHabilitado;
                 if (rouForm.ShowDialog() == DialogResult.OK)
                 {
                     RouterSOA router = new RouterSOA();
                     router.Id = Id;
                     router.Nombre = rouForm.NombreRouter;
+                    router.RipHabilitado = rouForm.RipHabilitado;
                     Contenedor.Contrato.PeticionEstablecerDatosRouter(router);
 
                     foreach (PuertoCompletoSOA puertoNuevo in puertos)

@@ -207,6 +207,7 @@ namespace RedesIP.Vistas
         {
             RouterView rouView = _equipos[router.Id] as RouterView;
             rouView.Nombre = router.Nombre;
+            rouView.RipHabilitado = router.RipHabilitado;
         }
 
         #endregion

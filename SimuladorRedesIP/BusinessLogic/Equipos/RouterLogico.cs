@@ -16,7 +16,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
     {
         public static RouterSOA CrearRouterSOA(RouterLogico routerLogico)
         {
-            RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y, routerLogico.Nombre);
+            RouterSOA rouRespuesta = new RouterSOA(routerLogico.TipoDeEquipo, routerLogico.Id, routerLogico.X, routerLogico.Y, routerLogico.Nombre,routerLogico._ripV2.Habilitado);
             foreach (PuertoEthernetCompleto puerto in routerLogico.PuertosEthernet)
             {
                 rouRespuesta.AgregarPuerto(new PuertoCompletoSOA(puerto.Id, puerto.MACAddress, puerto.Nombre, puerto.IPAddress, puerto.Mascara,puerto.Habilitado));
@@ -30,6 +30,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
         public RIPV2 RipV2
         {
             get { return _ripV2; }
+        }
+        public bool RipHabilitado
+        {
+            get { return _ripV2.Habilitado; }
+            set { _ripV2.Habilitado = value; }
         }
 
         public RouteTable TablaDeRutas
@@ -70,8 +75,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
                 CapaRedRouter capaRed = new CapaRedRouter(new CapaDatos(new ARP(),puerto), this);
                 capaRed.Inicializar();
                 _puertoEthernetCapaRed.Add(puerto, capaRed);
-            }
-            _ripV2.Inicializar();
+            }         
         }
         public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, string red,int? mask, string nextHopIP)
         {

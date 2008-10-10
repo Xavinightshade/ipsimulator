@@ -24,9 +24,12 @@ namespace BusinessLogic.Componentes
             {
                 if (entradaTabla.EsIgual(entrada))
                 {
-                    _timers[entradaTabla].Stop();
-                    _timers[entradaTabla].Start();
-                    return;
+                    if (entrada.HopCount >= entradaTabla.HopCount)
+                    {
+                        _timers[entradaTabla].Stop();
+                        _timers[entradaTabla].Start();
+                        return;
+                    }
                 }
             }
             _tablaDinamica.Add(entrada);
@@ -49,6 +52,19 @@ namespace BusinessLogic.Componentes
             _timers.Remove(entrada);
             _tablaDinamica.Remove(entrada);
 
+        }
+
+        internal void Stop()
+        {
+            foreach (KeyValuePair<Timer,EntradaTablaRouter> item in _entradas)
+            {
+                Timer timer = item.Key;
+                timer.Stop();
+                timer.Elapsed -= new ElapsedEventHandler(timer_Elapsed);
+            }
+            _entradas.Clear();
+            _tablaDinamica.Clear();
+            _timers.Clear();
         }
     }
 }

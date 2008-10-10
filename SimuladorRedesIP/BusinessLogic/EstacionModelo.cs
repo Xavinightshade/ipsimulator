@@ -218,6 +218,7 @@ namespace RedesIP
         {
             RouterLogico rou = _routers[router.Id];
             rou.Nombre = router.Nombre;
+            rou.RipHabilitado = router.RipHabilitado;
         }
 
         internal void EstablecerDatosSwitch(SwitchSOA swi)

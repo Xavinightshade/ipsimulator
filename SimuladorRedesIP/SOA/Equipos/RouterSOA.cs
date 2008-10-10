@@ -9,10 +9,10 @@ namespace RedesIP.SOA
     [DataContract]
     public class RouterSOA : EquipoBaseSOA
     {
-        public RouterSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y, string nombre)
+        public RouterSOA(TipoDeEquipo tipoEquipo, Guid id, int x, int y, string nombre,bool ripHabilitado)
             : base(tipoEquipo, id, x, y,nombre)
         {
-
+            _ripHabilitado = ripHabilitado;
         }
         public RouterSOA(TipoDeEquipo tipoEquipo, int x, int y)
             : base(tipoEquipo, x, y)
@@ -31,12 +31,12 @@ namespace RedesIP.SOA
             set { _puertos = value; }
         }
 
-        private string _direccionIP;
+        private bool _ripHabilitado;
         [DataMember]
-        public string DireccionIP
+        public bool RipHabilitado
         {
-            get { return _direccionIP; }
-            set { _direccionIP = value; }
+            get { return _ripHabilitado; }
+            set { _ripHabilitado = value; }
         }
 
         public void AgregarPuerto(PuertoCompletoSOA puerto)
