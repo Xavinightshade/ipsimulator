@@ -74,6 +74,7 @@
     <Compile Include="Domain Object\DomainObject.cs" />
     <Compile Include="Domain Object\Rule.cs" />
     <Compile Include="Domain Object\SimpleRule.cs" />
+    <Compile Include="Equipos\SwitchVLAN.cs" />
     <Compile Include="ICallBackContract\ICallBackEstacion.cs" />
     <Compile Include="ICallBackContract\ICallBackSniffer.cs" />
     <Compile Include="IContrato\IModeloEstacion.cs" />

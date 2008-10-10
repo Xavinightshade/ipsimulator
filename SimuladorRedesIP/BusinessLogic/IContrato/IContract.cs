@@ -45,6 +45,8 @@ namespace RedesIP.SOA
         [OperationContract()]
         void PeticionEliminarEquipo(Guid IdEquipo);
 
+
+        void PeticionCrearSwitchVLAN(SwitchVLanSOA switchVLanSOA);
     }
 
 

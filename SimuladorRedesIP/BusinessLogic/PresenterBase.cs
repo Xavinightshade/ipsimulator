@@ -14,6 +14,7 @@ using BusinessLogic.Modelos.Logicos.Datos;
 using BusinessLogic.Sniffer;
 using SOA.Componentes;
 using BusinessLogic.Threads;
+using BusinessLogic.Equipos;
 
 namespace RedesIP
 {
@@ -178,7 +179,7 @@ namespace RedesIP
         public void PeticionCrearSwitch(SwitchSOA swiPeticion)
         {
             SwitchLogico swiLogico = new SwitchLogico(Guid.NewGuid(), swiPeticion.X, swiPeticion.Y,swiPeticion.Nombre);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 7; i++)
             {
                 swiLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString(),true);
             }
@@ -190,9 +191,20 @@ namespace RedesIP
             {
                 cliente.CrearSwitch(swiRespuesta);
             }
-
-
-
+        }
+        public void PeticionCrearSwitchVLAN(SwitchVLanSOA switchVLanSOA)
+        {
+            SwitchVLAN swiVLANLogico = new SwitchVLAN(Guid.NewGuid(), switchVLanSOA.X, switchVLanSOA.Y, switchVLanSOA.Nombre);
+            for (int i = 0; i < 18; i++)
+            {
+                swiVLANLogico.AgregarPuerto(Guid.NewGuid(), "E." + i.ToString(), true);
+            }
+            _estacion.CrearSwitchVLan(swiVLANLogico);
+            SwitchVLanSOA swiRespuesta = SwitchVLAN.CrearSwitchVLanSOA(swiVLANLogico);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.CrearSwitchVLan(swiRespuesta);
+            }
         }
 
  
@@ -200,7 +212,7 @@ namespace RedesIP
         public void PeticionCrearRouter(RouterSOA router)
         {
             RouterLogico routerLogico = new RouterLogico(Guid.NewGuid(), router.X, router.Y, router.Nombre);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 7; i++)
             {
                 routerLogico.AgregarPuerto(Guid.NewGuid(),"E."+i.ToString(),MACAddressFactory.NewMAC(),null,null,false);
             }
@@ -447,6 +459,8 @@ namespace RedesIP
         #endregion
 
 
+
+  
     }
 
 

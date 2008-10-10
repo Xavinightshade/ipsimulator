@@ -23,6 +23,12 @@ namespace RedesIP.Vistas
             herramientaCreacion.InsertarSwitch(swi);
             Invalidate();
         }
+        public void CrearSwitchVLan(SwitchVLanSOA swiRespuesta)
+        {
+            HerramientaCreacionEquipos herramientaCreacion = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this) as HerramientaCreacionEquipos;
+            herramientaCreacion.InsertarSwitchVLan(swiRespuesta);
+            Invalidate();
+        }
         public void CrearRouter(RouterSOA rou)
         {
             HerramientaCreacionEquipos herramientaCreacion = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this) as HerramientaCreacionEquipos;
@@ -65,6 +71,9 @@ namespace RedesIP.Vistas
                         break;
                     case TipoDeEquipo.Router:
                         Estacion._server.PeticionCrearRouter(new RouterSOA(_tipoEquipo, e.X, e.Y));
+                        break;
+                    case  TipoDeEquipo.SwitchVLan:
+                        Estacion._server.PeticionCrearSwitchVLAN(new SwitchVLanSOA(_tipoEquipo, e.X, e.Y));
                         break;
                     default:
                         throw new NotImplementedException();
@@ -110,7 +119,18 @@ namespace RedesIP.Vistas
 
 
             }
-
+            public void InsertarSwitchVLan(SwitchVLanSOA swiRespuesta)
+            {
+                SwitchVLanView swi = new SwitchVLanView(swiRespuesta);
+                swi.EstablecerContenedor(Estacion);
+                Estacion._switchesVLan.Add(swi);
+                Estacion._equipos.Add(swi.Id, swi);
+                foreach (PuertoEthernetViewBase puerto in swi.PuertosEthernet)
+                {
+                    Estacion._puertos.Add(puerto);
+                    Estacion._diccioPuertos.Add(puerto.Id, puerto);
+                }
+            }
         }
 
     }

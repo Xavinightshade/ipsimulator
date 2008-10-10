@@ -263,6 +263,13 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap SwitchVLan {
+            get {
+                object obj = ResourceManager.GetObject("SwitchVLan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Symbols_Delete_16x16 {
             get {
                 object obj = ResourceManager.GetObject("Symbols_Delete_16x16", resourceCulture);

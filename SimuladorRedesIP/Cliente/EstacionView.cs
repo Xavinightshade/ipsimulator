@@ -45,6 +45,8 @@ namespace RedesIP.Vistas
         Dictionary<Guid, PuertoEthernetViewBase> _diccioPuertos = new Dictionary<Guid, PuertoEthernetViewBase>();
         List<ComputadorView> _computadores = new List<ComputadorView>();
         List<SwitchView> _switches = new List<SwitchView>();
+        List<SwitchVLanView> _switchesVLan = new List<SwitchVLanView>();
+
         List<RouterView> _routers = new List<RouterView>();
 
         public EstacionView()
@@ -77,6 +79,10 @@ namespace RedesIP.Vistas
             for (int i = 0; i < _switches.Count; i++)
             {
                 _switches[i].DibujarElemento(g);
+            }
+            for (int i = 0; i <  _switchesVLan.Count; i++)
+            {
+                _switchesVLan[i].DibujarElemento(g);
             }
             for (int i = 0; i < _routers.Count; i++)
             {
@@ -350,6 +356,8 @@ namespace RedesIP.Vistas
                 _routers.Remove(equipo as RouterView);
             if (_switches.Contains(equipo as SwitchView))
                 _switches.Remove(equipo as SwitchView);
+            if (_switchesVLan.Contains(equipo as SwitchVLanView))
+                _switchesVLan.Remove(equipo as SwitchVLanView);
             if (_computadores.Contains(equipo as ComputadorView))
                 _computadores.Remove(equipo as ComputadorView);
             Invalidate();
@@ -383,5 +391,7 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+
     }
 }

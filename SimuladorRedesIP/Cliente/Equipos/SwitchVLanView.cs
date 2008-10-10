@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace RedesIP.Vistas.Equipos
 {
-	public class SwitchView:EquipoView
+	public class SwitchVLanView:EquipoView
 	{
 		private List<PuertoEthernetViewBase> _puertosEthernet = new List<PuertoEthernetViewBase>();
 
@@ -21,8 +21,8 @@ namespace RedesIP.Vistas.Equipos
 		}
 
 
-		public SwitchView(SwitchSOA equipo)
-            : base(equipo.Id,equipo.Nombre, equipo.X, equipo.Y, Resources.Switch.Size.Width, Resources.Switch.Size.Height)
+        public SwitchVLanView(SwitchVLanSOA equipo)
+            : base(equipo.Id, equipo.Nombre, equipo.X, equipo.Y, Resources.SwitchVLan.Size.Width, Resources.SwitchVLan.Size.Height)
 		{
 			CrearPuertos(equipo.Puertos);
 		}
@@ -42,7 +42,7 @@ namespace RedesIP.Vistas.Equipos
 
 		public override System.Drawing.Image Imagen
 		{
-			get { return Resources.Switch; }
+			get { return Resources.SwitchVLan; }
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{

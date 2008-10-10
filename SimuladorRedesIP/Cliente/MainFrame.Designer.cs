@@ -84,6 +84,7 @@ namespace SimuladorCliente
             this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._menuStrip = new System.Windows.Forms.MenuStrip();
+            this._toolBarSwitchVLan = new System.Windows.Forms.ToolStripButton();
             this._toolStrip.SuspendLayout();
             this._statusStrip.SuspendLayout();
             this._menuStrip.SuspendLayout();
@@ -107,6 +108,7 @@ namespace SimuladorCliente
             this.toolStripSeparator5,
             this._toolBarPC,
             this._toolBarSwitch,
+            this._toolBarSwitchVLan,
             this._toolBarRouter,
             this.toolStripSeparator7,
             this._toolBarConectarEquipos,
@@ -324,7 +326,7 @@ namespace SimuladorCliente
             this._toolBarPuntaMedicion.Image = global::SimuladorCliente.Properties.Resources.x_mag_16x16;
             this._toolBarPuntaMedicion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarPuntaMedicion.Name = "_toolBarPuntaMedicion";
-            this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 22);
+            this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 20);
             this._toolBarPuntaMedicion.Text = "Punta de Medicion";
             this._toolBarPuntaMedicion.Click += new System.EventHandler(this.Punta_Click);
             // 
@@ -545,6 +547,15 @@ namespace SimuladorCliente
             this._menuStrip.TabIndex = 16;
             this._menuStrip.Text = "menuStrip1";
             // 
+            // _toolBarSwitchVLan
+            // 
+            this._toolBarSwitchVLan.Image = global::SimuladorCliente.Properties.Resources.Network_Drive_16x16;
+            this._toolBarSwitchVLan.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolBarSwitchVLan.Name = "_toolBarSwitchVLan";
+            this._toolBarSwitchVLan.Size = new System.Drawing.Size(116, 22);
+            this._toolBarSwitchVLan.Text = "Crear Switch VLAN";
+            this._toolBarSwitchVLan.Click += new System.EventHandler(this._toolBarSwitchVLan_Click);
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -629,6 +640,7 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton _toolBarPlayPause;
+        private System.Windows.Forms.ToolStripButton _toolBarSwitchVLan;
 
 
 

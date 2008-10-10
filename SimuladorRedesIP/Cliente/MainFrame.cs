@@ -670,6 +670,24 @@ namespace SimuladorCliente
             _formaPaletaHerramientas.SetValor(valor);
         }
 
+        private void _toolBarSwitchVLan_Click(object sender, EventArgs e)
+        {
+            _estacionView.PeticionCrearEquipo(TipoDeEquipo.SwitchVLan);
+            _toolBarMouse.CheckState = CheckState.Unchecked;
+            _toolBarPC.CheckState = CheckState.Unchecked;
+            _toolBarSwitch.CheckState = CheckState.Checked;
+            _toolBarConectarEquipos.CheckState = CheckState.Unchecked;
+            _toolBarRouter.CheckState = CheckState.Unchecked;
+            _toolBarPuntaMedicion.CheckState = CheckState.Unchecked;
+
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPc.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaSwitch.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._PaletaConexion.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaRouter.FlatStyle = FlatStyle.Standard;
+            _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
+        }
+
 
     }
 }

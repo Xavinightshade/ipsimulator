@@ -9,6 +9,7 @@ namespace RedesIP
 		Ninguno,
 		Computador,
 		Switch,
+        SwitchVLan,
         Router
 	}
 }

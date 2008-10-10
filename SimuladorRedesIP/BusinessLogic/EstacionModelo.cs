@@ -10,6 +10,7 @@ using RedesIP.SOA;
 using BusinessLogic.Modelos.Logicos.Datos;
 using BusinessLogic.Sniffer;
 using BusinessLogic.Threads;
+using BusinessLogic.Equipos;
 
 namespace RedesIP
 {
@@ -79,6 +80,12 @@ namespace RedesIP
         /// Switches de la red
         /// </summary>
         private Dictionary<Guid, SwitchLogico> _switches = new Dictionary<Guid, SwitchLogico>();
+        private Dictionary<Guid, SwitchVLAN> _switchesVLan = new Dictionary<Guid, SwitchVLAN>();
+
+        public Dictionary<Guid, SwitchVLAN> SwitchesVLan
+        {
+            get { return _switchesVLan; }
+        }
 
         public Dictionary<Guid, SwitchLogico> Switches
         {
@@ -124,6 +131,13 @@ namespace RedesIP
             LLenarPuertos(_puertos, swi.PuertosEthernet);
             swi.InicializarEquipo();
         }
+        public void CrearSwitchVLan(SwitchVLAN swiVLANLogico)
+        {
+            _switchesVLan.Add(swiVLANLogico.Id, swiVLANLogico);
+            LLenarPuertos(_puertos, swiVLANLogico.PuertosEthernet);
+            swiVLANLogico.InicializarEquipo();
+
+        }
         public void MoverPosicionElemento(Guid id, int x, int y)
         {
             IPosisionable elemento = null;
@@ -134,6 +148,10 @@ namespace RedesIP
             else if (_switches.ContainsKey(id))
             {
                 elemento = _switches[id];
+            }
+            else if (_switchesVLan.ContainsKey(id))
+            {
+                elemento = _switchesVLan[id];
             }
             else if (_routers.ContainsKey(id))
             {
@@ -296,6 +314,12 @@ namespace RedesIP
                 _switches.Remove(idEquipo);
                 return equipo;
             }
+            if (_switchesVLan.ContainsKey(idEquipo))
+            {
+                EquipoLogico equipo = _switchesVLan[idEquipo];
+                _switchesVLan.Remove(idEquipo);
+                return equipo;
+            }
             if (_routers.ContainsKey(idEquipo))
             {
                 EquipoLogico equipo = _routers[idEquipo];
@@ -304,6 +328,8 @@ namespace RedesIP
             }
             throw new Exception();
         }
+
+
     }
 
 

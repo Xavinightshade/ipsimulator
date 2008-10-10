@@ -22,5 +22,7 @@ namespace RedesIP.SOA
         void SetValorConstanteSimulacion(int valor);
         [OperationContract(IsOneWay = true)]
         void SetEstadoSimulacion(bool pausado);
+
+        void CrearSwitchVLan(SwitchVLanSOA swiRespuesta);
     }
 }

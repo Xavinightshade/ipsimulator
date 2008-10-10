@@ -64,7 +64,7 @@ namespace RedesIP.Vistas.Equipos
             {
 
                 _puertosEthernet.Add(new PuertoEthernetViewCompleto(puerto.Id,
-                    puerto.DireccionMAC, puerto.IPAddress, puerto.Mask, (i * 30) + 3, 7, this, puerto.Nombre,puerto.Habilitado));
+                    puerto.DireccionMAC, puerto.IPAddress, puerto.Mask, (i * 20) + 3, 7, this, puerto.Nombre,puerto.Habilitado));
                 i++;
             }
 
