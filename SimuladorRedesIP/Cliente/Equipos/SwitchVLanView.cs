@@ -8,6 +8,7 @@ using RedesIP.SOA;
 using System.Drawing;
 using SimuladorCliente.Formularios;
 using System.Windows.Forms;
+using SOA.Componentes;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -67,28 +68,29 @@ namespace RedesIP.Vistas.Equipos
         }
         protected override void OnMouseDobleClick(System.Windows.Forms.MouseEventArgs e)
         {
-            using (FormularioSwitch swiForm = new FormularioSwitch())
+            using (FormularioVLans swiForm = new FormularioVLans())
             {
-                List<PuertoBaseSOA> puertos = new List<PuertoBaseSOA>();
+                List<PuertoBaseSOA> puertosTotales = new List<PuertoBaseSOA>();
+                List<PuertoBaseSOA> puertosDisponibles = new List<PuertoBaseSOA>();
                 foreach (PuertoEthernetViewBase item in _puertosEthernet)
                 {
-                    PuertoBaseSOA puerto = new PuertoBaseSOA(item.Id, item.Nombre,item.Habilitado);
-                    puertos.Add(puerto);
+                    PuertoBaseSOA puerto = new PuertoBaseSOA(item.Id, item.Nombre, item.Habilitado);
+                    puertosTotales.Add(puerto);
+                    puertosDisponibles.Add(puerto);
 
                 }
-                swiForm.Inicializar(puertos);
-                swiForm.NombreSwitch = Nombre;
+                swiForm.Inicializar(puertosTotales, puertosDisponibles, new List<VLanSOA>());
                 if (swiForm.ShowDialog() == DialogResult.OK)
                 {
-                    SwitchSOA swi = new SwitchSOA();
-                    swi.Id = Id;
-                    swi.Nombre = swiForm.NombreSwitch;
-                    Contenedor.Contrato.PeticionEstablecerDatosSwitch(swi);
+                    //SwitchSOA swi = new SwitchSOA();
+                    //swi.Id = Id;
+                    //swi.Nombre = swiForm.NombreSwitch;
+                    //Contenedor.Contrato.PeticionEstablecerDatosSwitch(swi);
 
-                    foreach (PuertoBaseSOA puertoNuevo in puertos)
-                    {
-                        Contenedor.Contrato.PeticionEstablecerDatosPuertoBase(puertoNuevo);
-                    }
+                    //foreach (PuertoBaseSOA puertoNuevo in puertos)
+                    //{
+                    //    Contenedor.Contrato.PeticionEstablecerDatosPuertoBase(puertoNuevo);
+                    //}
 
                 }
             }

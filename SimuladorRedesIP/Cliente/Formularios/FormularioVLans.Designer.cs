@@ -32,47 +32,47 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this._cancel = new System.Windows.Forms.Button();
             this._Aceptar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._puertosDisponiblesBS = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this._puertosDisponiblesBS = new System.Windows.Forms.BindingSource(this.components);
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._vLansBS = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this._nombreSwitch = new System.Windows.Forms.TextBox();
-            this._eliminar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this._puertosVLan = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this._nombrevLan = new System.Windows.Forms.TextBox();
+            this._btnEliminarVLan = new System.Windows.Forms.Button();
+            this._btnNuevoVLan = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._vLansBS = new System.Windows.Forms.BindingSource(this.components);
+            this._btnAddSingle = new System.Windows.Forms.Button();
+            this._btnAddMultiple = new System.Windows.Forms.Button();
+            this._btnRemoveMultiple = new System.Windows.Forms.Button();
+            this._btnRemoveSingle = new System.Windows.Forms.Button();
+            this._puertosVLanBS = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._puertosDisponiblesBS)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._puertosDisponiblesBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._vLansBS)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._puertosVLan)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._vLansBS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._puertosVLanBS)).BeginInit();
             this.SuspendLayout();
             // 
             // _cancel
@@ -84,7 +84,7 @@
             this._cancel.TabIndex = 5;
             this._cancel.Text = "Cancelar";
             this._cancel.UseVisualStyleBackColor = true;
-            this._cancel.Click += new System.EventHandler(this._cancel_Click);
+            this._cancel.Click += new System.EventHandler(this._agregar_Click);
             // 
             // _Aceptar
             // 
@@ -144,6 +144,18 @@
             this.dataGridView1.Size = new System.Drawing.Size(146, 404);
             this.dataGridView1.TabIndex = 17;
             // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // _puertosDisponiblesBS
+            // 
+            this._puertosDisponiblesBS.DataSource = typeof(RedesIP.SOA.PuertoBaseSOA);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
@@ -164,28 +176,12 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "VLans";
             // 
-            // _puertosDisponiblesBS
-            // 
-            this._puertosDisponiblesBS.DataSource = typeof(RedesIP.SOA.PuertoBaseSOA);
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // _vLansBS
-            // 
-            this._vLansBS.DataSource = typeof(SOA.Componentes.VLanSOA);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this._eliminar);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this._btnEliminarVLan);
+            this.groupBox1.Controls.Add(this._btnNuevoVLan);
             this.groupBox1.Controls.Add(this.dataGridView2);
             this.groupBox1.Location = new System.Drawing.Point(6, 19);
             this.groupBox1.Name = "groupBox1";
@@ -194,10 +190,76 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "VLan";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.dataGridView3);
+            this.groupBox4.Location = new System.Drawing.Point(10, 204);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(158, 194);
+            this.groupBox4.TabIndex = 25;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Puertos VLan";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.AllowUserToResizeRows = false;
+            this.dataGridView3.AutoGenerateColumns = false;
+            this.dataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.dataGridView3.DataSource = this._puertosVLanBS;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView3.GridColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridView3.Location = new System.Drawing.Point(6, 19);
+            this.dataGridView3.MultiSelect = false;
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.RowHeadersWidth = 20;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView3.ShowEditingIcon = false;
+            this.dataGridView3.Size = new System.Drawing.Size(146, 169);
+            this.dataGridView3.TabIndex = 18;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this._nombreSwitch);
+            this.groupBox5.Controls.Add(this._nombrevLan);
             this.groupBox5.Location = new System.Drawing.Point(10, 22);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(188, 40);
@@ -214,36 +276,38 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "Nombre";
             // 
-            // _nombreSwitch
+            // _nombrevLan
             // 
-            this._nombreSwitch.Location = new System.Drawing.Point(56, 13);
-            this._nombreSwitch.Name = "_nombreSwitch";
-            this._nombreSwitch.Size = new System.Drawing.Size(126, 20);
-            this._nombreSwitch.TabIndex = 0;
+            this._nombrevLan.Location = new System.Drawing.Point(56, 13);
+            this._nombrevLan.Name = "_nombrevLan";
+            this._nombrevLan.Size = new System.Drawing.Size(126, 20);
+            this._nombrevLan.TabIndex = 0;
             // 
             // _eliminar
             // 
-            this._eliminar.Image = global::SimuladorCliente.Properties.Resources.delete_16x16;
-            this._eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._eliminar.Location = new System.Drawing.Point(129, 169);
-            this._eliminar.Name = "_eliminar";
-            this._eliminar.Size = new System.Drawing.Size(69, 29);
-            this._eliminar.TabIndex = 24;
-            this._eliminar.Text = "Eliminar";
-            this._eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._eliminar.UseVisualStyleBackColor = true;
+            this._btnEliminarVLan.Image = global::SimuladorCliente.Properties.Resources.delete_16x16;
+            this._btnEliminarVLan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._btnEliminarVLan.Location = new System.Drawing.Point(129, 169);
+            this._btnEliminarVLan.Name = "_eliminar";
+            this._btnEliminarVLan.Size = new System.Drawing.Size(69, 29);
+            this._btnEliminarVLan.TabIndex = 24;
+            this._btnEliminarVLan.Text = "Eliminar";
+            this._btnEliminarVLan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._btnEliminarVLan.UseVisualStyleBackColor = true;
+            this._btnEliminarVLan.Click += new System.EventHandler(this._eliminar_Click);
             // 
-            // button1
+            // _btnNuevoVLan
             // 
-            this.button1.Image = global::SimuladorCliente.Properties.Resources.new_16x16;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(129, 134);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(69, 29);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Nuevo";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
+            this._btnNuevoVLan.Image = global::SimuladorCliente.Properties.Resources.new_16x16;
+            this._btnNuevoVLan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._btnNuevoVLan.Location = new System.Drawing.Point(129, 134);
+            this._btnNuevoVLan.Name = "_btnNuevoVLan";
+            this._btnNuevoVLan.Size = new System.Drawing.Size(69, 29);
+            this._btnNuevoVLan.TabIndex = 22;
+            this._btnNuevoVLan.Text = "Nuevo";
+            this._btnNuevoVLan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._btnNuevoVLan.UseVisualStyleBackColor = true;
+            this._btnNuevoVLan.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView2
             // 
@@ -300,125 +364,65 @@
             this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
             this.nombreDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // button2
+            // _vLansBS
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(179, 289);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 23);
-            this.button2.TabIndex = 20;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
+            this._vLansBS.DataSource = typeof(SOA.Componentes.VLanSOA);
             // 
-            // button3
+            // _btnAddSingle
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(179, 318);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(36, 23);
-            this.button3.TabIndex = 21;
-            this.button3.Text = ">>";
-            this.button3.UseVisualStyleBackColor = true;
+            this._btnAddSingle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnAddSingle.Location = new System.Drawing.Point(179, 289);
+            this._btnAddSingle.Name = "_btnAddSingle";
+            this._btnAddSingle.Size = new System.Drawing.Size(36, 23);
+            this._btnAddSingle.TabIndex = 20;
+            this._btnAddSingle.Text = ">";
+            this._btnAddSingle.UseVisualStyleBackColor = true;
+            this._btnAddSingle.Click += new System.EventHandler(this._btnAddSingle_Click);
             // 
-            // button4
+            // _btnAddMultiple
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(179, 406);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(36, 23);
-            this.button4.TabIndex = 23;
-            this.button4.Text = "<<";
-            this.button4.UseVisualStyleBackColor = true;
+            this._btnAddMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnAddMultiple.Location = new System.Drawing.Point(179, 318);
+            this._btnAddMultiple.Name = "_btnAddMultiple";
+            this._btnAddMultiple.Size = new System.Drawing.Size(36, 23);
+            this._btnAddMultiple.TabIndex = 21;
+            this._btnAddMultiple.Text = ">>";
+            this._btnAddMultiple.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // _btnRemoveMultiple
             // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(179, 377);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(36, 23);
-            this.button5.TabIndex = 22;
-            this.button5.Text = "<";
-            this.button5.UseVisualStyleBackColor = true;
+            this._btnRemoveMultiple.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnRemoveMultiple.Location = new System.Drawing.Point(179, 406);
+            this._btnRemoveMultiple.Name = "_btnRemoveMultiple";
+            this._btnRemoveMultiple.Size = new System.Drawing.Size(36, 23);
+            this._btnRemoveMultiple.TabIndex = 23;
+            this._btnRemoveMultiple.Text = "<<";
+            this._btnRemoveMultiple.UseVisualStyleBackColor = true;
             // 
-            // _puertosVLan
+            // _btnRemoveSingle
             // 
-            this._puertosVLan.DataSource = typeof(RedesIP.SOA.PuertoBaseSOA);
+            this._btnRemoveSingle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._btnRemoveSingle.Location = new System.Drawing.Point(179, 377);
+            this._btnRemoveSingle.Name = "_btnRemoveSingle";
+            this._btnRemoveSingle.Size = new System.Drawing.Size(36, 23);
+            this._btnRemoveSingle.TabIndex = 22;
+            this._btnRemoveSingle.Text = "<";
+            this._btnRemoveSingle.UseVisualStyleBackColor = true;
+            this._btnRemoveSingle.Click += new System.EventHandler(this._btnRemoveSingle_Click);
             // 
-            // groupBox4
+            // _puertosVLanBS
             // 
-            this.groupBox4.Controls.Add(this.dataGridView3);
-            this.groupBox4.Location = new System.Drawing.Point(10, 204);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(158, 194);
-            this.groupBox4.TabIndex = 25;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Puertos VLan";
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.AllowUserToResizeRows = false;
-            this.dataGridView3.AutoGenerateColumns = false;
-            this.dataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
-            this.dataGridView3.DataSource = this._puertosDisponiblesBS;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView3.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView3.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView3.MultiSelect = false;
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.RowHeadersWidth = 20;
-            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.ShowEditingIcon = false;
-            this.dataGridView3.Size = new System.Drawing.Size(146, 169);
-            this.dataGridView3.TabIndex = 18;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this._puertosVLanBS.DataSource = typeof(RedesIP.SOA.PuertoBaseSOA);
             // 
             // FormularioVLans
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(513, 447);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this._btnRemoveMultiple);
+            this.Controls.Add(this._btnRemoveSingle);
+            this.Controls.Add(this._btnAddMultiple);
+            this.Controls.Add(this._btnAddSingle);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this._cancel);
@@ -429,17 +433,17 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Switch";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._puertosDisponiblesBS)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._puertosDisponiblesBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._vLansBS)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._puertosVLan)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._vLansBS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._puertosVLanBS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -457,16 +461,16 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox _nombreSwitch;
-        private System.Windows.Forms.Button _eliminar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox _nombrevLan;
+        private System.Windows.Forms.Button _btnEliminarVLan;
+        private System.Windows.Forms.Button _btnNuevoVLan;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.BindingSource _puertosVLan;
+        private System.Windows.Forms.Button _btnAddSingle;
+        private System.Windows.Forms.Button _btnAddMultiple;
+        private System.Windows.Forms.Button _btnRemoveMultiple;
+        private System.Windows.Forms.Button _btnRemoveSingle;
+        private System.Windows.Forms.BindingSource _puertosVLanBS;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;

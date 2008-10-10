@@ -26,18 +26,17 @@ namespace SOA.Componentes
             set { _nombre = value; }
 
         }
-        private List<Guid> _idPuertos;
+        private List<Guid> _idPuertos=new List<Guid>();
         [DataMember]
         public List<Guid> IdPuertos
         {
             get { return _idPuertos; }
             set { _idPuertos = value; }
         }
-        public VLanSOA(Guid id, string nombre, List<Guid> idPuertos)
+        public VLanSOA(Guid id, string nombre)
         {
             _id = id;
             _nombre = nombre;
-            _idPuertos = idPuertos;
         }
 
     }

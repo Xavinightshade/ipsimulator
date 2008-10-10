@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using RedesIP.Vistas.Equipos.Componentes;
 using RedesIP.SOA;
 using BusinessLogic;
+using SOA.Componentes;
 
 namespace SimuladorCliente.Formularios
 {
@@ -20,12 +21,83 @@ namespace SimuladorCliente.Formularios
 
         }
 
-
-
-        internal void Inicializar(List<PuertoBaseSOA> puertosEthernet)
+        private List<PuertoBaseSOA> _puertosTotales;
+        private BindingList<PuertoBaseSOA> _puertosDisponibles;
+        private BindingList<PuertoBaseSOA> _puertosVlan = new BindingList<PuertoBaseSOA>();
+        private BindingList<VLanSOA> _vLans;
+        internal void Inicializar(List<PuertoBaseSOA> puertosTotales,List<PuertoBaseSOA> puertosEthernetDisponibles,List<VLanSOA> vLans)
         {
-            _puertosDisponiblesBS.DataSource = new BindingList<PuertoBaseSOA>(puertosEthernet);
+            _puertosTotales = puertosTotales;
+            _puertosDisponibles = new BindingList<PuertoBaseSOA>(puertosEthernetDisponibles);
+            _vLans = new BindingList<VLanSOA>(vLans);
+            _vLansBS.DataSource = _vLans;
+            _puertosVLanBS.DataSource = _puertosVlan;
+            _puertosDisponiblesBS.DataSource = _puertosDisponibles;
+            _vLansBS.CurrentChanged += new EventHandler(_vLansBS_CurrentChanged);
+            ActualizarControlesVLansDisponibles();
             
+        }
+        private void ActualizarControlesVLansDisponibles()
+        {
+            if (_vLans.Count == 0)
+            {
+                _btnAddMultiple.Enabled = false;
+                _btnAddSingle.Enabled = false;
+                _btnRemoveSingle.Enabled = false;
+                _btnRemoveMultiple.Enabled = false;
+                _btnEliminarVLan.Enabled = false;
+            }
+            else
+            {
+                if (_puertosDisponibles.Count == 0)
+                {
+                    _btnAddMultiple.Enabled = false;
+                    _btnAddSingle.Enabled = false;
+                    _btnRemoveSingle.Enabled = true;
+                    _btnRemoveMultiple.Enabled = true;
+                }
+                else
+                {
+
+                    if (_puertosVlan.Count == 0)
+                    {
+                        _btnAddMultiple.Enabled = true;
+                        _btnAddSingle.Enabled = true;
+                        _btnRemoveSingle.Enabled = false;
+                        _btnRemoveMultiple.Enabled = false;
+                    }
+                    else
+                    {
+                        _btnAddMultiple.Enabled = true;
+                        _btnAddSingle.Enabled = true;
+                        _btnRemoveSingle.Enabled = false;
+                        _btnRemoveMultiple.Enabled = false;
+                    }
+                    _btnAddMultiple.Enabled = true;
+                    _btnAddSingle.Enabled = true;
+                    _btnRemoveSingle.Enabled = true;
+                    _btnRemoveMultiple.Enabled = true;
+                    _btnEliminarVLan.Enabled = true;
+                }
+
+            }
+        }
+
+
+
+
+        void _vLansBS_CurrentChanged(object sender, EventArgs e)
+        {
+            if (_vLans.Count == 0)
+                return;
+            VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
+            _puertosVlan.Clear();
+            foreach (PuertoBaseSOA puerto in _puertosTotales)
+            {
+                if (vlanSeleccionada.IdPuertos.Contains(puerto.Id))
+                    _puertosVlan.Add(puerto);
+            }
+            ActualizarControlesVLansDisponibles();
         }
 
         private void _Aceptar_Click(object sender, EventArgs e)
@@ -34,14 +106,57 @@ namespace SimuladorCliente.Formularios
             DialogResult = DialogResult.OK;
         }
 
-        private void _cancel_Click(object sender, EventArgs e)
+        private void _agregar_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
-        public string NombreSwitch
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            get { return _nombreSwitch.Text; }
-            set { _nombreSwitch.Text = value; }
+            VLanSOA vlan = new VLanSOA(Guid.NewGuid(), _nombrevLan.Text);
+            _vLans.Add(vlan);
+            ActualizarControlesVLansDisponibles();
         }
+
+        private void _btnAddSingle_Click(object sender, EventArgs e)
+        {
+            PuertoBaseSOA puertoDisponibleSeleccionado = (PuertoBaseSOA)_puertosDisponiblesBS.Current;
+            VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
+            vlanSeleccionada.IdPuertos.Add(puertoDisponibleSeleccionado.Id);
+            _puertosVlan.Add(puertoDisponibleSeleccionado);
+            _puertosDisponibles.Remove(puertoDisponibleSeleccionado);
+            ActualizarControlesVLansDisponibles();
+            
+        }
+
+        private void _btnRemoveSingle_Click(object sender, EventArgs e)
+        {
+            PuertoBaseSOA puertoVLanSeleccionado = (PuertoBaseSOA)_puertosVLanBS.Current;
+            VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
+            vlanSeleccionada.IdPuertos.Remove(vlanSeleccionada.Id);
+            _puertosVlan.Remove(puertoVLanSeleccionado);
+            _puertosDisponibles.Add(puertoVLanSeleccionado);
+
+            ActualizarControlesVLansDisponibles();
+        }
+
+        private void _eliminar_Click(object sender, EventArgs e)
+        {
+            VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
+            foreach (PuertoBaseSOA puerto in _puertosTotales)
+            {
+                if (vlanSeleccionada.IdPuertos.Contains(puerto.Id))
+                {
+                    _puertosVlan.Remove(puerto);
+                    _puertosDisponibles.Add(puerto);
+                }
+            }
+            _vLans.Remove(vlanSeleccionada);
+            ActualizarControlesVLansDisponibles();
+
+        }
+
+
+
     }
 }
