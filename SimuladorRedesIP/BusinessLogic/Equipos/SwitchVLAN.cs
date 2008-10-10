@@ -8,6 +8,7 @@ using RedesIP;
 using System.Collections.ObjectModel;
 using RedesIP.Modelos.Logicos.Equipos;
 using BusinessLogic.Componentes;
+using SOA.Componentes;
 
 namespace BusinessLogic.Equipos
 {
@@ -57,6 +58,35 @@ namespace BusinessLogic.Equipos
         public override void DesconectarEquipo()
         {
             _puertosEthernet = null;
+        }
+
+        internal void ActualizarVLans(List<VLanSOA> vLansActuales)
+        {
+            foreach (VLan vLan in _vLans)
+            {
+                vLan.Dispose();
+            }
+            _vLans.Clear();
+            foreach (VLanSOA vLan in vLansActuales)
+            {
+                CapaSwitcheo capaSwitcheo = new CapaSwitcheo();
+                foreach (Guid idPuerto in vLan.IdPuertos)
+                {
+                    capaSwitcheo.AgregarPuerto(GetPuerto(idPuerto));
+                }
+                VLan vLanLogica = new VLan(vLan.Id, vLan.Nombre, capaSwitcheo);
+                _vLans.Add(vLanLogica);
+            }
+        }
+
+        private PuertoEthernetLogicoBase GetPuerto(Guid idPuerto)
+        {
+            foreach (PuertoEthernetLogicoBase puerto in _puertosEthernet)
+            {
+                if (puerto.Id == idPuerto)
+                    return puerto;
+            }
+            throw new Exception();
         }
     }
 }

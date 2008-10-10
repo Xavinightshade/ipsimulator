@@ -459,7 +459,21 @@ namespace RedesIP
 
 
 
-  
+
+
+        #region IModeloSOA Members
+
+
+        public void PeticionActualizarVLans(Guid idSwitchVLan, List<VLanSOA> vLansActuales)
+        {
+            _estacion.SwitchesVLan[idSwitchVLan].ActualizarVLans(vLansActuales);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.SetVLans(idSwitchVLan, vLansActuales);
+            }
+        }
+
+        #endregion
     }
 
 

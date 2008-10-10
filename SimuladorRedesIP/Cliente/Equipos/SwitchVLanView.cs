@@ -12,47 +12,64 @@ using SOA.Componentes;
 
 namespace RedesIP.Vistas.Equipos
 {
-	public class SwitchVLanView:EquipoView
-	{
-		private List<PuertoEthernetViewBase> _puertosEthernet = new List<PuertoEthernetViewBase>();
+    public class SwitchVLanView : EquipoView
+    {
+        private List<PuertoEthernetViewBase> _puertosEthernet = new List<PuertoEthernetViewBase>();
 
-		public ReadOnlyCollection<PuertoEthernetViewBase> PuertosEthernet
-		{
-			get { return _puertosEthernet.AsReadOnly(); }
-		}
-
+        public ReadOnlyCollection<PuertoEthernetViewBase> PuertosEthernet
+        {
+            get { return _puertosEthernet.AsReadOnly(); }
+        }
+        private List<VLanSOA> _vLans;
 
         public SwitchVLanView(SwitchVLanSOA equipo)
             : base(equipo.Id, equipo.Nombre, equipo.X, equipo.Y, Resources.SwitchVLan.Size.Width, Resources.SwitchVLan.Size.Height)
-		{
-			CrearPuertos(equipo.Puertos);
-		}
+        {
+            CrearPuertos(equipo.Puertos);
+            _vLans = CloneLista(equipo.VLans);
+        }
 
-		private void CrearPuertos(IEnumerable<PuertoBaseSOA> puertos)
-		{
-			int i = 0;
-			foreach (PuertoBaseSOA puerto in puertos)
-	{
+        private List<VLanSOA> CloneLista(List<VLanSOA> vLans)
+        {
+            List<VLanSOA> vLansCopia = new List<VLanSOA>();
+            foreach (VLanSOA vLan in vLans)
+            {
+                VLanSOA vLanCopia = new VLanSOA(vLan.Id, vLan.Nombre);
+                foreach (Guid idPuerto in vLan.IdPuertos)
+                {
+                    vLanCopia.IdPuertos.Add(idPuerto);
+                }
+                vLansCopia.Add(vLanCopia);
+            }
+            return vLansCopia;
+            
+        }
 
-        _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 20)+3, 7, this,puerto.Nombre,puerto.Habilitado));
-				i++;
-	}
+        private void CrearPuertos(IEnumerable<PuertoBaseSOA> puertos)
+        {
+            int i = 0;
+            foreach (PuertoBaseSOA puerto in puertos)
+            {
 
-		}
+                _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 20) + 3, 7, this, puerto.Nombre, puerto.Habilitado));
+                i++;
+            }
+
+        }
 
 
-		public override System.Drawing.Image Imagen
-		{
-			get { return Resources.SwitchVLan; }
-		}
-		public override void DibujarElemento(System.Drawing.Graphics grafico)
-		{
-			base.DibujarElemento(grafico);
-			for (int i = 0; i < _puertosEthernet.Count; i++)
-			{
-				_puertosEthernet[i].DibujarElemento(grafico);
-			}
-		}
+        public override System.Drawing.Image Imagen
+        {
+            get { return Resources.SwitchVLan; }
+        }
+        public override void DibujarElemento(System.Drawing.Graphics grafico)
+        {
+            base.DibujarElemento(grafico);
+            for (int i = 0; i < _puertosEthernet.Count; i++)
+            {
+                _puertosEthernet[i].DibujarElemento(grafico);
+            }
+        }
         protected override string GetFullInfoMapa()
         {
             string tip = base.GetFullInfoMapa();
@@ -71,29 +88,51 @@ namespace RedesIP.Vistas.Equipos
             using (FormularioVLans swiForm = new FormularioVLans())
             {
                 List<PuertoBaseSOA> puertosTotales = new List<PuertoBaseSOA>();
-                List<PuertoBaseSOA> puertosDisponibles = new List<PuertoBaseSOA>();
                 foreach (PuertoEthernetViewBase item in _puertosEthernet)
                 {
                     PuertoBaseSOA puerto = new PuertoBaseSOA(item.Id, item.Nombre, item.Habilitado);
                     puertosTotales.Add(puerto);
-                    puertosDisponibles.Add(puerto);
 
                 }
-                swiForm.Inicializar(puertosTotales, puertosDisponibles, new List<VLanSOA>());
+                List<PuertoBaseSOA> puertosDisponibles = CalcularPuertosDisponibles(puertosTotales);
+                List<VLanSOA> vLansActuales = CloneLista(_vLans);
+                swiForm.Inicializar(puertosTotales, puertosDisponibles,vLansActuales);
                 if (swiForm.ShowDialog() == DialogResult.OK)
                 {
-                    //SwitchSOA swi = new SwitchSOA();
-                    //swi.Id = Id;
-                    //swi.Nombre = swiForm.NombreSwitch;
-                    //Contenedor.Contrato.PeticionEstablecerDatosSwitch(swi);
-
-                    //foreach (PuertoBaseSOA puertoNuevo in puertos)
-                    //{
-                    //    Contenedor.Contrato.PeticionEstablecerDatosPuertoBase(puertoNuevo);
-                    //}
+                    base.Contenedor.Contrato.PeticionActualizarVLans(this.Id, vLansActuales);
 
                 }
             }
         }
-	}
+
+
+
+        private List<PuertoBaseSOA> CalcularPuertosDisponibles(List<PuertoBaseSOA> puertosTotales)
+        {
+            List<PuertoBaseSOA> puertosDisponibles = new List<PuertoBaseSOA>();
+            foreach (PuertoBaseSOA puerto in puertosTotales)
+            {
+                bool puertoPresenteEnVLans = false;
+                foreach (VLanSOA vLan in _vLans)
+                {
+                    if (vLan.IdPuertos.Contains(puerto.Id))
+                    {
+                        puertoPresenteEnVLans = true;
+                        break;
+                    }
+                }
+                if (!puertoPresenteEnVLans)
+                {
+                    PuertoBaseSOA puertoDisponible = new PuertoBaseSOA(puerto.Id, puerto.Nombre, puerto.Habilitado);
+                    puertosDisponibles.Add(puertoDisponible);
+                }
+            }
+            return puertosDisponibles;
+        }
+
+        internal void SetVLans(List<VLanSOA> vLansActuales)
+        {
+            _vLans = CloneLista(vLansActuales);
+        }
+    }
 }

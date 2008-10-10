@@ -34,6 +34,7 @@ namespace SimuladorCliente.Formularios
             _puertosVLanBS.DataSource = _puertosVlan;
             _puertosDisponiblesBS.DataSource = _puertosDisponibles;
             _vLansBS.CurrentChanged += new EventHandler(_vLansBS_CurrentChanged);
+            LLenarPuertosActualesVLan();
             ActualizarControlesVLansDisponibles();
             
         }
@@ -46,6 +47,7 @@ namespace SimuladorCliente.Formularios
                 _btnRemoveSingle.Enabled = false;
                 _btnRemoveMultiple.Enabled = false;
                 _btnEliminarVLan.Enabled = false;
+                _nombrevLan.Enabled = false;
             }
             else
             {
@@ -88,6 +90,11 @@ namespace SimuladorCliente.Formularios
 
         void _vLansBS_CurrentChanged(object sender, EventArgs e)
         {
+            LLenarPuertosActualesVLan();
+        }
+
+        private void LLenarPuertosActualesVLan()
+        {
             if (_vLans.Count == 0)
                 return;
             VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
@@ -113,8 +120,9 @@ namespace SimuladorCliente.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
-            VLanSOA vlan = new VLanSOA(Guid.NewGuid(), _nombrevLan.Text);
+            VLanSOA vlan = new VLanSOA(Guid.NewGuid(), "VLan_"+(_vLans.Count+1).ToString());
             _vLans.Add(vlan);
+            _vLansBS.Position = _vLansBS.IndexOf(vlan);
             ActualizarControlesVLansDisponibles();
         }
 
@@ -122,22 +130,32 @@ namespace SimuladorCliente.Formularios
         {
             PuertoBaseSOA puertoDisponibleSeleccionado = (PuertoBaseSOA)_puertosDisponiblesBS.Current;
             VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
+            AgregarPuertoAVLAn(puertoDisponibleSeleccionado, vlanSeleccionada);
+            ActualizarControlesVLansDisponibles();
+
+        }
+
+        private void AgregarPuertoAVLAn(PuertoBaseSOA puertoDisponibleSeleccionado, VLanSOA vlanSeleccionada)
+        {
             vlanSeleccionada.IdPuertos.Add(puertoDisponibleSeleccionado.Id);
             _puertosVlan.Add(puertoDisponibleSeleccionado);
             _puertosDisponibles.Remove(puertoDisponibleSeleccionado);
-            ActualizarControlesVLansDisponibles();
-            
         }
 
         private void _btnRemoveSingle_Click(object sender, EventArgs e)
         {
             PuertoBaseSOA puertoVLanSeleccionado = (PuertoBaseSOA)_puertosVLanBS.Current;
             VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
-            vlanSeleccionada.IdPuertos.Remove(vlanSeleccionada.Id);
-            _puertosVlan.Remove(puertoVLanSeleccionado);
-            _puertosDisponibles.Add(puertoVLanSeleccionado);
+            EliminarPuertoDeVLan(puertoVLanSeleccionado, vlanSeleccionada);
 
             ActualizarControlesVLansDisponibles();
+        }
+
+        private void EliminarPuertoDeVLan(PuertoBaseSOA puertoVLanSeleccionado, VLanSOA vlanSeleccionada)
+        {
+            vlanSeleccionada.IdPuertos.Remove(puertoVLanSeleccionado.Id);
+            _puertosVlan.Remove(puertoVLanSeleccionado);
+            _puertosDisponibles.Add(puertoVLanSeleccionado);
         }
 
         private void _eliminar_Click(object sender, EventArgs e)
@@ -154,6 +172,28 @@ namespace SimuladorCliente.Formularios
             _vLans.Remove(vlanSeleccionada);
             ActualizarControlesVLansDisponibles();
 
+        }
+
+        private void _btnAddMultiple_Click(object sender, EventArgs e)
+        {
+            VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
+
+            foreach (PuertoBaseSOA puerto in _puertosDisponibles.ToList())
+            {
+                AgregarPuertoAVLAn(puerto, vlanSeleccionada);
+            }
+            ActualizarControlesVLansDisponibles();
+
+        }
+
+        private void _btnRemoveMultiple_Click(object sender, EventArgs e)
+        {
+            VLanSOA vlanSeleccionada = (VLanSOA)_vLansBS.Current;
+            foreach (PuertoBaseSOA puerto in _puertosVlan.ToList())
+            {
+                EliminarPuertoDeVLan(puerto, vlanSeleccionada);
+            }
+            ActualizarControlesVLansDisponibles();
         }
 
 

@@ -75,6 +75,15 @@ namespace BusinessLogic.Componentes
                 ((IEnvioReciboDatos)puertoEthernet).TransmitirFrame(frameATransmitir);
             }
         }
+        public void Dispose()
+        {
+            foreach (PuertoEthernetLogicoBase puerto in _puertosEthernet)
+            {
+                puerto.FrameRecibido -= new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibidoEnAlgunPuerto);
+            }
+            _switchTable.BorrarTabla();
+            _puertosEthernet.Clear();
+        }
 
     }
 }

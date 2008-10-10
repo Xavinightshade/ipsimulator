@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
+using SOA.Componentes;
 
 namespace RedesIP.SOA
 {
@@ -31,6 +32,13 @@ namespace RedesIP.SOA
             set { _puertos = value; }
         }
 
+        List<VLanSOA> _vLans = new List<VLanSOA>();
+        [DataMember]
+        public List<VLanSOA> VLans
+        {
+            get { return _vLans; }
+            set { _vLans = value; }
+        }
 
 
         public void AgregarPuerto(PuertoBaseSOA puerto)

@@ -31,5 +31,9 @@ namespace BusinessLogic.Componentes
         {
             _capaSwitcheo.AgregarPuerto(puerto);
         }
+        public void Dispose()
+        {
+            _capaSwitcheo.Dispose();
+        }
     }
 }

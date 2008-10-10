@@ -35,20 +35,20 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this._nombrePuerto = new System.Windows.Forms.TextBox();
+            this._puertosBS = new System.Windows.Forms.BindingSource(this.components);
             this._cancel = new System.Windows.Forms.Button();
             this._Aceptar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this._nombreSwitch = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this._puertosBS = new System.Windows.Forms.BindingSource(this.components);
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._puertosBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._puertosBS)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -78,6 +78,10 @@
             this._nombrePuerto.Name = "_nombrePuerto";
             this._nombrePuerto.Size = new System.Drawing.Size(47, 20);
             this._nombrePuerto.TabIndex = 3;
+            // 
+            // _puertosBS
+            // 
+            this._puertosBS.DataSource = typeof(RedesIP.SOA.PuertoBaseSOA);
             // 
             // _cancel
             // 
@@ -148,6 +152,15 @@
             this.dataGridView1.Size = new System.Drawing.Size(80, 141);
             this.dataGridView1.TabIndex = 17;
             // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn.Width = 69;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.groupBox1);
@@ -186,19 +199,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos";
             // 
-            // _puertosBS
-            // 
-            this._puertosBS.DataSource = typeof(RedesIP.SOA.PuertoBaseSOA);
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreDataGridViewTextBoxColumn.Width = 69;
-            // 
             // FormularioSwitch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,11 +215,11 @@
             this.Text = "Switch";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._puertosBS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._puertosBS)).EndInit();
             this.ResumeLayout(false);
 
         }
