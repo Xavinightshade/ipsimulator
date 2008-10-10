@@ -24,6 +24,13 @@ namespace RedesIP.SOA
             get { return _switches; }
             set { _switches = value; }
         }
+        private List<SwitchVLanSOA> _switchesVlan = new List<SwitchVLanSOA>();
+        [DataMember]
+        public List<SwitchVLanSOA> SwitchesVLan
+        {
+            get { return _switchesVlan; }
+            set { _switchesVlan = value; }
+        }
         private List<RouterSOA> _routers=new List<RouterSOA>();
         [DataMember]
         public List<RouterSOA> Routers

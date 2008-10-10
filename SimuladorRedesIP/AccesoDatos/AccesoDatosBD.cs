@@ -33,13 +33,15 @@ namespace AccesoDatos
         private static Red _db = GetNewBD();
         public static ReadOnlyCollection<Estaciones> GetAllEstaciones()
         {
+            _db = GetNewBD();
             var query = from b in _db.Estaciones select b;
             return query.ToList().AsReadOnly();
 
         }
         public static Estaciones GetEstacionById(Guid id)
+        
         {
-
+            _db = GetNewBD();
             var query = from b in _db.Estaciones where b.Id == id select b;
             Estaciones estacionBD = query.First();
 

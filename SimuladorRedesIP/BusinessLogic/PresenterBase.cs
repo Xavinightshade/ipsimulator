@@ -76,11 +76,6 @@ namespace RedesIP
             }
         }
 
-        public void PeticionActualizarEstacion()
-        {
-
-        }
-
 
         protected virtual IVisualizacion GetCurrentClient()
         {
@@ -100,6 +95,10 @@ namespace RedesIP
             foreach (KeyValuePair<Guid,SwitchLogico> par in _estacion.Switches)
             {
                estacionSOA.Switches.Add(SwitchLogico.CrearSwitchSOA(par.Value));
+            }
+            foreach (KeyValuePair<Guid, SwitchVLAN> par in _estacion.SwitchesVLan)
+            {
+                estacionSOA.SwitchesVLan.Add(SwitchVLAN.CrearSwitchVLanSOA(par.Value));
             }
             foreach (KeyValuePair<Guid,RouterLogico> par in _estacion.Routers)
             {

@@ -23,8 +23,6 @@ namespace RedesIP.SOA
         [OperationContract()]
         void PeticionConectarPuertos(Guid idPuerto1, Guid idPuerto2);
         [OperationContract()]
-        void PeticionActualizarEstacion();
-        [OperationContract()]
         void PeticionEstablecerDatosPuertoBase(PuertoBaseSOA puerto);
         [OperationContract()]
         void PeticionEstablecerDatosPuertoCompleto(PuertoCompletoSOA puerto);

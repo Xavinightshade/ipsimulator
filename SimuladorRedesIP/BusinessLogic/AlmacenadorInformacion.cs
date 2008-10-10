@@ -12,6 +12,7 @@ using SimuladorCliente.Formularios;
 using BusinessLogic.Componentes;
 using SOA.Componentes;
 using BusinessLogic;
+using BusinessLogic.Equipos;
 
 namespace AccesoDatos
 {
@@ -125,6 +126,16 @@ namespace AccesoDatos
                     puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
                 }
             }
+            foreach (KeyValuePair<Guid, SwitchVLAN> swi in estacion.SwitchesVLan)
+            {
+                Equipos equipoBD = AgregarEquipo(estacionBD, swi.Value, generarNuevosIds);
+
+                foreach (PuertoEthernetLogicoBase puerto in swi.Value.PuertosEthernet)
+                {
+                    Guid idPuerto = AgregarPuerto(equipoBD, puerto, generarNuevosIds);
+                    puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
+                }
+            }
             foreach (KeyValuePair<Guid, RouterLogico> rou in estacion.Routers)
             {
                 Equipos equipoBD = AgregarEquipo(estacionBD, rou.Value,generarNuevosIds);
@@ -213,6 +224,7 @@ namespace AccesoDatos
                 switch ((TipoDeEquipo)equipoBD.TipoDeEquipo)
                 {
                     case TipoDeEquipo.Ninguno:
+                        throw new Exception();
                         break;
                     case TipoDeEquipo.Computador:
                         ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre, equipoBD.Computadores.DefaultGateWay);
@@ -228,6 +240,14 @@ namespace AccesoDatos
                         }
                         estacionLogica.CrearSwitch(swi);
 
+                        break;
+                    case TipoDeEquipo.SwitchVLan:
+                        SwitchVLAN swiVLan = new SwitchVLAN(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre);
+                        foreach (Puertos puertoBD in equipoBD.PuertosBD)
+                        {
+                            swiVLan.AgregarPuerto(puertoBD.Id, puertoBD.Nombre, puertoBD.Habilitado);
+                        }
+                        estacionLogica.CrearSwitchVLan(swiVLan);
                         break;
                     case TipoDeEquipo.Router:
                         RouterLogico rou = new RouterLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre);
@@ -245,6 +265,7 @@ namespace AccesoDatos
                         estacionLogica.CrearRouter(rou);
                         break;
                     default:
+                        throw new Exception();
                         break;
                 }
             }

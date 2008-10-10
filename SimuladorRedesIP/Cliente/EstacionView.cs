@@ -129,6 +129,10 @@ namespace RedesIP.Vistas
             {
                 CrearSwitch(swi);
             }
+            foreach (SwitchVLanSOA swi in estacionSOA.SwitchesVLan)
+            {
+                CrearSwitchVLan(swi);
+            }
             foreach (RouterSOA rou in estacionSOA.Routers)
             {
                 CrearRouter(rou);
