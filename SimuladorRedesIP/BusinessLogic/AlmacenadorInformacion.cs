@@ -142,16 +142,19 @@ namespace AccesoDatos
                 foreach (VLan vLan in swi.Value.VLans)
                 {
                     VLans vLanBD = new VLans();
-                    vLanBD.Id = vLan.Id;
+                    if (generarNuevosIds)
+                        vLanBD.Id = Guid.NewGuid();
+                    else
+                        vLanBD.Id = vLan.Id;
                     vLanBD.Nombre = vLan.Nombre;
-                    vLanBD.IdSwitch = swi.Key;
+                    vLanBD.IdSwitch = equipoBD.Id;
                     swiBD.VLans.Add(vLanBD);
                     vLanBD.Switch = swiBD;
                     foreach (PuertoEthernetLogicoBase puertoDeVLan in vLan.Puertos)
                     {
                         AsociacionesPuertosVLans asoc = new AsociacionesPuertosVLans();
                         asoc.Id = Guid.NewGuid();
-                        asoc.IdPuerto = puertoDeVLan.Id;
+                        asoc.IdPuerto = puertosMappingAntiguoNuevo[puertoDeVLan.Id];
                         asoc.IdVLan = vLanBD.Id;
                         asoc.VLans = vLanBD;
                         vLanBD.AsociacionesPuertosVLans.Add(asoc);
