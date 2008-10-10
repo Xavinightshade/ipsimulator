@@ -48,5 +48,12 @@ namespace BusinessLogic.Componentes
         {
             _id = id;
         }
+
+        public bool EsIgual(EntradaTablaRouter entrada)
+        {
+            return ((_mask == entrada.Mask) &&
+                  (entrada.Red == _red));
+           
+        }
     }
 }

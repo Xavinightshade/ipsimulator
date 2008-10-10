@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="AlmacenadorInformacion.cs" />
     <Compile Include="Componentes\CapaSwitcheo.cs" />
+    <Compile Include="Componentes\ControladorRutasDinamicas.cs" />
     <Compile Include="Componentes\EntradaTablaRouter.cs" />
     <Compile Include="Componentes\RouteTable.cs" />
     <Compile Include="Datos\DatosFrameArpBuscando.cs" />

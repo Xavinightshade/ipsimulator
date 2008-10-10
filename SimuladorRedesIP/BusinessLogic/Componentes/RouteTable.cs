@@ -10,8 +10,21 @@ namespace BusinessLogic.Componentes
     public class RouteTable
     {
         private List<EntradaTablaRouter> _tablaRouterEstatico = new List<EntradaTablaRouter>();
+
+        public List<EntradaTablaRouter> TablaRouterEstatico
+        {
+            get { return _tablaRouterEstatico; }
+        }
         private List<EntradaTablaRouter> _tablaRouterDinamico = new List<EntradaTablaRouter>();
 
+        public List<EntradaTablaRouter> TablaRouterDinamico
+        {
+            get { return _tablaRouterDinamico; }
+        }
+        public List<EntradaTablaRouter> TablaRouterInternas
+        {
+            get { return CalcularRutasInternas(); }
+        }
 
 
         public void IngresarEntradaEstatica(Guid id, string red, int? mask, string nextHopIP, PuertoEthernetCompleto puerto)
@@ -125,48 +138,13 @@ namespace BusinessLogic.Componentes
             return LlenarRutas(CalcularRutasInternas());
         }
 
-        public void IngresarEntradasDinamicas(List<RutaSOA> entradas, string nextHopIp, Guid idPuertoDondeSeRecibio)
-        {
-            List<EntradaTablaRouter> rutasInternas = CalcularRutasInternas();
-            PuertoEthernetCompleto puertoDondeSeRecibio = BuscarPuertoConId(idPuertoDondeSeRecibio);
-            foreach (RutaSOA ruta in entradas)
-            {
-                EntradaTablaRouter entrada = new EntradaTablaRouter(ruta.Id);
-                entrada.Mask = ruta.Mask;
-                entrada.NextHopIP = nextHopIp;
-                entrada.Puerto = puertoDondeSeRecibio;
-                entrada.Red = ruta.Red;
-                if (ExisteLaRuta(entrada, rutasInternas))
-                    continue;
-                if (ExisteLaRuta(entrada, _tablaRouterEstatico))
-                    continue;
-                if (ExisteLaRuta(entrada, _tablaRouterDinamico))
-                    continue;
-                _tablaRouterDinamico.Add(entrada);
-            }
-        }
 
-        private bool ExisteLaRuta(EntradaTablaRouter entrada, List<EntradaTablaRouter> tabla)
-        {
-            foreach (EntradaTablaRouter entradaDinamica in tabla)
-            {
-                if ((entradaDinamica.Mask == entrada.Mask) &&
-                    (entrada.Red == entradaDinamica.Red))
-                    return true;
-            }
-            return false;
-        }
 
-        private PuertoEthernetCompleto BuscarPuertoConId(Guid id)
+
+
+        internal void IngresarEntradaDinamica(EntradaTablaRouter entrada)
         {
-            foreach (PuertoEthernetCompleto puerto in _puertos)
-            {
-                if (puerto.Id == id)
-                {
-                    return puerto;
-                }
-            }
-            throw new Exception();
+            _tablaRouterDinamico.Add(entrada);
         }
     }
 }
