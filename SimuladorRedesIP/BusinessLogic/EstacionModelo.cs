@@ -283,6 +283,14 @@ namespace RedesIP
                 }
                 return puertos;
             }
+            if (_switchesVLan.ContainsKey(idEquipo))
+            {
+                foreach (PuertoEthernetLogicoBase puerto in _switchesVLan[idEquipo].PuertosEthernet)
+                {
+                    puertos.Add(puerto);
+                }
+                return puertos;
+            }
             if (_routers.ContainsKey(idEquipo))
             {
                 foreach (PuertoEthernetCompleto puerto in _routers[idEquipo].PuertosEthernet)
@@ -291,6 +299,8 @@ namespace RedesIP
                 }
                 return puertos;
             }
+
+
             throw new Exception();
         }
 
