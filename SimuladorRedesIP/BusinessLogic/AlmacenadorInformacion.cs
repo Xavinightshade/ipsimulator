@@ -143,7 +143,7 @@ namespace AccesoDatos
                 {
                     VLans vLanBD = new VLans();
                     vLanBD.Id = vLan.Id;
-                    vLanBD.Nombre = vLanBD.Nombre;
+                    vLanBD.Nombre = vLan.Nombre;
                     vLanBD.IdSwitch = swi.Key;
                     swiBD.VLans.Add(vLanBD);
                     vLanBD.Switch = swiBD;
