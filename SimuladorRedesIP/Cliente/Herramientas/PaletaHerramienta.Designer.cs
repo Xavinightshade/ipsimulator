@@ -43,6 +43,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this._paletaValorLabel = new System.Windows.Forms.Label();
             this._paletaTrackBar = new System.Windows.Forms.TrackBar();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -52,24 +53,26 @@
             // 
             // button8
             // 
+            this.button8.BackgroundImage = global::SimuladorCliente.Properties.Resources.DB;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button8.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.button8.FlatAppearance.BorderSize = 5;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.Location = new System.Drawing.Point(7, 17);
+            this.button8.Location = new System.Drawing.Point(7, 19);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(106, 84);
+            this.button8.Size = new System.Drawing.Size(106, 67);
             this.button8.TabIndex = 7;
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
+            this.button7.BackgroundImage = global::SimuladorCliente.Properties.Resources.SOA;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.button7.FlatAppearance.BorderSize = 5;
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.Location = new System.Drawing.Point(7, 107);
+            this.button7.Location = new System.Drawing.Point(6, 92);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(106, 80);
+            this.button7.Size = new System.Drawing.Size(106, 67);
             this.button7.TabIndex = 6;
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
@@ -79,7 +82,7 @@
             this._PaletaMouse.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
             this._PaletaMouse.FlatAppearance.BorderSize = 5;
             this._PaletaMouse.Image = global::SimuladorCliente.Properties.Resources.mouse;
-            this._PaletaMouse.Location = new System.Drawing.Point(12, 12);
+            this._PaletaMouse.Location = new System.Drawing.Point(16, 83);
             this._PaletaMouse.Name = "_PaletaMouse";
             this._PaletaMouse.Size = new System.Drawing.Size(106, 57);
             this._PaletaMouse.TabIndex = 5;
@@ -117,7 +120,7 @@
             this._PaletaRouter.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
             this._PaletaRouter.FlatAppearance.BorderSize = 3;
             this._PaletaRouter.Image = global::SimuladorCliente.Properties.Resources.Router;
-            this._PaletaRouter.Location = new System.Drawing.Point(6, 100);
+            this._PaletaRouter.Location = new System.Drawing.Point(6, 133);
             this._PaletaRouter.Name = "_PaletaRouter";
             this._PaletaRouter.Size = new System.Drawing.Size(110, 29);
             this._PaletaRouter.TabIndex = 2;
@@ -150,9 +153,9 @@
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(5, 453);
+            this.groupBox1.Location = new System.Drawing.Point(5, 487);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(123, 195);
+            this.groupBox1.Size = new System.Drawing.Size(123, 167);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
@@ -162,7 +165,7 @@
             this.groupBox2.Controls.Add(this._PaletaConexion);
             this.groupBox2.Controls.Add(this._PaletaPunta);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(5, 289);
+            this.groupBox2.Location = new System.Drawing.Point(5, 323);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(123, 158);
             this.groupBox2.TabIndex = 9;
@@ -171,13 +174,14 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this._PaletaPc);
             this.groupBox3.Controls.Add(this._PaletaSwitch);
             this.groupBox3.Controls.Add(this._PaletaRouter);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(6, 146);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(123, 137);
+            this.groupBox3.Size = new System.Drawing.Size(123, 171);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Equipos";
@@ -187,7 +191,7 @@
             this.groupBox4.Controls.Add(this._paletaValorLabel);
             this.groupBox4.Controls.Add(this._paletaTrackBar);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(6, 75);
+            this.groupBox4.Location = new System.Drawing.Point(6, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(123, 65);
             this.groupBox4.TabIndex = 20;
@@ -213,12 +217,23 @@
             this._paletaTrackBar.Value = 10;
             this._paletaTrackBar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this.button1.FlatAppearance.BorderSize = 3;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(6, 98);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 29);
+            this.button1.TabIndex = 3;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // PaletaHerramienta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(140, 721);
+            this.ClientSize = new System.Drawing.Size(135, 721);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -254,5 +269,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label _paletaValorLabel;
         public System.Windows.Forms.TrackBar _paletaTrackBar;
+        public System.Windows.Forms.Button button1;
     }
 }
