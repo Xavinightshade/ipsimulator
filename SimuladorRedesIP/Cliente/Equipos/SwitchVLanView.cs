@@ -73,9 +73,19 @@ namespace RedesIP.Vistas.Equipos
         protected override string GetFullInfoMapa()
         {
             string tip = base.GetFullInfoMapa();
-            foreach (PuertoEthernetViewBase puerto in _puertosEthernet)
+            tip += Environment.NewLine;
+            foreach (VLanSOA vLan  in _vLans)
             {
-                tip += Environment.NewLine + "Puerto:  " + puerto.Nombre;
+                tip += " (*) VLan:  " + vLan.Nombre + Environment.NewLine +
+                    "   ";
+                foreach (PuertoEthernetViewBase  puerto in _puertosEthernet)
+                {
+                    if (vLan.IdPuertos.Contains(puerto.Id))
+                    {
+                        tip += puerto.Nombre + Environment.NewLine + "   ";
+                    }
+                }
+                tip = tip.Remove(tip.Length - 4, 4);
             }
             return tip;
         }

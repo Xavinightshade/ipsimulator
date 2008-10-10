@@ -75,8 +75,8 @@ namespace AccesoDatos
         }
         public static void GuardarComo(EstacionModelo estacion, byte[] bitmapData)
         {
-            
-            Estaciones estacionBD = LlenarEstacion(estacion, bitmapData,true);
+
+            Estaciones estacionBD = LlenarEstacion(estacion, bitmapData, true);
             AccesoDatosBD.GuardarNuevaEstacion(estacionBD);
         }
 
@@ -106,27 +106,17 @@ namespace AccesoDatos
             Dictionary<Guid, Guid> puertosMappingAntiguoNuevo = new Dictionary<Guid, Guid>();
             foreach (KeyValuePair<Guid, ComputadorLogico> pc in estacion.Computadores)
             {
-                Equipos equipoBD = AgregarEquipo(estacionBD, pc.Value,generarNuevosIds);
+                Equipos equipoBD = AgregarEquipo(estacionBD, pc.Value, generarNuevosIds);
                 Computadores pcBD = new Computadores();
 
                 pcBD.Id = equipoBD.Id;
                 pcBD.DefaultGateWay = pc.Value.DefaultGateWay;
                 equipoBD.Computadores = pcBD;
                 pcBD.Equipos = equipoBD;
-                Guid idPuerto= AgregarPuerto(equipoBD, pc.Value.PuertoEthernet,generarNuevosIds);
-                puertosMappingAntiguoNuevo.Add(pc.Value.PuertoEthernet.Id,idPuerto);
+                Guid idPuerto = AgregarPuerto(equipoBD, pc.Value.PuertoEthernet, generarNuevosIds);
+                puertosMappingAntiguoNuevo.Add(pc.Value.PuertoEthernet.Id, idPuerto);
             }
             foreach (KeyValuePair<Guid, SwitchLogico> swi in estacion.Switches)
-            {
-                Equipos equipoBD = AgregarEquipo(estacionBD, swi.Value,generarNuevosIds);
-
-                foreach (PuertoEthernetLogicoBase puerto in swi.Value.PuertosEthernet)
-                {
-                    Guid idPuerto= AgregarPuerto(equipoBD, puerto,generarNuevosIds);
-                    puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
-                }
-            }
-            foreach (KeyValuePair<Guid, SwitchVLAN> swi in estacion.SwitchesVLan)
             {
                 Equipos equipoBD = AgregarEquipo(estacionBD, swi.Value, generarNuevosIds);
 
@@ -135,17 +125,50 @@ namespace AccesoDatos
                     Guid idPuerto = AgregarPuerto(equipoBD, puerto, generarNuevosIds);
                     puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
                 }
+
+            }
+            foreach (KeyValuePair<Guid, SwitchVLAN> swi in estacion.SwitchesVLan)
+            {
+                Equipos equipoBD = AgregarEquipo(estacionBD, swi.Value, generarNuevosIds);
+                Switch swiBD = new Switch();
+                swiBD.Id = equipoBD.Id;
+                equipoBD.Switch = swiBD;
+                swiBD.Equipos = equipoBD;
+                foreach (PuertoEthernetLogicoBase puerto in swi.Value.PuertosEthernet)
+                {
+                    Guid idPuerto = AgregarPuerto(equipoBD, puerto, generarNuevosIds);
+                    puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
+                }
+                foreach (VLan vLan in swi.Value.VLans)
+                {
+                    VLans vLanBD = new VLans();
+                    vLanBD.Id = vLan.Id;
+                    vLanBD.Nombre = vLanBD.Nombre;
+                    vLanBD.IdSwitch = swi.Key;
+                    swiBD.VLans.Add(vLanBD);
+                    vLanBD.Switch = swiBD;
+                    foreach (PuertoEthernetLogicoBase puertoDeVLan in vLan.Puertos)
+                    {
+                        AsociacionesPuertosVLans asoc = new AsociacionesPuertosVLans();
+                        asoc.Id = Guid.NewGuid();
+                        asoc.IdPuerto = puertoDeVLan.Id;
+                        asoc.IdVLan = vLanBD.Id;
+                        asoc.VLans = vLanBD;
+                        vLanBD.AsociacionesPuertosVLans.Add(asoc);
+                    }
+
+                }
             }
             foreach (KeyValuePair<Guid, RouterLogico> rou in estacion.Routers)
             {
-                Equipos equipoBD = AgregarEquipo(estacionBD, rou.Value,generarNuevosIds);
+                Equipos equipoBD = AgregarEquipo(estacionBD, rou.Value, generarNuevosIds);
                 Routers routerBD = new Routers();
                 routerBD.Id = equipoBD.Id;
                 equipoBD.Routers = routerBD;
                 routerBD.Equipos = equipoBD;
                 foreach (PuertoEthernetLogicoBase puerto in rou.Value.PuertosEthernet)
                 {
-                    Guid idPuerto = AgregarPuerto(equipoBD, puerto,generarNuevosIds);
+                    Guid idPuerto = AgregarPuerto(equipoBD, puerto, generarNuevosIds);
                     puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
 
                 }
@@ -229,14 +252,14 @@ namespace AccesoDatos
                     case TipoDeEquipo.Computador:
                         ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre, equipoBD.Computadores.DefaultGateWay);
                         PuertosCompletos puertoCompleto = equipoBD.Puertos[0].PuertosCompletos;
-                        pc.AgregarPuerto(puertoCompleto.Id, puertoCompleto.Puertos.Nombre, puertoCompleto.DireccionMAC, puertoCompleto.DireccionIP, puertoCompleto.Mascara,puertoCompleto.Puertos.Habilitado);
+                        pc.AgregarPuerto(puertoCompleto.Id, puertoCompleto.Puertos.Nombre, puertoCompleto.DireccionMAC, puertoCompleto.DireccionIP, puertoCompleto.Mascara, puertoCompleto.Puertos.Habilitado);
                         estacionLogica.CrearComputador(pc);
                         break;
                     case TipoDeEquipo.Switch:
                         SwitchLogico swi = new SwitchLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre);
                         foreach (Puertos puertoBD in equipoBD.PuertosBD)
                         {
-                            swi.AgregarPuerto(puertoBD.Id, puertoBD.Nombre,puertoBD.Habilitado);
+                            swi.AgregarPuerto(puertoBD.Id, puertoBD.Nombre, puertoBD.Habilitado);
                         }
                         estacionLogica.CrearSwitch(swi);
 
@@ -256,7 +279,7 @@ namespace AccesoDatos
                         {
                             PuertosCompletos puertoFull = puertoBD.PuertosCompletos;
 
-                            rou.AgregarPuerto(puertoFull.Id, puertoFull.Puertos.Nombre, puertoFull.DireccionMAC, puertoFull.DireccionIP, puertoFull.Mascara,puertoFull.Puertos.Habilitado);
+                            rou.AgregarPuerto(puertoFull.Id, puertoFull.Puertos.Nombre, puertoFull.DireccionMAC, puertoFull.DireccionIP, puertoFull.Mascara, puertoFull.Puertos.Habilitado);
                         }
                         foreach (Rutas ruta in equipoBD.Routers.Rutas)
                         {

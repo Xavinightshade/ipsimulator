@@ -189,8 +189,6 @@ namespace AccesoDatos
 		
 		private System.Guid _IdPuerto;
 		
-		private EntityRef<Puertos> _Puertos;
-		
 		private EntityRef<VLans> _VLans;
 		
     #region Extensibility Method Definitions
@@ -207,7 +205,6 @@ namespace AccesoDatos
 		
 		public AsociacionesPuertosVLans()
 		{
-			this._Puertos = default(EntityRef<Puertos>);
 			this._VLans = default(EntityRef<VLans>);
 			OnCreated();
 		}
@@ -267,49 +264,11 @@ namespace AccesoDatos
 			{
 				if ((this._IdPuerto != value))
 				{
-					if (this._Puertos.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIdPuertoChanging(value);
 					this.SendPropertyChanging();
 					this._IdPuerto = value;
 					this.SendPropertyChanged("IdPuerto");
 					this.OnIdPuertoChanged();
-				}
-			}
-		}
-		
-		[Association(Name="AsocPuerto", Storage="_Puertos", ThisKey="IdPuerto", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
-		public Puertos Puertos
-		{
-			get
-			{
-				return this._Puertos.Entity;
-			}
-			set
-			{
-				Puertos previousValue = this._Puertos.Entity;
-				if (((previousValue != value) 
-							|| (this._Puertos.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Puertos.Entity = null;
-						previousValue.AsociacionesPuertosVLans.Remove(this);
-					}
-					this._Puertos.Entity = value;
-					if ((value != null))
-					{
-						value.AsociacionesPuertosVLans.Add(this);
-						this._IdPuerto = value.Id;
-					}
-					else
-					{
-						this._IdPuerto = default(System.Guid);
-					}
-					this.SendPropertyChanged("Puertos");
 				}
 			}
 		}
@@ -671,9 +630,9 @@ namespace AccesoDatos
 		
 		private EntitySet<Puertos> _Puertos;
 		
-		private EntityRef<Routers> _Routers;
-		
 		private EntityRef<Switch> _Switch;
+		
+		private EntityRef<Routers> _Routers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -698,8 +657,8 @@ namespace AccesoDatos
 			this._Computadores = default(EntityRef<Computadores>);
 			this._Estaciones = default(EntityRef<Estaciones>);
 			this._Puertos = new EntitySet<Puertos>(new Action<Puertos>(this.attach_Puertos), new Action<Puertos>(this.detach_Puertos));
-			this._Routers = default(EntityRef<Routers>);
 			this._Switch = default(EntityRef<Switch>);
+			this._Routers = default(EntityRef<Routers>);
 			OnCreated();
 		}
 		
@@ -903,6 +862,35 @@ namespace AccesoDatos
 			}
 		}
 		
+		[Association(Name="rela", Storage="_Switch", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false, DeleteRule="CASCADE")]
+		public Switch Switch
+		{
+			get
+			{
+				return this._Switch.Entity;
+			}
+			set
+			{
+				Switch previousValue = this._Switch.Entity;
+				if (((previousValue != value) 
+							|| (this._Switch.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Switch.Entity = null;
+						previousValue.Equipos = null;
+					}
+					this._Switch.Entity = value;
+					if ((value != null))
+					{
+						value.Equipos = this;
+					}
+					this.SendPropertyChanged("Switch");
+				}
+			}
+		}
+		
 		[Association(Name="RouterEQuipo", Storage="_Routers", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false, DeleteRule="CASCADE")]
 		public Routers Routers
 		{
@@ -928,35 +916,6 @@ namespace AccesoDatos
 						value.Equipos = this;
 					}
 					this.SendPropertyChanged("Routers");
-				}
-			}
-		}
-		
-		[Association(Name="SwitchEquipos", Storage="_Switch", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false, DeleteRule="NO ACTION")]
-		public Switch Switch
-		{
-			get
-			{
-				return this._Switch.Entity;
-			}
-			set
-			{
-				Switch previousValue = this._Switch.Entity;
-				if (((previousValue != value) 
-							|| (this._Switch.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Switch.Entity = null;
-						previousValue.Equipos = null;
-					}
-					this._Switch.Entity = value;
-					if ((value != null))
-					{
-						value.Equipos = this;
-					}
-					this.SendPropertyChanged("Switch");
 				}
 			}
 		}
@@ -1194,8 +1153,6 @@ namespace AccesoDatos
 		
 		private bool _Habilitado;
 		
-		private EntitySet<AsociacionesPuertosVLans> _AsociacionesPuertosVLans;
-		
 		private EntitySet<Cables> _Cables;
 		
 		private EntityRef<Equipos> _Equipos;
@@ -1218,7 +1175,6 @@ namespace AccesoDatos
 		
 		public Puertos()
 		{
-			this._AsociacionesPuertosVLans = new EntitySet<AsociacionesPuertosVLans>(new Action<AsociacionesPuertosVLans>(this.attach_AsociacionesPuertosVLans), new Action<AsociacionesPuertosVLans>(this.detach_AsociacionesPuertosVLans));
 			this._Cables = new EntitySet<Cables>(new Action<Cables>(this.attach_Cables), new Action<Cables>(this.detach_Cables));
 			this._Equipos = default(EntityRef<Equipos>);
 			this._PuertosCompletos = default(EntityRef<PuertosCompletos>);
@@ -1306,19 +1262,6 @@ namespace AccesoDatos
 					this.SendPropertyChanged("Habilitado");
 					this.OnHabilitadoChanged();
 				}
-			}
-		}
-		
-		[Association(Name="AsocPuerto", Storage="_AsociacionesPuertosVLans", ThisKey="Id", OtherKey="IdPuerto", DeleteRule="CASCADE")]
-		public EntitySet<AsociacionesPuertosVLans> AsociacionesPuertosVLans
-		{
-			get
-			{
-				return this._AsociacionesPuertosVLans;
-			}
-			set
-			{
-				this._AsociacionesPuertosVLans.Assign(value);
 			}
 		}
 		
@@ -1416,18 +1359,6 @@ namespace AccesoDatos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_AsociacionesPuertosVLans(AsociacionesPuertosVLans entity)
-		{
-			this.SendPropertyChanging();
-			entity.Puertos = this;
-		}
-		
-		private void detach_AsociacionesPuertosVLans(AsociacionesPuertosVLans entity)
-		{
-			this.SendPropertyChanging();
-			entity.Puertos = null;
 		}
 		
 		private void attach_Cables(Cables entity)
@@ -2023,7 +1954,7 @@ namespace AccesoDatos
 			}
 		}
 		
-		[Association(Name="SwitchEquipos", Storage="_Equipos", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		[Association(Name="rela", Storage="_Equipos", ThisKey="Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
 		public Equipos Equipos
 		{
 			get

@@ -125,6 +125,18 @@ namespace AccesoDatos
                         _db.Rutas.InsertOnSubmit(ruta);
                     }
                 }
+                if (equipo.Switch != null)
+                {
+                    _db.Switch.InsertOnSubmit(equipo.Switch);
+                    foreach (VLans vLan in equipo.Switch.VLans)
+                    {
+                        _db.VLans.InsertOnSubmit(vLan);
+                        foreach (AsociacionesPuertosVLans asoc in vLan.AsociacionesPuertosVLans)
+                        {
+                            _db.AsociacionesPuertosVLans.InsertOnSubmit(asoc);
+                        }
+                    }
+                }
 
                 foreach (Puertos puerto in equipo.PuertosBD)
                 {

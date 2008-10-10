@@ -41,6 +41,11 @@ namespace BusinessLogic.Equipos
 
         List<VLan> _vLans = new List<VLan>();
 
+        public List<VLan> VLans
+        {
+            get { return _vLans; }
+        }
+
 
 
         public void AgregarPuerto(Guid idPuerto, string nombre, bool habilitado)

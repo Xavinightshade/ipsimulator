@@ -19,6 +19,11 @@ namespace BusinessLogic.Componentes
 
         private List<PuertoEthernetLogicoBase> _puertosEthernet = new List<PuertoEthernetLogicoBase>();
 
+        public List<PuertoEthernetLogicoBase> PuertosEthernet
+        {
+            get { return _puertosEthernet; }
+        }
+
 
         public void AgregarPuerto(PuertoEthernetLogicoBase puerto)
         {

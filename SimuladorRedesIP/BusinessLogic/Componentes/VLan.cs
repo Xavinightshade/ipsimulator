@@ -21,6 +21,10 @@ namespace BusinessLogic.Componentes
             get { return _nombre; }
         }
         private CapaSwitcheo _capaSwitcheo;
+        public List<PuertoEthernetLogicoBase> Puertos
+        {
+            get { return _capaSwitcheo.PuertosEthernet; }
+        }
         public VLan(Guid id,string nombre, CapaSwitcheo capaSwitcheo)
         {
             _id = id;
