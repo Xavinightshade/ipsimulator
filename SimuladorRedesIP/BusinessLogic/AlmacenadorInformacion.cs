@@ -270,6 +270,17 @@ namespace AccesoDatos
                         {
                             swiVLan.AgregarPuerto(puertoBD.Id, puertoBD.Nombre, puertoBD.Habilitado);
                         }
+                        List<VLanSOA> vLansSOA = new List<VLanSOA>();
+                        foreach (VLans vLanBD in equipoBD.Switch.VLans)
+                        {
+                            VLanSOA vLan = new VLanSOA(vLanBD.Id, vLanBD.Nombre);
+                            foreach (AsociacionesPuertosVLans asoc in vLanBD.AsociacionesPuertosVLans)
+                            {
+                                vLan.IdPuertos.Add(asoc.IdPuerto);
+                            }
+                            vLansSOA.Add(vLan);
+                        }
+                        swiVLan.ActualizarVLans(vLansSOA);
                         estacionLogica.CrearSwitchVLan(swiVLan);
                         break;
                     case TipoDeEquipo.Router:

@@ -21,6 +21,15 @@ namespace BusinessLogic.Equipos
             {
                 swiRespuesta.AgregarPuerto(new PuertoBaseSOA(puerto.Id, puerto.Nombre, puerto.Habilitado));
             }
+            foreach (VLan vLan in swiLogico._vLans)
+            {
+                VLanSOA vLanSOA = new VLanSOA(vLan.Id, vLan.Nombre);
+                foreach (PuertoEthernetLogicoBase puerto in vLan.Puertos)
+                {
+                    vLanSOA.IdPuertos.Add(puerto.Id);
+                }
+                swiRespuesta.VLans.Add(vLanSOA);
+            }
             return swiRespuesta;
         }
 
