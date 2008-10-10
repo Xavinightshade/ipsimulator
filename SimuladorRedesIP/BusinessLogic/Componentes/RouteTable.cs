@@ -127,26 +127,30 @@ namespace BusinessLogic.Componentes
 
         public void IngresarEntradasDinamicas(List<RutaSOA> entradas, string nextHopIp, Guid idPuertoDondeSeRecibio)
         {
-
+            List<EntradaTablaRouter> rutasInternas = CalcularRutasInternas();
+            PuertoEthernetCompleto puertoDondeSeRecibio = BuscarPuertoConId(idPuertoDondeSeRecibio);
             foreach (RutaSOA ruta in entradas)
             {
                 EntradaTablaRouter entrada = new EntradaTablaRouter(ruta.Id);
                 entrada.Mask = ruta.Mask;
                 entrada.NextHopIP = nextHopIp;
-                entrada.Puerto = BuscarPuertoConId(idPuertoDondeSeRecibio);
+                entrada.Puerto = puertoDondeSeRecibio;
                 entrada.Red = ruta.Red;
-                bool rutaExiste = BuscarSiYaExisteLaRuta(entrada);
-                if (!rutaExiste)
-                    _tablaRouterDinamico.Add(entrada);
+                if (ExisteLaRuta(entrada, rutasInternas))
+                    continue;
+                if (ExisteLaRuta(entrada, _tablaRouterEstatico))
+                    continue;
+                if (ExisteLaRuta(entrada, _tablaRouterDinamico))
+                    continue;
+                _tablaRouterDinamico.Add(entrada);
             }
         }
 
-        private bool BuscarSiYaExisteLaRuta(EntradaTablaRouter entrada)
+        private bool ExisteLaRuta(EntradaTablaRouter entrada, List<EntradaTablaRouter> tabla)
         {
-            foreach (EntradaTablaRouter entradaDinamica in _tablaRouterDinamico)
+            foreach (EntradaTablaRouter entradaDinamica in tabla)
             {
                 if ((entradaDinamica.Mask == entrada.Mask) &&
-                    (entradaDinamica.NextHopIP == entrada.NextHopIP) &&
                     (entrada.Red == entradaDinamica.Red))
                     return true;
             }
