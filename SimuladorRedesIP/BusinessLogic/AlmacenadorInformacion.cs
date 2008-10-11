@@ -251,7 +251,6 @@ namespace AccesoDatos
                 {
                     case TipoDeEquipo.Ninguno:
                         throw new Exception();
-                        break;
                     case TipoDeEquipo.Computador:
                         ComputadorLogico pc = new ComputadorLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre, equipoBD.Computadores.DefaultGateWay);
                         PuertosCompletos puertoCompleto = equipoBD.Puertos[0].PuertosCompletos;
@@ -303,7 +302,6 @@ namespace AccesoDatos
                         break;
                     default:
                         throw new Exception();
-                        break;
                 }
             }
         }
