@@ -209,6 +209,10 @@ namespace RedesIP
         {
             _computadores[idEquipo].Ping(ipDestino);
         }
+        internal void EnviarStream(Guid idEquipo, string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream)
+        {
+            _computadores[idEquipo].EnviarStream(ipDestino, puertoOrigen, puertoDestino, stream);
+        }
 
         public void EstablecerDatosPueroBase(PuertoBaseSOA puerto)
         {
@@ -338,6 +342,8 @@ namespace RedesIP
             }
             throw new Exception();
         }
+
+
 
 
     }

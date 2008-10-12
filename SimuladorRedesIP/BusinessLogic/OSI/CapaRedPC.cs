@@ -31,7 +31,7 @@ namespace BusinessLogic.OSI
 
        }
 
-       protected override void EnviarPaquete(string ipDestino, Packet paquete)
+       public override void EnviarPaquete(string ipDestino, Packet paquete)
        {
 
            bool perteneceAlaRed = IPAddressFactory.PerteneceAlaRed(CapaDatos.Puerto.IPAddress, ipDestino, CapaDatos.Puerto.Mascara);

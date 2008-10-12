@@ -9,6 +9,7 @@ using BusinessLogic.Modelos.Logicos.Datos;
 using BusinessLogic.OSI;
 using BusinessLogic.Protocolos;
 using BusinessLogic;
+using BusinessLogic.Componentes;
 
 
 namespace RedesIP.Modelos.Logicos.Equipos
@@ -16,7 +17,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
     public class ComputadorLogico : EquipoLogico
     {
 
-
+        private ControladorTCP _controladorTCP;
         private PuertoEthernetCompleto _puertoEthernet;
         private CapaRedPC _capaRed;
 
@@ -72,6 +73,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             CapaDatos capaDatos = new CapaDatos(new ARP(), _puertoEthernet);
             _capaRed = new CapaRedPC(capaDatos,this);
             _capaRed.Inicializar();
+            _controladorTCP = new ControladorTCP(_capaRed);
         }
 
 
@@ -88,6 +90,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
         public override void DesconectarEquipo()
         {
           
+        }
+
+        internal void EnviarStream(string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream)
+        {
+            _controladorTCP.EnviarStream(ipDestino, puertoOrigen, puertoDestino,stream);
         }
     }
 }

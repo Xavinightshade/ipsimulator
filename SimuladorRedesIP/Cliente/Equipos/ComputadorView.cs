@@ -19,12 +19,33 @@ namespace RedesIP.Vistas.Equipos
 		{
             _defaultGateWay = equipo.DefaultGateWay;
             Nombre = equipo.Nombre;
-            ToolStripMenuItem item = new ToolStripMenuItem("Hacer Ping", Resources.shell_script_16x16);
-            item.Click += new EventHandler(OnPingClick);
-            Menu.Items.Add(item);
+            ToolStripMenuItem pingItem = new ToolStripMenuItem("Hacer Ping", Resources.shell_script_16x16);
+            ToolStripMenuItem tcpItem = new ToolStripMenuItem("Enviar Stream", Resources.shell_script_16x16);
+
+            pingItem.Click += new EventHandler(OnPingClick);
+            tcpItem.Click += new EventHandler(tcpItem_Click);
+            Menu.Items.Add(pingItem);
+            Menu.Items.Add(tcpItem);
             _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id,
                 equipo.Puerto.DireccionMAC,equipo.Puerto.IPAddress,equipo.Puerto.Mask,15, 26, this,equipo.Puerto.Nombre,equipo.Puerto.Habilitado);
 		}
+
+        void tcpItem_Click(object sender, EventArgs e)
+        {
+            if (!_puerto.Habilitado)
+            {
+                MessageBox.Show("El puerto del Equipo no está habilitado," +
+                Environment.NewLine + "Configure el puerto del equipo", "Ping", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            EnviarTCPForm pingForm = new EnviarTCPForm();
+            pingForm.SetInfoEquipo(GetFullInfoMapa());
+            if (pingForm.ShowDialog() == DialogResult.OK)
+            {
+                Contenedor.Contrato.EnviarStream(Id,pingForm.IPAddress, pingForm.SourcePort, pingForm.DestinationPort, null);
+
+            }
+        }
 
         private string _defaultGateWay;
 

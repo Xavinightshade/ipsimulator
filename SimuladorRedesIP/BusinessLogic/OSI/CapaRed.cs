@@ -49,7 +49,7 @@ namespace BusinessLogic.OSI
 
         }
 
-        protected virtual void EnviarPaquete(string direccionIP, Packet packet)
+        public virtual void EnviarPaquete(string direccionIP, Packet packet)
         {
             _capaDatos.EnviarPaquete(packet, direccionIP);
         }

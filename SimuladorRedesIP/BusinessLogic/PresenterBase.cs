@@ -231,6 +231,11 @@ namespace RedesIP
         {
             _estacion.Ping(idEquipo, ipDestino);
         }
+        public void EnviarStream(Guid idEquipo, string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream)
+        {
+            _estacion.EnviarStream(idEquipo,ipDestino,puertoOrigen,puertoDestino,stream);
+
+        }
 
 
         #region IModeloEstacion Members
@@ -474,6 +479,8 @@ namespace RedesIP
         }
 
         #endregion
+
+
     }
 
 

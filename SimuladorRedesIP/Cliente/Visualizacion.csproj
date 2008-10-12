@@ -116,6 +116,12 @@
     <Compile Include="Formularios\ConexionServidor.designer.cs">
       <DependentUpon>ConexionServidor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\EnviarTCPForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\EnviarTCPForm.designer.cs">
+      <DependentUpon>EnviarTCPForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FormularioVLans.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +261,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ConexionServidor.resx">
       <DependentUpon>ConexionServidor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\EnviarTCPForm.resx">
+      <DependentUpon>EnviarTCPForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FormularioVLans.resx">
