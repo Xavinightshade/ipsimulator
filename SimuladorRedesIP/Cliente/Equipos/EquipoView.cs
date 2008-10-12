@@ -13,6 +13,7 @@ namespace RedesIP.Vistas.Equipos
             : base(id, origenX, origenY, ancho, alto)
         {
             _nombre = nombre;
+
         }
         private string _nombre;
 
@@ -43,7 +44,7 @@ namespace RedesIP.Vistas.Equipos
         private bool _elBotonDelMouseEstaPresionado;
         private int _clickOffSetX;
         private int _clickOffSetY;
-        public void EstablecerContenedor(IRegistroMovimientosMouse inst)
+        public virtual void EstablecerContenedor(IRegistroMovimientosMouse inst)
         {
             _reg = inst;
             _ownerControl = inst as Control;
@@ -108,6 +109,8 @@ namespace RedesIP.Vistas.Equipos
         }
         protected virtual void OnMouseUpEvent(System.Windows.Forms.MouseEventArgs e)
         {
+            _tooltip.Hide(_reg.Window);
+
              _elBotonDelMouseEstaPresionado = false;
                 _reg.Contrato.PeticionMoverEquipo(Id, DimensionMundo.OrigenX, DimensionMundo.OrigenY);
                 if (e.Button == MouseButtons.Right)
@@ -122,7 +125,7 @@ namespace RedesIP.Vistas.Equipos
             IWin32Window window = _reg.Window;
             if (_elBotonDelMouseEstaPresionado)
             {
-                _tooltip.Hide(window);
+
                 Dimension.OrigenX = this.Dimension.OrigenX + (e.X - _clickOffSetX);
                 Dimension.OrigenY = this.Dimension.OrigenY + (e.Y - _clickOffSetY);
                 _clickOffSetX = e.X;
@@ -134,7 +137,7 @@ namespace RedesIP.Vistas.Equipos
                 
                 if (HitTest(e.X, e.Y))
                 {
-                    _tooltip.Show(GetFullInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY+DimensionMundo.Alto,2000);
+                    _tooltip.Show(GetFullInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY + DimensionMundo.Alto);
                 }
                 else
                 {
@@ -147,6 +150,9 @@ namespace RedesIP.Vistas.Equipos
 
         private void OnMouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+            _tooltip.Hide(_reg.Window);
+
+
             if (HitTest(e.X, e.Y))
             {
                 _elBotonDelMouseEstaPresionado = true;
@@ -160,12 +166,14 @@ namespace RedesIP.Vistas.Equipos
         public override void DibujarElemento(Graphics grafico)
         {
             grafico.DrawImage(Imagen, this.Dimension.OrigenX, this.Dimension.OrigenY, this.Dimension.Ancho, this.Dimension.Alto);
-            grafico.DrawString(Environment.NewLine+ GetInfoMapa(), new Font("Arial Narrow", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX, DimensionMundo.OrigenY + DimensionMundo.Alto-10));
+            grafico.DrawString(Nombre, new Font("Arial Narrow", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX+3, DimensionMundo.OrigenY- 15));
+
+            grafico.DrawString(Environment.NewLine+ GetInfoMapa(), new Font("Arial Narrow", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX-15, DimensionMundo.OrigenY + DimensionMundo.Alto-8));
             Imagen.Dispose();
         }
         protected virtual string GetInfoMapa()
         {
-            return this.Nombre;
+            return string.Empty;
         }
         protected virtual string GetFullInfoMapa()
         {

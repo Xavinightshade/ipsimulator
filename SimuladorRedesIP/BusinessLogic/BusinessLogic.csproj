@@ -72,6 +72,9 @@
     <Compile Include="Datos\PaqueteDesencapsuladoEventArgs.cs" />
     <Compile Include="Datos\EchoMessage.cs" />
     <Compile Include="Datos\RoutesMessage.cs" />
+    <Compile Include="Datos\Segment.cs" />
+    <Compile Include="Datos\TCPSegment.cs" />
+    <Compile Include="Datos\UDPSegment.cs" />
     <Compile Include="Domain Object\DomainObject.cs" />
     <Compile Include="Domain Object\Rule.cs" />
     <Compile Include="Domain Object\SimpleRule.cs" />

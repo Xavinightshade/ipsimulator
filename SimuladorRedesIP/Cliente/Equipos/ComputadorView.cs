@@ -23,7 +23,7 @@ namespace RedesIP.Vistas.Equipos
             item.Click += new EventHandler(OnPingClick);
             Menu.Items.Add(item);
             _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id,
-                equipo.Puerto.DireccionMAC,equipo.Puerto.IPAddress,equipo.Puerto.Mask,15, 30, this,equipo.Puerto.Nombre,equipo.Puerto.Habilitado);
+                equipo.Puerto.DireccionMAC,equipo.Puerto.IPAddress,equipo.Puerto.Mask,15, 26, this,equipo.Puerto.Nombre,equipo.Puerto.Habilitado);
 		}
 
         private string _defaultGateWay;
@@ -34,6 +34,11 @@ namespace RedesIP.Vistas.Equipos
             set { _defaultGateWay = value; }
         }
 
+        public override void EstablecerContenedor(IRegistroMovimientosMouse inst)
+        {
+            base.EstablecerContenedor(inst);
+            _puerto.EstablecerContenedor(inst);
+        }
 
         private void OnPingClick(object sender, EventArgs e)
         {
@@ -67,7 +72,9 @@ namespace RedesIP.Vistas.Equipos
 		}
         protected override string GetInfoMapa()
         {
-            return Nombre+ Environment.NewLine+_puerto.DireccionIP+" / "+_puerto.Mask;
+            if (string.IsNullOrEmpty(_puerto.DireccionIP))
+                return string.Empty;
+            return base.GetInfoMapa()+_puerto.DireccionIP+" / "+_puerto.Mask;
         }
         protected override void OnMouseUpEvent(MouseEventArgs e)
         {

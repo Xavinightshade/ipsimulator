@@ -80,15 +80,13 @@ namespace RedesIP.Vistas.Equipos
                 _puertosEthernet[i].DibujarElemento(grafico);
             }
         }
-        protected override string GetInfoMapa()
-        {
-            return Nombre;
-        }
+ 
         protected override string GetFullInfoMapa()
         {
             string tip = base.GetFullInfoMapa();
             foreach (PuertoEthernetViewCompleto puerto in _puertosEthernet)
             {
+                tip += Environment.NewLine;
                 tip += Environment.NewLine + "Puerto:  " + puerto.Nombre;
                 tip += Environment.NewLine + "Dirección IP:  " + puerto.DireccionIP + " / " + puerto.Mask;
                 tip += Environment.NewLine + "Dirección MAC:  " + puerto.DireccionMAC;
@@ -99,6 +97,14 @@ namespace RedesIP.Vistas.Equipos
         public override System.Drawing.Image Imagen
         {
             get { return Resources.Router; }
+        }
+        public override void EstablecerContenedor(IRegistroMovimientosMouse inst)
+        {
+            base.EstablecerContenedor(inst);
+            foreach (PuertoEthernetViewCompleto puerto in _puertosEthernet)
+            {
+                puerto.EstablecerContenedor(inst);
+            }
         }
         protected override void OnMouseDobleClick(MouseEventArgs e)
         {

@@ -32,7 +32,7 @@ namespace SimuladorCliente.Marcadores
             Pen p = new Pen(Color, 2);
             p.StartCap = LineCap.Triangle;
             int mitadX = _equipo.DimensionMundo.Centro.X;
-            int mitadY = _equipo.DimensionMundo.Centro.Y;
+            int mitadY = _equipo.DimensionMundo.OrigenY;
             grafico.DrawLine(p, mitadX, mitadY, mitadX + 30, mitadY - 30);
             grafico.FillEllipse(new SolidBrush(Color), mitadX + 20, mitadY - 30, 10, 10);
             grafico.DrawString(Nombre, new Font("Arial", 8, FontStyle.Regular), Brushes.White, new PointF(mitadX + 30, mitadY - 30));

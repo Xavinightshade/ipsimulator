@@ -28,6 +28,14 @@ namespace RedesIP.Vistas.Equipos
             CrearPuertos(equipo.Puertos);
             _vLans = CloneLista(equipo.VLans);
         }
+        public override void EstablecerContenedor(IRegistroMovimientosMouse inst)
+        {
+            base.EstablecerContenedor(inst);
+            foreach (PuertoEthernetViewBase puerto in _puertosEthernet)
+            {
+                puerto.EstablecerContenedor(inst);
+            }
+        }
 
         private List<VLanSOA> CloneLista(List<VLanSOA> vLans)
         {

@@ -29,7 +29,7 @@ namespace RedesIP.Vistas.Equipos.Componentes
             set { _direccionIP = value; }
         }
 
-        public PuertoEthernetViewCompleto(Guid id, string direccionMAC,string direccionIp,int? mask, int origenX, int origenY, EquipoView equipoPadre,string nombre,bool habilitado)
+        public PuertoEthernetViewCompleto(Guid id, string direccionMAC, string direccionIp, int? mask, int origenX, int origenY, EquipoView equipoPadre, string nombre, bool habilitado)
             :base(id,origenX,origenY,equipoPadre,nombre,habilitado)
         {
            
@@ -37,5 +37,6 @@ namespace RedesIP.Vistas.Equipos.Componentes
             _direccionIP = direccionIp;
             _mask = mask;
         }
+
     }
 }

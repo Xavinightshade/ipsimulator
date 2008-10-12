@@ -65,6 +65,14 @@ namespace RedesIP.Vistas.Equipos
         {
             return base.HitTest(x, y);
         }
+        public override void EstablecerContenedor(IRegistroMovimientosMouse inst)
+        {
+            base.EstablecerContenedor(inst);
+            foreach (PuertoEthernetViewBase puerto in _puertosEthernet)
+            {
+                puerto.EstablecerContenedor(inst);
+            }
+        }
         protected override void OnMouseDobleClick(System.Windows.Forms.MouseEventArgs e)
         {
             using (FormularioSwitch swiForm = new FormularioSwitch())
