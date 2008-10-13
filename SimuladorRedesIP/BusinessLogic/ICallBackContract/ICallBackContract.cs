@@ -26,5 +26,6 @@ namespace RedesIP.SOA
         void CrearSwitchVLan(SwitchVLanSOA swiRespuesta);
         [OperationContract(IsOneWay = true)]
         void SetVLans(Guid idSwitchVLan, List<global::SOA.Componentes.VLanSOA> vLansActuales);
+
     }
 }

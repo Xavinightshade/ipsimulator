@@ -18,6 +18,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
     {
 
         private ControladorTCP _controladorTCP;
+
+        public ControladorTCP ControladorTCP
+        {
+            get { return _controladorTCP; }
+        }
         private PuertoEthernetCompleto _puertoEthernet;
         private CapaRedPC _capaRed;
 

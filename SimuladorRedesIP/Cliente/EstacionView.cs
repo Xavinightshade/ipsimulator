@@ -252,6 +252,15 @@ namespace RedesIP.Vistas
         {
             _snifferMaster.EnviarInformacionEncapsulacionPC(encapsulacion);
         }
+        public void EnviarInformacionSegmentoEnviados(Guid idPC, TCPSegmentSOA segment)
+        {
+            _snifferMaster.EnviarInformacionSegmentoEnviados(idPC, segment);
+        }
+
+        public void EnviarInformacionSegmentoRecibido(Guid idPC, TCPSegmentSOA segment)
+        {
+            _snifferMaster.EnviarInformacionSegmentoRecibido(idPC, segment);
+        }
 
 
 
@@ -409,5 +418,7 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+
     }
 }

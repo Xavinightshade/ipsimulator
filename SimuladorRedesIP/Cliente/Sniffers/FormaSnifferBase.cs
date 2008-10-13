@@ -38,7 +38,7 @@ namespace SimuladorCliente
             this.CloseButton = false;
             _marcador = marcador;
             InitializeComponent();
-            ConfigurarGrilla();
+            ConfigurarGrillaEncapsulacion();
             marcadorImagen1.Color = marcador.Color;
             this.TabText = _marcador.Nombre;
             this.textBox1.Text = _marcador.Nombre;
@@ -56,7 +56,7 @@ namespace SimuladorCliente
 
 
 
-        protected virtual void ConfigurarGrilla()
+        protected virtual void ConfigurarGrillaEncapsulacion()
         {
             throw new NotImplementedException();
         }

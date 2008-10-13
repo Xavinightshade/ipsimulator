@@ -22,6 +22,48 @@ namespace BusinessLogic.Sniffer
         {
             _pc.CapaRed.CapaDatos.PaqueteEncapsulado += new EventHandler<BusinessLogic.Datos.PaqueteEncapsuladoEventArgs>(CapaDatos_PaqueteEncapsulado);
             _pc.CapaRed.CapaDatos.PaqueteDesEncapsulado += new EventHandler<BusinessLogic.Datos.PaqueteDesencapsuladoEventArgs>(CapaDatos_PaqueteDesEncapsulado);
+            _pc.ControladorTCP.SegmentoEnviado += new EventHandler<BusinessLogic.Datos.TCPSegmentTransmitido>(ControladorTCP_SegmentoEnviado);
+            _pc.ControladorTCP.SegmentoRecibido += new EventHandler<BusinessLogic.Datos.TCPSegmentRecibido>(ControladorTCP_SegmentoRecibido);
+        }
+
+        void ControladorTCP_SegmentoRecibido(object sender, BusinessLogic.Datos.TCPSegmentRecibido e)
+        {
+            PacketSOA paquete = new PacketSOA();
+            paquete.IpOrigen = e.PacketRecibido.IpOrigen;
+            paquete.IpDestino = e.PacketRecibido.IpDestino;
+            TCPSegmentSOA segment = new TCPSegmentSOA(e.SegmentoTCPRecibido.SourcePort,
+                e.SegmentoTCPRecibido.DestinationPort,
+                paquete,
+                e.SegmentoTCPRecibido.SYN_Flag,
+                e.SegmentoTCPRecibido.ACK_Flag,
+                e.SegmentoTCPRecibido.SEQ_Number,
+                e.SegmentoTCPRecibido.ACK_Number,e.HoraDeTransmision,false);
+            foreach (IVisualizacion vist in Vistas)
+            {
+                vist.EnviarInformacionSegmentoRecibido(_pc.Id, segment);
+
+            }
+        }
+
+        void ControladorTCP_SegmentoEnviado(object sender, BusinessLogic.Datos.TCPSegmentTransmitido e)
+        {
+            PacketSOA paquete = new PacketSOA();
+            paquete.IpOrigen = e.PacketTransmitido.IpOrigen;
+            paquete.IpDestino = e.PacketTransmitido.IpDestino;
+            TCPSegmentSOA segment = new TCPSegmentSOA(e.SegmentoTCPTransmitido.SourcePort,
+                e.SegmentoTCPTransmitido.DestinationPort,
+                paquete,
+                e.SegmentoTCPTransmitido.SYN_Flag,
+                e.SegmentoTCPTransmitido.ACK_Flag,
+                e.SegmentoTCPTransmitido.SEQ_Number,
+                e.SegmentoTCPTransmitido.ACK_Number,
+                e.HoraDeTransmision,
+                true);
+            foreach (IVisualizacion vist in Vistas)
+            {
+                vist.EnviarInformacionSegmentoEnviados(_pc.Id, segment);
+
+            }
         }
 
         void CapaDatos_PaqueteDesEncapsulado(object sender, BusinessLogic.Datos.PaqueteDesencapsuladoEventArgs e)

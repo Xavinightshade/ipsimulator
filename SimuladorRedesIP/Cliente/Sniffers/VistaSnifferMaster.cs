@@ -75,7 +75,7 @@ namespace SimuladorCliente.Sniffers
 
        internal void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion)
        {
-           (_formsSniffers[encapsulacion.IdEquipo] as FormaSnifferPC).ReportarMensaje(encapsulacion);
+           (_formsSniffers[encapsulacion.IdEquipo] as FormaSnifferPC).ReportarMensajeEncapsulacion(encapsulacion);
        }
 
 
@@ -134,6 +134,17 @@ namespace SimuladorCliente.Sniffers
        internal void DeleteSnifferPuerto(Guid idPuerto)
        {
            DeleteSniffer(idPuerto);
+       }
+
+       internal void EnviarInformacionSegmentoEnviados(Guid idPC, TCPSegmentSOA segment)
+       {
+           (_formsSniffers[idPC] as FormaSnifferPC).ReportarSegmentoEnviado(segment);
+
+       }
+
+       internal void EnviarInformacionSegmentoRecibido(Guid idPC, TCPSegmentSOA segment)
+       {
+           (_formsSniffers[idPC] as FormaSnifferPC).ReportarSegmentoEnviado(segment);
        }
     }
 }

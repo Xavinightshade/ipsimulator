@@ -25,6 +25,10 @@ namespace RedesIP.SOA
         [OperationContract(IsOneWay = true)]
         void EnviarInformacionEncapsulacionPC(EncapsulacionSOA encapsulacion);
         [OperationContract(IsOneWay = true)]
+        void EnviarInformacionSegmentoEnviados(Guid idPC, TCPSegmentSOA segment);
+        [OperationContract(IsOneWay = true)]
+        void EnviarInformacionSegmentoRecibido(Guid idPC, TCPSegmentSOA segment);
+        [OperationContract(IsOneWay = true)]
         void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion);
         [OperationContract(IsOneWay = true)]
         void EnviarCambioARP(Guid idEquipo, ARP_SOA listARP);

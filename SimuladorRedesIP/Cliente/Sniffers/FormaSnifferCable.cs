@@ -33,7 +33,7 @@ namespace SimuladorCliente
 
 
 
-        protected override  void ConfigurarGrilla()
+        protected override  void ConfigurarGrillaEncapsulacion()
         {
             Grid.Rows.Clear();
             Grid.Redim(1, 5);
@@ -61,7 +61,7 @@ namespace SimuladorCliente
         private void LlenarGrilla(List<MensajeCableSOA> mensajes)
         {
             int c = 0;
-            ConfigurarGrilla();
+            ConfigurarGrillaEncapsulacion();
             foreach (MensajeCableSOA mensaje in mensajes)
             {
                 Grid.Rows.Insert(1);

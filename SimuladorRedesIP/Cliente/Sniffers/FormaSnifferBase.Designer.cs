@@ -33,8 +33,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.marcadorImagen1 = new SimuladorCliente.Vistas.MarcadorCablePictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -93,17 +93,6 @@
             this.textBox1.Size = new System.Drawing.Size(114, 20);
             this.textBox1.TabIndex = 9;
             // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(602, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 22);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Eliminar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // marcadorImagen1
             // 
             this.marcadorImagen1.BackColor = System.Drawing.Color.Black;
@@ -114,6 +103,17 @@
             this.marcadorImagen1.TabIndex = 6;
             this.marcadorImagen1.TabStop = false;
             this.marcadorImagen1.DoubleClick += new System.EventHandler(this.marcadorImagen1_DoubleClick);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button1.Location = new System.Drawing.Point(602, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 22);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Eliminar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormaSnifferBase
             // 
@@ -140,9 +140,9 @@
 
         private SourceGrid.Grid grid;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private SimuladorCliente.Vistas.MarcadorCablePictureBox marcadorImagen1;
         private System.Windows.Forms.TextBox textBox1;
+        protected System.Windows.Forms.Panel panel1;
     }
 }

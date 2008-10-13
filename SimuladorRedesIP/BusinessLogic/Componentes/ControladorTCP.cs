@@ -5,6 +5,7 @@ using System.Text;
 using BusinessLogic.OSI;
 using BusinessLogic.Datos;
 using BusinessLogic.Modelos.Logicos.Datos;
+using BusinessLogic.Threads;
 
 namespace BusinessLogic.Componentes
 {
@@ -23,6 +24,7 @@ namespace BusinessLogic.Componentes
             TCPSegment tcpSegment = paquete.Datos as TCPSegment;
             if (tcpSegment == null)
                 return;
+            EnviarNotifacionSegmentoRecibido(paquete);
             int hash = ControladorSesion.GetHash(paquete.IpDestino, paquete.IpOrigen, tcpSegment.DestinationPort, tcpSegment.SourcePort);
             if (tcpSegment.SYN_Flag)
                 _sesionesServer.Add(hash, new ControladorSesionServer(paquete.IpDestino, paquete.IpOrigen, tcpSegment.DestinationPort, tcpSegment.SourcePort));
@@ -43,8 +45,27 @@ namespace BusinessLogic.Componentes
             if (paqueteRetorno.Datos == null)
                 return;
             _capaRed.EnviarPaquete(paqueteRetorno.IpDestino, paqueteRetorno);
+            EnviarNotifacionSegmentoEnviado(paqueteRetorno);
 
 
+        }
+
+        private void EnviarNotifacionSegmentoRecibido(Packet paquete)
+        {
+            if (SegmentoRecibido != null)
+            {
+                TCPSegmentRecibido evento = new TCPSegmentRecibido(paquete, ThreadManager.HoraActual);
+                SegmentoRecibido(this, evento);
+            }
+        }
+
+        private void EnviarNotifacionSegmentoEnviado(Packet paquete)
+        {
+            if (SegmentoEnviado != null)
+            {
+                TCPSegmentTransmitido evento = new TCPSegmentTransmitido(paquete, ThreadManager.HoraActual);
+                SegmentoEnviado(this, evento);
+            }
         }
 
         Dictionary<int, ControladorSesionHost> _sesionesHost = new Dictionary<int, ControladorSesionHost>();
@@ -57,9 +78,15 @@ namespace BusinessLogic.Componentes
             TCPSegment tcpSyncSegment = controladorHost.GetTCPSyncSegment();
             Packet paquete = new Packet(controladorHost.IpOrigen, controladorHost.IpDestino, tcpSyncSegment);
             _capaRed.EnviarPaquete(controladorHost.IpDestino, paquete);
+            EnviarNotifacionSegmentoRecibido(paquete);
+
 
 
         }
+
+        public event EventHandler<TCPSegmentRecibido> SegmentoRecibido;
+        public event EventHandler<TCPSegmentTransmitido> SegmentoEnviado;
+
 
     }
 }
