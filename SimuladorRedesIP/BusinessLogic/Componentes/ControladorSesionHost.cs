@@ -10,8 +10,8 @@ namespace BusinessLogic.Componentes
     {
         private byte[] _data;
         public ControladorSesionHost(string ipOrigen, string ipDestino, int puertoOrigem, int PuertoDestino,
-            byte[] data, int segmentSize, int windowScale)
-            : base(ipOrigen, ipDestino, puertoOrigem, PuertoDestino, segmentSize, windowScale)
+            byte[] data, int segmentSize)
+            : base(ipOrigen, ipDestino, puertoOrigem, PuertoDestino, segmentSize)
         {
             _data = data;
         }
@@ -46,7 +46,6 @@ namespace BusinessLogic.Componentes
                 segmentoRetorno.SEQ_Number = SeqNumber;
                 segmentoRetorno.ACK_Number = ACKNumber;
                 segmentoRetorno.SegmentSize = SegmentSize;
-                segmentoRetorno.WindowsSize = WindowsSize;
                 segmentos.Add(segmentoRetorno);
                 TCPSegment segmentoprimerDato = new TCPSegment(PuertoOrigen, PuertoDestino, null, SegmentSize);
                 segmentoprimerDato.ACK_Flag = true;

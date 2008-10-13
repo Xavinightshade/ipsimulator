@@ -33,7 +33,7 @@ namespace RedesIP.SOA
         [OperationContract()]
         void EnviarStream(Guid idEquipo, string ipDestino,int puertoOrigen,
             int puertoDestino,byte[] stream,
-            int segmentSize,int windowScale);
+            int segmentSize);
         [OperationContract()]
         void ActualizarRutas(Guid IdRouter, List<RutaSOA> rutas);
         [OperationContract()]

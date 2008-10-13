@@ -9,7 +9,7 @@ namespace BusinessLogic.Componentes
     public class ControladorSesionServer : ControladorSesion
     {
         public ControladorSesionServer(string ipOrigen, string ipDestino, int puertoOrigem, int PuertoDestino)
-            : base(ipOrigen, ipDestino, puertoOrigem, PuertoDestino, 0, 0)
+            : base(ipOrigen, ipDestino, puertoOrigem, PuertoDestino, 0)
         {
 
         }
@@ -41,7 +41,6 @@ namespace BusinessLogic.Componentes
                 (segmentoOrigen.DataLength == 0))
             {
                 SeqNumber = segmentoOrigen.ACK_Number;
-                WindowsSize = segmentoOrigen.WindowsSize;
                 SegmentSize = segmentoOrigen.SegmentSize;
                 return segmentos;
             }

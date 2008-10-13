@@ -52,24 +52,17 @@ namespace BusinessLogic.Componentes
             get { return _segmentSize; }
             set { _segmentSize = value; }
         }
-        private int _windowsSize;
 
-        public int WindowsSize
-        {
-            get { return _windowsSize; }
-            set { _windowsSize = value; }
-        }
         protected static Random R = new Random();
 
         public ControladorSesion(string ipOrigen, string ipDestino, int puertoOrigem, int PuertoDestino,
-            int segmentSize, int windowScale)
+            int segmentSize)
         {
             _ipOrigen = ipOrigen;
             _ipDestino = ipDestino;
             _puertoOrigen = puertoOrigem;
             _puertoDestino = PuertoDestino;
             _segmentSize = segmentSize;
-            _windowsSize = segmentSize * windowScale;
         }
         public static int GetHash(string ipOrigen, string ipDestino, int puertoOrigem, int PuertoDestino)
         {

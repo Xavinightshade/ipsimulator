@@ -43,7 +43,7 @@ namespace RedesIP.Vistas.Equipos
             if (pingForm.ShowDialog() == DialogResult.OK)
             {
                 Contenedor.Contrato.EnviarStream(Id, pingForm.IPAddress, pingForm.SourcePort, pingForm.DestinationPort, pingForm.Stream,
-                    pingForm.SegmentSize, pingForm.ScaleWindow);
+                    pingForm.SegmentSize);
             }
         }
 

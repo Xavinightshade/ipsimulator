@@ -210,6 +210,7 @@ namespace SimuladorCliente
         {
             System.ServiceModel.Channels.Binding binding =
                 new NetTcpBinding(SecurityMode.None, true);
+            
             EndpointAddress address =
 
 
@@ -378,6 +379,7 @@ namespace SimuladorCliente
 
             NetTcpBinding binding =
                 new NetTcpBinding(SecurityMode.None, true);
+            binding.ReaderQuotas.MaxArrayLength = 2000000;
             Uri address = new Uri(@"net.tcp://" + direccionIP + ":" + puerto + "/Simulador");
             binding.ReceiveTimeout = TimeSpan.MaxValue;
             binding.ReliableSession.InactivityTimeout = TimeSpan.MaxValue;

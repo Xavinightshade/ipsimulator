@@ -232,9 +232,9 @@ namespace RedesIP
             _estacion.Ping(idEquipo, ipDestino);
         }
         public void EnviarStream(Guid idEquipo, string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream,
-            int segmentSize, int windowScale)
+            int segmentSize)
         {
-            _estacion.EnviarStream(idEquipo,ipDestino,puertoOrigen,puertoDestino,stream,segmentSize,windowScale);
+            _estacion.EnviarStream(idEquipo,ipDestino,puertoOrigen,puertoDestino,stream,segmentSize);
 
         }
 

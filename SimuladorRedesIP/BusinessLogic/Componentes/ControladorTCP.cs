@@ -76,9 +76,9 @@ namespace BusinessLogic.Componentes
         Dictionary<int, ControladorSesionHost> _sesionesHost = new Dictionary<int, ControladorSesionHost>();
         Dictionary<int, ControladorSesionServer> _sesionesServer = new Dictionary<int, ControladorSesionServer>();
         public void EnviarStream(string ipAddressDestino, int sourcePort, int destinationPort, byte[] datos,
-            int segmentSize, int windowScale)
+            int segmentSize)
         {
-            ControladorSesionHost controladorHost = new ControladorSesionHost(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort, datos, segmentSize, windowScale);
+            ControladorSesionHost controladorHost = new ControladorSesionHost(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort, datos, segmentSize);
             int hashControlador = ControladorSesion.GetHash(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort);
             _sesionesHost.Add(hashControlador, controladorHost);
             TCPSegment tcpSyncSegment = controladorHost.GetTCPSyncSegment();

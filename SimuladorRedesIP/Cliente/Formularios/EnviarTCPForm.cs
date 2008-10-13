@@ -16,16 +16,12 @@ namespace SimuladorCliente.Formularios
         public EnviarTCPForm()
         {
             InitializeComponent();
-            _escala.SelectedIndex = _escala.Items.Count-1;
         }
         public int TamanoSegmento
         {
             get { return int.Parse(_segmentSize.Text); }
         }
-        public int EscalaWindow
-        {
-            get { return int.Parse(_escala.Text); }
-        }
+
         public string IPAddress
         {
             get { return ipTextBox1.Text; }
@@ -43,10 +39,7 @@ namespace SimuladorCliente.Formularios
         {
             get { return int.Parse(_segmentSize.Text); }
         }
-        public int ScaleWindow
-        {
-            get { return int.Parse(_escala.Text); }
-        }
+
 
         private void _Aceptar_Click(object sender, EventArgs e)
         {
@@ -85,10 +78,7 @@ namespace SimuladorCliente.Formularios
             set { _stream = value; }
         }
 
-        private void _escala_SelectedItemChanged(object sender, EventArgs e)
-        {
-            _windowSize.Text = ( (int.Parse( (string)_escala.SelectedItem)) * (int.Parse(_segmentSize.Text))).ToString();
-        }
+
 
         private void _segmentSize_TextChanged(object sender, EventArgs e)
         {
@@ -99,7 +89,6 @@ namespace SimuladorCliente.Formularios
                 return;
             }
 
-            _windowSize.Text = ((int.Parse((string)_escala.SelectedItem)) * (int.Parse(_segmentSize.Text))).ToString();
 
         }
 

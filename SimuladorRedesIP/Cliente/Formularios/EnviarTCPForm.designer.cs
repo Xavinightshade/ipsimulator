@@ -46,12 +46,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this._windowSize = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this._escala = new System.Windows.Forms.DomainUpDown();
-            this.label6 = new System.Windows.Forms.Label();
             this._segmentSize = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
@@ -73,7 +68,7 @@
             // _Aceptar
             // 
             this._Aceptar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._Aceptar.Location = new System.Drawing.Point(12, 433);
+            this._Aceptar.Location = new System.Drawing.Point(12, 401);
             this._Aceptar.Name = "_Aceptar";
             this._Aceptar.Size = new System.Drawing.Size(85, 23);
             this._Aceptar.TabIndex = 6;
@@ -84,7 +79,7 @@
             // _cancel
             // 
             this._cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancel.Location = new System.Drawing.Point(192, 433);
+            this._cancel.Location = new System.Drawing.Point(192, 401);
             this._cancel.Name = "_cancel";
             this._cancel.Size = new System.Drawing.Size(85, 23);
             this._cancel.TabIndex = 7;
@@ -144,7 +139,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this._equipoInfo);
-            this.groupBox2.Location = new System.Drawing.Point(12, 316);
+            this.groupBox2.Location = new System.Drawing.Point(12, 284);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(265, 111);
             this.groupBox2.TabIndex = 13;
@@ -233,47 +228,15 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this._windowSize);
-            this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this._escala);
-            this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this._segmentSize);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Location = new System.Drawing.Point(12, 214);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(212, 96);
+            this.groupBox4.Size = new System.Drawing.Size(212, 55);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Opciones";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(174, 71);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 13);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "bytes";
-            // 
-            // _windowSize
-            // 
-            this._windowSize.Location = new System.Drawing.Point(108, 64);
-            this._windowSize.Name = "_windowSize";
-            this._windowSize.ReadOnly = true;
-            this._windowSize.Size = new System.Drawing.Size(64, 20);
-            this._windowSize.TabIndex = 14;
-            this._windowSize.Text = "4000";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 71);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 13);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "Tamaño Window";
             // 
             // label8
             // 
@@ -284,34 +247,9 @@
             this.label8.TabIndex = 12;
             this.label8.Text = "bytes";
             // 
-            // _escala
-            // 
-            this._escala.Items.Add("32");
-            this._escala.Items.Add("16");
-            this._escala.Items.Add("8");
-            this._escala.Items.Add("4");
-            this._escala.Items.Add("2");
-            this._escala.Items.Add("1");
-            this._escala.Location = new System.Drawing.Point(108, 41);
-            this._escala.Name = "_escala";
-            this._escala.ReadOnly = true;
-            this._escala.Size = new System.Drawing.Size(64, 20);
-            this._escala.TabIndex = 11;
-            this._escala.Text = "1";
-            this._escala.SelectedItemChanged += new System.EventHandler(this._escala_SelectedItemChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 43);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Escala Window";
-            // 
             // _segmentSize
             // 
-            this._segmentSize.Location = new System.Drawing.Point(108, 17);
+            this._segmentSize.Location = new System.Drawing.Point(108, 21);
             this._segmentSize.Name = "_segmentSize";
             this._segmentSize.Size = new System.Drawing.Size(64, 20);
             this._segmentSize.TabIndex = 8;
@@ -321,7 +259,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 20);
+            this.label7.Location = new System.Drawing.Point(6, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(97, 13);
             this.label7.TabIndex = 7;
@@ -346,7 +284,7 @@
             this.AcceptButton = this._Aceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 468);
+            this.ClientSize = new System.Drawing.Size(285, 430);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -387,14 +325,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox _segmentSize;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DomainUpDown _escala;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox _windowSize;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox _sizeStream;
         private System.Windows.Forms.Label label12;

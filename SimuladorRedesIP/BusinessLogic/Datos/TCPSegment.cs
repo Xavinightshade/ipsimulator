@@ -52,19 +52,16 @@ namespace BusinessLogic.Datos
             get { return _segmentSize; }
             set { _segmentSize = value; }
         }
-        private int _windowsSize;
 
-        public int WindowsSize
-        {
-            get { return _windowsSize; }
-            set { _windowsSize = value; }
-        }
+
+
         public override string ToString()
         {
             string texto = string.Empty;
             texto += "Puerto Origen:" + SourcePort.ToString() + " , ";
             texto += "Puerto Destino:" + DestinationPort.ToString() + " , ";
             texto += "SYN:" + ConvertirValor(_synFlag).ToString() + " , ";
+            texto += "FIN:" + ConvertirValor(_finFlag).ToString() + " , ";
             texto += "ACK:" + ConvertirValor(_ackFlag).ToString() + " , ";
             texto += "SEQ Number:" + _seqNumber.ToString() + " , ";
             texto += "ACK Number:" + _ackNumber.ToString();

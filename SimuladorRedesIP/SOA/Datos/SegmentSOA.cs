@@ -25,7 +25,7 @@ namespace SOA.Datos
             set { _destinationPort = value; }
         }
         private PacketSOA _paquete;
-
+        [DataMember]
         public PacketSOA Paquete
         {
             get { return _paquete; }
@@ -46,9 +46,11 @@ namespace SOA.Datos
             set { _esEnviado = value; }
         }
         private int _dataLength;
+        [DataMember]
         public int DataLength
         {
             get { return _dataLength; }
+            set { _dataLength = value; }
         }
         public SegmentSOA(int sourcePort, int destinationPort, PacketSOA paquete, TimeSpan fecha, bool esEnviado, int dataLength)
         {
