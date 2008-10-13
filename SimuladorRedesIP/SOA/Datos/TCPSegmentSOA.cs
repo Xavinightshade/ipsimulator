@@ -11,8 +11,8 @@ namespace SOA.Datos
     public class TCPSegmentSOA:SegmentSOA
     {
         public TCPSegmentSOA(int sourcePort, int destinationPort,PacketSOA paquete,
-            bool synFlag, bool ackFlag, uint seqNumber, uint ackNumber, TimeSpan fecha, bool esEnviado)
-            :base(sourcePort,destinationPort,paquete,fecha,esEnviado)
+            bool synFlag, bool ackFlag, uint seqNumber, uint ackNumber, TimeSpan fecha, bool esEnviado,int dataLength)
+            :base(sourcePort,destinationPort,paquete,fecha,esEnviado,dataLength)
         {
             _ackFlag = ackFlag;
             _ackNumber = ackNumber;

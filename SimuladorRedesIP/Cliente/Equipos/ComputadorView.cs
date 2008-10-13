@@ -42,8 +42,8 @@ namespace RedesIP.Vistas.Equipos
             pingForm.SetInfoEquipo(GetFullInfoMapa());
             if (pingForm.ShowDialog() == DialogResult.OK)
             {
-                Contenedor.Contrato.EnviarStream(Id,pingForm.IPAddress, pingForm.SourcePort, pingForm.DestinationPort, null);
-
+                Contenedor.Contrato.EnviarStream(Id, pingForm.IPAddress, pingForm.SourcePort, pingForm.DestinationPort, pingForm.Stream,
+                    pingForm.SegmentSize, pingForm.ScaleWindow);
             }
         }
 
@@ -59,6 +59,7 @@ namespace RedesIP.Vistas.Equipos
         {
             base.EstablecerContenedor(inst);
             _puerto.EstablecerContenedor(inst);
+
         }
 
         private void OnPingClick(object sender, EventArgs e)

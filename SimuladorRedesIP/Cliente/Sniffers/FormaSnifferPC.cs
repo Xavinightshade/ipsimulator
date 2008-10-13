@@ -51,7 +51,7 @@ namespace SimuladorCliente
         private void ConfigurarGrillaSegmentos()
         {
             Grid.Rows.Clear();
-            Grid.Redim(1, 12);
+            Grid.Redim(1, 13);
 
 
             Grid.FixedRows = 1;
@@ -68,6 +68,7 @@ namespace SimuladorCliente
             Grid[0, 9] = new SourceGrid.Cells.ColumnHeader("ACK NUMBER");
             Grid[0, 10] = new SourceGrid.Cells.ColumnHeader("SYN FLAG");
             Grid[0, 11] = new SourceGrid.Cells.ColumnHeader("ACK FLAG");
+            Grid[0, 12] = new SourceGrid.Cells.ColumnHeader("DATA LENGTH");
 
 
             Grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
@@ -138,7 +139,8 @@ namespace SimuladorCliente
                 Grid[1, 9] = new SourceGrid.Cells.Cell(mensaje.ACK_Number.ToString());
                 Grid[1, 10] = new SourceGrid.Cells.Cell(ConvertirValor(mensaje.SYN_Flag));
                 Grid[1, 11] = new SourceGrid.Cells.Cell(ConvertirValor(mensaje.ACK_Flag));
-                for (int i = 0; i < 11; i++)
+                Grid[1, 12] = new SourceGrid.Cells.Cell(mensaje.DataLength.ToString());
+                for (int i = 0; i < 12; i++)
                 {
                     Grid[1, i].View = Vista;
                 }

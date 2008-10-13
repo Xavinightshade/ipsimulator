@@ -7,8 +7,8 @@ namespace BusinessLogic.Datos
 {
     public class TCPSegment : Segment
     {
-        public TCPSegment(int sourcePort, int destinationPort, byte[] datos)
-            : base(sourcePort, destinationPort, datos)
+        public TCPSegment(int sourcePort, int destinationPort, byte[] datos, int dataLength)
+            : base(sourcePort, destinationPort, datos,dataLength)
         {
 
         }
@@ -39,6 +39,19 @@ namespace BusinessLogic.Datos
         {
             get { return _ackNumber; }
             set { _ackNumber = value; }
+        }
+        private int _segmentSize;
+        public int SegmentSize
+        {
+            get { return _segmentSize; }
+            set { _segmentSize = value; }
+        }
+        private int _windowsSize;
+
+        public int WindowsSize
+        {
+            get { return _windowsSize; }
+            set { _windowsSize = value; }
         }
         public override string ToString()
         {

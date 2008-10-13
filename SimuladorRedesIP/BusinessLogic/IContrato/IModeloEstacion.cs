@@ -31,7 +31,9 @@ namespace RedesIP.SOA
         [OperationContract()]
         void Ping(Guid idEquipo, string ipDestino);
         [OperationContract()]
-        void EnviarStream(Guid idEquipo, string ipDestino,int puertoOrigen,int puertoDestino,byte[] stream);
+        void EnviarStream(Guid idEquipo, string ipDestino,int puertoOrigen,
+            int puertoDestino,byte[] stream,
+            int segmentSize,int windowScale);
         [OperationContract()]
         void ActualizarRutas(Guid IdRouter, List<RutaSOA> rutas);
         [OperationContract()]

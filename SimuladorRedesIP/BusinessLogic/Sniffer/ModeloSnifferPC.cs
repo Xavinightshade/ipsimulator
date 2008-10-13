@@ -37,7 +37,9 @@ namespace BusinessLogic.Sniffer
                 e.SegmentoTCPRecibido.SYN_Flag,
                 e.SegmentoTCPRecibido.ACK_Flag,
                 e.SegmentoTCPRecibido.SEQ_Number,
-                e.SegmentoTCPRecibido.ACK_Number,e.HoraDeTransmision,false);
+                e.SegmentoTCPRecibido.ACK_Number,e.HoraDeTransmision,
+                false,
+                e.SegmentoTCPRecibido.DataLength);
             foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarInformacionSegmentoRecibido(_pc.Id, segment);
@@ -58,7 +60,8 @@ namespace BusinessLogic.Sniffer
                 e.SegmentoTCPTransmitido.SEQ_Number,
                 e.SegmentoTCPTransmitido.ACK_Number,
                 e.HoraDeTransmision,
-                true);
+                true,
+                e.SegmentoTCPTransmitido.DataLength);
             foreach (IVisualizacion vist in Vistas)
             {
                 vist.EnviarInformacionSegmentoEnviados(_pc.Id, segment);

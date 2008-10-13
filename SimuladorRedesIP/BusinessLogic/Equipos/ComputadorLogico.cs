@@ -97,9 +97,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
           
         }
 
-        internal void EnviarStream(string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream)
+        internal void EnviarStream(string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream,
+            int segmentSize, int windowScale)
         {
-            _controladorTCP.EnviarStream(ipDestino, puertoOrigen, puertoDestino,stream);
+            _controladorTCP.EnviarStream(ipDestino, puertoOrigen, puertoDestino,stream,segmentSize,windowScale);
         }
     }
 }

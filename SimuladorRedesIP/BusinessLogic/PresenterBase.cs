@@ -231,9 +231,10 @@ namespace RedesIP
         {
             _estacion.Ping(idEquipo, ipDestino);
         }
-        public void EnviarStream(Guid idEquipo, string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream)
+        public void EnviarStream(Guid idEquipo, string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream,
+            int segmentSize, int windowScale)
         {
-            _estacion.EnviarStream(idEquipo,ipDestino,puertoOrigen,puertoDestino,stream);
+            _estacion.EnviarStream(idEquipo,ipDestino,puertoOrigen,puertoDestino,stream,segmentSize,windowScale);
 
         }
 

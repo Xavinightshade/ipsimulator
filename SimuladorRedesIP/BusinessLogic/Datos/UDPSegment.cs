@@ -8,8 +8,8 @@ namespace BusinessLogic.Datos
     public class UDPSegment : Segment
     {
 
-        public UDPSegment(int sourcePort, int destinationPort, byte[] datos)
-            : base(sourcePort, destinationPort, datos)
+        public UDPSegment(int sourcePort, int destinationPort, byte[] datos, int dataLength)
+            : base(sourcePort, destinationPort, datos,dataLength)
         {
         }
 

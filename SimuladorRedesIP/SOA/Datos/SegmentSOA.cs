@@ -45,8 +45,14 @@ namespace SOA.Datos
             get { return _esEnviado; }
             set { _esEnviado = value; }
         }
-        public SegmentSOA(int sourcePort, int destinationPort,PacketSOA paquete,TimeSpan fecha,bool esEnviado)
+        private int _dataLength;
+        public int DataLength
         {
+            get { return _dataLength; }
+        }
+        public SegmentSOA(int sourcePort, int destinationPort, PacketSOA paquete, TimeSpan fecha, bool esEnviado, int dataLength)
+        {
+            _dataLength = dataLength;
             _esEnviado = esEnviado;
             _fecha = fecha;
             _sourcePort = sourcePort;
