@@ -710,5 +710,7 @@ namespace SimuladorCliente
         }
 
 
+
+
     }
 }
