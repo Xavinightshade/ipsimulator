@@ -24,7 +24,7 @@ namespace BusinessLogic.Componentes
                 segmentoRetorno.SYN_Flag = true;
                 segmentoRetorno.ACK_Flag = true;
                 segmentoRetorno.SEQ_Number = (uint)R.Next();
-                segmentoRetorno.ACK_Number = segmentoOrigen.SEQ_Number++;
+                segmentoRetorno.ACK_Number = segmentoOrigen.SEQ_Number+1;
                 return segmentoRetorno;
             }
             return null;

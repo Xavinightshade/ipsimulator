@@ -34,7 +34,7 @@ namespace BusinessLogic.Componentes
                 segmentoRetorno = new TCPSegment(PuertoOrigen, PuertoDestino, null);
                 segmentoRetorno.ACK_Flag = true;
                 segmentoRetorno.SEQ_Number = segmentoOrigen.ACK_Number;
-                segmentoRetorno.ACK_Number = segmentoOrigen.SEQ_Number++;
+                segmentoRetorno.ACK_Number = segmentoOrigen.SEQ_Number+1;
                 return segmentoRetorno;
             }
             return segmentoRetorno;

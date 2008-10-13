@@ -36,8 +36,8 @@ namespace BusinessLogic.Modelos.Logicos.Datos
         public override string ToString()
         {
             string info = string.Empty;
-            info += "Ip Origen: " + _ipOrigen + ",,";
-            info += "Ip Destino: " + _ipDestino + ",,";
+            info += "Ip Origen:" + _ipOrigen + " , ";
+            info += "Ip Destino:" + _ipDestino + " , ";
             info += "Dato: " + _datos;
             return info;
         }

@@ -40,7 +40,7 @@ namespace BusinessLogic.Componentes
                 TCPSegment tcpSegmentRetorno = controladorHost.ProcesarSegmento(tcpSegment);
                 paqueteRetorno = new Packet(controladorHost.IpOrigen, controladorHost.IpDestino, tcpSegmentRetorno);
             }
-            if (paquete.Datos == null)
+            if (paqueteRetorno.Datos == null)
                 return;
             _capaRed.EnviarPaquete(paqueteRetorno.IpDestino, paqueteRetorno);
 

@@ -70,7 +70,7 @@ namespace SimuladorCliente
                 Grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.HoraRecepcion.ToString());
                 Grid[1, 2] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressOrigen);
                 Grid[1, 3] = new SourceGrid.Cells.Cell(mensaje.Frame.MACAddressDestino);
-                Grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.Frame.Info.Replace(",,", "@@"));
+                Grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.Frame.Info);
                 Grid[1, 0].AddController(new DoubleClickEventSnifferCable());
                 Grid[1, 1].AddController(new DoubleClickEventSnifferCable());
                 Grid[1, 2].AddController(new DoubleClickEventSnifferCable());

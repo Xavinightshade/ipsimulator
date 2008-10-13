@@ -43,14 +43,20 @@ namespace BusinessLogic.Datos
         public override string ToString()
         {
             string texto = string.Empty;
-            texto += "Puerto Origen: " + SourcePort.ToString() + " ,";
-            texto += "Puerto Destino: " + DestinationPort.ToString() + " ,";
-            texto += "SYN: " + _synFlag.ToString() + " ,";
-            texto += "ACK: " +  _ackFlag.ToString() + " ,";
-            texto += "SEQ Number: " + _seqNumber.ToString() + " ,";
-            texto += "ACK Number: " + _ackNumber.ToString();
+            texto += "Puerto Origen:" + SourcePort.ToString() + " , ";
+            texto += "Puerto Destino:" + DestinationPort.ToString() + " , ";
+            texto += "SYN:" + ConvertirValor(_synFlag).ToString() + " , ";
+            texto += "ACK:" + ConvertirValor(_ackFlag).ToString() + " , ";
+            texto += "SEQ Number:" + _seqNumber.ToString() + " , ";
+            texto += "ACK Number:" + _ackNumber.ToString();
             return texto;
             
+        }
+        private int ConvertirValor(bool valor)
+        {
+            if (valor)
+                return 1;
+            return 0;
         }
 
     }
