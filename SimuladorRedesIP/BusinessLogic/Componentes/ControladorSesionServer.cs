@@ -9,11 +9,11 @@ namespace BusinessLogic.Componentes
     public class ControladorSesionServer : ControladorSesion
     {
         public ControladorSesionServer(string ipOrigen, string ipDestino, int puertoOrigem, int PuertoDestino)
-            : base(ipOrigen, ipDestino, puertoOrigem, PuertoDestino, 0)
+            : base(ipOrigen, ipDestino, puertoOrigem, PuertoDestino, 0,null,null)
         {
 
         }
-
+        bool _fin = false;
         internal List<TCPSegment> ProcesarSegmento(TCPSegment segmentoOrigen)
         {
             List<TCPSegment> segmentos = new List<TCPSegment>();
@@ -38,6 +38,7 @@ namespace BusinessLogic.Componentes
                 !segmentoOrigen.FinFlag &&
                 !segmentoOrigen.SYN_Flag &&
                 segmentoOrigen.ACK_Number == SeqNumber + 1 &&
+                !_fin &&
                 (segmentoOrigen.DataLength == 0))
             {
                 SeqNumber = segmentoOrigen.ACK_Number;
@@ -62,6 +63,7 @@ namespace BusinessLogic.Componentes
 
 
             }
+            
             /// Fin ACK
             if (segmentoOrigen.ACK_Flag &&
                 segmentoOrigen.FinFlag &&
@@ -84,19 +86,28 @@ namespace BusinessLogic.Componentes
                 segmentoFIN.SEQ_Number = SeqNumber;
                 segmentoFIN.ACK_Number = ACKNumber;
                 segmentos.Add(segmentoFIN);
+                _fin = true;
                 return segmentos;
 
             }
             if (segmentoOrigen.ACK_Flag &&
                 !segmentoOrigen.FinFlag &&
-                segmentoOrigen.ACK_Number == SeqNumber &&
-                segmentoOrigen.SEQ_Number == ACKNumber + 1&&
+                segmentoOrigen.ACK_Number == SeqNumber +1&&
+                segmentoOrigen.SEQ_Number == ACKNumber &&
+                _fin &&
                 (segmentoOrigen.DataLength == 0))
             {
+                Data = segmentoOrigen.Data;
+                FileName = segmentoOrigen.FileName;
+                if (ArchivoRecibido != null)
+                {
+                    ArchivoRecibido(this, new EventArgs());
+                }
                 Console.WriteLine("fin server");
 
             }
             return segmentos;
         }
+        public event EventHandler<EventArgs> ArchivoRecibido;
     }
 }

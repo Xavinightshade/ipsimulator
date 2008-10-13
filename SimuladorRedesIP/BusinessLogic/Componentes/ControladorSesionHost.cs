@@ -8,12 +8,11 @@ namespace BusinessLogic.Componentes
 {
     public class ControladorSesionHost : ControladorSesion
     {
-        private byte[] _data;
         public ControladorSesionHost(string ipOrigen, string ipDestino, int puertoOrigem, int PuertoDestino,
-            byte[] data, int segmentSize)
-            : base(ipOrigen, ipDestino, puertoOrigem, PuertoDestino, segmentSize)
+            byte[] data, int segmentSize,string fileName)
+            : base(ipOrigen, ipDestino, puertoOrigem, PuertoDestino, segmentSize,data,fileName)
         {
-            _data = data;
+            Data = data;
         }
 
         internal TCPSegment GetTCPSyncSegment()
@@ -35,7 +34,7 @@ namespace BusinessLogic.Componentes
                 segmentoOrigen.ACK_Flag &&
                 !segmentoOrigen.FinFlag &&
                 segmentoOrigen.DataLength == 0 &&
-                SeqNumber - _initSeqNumber != _data.Length &&
+                SeqNumber - _initSeqNumber != Data.Length &&
                 segmentoOrigen.ACK_Number == SeqNumber + 1)
             {
                 ACKNumber = segmentoOrigen.SEQ_Number + 1;
@@ -59,13 +58,14 @@ namespace BusinessLogic.Componentes
                  segmentoOrigen.ACK_Flag &&
                  segmentoOrigen.FinFlag &&
                 segmentoOrigen.DataLength == 0 &&
-              SeqNumber - _initSeqNumber -2== _data.Length &&
+              SeqNumber - _initSeqNumber -2== Data.Length &&
               segmentoOrigen.ACK_Number == SeqNumber + 1)
             {
                 ACKNumber = segmentoOrigen.SEQ_Number + 1;
                 SeqNumber = segmentoOrigen.ACK_Number;
 
-                TCPSegment segmentoRetorno = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
+                TCPSegment segmentoRetorno = new TCPSegment(PuertoOrigen, PuertoDestino, Data, 0);
+                segmentoRetorno.FileName = FileName;
                 segmentoRetorno.ACK_Flag = true;
                 segmentoRetorno.SEQ_Number = SeqNumber;
                 segmentoRetorno.ACK_Number = ACKNumber;
@@ -79,12 +79,12 @@ namespace BusinessLogic.Componentes
                 segmentoOrigen.ACK_Flag &&
                 !segmentoOrigen.FinFlag &&
                 segmentoOrigen.ACK_Number == SeqNumber + SegmentSize + 1 &&
-                SeqNumber - _initSeqNumber != _data.Length &&
+                SeqNumber - _initSeqNumber != Data.Length &&
                 segmentoOrigen.DataLength == 0)
             {
                 SeqNumber = segmentoOrigen.ACK_Number;
                 int bytesTransmited = (int)SeqNumber - (int)_initSeqNumber - 1;
-                if (bytesTransmited >= _data.Length)
+                if (bytesTransmited >= Data.Length)
                 {
                     segmentos.Add(GetFinRequest());
                     return segmentos;
@@ -94,10 +94,10 @@ namespace BusinessLogic.Componentes
                 segmentoRetorno.SEQ_Number = SeqNumber;
                 segmentoRetorno.ACK_Number = ACKNumber;
                 int segmentSize = SegmentSize;
-                if (_data.Length - bytesTransmited < SegmentSize)
+                if (Data.Length - bytesTransmited < SegmentSize)
                 {
-                    segmentSize = _data.Length - bytesTransmited;
-                    segmentoRetorno.Data = _data;
+                    segmentSize = Data.Length - bytesTransmited;
+                    segmentoRetorno.Data = Data;
                 }
                 SegmentSize = segmentSize;
                 segmentoRetorno.DataLength = SegmentSize;

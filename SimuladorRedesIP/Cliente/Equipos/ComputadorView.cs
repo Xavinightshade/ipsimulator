@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using SimuladorCliente.Formularios;
 using RedesIP.Common;
+using SOA;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -43,7 +44,7 @@ namespace RedesIP.Vistas.Equipos
             if (pingForm.ShowDialog() == DialogResult.OK)
             {
                 Contenedor.Contrato.EnviarStream(Id, pingForm.IPAddress, pingForm.SourcePort, pingForm.DestinationPort, pingForm.Stream,
-                    pingForm.SegmentSize);
+                    pingForm.SegmentSize,pingForm.FileName);
             }
         }
 
@@ -151,5 +152,20 @@ namespace RedesIP.Vistas.Equipos
 
 
 
-	}
+        private delegate void SetLabelTextDelegate(ArchivoSOA archivoSOA, TimeSpan timeSpan);
+        internal void NotificarArchivo(ArchivoSOA archivoSOA, TimeSpan timeSpan)
+        {
+            if (Contenedor.InvokeRequired)
+            {
+                Contenedor.BeginInvoke(new SetLabelTextDelegate(NotificarArchivo),
+                                                            new object[] { archivoSOA,timeSpan });
+
+                return;
+            }
+            ToolTip toolTip = new ToolTip();
+            toolTip.ToolTipIcon = ToolTipIcon.Info;
+            toolTip.ToolTipTitle="Archivo Recibido";
+            toolTip.Show(archivoSOA.FileName+Environment.NewLine+"a las: "+timeSpan.ToString(), base.Contenedor.Window, DimensionMundo.Centro.X, DimensionMundo.Centro.Y, 7000);
+        }
+    }
 }

@@ -4,6 +4,7 @@ using System.Text;
 using System.ServiceModel;
 using RedesIP.SOA.Elementos;
 using SOA.Datos;
+using SOA;
 
 namespace RedesIP.SOA
 {
@@ -26,6 +27,7 @@ namespace RedesIP.SOA
         void CrearSwitchVLan(SwitchVLanSOA swiRespuesta);
         [OperationContract(IsOneWay = true)]
         void SetVLans(Guid idSwitchVLan, List<global::SOA.Componentes.VLanSOA> vLansActuales);
-
+        [OperationContract(IsOneWay = true)]
+        void NotificarArchivo(Guid guid, ArchivoSOA archivoSOA, TimeSpan timeSpan);
     }
 }

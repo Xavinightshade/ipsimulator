@@ -77,6 +77,12 @@ namespace SimuladorCliente.Formularios
             get { return _stream; }
             set { _stream = value; }
         }
+        private string _fileName;
+        public string FileName
+        {
+            get { return _fileName; }
+            set { _fileName = value; }
+        }
 
 
 
@@ -106,6 +112,7 @@ namespace SimuladorCliente.Formularios
                 }
                 _stream = File.ReadAllBytes(dialog.FileName);
                 label5.Text = dialog.FileName;
+                _fileName = f.Name;
                 _sizeStream.Text = _stream.Length.ToString();
 
             }

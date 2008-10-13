@@ -210,9 +210,9 @@ namespace RedesIP
             _computadores[idEquipo].Ping(ipDestino);
         }
         internal void EnviarStream(Guid idEquipo, string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream,
-            int segmentSize)
+            int segmentSize,string fileName)
         {
-            _computadores[idEquipo].EnviarStream(ipDestino, puertoOrigen, puertoDestino, stream,segmentSize);
+            _computadores[idEquipo].EnviarStream(ipDestino, puertoOrigen, puertoDestino, stream,segmentSize,fileName);
         }
 
         public void EstablecerDatosPueroBase(PuertoBaseSOA puerto)

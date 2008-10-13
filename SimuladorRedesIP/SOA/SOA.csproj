@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchivoSOA.cs" />
     <Compile Include="Componentes\CableSOA.cs" />
     <Compile Include="Componentes\PuertoCompletoSOA.cs" />
     <Compile Include="Componentes\PuertoBaseSOA.cs" />

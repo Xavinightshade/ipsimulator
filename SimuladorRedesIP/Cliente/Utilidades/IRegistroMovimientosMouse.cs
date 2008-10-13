@@ -9,6 +9,8 @@ namespace RedesIP.Vistas
 {
 	public interface IRegistroMovimientosMouse
 	{
+       IAsyncResult BeginInvoke(Delegate method, params object[] args);
+        bool InvokeRequired { get; }
         IWin32Window Window { get; }
 		event MouseEventHandler MouseDown;
 		event MouseEventHandler MouseUp;

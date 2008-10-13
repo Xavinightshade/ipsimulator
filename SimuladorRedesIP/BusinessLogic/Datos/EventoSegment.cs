@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BusinessLogic.Modelos.Logicos.Datos;
+using SOA;
 
 namespace BusinessLogic.Datos
 {
@@ -53,6 +54,35 @@ namespace BusinessLogic.Datos
         public TCPSegmentRecibido(Packet paquete, TimeSpan horaTransmision)
         {
             _TCPRecibido = paquete;
+            _horaDeTransmision = horaTransmision;
+        }
+    }
+    public class ArchivoRecibido : EventArgs
+    {
+        private ArchivoSOA _archivo;
+
+        public ArchivoSOA Archivo
+        {
+            get { return _archivo; }
+        }
+        private Guid _idPC;
+
+        public Guid IdPC
+        {
+            get { return _idPC; }
+        }
+
+        private TimeSpan _horaDeTransmision;
+
+        public TimeSpan HoraDeTransmision
+        {
+            get { return _horaDeTransmision; }
+        }
+
+        public ArchivoRecibido(ArchivoSOA archivo, TimeSpan horaTransmision,Guid idPc)
+        {
+            _idPC = idPc;
+            _archivo = archivo;
             _horaDeTransmision = horaTransmision;
         }
     }

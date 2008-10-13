@@ -18,6 +18,7 @@ using SOA.Componentes;
 using SOA.Datos;
 using SimuladorCliente.Marcadores;
 using SimuladorCliente.Herramientas;
+using SOA;
 
 namespace RedesIP.Vistas
 {
@@ -420,5 +421,16 @@ namespace RedesIP.Vistas
         #endregion
 
 
+
+        #region IVisualizacion Members
+
+
+        public void NotificarArchivo(Guid guid, ArchivoSOA archivoSOA, TimeSpan timeSpan)
+        {
+            ComputadorView pcView = _equipos[guid] as ComputadorView;
+            pcView.NotificarArchivo(archivoSOA, timeSpan);
+        }
+
+        #endregion
     }
 }

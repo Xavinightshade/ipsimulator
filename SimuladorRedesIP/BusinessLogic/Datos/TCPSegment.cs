@@ -52,6 +52,13 @@ namespace BusinessLogic.Datos
             get { return _segmentSize; }
             set { _segmentSize = value; }
         }
+        private string _fileName;
+
+        public string FileName
+        {
+            get { return _fileName; }
+            set { _fileName = value; }
+        }
 
 
 

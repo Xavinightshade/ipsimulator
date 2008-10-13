@@ -15,6 +15,7 @@ using BusinessLogic.Sniffer;
 using SOA.Componentes;
 using BusinessLogic.Threads;
 using BusinessLogic.Equipos;
+using BusinessLogic.Datos;
 
 namespace RedesIP
 {
@@ -90,6 +91,7 @@ namespace RedesIP
             EstacionSOA estacionSOA = new EstacionSOA();
             foreach (KeyValuePair<Guid,ComputadorLogico> par in _estacion.Computadores)
             {
+                par.Value.ArchivoRecibido += new EventHandler<BusinessLogic.Datos.ArchivoRecibido>(Value_ArchivoRecibido);
                estacionSOA.Computadores.Add(CrearComputadorSOA(par.Value));
             }
             foreach (KeyValuePair<Guid,SwitchLogico> par in _estacion.Switches)
@@ -113,6 +115,16 @@ namespace RedesIP
             cliente.ActualizarEstacion(estacionSOA);
 
         }
+
+        void Value_ArchivoRecibido(object sender, ArchivoRecibido e)
+        {
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.NotificarArchivo(e.IdPC, e.Archivo, e.HoraDeTransmision);
+            }
+        }
+
+
 
 
 
@@ -232,9 +244,9 @@ namespace RedesIP
             _estacion.Ping(idEquipo, ipDestino);
         }
         public void EnviarStream(Guid idEquipo, string ipDestino, int puertoOrigen, int puertoDestino, byte[] stream,
-            int segmentSize)
+            int segmentSize,string fileName)
         {
-            _estacion.EnviarStream(idEquipo,ipDestino,puertoOrigen,puertoDestino,stream,segmentSize);
+            _estacion.EnviarStream(idEquipo,ipDestino,puertoOrigen,puertoDestino,stream,segmentSize,fileName);
 
         }
 

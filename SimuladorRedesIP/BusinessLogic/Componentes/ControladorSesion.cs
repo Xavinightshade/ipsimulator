@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SOA;
 
 namespace BusinessLogic.Componentes
 {
     public abstract class ControladorSesion
     {
         private uint _seqNumber;
+        private byte[] _data;
+
+        public byte[] Data
+        {
+            get { return _data; }
+        protected    set { _data = value; }
+        }
 
         protected uint SeqNumber
         {
@@ -51,18 +59,25 @@ namespace BusinessLogic.Componentes
         {
             get { return _segmentSize; }
             set { _segmentSize = value; }
+        }      
+        private string _fileName;
+        public string FileName
+        {
+            get { return _fileName; }
+            set { _fileName = value; }
         }
 
         protected static Random R = new Random();
 
         public ControladorSesion(string ipOrigen, string ipDestino, int puertoOrigem, int PuertoDestino,
-            int segmentSize)
+            int segmentSize, byte[] data, string fileName)
         {
             _ipOrigen = ipOrigen;
             _ipDestino = ipDestino;
             _puertoOrigen = puertoOrigem;
             _puertoDestino = PuertoDestino;
             _segmentSize = segmentSize;
+            _fileName = fileName;
         }
         public static int GetHash(string ipOrigen, string ipDestino, int puertoOrigem, int PuertoDestino)
         {
