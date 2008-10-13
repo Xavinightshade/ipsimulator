@@ -14,44 +14,91 @@ namespace BusinessLogic.Componentes
 
         }
 
-        internal TCPSegment ProcesarSegmento(TCPSegment segmentoOrigen)
+        internal List<TCPSegment> ProcesarSegmento(TCPSegment segmentoOrigen)
         {
-            TCPSegment segmentoRetorno = null;
-
-            if (segmentoOrigen.SYN_Flag)
+            List<TCPSegment> segmentos = new List<TCPSegment>();
+            /// 2ns setp hand shacke
+            if (segmentoOrigen.SYN_Flag &&
+                !segmentoOrigen.ACK_Flag &&
+                segmentoOrigen.DataLength == 0)
             {
-                segmentoRetorno = new TCPSegment(PuertoOrigen, PuertoDestino, null,0);
+                SeqNumber = (uint)R.Next();
+                ACKNumber = segmentoOrigen.SEQ_Number + 1;
+
+                TCPSegment segmentoRetorno = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
                 segmentoRetorno.SYN_Flag = true;
                 segmentoRetorno.ACK_Flag = true;
-                SeqNumber = (uint)R.Next();
                 segmentoRetorno.SEQ_Number = SeqNumber;
-                ACKNumber = segmentoOrigen.SEQ_Number + 1;
                 segmentoRetorno.ACK_Number = ACKNumber;
-                return segmentoRetorno;
+                segmentos.Add(segmentoRetorno);
+                return segmentos;
             }
+            // 3rd step hand shake server
             if (segmentoOrigen.ACK_Flag &&
+                !segmentoOrigen.FinFlag &&
+                !segmentoOrigen.SYN_Flag &&
                 segmentoOrigen.ACK_Number == SeqNumber + 1 &&
-                (segmentoOrigen.DataLength==0))
+                (segmentoOrigen.DataLength == 0))
             {
                 SeqNumber = segmentoOrigen.ACK_Number;
                 WindowsSize = segmentoOrigen.WindowsSize;
                 SegmentSize = segmentoOrigen.SegmentSize;
-                return null;
+                return segmentos;
             }
+            /// Transferencia
             if (segmentoOrigen.ACK_Flag &&
+                !segmentoOrigen.FinFlag &&
                 segmentoOrigen.ACK_Number == SeqNumber &&
+                segmentoOrigen.SEQ_Number == ACKNumber&&
                 (segmentoOrigen.DataLength != 0))
             {
-                segmentoRetorno = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
+                SegmentSize = segmentoOrigen.DataLength;
+                ACKNumber = segmentoOrigen.SEQ_Number + (uint)SegmentSize + 1;
+                TCPSegment segmentoRetorno = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
                 segmentoRetorno.ACK_Flag = true;
                 segmentoRetorno.SEQ_Number = SeqNumber;
-                ACKNumber = segmentoOrigen.SEQ_Number + (uint)SegmentSize+1;
                 segmentoRetorno.ACK_Number = ACKNumber;
-                return segmentoRetorno;
+                segmentos.Add(segmentoRetorno);
+                return segmentos;
 
 
             }
-            return null;
+            /// Fin ACK
+            if (segmentoOrigen.ACK_Flag &&
+                segmentoOrigen.FinFlag &&
+                segmentoOrigen.ACK_Number == SeqNumber &&
+                segmentoOrigen.SEQ_Number == ACKNumber + segmentoOrigen.DataLength &&
+                (segmentoOrigen.DataLength == 0))
+            {
+                ACKNumber = ACKNumber + segmentoOrigen.SEQ_Number + 1;
+                SeqNumber = segmentoOrigen.ACK_Number;
+
+                TCPSegment segmentoACK_FIN = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
+                segmentoACK_FIN.ACK_Flag = true;
+                segmentoACK_FIN.SEQ_Number = SeqNumber;
+                segmentoACK_FIN.ACK_Number = ACKNumber;
+                segmentos.Add(segmentoACK_FIN);
+
+                TCPSegment segmentoFIN = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
+                segmentoFIN.ACK_Flag = true;
+                segmentoFIN.FinFlag = true;
+                segmentoFIN.SEQ_Number = SeqNumber;
+                segmentoFIN.ACK_Number = ACKNumber;
+                segmentos.Add(segmentoFIN);
+                segmentos.Add(segmentoFIN);
+                return segmentos;
+
+            }
+            if (segmentoOrigen.ACK_Flag &&
+                !segmentoOrigen.FinFlag &&
+                segmentoOrigen.ACK_Number == SeqNumber &&
+                segmentoOrigen.SEQ_Number == ACKNumber + 1&&
+                (segmentoOrigen.DataLength == 0))
+            {
+                Console.WriteLine("fin server");
+
+            }
+            return segmentos;
         }
     }
 }

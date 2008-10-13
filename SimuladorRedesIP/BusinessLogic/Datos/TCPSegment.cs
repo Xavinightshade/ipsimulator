@@ -20,7 +20,13 @@ namespace BusinessLogic.Datos
             set { _synFlag = value; }
         }
         private bool _ackFlag;
+        private bool _finFlag;
 
+        public bool FinFlag
+        {
+            get { return _finFlag; }
+            set { _finFlag = value; }
+        }
         public bool ACK_Flag
         {
             get { return _ackFlag; }

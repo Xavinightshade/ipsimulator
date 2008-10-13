@@ -24,6 +24,7 @@ namespace BusinessLogic.Datos
         public byte[] Data
         {
             get { return _data; }
+            set { _data = value; }
         }
         private int _dataLength;
 

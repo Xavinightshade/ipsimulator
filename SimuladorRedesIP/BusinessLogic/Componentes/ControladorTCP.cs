@@ -27,42 +27,32 @@ namespace BusinessLogic.Componentes
             EnviarNotifacionSegmentoRecibido(paquete);
             int hash = ControladorSesion.GetHash(paquete.IpDestino, paquete.IpOrigen, tcpSegment.DestinationPort, tcpSegment.SourcePort);
             if (tcpSegment.SYN_Flag && !tcpSegment.ACK_Flag)
-                    _sesionesServer.Add(hash, new ControladorSesionServer(paquete.IpDestino, paquete.IpOrigen, tcpSegment.DestinationPort, tcpSegment.SourcePort));
-            Packet paqueteRetorno = null;
-            string ipDestino = string.Empty;
+                _sesionesServer.Add(hash, new ControladorSesionServer(paquete.IpDestino, paquete.IpOrigen, tcpSegment.DestinationPort, tcpSegment.SourcePort));
             if (_sesionesServer.ContainsKey(hash))
             {
                 ControladorSesionServer controladorServer = _sesionesServer[hash];
-                TCPSegment tcpSegmentRetorno = controladorServer.ProcesarSegmento(tcpSegment);
-                paqueteRetorno = new Packet(controladorServer.IpOrigen, controladorServer.IpDestino, tcpSegmentRetorno);
+                List<TCPSegment> segmentos = controladorServer.ProcesarSegmento(tcpSegment);
+                EnviarSegmentos(segmentos, controladorServer);
             }
             if (_sesionesHost.ContainsKey(hash))
             {
                 ControladorSesionHost controladorHost = _sesionesHost[hash];
-                TCPSegment tcpSegmentRetorno = controladorHost.ProcesarSegmento(tcpSegment);
-                if (tcpSegmentRetorno == null)
-                    return;
-                paqueteRetorno = new Packet(controladorHost.IpOrigen, controladorHost.IpDestino, tcpSegmentRetorno);
-                if (tcpSegmentRetorno.ACK_Flag && (!tcpSegmentRetorno.SYN_Flag) &&
-                    (tcpSegmentRetorno.DataLength==0))
-                {
-                    _capaRed.EnviarPaquete(paqueteRetorno.IpDestino, paqueteRetorno);
-                    EnviarNotifacionSegmentoEnviado(paqueteRetorno);
-                    TCPSegment primerSegmento = controladorHost.GetPrimerSegmentoStream();
-                    Packet paquetePrimerSegmento = new Packet(controladorHost.IpOrigen, controladorHost.IpDestino, primerSegmento);
-                    _capaRed.EnviarPaquete(paquetePrimerSegmento.IpDestino, paquetePrimerSegmento);
-                    EnviarNotifacionSegmentoEnviado(paquetePrimerSegmento);
-                    return;
-                }
-
-
+                List<TCPSegment> segmentos = controladorHost.ProcesarSegmento(tcpSegment);
+                EnviarSegmentos(segmentos, controladorHost);
             }
-            if (paqueteRetorno.Datos == null)
-                return;
-            _capaRed.EnviarPaquete(paqueteRetorno.IpDestino, paqueteRetorno);
-            EnviarNotifacionSegmentoEnviado(paqueteRetorno);
 
 
+
+        }
+
+        private void EnviarSegmentos(List<TCPSegment> segmentos, ControladorSesion controlador)
+        {
+            foreach (TCPSegment segmento in segmentos)
+            {
+                Packet paquete = new Packet(controlador.IpOrigen, controlador.IpDestino, segmento);
+                _capaRed.EnviarPaquete(controlador.IpDestino, paquete);
+                EnviarNotifacionSegmentoEnviado(paquete);
+            }
         }
 
         private void EnviarNotifacionSegmentoRecibido(Packet paquete)
@@ -88,15 +78,13 @@ namespace BusinessLogic.Componentes
         public void EnviarStream(string ipAddressDestino, int sourcePort, int destinationPort, byte[] datos,
             int segmentSize, int windowScale)
         {
-            ControladorSesionHost controladorHost = new ControladorSesionHost(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort, datos,segmentSize,windowScale);
+            ControladorSesionHost controladorHost = new ControladorSesionHost(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort, datos, segmentSize, windowScale);
             int hashControlador = ControladorSesion.GetHash(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort);
             _sesionesHost.Add(hashControlador, controladorHost);
             TCPSegment tcpSyncSegment = controladorHost.GetTCPSyncSegment();
-            Packet paquete = new Packet(controladorHost.IpOrigen, controladorHost.IpDestino, tcpSyncSegment);
-            _capaRed.EnviarPaquete(controladorHost.IpDestino, paquete);
-            EnviarNotifacionSegmentoEnviado(paquete);
-
-
+            List<TCPSegment> segmentos = new List<TCPSegment>();
+            segmentos.Add(tcpSyncSegment);
+            EnviarSegmentos(segmentos,controladorHost);
 
         }
 
