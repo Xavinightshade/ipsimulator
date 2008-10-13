@@ -21,11 +21,12 @@ namespace BusinessLogic.Componentes
             TCPSegment tcpSyncSegment = new TCPSegment(PuertoOrigen, PuertoDestino, null,0);
             tcpSyncSegment.SYN_Flag = true;
             SeqNumber=(uint)R.Next();
+            _initSeqNumber = SeqNumber;
             tcpSyncSegment.SEQ_Number = SeqNumber;
 
             return tcpSyncSegment;
         }
-
+        private uint _initSeqNumber = 0;
         internal TCPSegment ProcesarSegmento(TCPSegment segmentoOrigen)
         {
             TCPSegment segmentoRetorno=null;
@@ -43,6 +44,10 @@ namespace BusinessLogic.Componentes
             }
             if (segmentoOrigen.ACK_Number==SeqNumber+SegmentSize+1)
             {
+                if (SeqNumber-_initSeqNumber>_data.Length)
+                {
+                    return null;
+                }
                 segmentoRetorno = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
                 segmentoRetorno.ACK_Flag = true;
                 SeqNumber = segmentoOrigen.ACK_Number+1;

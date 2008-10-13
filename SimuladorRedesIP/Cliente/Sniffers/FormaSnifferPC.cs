@@ -140,7 +140,7 @@ namespace SimuladorCliente
                 Grid[1, 10] = new SourceGrid.Cells.Cell(ConvertirValor(mensaje.SYN_Flag));
                 Grid[1, 11] = new SourceGrid.Cells.Cell(ConvertirValor(mensaje.ACK_Flag));
                 Grid[1, 12] = new SourceGrid.Cells.Cell(mensaje.DataLength.ToString());
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
                     Grid[1, i].View = Vista;
                 }

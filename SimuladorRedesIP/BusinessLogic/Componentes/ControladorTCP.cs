@@ -40,6 +40,8 @@ namespace BusinessLogic.Componentes
             {
                 ControladorSesionHost controladorHost = _sesionesHost[hash];
                 TCPSegment tcpSegmentRetorno = controladorHost.ProcesarSegmento(tcpSegment);
+                if (tcpSegmentRetorno == null)
+                    return;
                 paqueteRetorno = new Packet(controladorHost.IpOrigen, controladorHost.IpDestino, tcpSegmentRetorno);
                 if (tcpSegmentRetorno.ACK_Flag && (!tcpSegmentRetorno.SYN_Flag) &&
                     (tcpSegmentRetorno.DataLength==0))
