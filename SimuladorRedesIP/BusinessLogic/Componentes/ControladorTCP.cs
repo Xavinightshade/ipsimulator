@@ -94,6 +94,8 @@ namespace BusinessLogic.Componentes
         {
             ControladorSesionHost controladorHost = new ControladorSesionHost(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort, datos, segmentSize,fileName);
             int hashControlador = ControladorSesion.GetHash(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort);
+            if (_sesionesHost.ContainsKey(hashControlador))
+                return;
             _sesionesHost.Add(hashControlador, controladorHost);
             TCPSegment tcpSyncSegment = controladorHost.GetTCPSyncSegment();
             List<TCPSegment> segmentos = new List<TCPSegment>();
