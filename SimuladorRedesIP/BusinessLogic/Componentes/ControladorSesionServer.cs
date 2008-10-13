@@ -70,7 +70,7 @@ namespace BusinessLogic.Componentes
                 segmentoOrigen.SEQ_Number == ACKNumber + segmentoOrigen.DataLength &&
                 (segmentoOrigen.DataLength == 0))
             {
-                ACKNumber = ACKNumber + segmentoOrigen.SEQ_Number + 1;
+                ACKNumber = segmentoOrigen.SEQ_Number + 1;
                 SeqNumber = segmentoOrigen.ACK_Number;
 
                 TCPSegment segmentoACK_FIN = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
@@ -84,7 +84,6 @@ namespace BusinessLogic.Componentes
                 segmentoFIN.FinFlag = true;
                 segmentoFIN.SEQ_Number = SeqNumber;
                 segmentoFIN.ACK_Number = ACKNumber;
-                segmentos.Add(segmentoFIN);
                 segmentos.Add(segmentoFIN);
                 return segmentos;
 

@@ -11,13 +11,21 @@ namespace SOA.Datos
     public class TCPSegmentSOA:SegmentSOA
     {
         public TCPSegmentSOA(int sourcePort, int destinationPort,PacketSOA paquete,
-            bool synFlag, bool ackFlag, uint seqNumber, uint ackNumber, TimeSpan fecha, bool esEnviado,int dataLength)
+            bool synFlag, bool ackFlag, uint seqNumber, uint ackNumber, TimeSpan fecha, bool esEnviado,int dataLength,bool finFlag)
             :base(sourcePort,destinationPort,paquete,fecha,esEnviado,dataLength)
         {
             _ackFlag = ackFlag;
             _ackNumber = ackNumber;
             _seqNumber = seqNumber;
             _synFlag = synFlag;
+            _finFlag = finFlag;
+        }
+        private bool _finFlag;
+        [DataMember]
+        public bool FIN_Flag
+        {
+            get { return _finFlag; }
+            set { _finFlag = value; }
         }
         private bool _synFlag;
         [DataMember]

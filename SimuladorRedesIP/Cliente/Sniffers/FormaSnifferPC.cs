@@ -20,7 +20,7 @@ namespace SimuladorCliente
     public partial class FormaSnifferPC : FormaSnifferBase
     {
         public FormaSnifferPC(MarcadorPC marcador)
-            :base(marcador)
+            : base(marcador)
         {
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
@@ -29,7 +29,7 @@ namespace SimuladorCliente
 
 
 
-        protected override  void ConfigurarGrillaEncapsulacion()
+        protected override void ConfigurarGrillaEncapsulacion()
         {
             Grid.Rows.Clear();
             Grid.Redim(1, 3);
@@ -51,7 +51,7 @@ namespace SimuladorCliente
         private void ConfigurarGrillaSegmentos()
         {
             Grid.Rows.Clear();
-            Grid.Redim(1, 13);
+            Grid.Redim(1, 14);
 
 
             Grid.FixedRows = 1;
@@ -68,7 +68,8 @@ namespace SimuladorCliente
             Grid[0, 9] = new SourceGrid.Cells.ColumnHeader("ACK NUMBER");
             Grid[0, 10] = new SourceGrid.Cells.ColumnHeader("SYN FLAG");
             Grid[0, 11] = new SourceGrid.Cells.ColumnHeader("ACK FLAG");
-            Grid[0, 12] = new SourceGrid.Cells.ColumnHeader("DATA LENGTH");
+            Grid[0, 12] = new SourceGrid.Cells.ColumnHeader("FIN FLAG");
+            Grid[0, 13] = new SourceGrid.Cells.ColumnHeader("DATA LENGTH");
 
 
             Grid.SelectionMode = SourceGrid.GridSelectionMode.Row;
@@ -95,11 +96,11 @@ namespace SimuladorCliente
                 {
                     mostrar += "Paquete Desencapsulado";
                 }
-                  Grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
+                Grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
 
-                  Grid[1, 0].AddController(new DoubleClickEventSnifferPC());
-                  Grid[1, 1].AddController(new DoubleClickEventSnifferPC());
-                  Grid[1, 2].AddController(new DoubleClickEventSnifferPC());
+                Grid[1, 0].AddController(new DoubleClickEventSnifferPC());
+                Grid[1, 1].AddController(new DoubleClickEventSnifferPC());
+                Grid[1, 2].AddController(new DoubleClickEventSnifferPC());
                 Grid[1, 0].View = Vista;
                 Grid[1, 1].View = Vista;
                 Grid[1, 2].View = Vista;
@@ -111,10 +112,11 @@ namespace SimuladorCliente
         }
         private void LlenarGrillaSegmentos(List<TCPSegmentSOA> mensajesSegmentos)
         {
-            
+
 
             int c = 0;
             ConfigurarGrillaSegmentos();
+
             foreach (TCPSegmentSOA mensaje in mensajesSegmentos)
             {
                 Grid.Rows.Insert(1);
@@ -125,12 +127,14 @@ namespace SimuladorCliente
                 {
                     Grid[1, 2] = new SourceGrid.Cells.Cell("1");
                     Grid[1, 3] = new SourceGrid.Cells.Cell("0");
+
                 }
                 else
                 {
                     Grid[1, 2] = new SourceGrid.Cells.Cell("0");
                     Grid[1, 3] = new SourceGrid.Cells.Cell("1");
                 }
+
                 Grid[1, 4] = new SourceGrid.Cells.Cell(mensaje.Paquete.IpOrigen);
                 Grid[1, 5] = new SourceGrid.Cells.Cell(mensaje.Paquete.IpDestino);
                 Grid[1, 6] = new SourceGrid.Cells.Cell(mensaje.SourcePort.ToString());
@@ -139,11 +143,24 @@ namespace SimuladorCliente
                 Grid[1, 9] = new SourceGrid.Cells.Cell(mensaje.ACK_Number.ToString());
                 Grid[1, 10] = new SourceGrid.Cells.Cell(ConvertirValor(mensaje.SYN_Flag));
                 Grid[1, 11] = new SourceGrid.Cells.Cell(ConvertirValor(mensaje.ACK_Flag));
-                Grid[1, 12] = new SourceGrid.Cells.Cell(mensaje.DataLength.ToString());
-                for (int i = 0; i < 13; i++)
+                Grid[1, 12] = new SourceGrid.Cells.Cell(ConvertirValor(mensaje.FIN_Flag));
+                Grid[1, 13] = new SourceGrid.Cells.Cell(mensaje.DataLength.ToString());
+                for (int i = 0; i < 14; i++)
                 {
-                    Grid[1, i].View = Vista;
+                    if (mensaje.EsEnviado)
+                    {
+                        Cell cell = new Cell();
+                        cell.BackColor = Color.LightBlue;
+                        Grid[1, i].View = cell;
+                    }
+                    else
+                    {
+                        Cell cell = new Cell();
+                        cell.BackColor = Color.White;
+                        Grid[1, i].View = cell;
+                    }
                 }
+
             }
             Grid.Columns.AutoSizeView();
         }
@@ -169,7 +186,7 @@ namespace SimuladorCliente
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new SetLabelTextDelegate(ReportarMensajeEncapsulacion),
-                                                            new object[] { mensaje});
+                                                            new object[] { mensaje });
 
                 return;
             }
@@ -190,7 +207,7 @@ namespace SimuladorCliente
             _mensajesSegmentos.Add(segment);
 
             SeleccionSniffer();
-            
+
         }
 
 

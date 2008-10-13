@@ -60,7 +60,7 @@ namespace BusinessLogic.Componentes
                  segmentoOrigen.ACK_Flag &&
                  segmentoOrigen.FinFlag &&
                 segmentoOrigen.DataLength == 0 &&
-              SeqNumber - _initSeqNumber == _data.Length &&
+              SeqNumber - _initSeqNumber -2== _data.Length &&
               segmentoOrigen.ACK_Number == SeqNumber + 1)
             {
                 ACKNumber = segmentoOrigen.SEQ_Number + 1;
@@ -106,17 +106,18 @@ namespace BusinessLogic.Componentes
 
                 return segmentos;
             }
-            throw new Exception();
+            return segmentos;
         }
 
         private TCPSegment GetFinRequest()
         {
-            TCPSegment tcpSyncSegment = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
-            tcpSyncSegment.FinFlag = true;
+            TCPSegment tcpFInSegment = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);
+            tcpFInSegment.FinFlag = true;
+            tcpFInSegment.ACK_Flag = true;
             SeqNumber = SeqNumber;
-            tcpSyncSegment.SEQ_Number = SeqNumber;
-            tcpSyncSegment.ACK_Number = ACKNumber;
-            return tcpSyncSegment;
+            tcpFInSegment.SEQ_Number = SeqNumber;
+            tcpFInSegment.ACK_Number = ACKNumber;
+            return tcpFInSegment;
         }
 
         internal TCPSegment GetPrimerSegmentoStream()

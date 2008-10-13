@@ -62,7 +62,7 @@ namespace SimuladorCliente
         }
 
 
-        private IView _vista = new CellBackColorAlternate(Color.LightSkyBlue, Color.WhiteSmoke);
+        private IView _vista = new CellBackColorAlternate(Color.LightBlue, Color.White);
 
         protected IView Vista
         {
