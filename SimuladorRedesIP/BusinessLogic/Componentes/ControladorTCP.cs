@@ -78,7 +78,7 @@ namespace BusinessLogic.Componentes
             TCPSegment tcpSyncSegment = controladorHost.GetTCPSyncSegment();
             Packet paquete = new Packet(controladorHost.IpOrigen, controladorHost.IpDestino, tcpSyncSegment);
             _capaRed.EnviarPaquete(controladorHost.IpDestino, paquete);
-            EnviarNotifacionSegmentoRecibido(paquete);
+            EnviarNotifacionSegmentoEnviado(paquete);
 
 
 
