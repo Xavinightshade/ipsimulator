@@ -88,13 +88,13 @@ namespace SimuladorCliente
                 Grid[1, 0] = new SourceGrid.Cells.Cell(c++.ToString());
                 Grid[1, 1] = new SourceGrid.Cells.Cell(mensaje.Fecha.ToString());
                 string mostrar = String.Empty;
-                if (mensaje.EsEncapsulacion)
+                if (!mensaje.EsEncapsulacion)
                 {
-                    mostrar += "Paquete Encapsulado";
+                    mostrar += "Frame -> Paquete";
                 }
                 else
                 {
-                    mostrar += "Paquete Desencapsulado";
+                    mostrar += "Paquete -> Frame";
                 }
                 Grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
 

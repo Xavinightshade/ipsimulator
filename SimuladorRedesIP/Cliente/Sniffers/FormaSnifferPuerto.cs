@@ -62,7 +62,7 @@ namespace SimuladorCliente
                 string asociaciones = string.Empty;
                 foreach (AsociacionIpMacSOA item in mensaje.Asociaciones)
                 {
-                    asociaciones += "Ip: " + item.Ip + "-> MAC: " + item.MacAddress + "@@ ";
+                    asociaciones += "IP:" + item.Ip + "-> MAC:" + item.MacAddress + "  ,  ";
                 }
                 Grid.Rows.Insert(1);
                 Grid.Rows[1].Tag = mensaje;

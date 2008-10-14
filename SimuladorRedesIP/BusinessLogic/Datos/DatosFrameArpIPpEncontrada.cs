@@ -27,7 +27,7 @@ namespace BusinessLogic.Datos
         }
         public override string ToString()
         {
-            return _direccionIP + " en " + _macAddress;
+            return "ARP: "+"La dirección MAC:"+ _macAddress+" le corresponde la dirección IP "+ _direccionIP;
         } 
     }
 }

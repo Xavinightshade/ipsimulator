@@ -63,7 +63,7 @@ namespace SimuladorCliente
                 string mostrar = String.Empty;
                 for (int i = 0; i < mensaje.SwiTable.Asociaciones.Count; i++)
                 {
-                    mostrar+=  "Dir: " + mensaje.SwiTable.Asociaciones[i].MacAddress + " Puerto: " + mensaje.SwiTable.Asociaciones[i].Puerto.Nombre+"@@ ";
+                    mostrar+=  "MAC: " + mensaje.SwiTable.Asociaciones[i].MacAddress + "<->Puerto: " + mensaje.SwiTable.Asociaciones[i].Puerto.Nombre+" , ";
                 }
                   Grid[1, 2] = new SourceGrid.Cells.Cell(mostrar);
 

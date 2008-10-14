@@ -9,7 +9,7 @@ namespace RedesIP.Vistas.Equipos
 {
     public abstract class EquipoView : ElementoGraficoCuadrado
     {
-        public EquipoView(Guid id,string nombre, int origenX, int origenY, int ancho, int alto)
+        public EquipoView(Guid id, string nombre, int origenX, int origenY, int ancho, int alto)
             : base(id, origenX, origenY, ancho, alto)
         {
             _nombre = nombre;
@@ -51,7 +51,7 @@ namespace RedesIP.Vistas.Equipos
             inst.MouseDown += new System.Windows.Forms.MouseEventHandler(OnMouseDown);
             inst.MouseMove += new System.Windows.Forms.MouseEventHandler(OnMouseMove);
             inst.MouseUp += new System.Windows.Forms.MouseEventHandler(OnMouseUp);
-            ToolStripMenuItem item = new ToolStripMenuItem("Eliminar Equipo",Resources.Symbols_Delete_16x16);
+            ToolStripMenuItem item = new ToolStripMenuItem("Eliminar Equipo", Resources.Symbols_Delete_16x16);
             item.Click += new EventHandler(BorrarClick);
             Menu.Items.Add(item);
 
@@ -60,11 +60,11 @@ namespace RedesIP.Vistas.Equipos
 
         private void BorrarClick(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Elminar Equipo: "+Nombre+"?","Eliminar Equipo",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+            if (MessageBox.Show("Elminar Equipo: " + Nombre + "?", "Eliminar Equipo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _reg.Contrato.PeticionEliminarEquipo(Id);
             }
-            
+
         }
 
         void _ownerControl_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -88,14 +88,14 @@ namespace RedesIP.Vistas.Equipos
             _ownerControl.MouseUp -= new System.Windows.Forms.MouseEventHandler(OnMouseUp);
             _ownerControl.MouseDoubleClick -= new MouseEventHandler(_ownerControl_MouseDoubleClick);
 
-            
+
         }
         public void MoverEquipo(int x, int y)
         {
             Dimension.OrigenX = x;
             Dimension.OrigenY = y;
         }
-        private   void OnMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void OnMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
 
             if (HitTest(e.X, e.Y))
@@ -111,13 +111,14 @@ namespace RedesIP.Vistas.Equipos
         {
             _tooltip.Hide(_reg.Window);
 
-             _elBotonDelMouseEstaPresionado = false;
-                _reg.Contrato.PeticionMoverEquipo(Id, DimensionMundo.OrigenX, DimensionMundo.OrigenY);
-                if (e.Button == MouseButtons.Right)
-                {
-                    Menu.Show(OwnerControl, e.X, e.Y);
-                }
+            _elBotonDelMouseEstaPresionado = false;
+            _reg.Contrato.PeticionMoverEquipo(Id, DimensionMundo.OrigenX, DimensionMundo.OrigenY);
+            if (e.Button == MouseButtons.Right)
+            {
+                Menu.Show(OwnerControl, e.X, e.Y);
+            }
         }
+        private bool _isShown;
 
         private void OnMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -132,18 +133,21 @@ namespace RedesIP.Vistas.Equipos
                 _clickOffSetY = e.Y;
                 _reg.Invalidate();
             }
-            else
+            if (HitTest(e.X, e.Y))
             {
-                
-                if (HitTest(e.X, e.Y))
+                if (!_isShown)
                 {
+                    _isShown = true;
+                    _tooltip.IsBalloon = false;
                     _tooltip.Show(GetFullInfoMapa(), window, DimensionMundo.OrigenX + DimensionMundo.Ancho, DimensionMundo.OrigenY + DimensionMundo.Alto);
                 }
-                else
-                {
-                    _tooltip.Hide(window);
-                }
             }
+            else
+            {
+                _tooltip.Hide(window);
+                _isShown = false;
+            }
+
 
 
         }
@@ -166,9 +170,9 @@ namespace RedesIP.Vistas.Equipos
         public override void DibujarElemento(Graphics grafico)
         {
             grafico.DrawImage(Imagen, this.Dimension.OrigenX, this.Dimension.OrigenY, this.Dimension.Ancho, this.Dimension.Alto);
-            grafico.DrawString(Nombre, new Font("Arial Narrow", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX+3, DimensionMundo.OrigenY- 15));
+            grafico.DrawString(Nombre, new Font("Arial Narrow", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX + 3, DimensionMundo.OrigenY - 15));
 
-            grafico.DrawString(Environment.NewLine+ GetInfoMapa(), new Font("Arial Narrow", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX-15, DimensionMundo.OrigenY + DimensionMundo.Alto-8));
+            grafico.DrawString(Environment.NewLine + GetInfoMapa(), new Font("Arial Narrow", 8, FontStyle.Regular), Brushes.LightGreen, new PointF(DimensionMundo.OrigenX - 15, DimensionMundo.OrigenY + DimensionMundo.Alto - 8));
             Imagen.Dispose();
         }
         protected virtual string GetInfoMapa()

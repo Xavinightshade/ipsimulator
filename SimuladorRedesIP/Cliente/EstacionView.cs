@@ -415,7 +415,7 @@ namespace RedesIP.Vistas
         public void SetVLans(Guid idSwitchVLan, List<VLanSOA> vLansActuales)
         {
             SwitchVLanView swiView = _equipos[idSwitchVLan] as SwitchVLanView;
-            swiView.SetVLans(vLansActuales);
+            swiView.SetVLans(vLansActuales);            
         }
 
         #endregion

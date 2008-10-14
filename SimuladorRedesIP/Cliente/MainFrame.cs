@@ -290,6 +290,26 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletasoaConfigurar.Enabled = false;
             _formaPaletaHerramientas._PaletasoaDesconectar.Enabled = false;
             _formaPaletaHerramientas._PaletadbSave.Enabled = false;
+
+            _toolBarPuntaMedicion.Enabled = true;
+            _toolBarRouter.Enabled = true;
+            _toolBarSwitch.Enabled = true;
+            _toolBarSwitchVLan.Enabled = true;
+            _toolBarPC.Enabled = true;
+            _toolBarConectar.Enabled = true;
+            _toolBarDesonectar.Enabled = false;
+            _toolBarMouse.Enabled = true;
+            _toolBarConfigurarServidor.Enabled = true;
+            _toolBarConectarEquipos.Enabled = true;
+            _toolBarMouse.Checked = true;
+            _formaPaletaHerramientas._PaletaMouse.Enabled = true;
+            _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Flat;
+            _formaPaletaHerramientas._PaletaRouter.Enabled = true;
+            _formaPaletaHerramientas._PaletaPc.Enabled = true;
+            _formaPaletaHerramientas._PaletaSwitch.Enabled = true;
+            _formaPaletaHerramientas._paletaSwitchVLan.Enabled = true;
+            _formaPaletaHerramientas._PaletaPunta.Enabled = true;
+            _formaPaletaHerramientas._PaletaConexion.Enabled = true;
         }
 
         private void ToolBarConfigurarServidorClick(object sender, EventArgs e)
