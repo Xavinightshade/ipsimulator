@@ -425,10 +425,10 @@ namespace RedesIP.Vistas
         #region IVisualizacion Members
 
 
-        public void NotificarArchivo(Guid guid, ArchivoSOA archivoSOA, TimeSpan timeSpan)
+        public void NotificarArchivo(Guid guid, ArchivoSOA archivoSOA)
         {
             ComputadorView pcView = _equipos[guid] as ComputadorView;
-            pcView.NotificarArchivo(archivoSOA, timeSpan);
+            pcView.NotificarArchivo(archivoSOA);
         }
 
         #endregion

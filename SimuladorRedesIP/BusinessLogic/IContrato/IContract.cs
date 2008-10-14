@@ -49,6 +49,8 @@ namespace RedesIP.SOA
         void PeticionCrearSwitchVLAN(SwitchVLanSOA switchVLanSOA);
         [OperationContract()]
         void PeticionActualizarVLans(Guid idSwitchVLan, List<VLanSOA> vLansActuales);
+
+        byte[] GetFile(Guid _idPc, Guid guid);
     }
 
 

@@ -92,18 +92,14 @@ namespace RedesIP.Modelos.Logicos.Equipos
         void _controladorTCP_ArchivoRecibido(object sender, EventArgs e)
         {
             ControladorSesionServer cont = (ControladorSesionServer)sender;
-            ArchivoSOA archivo = new ArchivoSOA(Guid.NewGuid(), cont.FileName);
+            ArchivoSOA archivo = new ArchivoSOA(Guid.NewGuid(), cont.FileName,cont.PuertoDestino,cont.PuertoOrigen,ThreadManager.HoraActual,cont.Data.Length);
             archivo.Data = cont.Data;
             _archivosRecibidos.Add(archivo.Id, archivo);
             if (ArchivoRecibido != null)
             {
-                ArchivoRecibido(this, new ArchivoRecibido(new ArchivoSOA(archivo.Id, archivo.FileName), ThreadManager.HoraActual, Id));
+                ArchivoRecibido(this, new ArchivoRecibido(new ArchivoSOA(archivo.Id, archivo.FileName,archivo.SourcePort,archivo.DestinationPort,archivo.Fecha,archivo.Length), Id));
             }
         }
-
-
-
-
 
         internal void Ping(string ipDestino)
         {
@@ -121,6 +117,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
             int segmentSize,string fileName)
         {
             _controladorTCP.EnviarStream(ipDestino, puertoOrigen, puertoDestino,stream,segmentSize,fileName);
+        }
+
+        internal byte[] GetFile(Guid idArchivo)
+        {
+            return _archivosRecibidos[idArchivo].Data;
         }
     }
 }

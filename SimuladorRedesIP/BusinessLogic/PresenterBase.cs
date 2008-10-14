@@ -120,7 +120,7 @@ namespace RedesIP
         {
             foreach (IVisualizacion cliente in _vistas)
             {
-                cliente.NotificarArchivo(e.IdPC, e.Archivo, e.HoraDeTransmision);
+                cliente.NotificarArchivo(e.IdPC, e.Archivo);
             }
         }
 
@@ -494,6 +494,16 @@ namespace RedesIP
         #endregion
 
 
+
+        #region IModeloSOA Members
+
+
+        public byte[] GetFile(Guid idPc, Guid idArchivo)
+        {
+          return  _estacion.Computadores[idPc].GetFile(idArchivo);
+        }
+
+        #endregion
     }
 
 

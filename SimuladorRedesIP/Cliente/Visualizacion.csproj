@@ -108,6 +108,12 @@
     <Compile Include="FormaEstacion.Designer.cs">
       <DependentUpon>FormaEstacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\ArchivoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ArchivoForm.Designer.cs">
+      <DependentUpon>ArchivoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\ConexionServidor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     <EmbeddedResource Include="FormaEstacion.resx">
       <DependentUpon>FormaEstacion.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ArchivoForm.resx">
+      <DependentUpon>ArchivoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ConexionServidor.resx">
       <DependentUpon>ConexionServidor.cs</DependentUpon>
@@ -502,6 +511,7 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\DataSources\SOA.ArchivoSOA.datasource" />
     <None Include="Properties\DataSources\SOA.Componentes.VLanSOA.datasource" />
     <None Include="Resources\SwitchVLan.bmp" />
     <None Include="Resources\play-16x16.png" />

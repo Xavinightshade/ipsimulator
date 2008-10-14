@@ -13,23 +13,32 @@ using SOA;
 
 namespace RedesIP.Vistas.Equipos
 {
-	public class ComputadorView:EquipoView
-	{
-		public ComputadorView(ComputadorSOA equipo)
-            : base(equipo.Id,equipo.Nombre, equipo.X, equipo.Y, Resources.Computador.Width, Resources.Computador.Height)
-		{
+    public class ComputadorView : EquipoView
+    {
+        public ComputadorView(ComputadorSOA equipo)
+            : base(equipo.Id, equipo.Nombre, equipo.X, equipo.Y, Resources.Computador.Width, Resources.Computador.Height)
+        {
             _defaultGateWay = equipo.DefaultGateWay;
             Nombre = equipo.Nombre;
             ToolStripMenuItem pingItem = new ToolStripMenuItem("Hacer Ping", Resources.shell_script_16x16);
             ToolStripMenuItem tcpItem = new ToolStripMenuItem("Enviar Stream", Resources.shell_script_16x16);
-
+            ToolStripMenuItem archivosItem = new ToolStripMenuItem("Archivos Recibidos", Resources.new_16x16);
             pingItem.Click += new EventHandler(OnPingClick);
             tcpItem.Click += new EventHandler(tcpItem_Click);
+            archivosItem.Click += new EventHandler(archivosItem_Click);
             Menu.Items.Add(pingItem);
             Menu.Items.Add(tcpItem);
+            Menu.Items.Add(archivosItem);
             _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id,
-                equipo.Puerto.DireccionMAC,equipo.Puerto.IPAddress,equipo.Puerto.Mask,15, 26, this,equipo.Puerto.Nombre,equipo.Puerto.Habilitado);
-		}
+                equipo.Puerto.DireccionMAC, equipo.Puerto.IPAddress, equipo.Puerto.Mask, 15, 26, this, equipo.Puerto.Nombre, equipo.Puerto.Habilitado);
+        }
+
+        void archivosItem_Click(object sender, EventArgs e)
+        {
+            ArchivoForm form = new ArchivoForm();
+            form.Inicializar(Id, _archivos,base.Contenedor.Contrato);
+            form.ShowDialog();
+        }
 
         void tcpItem_Click(object sender, EventArgs e)
         {
@@ -44,7 +53,7 @@ namespace RedesIP.Vistas.Equipos
             if (pingForm.ShowDialog() == DialogResult.OK)
             {
                 Contenedor.Contrato.EnviarStream(Id, pingForm.IPAddress, pingForm.SourcePort, pingForm.DestinationPort, pingForm.Stream,
-                    pingForm.SegmentSize,pingForm.FileName);
+                    pingForm.SegmentSize, pingForm.FileName);
             }
         }
 
@@ -67,37 +76,37 @@ namespace RedesIP.Vistas.Equipos
         {
             if (!_puerto.Habilitado)
             {
-                MessageBox.Show("El puerto del Equipo no está habilitado,"+
-                Environment.NewLine+"Configure el puerto del equipo","Ping",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                MessageBox.Show("El puerto del Equipo no está habilitado," +
+                Environment.NewLine + "Configure el puerto del equipo", "Ping", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
             PingForm pingForm = new PingForm();
             pingForm.SetInfoEquipo(GetFullInfoMapa());
             if (pingForm.ShowDialog() == DialogResult.OK)
             {
-                    Contenedor.Contrato.Ping(Id, pingForm.IPAddress);
+                Contenedor.Contrato.Ping(Id, pingForm.IPAddress);
 
             }
         }
         PuertoEthernetViewCompleto _puerto;
-		public PuertoEthernetViewCompleto Puerto
-		{
-			get { return _puerto; }
-		}
-		public override Image Imagen
-		{
-			get { return Resources.Computador; }
-		}
-		public override void DibujarElemento(Graphics grafico)
-		{
-			base.DibujarElemento(grafico);
-			_puerto.DibujarElemento(grafico);
-		}
+        public PuertoEthernetViewCompleto Puerto
+        {
+            get { return _puerto; }
+        }
+        public override Image Imagen
+        {
+            get { return Resources.Computador; }
+        }
+        public override void DibujarElemento(Graphics grafico)
+        {
+            base.DibujarElemento(grafico);
+            _puerto.DibujarElemento(grafico);
+        }
         protected override string GetInfoMapa()
         {
             if (string.IsNullOrEmpty(_puerto.DireccionIP))
                 return string.Empty;
-            return base.GetInfoMapa()+_puerto.DireccionIP+" / "+_puerto.Mask;
+            return base.GetInfoMapa() + _puerto.DireccionIP + " / " + _puerto.Mask;
         }
         protected override void OnMouseUpEvent(MouseEventArgs e)
         {
@@ -109,7 +118,7 @@ namespace RedesIP.Vistas.Equipos
         {
             string tip = base.GetFullInfoMapa();
             tip += Environment.NewLine + "Puerto:  " + _puerto.Nombre;
-            tip += Environment.NewLine+"Dirección IP:  " + _puerto.DireccionIP + " / " + _puerto.Mask;
+            tip += Environment.NewLine + "Dirección IP:  " + _puerto.DireccionIP + " / " + _puerto.Mask;
             tip += Environment.NewLine + "Default GateWay:  " + _defaultGateWay;
             tip += Environment.NewLine + "Dirección MAC:  " + _puerto.DireccionMAC;
             return tip;
@@ -117,7 +126,7 @@ namespace RedesIP.Vistas.Equipos
         }
         protected override void OnMouseDobleClick(MouseEventArgs e)
         {
-           
+
             FormularioComputador formaPC = new FormularioComputador();
             if (this.Puerto.DireccionIP != null)
                 formaPC.IPAddress = this.Puerto.DireccionIP;
@@ -144,7 +153,7 @@ namespace RedesIP.Vistas.Equipos
                 }
                 base.Contenedor.Contrato.PeticionEstablecerDatosPuertoCompleto(
                     new RedesIP.SOA.PuertoCompletoSOA(this.Puerto.Id,
-                        formaPC.MACAddress, formaPC.NombrePuerto, formaPC.IPAddress, mask,formaPC.PuertoHabilitado));
+                        formaPC.MACAddress, formaPC.NombrePuerto, formaPC.IPAddress, mask, formaPC.PuertoHabilitado));
             }
             return;
         }
@@ -152,20 +161,28 @@ namespace RedesIP.Vistas.Equipos
 
 
 
-        private delegate void SetLabelTextDelegate(ArchivoSOA archivoSOA, TimeSpan timeSpan);
-        internal void NotificarArchivo(ArchivoSOA archivoSOA, TimeSpan timeSpan)
+        private delegate void SetLabelTextDelegate(ArchivoSOA archivoSOA);
+        private List<ArchivoSOA> _archivos = new List<ArchivoSOA>();
+        internal void NotificarArchivo(ArchivoSOA archivoSOA)
         {
             if (Contenedor.InvokeRequired)
             {
                 Contenedor.BeginInvoke(new SetLabelTextDelegate(NotificarArchivo),
-                                                            new object[] { archivoSOA,timeSpan });
+                                                            new object[] { archivoSOA });
 
                 return;
             }
+            _archivos.Add(archivoSOA);
+            string mensaje =
+            "Hora: " + archivoSOA.Fecha.ToString() + Environment.NewLine +
+            "Nombre: " + archivoSOA.FileName + Environment.NewLine +
+            "Tamaño: " + archivoSOA.Length.ToString() + " bytes" + Environment.NewLine +
+            "Puerto Origen: " + archivoSOA.SourcePort.ToString() + Environment.NewLine +
+            "Puerto Destino: " + archivoSOA.DestinationPort.ToString() + Environment.NewLine;
             ToolTip toolTip = new ToolTip();
             toolTip.ToolTipIcon = ToolTipIcon.Info;
-            toolTip.ToolTipTitle="Archivo Recibido";
-            toolTip.Show(archivoSOA.FileName+Environment.NewLine+"a las: "+timeSpan.ToString(), base.Contenedor.Window, DimensionMundo.Centro.X, DimensionMundo.Centro.Y, 7000);
+            toolTip.ToolTipTitle = "Archivo Recibido";
+            toolTip.Show(mensaje, base.Contenedor.Window, DimensionMundo.Centro.X, DimensionMundo.Centro.Y, 9000);
         }
     }
 }

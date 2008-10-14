@@ -72,18 +72,12 @@ namespace BusinessLogic.Datos
             get { return _idPC; }
         }
 
-        private TimeSpan _horaDeTransmision;
 
-        public TimeSpan HoraDeTransmision
-        {
-            get { return _horaDeTransmision; }
-        }
 
-        public ArchivoRecibido(ArchivoSOA archivo, TimeSpan horaTransmision,Guid idPc)
+        public ArchivoRecibido(ArchivoSOA archivo,Guid idPc)
         {
             _idPC = idPc;
             _archivo = archivo;
-            _horaDeTransmision = horaTransmision;
         }
     }
 }

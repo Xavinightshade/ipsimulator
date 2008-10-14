@@ -28,6 +28,6 @@ namespace RedesIP.SOA
         [OperationContract(IsOneWay = true)]
         void SetVLans(Guid idSwitchVLan, List<global::SOA.Componentes.VLanSOA> vLansActuales);
         [OperationContract(IsOneWay = true)]
-        void NotificarArchivo(Guid guid, ArchivoSOA archivoSOA, TimeSpan timeSpan);
+        void NotificarArchivo(Guid idPC, ArchivoSOA archivoSOA);
     }
 }
