@@ -400,6 +400,8 @@ namespace SimuladorCliente
             NetTcpBinding binding =
                 new NetTcpBinding(SecurityMode.None, true);
             binding.ReaderQuotas.MaxArrayLength = 2000000;
+            binding.MaxBufferSize = 2000000;
+            binding.MaxReceivedMessageSize = 2000000;
             Uri address = new Uri(@"net.tcp://" + direccionIP + ":" + puerto + "/Simulador");
             binding.ReceiveTimeout = TimeSpan.MaxValue;
             binding.ReliableSession.InactivityTimeout = TimeSpan.MaxValue;
