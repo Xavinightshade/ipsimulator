@@ -53,6 +53,7 @@ namespace RedesIP.Vistas.Equipos
             inst.MouseUp += new System.Windows.Forms.MouseEventHandler(OnMouseUp);
             ToolStripMenuItem item = new ToolStripMenuItem("Eliminar Equipo", Resources.Symbols_Delete_16x16);
             item.Click += new EventHandler(BorrarClick);
+            Menu.Items.Add(new ToolStripSeparator());
             Menu.Items.Add(item);
 
             _ownerControl.MouseDoubleClick += new MouseEventHandler(_ownerControl_MouseDoubleClick);

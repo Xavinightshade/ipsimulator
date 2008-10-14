@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this._puertoOrigen = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._equipoInfo = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -49,7 +50,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this._segmentSize = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -136,6 +136,20 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Puerto Origen";
             // 
+            // ipTextBox1
+            // 
+            this.ipTextBox1.AllowInternalTab = false;
+            this.ipTextBox1.AutoHeight = true;
+            this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.ipTextBox1.Location = new System.Drawing.Point(83, 19);
+            this.ipTextBox1.Name = "ipTextBox1";
+            this.ipTextBox1.ReadOnly = false;
+            this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
+            this.ipTextBox1.TabIndex = 1;
+            this.ipTextBox1.Text = "...";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this._equipoInfo);
@@ -173,7 +187,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(169, 70);
+            this.label11.Location = new System.Drawing.Point(127, 70);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 13);
             this.label11.TabIndex = 18;
@@ -181,7 +195,7 @@
             // 
             // _sizeStream
             // 
-            this._sizeStream.Location = new System.Drawing.Point(99, 63);
+            this._sizeStream.Location = new System.Drawing.Point(57, 63);
             this._sizeStream.Name = "_sizeStream";
             this._sizeStream.ReadOnly = true;
             this._sizeStream.Size = new System.Drawing.Size(64, 20);
@@ -192,9 +206,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(5, 66);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(88, 13);
+            this.label12.Size = new System.Drawing.Size(46, 13);
             this.label12.TabIndex = 16;
-            this.label12.Text = "Tamaño Window";
+            this.label12.Text = "Tamaño";
             // 
             // label5
             // 
@@ -265,20 +279,6 @@
             this.label7.TabIndex = 7;
             this.label7.Text = "Tamaño Segmento";
             // 
-            // ipTextBox1
-            // 
-            this.ipTextBox1.AllowInternalTab = false;
-            this.ipTextBox1.AutoHeight = true;
-            this.ipTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.ipTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ipTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.ipTextBox1.Location = new System.Drawing.Point(83, 19);
-            this.ipTextBox1.Name = "ipTextBox1";
-            this.ipTextBox1.ReadOnly = false;
-            this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
-            this.ipTextBox1.TabIndex = 1;
-            this.ipTextBox1.Text = "...";
-            // 
             // EnviarTCPForm
             // 
             this.AcceptButton = this._Aceptar;
@@ -294,7 +294,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "EnviarTCPForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Enviar TCP Stream";
+            this.Text = "Enviar Archivo TCP";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

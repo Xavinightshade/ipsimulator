@@ -21,13 +21,15 @@ namespace RedesIP.Vistas.Equipos
             _defaultGateWay = equipo.DefaultGateWay;
             Nombre = equipo.Nombre;
             ToolStripMenuItem pingItem = new ToolStripMenuItem("Hacer Ping", Resources.shell_script_16x16);
-            ToolStripMenuItem tcpItem = new ToolStripMenuItem("Enviar Stream", Resources.shell_script_16x16);
-            ToolStripMenuItem archivosItem = new ToolStripMenuItem("Archivos Recibidos", Resources.new_16x16);
+            ToolStripMenuItem tcpItem = new ToolStripMenuItem("Enviar Archivo por TCP", Resources.html_file_16x16);
+            ToolStripSeparator sepItem = new ToolStripSeparator();
+            ToolStripMenuItem archivosItem = new ToolStripMenuItem("Archivos Recibidos", Resources.folder_with_file_16x16);
             pingItem.Click += new EventHandler(OnPingClick);
             tcpItem.Click += new EventHandler(tcpItem_Click);
             archivosItem.Click += new EventHandler(archivosItem_Click);
             Menu.Items.Add(pingItem);
             Menu.Items.Add(tcpItem);
+            Menu.Items.Add(sepItem);
             Menu.Items.Add(archivosItem);
             _puerto = new PuertoEthernetViewCompleto(equipo.Puerto.Id,
                 equipo.Puerto.DireccionMAC, equipo.Puerto.IPAddress, equipo.Puerto.Mask, 15, 26, this, equipo.Puerto.Nombre, equipo.Puerto.Habilitado);

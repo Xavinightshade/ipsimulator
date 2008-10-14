@@ -511,6 +511,8 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\html-file-16x16.png" />
+    <None Include="Resources\folder-with-file-16x16.png" />
     <None Include="Properties\DataSources\SOA.ArchivoSOA.datasource" />
     <None Include="Properties\DataSources\SOA.Componentes.VLanSOA.datasource" />
     <None Include="Resources\SwitchVLan.bmp" />

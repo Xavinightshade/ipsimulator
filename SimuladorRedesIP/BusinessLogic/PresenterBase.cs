@@ -43,6 +43,12 @@ namespace RedesIP
         public void SetEstacion(EstacionModelo estacion,ModeloSnifferMaster modeloSnifferMaster)
         {
             _estacion = estacion;
+            foreach (KeyValuePair<Guid,ComputadorLogico> item in _estacion.Computadores)
+            {
+                item.Value.ArchivoRecibido += new EventHandler<BusinessLogic.Datos.ArchivoRecibido>(Value_ArchivoRecibido);
+
+            }
+
             _snifferMaster = modeloSnifferMaster;
         }
 
@@ -91,7 +97,6 @@ namespace RedesIP
             EstacionSOA estacionSOA = new EstacionSOA();
             foreach (KeyValuePair<Guid,ComputadorLogico> par in _estacion.Computadores)
             {
-                par.Value.ArchivoRecibido += new EventHandler<BusinessLogic.Datos.ArchivoRecibido>(Value_ArchivoRecibido);
                estacionSOA.Computadores.Add(CrearComputadorSOA(par.Value));
             }
             foreach (KeyValuePair<Guid,SwitchLogico> par in _estacion.Switches)

@@ -144,9 +144,23 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap folder_with_file_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("folder_with_file_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap globe_16x16 {
             get {
                 object obj = ResourceManager.GetObject("globe-16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap html_file_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("html_file_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
