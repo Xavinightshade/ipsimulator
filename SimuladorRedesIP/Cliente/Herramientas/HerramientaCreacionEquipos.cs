@@ -99,6 +99,7 @@ namespace RedesIP.Vistas
             {
 
                 ComputadorView computador = new ComputadorView(pc);
+                computador.AgregarArchivos(pc.Archivos);
                 computador.EstablecerContenedor(Estacion);
                 Estacion._computadores.Add(computador);
                 Estacion._equipos.Add(computador.Id, computador);

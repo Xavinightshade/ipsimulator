@@ -13,6 +13,7 @@ using BusinessLogic.Componentes;
 using SOA;
 using BusinessLogic.Datos;
 using BusinessLogic.Threads;
+using RedesIP.SOA;
 
 
 namespace RedesIP.Modelos.Logicos.Equipos
@@ -69,7 +70,6 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
 
 
-        public event EventHandler<ArchivoRecibido> ArchivoRecibido;
 
 
 
@@ -95,9 +95,9 @@ namespace RedesIP.Modelos.Logicos.Equipos
             ArchivoSOA archivo = new ArchivoSOA(Guid.NewGuid(), cont.FileName,cont.PuertoDestino,cont.PuertoOrigen,ThreadManager.HoraActual,cont.Data.Length);
             archivo.Data = cont.Data;
             _archivosRecibidos.Add(archivo.Id, archivo);
-            if (ArchivoRecibido != null)
+            foreach (IVisualizacion vista in _clientes)
             {
-                ArchivoRecibido(this, new ArchivoRecibido(new ArchivoSOA(archivo.Id, archivo.FileName,archivo.SourcePort,archivo.DestinationPort,archivo.Fecha,archivo.Length), Id));
+                vista.NotificarArchivo(Id, archivo);
             }
         }
 
@@ -123,5 +123,12 @@ namespace RedesIP.Modelos.Logicos.Equipos
         {
             return _archivosRecibidos[idArchivo].Data;
         }
+
+        internal void InformarVistas(List<IVisualizacion> vistas)
+        {
+            _clientes = vistas;
+        }
+        private List<IVisualizacion> _clientes;
+
     }
 }

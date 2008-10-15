@@ -5,6 +5,7 @@ using System.Text;
 using RedesIP.SOA;
 using RedesIP;
 using System.Runtime.Serialization;
+using SOA;
 
 namespace RedesIP.SOA
 {
@@ -20,6 +21,13 @@ namespace RedesIP.SOA
             : base(tipoEquipo, x, y)
         {
 
+        }
+        private List<ArchivoSOA> _archivos = new List<ArchivoSOA>();
+        [DataMember]
+        public List<ArchivoSOA> Archivos
+        {
+            get { return _archivos; }
+            set { _archivos = value; }
         }
         public ComputadorSOA(Guid id,string nombre,string defaultGateWay )
         {
@@ -49,6 +57,10 @@ namespace RedesIP.SOA
         public void AgregarPuerto(PuertoCompletoSOA puerto)
         {
             _puerto = puerto;
+        }
+        public void AgregarArchivo(ArchivoSOA archivo)
+        {
+            _archivos.Add(archivo);
         }
     }
 }

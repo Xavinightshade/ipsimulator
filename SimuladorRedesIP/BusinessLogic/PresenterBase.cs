@@ -16,6 +16,7 @@ using SOA.Componentes;
 using BusinessLogic.Threads;
 using BusinessLogic.Equipos;
 using BusinessLogic.Datos;
+using SOA;
 
 namespace RedesIP
 {
@@ -42,13 +43,14 @@ namespace RedesIP
 
         public void SetEstacion(EstacionModelo estacion,ModeloSnifferMaster modeloSnifferMaster)
         {
-            _estacion = estacion;
-            foreach (KeyValuePair<Guid,ComputadorLogico> item in _estacion.Computadores)
+
+
+            foreach (KeyValuePair<Guid,ComputadorLogico> item in estacion.Computadores)
             {
-                item.Value.ArchivoRecibido += new EventHandler<BusinessLogic.Datos.ArchivoRecibido>(Value_ArchivoRecibido);
+                item.Value.InformarVistas(_vistas);
 
             }
-
+            _estacion = estacion;
             _snifferMaster = modeloSnifferMaster;
         }
 
@@ -121,13 +123,7 @@ namespace RedesIP
 
         }
 
-        void Value_ArchivoRecibido(object sender, ArchivoRecibido e)
-        {
-            foreach (IVisualizacion cliente in _vistas)
-            {
-                cliente.NotificarArchivo(e.IdPC, e.Archivo);
-            }
-        }
+
 
 
 
@@ -139,7 +135,8 @@ namespace RedesIP
         {
             IVisualizacion cliente = GetCurrentClient();
             _vistas.Remove(cliente);
-            _snifferMaster.DesconectarCliente(GetCurrentClient());
+            _snifferMaster.DesconectarCliente(cliente);
+
 
         }
         public void PeticionEnviarInformacionConexion(Guid idConexion)
@@ -189,6 +186,11 @@ namespace RedesIP
             ComputadorSOA equipoRespuesta = new ComputadorSOA(pcLogico.TipoDeEquipo, pcLogico.Id, pcLogico.X, pcLogico.Y,pcLogico.Nombre,pcLogico.DefaultGateWay);
             equipoRespuesta.AgregarPuerto(new PuertoCompletoSOA(pcLogico.PuertoEthernet.Id, pcLogico.PuertoEthernet.MACAddress,pcLogico.PuertoEthernet.Nombre,
                 pcLogico.PuertoEthernet.IPAddress,pcLogico.PuertoEthernet.Mascara,pcLogico.PuertoEthernet.Habilitado));
+
+            foreach (ArchivoSOA archivo in pcLogico.ArchivosRecibidos.Values)
+            {
+                equipoRespuesta.AgregarArchivo(archivo);
+            }
             return equipoRespuesta;
         }
 

@@ -186,5 +186,10 @@ namespace RedesIP.Vistas.Equipos
             toolTip.ToolTipTitle = "Archivo Recibido";
             toolTip.Show(mensaje, base.Contenedor.Window, DimensionMundo.Centro.X, DimensionMundo.Centro.Y, 9000);
         }
+
+        internal void AgregarArchivos(List<ArchivoSOA> archivos)
+        {
+            _archivos.AddRange(archivos);
+        }
     }
 }
