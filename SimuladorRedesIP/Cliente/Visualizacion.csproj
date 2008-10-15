@@ -36,7 +36,7 @@
     <InstallUrl>http://jaus.selfip.net/</InstallUrl>
     <UpdateUrl>http://localhost/</UpdateUrl>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>31</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

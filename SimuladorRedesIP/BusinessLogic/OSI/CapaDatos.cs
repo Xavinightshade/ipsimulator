@@ -42,7 +42,8 @@ namespace BusinessLogic.OSI
                 ProcesarBusquedaDeDireccionIP(datosFrameBuscando, e.FrameRecibido.MACAddressOrigen);
             }
             if (paquete != null)
-            {   EventPaqueteDesencapsulador(e.FrameRecibido);
+            {
+                EventPaqueteDesencapsulador(e.FrameRecibido);
                 ProcesarPaquete(paquete);
             }
 
@@ -73,7 +74,7 @@ namespace BusinessLogic.OSI
         {
             if (_puerto.IPAddress == datosFrameBuscando.IpDestino)
             {
-                DatosFrameArpIPEncontrada datosFrameEncontrada = new DatosFrameArpIPEncontrada(_puerto.IPAddress, _puerto.MACAddress);
+                DatosFrameArpIPEncontrada datosFrameEncontrada = new DatosFrameArpIPEncontrada(_puerto.IPAddress, _puerto.MACAddress,datosFrameBuscando.IdPacket);
                 EnviarFrame(datosFrameEncontrada, macOrigen);
             }
         }
@@ -86,21 +87,13 @@ namespace BusinessLogic.OSI
             if (_protocoloArp.ContieneLaDireccionDe(datosFrame.DireccionIP))
                 return;
             _protocoloArp.ActualizarARP(datosFrame);
-            List<Packet> paqueteNoEnviados = _paquetesNoEnviadosConDestino[datosFrame.DireccionIP];
-            List<Packet> temp = new List<Packet>();
-            foreach (Packet paqueteNoEnviado in paqueteNoEnviados)
-            {
-                temp.Add(paqueteNoEnviado);
-            }
-            foreach (Packet item in temp)
-            {
-                EnviarPaquete(item, datosFrame.DireccionIP);
-            }
+            Dictionary<Guid, Packet> paqueteNoEnviados = _paquetesNoEnviadosConDestino[datosFrame.DireccionIP];
+            EnviarPaquete(paqueteNoEnviados[datosFrame.IdPacketOriginal], paqueteNoEnviados[datosFrame.IdPacketOriginal].IpDestino);
 
 
 
         }
-        private Dictionary<string, List<Packet>> _paquetesNoEnviadosConDestino = new Dictionary<string, List<Packet>>();
+        private Dictionary<string, Dictionary<Guid, Packet>> _paquetesNoEnviadosConDestino = new Dictionary<string, Dictionary<Guid, Packet>>();
         public void EnviarPaquete(Packet paquete, string ipDestino)
         {
             string broadCastAddress = IPAddressFactory.GetBroadCastAddress(_puerto.IPAddress, _puerto.Mascara);
@@ -115,10 +108,10 @@ namespace BusinessLogic.OSI
                 EnviarFrame(paquete, macDestino);
                 if (_paquetesNoEnviadosConDestino.ContainsKey(ipDestino))
                 {
-                    List<Packet> paquetesNoEnviados = _paquetesNoEnviadosConDestino[ipDestino];
-                    if (paquetesNoEnviados.Contains(paquete))
+                    Dictionary<Guid, Packet> paquetesNoEnviados = _paquetesNoEnviadosConDestino[ipDestino];
+                    if (paquetesNoEnviados.ContainsValue(paquete))
                     {
-                        paquetesNoEnviados.Remove(paquete);
+                        RemoverValor(paquete, paquetesNoEnviados);
                     }
                     if (paquetesNoEnviados.Count == 0)
                         _paquetesNoEnviadosConDestino.Remove(ipDestino);
@@ -128,24 +121,45 @@ namespace BusinessLogic.OSI
             }
             else
             {
-                PreguntarPorDireccion(ipDestino);
-                List<Packet> paquetesNoEnviadosEnDir = null;
+                Guid idPacket = Guid.NewGuid();
+                PreguntarPorDireccion(ipDestino,idPacket);
+                Dictionary<Guid, Packet> paquetesNoEnviadosEnDir = null;
                 if (!_paquetesNoEnviadosConDestino.ContainsKey(ipDestino))
-                    _paquetesNoEnviadosConDestino.Add(ipDestino, new List<Packet>());
+                    _paquetesNoEnviadosConDestino.Add(ipDestino,new Dictionary<Guid,Packet>());
                 paquetesNoEnviadosEnDir = _paquetesNoEnviadosConDestino[ipDestino];
-                paquetesNoEnviadosEnDir.Add(paquete);
+                paquetesNoEnviadosEnDir.Add(idPacket,paquete);
 
             }
         }
 
-        private void PreguntarPorDireccion(string ipAddress)
+        private void RemoverValor(Packet paquete, Dictionary<Guid, Packet> paquetesNoEnviados)
         {
-            if (!_paquetesNoEnviadosConDestino.ContainsKey(ipAddress))
+            Guid idPacket = Guid.Empty;
+            foreach (KeyValuePair<Guid, Packet> item in paquetesNoEnviados)
             {
-                IFrameMessage datoFrame = _protocoloArp.CrearFramePidiendoLaDireccion(_puerto.MACAddress, ipAddress);
-                EnviarFrame(datoFrame, MACAddressFactory.BroadCast);
-
+                if (item.Value == paquete)
+                {
+                    idPacket = item.Key;
+                    break;
+                }
             }
+            if (idPacket == Guid.Empty)
+            {
+                throw new Exception();
+            }
+            paquetesNoEnviados.Remove(idPacket);
+        }
+
+
+
+
+        private void PreguntarPorDireccion(string ipAddress, Guid idPacket)
+        {
+
+            IFrameMessage datoFrame = _protocoloArp.CrearFramePidiendoLaDireccion(_puerto.MACAddress, ipAddress,idPacket);
+            EnviarFrame(datoFrame, MACAddressFactory.BroadCast);
+
+
         }
         private void EnviarFrame(IFrameMessage mensaje, string MACDestino)
         {

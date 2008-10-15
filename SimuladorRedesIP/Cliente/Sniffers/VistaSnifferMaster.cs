@@ -34,11 +34,12 @@ namespace SimuladorCliente.Sniffers
 
        public void IniciarSnifferCable(MarcadorCable marcador,DockPanel dockMain)
        {
-           _modeloSniffer.PeticionEnviarInformacionConexion(marcador.Id);
            FormaSnifferCable sniffer = new FormaSnifferCable(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockMain, DockState.DockBottom);
            _formsSniffers.Add(marcador.Id, sniffer);
+           _modeloSniffer.PeticionEnviarInformacionConexion(marcador.Id);
+
 
        }
 
@@ -52,20 +53,22 @@ namespace SimuladorCliente.Sniffers
 
        public void IniciarSnifferSwitch(MarcadorSwitch marcador, DockPanel dockPanel)
        {
-           _modeloSniffer.PeticionEnviarInformacionSwitch(marcador.Id);
            FormaSnifferSwitch sniffer = new FormaSnifferSwitch(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _formsSniffers.Add(marcador.Id, sniffer);
+           _modeloSniffer.PeticionEnviarInformacionSwitch(marcador.Id);
+
        }
 
        internal void IniciarSnifferPuerto(MarcadorPuertoCompleto marcador, DockPanel dockPanel)
        {
-           _modeloSniffer.PeticionEnviarInformacionPuertoCompleto(marcador.Id);
            FormaSnifferPuerto sniffer = new FormaSnifferPuerto(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _formsSniffers.Add(marcador.Id, sniffer);
+           _modeloSniffer.PeticionEnviarInformacionPuertoCompleto(marcador.Id);
+
        }
 
        internal void EnviarCambioDeTablaARP(Guid idPuerto, ARP_SOA listARP)
@@ -82,20 +85,22 @@ namespace SimuladorCliente.Sniffers
 
        internal void IniciarSnifferPC(MarcadorPC marcador, DockPanel dockPanel)
        {
-           _modeloSniffer.PeticionEnviarInformacionPC(marcador.Id);
            FormaSnifferPC sniffer = new FormaSnifferPC(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _formsSniffers.Add(marcador.Id, sniffer);
+           _modeloSniffer.PeticionEnviarInformacionPC(marcador.Id);
+
        }
 
        internal void IniciarSnifferRouter(MarcadorRouter marcador, DockPanel dockPanel)
        {
-           _modeloSniffer.PeticionEnviarInformacionRouter(marcador.Id);
            FormaSnifferRouter sniffer = new FormaSnifferRouter(marcador);
            sniffer.AllowEndUserDocking = false;
            sniffer.Show(dockPanel, DockState.DockBottom);
            _formsSniffers.Add(marcador.Id, sniffer);
+           _modeloSniffer.PeticionEnviarInformacionRouter(marcador.Id);
+
        }
 
        internal void EnviarInformacionEncapsulacionRouter(EncapsulacionSOA encapsulacion)

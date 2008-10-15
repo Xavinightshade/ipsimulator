@@ -8,8 +8,8 @@ namespace AccesoDatos
 {
     public static class AccesoDatosBD
     {
-        private static string _rutaPorDefecto = "D:\\Tesis\\SimuladorRedesIP\\Red.sdf";
-        //        private static string _rutaPorDefecto = Environment.CurrentDirectory + "\\Red.sdf";
+       // private static string _rutaPorDefecto = "D:\\Tesis\\SimuladorRedesIP\\Red.sdf";
+                private static string _rutaPorDefecto = Environment.CurrentDirectory + "\\Red.sdf";
 
         private static string _rutaBD = _rutaPorDefecto;
 

@@ -14,9 +14,16 @@ namespace BusinessLogic.Datos
         {
             get { return _ipDestino; }
         }
-       public DatosFrameArpBuscando(string ipDestino)
+        Guid _idPacket;
+
+        public Guid IdPacket
+        {
+            get { return _idPacket; }
+        }
+       public DatosFrameArpBuscando(string ipDestino,Guid idPacket)
        {
            _ipDestino=ipDestino;
+           _idPacket = idPacket;
        }
        public override string ToString()
        {

@@ -25,9 +25,9 @@ namespace BusinessLogic.Protocolos
         {
             return _IP_To_MAC.ContainsKey(ipAddress);
         }
-        public IFrameMessage CrearFramePidiendoLaDireccion(string direccionMACOrigen, string ipAddress)
+        public IFrameMessage CrearFramePidiendoLaDireccion(string direccionMACOrigen, string ipAddress,Guid idPacket)
         {
-            return new DatosFrameArpBuscando(ipAddress);
+            return new DatosFrameArpBuscando(ipAddress,idPacket);
             
         }
         public void ActualizarARP(DatosFrameArpIPEncontrada datosFrame)

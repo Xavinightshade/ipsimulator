@@ -20,10 +20,17 @@ namespace BusinessLogic.Datos
         {
             get { return _macAddress; }
         }
-        public DatosFrameArpIPEncontrada(string direccionIP, string macAddress)
+        private Guid _idPacketOriginal;
+
+        public Guid IdPacketOriginal
+        {
+            get { return _idPacketOriginal; }
+        }
+        public DatosFrameArpIPEncontrada(string direccionIP, string macAddress,Guid idPacketOriginal)
         {
             _direccionIP = direccionIP;
             _macAddress = macAddress;
+            _idPacketOriginal = idPacketOriginal;
         }
         public override string ToString()
         {
