@@ -439,14 +439,25 @@ namespace RedesIP.Vistas
         #region IVisualizacion Members
 
 
-        public void NotificarArchivo(Guid guid, ArchivoSOA archivoSOA)
+        public void NotificarArchivo(Guid idPC, ArchivoSOA archivoSOA)
         {
-            ComputadorView pcView = _equipos[guid] as ComputadorView;
+            ComputadorView pcView = _equipos[idPC] as ComputadorView;
             pcView.NotificarArchivo(archivoSOA);
         }
 
+        
+
+        public void NotificarEchoMessage(Guid idEquipo, bool esReply, string ipOrigen, TimeSpan hora)
+        {
+            
+            ComputadorView pcView = _equipos[idEquipo] as ComputadorView;
+            RouterView rouView = _equipos[idEquipo] as RouterView;
+            if (pcView != null)
+                pcView.NotificarEchoMessage(esReply, ipOrigen, hora);
+            if (rouView!=null)
+                rouView.NotificarEchoMessage(esReply, ipOrigen, hora);
+        }
+
         #endregion
-
-
     }
 }

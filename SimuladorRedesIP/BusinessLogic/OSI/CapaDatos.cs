@@ -90,7 +90,7 @@ namespace BusinessLogic.OSI
                 return;
             _protocoloArp.ActualizarARP(datosFrame);
             Dictionary<Guid, Packet> paqueteNoEnviados = _paquetesNoEnviadosConDestino[datosFrame.DireccionIP];
-            EnviarPaquete(paqueteNoEnviados[datosFrame.IdPacketOriginal], paqueteNoEnviados[datosFrame.IdPacketOriginal].IpDestino);
+            EnviarPaquete(paqueteNoEnviados[datosFrame.IdPacketOriginal], datosFrame.DireccionIP);
 
 
 

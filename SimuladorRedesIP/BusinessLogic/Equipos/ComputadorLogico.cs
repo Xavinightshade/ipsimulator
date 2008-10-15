@@ -87,6 +87,15 @@ namespace RedesIP.Modelos.Logicos.Equipos
             _capaRed.Inicializar();
             _controladorTCP = new ControladorTCP(_capaRed);
             _controladorTCP.ArchivoRecibido += new EventHandler<EventArgs>(_controladorTCP_ArchivoRecibido);
+            _capaRed.EchoMessage += new EventHandler<PingEventArgs>(_capaRed_EchoMessage);
+        }
+
+        void _capaRed_EchoMessage(object sender, PingEventArgs e)
+        {
+            foreach (IVisualizacion vista in _clientes)
+            {
+                vista.NotificarEchoMessage(Id, e.EsReply, e.IpOrigen, e.Hora);
+            }
         }
 
         void _controladorTCP_ArchivoRecibido(object sender, EventArgs e)

@@ -72,6 +72,7 @@
     <Compile Include="Datos\EchoReplyMessage.cs" />
     <Compile Include="Datos\EventosPacket.cs" />
     <Compile Include="Datos\EventoSegment.cs" />
+    <Compile Include="Datos\EventosPing.cs" />
     <Compile Include="Datos\IPacketMessage.cs" />
     <Compile Include="Datos\PaqueteEncapsuladoEventArgs.cs" />
     <Compile Include="Datos\PaqueteDesencapsuladoEventArgs.cs" />

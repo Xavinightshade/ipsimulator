@@ -38,7 +38,7 @@ namespace RedesIP.Vistas.Equipos
         void archivosItem_Click(object sender, EventArgs e)
         {
             ArchivoForm form = new ArchivoForm();
-            form.Inicializar(Id, _archivos,base.Contenedor.Contrato);
+            form.Inicializar(Id, _archivos, base.Contenedor.Contrato);
             form.ShowDialog();
         }
 
@@ -164,6 +164,7 @@ namespace RedesIP.Vistas.Equipos
 
 
         private delegate void SetLabelTextDelegate(ArchivoSOA archivoSOA);
+        private delegate void SetEcho(bool esReply, string ipOrigen, TimeSpan hora);
         private List<ArchivoSOA> _archivos = new List<ArchivoSOA>();
         internal void NotificarArchivo(ArchivoSOA archivoSOA)
         {
@@ -180,7 +181,7 @@ namespace RedesIP.Vistas.Equipos
             "Nombre: " + archivoSOA.FileName + Environment.NewLine +
             "Tamaño: " + archivoSOA.Length.ToString() + " bytes" + Environment.NewLine +
             "Puerto Origen: " + archivoSOA.SourcePort.ToString() + Environment.NewLine +
-            "Puerto Destino: " + archivoSOA.DestinationPort.ToString() + Environment.NewLine;
+            "Puerto Destino: " + archivoSOA.DestinationPort.ToString();
             ToolTip toolTip = new ToolTip();
             toolTip.ToolTipIcon = ToolTipIcon.Info;
             toolTip.ToolTipTitle = "Archivo Recibido";
@@ -190,6 +191,34 @@ namespace RedesIP.Vistas.Equipos
         internal void AgregarArchivos(List<ArchivoSOA> archivos)
         {
             _archivos.AddRange(archivos);
+        }
+
+        internal void NotificarEchoMessage(bool esReply, string ipOrigen, TimeSpan hora)
+        {
+            if (Contenedor.InvokeRequired)
+            {
+                Contenedor.BeginInvoke(new SetEcho(NotificarEchoMessage),
+                                                            new object[] { esReply, ipOrigen, hora });
+
+                return;
+            }
+            string mensaje =
+"Hora: " + hora.ToString() + Environment.NewLine +
+"IP Origen: " + ipOrigen;
+
+            ToolTip toolTip = new ToolTip();
+            toolTip.ToolTipIcon = ToolTipIcon.Info;
+            if (!esReply)
+            {
+                toolTip.ToolTipTitle = "Echo Recibido";
+                mensaje +=Environment.NewLine+ "Enviando Respuesta a: " + ipOrigen + "...";
+            }
+            else
+            {
+                toolTip.ToolTipTitle = "Echo Respondido";
+            }
+            toolTip.Show(mensaje, base.Contenedor.Window, DimensionMundo.Centro.X, DimensionMundo.Centro.Y, 5000);
+
         }
     }
 }

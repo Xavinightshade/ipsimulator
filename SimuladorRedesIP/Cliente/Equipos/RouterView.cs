@@ -137,6 +137,11 @@ namespace RedesIP.Vistas.Equipos
             }
         }
 
+
+        internal void NotificarEchoMessage(bool esReply, string ipOrigen, TimeSpan hora)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
