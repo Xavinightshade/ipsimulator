@@ -74,9 +74,12 @@ namespace RedesIP.Modelos.Logicos.Equipos
             {
                 CapaRedRouter capaRed = new CapaRedRouter(new CapaDatos(new ARP(),puerto), this);
                 capaRed.Inicializar();
+                capaRed.EchoMessage += new EventHandler<BusinessLogic.Datos.PingEventArgs>(capaRed_EchoMessage);
                 _puertoEthernetCapaRed.Add(puerto, capaRed);
             }         
         }
+
+
         public void CrearNuevaRuta(Guid idRuta, Guid idPuerto, string red,int? mask, string nextHopIP)
         {
             foreach (PuertoEthernetCompleto puerto in _puertosEthernet)
@@ -127,6 +130,19 @@ namespace RedesIP.Modelos.Logicos.Equipos
         internal List<RutaSOA> TraerRutasDinamicas()
         {
             return _tablaDeRutas.GetRutasDinamicas();
+        }
+
+        internal void InformarVistas(List<IVisualizacion> vistas)
+        {
+            _clientes = vistas;
+        }
+        private List<IVisualizacion> _clientes;
+        void capaRed_EchoMessage(object sender, BusinessLogic.Datos.PingEventArgs e)
+        {
+            foreach (IVisualizacion vista in _clientes)
+            {
+                vista.NotificarEchoMessage(Id, e.EsReply, e.IpOrigen, e.Hora);
+            }
         }
     }
 }

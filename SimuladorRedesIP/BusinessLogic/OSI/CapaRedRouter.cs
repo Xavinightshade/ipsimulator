@@ -32,6 +32,19 @@ namespace BusinessLogic.OSI
                     if (puerto.Habilitado && puerto.IPAddress == paquete.IpDestino)
                     {
                         EnviarPaquete(paquete.IpOrigen, new Packet(puerto.IPAddress, paquete.IpOrigen, new EchoReplyMessage()));
+                        OnEchoMessage(false, paquete.IpOrigen);
+                        return;
+                    }
+                }
+
+            }
+            if (paquete.Datos is EchoReplyMessage)
+            {
+                foreach (PuertoEthernetCompleto puerto in _router.PuertosEthernet)
+                {
+                    if (puerto.Habilitado && puerto.IPAddress == paquete.IpDestino)
+                    {
+                        OnEchoMessage(true, paquete.IpOrigen);
                         return;
                     }
                 }

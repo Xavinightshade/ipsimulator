@@ -51,6 +51,11 @@ namespace RedesIP
                 item.Value.InformarVistas(_vistas);
 
             }
+            foreach (KeyValuePair<Guid, RouterLogico> item in estacion.Routers)
+            {
+                item.Value.InformarVistas(_vistas);
+
+            }
             _estacion = estacion;
             _snifferMaster = modeloSnifferMaster;
         }

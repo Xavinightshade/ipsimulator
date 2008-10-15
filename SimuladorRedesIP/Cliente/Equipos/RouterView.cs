@@ -137,10 +137,34 @@ namespace RedesIP.Vistas.Equipos
             }
         }
 
+        private delegate void SetEcho(bool esReply, string ipOrigen, TimeSpan hora);
 
         internal void NotificarEchoMessage(bool esReply, string ipOrigen, TimeSpan hora)
         {
-            throw new NotImplementedException();
+            if (Contenedor.InvokeRequired)
+            {
+                Contenedor.BeginInvoke(new SetEcho(NotificarEchoMessage),
+                                                            new object[] { esReply, ipOrigen, hora });
+
+                return;
+            }
+            string mensaje =
+"Hora: " + hora.ToString() + Environment.NewLine +
+"IP Origen: " + ipOrigen;
+
+            ToolTip toolTip = new ToolTip();
+            toolTip.ToolTipIcon = ToolTipIcon.Info;
+            if (!esReply)
+            {
+                toolTip.ToolTipTitle = "Echo Recibido";
+                mensaje += Environment.NewLine + "Enviando Respuesta a: " + ipOrigen + "...";
+            }
+            else
+            {
+                toolTip.ToolTipTitle = "Echo Respondido";
+            }
+            toolTip.Show(mensaje, base.Contenedor.Window, DimensionMundo.Centro.X, DimensionMundo.Centro.Y, 5000);
+
         }
     }
 }
