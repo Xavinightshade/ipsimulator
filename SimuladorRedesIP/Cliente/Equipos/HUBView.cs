@@ -39,6 +39,10 @@ namespace SimuladorCliente.Equipos
 	}
 
 		}
+        protected override void OnMouseDobleClick(System.Windows.Forms.MouseEventArgs e)
+        {
+            
+        }
 
 
 		public override System.Drawing.Image Imagen
@@ -55,7 +59,7 @@ namespace SimuladorCliente.Equipos
 		}
         protected override string GetFullInfoMapa()
         {
-            string tip = base.GetFullInfoMapa();
+            string tip = string.Empty;
             foreach (PuertoEthernetViewBase puerto in _puertosEthernet)
             {
                 tip += Environment.NewLine + "Puerto:  " + puerto.Nombre;

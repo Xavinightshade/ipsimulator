@@ -86,6 +86,8 @@ namespace BusinessLogic.OSI
                 return;
             if (_protocoloArp.ContieneLaDireccionDe(datosFrame.DireccionIP))
                 return;
+            if (!_paquetesNoEnviadosConDestino.ContainsKey(datosFrame.DireccionIP))
+                return;
             _protocoloArp.ActualizarARP(datosFrame);
             Dictionary<Guid, Packet> paqueteNoEnviados = _paquetesNoEnviadosConDestino[datosFrame.DireccionIP];
             EnviarPaquete(paqueteNoEnviados[datosFrame.IdPacketOriginal], paqueteNoEnviados[datosFrame.IdPacketOriginal].IpDestino);

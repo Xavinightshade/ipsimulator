@@ -8,6 +8,7 @@ using RedesIP.Modelos.Equipos.Componentes;
 using RedesIP.SOA;
 using System.Collections.ObjectModel;
 using RedesIP;
+using RedesIP.Modelos.Datos;
 
 namespace BusinessLogic.Equipos
 {
@@ -51,11 +52,36 @@ namespace BusinessLogic.Equipos
 
         public override void InicializarEquipo()
         {
-            //  InicializarPuertos();
+              InicializarPuertos();
+        }
+
+        private void InicializarPuertos()
+        {
+            foreach (PuertoEthernetLogicoBase puerto in _puertosEthernet)
+            {
+                puerto.FrameRecibido += new EventHandler<FrameRecibidoEventArgs>(puerto_FrameRecibido);
+            }
+        }
+
+        void puerto_FrameRecibido(object sender, FrameRecibidoEventArgs e)
+        {
+            PuertoEthernetLogicoBase puertoOrigen = (PuertoEthernetLogicoBase)sender;
+            Frame frame = e.FrameRecibido;
+            foreach (PuertoEthernetLogicoBase puerto in _puertosEthernet)
+            {
+                if (puerto == puertoOrigen)
+                    continue;
+                ((IEnvioReciboDatos)puerto).TransmitirFrame(frame);
+            }
+
         }
 
         public override void DesconectarEquipo()
         {
+            foreach (PuertoEthernetLogicoBase puerto in _puertosEthernet)
+            {
+                puerto.FrameRecibido -= new EventHandler<FrameRecibidoEventArgs>(puerto_FrameRecibido);
+            }
             _puertosEthernet = null;
         }
     }
