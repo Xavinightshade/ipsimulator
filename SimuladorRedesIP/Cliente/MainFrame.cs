@@ -208,7 +208,7 @@ namespace SimuladorCliente
 
         private void ConectarSOA(string ipAddress, string puerto)
         {
-            System.ServiceModel.Channels.Binding binding =
+            NetTcpBinding binding =
                 new NetTcpBinding(SecurityMode.None, true);
             
             EndpointAddress address =
@@ -218,10 +218,18 @@ namespace SimuladorCliente
 
 
             InstanceContext context = new InstanceContext(_estacionView);
+     
             DuplexChannelFactory<IModeloSOA> factory =
                 new DuplexChannelFactory<IModeloSOA>
                 (context, binding, address);
             binding.ReceiveTimeout = TimeSpan.MaxValue;
+            binding.ReaderQuotas.MaxArrayLength = 2147483647;
+            binding.MaxBufferSize = 2147483647;
+            binding.MaxReceivedMessageSize = 2147483647;
+            binding.ReaderQuotas.MaxBytesPerRead = 2147483647;
+            binding.ReaderQuotas.MaxNameTableCharCount = 2147483647;
+            binding.ReaderQuotas.MaxDepth = 2147483647;
+            binding.ReaderQuotas.MaxStringContentLength = 2147483647;
             IModeloSOA clien = factory.CreateChannel();
             
 
@@ -399,9 +407,13 @@ namespace SimuladorCliente
 
             NetTcpBinding binding =
                 new NetTcpBinding(SecurityMode.None, true);
-            binding.ReaderQuotas.MaxArrayLength = 2000000;
-            binding.MaxBufferSize = 2000000;
-            binding.MaxReceivedMessageSize = 2000000;
+            binding.ReaderQuotas.MaxArrayLength = 2147483647;
+            binding.MaxBufferSize = 2147483647;
+            binding.MaxReceivedMessageSize = 2147483647;
+            binding.ReaderQuotas.MaxBytesPerRead = 2147483647;
+            binding.ReaderQuotas.MaxNameTableCharCount = 2147483647;
+            binding.ReaderQuotas.MaxDepth = 2147483647;
+            binding.ReaderQuotas.MaxStringContentLength = 2147483647;
             Uri address = new Uri(@"net.tcp://" + direccionIP + ":" + puerto + "/Simulador");
             binding.ReceiveTimeout = TimeSpan.MaxValue;
             binding.ReliableSession.InactivityTimeout = TimeSpan.MaxValue;
