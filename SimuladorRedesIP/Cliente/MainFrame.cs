@@ -494,12 +494,9 @@ namespace SimuladorCliente
             _toolBarConectarEquipos.Enabled = true;
             _toolBarMouse.Checked = true;
 
-            _formaPaletaHerramientas._PaletadbArchivo.Enabled = false;
-            _formaPaletaHerramientas._PaletabdDefault.Enabled = false;
             _formaPaletaHerramientas._PaletasoaConectar.Enabled = true;
             _formaPaletaHerramientas._PaletasoaConfigurar.Enabled = true;
             _formaPaletaHerramientas._PaletasoaDesconectar.Enabled = false;
-            _formaPaletaHerramientas._PaletadbSave.Enabled = false;
 
             _formaPaletaHerramientas._PaletaMouse.Enabled = true;
             _formaPaletaHerramientas._PaletaMouse.FlatStyle = FlatStyle.Flat;
