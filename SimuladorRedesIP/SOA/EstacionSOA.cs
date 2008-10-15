@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
+using SOA.Equipos;
 
 namespace RedesIP.SOA
 {
@@ -23,6 +24,14 @@ namespace RedesIP.SOA
         {
             get { return _switches; }
             set { _switches = value; }
+        }
+        private List<HUBSOA> _hubs = new List<HUBSOA>();
+
+        [DataMember]
+        public List<HUBSOA> HUBS
+        {
+            get { return _hubs; }
+            set { _hubs = value; }
         }
         private List<SwitchVLanSOA> _switchesVlan = new List<SwitchVLanSOA>();
         [DataMember]

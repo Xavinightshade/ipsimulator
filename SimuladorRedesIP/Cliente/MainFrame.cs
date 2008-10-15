@@ -129,7 +129,7 @@ namespace SimuladorCliente
         }
         private void Switch_Click(object sender, EventArgs e)
         {
-            _estacionView.PeticionCrearEquipo(TipoDeEquipo.Switch);
+            _estacionView.PeticionCrearEquipo(TipoDeEquipo.HUB);
             _toolBarMouse.CheckState = CheckState.Unchecked;
             _toolBarPC.CheckState = CheckState.Unchecked;
             _toolBarSwitch.CheckState = CheckState.Checked;

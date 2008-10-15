@@ -17,6 +17,7 @@ using BusinessLogic.Threads;
 using BusinessLogic.Equipos;
 using BusinessLogic.Datos;
 using SOA;
+using SOA.Equipos;
 
 namespace RedesIP
 {
@@ -104,6 +105,10 @@ namespace RedesIP
             foreach (KeyValuePair<Guid,SwitchLogico> par in _estacion.Switches)
             {
                estacionSOA.Switches.Add(SwitchLogico.CrearSwitchSOA(par.Value));
+            }
+            foreach (KeyValuePair<Guid, HUBLogico> par in _estacion.HUBS)
+            {
+                estacionSOA.HUBS.Add(HUBLogico.CrearHUBSOA(par.Value));
             }
             foreach (KeyValuePair<Guid, SwitchVLAN> par in _estacion.SwitchesVLan)
             {
@@ -208,6 +213,22 @@ namespace RedesIP
             foreach (IVisualizacion cliente in _vistas)
             {
                 cliente.CrearSwitch(swiRespuesta);
+            }
+        }
+        public void PeticionCrearHUB(HUBSOA hubPeticion)
+        {
+            HUBLogico hubLogico = new HUBLogico(Guid.NewGuid(), hubPeticion.X, hubPeticion.Y, hubPeticion.Nombre);
+            for (int i = 0; i < 7; i++)
+            {
+                hubLogico.AgregarPuerto(Guid.NewGuid(), "E." + i.ToString(), true);
+            }
+            _estacion.CrearHUB(hubLogico);
+
+
+            HUBSOA hubRespuesta = HUBLogico.CrearHUBSOA(hubLogico);
+            foreach (IVisualizacion cliente in _vistas)
+            {
+                cliente.CrearHUB(hubRespuesta);
             }
         }
         public void PeticionCrearSwitchVLAN(SwitchVLanSOA switchVLanSOA)
@@ -511,6 +532,8 @@ namespace RedesIP
         }
 
         #endregion
+
+ 
     }
 
 

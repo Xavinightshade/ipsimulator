@@ -5,6 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using RedesIP.SOA;
 using SOA.Componentes;
+using SOA.Equipos;
 
 namespace RedesIP.SOA
 {
@@ -16,6 +17,8 @@ namespace RedesIP.SOA
         void PeticionCrearComputador(ComputadorSOA computador);
         [OperationContract()]
         void PeticionCrearSwitch(SwitchSOA swi);
+        [OperationContract()]
+        void PeticionCrearHUB(HUBSOA hUBSOA);
         [OperationContract()]
         void PeticionCrearRouter(RouterSOA router);
         [OperationContract()]

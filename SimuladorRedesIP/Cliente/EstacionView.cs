@@ -19,6 +19,7 @@ using SOA.Datos;
 using SimuladorCliente.Marcadores;
 using SimuladorCliente.Herramientas;
 using SOA;
+using SimuladorCliente.Equipos;
 
 namespace RedesIP.Vistas
 {
@@ -46,6 +47,8 @@ namespace RedesIP.Vistas
         Dictionary<Guid, PuertoEthernetViewBase> _diccioPuertos = new Dictionary<Guid, PuertoEthernetViewBase>();
         List<ComputadorView> _computadores = new List<ComputadorView>();
         List<SwitchView> _switches = new List<SwitchView>();
+        List<HUBView> _hubs = new List<HUBView>();
+
         List<SwitchVLanView> _switchesVLan = new List<SwitchVLanView>();
 
         List<RouterView> _routers = new List<RouterView>();
@@ -76,6 +79,10 @@ namespace RedesIP.Vistas
             for (int i = 0; i < _computadores.Count; i++)
             {
                 _computadores[i].DibujarElemento(g);
+            }
+            for (int i = 0; i < _hubs.Count; i++)
+            {
+                _hubs[i].DibujarElemento(g);
             }
             for (int i = 0; i < _switches.Count; i++)
             {
@@ -371,6 +378,8 @@ namespace RedesIP.Vistas
                 _routers.Remove(equipo as RouterView);
             if (_switches.Contains(equipo as SwitchView))
                 _switches.Remove(equipo as SwitchView);
+            if (_hubs.Contains(equipo as HUBView))
+                _hubs.Remove(equipo as HUBView);
             if (_switchesVLan.Contains(equipo as SwitchVLanView))
                 _switchesVLan.Remove(equipo as SwitchVLanView);
             if (_computadores.Contains(equipo as ComputadorView))
@@ -432,5 +441,7 @@ namespace RedesIP.Vistas
         }
 
         #endregion
+
+
     }
 }

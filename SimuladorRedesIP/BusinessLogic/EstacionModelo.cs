@@ -80,6 +80,8 @@ namespace RedesIP
         /// Switches de la red
         /// </summary>
         private Dictionary<Guid, SwitchLogico> _switches = new Dictionary<Guid, SwitchLogico>();
+        private Dictionary<Guid, HUBLogico> _hubs = new Dictionary<Guid, HUBLogico>();
+
         private Dictionary<Guid, SwitchVLAN> _switchesVLan = new Dictionary<Guid, SwitchVLAN>();
 
         public Dictionary<Guid, SwitchVLAN> SwitchesVLan
@@ -90,6 +92,10 @@ namespace RedesIP
         public Dictionary<Guid, SwitchLogico> Switches
         {
             get { return _switches; }
+        }
+        public Dictionary<Guid, HUBLogico> HUBS
+        {
+            get { return _hubs; }
         }
         /// <summary>
         /// Cables de la red
@@ -131,6 +137,12 @@ namespace RedesIP
             LLenarPuertos(_puertos, swi.PuertosEthernet);
             swi.InicializarEquipo();
         }
+        public void CrearHUB(HUBLogico hubLogico)
+        {
+            _hubs.Add(hubLogico.Id, hubLogico);
+            LLenarPuertos(_puertos, hubLogico.PuertosEthernet);
+            hubLogico.InicializarEquipo();
+        }
         public void CrearSwitchVLan(SwitchVLAN swiVLANLogico)
         {
             _switchesVLan.Add(swiVLANLogico.Id, swiVLANLogico);
@@ -156,6 +168,10 @@ namespace RedesIP
             else if (_routers.ContainsKey(id))
             {
                 elemento = _routers[id];
+            }
+            else if (_hubs.ContainsKey(id))
+            {
+                elemento = _hubs[id];
             }
             if (elemento == null)
                 throw new NotSupportedException();
@@ -288,6 +304,14 @@ namespace RedesIP
                 }
                 return puertos;
             }
+            if (_hubs.ContainsKey(idEquipo))
+            {
+                foreach (PuertoEthernetLogicoBase puerto in _hubs[idEquipo].PuertosEthernet)
+                {
+                    puertos.Add(puerto);
+                }
+                return puertos;
+            }
             if (_switchesVLan.ContainsKey(idEquipo))
             {
                 foreach (PuertoEthernetLogicoBase puerto in _switchesVLan[idEquipo].PuertosEthernet)
@@ -329,6 +353,12 @@ namespace RedesIP
                 _switches.Remove(idEquipo);
                 return equipo;
             }
+            if (_hubs.ContainsKey(idEquipo))
+            {
+                EquipoLogico equipo = _hubs[idEquipo];
+                _hubs.Remove(idEquipo);
+                return equipo;
+            }
             if (_switchesVLan.ContainsKey(idEquipo))
             {
                 EquipoLogico equipo = _switchesVLan[idEquipo];
@@ -343,6 +373,8 @@ namespace RedesIP
             }
             throw new Exception();
         }
+
+
 
 
 

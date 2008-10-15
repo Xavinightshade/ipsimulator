@@ -101,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Equipos\HUBView.cs" />
     <Compile Include="Equipos\SwitchVLanView.cs" />
     <Compile Include="FormaEstacion.cs">
       <SubType>Form</SubType>

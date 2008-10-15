@@ -5,6 +5,7 @@ using System.Text;
 using System.ServiceModel;
 using RedesIP.SOA.Elementos;
 using SOA.Componentes;
+using SOA.Equipos;
 
 namespace RedesIP.SOA
 {
@@ -12,6 +13,8 @@ namespace RedesIP.SOA
     {
         [OperationContract(IsOneWay = true)]
 		void CrearComputador(ComputadorSOA pc);
+        [OperationContract(IsOneWay = true)]
+        void CrearHUB(HUBSOA hubRespuesta);
         [OperationContract(IsOneWay = true)]
         void CrearSwitch(SwitchSOA swi);
         [OperationContract(IsOneWay = true)]

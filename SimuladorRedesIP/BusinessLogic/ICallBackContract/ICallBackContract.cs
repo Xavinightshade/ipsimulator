@@ -29,5 +29,6 @@ namespace RedesIP.SOA
         void SetVLans(Guid idSwitchVLan, List<global::SOA.Componentes.VLanSOA> vLansActuales);
         [OperationContract(IsOneWay = true)]
         void NotificarArchivo(Guid idPC, ArchivoSOA archivoSOA);
+
     }
 }

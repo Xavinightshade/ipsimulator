@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using RedesIP.SOA;
 using RedesIP.Vistas.Equipos;
 using RedesIP.Vistas.Equipos.Componentes;
+using SOA.Equipos;
+using SimuladorCliente.Equipos;
 
 namespace RedesIP.Vistas
 {
@@ -33,6 +35,12 @@ namespace RedesIP.Vistas
         {
             HerramientaCreacionEquipos herramientaCreacion = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this) as HerramientaCreacionEquipos;
             herramientaCreacion.InsertarRouter(rou);
+            Invalidate();
+        }
+        public void CrearHUB(HUBSOA hubRespuesta)
+        {
+            HerramientaCreacionEquipos herramientaCreacion = FabricaHerramienta.CrearHerramienta(Herramienta.CreacionEquipos, this) as HerramientaCreacionEquipos;
+            herramientaCreacion.InsertarHUB(hubRespuesta);
             Invalidate();
         }
         public void PeticionCrearEquipo(TipoDeEquipo tipoDeEquipo)
@@ -68,6 +76,9 @@ namespace RedesIP.Vistas
                         break;
                     case TipoDeEquipo.Switch:
                         Estacion._server.PeticionCrearSwitch(new SwitchSOA(_tipoEquipo, e.X, e.Y));
+                        break;
+                    case TipoDeEquipo.HUB:
+                        Estacion._server.PeticionCrearHUB(new HUBSOA(_tipoEquipo, e.X, e.Y));
                         break;
                     case TipoDeEquipo.Router:
                         Estacion._server.PeticionCrearRouter(new RouterSOA(_tipoEquipo, e.X, e.Y));
@@ -117,8 +128,18 @@ namespace RedesIP.Vistas
                     Estacion._puertos.Add(puerto);
                     Estacion._diccioPuertos.Add(puerto.Id, puerto);
                 }
-
-
+            }
+            public void InsertarHUB(HUBSOA hubRespuesta)
+            {
+                HUBView hub = new HUBView(hubRespuesta);
+                hub.EstablecerContenedor(Estacion);
+                Estacion._hubs.Add(hub);
+                Estacion._equipos.Add(hub.Id, hub);
+                foreach (PuertoEthernetViewBase puerto in hub.PuertosEthernet)
+                {
+                    Estacion._puertos.Add(puerto);
+                    Estacion._diccioPuertos.Add(puerto.Id, puerto);
+                }
             }
             public void InsertarSwitchVLan(SwitchVLanSOA swiRespuesta)
             {
@@ -132,6 +153,8 @@ namespace RedesIP.Vistas
                     Estacion._diccioPuertos.Add(puerto.Id, puerto);
                 }
             }
+
+
         }
 
     }

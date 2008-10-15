@@ -10,6 +10,7 @@ namespace RedesIP
 		Computador,
 		Switch,
         SwitchVLan,
-        Router
+        Router,
+        HUB
 	}
 }
