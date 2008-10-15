@@ -165,6 +165,13 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap HUB {
+            get {
+                object obj = ResourceManager.GetObject("HUB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon Internet_Connect {
             get {
                 object obj = ResourceManager.GetObject("Internet_Connect", resourceCulture);
@@ -294,6 +301,20 @@ namespace SimuladorCliente.Properties {
         internal static System.Drawing.Bitmap synchronize_16x16 {
             get {
                 object obj = ResourceManager.GetObject("synchronize-16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap V_Icon_big {
+            get {
+                object obj = ResourceManager.GetObject("V_Icon_big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap VLAN2 {
+            get {
+                object obj = ResourceManager.GetObject("VLAN2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

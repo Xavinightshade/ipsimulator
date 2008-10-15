@@ -20,6 +20,7 @@ using SimuladorCliente.Marcadores;
 using SimuladorCliente.Herramientas;
 using SOA;
 using SimuladorCliente.Equipos;
+using SOA.Equipos;
 
 namespace RedesIP.Vistas
 {
@@ -132,6 +133,10 @@ namespace RedesIP.Vistas
             foreach (ComputadorSOA pc in estacionSOA.Computadores)
             {
                 CrearComputador(pc);
+            }
+            foreach (HUBSOA hub in estacionSOA.HUBS)
+            {
+                CrearHUB(hub);
             }
             foreach (SwitchSOA swi in estacionSOA.Switches)
             {

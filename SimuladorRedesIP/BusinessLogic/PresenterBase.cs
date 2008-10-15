@@ -218,7 +218,7 @@ namespace RedesIP
         public void PeticionCrearHUB(HUBSOA hubPeticion)
         {
             HUBLogico hubLogico = new HUBLogico(Guid.NewGuid(), hubPeticion.X, hubPeticion.Y, hubPeticion.Nombre);
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 4; i++)
             {
                 hubLogico.AgregarPuerto(Guid.NewGuid(), "E." + i.ToString(), true);
             }

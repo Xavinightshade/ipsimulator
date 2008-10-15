@@ -23,7 +23,7 @@ namespace SimuladorCliente.Equipos
 
 
         public HUBView(HUBSOA equipo)
-            : base(equipo.Id, equipo.Nombre, equipo.X, equipo.Y, Resources.SwitchVLan.Size.Width, Resources.SwitchVLan.Size.Height)
+            : base(equipo.Id, equipo.Nombre, equipo.X, equipo.Y, Resources.HUB.Size.Width, Resources.HUB.Size.Height)
 		{
 			CrearPuertos(equipo.Puertos);
 		}
@@ -34,7 +34,7 @@ namespace SimuladorCliente.Equipos
 			foreach (PuertoBaseSOA puerto in puertos)
 	{
 
-        _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 20)+3, 7, this,puerto.Nombre,puerto.Habilitado));
+        _puertosEthernet.Add(new PuertoEthernetViewBase(puerto.Id, (i * 20)+3, 4, this,puerto.Nombre,puerto.Habilitado));
 				i++;
 	}
 
@@ -43,7 +43,7 @@ namespace SimuladorCliente.Equipos
 
 		public override System.Drawing.Image Imagen
 		{
-			get { return Resources.Switch; }
+            get { return Resources.HUB; }
 		}
 		public override void DibujarElemento(System.Drawing.Graphics grafico)
 		{

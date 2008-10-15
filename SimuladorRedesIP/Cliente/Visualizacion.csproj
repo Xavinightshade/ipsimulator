@@ -512,6 +512,9 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\V-Icon-big.jpg" />
+    <None Include="Resources\HUB.PNG" />
+    <None Include="Resources\VLAN2.PNG" />
     <None Include="Resources\html-file-16x16.png" />
     <None Include="Resources\folder-with-file-16x16.png" />
     <None Include="Properties\DataSources\SOA.ArchivoSOA.datasource" />

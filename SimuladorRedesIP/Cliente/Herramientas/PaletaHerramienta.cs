@@ -16,6 +16,8 @@ namespace SimuladorCliente.Herramientas
         public ToolStripMenuItem _PaletabdDefault = new ToolStripMenuItem("Seleccionar base de datos predeterminada", Resources.database_process_16x16);
         public ToolStripMenuItem _PaletadbArchivo = new ToolStripMenuItem("Seleccionar base de datos desde archivo", Resources.database_search_16x16);
         public ToolStripMenuItem _PaletadbSave = new ToolStripMenuItem("Guardar base de datos actual a archivo", Resources.database_save);
+        public ToolStripMenuItem _paletaSwitch = new ToolStripMenuItem("Crear Switch", Resources.Switch);
+        public ToolStripMenuItem _paletaSwitchVLan = new ToolStripMenuItem("Crear Switch VLan", Resources.V_Icon_big);
 
 
         public ToolStripMenuItem _PaletasoaConectar = new ToolStripMenuItem("Conectar a Servidor", Resources.connect_16x16);
@@ -35,12 +37,15 @@ namespace SimuladorCliente.Herramientas
             _menuSOA.Items.Add(_PaletasoaDesconectar);
             _menuSOA.Items.Add(new ToolStripSeparator());
             _menuSOA.Items.Add(_PaletasoaConfigurar);
+            _menuSwitch.Items.Add(_paletaSwitch);
+            _menuSwitch.Items.Add(_paletaSwitchVLan);
 
         }
 
  
         ContextMenuStrip _menuBD = new ContextMenuStrip();
         ContextMenuStrip _menuSOA = new ContextMenuStrip();
+        ContextMenuStrip _menuSwitch = new ContextMenuStrip();
         private void button7_Click(object sender, EventArgs e)
         {
             
@@ -74,6 +79,16 @@ namespace SimuladorCliente.Herramientas
         }
 
         private delegate void SetValorDelegate(int valor);
+
+        private void _PaletaButtonSwitch_Click(object sender, EventArgs e)
+        {
+            _menuSwitch.Show(_PaletaButtonSwitch, _PaletaButtonSwitch.Width, _PaletaButtonSwitch.Height / 2);
+        }
+
+
+
+
+
 
 
 

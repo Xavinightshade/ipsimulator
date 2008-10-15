@@ -116,6 +116,17 @@ namespace AccesoDatos
                 Guid idPuerto = AgregarPuerto(equipoBD, pc.Value.PuertoEthernet, generarNuevosIds);
                 puertosMappingAntiguoNuevo.Add(pc.Value.PuertoEthernet.Id, idPuerto);
             }
+            foreach (KeyValuePair<Guid, HUBLogico> hub in estacion.HUBS)
+            {
+                Equipos equipoBD = AgregarEquipo(estacionBD, hub.Value, generarNuevosIds);
+
+                foreach (PuertoEthernetLogicoBase puerto in hub.Value.PuertosEthernet)
+                {
+                    Guid idPuerto = AgregarPuerto(equipoBD, puerto, generarNuevosIds);
+                    puertosMappingAntiguoNuevo.Add(puerto.Id, idPuerto);
+                }
+
+            }
             foreach (KeyValuePair<Guid, SwitchLogico> swi in estacion.Switches)
             {
                 Equipos equipoBD = AgregarEquipo(estacionBD, swi.Value, generarNuevosIds);
@@ -256,6 +267,14 @@ namespace AccesoDatos
                         PuertosCompletos puertoCompleto = equipoBD.Puertos[0].PuertosCompletos;
                         pc.AgregarPuerto(puertoCompleto.Id, puertoCompleto.Puertos.Nombre, puertoCompleto.DireccionMAC, puertoCompleto.DireccionIP, puertoCompleto.Mascara, puertoCompleto.Puertos.Habilitado);
                         estacionLogica.CrearComputador(pc);
+                        break;
+                    case TipoDeEquipo.HUB:
+                        HUBLogico hub = new HUBLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre);
+                        foreach (Puertos puertoBD in equipoBD.PuertosBD)
+                        {
+                            hub.AgregarPuerto(puertoBD.Id, puertoBD.Nombre, puertoBD.Habilitado);
+                        }
+                        estacionLogica.CrearHUB(hub);
                         break;
                     case TipoDeEquipo.Switch:
                         SwitchLogico swi = new SwitchLogico(equipoBD.Id, equipoBD.X, equipoBD.Y, equipoBD.Nombre);

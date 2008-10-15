@@ -35,15 +35,15 @@
             this._PaletaPunta = new System.Windows.Forms.Button();
             this._PaletaConexion = new System.Windows.Forms.Button();
             this._PaletaRouter = new System.Windows.Forms.Button();
-            this._PaletaSwitch = new System.Windows.Forms.Button();
+            this._PaletaButtonSwitch = new System.Windows.Forms.Button();
             this._PaletaPc = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this._paletaHUB = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this._paletaValorLabel = new System.Windows.Forms.Label();
             this._paletaTrackBar = new System.Windows.Forms.TrackBar();
-            this._paletaSwitchVLan = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -126,16 +126,17 @@
             this._PaletaRouter.TabIndex = 2;
             this._PaletaRouter.UseVisualStyleBackColor = true;
             // 
-            // _PaletaSwitch
+            // _PaletaButtonSwitch
             // 
-            this._PaletaSwitch.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this._PaletaSwitch.FlatAppearance.BorderSize = 3;
-            this._PaletaSwitch.Image = global::SimuladorCliente.Properties.Resources.Switch;
-            this._PaletaSwitch.Location = new System.Drawing.Point(6, 65);
-            this._PaletaSwitch.Name = "_PaletaSwitch";
-            this._PaletaSwitch.Size = new System.Drawing.Size(110, 29);
-            this._PaletaSwitch.TabIndex = 1;
-            this._PaletaSwitch.UseVisualStyleBackColor = true;
+            this._PaletaButtonSwitch.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
+            this._PaletaButtonSwitch.FlatAppearance.BorderSize = 3;
+            this._PaletaButtonSwitch.Image = global::SimuladorCliente.Properties.Resources.Switch;
+            this._PaletaButtonSwitch.Location = new System.Drawing.Point(6, 65);
+            this._PaletaButtonSwitch.Name = "_PaletaButtonSwitch";
+            this._PaletaButtonSwitch.Size = new System.Drawing.Size(110, 29);
+            this._PaletaButtonSwitch.TabIndex = 1;
+            this._PaletaButtonSwitch.UseVisualStyleBackColor = true;
+            this._PaletaButtonSwitch.Click += new System.EventHandler(this._PaletaButtonSwitch_Click);
             // 
             // _PaletaPc
             // 
@@ -174,9 +175,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this._paletaSwitchVLan);
+            this.groupBox3.Controls.Add(this._paletaHUB);
             this.groupBox3.Controls.Add(this._PaletaPc);
-            this.groupBox3.Controls.Add(this._PaletaSwitch);
+            this.groupBox3.Controls.Add(this._PaletaButtonSwitch);
             this.groupBox3.Controls.Add(this._PaletaRouter);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(6, 146);
@@ -185,6 +186,16 @@
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Equipos";
+            // 
+            // _paletaHUB
+            // 
+            this._paletaHUB.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this._paletaHUB.FlatAppearance.BorderSize = 3;
+            this._paletaHUB.Image = ((System.Drawing.Image)(resources.GetObject("_paletaHUB.Image")));
+            this._paletaHUB.Location = new System.Drawing.Point(6, 100);
+            this._paletaHUB.Name = "_paletaHUB";
+            this._paletaHUB.Size = new System.Drawing.Size(110, 29);
+            this._paletaHUB.TabIndex = 0;
             // 
             // groupBox4
             // 
@@ -216,17 +227,6 @@
             this._paletaTrackBar.TabIndex = 18;
             this._paletaTrackBar.Value = 10;
             this._paletaTrackBar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
-            // _paletaSwitchVLan
-            // 
-            this._paletaSwitchVLan.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
-            this._paletaSwitchVLan.FlatAppearance.BorderSize = 3;
-            this._paletaSwitchVLan.Image = ((System.Drawing.Image)(resources.GetObject("_paletaSwitchVLan.Image")));
-            this._paletaSwitchVLan.Location = new System.Drawing.Point(6, 98);
-            this._paletaSwitchVLan.Name = "_paletaSwitchVLan";
-            this._paletaSwitchVLan.Size = new System.Drawing.Size(110, 29);
-            this._paletaSwitchVLan.TabIndex = 3;
-            this._paletaSwitchVLan.UseVisualStyleBackColor = true;
             // 
             // PaletaHerramienta
             // 
@@ -261,7 +261,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         public System.Windows.Forms.Button _PaletaPc;
-        public System.Windows.Forms.Button _PaletaSwitch;
+        public System.Windows.Forms.Button _PaletaButtonSwitch;
         public System.Windows.Forms.Button _PaletaRouter;
         public System.Windows.Forms.Button _PaletaConexion;
         public System.Windows.Forms.Button _PaletaPunta;
@@ -269,6 +269,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label _paletaValorLabel;
         public System.Windows.Forms.TrackBar _paletaTrackBar;
-        public System.Windows.Forms.Button _paletaSwitchVLan;
+        public System.Windows.Forms.Button _paletaHUB;
     }
 }

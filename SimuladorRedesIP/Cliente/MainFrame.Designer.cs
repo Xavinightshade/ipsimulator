@@ -52,8 +52,11 @@ namespace SimuladorCliente
             this._toolBarMouse = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this._toolBarPC = new System.Windows.Forms.ToolStripButton();
-            this._toolBarSwitch = new System.Windows.Forms.ToolStripButton();
-            this._toolBarSwitchVLan = new System.Windows.Forms.ToolStripButton();
+            this._toolBarHUB = new System.Windows.Forms.ToolStripButton();
+            this._menuSwitches = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this._toolBarSwitch = new System.Windows.Forms.ToolStripMenuItem();
+            this._toolBarSwitchVLan = new System.Windows.Forms.ToolStripMenuItem();
             this._toolBarRouter = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this._toolBarConectarEquipos = new System.Windows.Forms.ToolStripButton();
@@ -85,6 +88,10 @@ namespace SimuladorCliente
             this.documentaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._menuStrip = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStrip.SuspendLayout();
             this._statusStrip.SuspendLayout();
             this._menuStrip.SuspendLayout();
@@ -107,8 +114,8 @@ namespace SimuladorCliente
             this._toolBarMouse,
             this.toolStripSeparator5,
             this._toolBarPC,
-            this._toolBarSwitch,
-            this._toolBarSwitchVLan,
+            this._toolBarHUB,
+            this._menuSwitches,
             this._toolBarRouter,
             this.toolStripSeparator7,
             this._toolBarConectarEquipos,
@@ -289,22 +296,47 @@ namespace SimuladorCliente
             this._toolBarPC.Text = "Crear Computador";
             this._toolBarPC.Click += new System.EventHandler(this.pc_Click);
             // 
+            // _toolBarHUB
+            // 
+            this._toolBarHUB.Image = global::SimuladorCliente.Properties.Resources.HUB;
+            this._toolBarHUB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolBarHUB.Name = "_toolBarHUB";
+            this._toolBarHUB.Size = new System.Drawing.Size(77, 22);
+            this._toolBarHUB.Text = "Crear HUB";
+            this._toolBarHUB.Click += new System.EventHandler(this.HUB_Click);
+            // 
+            // _menuSwitches
+            // 
+            this._menuSwitches.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator14,
+            this._toolBarSwitch,
+            this._toolBarSwitchVLan});
+            this._menuSwitches.Image = global::SimuladorCliente.Properties.Resources.Switch;
+            this._menuSwitches.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._menuSwitches.Name = "_menuSwitches";
+            this._menuSwitches.Size = new System.Drawing.Size(97, 22);
+            this._menuSwitches.Text = "Crear Switch";
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(166, 6);
+            // 
             // _toolBarSwitch
             // 
+            this._toolBarSwitch.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this._toolBarSwitch.Image = global::SimuladorCliente.Properties.Resources.Switch;
-            this._toolBarSwitch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarSwitch.Name = "_toolBarSwitch";
-            this._toolBarSwitch.Size = new System.Drawing.Size(88, 22);
+            this._toolBarSwitch.Size = new System.Drawing.Size(169, 22);
             this._toolBarSwitch.Text = "Crear Switch";
             this._toolBarSwitch.Click += new System.EventHandler(this.Switch_Click);
             // 
             // _toolBarSwitchVLan
             // 
             this._toolBarSwitchVLan.Image = ((System.Drawing.Image)(resources.GetObject("_toolBarSwitchVLan.Image")));
-            this._toolBarSwitchVLan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarSwitchVLan.Name = "_toolBarSwitchVLan";
-            this._toolBarSwitchVLan.Size = new System.Drawing.Size(116, 22);
-            this._toolBarSwitchVLan.Text = "Crear Switch VLAN";
+            this._toolBarSwitchVLan.Size = new System.Drawing.Size(169, 22);
+            this._toolBarSwitchVLan.Text = "Crear SwitchVLan";
             this._toolBarSwitchVLan.Click += new System.EventHandler(this.SwitchVLan_Click);
             // 
             // _toolBarRouter
@@ -335,7 +367,7 @@ namespace SimuladorCliente
             this._toolBarPuntaMedicion.Image = global::SimuladorCliente.Properties.Resources.x_mag_16x16;
             this._toolBarPuntaMedicion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarPuntaMedicion.Name = "_toolBarPuntaMedicion";
-            this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 20);
+            this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 22);
             this._toolBarPuntaMedicion.Text = "Punta de Medicion";
             this._toolBarPuntaMedicion.Click += new System.EventHandler(this.Punta_Click);
             // 
@@ -556,6 +588,32 @@ namespace SimuladorCliente
             this._menuStrip.TabIndex = 16;
             this._menuStrip.Text = "menuStrip1";
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Image = global::SimuladorCliente.Properties.Resources.connect_16x16;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 22);
+            this.toolStripMenuItem2.Text = "Conectar a servidor";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Image = global::SimuladorCliente.Properties.Resources.disconnect_16x16;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(204, 22);
+            this.toolStripMenuItem3.Text = "Desconectar del servidor";
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(201, 6);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Image = global::SimuladorCliente.Properties.Resources.synchronize_16x16;
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(204, 22);
+            this.toolStripMenuItem4.Text = "Inicializar servidor";
+            // 
             // MainFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -588,8 +646,7 @@ namespace SimuladorCliente
 
 		private System.Windows.Forms.ToolStrip _toolStrip;
 		private System.Windows.Forms.ToolStripButton _toolBarMouse;
-		private System.Windows.Forms.ToolStripButton _toolBarPC;
-		private System.Windows.Forms.ToolStripButton _toolBarSwitch;
+        private System.Windows.Forms.ToolStripButton _toolBarPC;
         private System.Windows.Forms.ToolStripButton _toolBarConectarEquipos;
         private System.Windows.Forms.ToolStripButton _toolBarPuntaMedicion;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
@@ -640,7 +697,15 @@ namespace SimuladorCliente
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripButton _toolBarPlayPause;
-        private System.Windows.Forms.ToolStripButton _toolBarSwitchVLan;
+        private System.Windows.Forms.ToolStripDropDownButton _menuSwitches;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripButton _toolBarHUB;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem _toolBarSwitch;
+        private System.Windows.Forms.ToolStripMenuItem _toolBarSwitchVLan;
 
 
 
