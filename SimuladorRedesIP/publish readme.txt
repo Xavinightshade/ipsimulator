@@ -1,3 +1,5 @@
+certificate password= javeriana
+
 2.3.1.1 Enable Samesite for the .NET Framework 3.5 SP1 bootstrapper package 
 If the .NET Framework 3.5 SP1 bootstrapper package is selected in the Prerequisite dialog box for a Setup project or in ClickOnce publishing, and also the "Download prerequisites from the same location as my application" option is selected, the following build error is shown:  
 
