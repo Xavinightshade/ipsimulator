@@ -41,6 +41,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ApplicationIcon>Network-Internet-Connection.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -512,6 +513,7 @@
       <Link>Red.sdf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Network-Internet-Connection.ico" />
     <None Include="Resources\V-Icon-big.jpg" />
     <None Include="Resources\HUB.PNG" />
     <None Include="Resources\VLAN2.PNG" />
