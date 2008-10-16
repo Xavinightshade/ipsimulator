@@ -628,7 +628,7 @@ namespace SimuladorCliente
             this.MainMenuStrip = this._menuStrip;
             this.Name = "MainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Simulador TCP/IP";
+            this.Text = "Simulador Redes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrameClosing);
             this._toolStrip.ResumeLayout(false);
             this._toolStrip.PerformLayout();

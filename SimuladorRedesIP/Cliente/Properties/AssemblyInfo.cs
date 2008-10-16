@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Simulador TCP/IP")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Simulador Redes")]
+[assembly: AssemblyDescription("Simulador Redes")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Simulador TCP/IP")]
+[assembly: AssemblyCompany("Pontifica Universidad Javeriana")]
+[assembly: AssemblyProduct("Simulador Redes")]
 [assembly: AssemblyCopyright("Copyright ©  2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

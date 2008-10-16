@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimuladorCliente</RootNamespace>
-    <AssemblyName>SimuladorIP</AssemblyName>
+    <AssemblyName>Simulador Redes</AssemblyName>
     <StartupObject>
     </StartupObject>
     <FileUpgradeFlags>
@@ -17,15 +17,18 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <ManifestCertificateThumbprint>F192629004DB23C4B2EBE613FCB119B7BE5347F6</ManifestCertificateThumbprint>
-    <ManifestKeyFile>Cliente_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>923FD67AC9BFB304E51DFB9ADC77D0B9FC2CBB86</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Visualizacion_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>false</SignManifests>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkSubset>Full</TargetFrameworkSubset>
-    <PublishUrl>c:\inetpub\wwwroot\</PublishUrl>
+    <ApplicationIcon>Network-Internet-Connection.ico</ApplicationIcon>
+    <TargetZone>LocalIntranet</TargetZone>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <PublishUrl>C:\Inetpub\wwwroot\pub\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
+    <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -33,15 +36,19 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://jaus.selfip.net/</InstallUrl>
-    <UpdateUrl>http://localhost/</UpdateUrl>
+    <UpdateUrl>http://jaus.selfip.net/</UpdateUrl>
+    <ProductName>Simulador Redes</ProductName>
+    <PublisherName>Pontificia Universidad Javeriana</PublisherName>
+    <SuiteName>Pontificia Universidad Javeriana</SuiteName>
+    <CreateWebPageOnPublish>false</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ApplicationIcon>Network-Internet-Connection.ico</ApplicationIcon>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -514,6 +521,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Network-Internet-Connection.ico" />
+    <None Include="Properties\app.manifest" />
     <None Include="Resources\V-Icon-big.jpg" />
     <None Include="Resources\HUB.PNG" />
     <None Include="Resources\VLAN2.PNG" />
@@ -561,6 +569,7 @@
     <None Include="Resources\NewDocument.bmp" />
     <None Include="Properties\DataSources\SimuladorCliente.Formularios.RedBrowserModel.datasource" />
     <None Include="Resources\AppIcon.ico" />
+    <None Include="Visualizacion_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="Red.sdf">
