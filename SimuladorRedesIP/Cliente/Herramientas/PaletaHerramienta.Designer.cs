@@ -44,11 +44,13 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this._paletaValorLabel = new System.Windows.Forms.Label();
             this._paletaTrackBar = new System.Windows.Forms.TrackBar();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._paletaTrackBar)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button8
@@ -82,7 +84,7 @@
             this._PaletaMouse.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
             this._PaletaMouse.FlatAppearance.BorderSize = 5;
             this._PaletaMouse.Image = global::SimuladorCliente.Properties.Resources.mouse;
-            this._PaletaMouse.Location = new System.Drawing.Point(16, 83);
+            this._PaletaMouse.Location = new System.Drawing.Point(13, 74);
             this._PaletaMouse.Name = "_PaletaMouse";
             this._PaletaMouse.Size = new System.Drawing.Size(106, 57);
             this._PaletaMouse.TabIndex = 5;
@@ -154,7 +156,7 @@
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(5, 487);
+            this.groupBox1.Location = new System.Drawing.Point(2, 478);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(123, 167);
             this.groupBox1.TabIndex = 8;
@@ -166,7 +168,7 @@
             this.groupBox2.Controls.Add(this._PaletaConexion);
             this.groupBox2.Controls.Add(this._PaletaPunta);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(5, 323);
+            this.groupBox2.Location = new System.Drawing.Point(2, 314);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(123, 158);
             this.groupBox2.TabIndex = 9;
@@ -180,7 +182,7 @@
             this.groupBox3.Controls.Add(this._PaletaButtonSwitch);
             this.groupBox3.Controls.Add(this._PaletaRouter);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(6, 146);
+            this.groupBox3.Location = new System.Drawing.Point(3, 137);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(123, 171);
             this.groupBox3.TabIndex = 10;
@@ -202,7 +204,7 @@
             this.groupBox4.Controls.Add(this._paletaValorLabel);
             this.groupBox4.Controls.Add(this._paletaTrackBar);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(6, 12);
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(123, 65);
             this.groupBox4.TabIndex = 20;
@@ -228,17 +230,27 @@
             this._paletaTrackBar.Value = 10;
             this._paletaTrackBar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupBox4);
+            this.panel1.Controls.Add(this._PaletaMouse);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(132, 653);
+            this.panel1.TabIndex = 22;
+            // 
             // PaletaHerramienta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(135, 721);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this._PaletaMouse);
+            this.ClientSize = new System.Drawing.Size(132, 653);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PaletaHerramienta";
             this.TabText = "Paleta";
@@ -249,6 +261,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._paletaTrackBar)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -270,5 +283,6 @@
         private System.Windows.Forms.Label _paletaValorLabel;
         public System.Windows.Forms.TrackBar _paletaTrackBar;
         public System.Windows.Forms.Button _paletaHUB;
+        private System.Windows.Forms.Panel panel1;
     }
 }
