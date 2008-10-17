@@ -292,8 +292,8 @@ namespace SimuladorCliente
             this._toolBarPC.Image = global::SimuladorCliente.Properties.Resources.Computador;
             this._toolBarPC.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarPC.Name = "_toolBarPC";
-            this._toolBarPC.Size = new System.Drawing.Size(116, 22);
-            this._toolBarPC.Text = "Crear Computador";
+            this._toolBarPC.Size = new System.Drawing.Size(86, 22);
+            this._toolBarPC.Text = "Computador";
             this._toolBarPC.Click += new System.EventHandler(this.pc_Click);
             // 
             // _toolBarHUB
@@ -301,8 +301,8 @@ namespace SimuladorCliente
             this._toolBarHUB.Image = global::SimuladorCliente.Properties.Resources.HUB;
             this._toolBarHUB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarHUB.Name = "_toolBarHUB";
-            this._toolBarHUB.Size = new System.Drawing.Size(77, 22);
-            this._toolBarHUB.Text = "Crear HUB";
+            this._toolBarHUB.Size = new System.Drawing.Size(47, 22);
+            this._toolBarHUB.Text = "HUB";
             this._toolBarHUB.Click += new System.EventHandler(this.HUB_Click);
             // 
             // _menuSwitches
@@ -314,29 +314,29 @@ namespace SimuladorCliente
             this._menuSwitches.Image = global::SimuladorCliente.Properties.Resources.Switch;
             this._menuSwitches.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._menuSwitches.Name = "_menuSwitches";
-            this._menuSwitches.Size = new System.Drawing.Size(97, 22);
-            this._menuSwitches.Text = "Crear Switch";
+            this._menuSwitches.Size = new System.Drawing.Size(67, 22);
+            this._menuSwitches.Text = "Switch";
             // 
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator14.Size = new System.Drawing.Size(149, 6);
             // 
             // _toolBarSwitch
             // 
             this._toolBarSwitch.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this._toolBarSwitch.Image = global::SimuladorCliente.Properties.Resources.Switch;
             this._toolBarSwitch.Name = "_toolBarSwitch";
-            this._toolBarSwitch.Size = new System.Drawing.Size(169, 22);
-            this._toolBarSwitch.Text = "Crear Switch";
+            this._toolBarSwitch.Size = new System.Drawing.Size(152, 22);
+            this._toolBarSwitch.Text = "Switch";
             this._toolBarSwitch.Click += new System.EventHandler(this.Switch_Click);
             // 
             // _toolBarSwitchVLan
             // 
             this._toolBarSwitchVLan.Image = ((System.Drawing.Image)(resources.GetObject("_toolBarSwitchVLan.Image")));
             this._toolBarSwitchVLan.Name = "_toolBarSwitchVLan";
-            this._toolBarSwitchVLan.Size = new System.Drawing.Size(169, 22);
-            this._toolBarSwitchVLan.Text = "Crear SwitchVLan";
+            this._toolBarSwitchVLan.Size = new System.Drawing.Size(152, 22);
+            this._toolBarSwitchVLan.Text = "SwitchVLan";
             this._toolBarSwitchVLan.Click += new System.EventHandler(this.SwitchVLan_Click);
             // 
             // _toolBarRouter
@@ -344,8 +344,8 @@ namespace SimuladorCliente
             this._toolBarRouter.Image = global::SimuladorCliente.Properties.Resources.Router;
             this._toolBarRouter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarRouter.Name = "_toolBarRouter";
-            this._toolBarRouter.Size = new System.Drawing.Size(90, 22);
-            this._toolBarRouter.Text = "Crear Router";
+            this._toolBarRouter.Size = new System.Drawing.Size(60, 22);
+            this._toolBarRouter.Text = "Router";
             this._toolBarRouter.Click += new System.EventHandler(this.Router_Click);
             // 
             // toolStripSeparator7
