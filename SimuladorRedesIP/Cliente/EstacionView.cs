@@ -71,8 +71,85 @@ namespace RedesIP.Vistas
         {
             base.OnPaint(pe);
             Graphics g = pe.Graphics;
+            int xMax = GetxMax();
+            int yMax = Getymax();
+                Size = new Size(xMax+40, yMax+40);
             DibujarGrafico(g);
 
+        }
+
+        private int Getymax()
+        {
+            int yMax = 0;
+
+            for (int i = 0; i < _computadores.Count; i++)
+            {
+                int dimY = _computadores[i].DimensionMundo.OrigenY + _computadores[i].Dimension.Alto;
+                if (dimY > yMax)
+                    yMax = dimY;
+            }
+            for (int i = 0; i < _hubs.Count; i++)
+            {
+                int dimY = _hubs[i].DimensionMundo.OrigenY + _hubs[i].Dimension.Alto;
+                if (dimY > yMax)
+                    yMax = dimY;
+            }
+            for (int i = 0; i < _switches.Count; i++)
+            {
+                int dimY = _switches[i].DimensionMundo.OrigenY + _switches[i].Dimension.Alto;
+                if (dimY > yMax)
+                    yMax = dimY;
+            }
+            for (int i = 0; i < _switchesVLan.Count; i++)
+            {
+                int dimY = _switchesVLan[i].DimensionMundo.OrigenY + _switchesVLan[i].Dimension.Alto;
+                if (dimY > yMax)
+                    yMax = dimY;
+            }
+            for (int i = 0; i < _routers.Count; i++)
+            {
+                int dimY = _routers[i].DimensionMundo.OrigenY + _routers[i].Dimension.Alto;
+                if (dimY > yMax)
+                    yMax = dimY;
+            }
+            return yMax;
+        }
+
+        private int GetxMax()
+        {
+            int xMax = 0;
+
+            for (int i = 0; i < _computadores.Count; i++)
+            {
+                int dimX = _computadores[i].DimensionMundo.OrigenX + _computadores[i].Dimension.Ancho;
+                if (dimX > xMax)
+                    xMax = dimX;
+            }
+            for (int i = 0; i < _hubs.Count; i++)
+            {
+                int dimX = _hubs[i].DimensionMundo.OrigenX + _hubs[i].Dimension.Ancho;
+                if (dimX > xMax)
+                    xMax = dimX;
+            }
+            for (int i = 0; i < _switches.Count; i++)
+            {
+                int dimX = _switches[i].DimensionMundo.OrigenX + _switches[i].Dimension.Ancho;
+                if (dimX > xMax)
+                    xMax = dimX;
+            }
+            for (int i = 0; i < _switchesVLan.Count; i++)
+            {
+                int dimX = _switchesVLan[i].DimensionMundo.OrigenX + _switchesVLan[i].Dimension.Ancho;
+                if (dimX > xMax)
+                    xMax = dimX;
+            }
+            for (int i = 0; i < _routers.Count; i++)
+            {
+                int dimX = _routers[i].DimensionMundo.OrigenX + _routers[i].Dimension.Ancho;
+                if (dimX > xMax)
+                    xMax = dimX;
+            }
+            return xMax;
         }
 
         private void DibujarGrafico(Graphics g)
@@ -89,7 +166,7 @@ namespace RedesIP.Vistas
             {
                 _switches[i].DibujarElemento(g);
             }
-            for (int i = 0; i <  _switchesVLan.Count; i++)
+            for (int i = 0; i < _switchesVLan.Count; i++)
             {
                 _switchesVLan[i].DibujarElemento(g);
             }
@@ -160,7 +237,7 @@ namespace RedesIP.Vistas
         }
         public void LimpiarEstacion()
         {
-            
+
             foreach (KeyValuePair<Guid, EquipoView> equipo in _equipos)
             {
                 equipo.Value.DesconectarDelContenedor();
@@ -181,9 +258,9 @@ namespace RedesIP.Vistas
         private DockPanel _dockMain;
 
         IPaletaHerramienta _paleta;
-        internal void Inicializar(IModeloSOA presenterLocal, DockPanel dockMain,IPaletaHerramienta paleta)
+        internal void Inicializar(IModeloSOA presenterLocal, DockPanel dockMain, IPaletaHerramienta paleta)
         {
-            _paleta=paleta;
+            _paleta = paleta;
             _server = presenterLocal;
             _dockMain = dockMain;
             _snifferMaster = new SimuladorCliente.Sniffers.VistaSnifferMaster(presenterLocal);
@@ -364,8 +441,8 @@ namespace RedesIP.Vistas
                     break;
                 }
             }
-              cableABorrar.Dispose();
-              _conexiones.Remove(cableABorrar);
+            cableABorrar.Dispose();
+            _conexiones.Remove(cableABorrar);
             Invalidate();
 
         }
@@ -379,7 +456,7 @@ namespace RedesIP.Vistas
         {
             EquipoView equipo = _equipos[idEquipo];
             equipo.DesconectarDelContenedor();
-            if (_routers.Contains(equipo as RouterView ))
+            if (_routers.Contains(equipo as RouterView))
                 _routers.Remove(equipo as RouterView);
             if (_switches.Contains(equipo as SwitchView))
                 _switches.Remove(equipo as SwitchView);
@@ -399,7 +476,7 @@ namespace RedesIP.Vistas
 
         public void SetValorConstanteSimulacion(int valor)
         {
-           _paleta.SetValor(valor);
+            _paleta.SetValor(valor);
         }
 
 
@@ -416,7 +493,7 @@ namespace RedesIP.Vistas
 
         public void SetEstadoSimulacion(bool pausado)
         {
-           _paleta.EstablecerEstadoSimulacion(pausado);
+            _paleta.EstablecerEstadoSimulacion(pausado);
         }
 
         #endregion
@@ -429,7 +506,7 @@ namespace RedesIP.Vistas
         public void SetVLans(Guid idSwitchVLan, List<VLanSOA> vLansActuales)
         {
             SwitchVLanView swiView = _equipos[idSwitchVLan] as SwitchVLanView;
-            swiView.SetVLans(vLansActuales);            
+            swiView.SetVLans(vLansActuales);
         }
 
         #endregion
@@ -445,16 +522,16 @@ namespace RedesIP.Vistas
             pcView.NotificarArchivo(archivoSOA);
         }
 
-        
+
 
         public void NotificarEchoMessage(Guid idEquipo, bool esReply, string ipOrigen, TimeSpan hora)
         {
-            
+
             ComputadorView pcView = _equipos[idEquipo] as ComputadorView;
             RouterView rouView = _equipos[idEquipo] as RouterView;
             if (pcView != null)
                 pcView.NotificarEchoMessage(esReply, ipOrigen, hora);
-            if (rouView!=null)
+            if (rouView != null)
                 rouView.NotificarEchoMessage(esReply, ipOrigen, hora);
         }
 
