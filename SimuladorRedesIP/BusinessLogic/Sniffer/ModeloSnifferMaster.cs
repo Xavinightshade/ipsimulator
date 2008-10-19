@@ -19,6 +19,13 @@ namespace BusinessLogic.Sniffer
         {
 
         }
+        public void Dispose()
+        {
+            foreach (KeyValuePair<Guid, ModeloSnifferBase> item in _sniffers)
+            {
+                item.Value.Dispose();
+            }
+        }
         public void setEstacion(EstacionModelo estacion)
         {
             _estacion = estacion;

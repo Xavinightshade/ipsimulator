@@ -82,12 +82,13 @@ namespace RedesIP.Vistas.Equipos
         {
             throw new NotImplementedException();
         }
-        public void DesconectarDelContenedor()
+        public virtual void Dispose()
         {
             _ownerControl.MouseDown -= new System.Windows.Forms.MouseEventHandler(OnMouseDown);
             _ownerControl.MouseMove -= new System.Windows.Forms.MouseEventHandler(OnMouseMove);
             _ownerControl.MouseUp -= new System.Windows.Forms.MouseEventHandler(OnMouseUp);
             _ownerControl.MouseDoubleClick -= new MouseEventHandler(_ownerControl_MouseDoubleClick);
+            Menu.Dispose();
 
 
         }

@@ -119,6 +119,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
 
         public override void DesconectarEquipo()
         {
+            _controladorTCP.ArchivoRecibido -= new EventHandler<EventArgs>(_controladorTCP_ArchivoRecibido);
+            _capaRed.EchoMessage -= new EventHandler<PingEventArgs>(_capaRed_EchoMessage);
+            _archivosRecibidos.Clear();
+            _capaRed.Dispose();
+            _controladorTCP.Dispose();
           
         }
 
@@ -139,5 +144,10 @@ namespace RedesIP.Modelos.Logicos.Equipos
         }
         private List<IVisualizacion> _clientes;
 
+
+        public override void Dispose()
+        {
+            DesconectarEquipo();
+        }
     }
 }

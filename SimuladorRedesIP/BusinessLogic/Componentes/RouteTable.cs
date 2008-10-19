@@ -148,6 +148,13 @@ namespace BusinessLogic.Componentes
             rutasTotales.AddRange(GetRutasDinamicas());
             return rutasTotales;
         }
-      
+
+
+        internal void Dispose()
+        {
+            _puertos.Clear();
+            _tablaRouterDinamico.Clear();
+            _tablaRouterEstatico.Clear();
+        }
     }
 }

@@ -65,5 +65,11 @@ namespace RedesIP.Modelos.Logicos.Equipos
             _capaSwitcheo = null;
             _puertosEthernet = null;
         }
+
+        public override void Dispose()
+        {
+            _capaSwitcheo.Dispose();
+            _puertosEthernet = null;
+        }
     }
 }

@@ -102,5 +102,15 @@ namespace BusinessLogic.Equipos
             }
             throw new Exception();
         }
+
+        public override void Dispose()
+        {
+            foreach (VLan vLan in _vLans)
+            {
+                vLan.Dispose();
+            }
+            _puertosEthernet.Clear();
+            
+        }
     }
 }

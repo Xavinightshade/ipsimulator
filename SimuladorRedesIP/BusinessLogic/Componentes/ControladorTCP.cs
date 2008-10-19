@@ -53,6 +53,9 @@ namespace BusinessLogic.Componentes
 
         void controladorServer_ArchivoRecibido(object sender, EventArgs e)
         {
+            ControladorSesionServer controladorServer = (ControladorSesionServer)sender;
+            controladorServer.ArchivoRecibido -= new EventHandler<EventArgs>(controladorServer_ArchivoRecibido);
+            _sesionesServer.Remove(controladorServer.GetHash());
 
             if (ArchivoRecibido != null)
                 ArchivoRecibido(sender, e);
@@ -93,7 +96,8 @@ namespace BusinessLogic.Componentes
             int segmentSize,string fileName)
         {
             ControladorSesionHost controladorHost = new ControladorSesionHost(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort, datos, segmentSize,fileName);
-            int hashControlador = ControladorSesion.GetHash(_capaRed.CapaDatos.Puerto.IPAddress, ipAddressDestino, sourcePort, destinationPort);
+            controladorHost.FinComunicacion += new EventHandler(controladorHost_FinComunicacion);
+            int hashControlador = controladorHost.GetHash();
             if (_sesionesHost.ContainsKey(hashControlador))
                 return;
             _sesionesHost.Add(hashControlador, controladorHost);
@@ -104,9 +108,24 @@ namespace BusinessLogic.Componentes
 
         }
 
+        void controladorHost_FinComunicacion(object sender, EventArgs e)
+        {
+            ControladorSesionHost controladorHost=(ControladorSesionHost)sender;
+            controladorHost.FinComunicacion -= new EventHandler(controladorHost_FinComunicacion);
+            _sesionesHost.Remove(controladorHost.GetHash());
+        }
+
         public event EventHandler<TCPSegmentRecibido> SegmentoRecibido;
         public event EventHandler<TCPSegmentTransmitido> SegmentoEnviado;
 
 
+
+        internal void Dispose()
+        {
+            _capaRed.CapaDatos.PaqueteRecibido -= new EventHandler<PaqueteRecibidoEventArgs>(CapaDatos_PaqueteRecibido);
+            _sesionesHost.Clear();
+            _sesionesServer.Clear();
+
+        }
     }
 }

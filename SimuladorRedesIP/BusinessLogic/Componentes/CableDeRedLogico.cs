@@ -100,5 +100,10 @@ namespace RedesIP.Modelos
 		}
 
 
-	}
+
+        internal void Dispose()
+        {
+            DesconectarPuertos();
+        }
+    }
 }

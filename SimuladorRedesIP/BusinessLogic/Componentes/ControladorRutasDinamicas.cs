@@ -66,5 +66,9 @@ namespace BusinessLogic.Componentes
             _tablaDinamica.Clear();
             _timers.Clear();
         }
+
+        internal void Dispose()
+        {
+        }
     }
 }

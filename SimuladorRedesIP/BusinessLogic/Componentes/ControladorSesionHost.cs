@@ -70,6 +70,8 @@ namespace BusinessLogic.Componentes
                 segmentoRetorno.SEQ_Number = SeqNumber;
                 segmentoRetorno.ACK_Number = ACKNumber;
                 segmentos.Add(segmentoRetorno);
+                if (FinComunicacion != null)
+                    FinComunicacion(this, new EventArgs());
                 Console.WriteLine("fin host");
                 return segmentos;
             }
@@ -107,7 +109,7 @@ namespace BusinessLogic.Componentes
             }
             return segmentos;
         }
-
+        public event EventHandler FinComunicacion;
         private TCPSegment GetFinRequest()
         {
             TCPSegment tcpFInSegment = new TCPSegment(PuertoOrigen, PuertoDestino, null, 0);

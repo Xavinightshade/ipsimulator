@@ -134,6 +134,7 @@ namespace SimuladorCliente
             // 
             // _toolBarNew
             // 
+            this._toolBarNew.AutoToolTip = true;
             this._toolBarNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._toolBarNew.Image = global::SimuladorCliente.Properties.Resources.new_16x16;
             this._toolBarNew.Name = "_toolBarNew";
@@ -143,6 +144,7 @@ namespace SimuladorCliente
             // 
             // _toolBarOpen
             // 
+            this._toolBarOpen.AutoToolTip = true;
             this._toolBarOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._toolBarOpen.Image = global::SimuladorCliente.Properties.Resources.open_16x16;
             this._toolBarOpen.Name = "_toolBarOpen";
@@ -152,6 +154,7 @@ namespace SimuladorCliente
             // 
             // _toolBarSave
             // 
+            this._toolBarSave.AutoToolTip = true;
             this._toolBarSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._toolBarSave.Image = global::SimuladorCliente.Properties.Resources.save_16x16;
             this._toolBarSave.Name = "_toolBarSave";
@@ -161,6 +164,7 @@ namespace SimuladorCliente
             // 
             // _toolBarDelete
             // 
+            this._toolBarDelete.AutoToolTip = true;
             this._toolBarDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._toolBarDelete.Image = global::SimuladorCliente.Properties.Resources.delete_16x16;
             this._toolBarDelete.Name = "_toolBarDelete";
@@ -367,7 +371,7 @@ namespace SimuladorCliente
             this._toolBarPuntaMedicion.Image = global::SimuladorCliente.Properties.Resources.x_mag_16x16;
             this._toolBarPuntaMedicion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarPuntaMedicion.Name = "_toolBarPuntaMedicion";
-            this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 22);
+            this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 20);
             this._toolBarPuntaMedicion.Text = "Punta de Medicion";
             this._toolBarPuntaMedicion.Click += new System.EventHandler(this.Punta_Click);
             // 

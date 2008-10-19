@@ -87,5 +87,9 @@ namespace BusinessLogic.Componentes
             hash += PuertoDestino;
             return hash;
         }
+        internal int GetHash()
+        {
+            return ControladorSesion.GetHash(IpOrigen, IpDestino, PuertoOrigen, PuertoDestino);
+        }
     }
 }

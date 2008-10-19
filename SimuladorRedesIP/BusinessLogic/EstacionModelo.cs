@@ -344,30 +344,35 @@ namespace RedesIP
             if (_computadores.ContainsKey(idEquipo))
             {
                 EquipoLogico equipo = _computadores[idEquipo];
+                equipo.Dispose();
                 _computadores.Remove(idEquipo);
                 return equipo;
             }
             if (_switches.ContainsKey(idEquipo))
             {
                 EquipoLogico equipo = _switches[idEquipo];
+                equipo.Dispose();
                 _switches.Remove(idEquipo);
                 return equipo;
             }
             if (_hubs.ContainsKey(idEquipo))
             {
                 EquipoLogico equipo = _hubs[idEquipo];
+                equipo.Dispose();
                 _hubs.Remove(idEquipo);
                 return equipo;
             }
             if (_switchesVLan.ContainsKey(idEquipo))
             {
                 EquipoLogico equipo = _switchesVLan[idEquipo];
+                equipo.Dispose();
                 _switchesVLan.Remove(idEquipo);
                 return equipo;
             }
             if (_routers.ContainsKey(idEquipo))
             {
                 EquipoLogico equipo = _routers[idEquipo];
+                equipo.Dispose();
                 _routers.Remove(idEquipo);
                 return equipo;
             }
@@ -379,6 +384,34 @@ namespace RedesIP
 
 
 
+
+        public void Dispose()
+        {
+            foreach (KeyValuePair<Guid,ComputadorLogico> pcs in _computadores)
+            {
+                pcs.Value.Dispose();
+            }
+            foreach (KeyValuePair<Guid, SwitchLogico> pcs in _switches)
+            {
+                pcs.Value.Dispose();
+            }
+            foreach (KeyValuePair<Guid, SwitchVLAN> pcs in _switchesVLan)
+            {
+                pcs.Value.Dispose();
+            }
+            foreach (KeyValuePair<Guid, RouterLogico> pcs in _routers)
+            {
+                pcs.Value.Dispose();
+            }
+            foreach (KeyValuePair<Guid, HUBLogico> pcs in _hubs)
+            {
+                pcs.Value.Dispose();
+            }
+            foreach (KeyValuePair<Guid, CableDeRedLogico> pcs in _diccioCables)
+            {
+                pcs.Value.Dispose();
+            }
+        }
     }
 
 

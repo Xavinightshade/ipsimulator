@@ -179,5 +179,12 @@ namespace BusinessLogic.OSI
                 PaqueteEncapsulado(this, evento);
         }
 
+
+        internal void Dispose()
+        {
+            _puerto.FrameRecibido -= new EventHandler<FrameRecibidoEventArgs>(OnFrameRecibido);
+            _paquetesNoEnviadosConDestino.Clear();
+            _protocoloArp.Dispose();
+        }
     }
 }

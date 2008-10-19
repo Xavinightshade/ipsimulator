@@ -131,5 +131,10 @@ namespace BusinessLogic.Protocolos
             }
             throw new Exception();
         }
+
+        internal void Dispose()
+        {
+            _controladorRutas.Dispose();
+        }
     }
 }

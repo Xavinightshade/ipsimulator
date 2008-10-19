@@ -42,5 +42,10 @@ namespace BusinessLogic.Protocolos
             if (CambioDeTablaArp != null)
                 CambioDeTablaArp(this, new TiempoEventArgs(BusinessLogic.Threads.ThreadManager.HoraActual));
         }
+
+        internal void Dispose()
+        {
+            _IP_To_MAC.Clear();
+        }
     }
 }

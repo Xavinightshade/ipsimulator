@@ -144,5 +144,16 @@ namespace RedesIP.Modelos.Logicos.Equipos
                 vista.NotificarEchoMessage(Id, e.EsReply, e.IpOrigen, e.Hora);
             }
         }
+
+        public override void Dispose()
+        {
+            foreach (KeyValuePair<PuertoEthernetCompleto,CapaRedRouter> item in _puertoEthernetCapaRed)
+            {
+                item.Value.Dispose();
+            }
+            _ripV2.Dispose();
+            _tablaDeRutas.Dispose();
+           
+        }
     }
 }

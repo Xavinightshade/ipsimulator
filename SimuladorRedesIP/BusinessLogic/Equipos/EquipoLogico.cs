@@ -18,6 +18,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             get { return _nombre; }
             set { _nombre = value; }
         }
+        public abstract void Dispose();
 
         public TipoDeEquipo TipoDeEquipo
         {

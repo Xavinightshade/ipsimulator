@@ -245,11 +245,17 @@ namespace RedesIP.Vistas
         }
         public void LimpiarEstacion()
         {
+            List<Guid> idEquipos = new List<Guid>();
 
-            foreach (KeyValuePair<Guid, EquipoView> equipo in _equipos)
+            foreach (KeyValuePair<Guid,EquipoView> item in _equipos)
             {
-                equipo.Value.DesconectarDelContenedor();
+                idEquipos.Add(item.Key);
             }
+            foreach (Guid idEquipo in idEquipos)
+            {
+                Contrato.PeticionEliminarEquipo(idEquipo);
+            }
+            
             _conexiones.Clear();
             _diccioPuertos.Clear();
             _puertos.Clear();
@@ -392,8 +398,8 @@ namespace RedesIP.Vistas
                     marcadorParaBorrar = marcador;
                 }
             }
-            _marcadores.Remove(marcadorParaBorrar);
             marcadorParaBorrar.Dispose();
+            _marcadores.Remove(marcadorParaBorrar);
         }
         public void EliminarSnifferCable(Guid idCable)
         {
@@ -463,7 +469,8 @@ namespace RedesIP.Vistas
         public void EliminarEquipo(Guid idEquipo)
         {
             EquipoView equipo = _equipos[idEquipo];
-            equipo.DesconectarDelContenedor();
+            equipo.Dispose();
+            _equipos.Remove(idEquipo);
             if (_routers.Contains(equipo as RouterView))
                 _routers.Remove(equipo as RouterView);
             if (_switches.Contains(equipo as SwitchView))

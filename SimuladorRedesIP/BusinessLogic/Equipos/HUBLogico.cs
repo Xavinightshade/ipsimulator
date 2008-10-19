@@ -84,5 +84,10 @@ namespace BusinessLogic.Equipos
             }
             _puertosEthernet = null;
         }
+        public override void Dispose()
+        {
+            DesconectarEquipo();
+            _puertosEthernet.Clear();
+        }
     }
 }

@@ -66,6 +66,7 @@ namespace SimuladorCliente.Marcadores
         public virtual void Dispose()
         {
             _mainView = null;
+
         }
 
 

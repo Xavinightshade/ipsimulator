@@ -193,6 +193,12 @@ namespace RedesIP.Vistas.Equipos
             _archivos.AddRange(archivos);
         }
 
+        public override void Dispose()
+        {
+            base.Dispose();
+            _archivos.Clear();
+        }
+
         internal void NotificarEchoMessage(bool esReply, string ipOrigen, TimeSpan hora)
         {
             if (Contenedor.InvokeRequired)

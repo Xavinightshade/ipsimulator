@@ -520,7 +520,7 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaPunta.Enabled = true;
             _formaPaletaHerramientas._PaletaConexion.Enabled = true;
 
-            
+            Nouse_Click(null, null);
         }
 
         private void ToolBarNewClick(object sender, EventArgs e)
@@ -620,6 +620,8 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._paletaHUB.Enabled = false;
             _formaPaletaHerramientas._PaletaPunta.Enabled = false;
             _formaPaletaHerramientas._PaletaConexion.Enabled = false;
+            
+
         }
 
         private void ToolBarDBOpenClick(object sender, EventArgs e)

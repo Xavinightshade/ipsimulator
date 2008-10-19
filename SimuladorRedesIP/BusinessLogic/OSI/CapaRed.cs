@@ -8,7 +8,7 @@ using BusinessLogic.Threads;
 
 namespace BusinessLogic.OSI
 {
-    public class CapaRed
+    public abstract class CapaRed
     {
         private CapaDatos _capaDatos;
 
@@ -63,6 +63,13 @@ namespace BusinessLogic.OSI
             _capaDatos.EnviarPaquete(packet, direccionIP);
         }
 
+
+
+        public virtual void Dispose()
+    {
+        _capaDatos.PaqueteRecibido -= new EventHandler<PaqueteRecibidoEventArgs>(OnPaqueteRecibido);
+        _capaDatos.Dispose();
+    }
 
     }
 }

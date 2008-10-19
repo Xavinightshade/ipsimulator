@@ -182,7 +182,7 @@ namespace RedesIP
                 computadorVisulizacion.DefaultGateWay);
             pcLogico.AgregarPuerto(Guid.NewGuid(),"E.0",MACAddressFactory.NewMAC(),null,null,false);
             _estacion.CrearComputador(pcLogico);
-
+            pcLogico.InformarVistas(_vistas);
             ComputadorSOA equipoRespuesta = CrearComputadorSOA(pcLogico);
             foreach (IVisualizacion cliente in _vistas)
             {

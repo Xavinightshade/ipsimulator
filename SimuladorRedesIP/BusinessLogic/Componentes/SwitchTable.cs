@@ -50,6 +50,7 @@ namespace RedesIP.Modelos.Equipos.Componentes
 		}
 		public void BorrarTabla()
 		{
+          
 			_tablaDeFiltro.Clear();
 		}
 

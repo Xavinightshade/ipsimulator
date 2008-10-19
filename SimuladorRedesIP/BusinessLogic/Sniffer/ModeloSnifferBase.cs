@@ -16,7 +16,7 @@ namespace BusinessLogic.Sniffer
         }
         public virtual void Dispose()
         {
-            _vistas = null;
+            EliminarSnifferTotal();
         }
         public int NumeroDeClientes { get { return _vistas.Count; } }
 

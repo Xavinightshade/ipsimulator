@@ -103,11 +103,13 @@ namespace BusinessLogic.Componentes
                 {
                     ArchivoRecibido(this, new EventArgs());
                 }
-                Console.WriteLine("fin server");
+                
 
             }
             return segmentos;
         }
         public event EventHandler<EventArgs> ArchivoRecibido;
+
+
     }
 }
