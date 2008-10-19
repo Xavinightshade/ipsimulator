@@ -73,7 +73,15 @@ namespace RedesIP.Vistas
             Graphics g = pe.Graphics;
             int xMax = GetxMax();
             int yMax = Getymax();
-                Size = new Size(xMax+40, yMax+40);
+            Panel p = (Panel)this.Parent;
+            int posX = Parent.Size.Width;
+            int posY = Parent.Size.Height;
+            if (xMax > posX)
+                posX = xMax;
+            if (yMax > posY)
+                posY = yMax;
+                Size = new Size(posX, posY);
+                          
             DibujarGrafico(g);
 
         }
