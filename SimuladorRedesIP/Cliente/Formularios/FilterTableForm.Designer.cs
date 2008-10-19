@@ -34,23 +34,23 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this._grid = new System.Windows.Forms.DataGridView();
+            this._asociacionesBS = new System.Windows.Forms.BindingSource(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._direccionMAC = new System.Windows.Forms.TextBox();
             this._puerto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this._hora = new System.Windows.Forms.TextBox();
-            this._direccionMAC = new System.Windows.Forms.TextBox();
-            this._asociacionesBS = new System.Windows.Forms.BindingSource(this.components);
             this.DescPuerto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.macAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._asociacionesBS)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._asociacionesBS)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -112,6 +112,10 @@
             this._grid.Size = new System.Drawing.Size(255, 152);
             this._grid.TabIndex = 1;
             // 
+            // _asociacionesBS
+            // 
+            this._asociacionesBS.DataSource = typeof(SOA.Datos.AsociacionPuertoMACAddressSOA);
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(201, 334);
@@ -134,6 +138,15 @@
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Entrada";
+            // 
+            // _direccionMAC
+            // 
+            this._direccionMAC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._asociacionesBS, "MacAddress", true));
+            this._direccionMAC.Location = new System.Drawing.Point(92, 46);
+            this._direccionMAC.Name = "_direccionMAC";
+            this._direccionMAC.ReadOnly = true;
+            this._direccionMAC.Size = new System.Drawing.Size(170, 20);
+            this._direccionMAC.TabIndex = 7;
             // 
             // _puerto
             // 
@@ -171,7 +184,7 @@
             this.groupBox3.Size = new System.Drawing.Size(285, 290);
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Filtro";
+            this.groupBox3.Text = "Tabla de filtrado del Switch";
             // 
             // label6
             // 
@@ -190,30 +203,17 @@
             this._hora.Size = new System.Drawing.Size(147, 20);
             this._hora.TabIndex = 27;
             // 
-            // _direccionMAC
-            // 
-            this._direccionMAC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._asociacionesBS, "MacAddress", true));
-            this._direccionMAC.Location = new System.Drawing.Point(92, 46);
-            this._direccionMAC.Name = "_direccionMAC";
-            this._direccionMAC.ReadOnly = true;
-            this._direccionMAC.Size = new System.Drawing.Size(170, 20);
-            this._direccionMAC.TabIndex = 7;
-            // 
-            // _asociacionesBS
-            // 
-            this._asociacionesBS.DataSource = typeof(SOA.Datos.AsociacionPuertoMACAddressSOA);
-            // 
             // DescPuerto
             // 
             this.DescPuerto.DataPropertyName = "DescPuerto";
-            this.DescPuerto.HeaderText = "DescPuerto";
+            this.DescPuerto.HeaderText = "Puerto";
             this.DescPuerto.Name = "DescPuerto";
             this.DescPuerto.ReadOnly = true;
             // 
             // macAddressDataGridViewTextBoxColumn
             // 
             this.macAddressDataGridViewTextBoxColumn.DataPropertyName = "MacAddress";
-            this.macAddressDataGridViewTextBoxColumn.HeaderText = "MacAddress";
+            this.macAddressDataGridViewTextBoxColumn.HeaderText = "Dirección MAC";
             this.macAddressDataGridViewTextBoxColumn.Name = "macAddressDataGridViewTextBoxColumn";
             this.macAddressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -228,13 +228,13 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button4);
             this.Name = "FilterTableForm";
-            this.Text = "Tabla de Filtro de Switch";
+            this.Text = "Tabla de filtrado del Switch";
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._asociacionesBS)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._asociacionesBS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

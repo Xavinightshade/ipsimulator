@@ -1,0 +1,235 @@
+/*//////////////////////////////////////////////////////////////////////////////////////////////////
+// TES America Andina Ltda, Derechos Reservados (C)
+// Bogotá D.C., Colombia
+//
+//         888888 888888 888888       db    88   88 888888 88 Yb   88  88888    db
+//           88   88__   88__        dPYb   8888888 88__   88__dP  88  88      dPYb
+//           88   88""     ""88     dP__Yb  88 " 88 88""   88""8   88  88     dP__Yb
+//           88   888888 888888    dP""""Yb 88   88 888888 88  88  88  88888 dP""""Yb
+//
+// $Id: paginas.css 3745 2006-09-06 14:47:05Z andres $
+//////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+@import Url("base.css");
+
+body
+{
+	padding: 0px 0px 0px 0px;
+	width: 100%;
+}
+
+
+div#nsbanner /* Creates Nonscrolling banner region */
+{
+	position: relative;
+	left: 0px;
+	padding: 0px 0px 0px 0px;
+/*	border-bottom: 1px solid #999999;*/
+}
+
+div#nstext /* Creates the scrolling text area for Nonscrolling region topic */
+{
+	padding: 0px 7px 0px 7px; 
+}
+
+table.bannerparthead /* General values for the Running Head tables */
+{
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	color: #ffffff;
+	background-color: #134692;
+}
+
+table.bannerparthead td /* General Values for cells in the top row of running head */
+{
+	padding: 1px;
+	margin: 0px;
+	border: 0px;
+	vertical-align: middle;
+	text-align: left;
+	font-weight: bold;
+}
+
+table.bannerparthead a:link
+{
+	color: #99ccff;
+	text-decoration: none;
+}
+table.bannerparthead a:visited
+{
+	color: #99ccff;
+	text-decoration: none;
+}
+table.bannerparthead a:hover
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+
+
+
+table.menuparthead
+{
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	border-collapse: collapse;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #99ccff;
+	background-color: #3366B2;
+	background-color: #134692;
+	background-color: #5386D2;
+	background-color: #6396E2;
+	background-color: #134692;
+	font-size: 90%;
+}
+
+table.menuparthead td
+{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 5px 1px 5px;
+	vertical-align: middle;
+	text-align: center;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #99ccff;
+	background: transparent; 
+	font-weight: bold;
+	color: #cc3333;
+}
+
+table.menuparthead a:link
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+table.menuparthead a:visited
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+table.menuparthead a:hover
+{
+	color: #99ccff;
+	text-decoration: none;
+}
+
+
+
+
+
+
+/* Tablas de datos del registro */
+table.registro, table.registro th, table.registro td
+{
+	color: #0066cc;
+	border: none;
+	width: 0%;
+}
+
+
+
+/* Tablas de tablas de listas de registros */
+table.tablas, table.tablas th, table.tablas td
+{
+	color: #0066cc;
+	border: none;
+}
+table.tablas
+{
+	width: 100%;
+}
+
+
+
+/* Tablas de listas de registros */
+table.registros, table.registros tr, table.registros th, table.registros td
+{
+	color: #0066cc;
+	border: #0099ff 1px solid;
+	padding: 1px 2px;
+}
+
+
+
+tr.tbRegHeader, td.tbRegHeader
+{
+	color: #ffffff;
+	background-color: #3366cc;
+	font-weight: bold;
+}
+
+tr.tbRegHeader a:link, tr.tbRegHeader a:visited
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
+tr.tbRegHeader a:hoover
+{
+	color: #3366ff;
+	text-decoration: underline;
+}
+
+
+
+tr.tbRegAlternate, td.tbRegAlternate
+{
+/*	background-color: #d0e7ff;*/
+	background-color: #f0f7ff;
+}
+
+
+
+tr.tbRegFooter, td.tbRegFooter
+{
+	font-weight: bold;
+	background-color: #99ccff;
+}
+
+
+
+
+
+
+/* Controles */
+FORM, BUTTON, INPUT, TEXTAREA, LISTING, OPTION, SELECT
+{
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	color: #000099;
+}
+
+BUTTON, INPUT, TEXTAREA, LISTING, OPTION, SELECT
+{
+	border: #0099ff 1px solid;
+}
+
+SELECT
+{
+	font-weight: bold;
+	background-color: #99ccff;
+}
+
+.btn
+{
+	font-weight: bold;
+	background-color: #0066cc;
+	color: #ffffff;
+	cursor:hand;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////
+// $Log$
+// Revision 1.1  2006/09/06 14:44:08  andres
+// *** empty log message ***
+//
+// Revision 1.2  2004/05/04 23:55:33  diego
+// Final sprint 2004-107_003
+//
+// 
+*/

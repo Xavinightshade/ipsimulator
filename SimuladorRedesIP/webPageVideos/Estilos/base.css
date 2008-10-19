@@ -1,0 +1,209 @@
+/*//////////////////////////////////////////////////////////////////////////////////////////////////
+// TES America Andina Ltda, Derechos Reservados (C)
+// Bogotá D.C., Colombia
+//
+//         888888 888888 888888       db    88   88 888888 88 Yb   88  88888    db
+//           88   88__   88__        dPYb   8888888 88__   88__dP  88  88      dPYb
+//           88   88""     ""88     dP__Yb  88 " 88 88""   88""8   88  88     dP__Yb
+//           88   888888 888888    dP""""Yb 88   88 888888 88  88  88  88888 dP""""Yb
+//
+// $Id: base.css 3745 2006-09-06 14:47:05Z andres $
+//////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+body
+{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 7px 0px 7px;
+	background: #fafaff; 
+	color: #333333;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 70%;
+	text-align: justify;
+}
+
+h1, h2, h3, h4, h5
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 100%;
+	margin-top: 1em;
+	margin-bottom: 0.4em;
+}
+
+h1
+{
+	margin-top: 0em;
+	font-size: 120%;
+}
+
+h2
+{
+	margin-top: 2em;
+	font-size: 120%;
+}
+
+h3
+{
+	font-size: 110%;
+}
+
+h5
+{
+	font-style: italic;
+}
+
+p
+{
+	margin: .5em 0em .5em 0em;
+}
+
+blockquote
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-style: italic;
+}
+
+table
+{
+	width: 100%; /* Forces tables to have correct right margin */
+	border-collapse: collapse;
+	margin-top: .6em;
+	margin-bottom: .3em;
+	font-size: 100%; /* Text in Table is same size as text outside table */
+}
+
+table th, table td
+{ 
+	border: solid 1px #999999;
+	padding: 4px 6px;
+	text-align: left;
+}
+
+table th
+{ 
+	background: #dddddd; /* Creates the shaded table header row */
+	vertical-align: bottom;
+}
+
+table td
+{
+	vertical-align: top;
+}
+
+pre
+{
+	margin-top: .5em;
+	margin-bottom: .5em; 
+}
+
+pre, code, .code
+{
+	font: 100% Monospace, Courier New, Courier; /* This is 100% of 70% */
+	color: #000066;
+}
+
+pre b, code b
+{
+	letter-spacing: .1em; /* opens kerning on bold in Syntax/Code */
+}
+
+div.revisions
+{
+	color: gray;
+	font-style: italic;
+}
+
+div.revisions hr
+{
+	color: #999999;
+	height: 1px;
+}
+
+div.revisions p
+{
+	margin-left: 10px;
+	margin-top: 0em;
+	margin-bottom: 0em;
+	text-indent: -10px; 
+}
+
+div.footer
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-style: italic;
+}
+
+div.footer hr
+{
+	color: #999999;
+	height: 1px;
+}
+
+ol, ul
+{
+	margin: .5em 0em 0em 3em; 
+}
+
+li
+{
+	margin-bottom: .5em;
+}
+
+ul p, ol p, dl p
+{
+	margin-left: 0em;
+}
+
+dl
+{
+	margin-top: 0em; 
+	padding-left: 1px; /* Prevents italic-letter descenders from being cut off */
+}
+
+dd
+{
+	margin-bottom: 0em;  
+	margin-left: 1.5em; 
+}
+
+dt
+{
+	margin-top: .5em; 
+	font-weight: bold;
+}
+
+a:link
+{
+	color: #0000ff;
+	text-decoration: none;
+}
+
+a:visited
+{
+	color: #0000ff;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: #3366ff;
+	text-decoration: underline;
+}
+
+img
+{
+	border: none; 
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////
+// $Log$
+// Revision 1.1  2006/09/06 14:44:08  andres
+// *** empty log message ***
+//
+// Revision 1.2  2004/05/04 23:55:33  diego
+// Final sprint 2004-107_003
+//
+// 
+*/

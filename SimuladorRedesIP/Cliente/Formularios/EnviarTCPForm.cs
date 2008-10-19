@@ -111,7 +111,6 @@ namespace SimuladorCliente.Formularios
                     return;
                 }
                 _stream = File.ReadAllBytes(dialog.FileName);
-                label5.Text = dialog.FileName;
                 _fileName = f.Name;
                 _sizeStream.Text = _stream.Length.ToString();
 

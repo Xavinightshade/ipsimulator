@@ -48,5 +48,7 @@ namespace SimuladorCliente.Formularios
             this.Close();
         }
 
+
+
     }
 }

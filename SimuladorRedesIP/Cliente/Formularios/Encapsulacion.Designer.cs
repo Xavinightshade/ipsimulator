@@ -43,7 +43,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this._ipOrigen2 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this._macDestino = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this._macOrigen = new System.Windows.Forms.TextBox();
@@ -64,16 +63,16 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Ip Origen";
+            this.label1.Text = "IP Origen:";
             // 
             // _ipOrigen1
             // 
             this._ipOrigen1.Location = new System.Drawing.Point(68, 19);
             this._ipOrigen1.Name = "_ipOrigen1";
             this._ipOrigen1.ReadOnly = true;
-            this._ipOrigen1.Size = new System.Drawing.Size(105, 20);
+            this._ipOrigen1.Size = new System.Drawing.Size(99, 20);
             this._ipOrigen1.TabIndex = 1;
             // 
             // groupBox1
@@ -86,18 +85,19 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 91);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(180, 149);
+            this.groupBox1.Size = new System.Drawing.Size(236, 227);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Paquete IP";
+            this.groupBox1.Text = "Paquete";
             // 
             // _datos1
             // 
-            this._datos1.Location = new System.Drawing.Point(67, 71);
+            this._datos1.Location = new System.Drawing.Point(9, 90);
             this._datos1.Multiline = true;
             this._datos1.Name = "_datos1";
             this._datos1.ReadOnly = true;
-            this._datos1.Size = new System.Drawing.Size(106, 72);
+            this._datos1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._datos1.Size = new System.Drawing.Size(221, 131);
             this._datos1.TabIndex = 5;
             // 
             // label3
@@ -105,16 +105,16 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 74);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(33, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Datos";
+            this.label3.Text = "Dato:";
             // 
             // _ipDestino1
             // 
-            this._ipDestino1.Location = new System.Drawing.Point(68, 45);
+            this._ipDestino1.Location = new System.Drawing.Point(68, 48);
             this._ipDestino1.Name = "_ipDestino1";
             this._ipDestino1.ReadOnly = true;
-            this._ipDestino1.Size = new System.Drawing.Size(106, 20);
+            this._ipDestino1.Size = new System.Drawing.Size(99, 20);
             this._ipDestino1.TabIndex = 3;
             // 
             // label2
@@ -122,21 +122,20 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(7, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Ip Destino";
+            this.label2.Text = "IP Destino:";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this._macDestino);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this._macOrigen);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(221, 17);
+            this.groupBox2.Location = new System.Drawing.Point(276, 15);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(269, 230);
+            this.groupBox2.Size = new System.Drawing.Size(269, 306);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Frame";
@@ -149,30 +148,31 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this._ipOrigen2);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(82, 74);
+            this.groupBox3.Location = new System.Drawing.Point(10, 71);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(180, 149);
+            this.groupBox3.Size = new System.Drawing.Size(253, 229);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dato";
             // 
             // _datos2
             // 
-            this._datos2.Location = new System.Drawing.Point(68, 74);
+            this._datos2.Location = new System.Drawing.Point(10, 88);
             this._datos2.Multiline = true;
             this._datos2.Name = "_datos2";
             this._datos2.ReadOnly = true;
-            this._datos2.Size = new System.Drawing.Size(106, 72);
+            this._datos2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._datos2.Size = new System.Drawing.Size(237, 135);
             this._datos2.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 74);
+            this.label7.Location = new System.Drawing.Point(7, 72);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(33, 13);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Datos";
+            this.label7.Text = "Dato:";
             // 
             // _ipDestino2
             // 
@@ -187,9 +187,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(7, 48);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.Size = new System.Drawing.Size(59, 13);
             this.label8.TabIndex = 2;
-            this.label8.Text = "Ip Destino";
+            this.label8.Text = "IP Destino:";
             // 
             // _ipOrigen2
             // 
@@ -204,18 +204,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 22);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.Size = new System.Drawing.Size(54, 13);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Ip Origen";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 136);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Dato:";
+            this.label9.Text = "IP Origen:";
             // 
             // _macDestino
             // 
@@ -230,9 +221,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(7, 48);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.Size = new System.Drawing.Size(72, 13);
             this.label5.TabIndex = 2;
-            this.label5.Text = "MAC Destino";
+            this.label5.Text = "MAC Destino:";
             // 
             // _macOrigen
             // 
@@ -247,14 +238,14 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 13);
+            this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 0;
-            this.label6.Text = "MAC Origen";
+            this.label6.Text = "MAC Origen:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(198, 143);
+            this.label10.Location = new System.Drawing.Point(254, 174);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(16, 13);
             this.label10.TabIndex = 4;
@@ -262,7 +253,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(396, 253);
+            this.button1.Location = new System.Drawing.Point(458, 327);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(87, 25);
             this.button1.TabIndex = 5;
@@ -272,7 +263,7 @@
             // 
             // _fecha
             // 
-            this._fecha.Location = new System.Drawing.Point(12, 36);
+            this._fecha.Location = new System.Drawing.Point(6, 37);
             this._fecha.Name = "_fecha";
             this._fecha.ReadOnly = true;
             this._fecha.Size = new System.Drawing.Size(161, 20);
@@ -281,19 +272,19 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 16);
+            this.label11.Location = new System.Drawing.Point(6, 16);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(118, 13);
+            this.label11.Size = new System.Drawing.Size(117, 13);
             this.label11.TabIndex = 34;
-            this.label11.Text = "Hora de Encapsulación";
+            this.label11.Text = "Hora de encapsulación";
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this._fecha);
-            this.groupBox4.Location = new System.Drawing.Point(12, 15);
+            this.groupBox4.Location = new System.Drawing.Point(12, 17);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(180, 63);
+            this.groupBox4.Size = new System.Drawing.Size(173, 63);
             this.groupBox4.TabIndex = 36;
             this.groupBox4.TabStop = false;
             // 
@@ -302,7 +293,7 @@
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 281);
+            this.ClientSize = new System.Drawing.Size(549, 356);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label10);
@@ -311,7 +302,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Encapsulacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Encapsulacion";
+            this.Text = "Encapsulación  ( Paquete -> Frame )";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -342,7 +333,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox _ipOrigen2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox _macDestino;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox _macOrigen;

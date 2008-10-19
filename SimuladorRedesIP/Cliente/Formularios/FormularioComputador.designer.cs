@@ -40,10 +40,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this._mask = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._ChkBoxpuertoHabilitado = new System.Windows.Forms.CheckBox();
             this._defaultGW = new SimuladorCliente.NewFolder1.IPTextBox();
             this.ipTextBox1 = new SimuladorCliente.NewFolder1.IPTextBox();
             this.macTextBox1 = new SimuladorCliente.Formularios.MACTextBox();
-            this._ChkBoxpuertoHabilitado = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,9 +52,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Dirección IP";
+            this.label1.Text = "Dirección IP:";
             // 
             // label2
             // 
@@ -70,9 +70,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.Size = new System.Drawing.Size(83, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Nombre Equipo";
+            this.label3.Text = "Nombre Equipo:";
             // 
             // _nombrePuerto
             // 
@@ -83,7 +83,7 @@
             // 
             // _Aceptar
             // 
-            this._Aceptar.Location = new System.Drawing.Point(16, 187);
+            this._Aceptar.Location = new System.Drawing.Point(3, 168);
             this._Aceptar.Name = "_Aceptar";
             this._Aceptar.Size = new System.Drawing.Size(85, 23);
             this._Aceptar.TabIndex = 6;
@@ -94,7 +94,7 @@
             // _cancel
             // 
             this._cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancel.Location = new System.Drawing.Point(262, 187);
+            this._cancel.Location = new System.Drawing.Point(200, 168);
             this._cancel.Name = "_cancel";
             this._cancel.Size = new System.Drawing.Size(85, 23);
             this._cancel.TabIndex = 7;
@@ -106,7 +106,7 @@
             // 
             this._nombrePc.Location = new System.Drawing.Point(101, 19);
             this._nombrePc.Name = "_nombrePc";
-            this._nombrePc.Size = new System.Drawing.Size(220, 20);
+            this._nombrePc.Size = new System.Drawing.Size(107, 20);
             this._nombrePc.TabIndex = 0;
             // 
             // label4
@@ -125,12 +125,12 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Default GateWay";
+            this.label5.Text = "Default Gateway:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(280, 48);
+            this.label6.Location = new System.Drawing.Point(210, 52);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(12, 13);
             this.label6.TabIndex = 12;
@@ -138,9 +138,9 @@
             // 
             // _mask
             // 
-            this._mask.Location = new System.Drawing.Point(298, 45);
+            this._mask.Location = new System.Drawing.Point(228, 49);
             this._mask.Name = "_mask";
-            this._mask.Size = new System.Drawing.Size(23, 20);
+            this._mask.Size = new System.Drawing.Size(28, 20);
             this._mask.TabIndex = 2;
             // 
             // groupBox1
@@ -158,12 +158,24 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this._nombrePuerto);
-            this.groupBox1.Location = new System.Drawing.Point(15, 12);
+            this.groupBox1.Location = new System.Drawing.Point(3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 160);
+            this.groupBox1.Size = new System.Drawing.Size(282, 160);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
+            // 
+            // _ChkBoxpuertoHabilitado
+            // 
+            this._ChkBoxpuertoHabilitado.AutoSize = true;
+            this._ChkBoxpuertoHabilitado.Checked = true;
+            this._ChkBoxpuertoHabilitado.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._ChkBoxpuertoHabilitado.Location = new System.Drawing.Point(166, 104);
+            this._ChkBoxpuertoHabilitado.Name = "_ChkBoxpuertoHabilitado";
+            this._ChkBoxpuertoHabilitado.Size = new System.Drawing.Size(107, 17);
+            this._ChkBoxpuertoHabilitado.TabIndex = 13;
+            this._ChkBoxpuertoHabilitado.Text = "Puerto Habilitado";
+            this._ChkBoxpuertoHabilitado.UseVisualStyleBackColor = true;
             // 
             // _defaultGW
             // 
@@ -175,7 +187,7 @@
             this._defaultGW.Location = new System.Drawing.Point(100, 75);
             this._defaultGW.Name = "_defaultGW";
             this._defaultGW.ReadOnly = false;
-            this._defaultGW.Size = new System.Drawing.Size(173, 20);
+            this._defaultGW.Size = new System.Drawing.Size(108, 20);
             this._defaultGW.TabIndex = 3;
             this._defaultGW.Text = "...";
             // 
@@ -189,7 +201,7 @@
             this.ipTextBox1.Location = new System.Drawing.Point(100, 48);
             this.ipTextBox1.Name = "ipTextBox1";
             this.ipTextBox1.ReadOnly = false;
-            this.ipTextBox1.Size = new System.Drawing.Size(173, 20);
+            this.ipTextBox1.Size = new System.Drawing.Size(108, 20);
             this.ipTextBox1.TabIndex = 1;
             this.ipTextBox1.Text = "...";
             // 
@@ -202,23 +214,13 @@
             this.macTextBox1.Size = new System.Drawing.Size(173, 20);
             this.macTextBox1.TabIndex = 5;
             // 
-            // checkBox1
-            // 
-            this._ChkBoxpuertoHabilitado.AutoSize = true;
-            this._ChkBoxpuertoHabilitado.Location = new System.Drawing.Point(214, 104);
-            this._ChkBoxpuertoHabilitado.Name = "checkBox1";
-            this._ChkBoxpuertoHabilitado.Size = new System.Drawing.Size(107, 17);
-            this._ChkBoxpuertoHabilitado.TabIndex = 13;
-            this._ChkBoxpuertoHabilitado.Text = "Puerto Habilitado";
-            this._ChkBoxpuertoHabilitado.UseVisualStyleBackColor = true;
-            // 
             // FormularioComputador
             // 
             this.AcceptButton = this._Aceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._cancel;
-            this.ClientSize = new System.Drawing.Size(361, 222);
+            this.ClientSize = new System.Drawing.Size(288, 193);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._cancel);
             this.Controls.Add(this._Aceptar);

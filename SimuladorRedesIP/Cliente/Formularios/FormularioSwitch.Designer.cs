@@ -39,11 +39,11 @@
             this._cancel = new System.Windows.Forms.Button();
             this._Aceptar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this._nombreSwitch = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._puertosBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -55,12 +55,11 @@
             // 
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this._nombrePuerto);
-            this.groupBox1.Location = new System.Drawing.Point(101, 19);
+            this.groupBox1.Location = new System.Drawing.Point(92, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(145, 44);
+            this.groupBox1.Size = new System.Drawing.Size(160, 39);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos";
             // 
             // label4
             // 
@@ -76,7 +75,7 @@
             this._nombrePuerto.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._puertosBS, "Nombre", true));
             this._nombrePuerto.Location = new System.Drawing.Point(90, 13);
             this._nombrePuerto.Name = "_nombrePuerto";
-            this._nombrePuerto.Size = new System.Drawing.Size(47, 20);
+            this._nombrePuerto.Size = new System.Drawing.Size(64, 20);
             this._nombrePuerto.TabIndex = 3;
             // 
             // _puertosBS
@@ -86,7 +85,7 @@
             // _cancel
             // 
             this._cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancel.Location = new System.Drawing.Point(276, 219);
+            this._cancel.Location = new System.Drawing.Point(167, 137);
             this._cancel.Name = "_cancel";
             this._cancel.Size = new System.Drawing.Size(85, 23);
             this._cancel.TabIndex = 5;
@@ -96,7 +95,7 @@
             // 
             // _Aceptar
             // 
-            this._Aceptar.Location = new System.Drawing.Point(276, 190);
+            this._Aceptar.Location = new System.Drawing.Point(167, 108);
             this._Aceptar.Name = "_Aceptar";
             this._Aceptar.Size = new System.Drawing.Size(85, 23);
             this._Aceptar.TabIndex = 4;
@@ -152,20 +151,13 @@
             this.dataGridView1.Size = new System.Drawing.Size(80, 141);
             this.dataGridView1.TabIndex = 17;
             // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nombreDataGridViewTextBoxColumn.Width = 69;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 76);
+            this.groupBox2.Controls.Add(this._cancel);
+            this.groupBox2.Controls.Add(this._Aceptar);
+            this.groupBox2.Location = new System.Drawing.Point(12, 51);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(258, 166);
             this.groupBox2.TabIndex = 18;
@@ -185,29 +177,35 @@
             // 
             this._nombreSwitch.Location = new System.Drawing.Point(101, 16);
             this._nombreSwitch.Name = "_nombreSwitch";
-            this._nombreSwitch.Size = new System.Drawing.Size(125, 20);
+            this._nombreSwitch.Size = new System.Drawing.Size(151, 20);
             this._nombreSwitch.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this._nombreSwitch);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Location = new System.Drawing.Point(12, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(258, 58);
+            this.groupBox3.Size = new System.Drawing.Size(258, 43);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Datos";
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Puerto";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn.Width = 63;
             // 
             // FormularioSwitch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 244);
+            this.ClientSize = new System.Drawing.Size(273, 227);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this._cancel);
-            this.Controls.Add(this._Aceptar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "FormularioSwitch";
