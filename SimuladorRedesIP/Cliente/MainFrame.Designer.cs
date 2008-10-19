@@ -123,7 +123,7 @@ namespace SimuladorCliente
             this.toolStripSeparator4});
             this._toolStrip.Location = new System.Drawing.Point(0, 24);
             this._toolStrip.Name = "_toolStrip";
-            this._toolStrip.Size = new System.Drawing.Size(947, 25);
+            this._toolStrip.Size = new System.Drawing.Size(798, 25);
             this._toolStrip.TabIndex = 1;
             this._toolStrip.Text = "toolStrip1";
             // 
@@ -320,14 +320,14 @@ namespace SimuladorCliente
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator14.Size = new System.Drawing.Size(136, 6);
             // 
             // _toolBarSwitch
             // 
             this._toolBarSwitch.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this._toolBarSwitch.Image = global::SimuladorCliente.Properties.Resources.Switch;
             this._toolBarSwitch.Name = "_toolBarSwitch";
-            this._toolBarSwitch.Size = new System.Drawing.Size(152, 22);
+            this._toolBarSwitch.Size = new System.Drawing.Size(139, 22);
             this._toolBarSwitch.Text = "Switch";
             this._toolBarSwitch.Click += new System.EventHandler(this.Switch_Click);
             // 
@@ -335,7 +335,7 @@ namespace SimuladorCliente
             // 
             this._toolBarSwitchVLan.Image = ((System.Drawing.Image)(resources.GetObject("_toolBarSwitchVLan.Image")));
             this._toolBarSwitchVLan.Name = "_toolBarSwitchVLan";
-            this._toolBarSwitchVLan.Size = new System.Drawing.Size(152, 22);
+            this._toolBarSwitchVLan.Size = new System.Drawing.Size(139, 22);
             this._toolBarSwitchVLan.Text = "SwitchVLan";
             this._toolBarSwitchVLan.Click += new System.EventHandler(this.SwitchVLan_Click);
             // 
@@ -386,16 +386,16 @@ namespace SimuladorCliente
             this._dockMain.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this._dockMain.Location = new System.Drawing.Point(0, 49);
             this._dockMain.Name = "_dockMain";
-            this._dockMain.Size = new System.Drawing.Size(947, 699);
+            this._dockMain.Size = new System.Drawing.Size(798, 671);
             this._dockMain.TabIndex = 10;
             // 
             // _statusStrip
             // 
             this._statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this._statusStrip.Location = new System.Drawing.Point(0, 751);
+            this._statusStrip.Location = new System.Drawing.Point(0, 723);
             this._statusStrip.Name = "_statusStrip";
-            this._statusStrip.Size = new System.Drawing.Size(947, 22);
+            this._statusStrip.Size = new System.Drawing.Size(798, 22);
             this._statusStrip.TabIndex = 15;
             this._statusStrip.Tag = "gf";
             this._statusStrip.Text = "statusStrip1";
@@ -584,7 +584,7 @@ namespace SimuladorCliente
             this.ayudaToolStripMenuItem});
             this._menuStrip.Location = new System.Drawing.Point(0, 0);
             this._menuStrip.Name = "_menuStrip";
-            this._menuStrip.Size = new System.Drawing.Size(947, 24);
+            this._menuStrip.Size = new System.Drawing.Size(798, 24);
             this._menuStrip.TabIndex = 16;
             this._menuStrip.Text = "menuStrip1";
             // 
@@ -619,7 +619,7 @@ namespace SimuladorCliente
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(947, 773);
+            this.ClientSize = new System.Drawing.Size(798, 745);
             this.Controls.Add(this._statusStrip);
             this.Controls.Add(this._dockMain);
             this.Controls.Add(this._toolStrip);
