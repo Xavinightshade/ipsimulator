@@ -30,6 +30,8 @@ namespace BusinessLogic.OSI
 
         private void OnFrameRecibido(object sender, FrameRecibidoEventArgs e)
         {
+            if (e.FrameRecibido.MACAddressDestino != MACAddressFactory.BroadCast && e.FrameRecibido.MACAddressDestino != _puerto.MACAddress)
+                return;
             DatosFrameArpIPEncontrada datosFrameEncontrada = e.FrameRecibido.Informacion as DatosFrameArpIPEncontrada;
             DatosFrameArpBuscando datosFrameBuscando = e.FrameRecibido.Informacion as DatosFrameArpBuscando;
             Packet paquete = e.FrameRecibido.Informacion as Packet;
