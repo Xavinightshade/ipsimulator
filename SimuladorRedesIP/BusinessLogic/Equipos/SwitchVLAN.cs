@@ -69,10 +69,7 @@ namespace BusinessLogic.Equipos
             //  InicializarPuertos();
         }
 
-        public override void DesconectarEquipo()
-        {
-            _puertosEthernet = null;
-        }
+
 
         internal void ActualizarVLans(List<VLanSOA> vLansActuales)
         {

@@ -60,6 +60,13 @@ namespace SimuladorCliente.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _08_11_2008_12_27_53_p_m_ {
+            get {
+                object obj = ResourceManager.GetObject("08-11-2008 12-27-53 p.m.", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon AppIcon {
             get {
                 object obj = ResourceManager.GetObject("AppIcon", resourceCulture);
@@ -176,6 +183,27 @@ namespace SimuladorCliente.Properties {
             get {
                 object obj = ResourceManager.GetObject("Internet_Connect", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap javlogo {
+            get {
+                object obj = ResourceManager.GetObject("javlogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap logo_javeriana {
+            get {
+                object obj = ResourceManager.GetObject("logo-javeriana", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap LogoJaveriana {
+            get {
+                object obj = ResourceManager.GetObject("LogoJaveriana", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

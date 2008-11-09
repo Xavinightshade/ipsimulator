@@ -371,7 +371,7 @@ namespace SimuladorCliente
             this._toolBarPuntaMedicion.Image = global::SimuladorCliente.Properties.Resources.x_mag_16x16;
             this._toolBarPuntaMedicion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._toolBarPuntaMedicion.Name = "_toolBarPuntaMedicion";
-            this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 20);
+            this._toolBarPuntaMedicion.Size = new System.Drawing.Size(114, 22);
             this._toolBarPuntaMedicion.Text = "Punta de Medicion";
             this._toolBarPuntaMedicion.Click += new System.EventHandler(this.Punta_Click);
             // 
@@ -571,14 +571,16 @@ namespace SimuladorCliente
             // documentaciónToolStripMenuItem
             // 
             this.documentaciónToolStripMenuItem.Name = "documentaciónToolStripMenuItem";
-            this.documentaciónToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.documentaciónToolStripMenuItem.Text = "Documentación";
+            this.documentaciónToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.documentaciónToolStripMenuItem.Text = "Documentación y Ayuda";
             // 
             // acercaToolStripMenuItem
             // 
+            this.acercaToolStripMenuItem.Image = global::SimuladorCliente.Properties.Resources.javlogo;
             this.acercaToolStripMenuItem.Name = "acercaToolStripMenuItem";
-            this.acercaToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.acercaToolStripMenuItem.Text = "Acerca";
+            this.acercaToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.acercaToolStripMenuItem.Text = "Acerca De...";
+            this.acercaToolStripMenuItem.Click += new System.EventHandler(this.acercaToolStripMenuItem_Click);
             // 
             // _menuStrip
             // 

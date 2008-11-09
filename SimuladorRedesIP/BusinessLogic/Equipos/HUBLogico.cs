@@ -76,18 +76,20 @@ namespace BusinessLogic.Equipos
 
         }
 
-        public override void DesconectarEquipo()
+        private  void DesconectarEquipo()
         {
             foreach (PuertoEthernetLogicoBase puerto in _puertosEthernet)
             {
                 puerto.FrameRecibido -= new EventHandler<FrameRecibidoEventArgs>(puerto_FrameRecibido);
             }
+            _puertosEthernet.Clear();
             _puertosEthernet = null;
         }
         public override void Dispose()
         {
             DesconectarEquipo();
-            _puertosEthernet.Clear();
+
+           
         }
     }
 }

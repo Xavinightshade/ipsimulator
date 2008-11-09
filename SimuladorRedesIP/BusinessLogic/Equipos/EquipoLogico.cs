@@ -39,7 +39,6 @@ namespace RedesIP.Modelos.Logicos.Equipos
          public abstract void InicializarEquipo();
 
 
-         public abstract void DesconectarEquipo();
     }
     public interface IUnique
     {

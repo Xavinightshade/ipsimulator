@@ -42,7 +42,7 @@
     <PublisherName>Pontificia Universidad Javeriana</PublisherName>
     <SuiteName>Simuladores</SuiteName>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -109,6 +109,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcercaDe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AcercaDe.Designer.cs">
+      <DependentUpon>AcercaDe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Equipos\HUBView.cs" />
     <Compile Include="Equipos\SwitchVLanView.cs" />
     <Compile Include="FormaEstacion.cs">
@@ -268,6 +274,9 @@
     <Compile Include="Marcadores\MarcadorRouter.cs" />
     <Compile Include="Marcadores\MarcadorSwitch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AcercaDe.resx">
+      <DependentUpon>AcercaDe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormaEstacion.resx">
       <DependentUpon>FormaEstacion.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -521,6 +530,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Network-Internet-Connection.ico" />
+    <None Include="Resources\javlogo.jpg" />
+    <None Include="Resources\logo-javeriana.gif" />
+    <None Include="Resources\LogoJaveriana.jpg" />
+    <None Include="Resources\08-11-2008 12-27-53 p.m..jpg" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\V-Icon-big.jpg" />
     <None Include="Resources\HUB.PNG" />

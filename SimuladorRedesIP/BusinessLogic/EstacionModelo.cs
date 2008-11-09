@@ -336,7 +336,6 @@ namespace RedesIP
         internal void EliminarEquipo(Guid idEquipo)
         {
             EquipoLogico equipo = BorrarEquipoById(idEquipo);
-            equipo.DesconectarEquipo();
         }
 
         private EquipoLogico BorrarEquipoById(Guid idEquipo)

@@ -117,7 +117,7 @@ namespace RedesIP.Modelos.Logicos.Equipos
             
         }
 
-        public override void DesconectarEquipo()
+        private  void DesconectarEquipo()
         {
             _controladorTCP.ArchivoRecibido -= new EventHandler<EventArgs>(_controladorTCP_ArchivoRecibido);
             _capaRed.EchoMessage -= new EventHandler<PingEventArgs>(_capaRed_EchoMessage);

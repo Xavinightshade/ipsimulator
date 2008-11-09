@@ -786,6 +786,12 @@ namespace SimuladorCliente
             _formaPaletaHerramientas._PaletaPunta.FlatStyle = FlatStyle.Standard;
         }
 
+        private void acercaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AcercaDe f = new AcercaDe();
+            f.ShowDialog();
+        }
+
 
 
 
