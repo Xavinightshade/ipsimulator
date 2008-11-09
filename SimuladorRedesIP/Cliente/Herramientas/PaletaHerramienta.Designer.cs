@@ -191,13 +191,15 @@
             // 
             // _paletaHUB
             // 
+            this._paletaHUB.BackColor = System.Drawing.Color.Transparent;
             this._paletaHUB.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this._paletaHUB.FlatAppearance.BorderSize = 3;
-            this._paletaHUB.Image = ((System.Drawing.Image)(resources.GetObject("_paletaHUB.Image")));
+            this._paletaHUB.Image = global::SimuladorCliente.Properties.Resources.HUB;
             this._paletaHUB.Location = new System.Drawing.Point(6, 100);
             this._paletaHUB.Name = "_paletaHUB";
             this._paletaHUB.Size = new System.Drawing.Size(110, 29);
             this._paletaHUB.TabIndex = 0;
+            this._paletaHUB.UseVisualStyleBackColor = false;
             // 
             // groupBox4
             // 

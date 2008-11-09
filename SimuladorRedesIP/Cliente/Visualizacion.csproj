@@ -21,14 +21,14 @@
     <ManifestKeyFile>Visualizacion_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <TargetFrameworkSubset>Full</TargetFrameworkSubset>
     <ApplicationIcon>Network-Internet-Connection.ico</ApplicationIcon>
     <TargetZone>LocalIntranet</TargetZone>
     <NoWin32Manifest>true</NoWin32Manifest>
     <PublishUrl>C:\Inetpub\wwwroot\pub\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
+    <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -36,12 +36,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>http://jaus.selfip.net/</UpdateUrl>
+    <InstallUrl>http://jaus.selfip.net/pub/</InstallUrl>
+    <UpdateUrl>http://jaus.selfip.net/pub/</UpdateUrl>
     <ProductName>Simulador Redes</ProductName>
     <PublisherName>Pontificia Universidad Javeriana</PublisherName>
-    <SuiteName>Pontificia Universidad Javeriana</SuiteName>
+    <SuiteName>Simuladores</SuiteName>
     <WebPage>index.htm</WebPage>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
