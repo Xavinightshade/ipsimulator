@@ -25,7 +25,7 @@ namespace RedesIP.Vistas.Equipos
 
         }
         private bool _ripHabilitado;
-
+        
         public bool RipHabilitado
         {
             get { return _ripHabilitado; }
@@ -49,9 +49,19 @@ namespace RedesIP.Vistas.Equipos
 
         private List<PuertoEthernetViewCompleto> _puertosEthernet = new List<PuertoEthernetViewCompleto>();
 
-        public ReadOnlyCollection<PuertoEthernetViewCompleto> PuertosEthernet
+        public override ReadOnlyCollection<PuertoEthernetViewBase> PuertosEthernet
         {
-            get { return _puertosEthernet.AsReadOnly(); }
+            get { return CalcularPuertos(); }
+        }
+
+        private ReadOnlyCollection<PuertoEthernetViewBase> CalcularPuertos()
+        {
+            List<PuertoEthernetViewBase> puertosBase = new List<PuertoEthernetViewBase>();
+            foreach (PuertoEthernetViewCompleto puertoC in _puertosEthernet)
+            {
+                puertosBase.Add(puertoC);
+            }
+            return puertosBase.AsReadOnly();
         }
 
 

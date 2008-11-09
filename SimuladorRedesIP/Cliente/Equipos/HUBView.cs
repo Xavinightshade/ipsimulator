@@ -16,7 +16,7 @@ namespace SimuladorCliente.Equipos
     {
         		private List<PuertoEthernetViewBase> _puertosEthernet = new List<PuertoEthernetViewBase>();
 
-		public ReadOnlyCollection<PuertoEthernetViewBase> PuertosEthernet
+		public override ReadOnlyCollection<PuertoEthernetViewBase> PuertosEthernet
 		{
 			get { return _puertosEthernet.AsReadOnly(); }
 		}

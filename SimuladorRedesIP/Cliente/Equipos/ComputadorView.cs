@@ -41,6 +41,17 @@ namespace RedesIP.Vistas.Equipos
             form.Inicializar(Id, _archivos, base.Contenedor.Contrato);
             form.ShowDialog();
         }
+        public override System.Collections.ObjectModel.ReadOnlyCollection<PuertoEthernetViewBase> PuertosEthernet
+        {
+            get { return GetPuertos(); }
+        }
+
+        private System.Collections.ObjectModel.ReadOnlyCollection<PuertoEthernetViewBase> GetPuertos()
+        {
+            List<PuertoEthernetViewBase> puertosBase = new List<PuertoEthernetViewBase>();
+            puertosBase.Add(_puerto);
+            return puertosBase.AsReadOnly();
+        }
 
         void tcpItem_Click(object sender, EventArgs e)
         {

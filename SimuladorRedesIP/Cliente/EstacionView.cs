@@ -468,9 +468,15 @@ namespace RedesIP.Vistas
 
         public void EliminarEquipo(Guid idEquipo)
         {
+            foreach (PuertoEthernetViewBase puerto in _equipos[idEquipo].PuertosEthernet)
+            {
+                _puertos.Remove(puerto);
+                _diccioPuertos.Remove(puerto.Id);
+            } 
             EquipoView equipo = _equipos[idEquipo];
             equipo.Dispose();
             _equipos.Remove(idEquipo);
+      
             if (_routers.Contains(equipo as RouterView))
                 _routers.Remove(equipo as RouterView);
             if (_switches.Contains(equipo as SwitchView))

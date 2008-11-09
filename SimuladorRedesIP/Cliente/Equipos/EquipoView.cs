@@ -4,6 +4,8 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using SimuladorCliente.Properties;
+using RedesIP.Vistas.Equipos.Componentes;
+using System.Collections.ObjectModel;
 
 namespace RedesIP.Vistas.Equipos
 {
@@ -16,6 +18,10 @@ namespace RedesIP.Vistas.Equipos
 
         }
         private string _nombre;
+        public abstract ReadOnlyCollection<PuertoEthernetViewBase> PuertosEthernet
+        {
+            get;
+        }
 
         public string Nombre
         {

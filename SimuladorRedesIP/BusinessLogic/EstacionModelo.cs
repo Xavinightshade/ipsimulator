@@ -343,6 +343,7 @@ namespace RedesIP
             if (_computadores.ContainsKey(idEquipo))
             {
                 EquipoLogico equipo = _computadores[idEquipo];
+                _puertos.Remove(_computadores[idEquipo].PuertoEthernet.Id);
                 equipo.Dispose();
                 _computadores.Remove(idEquipo);
                 return equipo;
