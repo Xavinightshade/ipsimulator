@@ -64,7 +64,7 @@ namespace BusinessLogic.Componentes
             foreach (EntradaTablaRouter entrada in tabla)
             {
                 uint valorRedPuerto = IPAddressFactory.GetRed(entrada.Red, entrada.Mask.Value);
-                uint valorRedIpAddress = IPAddressFactory.GetRed(ipAddress, entrada.Puerto.Mascara.Value);
+                uint valorRedIpAddress = IPAddressFactory.GetRed(ipAddress, entrada.Mask.Value);
 
                 if (valorRedIpAddress == valorRedPuerto)
                 {
