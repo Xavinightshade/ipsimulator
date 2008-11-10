@@ -62,7 +62,7 @@ namespace BusinessLogic.Protocolos
             while (_habilitado)
             {
                 EnviarRutasPorPuertos();
-                ThreadManager.Sleep(ThreadManager.GetIntervalo(5000));
+                ThreadManager.Sleep(ThreadManager.GetIntervalo(30000));
             }
 
         }

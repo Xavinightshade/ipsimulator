@@ -232,7 +232,6 @@ namespace SimuladorCliente
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "TCP",
-            "UDP",
             "Encapsulación"});
             this.comboBox1.Location = new System.Drawing.Point(263, 4);
             this.comboBox1.Name = "comboBox1";
@@ -272,7 +271,7 @@ namespace SimuladorCliente
                 LlenarGrillaSegmentos(_mensajesSegmentos);
                 return;
             }
-            if (comboBox1.SelectedIndex == 2)
+            if (comboBox1.SelectedIndex == 1)
             {
                 LlenarGrillaEncapsulacion(_mensajesEncapsulacion);
                 return;
