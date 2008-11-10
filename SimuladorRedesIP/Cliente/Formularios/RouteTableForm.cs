@@ -98,6 +98,8 @@ namespace SimuladorCliente.Formularios
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_rutasEstaticas.Current == null)
+                return;
             ((RutaSOA)_rutasEstaticas.Current).IdPuerto = ((PuertoEthernetViewCompleto)comboBox1.SelectedItem).Id;
         }
 
