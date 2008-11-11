@@ -21,6 +21,7 @@ using System.Drawing.Imaging;
 using BusinessLogic.Sniffer;
 using BusinessLogic.Threads;
 using SimuladorCliente.Properties;
+using System.Diagnostics;
 
 namespace SimuladorCliente
 {
@@ -790,6 +791,11 @@ namespace SimuladorCliente
         {
             AcercaDe f = new AcercaDe();
             f.ShowDialog();
+        }
+
+        private void documentaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://jaus.selfip.net/videos/Videos.htm");
         }
 
 

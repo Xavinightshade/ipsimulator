@@ -573,6 +573,7 @@ namespace SimuladorCliente
             this.documentaciónToolStripMenuItem.Name = "documentaciónToolStripMenuItem";
             this.documentaciónToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.documentaciónToolStripMenuItem.Text = "Documentación y Ayuda";
+            this.documentaciónToolStripMenuItem.Click += new System.EventHandler(this.documentaciónToolStripMenuItem_Click);
             // 
             // acercaToolStripMenuItem
             // 
@@ -635,6 +636,7 @@ namespace SimuladorCliente
             this.Name = "MainFrame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simulador Redes";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrameClosing);
             this._toolStrip.ResumeLayout(false);
             this._toolStrip.PerformLayout();
