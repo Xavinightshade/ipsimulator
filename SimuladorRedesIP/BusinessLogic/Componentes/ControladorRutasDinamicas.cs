@@ -33,7 +33,7 @@ namespace BusinessLogic.Componentes
                 }
             }
             _tablaDinamica.Add(entrada);
-            Timer timer = new Timer(ThreadManager.GetIntervalo(500000));
+            Timer timer = new Timer(ThreadManager.GetIntervalo(30000));
             _timers.Add(entrada, timer);
             _entradas.Add(timer, entrada);
             timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
