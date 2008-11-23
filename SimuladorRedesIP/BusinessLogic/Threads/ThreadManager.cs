@@ -24,21 +24,24 @@ namespace BusinessLogic.Threads
         private static EventWaitHandle _waitHandle = new AutoResetEvent(false);
         private static Dictionary<Thread, EventWaitHandle> _threads = new Dictionary<Thread, EventWaitHandle>();
         private static Dictionary<Thread, bool> _threadsPausado = new Dictionary<Thread, bool>();
-
+        private static object _syncObject = new object();
 
         public static void Sleep(int valor)
         {
-            Thread current = Thread.CurrentThread;
-            Console.WriteLine(current.ThreadState.ToString() + " " + current.ManagedThreadId.ToString());
-            if (!_threads.ContainsKey(current))
+            lock (_syncObject)
             {
-                _threads.Add(current, new AutoResetEvent(false));
-                _threadsPausado.Add(current, false);
-            }
-            if (_pausado)
-            {
-                _threadsPausado[current] = true;
-                _threads[current].WaitOne();
+                Thread current = Thread.CurrentThread;
+                Console.WriteLine(current.ThreadState.ToString() + " " + current.ManagedThreadId.ToString());
+                if (!_threads.ContainsKey(current))
+                {
+                    _threads.Add(current, new AutoResetEvent(false));
+                    _threadsPausado.Add(current, false);
+                }
+                if (_pausado)
+                {
+                    _threadsPausado[current] = true;
+                    _threads[current].WaitOne();
+                }  
             }
             Thread.Sleep(valor * Constante);
 

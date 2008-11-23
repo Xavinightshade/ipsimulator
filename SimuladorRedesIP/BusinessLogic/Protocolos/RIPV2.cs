@@ -24,8 +24,6 @@ namespace BusinessLogic.Protocolos
             _controladorRutas = new ControladorRutasDinamicas(_routeTable.TablaRouterDinamico);
 
             _puertos = puertos;
-            _hiloDePublicacionTablas = new Thread(PublicarTablasDeRutas);
-            _hiloDePublicacionTablas.IsBackground = true;
             _routeTable = routeTable;
 
         }
@@ -34,6 +32,8 @@ namespace BusinessLogic.Protocolos
             if (_habilitado)
                 return;
             _habilitado = true;
+            _hiloDePublicacionTablas = new Thread(PublicarTablasDeRutas);
+            _hiloDePublicacionTablas.IsBackground = true;
             _hiloDePublicacionTablas.Start();
         }
         private void Stop()
